@@ -1,0 +1,26 @@
+\def\CHT{01} \def\SEC{01}
+
+\newcommand{\BACKTOROOT}{../../..}
+\newcommand{\PATHTOAPEX}{/Users/rhcocker/Desktop/CurrentTeaching/F_2014/MA123/APEXCalculus_Source-master}
+\newcommand{\PATHTOHEADERS}{/Users/rhcocker/Desktop/CurrentTeaching/F_2014}
+\newcommand{\PATHTOAPEXFIGS}{\PATHTOAPEX/figures}
+\newcommand{\PATHTOSUPPLEMENTS}{\PATHTOHEADERS/MA123/Chapter_\CHT/Section_\CHT_\SEC/Supplements}
+
+\input{\PATHTOAPEX/Supplements_Preamble.tex}
+
+\begin{document}
+
+\input{\PATHTOHEADERS/TeachingDefinitionHeader}
+
+\printincolor
+%\printinblackandwhite
+%\printallanswers
+
+\SetHeader{\CHT.\SEC}{\TOP}{}{{\boolean{true}}}
+
+\input{\PATHTOSUPPLEMENTS/SuplmtsMat_\CHT_\SEC}
+
+\qendheader
+\eendgeometry
+
+\end{document}

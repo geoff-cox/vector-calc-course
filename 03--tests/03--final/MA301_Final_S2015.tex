@@ -1,0 +1,548 @@
+\documentclass[12pt]{amsart}
+\input{../../../../../Headers/TeachingPackageHeader}
+
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+
+\numberwithin{equation}{section}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\textheight = 10.8 in
+\topmargin = -1.0in
+\textwidth = 7.9in
+\oddsidemargin = -0.8in
+\evensidemargin = -0.8in
+
+\begin{document}
+
+\input{../../../../../Headers/TeachingDefinitionHeader.tex}
+
+$\quad$
+
+\vspace{0.6cm}
+
+\begin{center}
+\LARGE {MA 301} \\
+
+\Large{Final} \\
+
+\large{Spring - 2015} \\
+
+\vspace{0.5cm}
+
+{\setlength{\extrarowheight}{0.2cm}
+\begin{tabular}{|c|c|c|}
+\hline
+Problem & points & out of  \\
+\hline
+\hline
+1 & & 6 \\
+\hline
+2 & & 4 \\
+\hline
+3 & & 8 \\
+\hline
+4 & & 4 \\
+\hline
+5 & & 4 \\
+\hline
+6 & & 14 \\
+\hline
+7 & & 6 \\
+\hline
+8 & & 16 \\
+\hline
+\hline
+Score & & 62\\
+\hline
+\end{tabular}}
+\vspace{0.5cm}
+
+\centering
+\begin{tikzpicture}
+     \draw [very thick,->] (-6.75,0) -- (6.75,0) node[pos=1,below] {here};
+%     \draw [very thick,->] (0,-4.75) -- (0,4.75) node[pos=1,above] {y};
+%     \draw [very thin,step=1cm,dashed, lightgray](-6.5,-4.5) grid (6.5,4.5);
+     %settings.outformat = "pdf";	 settings.outformat = "pdf";
+     settings.prc = false;
+     size(5cm,0);
+     import three;
+     draw(unitsphere);
+\end{tikzpicture}
+
+%--------TABLE---------
+	{\setlength{\extrarowheight}{0.2cm}
+	\begin{tabular}{rcc}
+		Name: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&$\hspace{1.4cm}$\\
+		HR: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&\\
+		Signature: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+	\end{tabular}}
+%--------------------
+
+\vspace{1.0cm}
+
+	{\setlength{\extrarowheight}{0.2cm}
+	\begin{tabular}{| cp{16cm} |}
+		\hline
+		\multicolumn{2}{|c|}{{\bf READ BEFORE YOU START}} \\
+		\hline
+		 * & Show all work.\\
+		 * & Change your calculator mode to RADIANS.\\
+		 * & Sloppy solutions may be penalized.\\
+		 * & Use calculators ONLY for computations.\\
+		 * & You must write up every problem in a clear and organized way.\\
+		 * & If you write solutions on a page different than the question, then clearly state where it is located.\\
+		\hline
+	\end{tabular}}
+
+\end{center}
+
+\vspace{1.0cm}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 1:} Suppose the force field ${\bf F} = \left[2xy+z, x^2+z^2, x+2yz\right]$ acts upon a point mass along  
+
+some curve $C$ from $A:(1,3,0)$ to $\D{B:\left(1,-1,1\right)}$.
+
+\vspace{0.2cm}
+
+There are two methods to compute the work done in moving the point mass from $A$ to $B$.
+
+\vspace{0.2cm}
+
+(a) \, Compute the work using your preferred method
+
+\vspace{21.7cm}
+
+(b) \, State the idea behind the other method.
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 2:} Let $\text{\bf F} = [2x^2y,-2xy^2]$ and $C$ be given by $\D{x^2+y^2=5}$ \, oriented counter-clockwise. \, 
+
+Compute \, $\D \int \limits_{C} \text{\bf F}\cdot d\text{\bf r}$ 
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 3:} Let \,\,$z_1 = -2+2i$,\,\, $z_2 = -i$,\,\, $z_3 = 1-i$. \quad Answer the following in the ({\em specified form}):
+
+\vspace{0.2cm}
+
+(a) ({\em Standard Form}) $z_1z_2 = $
+
+\vspace{1.8cm}
+
+(b) ({\em Standard Form}) $z_3-z_1z_2 = $
+
+\vspace{1.8cm}
+
+(c) $|z_1z_2| = $
+
+\vspace{2.8cm}
+
+(d) Convert $z_2$ to Euler's Polar form:
+
+\vspace{2.8cm}
+
+(e) Convert $z_3$ to Euler's Polar form:
+
+\vspace{2.8cm}
+
+(f) ({\em Euler's Polar Form})  $(z_3)^{76} = $
+
+\vspace{2.8cm}
+
+(g) ({\em Euler's Polar Form}) Solve for $x$: \quad $\D{\frac{1}{\sqrt{2}}x^3 - z_3 = 0}$ \quad (explicitly write out all solutions)
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 4:} Let \quad
+$
+f(x) = 
+\left\{
+\begin{array}{lrc}
+	 \pi & & -\frac{\pi}{2} < x < 0\\
+	-\pi & & 0  < x < \frac{\pi}{2}\\
+\end{array}
+\right.
+$  \quad and \quad $f(x) = f(x+\pi)$
+
+\vspace{0.1cm}
+
+Find the Fourier Series of $f(x)$ in terms of: \,  (i) $e^{i\pi n x/L}$ and (ii) $\cos\left(\frac{\pi}{L}nx\right) \, \& \, \sin\left(\frac{\pi}{L}nx\right)$
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 5:} \UL{\em Completely Set-up} (simplify and utilize any odd/even properties) the Fourier coefficients for the 
+
+function shown below.  Assume it periodically extends along the $x$-axis.
+
+\begin{tabular}{p{12cm}l}
+	    & \includegraphics[scale = 0.3]{../../../Figures/FinalFig_05.png} \\
+\end{tabular}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 6:} On the next 2 pages, answer the conceptual questions:
+
+\vspace{0.1cm}
+
+{{\setlength{\extrarowheight}{-0.4cm}
+\begin{tabular}{|c|c||p{18.1cm}|}
+	\hline
+	\multicolumn{3}{|l|}{}\\
+	\multicolumn{3}{|l|}{(a) True/False:}\\
+	\multicolumn{3}{|l|}{}\\
+	\hline
+	\multirow{6}{*}{T} & \multirow{6}{*}{F} &\\
+	&& The line integral of any vector field {\bf F} around any closed curve $C$ is zero\\
+	&&\\
+	\hline
+	\multirow{9}{*}{T} & \multirow{9}{*}{F} &\\
+	&& Let $C$ be an ellipse. If $\WORK = 0$, then ${\bf F}$ is path-independent.\\
+	&&\\
+	\hline
+	\multirow{6}{*}{T} & \multirow{6}{*}{F} &\\
+	&& Assuming the curl({\bf F}) exists, Stokes' Theorem can used to compute $\WORK$, where $C$ is any closed curve. \\
+	&&\\
+	\hline
+	\multirow{6}{*}{T} & \multirow{6}{*}{F} &\\
+	&& If ${\bf F}$ is incompressible and $C$ is any closed curve, then $\WORK = 0$\\
+	&&\\
+	\hline
+%	\multirow{9}{*}{T} & \multirow{9}{*}{F} &\\
+%	&& If $\WORK \ne 0$ for some closed path $C$, then ${\bf F}$ is path-dependent.\\
+%	&&\\
+%	\hline
+%	\multirow{9}{*}{T} & \multirow{9}{*}{F} &\\
+%	&& If ${\bf F}$ is path-independent and $C$ is any closed curve, then $\WORK = 0$\\
+%	&&\\
+%	\hline
+%	\multirow{10}{*}{T} & \multirow{10}{*}{F} &\\
+%	&& If $S_1$ is a rectangle with area = 1 and $S_2$ is a rectangle with area = 2, then
+%$\D{2\iint \limits_{S_1} {\bf F} \cdot d{\bf A} = \iint \limits_{S_2} {\bf F} \cdot d{\bf A}}$\\
+%	&&\\
+%	\hline
+	\multirow{10}{*}{T} & \multirow{10}{*}{F} &\\
+	&& Suppose $\text{\text{\bf F}} = [1,1,1]$ and $S$ is a closed surface with positive orientation.  Then \,\,$\D{\iint \limits_{S} \text{\bf F}\cdot \text{\bf n} \, dA > 0}$.\\
+	&&\\
+	\hline
+	\multirow{10}{*}{T} & \multirow{10}{*}{F} &\\
+	&& Let $S$ be a sphere of radius 1 centered at the origin and oriented outward.  If $\FLUX = 0$, then ${\bf F} = [0,0,0]$\\
+	&&\\
+	\hline
+	\multirow{10}{*}{T} & \multirow{10}{*}{F} &\\
+	&& Let $S$ be the surface of a cube centered at the origin with side length 2 and oriented outward.  If ${\bf F} = 2\VI - \VK$ then the flux of ${\bf F}$ through $S$ is 27.\\
+	&&\\
+	\hline
+	\multirow{12}{*}{T} & \multirow{12}{*}{F} &\\
+	&& If ${\bf F}$ is a vector-field such that div{\bf F} = 3 and $S$ is a closed surface oriented outward, then $\FLUX$ is equal to one-third the volume enclosed by $S$.\\
+	&&\\
+	\hline
+	\multirow{6}{*}{T} & \multirow{6}{*}{F} &\\
+	&& Suppose $f(x) = f(x+6)$ for all $x$, then we say $f$ is periodic with period 12.\\
+	&&\\
+	\hline
+	\multirow{6}{*}{T} & \multirow{6}{*}{F} &\\
+	&& The equation $x^{1/3} + 2i = 1$ has only 1 complex solution.\\
+	&&\\
+	\hline
+%	\multirow{6}{*}{T} & \multirow{6}{*}{F} &\\
+%	&& $\sqrt{-5}\cdot\sqrt{-5} = 5$.\\
+%	&&\\
+%	\hline
+%	\multirow{10}{*}{T} & \multirow{10}{*}{F} &\\
+%	&& Let $S$ be a sphere of radius 1 and oriented outward.  If ${\bf F} = [x,y,z]$ then $\FLUX$ is positive\\
+%	&&\\
+%	\hline
+%	\multirow{10}{*}{T} & \multirow{10}{*}{F} &\\
+%	&& If $\FLUX = 12$ and $S$ is a flat disk of area $4\pi$, then div${\bf F} = \frac{3}{\pi}$\\
+%	&&\\
+%	\hline
+%	\multirow{9}{*}{T} & \multirow{9}{*}{F} &\\
+%	&& If $\WORK = 0$ for one particular closed path, the ${\bf F}$ is path-independent.\\
+%	&&\\
+%	\hline
+%	\multirow{6}{*}{T} & \multirow{6}{*}{F} &\\
+%	&& If ${\bf F}$ is path-independent, then there is a potential function for ${\bf F}$\\
+%	&&\\
+%	\hline
+%	\multirow{9}{*}{T} & \multirow{9}{*}{F} &\\
+%	&& If $\WORK \ne 0$ for some closed path $C$, then ${\bf F}$ is path-dependent.\\
+%	&&\\
+%	\hline
+%	\multirow{9}{*}{T} & \multirow{9}{*}{F} &\\
+%	&& Let $S$ be a sphere of radius 1 centered at the origin and oriented outward.  If ${\bf F} = [x,y,z]$ then $\FLUX$ is positive\\
+%	&&\\
+%	\hline
+%	\multirow{9}{*}{T} & \multirow{9}{*}{F} &\\
+%	&& Let $S$ be a sphere of radius 1 centered at the origin and oriented outward.  If $\FLUX = 0$, then ${\bf F} = {\bf 0}$\\
+%	&&\\
+%	\hline
+%	\multirow{9}{*}{T} & \multirow{9}{*}{F} &\\
+%	&& Let $S$ be the surface of a cube centered at the origin with side length 2 and oriented outward.  If ${\bf F} = 2\VI - \VK$ then the flux of ${\bf F}$ through $S$ is 27.\\
+%	&&\\
+%	\hline
+%	\multirow{6}{*}{T} & \multirow{6}{*}{F} &\\
+%	&& If ${\bf F}$ and ${\bf G}$ are vector-fields satisfying div${\bf F}$ = div${\bf G}$, then ${\bf F} = {\bf G}$\\
+%	&&\\
+%	\hline
+%	\multirow{9}{*}{T} & \multirow{9}{*}{F} &\\
+%	&& If ${\bf F}$ is a vector-field such that div{\bf F} = 1 and $S$ is a closed surface oriented outward, then $\FLUX$ is equal to the volume enclosed by $S$.\\
+%	&&\\
+%	\hline
+\end{tabular}}
+
+{\setlength{\extrarowheight}{-0.3cm}
+\begin{tabular}{| p{19.4cm} |}
+	\\
+	\begin{tabular}{p{12cm}c}
+		\multicolumn{2}{l}{\hspace{-0.2cm}(b) Let $\D{{\bf F}(x,y,z) = [zy-3y,xz-z,xy+1]}$} \\
+		& \multirow{2}{*}{\includegraphics[scale = 0.21]{../../../Figures/10_8_Fig8.png}} \\
+		\\\\\\\\\\\\\\\\\\\\\\
+		$\D{\int \limits_{C} {\bf F} \cdot d{\bf r} = }$ \\
+		\\\\
+	\end{tabular} \\
+	\\
+%	\hline
+%	(b) Let $\text{\bf F}$ vector field such that curl\,$\text{\bf F} =$ {\bf 0}.
+%Match each expression in the left column with the most appropriate term in the right column.
+%	\begin{center}
+%	%{{\setlength{\extrarowheight}{0.1cm}
+%	\begin{tabular}{cp{2cm}c}
+%		$\D{\int \limits_{C} \text{\bf F}\cdot d\text{\bf r}}$ & & conservative\\
+%		$\D{\oint \limits_{D} \text{\bf F}\cdot d\text{\bf r}}$ & & path independent\\
+%		$\D{\text{\bf F}}$ & & zero\\
+%	\end{tabular}
+%	%}}
+%	\end{center}
+%	\\
+%\hline
+%	(c) Match each the Theorem in the left column with the most appropriate statement in the right column.
+%	\begin{center}
+%	{\setlength{\extrarowheight}{0.3cm}
+%	\begin{tabular}{rp{1.6cm}l}
+%		Divergence Theorem & & The surface of a full sphere of radius 4\\
+%		Stokes' Theorem & & The surface of a half-sphere of radius 4\\
+%		Green's Theorem & & A disk of radius 4\\
+%	\end{tabular}}
+%	\end{center}
+%	\\
+	\hline
+	\\
+	\begin{tabular}{p{12cm}c}
+		\multicolumn{2}{l}{\hspace{-0.2cm}(c) Let $\D{{\bf F} = \nabla\left(\frac{y-1}{y+z+1}\right)}$ and let\, $C$ and $D$ be shown in the figure. Then} \\
+		& \multirow{2}{*}{\includegraphics[scale = 0.25]{../../../Figures/10_8_Fig6.png}} \\
+		\\
+		$\D{\int \limits_{C} {\bf F} \cdot d{\bf r} = }$ \\
+		&\\
+		\\\\\\\\\\\\\\\\
+		$\D{\int \limits_{D} {\bf F} \cdot d{\bf r} = }$ &\\
+		\\\\\\\\\\\\\\\\\\\\\\\\\\
+	\end{tabular}
+	\\ \\
+	\hline
+%	(e) Let $\text{\bf F} = [6x,ye^z,-e^z]$ and $S$ be the surface (oriented outward) of the box $|x|\le 1$, $|y|\le 2$ , $0\le z \le 1$.
+%	\\ \\ \\ \\ \\
+%	$\D{\iint \limits_{S} \text{\bf F}\cdot \text{\bf n} \, dA =}$
+%	\\ \\ \\ \\ \\
+%	\hline
+\end{tabular}}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\setlength{\extrarowheight}{-0.3cm}
+\begin{tabular}{| p{19.4cm} |}
+	\hline
+	\\
+	(d) Let $\text{\bf F}$ vector field such that curl\,$\text{\bf F} =$ {\bf 0}.
+Match each expression in the left column with the most appropriate term in the right column.
+	\begin{center}
+	%{{\setlength{\extrarowheight}{0.1cm}
+	\begin{tabular}{cp{2cm}c}
+		$\D{\int \limits_{C} \text{\bf F}\cdot d\text{\bf r}}$ & & conservative\\
+		$\D{\oint \limits_{D} \text{\bf F}\cdot d\text{\bf r}}$ & & path independent\\
+		$\D{\text{\bf F}}$ & & zero\\
+	\end{tabular}
+	%}}
+	\end{center}
+	\\
+	\hline
+	\\
+	(e) Let $\text{\bf F} = [6x,ye^z,-e^z]$ and $S$ be the surface (oriented outward) of the box $|x|\le 1$, $|y|\le 2$ , $0\le z \le 1$.
+	\\\\\\\\\\\\\\\\\\\\
+	$\D{\iint \limits_{S} \text{\bf F}\cdot \text{\bf n} \, dA =}$
+	\\\\\\\\\\\\\\\\\\
+	\hline
+	\\
+	(f) Suppose a fellow student, Cadet Mugatu, wrote you an email about how to set-up the integral for \\
+	\\
+	\multicolumn{1}{|c|}{$\D \WORK$ \, where \, ${\bf F}$ is some given vector field and $C$ is as shown in the figure.} \\
+	\\
+	Use the template below to write a reply with a step-by-step strategy for setting up the final integral. \\
+	\\
+	{\it Note: This is an email, so don't use math symbols in the reply (use MA 301 vocabulary instead).  Also, since Mugatu has basic knowledge of the course, you don't need to explain the details each step (e.g. you can say, ``compute div({\bf F})'', but don't explain how to). }\\
+	\\\\
+	\begin{tabular}{p{14.5cm}c}
+		Dear Mugatu, & 
+		\multirow{1}{*}{\includegraphics[scale = 0.18]{../../../Figures/FinalFig_04.png}}\\
+		\\
+		There are 2 main approaches to this problem.  They are &\\
+		\\
+		Method 1: \UL{$\hspace{12.0cm}$} & \\
+		\\\\
+		Method 2: \UL{$\hspace{12.0cm}$} & \\
+		\\\\
+		Personally, I prefer Method \UL{$\hspace{1.0cm}$}.  Here are the steps involved: &\\
+	\end{tabular}\\
+	\\
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	$\succ$ Finally, the last step is to compute the resulting integral. \\\\
+	\hline
+\end{tabular}}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 7:} \UL{\em Set-up the integrals} (to the point you would use an integration technique) needed to compute:
+
+(a) The mass of the wire with shape given by \RT = t\VI + 2t\VJ + $\frac{2}{3}t^{3/2}$\VK, \, $0 \le t \le 2$ \& density $\delta(x,y,z) = 3\sqrt{5+x}$.
+
+\vspace{11.0cm}
+
+(b) The surface area of $S$ where $S$ is given by the parameterization: ${\bf r}(u,v) = [u,v,u^3]$,\,\, $0 \le u \le 1$,\,\, $-2 \le v \le 2$
+
+\vspace{8.0cm}
+
+%(c) The flux of ${\bf F} = [x^2,0,z^2]$ \, through the closed rectangular box: $|x| \le 1$, \,\, $|y| \le 3$, \,\, and $0 \le z \le 2$.
+%
+%\vspace{0.2cm}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 8:} Answer all of the following questions based on the figure below.
+
+{\setlength{\extrarowheight}{-0.3cm}
+\begin{tabular}{p{0.35cm}p{12cm}p{4cm}}
+	&& \multirow{4}{*}{\includegraphics[scale = 0.25]{../../../Figures/Test_Fig16.png}} \\
+	\multicolumn{2}{c}{$\D{{\bf F}(x,y,z) = \left[x+y,y^2,4-z\right]}$} & \\
+	&&\\
+	&&\\
+	$S_B$: & Part of the $z=0$ plane with $-2 \le x \le 2$, $0\le y \le 3$ & \\
+%	&&\\
+%	$C_B$: & Boundary of $S_B$ & \\
+	&&\\
+	$S_L$: & Part of the $y=0$ plane with $0 \le z \le 4-x^2$, $-2 \le x \le 2$ & \\
+%	&&\\
+%	$C_L$: & Boundary of $S_L$ & \\
+	&&\\
+	$S_R$: & Part of the $y=3$ plane with $0 \le z \le 4-x^2$, $-2 \le x \le 2$ & \\
+%	&&\\
+%	$C_R$: & Boundary of $S_R$ & \\
+	&&\\
+	$S_T$: & Part of the parabolic cylinder $z=4-x^2$ with $0\le y \le 3$, $-2 \le x \le 2$ & \\
+%	&&\\
+%	$C_T$: & Boundary of $S_T$ & \\
+	&&\\
+	$S$: & Total closed surface in the figure (i.e. $S = S_B \cup S_L \cup S_R \cup S_T$) & \\
+\end{tabular}}
+
+\vspace{0.1cm}
+
+{\em Hint}: {\it (1)} ${\text{Area}(S_L) = \text{Area}(S_R) = 2\int \limits_{0}^{2} (4-x^2) \, dx = \frac{32}{3}}$
+
+\hspace{1.0cm} {\it (2) You can do most of these problems without the other parts.} \hspace{1.4cm} ({\em Assume outward orientation}) 
+
+\hspace{1.6cm} {\it Only part (e) depends on previous answers.} 
+
+\vspace{0.2cm}
+
+{\setlength{\extrarowheight}{0.1cm}
+\begin{tabular}{p{0.35cm}p{20.6cm}}
+	(a) & Compute the flux through $S_B$ directly.\\
+	&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\
+	(b) & Compute the flux through $S_L$ directly. \\
+	&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\
+	(c) & Compute the flux through $S_R$ directly. \\
+	&\\
+\end{tabular}}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\setlength{\extrarowheight}{0.1cm}
+\begin{tabular}{p{0.35cm}p{14.6cm}}
+	(d) & Compute the flux through $S_T$ directly. \\
+	&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\
+	(e) & Compute the flux through $S$ using (a)-(d). \\
+	&\\
+\end{tabular}}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\setlength{\extrarowheight}{0.1cm}
+\begin{tabular}{p{0.35cm}p{18.6cm}}
+	(f) & Compute the flux through $S$ using the Divergence Theorem. \\
+	&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\
+	(g) & If $C_T$ is the boundary of $S_T$ ({\em oriented counter-clockwise}), compute \, $\D{\int \limits_{C_T} {\bf F}\,\cdot\, d{\bf r}}$ \,\, using Stokes' Thm \\
+	&\\
+\end{tabular}}
+
+%{\bf Problem 10:} Use Stokes' Thm to answer all the questions below.  (You may use any results from {\bf Problem 2}) 
+%
+%{\setlength{\extrarowheight}{-0.3cm}
+%\begin{tabular}{p{0.35cm}p{12cm}p{4cm}}
+%	&& \multirow{4}{*}{\includegraphics[scale = 0.32]{../../../Figures/Test_Fig18.png}} \\
+%	\multicolumn{2}{c}{$\D{{\bf F}(x,y,z) = \left[x+y,y^2,-4-z\right]}$} & \\
+%	&&\\
+%	&&\\
+%	$S_B$: & Part of the $z=0$ plane with $-2 \le x \le 2$, $0\le y \le 3$ & \\
+%	&&\\
+%	$S_L$: & Part of the $y=0$ plane with $0 \le z \le 4-x^2$, $-2 \le x \le 2$ & \\
+%	&&\\
+%	$S_R$: & Part of the $y=3$ plane with $0 \le z \le 4-x^2$, $-2 \le x \le 2$ & \\
+%	&&\\
+%	$S_T$: & Part of the parabolic cylinder $z=4-x^2$ with $0\le y \le 3$, $-2 \le x \le 2$ & \\
+%	&&\\
+%\end{tabular}}
+%
+%\vspace{0.2cm}
+%
+%{\setlength{\extrarowheight}{0.1cm}
+%\begin{tabular}{p{0.35cm}p{11.6cm}}
+%	(a) & Compute $\D{\int \limits_{C_B} {\bf F}\,\cdot\, d{\bf r}}$ \quad where $C_B$ is the boundary of $S_B$\\
+%	&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\
+%	(b) & Compute $\D{\int \limits_{C_L} {\bf F}\,\cdot\, d{\bf r}}$ \quad where $C_L$ is the boundary of $S_L$\\
+%	&\\&\\&\\&\\&\\&\\&\\&\\&\\&\\
+%	(c) & Compute $\D{\int \limits_{C_T} {\bf F}\,\cdot\, d{\bf r}}$ \quad where $C_T$ is the boundary of $S_T$\\
+%	&\\
+%\end{tabular}}
+%
+%\thispagestyle{empty}
+%\newpage
+%\thispagestyle{empty}
+
+\end{document}

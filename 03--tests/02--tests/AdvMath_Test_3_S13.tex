@@ -1,0 +1,182 @@
+\documentclass[12pt]{amsart}
+\input{../../../../../Headers/TeachingPackageHeader}
+
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+
+\numberwithin{equation}{section}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\textheight = 10.8 in
+\topmargin = -1.0in
+\textwidth = 7.7in
+\oddsidemargin = -0.7in
+\evensidemargin = -0.7in
+
+\begin{document}
+
+\input{../../../../../Headers/TeachingDefinitionHeader.tex}
+
+$\quad$
+
+\vspace{0.6cm}
+
+\begin{center}
+\LARGE {MA 301} \\
+
+\Large{Test 3} \\
+
+\large{Spring - 2013} \\
+
+\vspace{0.3cm}
+
+\setlength{\extrarowheight}{0.4cm}
+\begin{tabular}{|c|c|c|}
+\hline
+Problem & points & out of  \\
+\hline
+\hline
+1 & & 10 \\
+\hline
+2 & & 10 \\
+\hline
+3 & & 10 \\
+\hline
+\hline
+Score & & 30\\
+\hline
+\end{tabular}
+\vspace{0.5cm}
+
+%--------TABLE---------
+	\setlength{\extrarowheight}{0.1cm}
+	\begin{tabular}{rcc}
+		Name: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&$\hspace{1.4cm}$\\
+		HR: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&\\
+		Signature: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+	\end{tabular}
+%--------------------
+
+\vspace{1.5cm}
+
+	%\setlength{\extrarowheight}{0.5cm}
+	\begin{tabular}{| p{15cm} |}
+		\hline
+		\multicolumn{1}{|c|}{{\bf Formula Sheet}} \\
+		\hline
+		 The Fourier series of a function, \,$f(x)$, \,with period, $2L$, is given by \\
+		 \\
+		 \hspace{2.0cm} $\D{f(x) = a_0 + \sum \limits_{n=1}^{\infty} \left[a_n\cos\left(\frac{n\pi x}{L}\right) + b_n \sin\left(\frac{n\pi x}{L}\right)\right]}$ \\
+		 where  \\
+		 \qquad $\D{a_0 = \frac{1}{2L}\int \limits_{-L}^{L} f(x)\, dx}$ \\
+		 \qquad $\D{a_n = \frac{1}{L}\int \limits_{-L}^{L} f(x) \cos\left(\frac{n\pi x}{L}\right)\, dx}$ \\
+		 \qquad $\D{b_n = \frac{1}{L}\int \limits_{-L}^{L} f(x) \sin\left(\frac{n\pi x}{L}\right)\, dx}$ \\
+		\hline
+	\end{tabular}
+
+\end{center}
+ 
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 1:} Determine the Fourier Series for the function depicted in the graph below.  
+
+Assume it periodically extends along the $x$-axis.
+
+\hspace{12.0cm} 
+\begin{tabular}{cl}
+	    & \includegraphics[scale = 0.3]{../../../Figures/11_1_Fig6.png} \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 2:} Determine the Fourier Series for the function depicted in the graph below.  
+
+Assume it periodically extends along the $x$-axis.
+
+\vspace{0.2cm}
+
+\hspace{12.0cm}
+\begin{tabular}{cl}
+	    & \includegraphics[scale = 0.3]{../../../Figures/11_2_Fig5.png} \\
+\end{tabular}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 3:} For each function $f(x)$ below, circle the Fourier Coefficients that must be zero.
+
+Let $g(x)$ be an even function of period 1 and $h(x)$ an odd function with period 1.
+
+\vspace{0.2cm}
+
+\begin{center}
+	
+\setlength{\extrarowheight}{0.2cm}
+\begin{tabular}{cp{6cm}}
+	$f(x)=\left\{
+	\begin{array}{cc}
+		0 & -2 \le x \le 0 \\
+		1 & 0 \le x \le 1 \\
+		0 & 1 \le x \le 2 \\
+	\end{array}
+	\right.
+	$
+	\quad and \quad $f(x) = f(x+4)$
+	& \qquad $a_n$ \quad $b_n$ \quad \\
+	& \\
+	$f(x)=\left\{
+	\begin{array}{cc}
+		-2 & -\frac{1}{2} \le x \le 0 \\
+		2 & 0 \le x \le \frac{1}{2} \\
+	\end{array}
+	\right.
+	$
+	\quad and \quad $f(x) = f(x+1)$
+	& \qquad $a_n$ \quad $b_n$ \quad \\
+	& \\
+	$f(x)=|x|
+	$
+	\quad and \quad $f(x) = f(x+1)$
+	& \qquad $a_n$ \quad $b_n$ \quad \\
+	& \\
+	\multirow{3}{*}{\includegraphics[scale = 0.22]{../../../Figures/11_1_Fig3.png}} \hspace{5.0cm} & \\
+	\hspace{5.0cm} \quad and \quad $f(x) = f(x+2\pi)$ & \qquad $a_n$ \quad $b_n$ \quad \\
+	& \\
+	& \\
+	\multirow{3}{*}{\includegraphics[scale = 0.2]{../../../Figures/11_2_Fig6.png}} \hspace{5.0cm} & \\ 
+	& \\
+	\hspace{5.0cm} \quad and \quad $f(x) = f(x+2\pi)$ & \qquad $a_n$ \quad $b_n$ \quad\\
+	& \\
+	& \\
+	& \\
+	& \\
+	\multirow{3}{*}{\includegraphics[scale = 0.2]{../../../Figures/11_2_Fig1.png}} \hspace{5.0cm} & \\
+	\hspace{5.0cm} \quad and \quad $f(x) = f(x+2\pi)$ 
+	& \qquad $a_n$ \quad $b_n$ \quad \\
+	& \\
+	& \\
+	\multirow{3}{*}{\includegraphics[scale = 0.2]{../../../Figures/11_2_Fig4.png}} \hspace{5.0cm} & \\
+	\hspace{5.0cm} \quad and \quad $f(x) = f(x+2)$ 
+	& \qquad $a_n$ \quad $b_n$ \quad \\
+	& \\
+	& \\
+	$f(x) = 2g(x)$ \quad and \quad $f(x) = f(x+1)$ & \qquad $a_n$ \quad $b_n$ \quad \\
+	& \\
+	$f(x) = g(x) \cdot h(x)$ \quad and \quad $f(x) = f(x+1)$ & \qquad $a_n$ \quad $b_n$ \quad \\
+	& \\
+	$f(x) = \cos((h(x))$ \quad and \quad $f(x) = f(x+1)$ & \qquad $a_n$ \quad $b_n$ \quad \\
+	& \\
+	\end{tabular}
+
+\end{center}
+
+\end{document}

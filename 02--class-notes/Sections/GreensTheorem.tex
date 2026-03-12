@@ -1,0 +1,296 @@
+% Project Root: ../AdvMathLecture.tex
+%
+% Section 10.4: Green's Theorem
+% 
+
+%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} Section 10.4: Green's Theorem}}
+\scriptsize
+
+\vspace{0.2cm}
+{\bf Homework Problems:} \quad 1, 2, 3, 5, 6, 7, 8
+
+\vspace{0.2cm}
+
+{\bf Section Example Problems to Read:} \quad 1, 2, 3
+
+\vspace{1.2cm}
+
+\begin{block}{Key Concepts:}
+%-------LIST---------
+\begin{itemize}
+	\item[...] Green's Theorem
+\end{itemize}
+%-------------------
+\end{block}
+
+\begin{block}{Standard Mathematical Tools:}
+%-------LIST---------
+\begin{itemize}
+	\item[...] Computing Line Integral using Green's Theorem
+	\item[...] Computing Area using Green's Theorem
+\end{itemize}
+%-------------------
+\end{block}
+
+%\vspace{3.0cm}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{I. Introduction}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+%\UL{Notation}: 
+
+\vspace{0.1cm}
+
+\OBUL A closed curve is one that has \ON<2->{\B{the same starting and ending point.}}
+
+\vspace{0.3cm}
+
+\OBUL When representing a line integral over a closed curve, we will use the notation
+
+\begin{center}
+	\ON<3->{\B{$\OWORK$}} \quad instead of \quad $\WORK$
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{center}
+	\includegraphics[scale = 0.2]{Figures/10_5_Fig2.png}\\
+	Closed Curve
+\end{center}
+
+\OBUL Notice that the boundary of region $R$ is a curve.  So if this region was immersed in a vector \NEWLINE field, then we could consider the line integral over the boundary.
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+Question: Is there a relationship between the region, $R$, the boundary, $C$, and vector field, ${\bf F}$?
+
+\vspace{0.5cm}
+
+\begin{columns}
+\begin{column}{6.0cm}
+	\centering
+	\includegraphics[scale = 0.3]{Figures/10_5_Fig3.png}
+\end{column}
+\begin{column}{4.5cm}
+
+	${\bf F}$ -- Arrows
+	
+	\vspace{0.2cm}
+	
+	$C$ -- Blue curve
+	
+	\vspace{0.2cm}
+	
+	$R$ -- Light blue area
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+
+Answer: \ON<2->{\B{Yes and Green's Theorem tells us the answer.}}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+\EX	If ${\bf F} = [F_1, F_2]$, compute \quad curl$({\bf F}) \cdot {\bf k}$
+
+\vspace{0.2cm}
+
+\SOL
+
+\vspace{8.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{II. Green's Theorem}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+\THM Let $R$ be a bounded region in the $xy$-plane with boundary $C$.  If ${\bf F}(x,y) = [F_1, F_2]$ is a vector field, then
+
+\vspace{0.6cm}
+
+\hspace{2.0cm} (General Form) \qquad $\D{\OWORK = \GINT}$
+	
+	\vspace{0.4cm}
+	
+\hspace{1.5cm} (Component Form) \qquad $\D{\GREENSL = \GREENSA}$
+
+\vspace{0.6cm}
+
+\begin{center}
+	\includegraphics[scale = 0.2]{Figures/10_5_Fig2.png}
+\end{center}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+\EX Let $\D{{\bf F} = [x^2 + 4y, x + y^2]}$ and let \,\, $C$ be a square bounded by: \,\, $x=0$, $x=1$, $y=0$, and $y=1$,
+
+\vspace{0.2cm}
+
+Compute \quad $\D{\OWORK}$
+
+\vspace{0.2cm}
+
+\SOL To compute this directly we would have to compute 
+\ON<2->{\B{a line integral for $C_1$, $C_2$, $C_3$, and $C_4$}}
+
+\begin{columns}
+\begin{column}{7.5cm}
+
+\vspace{0.3cm}
+
+$\D{\OWORK = 
+\ON<3->{\B{\oint \limits_{C_1} \FDR + \oint \limits_{C_2} \FDR + \oint \limits_{C_3} \FDR + \oint \limits_{C_4} \FDR}}}$
+
+\vspace{0.3cm}
+
+\ON<4->{\B{Alternatively, we could apply Green's Theorem}}
+
+\vspace{0.4cm}
+
+\ON<4->{\B{$\D{\OWORK = \GREENSA}$}}
+
+\vspace{0.4cm}
+
+$\D{
+\ON<5->{\B{\frac{\partial F_2}{\partial x} = 1}}}$ \quad 
+\ON<6->{\B{and}} \quad $\D{
+\ON<7->{\B{\frac{\partial F_1}{\partial y} = 4}}}$
+
+\vspace{0.4cm}
+
+$\D{ \OWORK = 
+\ON<8->{\B{\iint \limits_{R} (1-4)\, dxdy =\,}} 
+\ON<9->{\B{-3 \iint \limits_{R} \, dxdy =\,}}
+\ON<10->{\B{-3 (Area \, of \, R) = -3}}}$
+
+\end{column}
+\begin{column}{3.3cm}
+
+\only<1>{\includegraphics[scale = 0.19]{Figures/10_5_Fig5.png}}
+\only<2->{\includegraphics[scale = 0.19]{Figures/10_5_Fig4.png}}
+	
+\end{column}
+\end{columns}
+
+\vspace{0.6cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+\EX Let $\D{{\bf F} = [16y + 3yx^2, x^3 + 2y]}$ and let \,\, $C$ be a triangle bounded by: \,\, $x=3$, \, $y=0$, and $y=x$
+
+\vspace{0.2cm}
+
+Compute \quad $\D{\OWORK}$
+
+\vspace{0.2cm}
+
+\SOL
+
+\vspace{7.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+\EX Let $\D{{\bf F} = [xy, y^2]}$ and let \,\, $R$ be the region bounded by: \,\, $y=x^2$, \, and \, $y=x$
+
+\vspace{0.2cm}
+
+Compute \quad $\D{\OWORK}$
+
+\vspace{0.2cm}
+
+\SOL
+
+\vspace{7.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+\EX Let $\D{{\bf F} = \text{grad}(x^2\sin y)}$ and let\, $R$ be the region bounded by: \,\, $x=1$, \, $y=0$, \, and \, $y=\sqrt{x}$
+
+\vspace{0.2cm}
+
+Compute \quad $\D{\OWORK}$
+
+\vspace{0.2cm}
+
+\SOL
+
+\vspace{7.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+

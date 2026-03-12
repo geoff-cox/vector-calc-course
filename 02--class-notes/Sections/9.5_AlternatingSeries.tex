@@ -1,0 +1,303 @@
+%
+% Section 9.5 : Alternating Series
+%
+
+%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} Section 9.5 : Alternating Series}}
+\vspace{0.8cm}
+\scriptsize
+\begin{block}{Homework Problems:}
+
+\vspace{0.2cm}
+\centering
+11, 12, 14, 16, 17, 19, 20, 35, 43-46, 47, 50
+	
+\end{block}
+\vspace{0.5cm}
+
+\begin{block}{Section Example Problems to Read:}
+
+\vspace{0.2cm}
+\centering
+1-6
+	
+\end{block}
+\vspace{0.2cm}
+
+\begin{block}{This section will enable you to ...}
+%-------LIST---------
+\begin{itemize}
+	\item[...] apply the Alternating Series Test to determine the convergence or divergence of a series.
+	\item[...] approximate the sum of an alternating series.
+	\item[...] explain the difference between absolutely and conditionally convergent.
+\end{itemize}
+%-------------------
+\end{block}
+\vspace{3.0cm}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{I. Alternating Series Test}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	\begin{columns}\fcolorbox{blue}{white}{\begin{column}{9.4cm}
+	% Type the contents of the box here
+	\underline{Alternating Series Test (AST)}:
+	\quad Suppose $a_n > 0$\\
+	\vspace{0.1cm}
+	%-------LIST---------
+	\begin{itemize}
+		\item[1.] $\displaystyle{\lim \limits_{n \to \infty}\, a_n = 0}$ \\
+		\vspace{0.1cm}
+		\item[2.] $a_n$ is decreasing \quad (i.e $a_n > a_{n+1}$)
+	\end{itemize}
+	%-------------------
+	%-------LIST---------
+	\begin{center}
+		then \quad $\displaystyle{\sum \limits_{n=1}^{\infty} (-1)^{n} a_n}$ \quad \text{and} \quad $\displaystyle{\sum \limits_{n=1}^{\infty} (-1)^{n+1} a_n}$  \quad converge 
+	\end{center}
+	%-------------------
+	\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+	\vspace{0.4cm}
+	Determine the convergence or divergence\\
+	\vspace{0.1cm}
+	$\displaystyle{\sum \limits_{n=1}^{\infty} \frac{(-1)^{n}}{n}}$
+	\quad \onslide<2->{\textcolor{blue}{let \quad $\displaystyle{a_n = \frac{1}{n} > 0}$}} \\
+	1. \quad $\displaystyle{\onslide<3->{\textcolor{blue}{\lim \limits_{n \to \infty}\, a_n = \lim \limits_{n \to \infty}\, \frac{1}{n} = }}}$ \onslide<4->{\textcolor{blue}{0}}\\
+	\vspace{0.3cm}
+	2. \quad \onslide<5->{\textcolor{blue}{Clearly $\frac{1}{n}$ decreases as $n$ gets large.}}\\
+	\vspace{0.3cm}
+	\onslide<6->{\textcolor{blue}{Therefore by the AST \quad \fbox{$\displaystyle{\sum \limits_{n=1}^{\infty} \frac{(-1)^{n}}{n}}$ converges}}}
+	
+	\vspace{0.2cm}
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{11.0cm}
+Determine the convergence or divergence of the series \\
+\vspace{0.2cm}
+$\displaystyle{\sum \limits_{n=1}^{\infty} \frac{(-1)^{n+1}}{2n-1}}$
+\quad \onslide<2->{\textcolor{blue}{\{$(-1)^{n+1}$ indicates using the Alternating Series Test\} \quad let \quad $\displaystyle{a_n = \frac{1}{2n-1} > 0}$}} \\
+
+\vspace{0.6cm}
+
+	1. \quad $\displaystyle{\onslide<3->{\textcolor{blue}{\lim \limits_{n \to \infty}\, a_n = \lim \limits_{n \to \infty}\, \frac{1}{2n-1} = }}}$ \onslide<4->{\textcolor{blue}{0}}\\
+	\vspace{0.3cm}
+	2. \quad \onslide<5->{\textcolor{blue}{Since $2n-1$ is always increasing, then $\frac{1}{2n-1}$ is always decreasing for $n\ge1$.}}\\
+	\vspace{0.3cm}
+	\onslide<6->{\textcolor{blue}{Therefore, by the AST \quad \fbox{$\displaystyle{\sum \limits_{n=1}^{\infty} \frac{(-1)^{n+1}}{2n-1}}$ converges}}}
+	
+\vspace{10.5cm}
+
+\end{column}
+\begin{column}{0.5cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{11.0cm}
+Determine the convergence or divergence of the series \\
+\vspace{0.2cm}
+$\displaystyle{\sum \limits_{n=1}^{\infty} \frac{(-1)^{n}n}{\ln n}}$
+\quad \onslide<2->{\textcolor{blue}{\{$(-1)^n$ indicates using the Alternating Series Test\} \quad let \quad $\displaystyle{a_n = \frac{n}{\ln n} > 0}$}} \\
+
+\vspace{0.3cm}
+
+	1. \quad $\displaystyle{\onslide<3->{\textcolor{blue}{\lim \limits_{n \to \infty}\, a_n = \lim \limits_{n \to \infty}\, \frac{n}{\ln n} \overset{\left(\frac{\infty}{\infty}\right)}{\underset{LH}{=}} }} \onslide<4->{\textcolor{blue}{ \,= \lim \limits_{n \to \infty}\, \frac{1}{\frac{1}{n}} }} \onslide<4->{\textcolor{blue}{ \,= \lim \limits_{n \to \infty}\, n = \infty }}}$\\
+	\vspace{0.3cm}
+\onslide<5->{\textcolor{blue}{At this point we would note that:}}
+	
+\onslide<6->{\textcolor{blue}{
+$$
+\lim \limits_{n \to \infty}\, \frac{(-1)^{n}n}{\ln n} = \overset{Oscillates: -1 \& 1}{\overbrace{\lim \limits_{n \to \infty}\, (-1)^{n}}} \cdot \overset{\to \infty}{\overbrace{\lim \limits_{n \to \infty}\, \frac{n}{\ln n}}} \quad \text{so this limit DNE}
+$$
+}}
+	
+\onslide<7->{\textcolor{blue}{Since \quad $\displaystyle{\lim \limits_{n \to \infty}\, \frac{(-1)^{n}n}{\ln n} \ne 0}$ then \fbox{$\displaystyle{\sum \limits_{n=1}^{\infty} \frac{(-1)^{n}n}{\ln n}}$ diverges} by the Divergence Test}}
+
+\vspace{10.5cm}
+
+\end{column}
+\begin{column}{0.5cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{11.0cm}
+Determine the convergence or divergence of the series \\
+\vspace{0.2cm}
+$\displaystyle{\sum \limits_{n=1}^{\infty} \frac{(-1)^{n}n}{n^2 + 1}}$ \\
+
+\vspace{10.5cm}
+
+\end{column}
+\begin{column}{0.5cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{II. Approximating an Alternating Series}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	Whenever dealing with approximations, one must consider the error involved, otherwise, we'd never know how good our approximation is.  \\
+	
+	\vspace{0.1cm}
+	
+	The next theorem allows us to determine an error bound on any convergent alternating series.
+	
+	\vspace{0.2cm}
+	
+	\begin{columns}\fcolorbox{blue}{white}{\begin{column}{9.4cm}
+	% Type the contents of the box here
+	\underline{Theorem}:
+	\quad Suppose $\displaystyle{\sum \limits_{n=1}^{\infty} (-1)^{n} a_n}$ converges by the AST. \\
+	Let the sum be given by \quad 
+	$\displaystyle{S = \sum \limits_{n=1}^{\infty} (-1)^{n} a_n}$\\
+	then the partial sums are \quad
+	$\displaystyle{S_N = \sum \limits_{n=1}^{N} (-1)^{n} a_n}$
+	\begin{center}
+		Error = $\displaystyle{|S - S_N| \le a_{N+1}}$
+	\end{center}
+	\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+	\vspace{0.2cm}
+	$\ast$ Note: The Error in the theorem measures \onslide<2->{\textcolor{blue}{how far the partial sum is from the sum.}}
+	
+	\vspace{0.2cm}
+	
+	We have shown that \,\, $\sum \limits_{n=1}^{\infty} \frac{(-1)^{n}}{n}$ \,\, converges by the AST, so it has a finite sum, say $S = \sum \limits_{n=1}^{\infty} \frac{(-1)^{n}}{n}$.\\
+	How closely does $S_3 = \sum \limits_{n=1}^{3} \frac{(-1)^{n}}{n}$ approximate $S = \sum \limits_{n=1}^{\infty} \frac{(-1)^{n}}{n}$? \\
+	By the Theorem above we know: \quad \onslide<3->{\textcolor{blue}{Error = $\displaystyle{|S - S_3| \le a_{4}} = \frac{1}{4} = 0.25$}} \\
+	\vspace{0.2cm}
+	Therefore, $S_3$ is guaranteed to be within \onslide<4->{\textcolor{blue}{0.25 of the actual sum $S$.}}
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{12.5cm}
+Consider \quad $\displaystyle{\sum \limits_{n=1}^{\infty} \frac{(-1)^{n+1}}{n^3}}$ \quad (This sum converges by the AST) \\
+\vspace{0.2cm}
+(a) Determine the number of terms required to approximate the sum with an error of less than 0.02 \\
+
+\vspace{0.2cm}
+
+\onslide<2->{\textcolor{blue}{The problem asks for Error $\le 0.02$ \quad and we know by the theorem that Error $\le a_{N+1}$ \\}}
+\vspace{0.2cm}
+\onslide<2->{\textcolor{blue}{ So we need to find $N$ such that $a_{N+1} \le 0.02$ \quad so we compute}}  \\
+\vspace{0.1cm}
+\begin{columns}
+\begin{column}{5.5cm}
+	\onslide<3->{\textcolor{blue}{$a_1 = \frac{1}{(1)^3} = 1$}} \\
+	\onslide<4->{\textcolor{blue}{$a_2 = \frac{1}{(2)^3} = 0.125$}} \\
+	\onslide<5->{\textcolor{blue}{$a_3 = \frac{1}{(3)^3} \approx 0.037$}} \\
+	\onslide<6->{\textcolor{blue}{$a_4 = \frac{1}{(4)^3} \approx 0.016 \le 0.02$\quad ({\em N+1=4 $\implies$ N=3})}}
+\end{column}
+\begin{column}{5.0cm}
+	By the above theorem \\
+	\vspace{0.2cm}
+	\onslide<7->{\textcolor{blue}{\qquad Error = $|S - S_3| \le a_4$}} \\
+	\vspace{0.2cm}
+	Therefore, we need 3 terms to approximate the sum with error $\le 0.02$
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+
+(b) Approximate the sum within a tolerance of 0.02
+%--------EQN----------
+\begin{align*}
+	S_{\ON<8->{\B{3}}} = \sum \limits_{n=1}^{\ON<8->{\B{3}}} \frac{(-1)^{n+1}}{n^3} &\,= \ON<9->{\B{\frac{(-1)^{(1)+1}}{(1)^3} + \frac{(-1)^{(2)+1}}{(2)^3} + \frac{(-1)^{(3)+1}}{(3)^3}}} \hspace{4.0cm}\\
+	&\,\ON<10->{\B{= \frac{(-1)^{2}}{1} + \frac{(-1)^{3}}{8} + \frac{(-1)^{4}}{27}}} \\
+	&\,\ON<11->{\B{= \frac{1}{1} - \frac{1}{8} + \frac{1}{27}}} \\
+	&\,\ON<12->{\B{= 0.912}}
+\end{align*}
+%----------------------
+
+\vspace{0.5cm}
+
+\end{column}
+\begin{column}{0.0cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{III. Absolutely and Conditionally Convergent}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	By now we all know that an infinite series either converges or diverges, but it turns out that there are 2 types of convergence. \\
+	\vspace{0.2cm}
+	Suppose we know that $\sum \limits_{n=1}^{\infty} a_n$ converges.  Then
+	%-------LIST---------
+\begin{itemize}
+	\item $\displaystyle{\sum \limits_{n=1}^{\infty} a_n}$ \quad is {\bf Absolutely Convergent} if \onslide<2->{\textcolor{blue}{\quad $\displaystyle{\sum \limits_{n=1}^{\infty} |a_n|}$ converges.}}
+	\item $\displaystyle{\sum \limits_{n=1}^{\infty} a_n}$ \quad is {\bf Conditionally Convergent} if \onslide<3->{\textcolor{blue}{\quad $\displaystyle{\sum \limits_{n=1}^{\infty} |a_n|}$ diverges.}}
+\end{itemize}
+%-------------------
+
+Classify whether \quad $\displaystyle{\sum \limits_{n=1}^{\infty} \frac{(-1)^{n}}{n}}$ \quad is absolutely or conditionally convergent.
+
+Since
+
+\vspace{0.2cm}
+
+$\displaystyle{\sum \limits_{n=1}^{\infty} a_n = \sum \limits_{n=1}^{\infty} \frac{(-1)^{n}}{n}}$ \quad \onslide<4->{\textcolor{blue}{converges by a previous example}}\qquad and \\
+
+\vspace{0.2cm}
+
+$\displaystyle{\sum \limits_{n=1}^{\infty} |a_n| = \onslide<5->{\textcolor{blue}{\sum \limits_{n=1}^{\infty} \left|\frac{(-1)^{n}}{n}\right| = }} \onslide<6->{\textcolor{blue}{\sum \limits_{n=1}^{\infty} \frac{1}{n}}}}$ \quad \onslide<7->{\textcolor{blue}{diverges by the p-test.}}
+
+\vspace{0.2cm}
+then \qquad $\displaystyle{\sum \limits_{n=1}^{\infty} \frac{(-1)^{n}}{n}}$ \quad is \onslide<8->{\textcolor{blue}{conditionally convergent.}}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+

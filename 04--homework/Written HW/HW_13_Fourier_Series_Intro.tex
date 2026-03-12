@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+
+\input{../../../../Headers/TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+% Set your name here
+%\def\name{Geoffrey W. Cox}
+
+% The following metadata will show up in the PDF properties
+%\hypersetup{
+%  colorlinks = true,
+%  urlcolor = black,
+%  pdfauthor = {\name},
+%  pdfkeywords = {economics empirical industrial organization econometrics
+%    microeconomics applied microeconomics},
+%  pdftitle = {\name: Curriculum Vitae},
+%  pdfsubject = {Curriculum Vitae},
+%  pdfpagemode = UseNone
+%}
+
+\geometry{textheight=9.0in, textwidth=6in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1em}
+  }
+}{
+  \end{list}
+}
+
+\pagestyle{fancy}\lhead{Written Homework 09} \rhead{Due Apr 13}
+\chead{{\large{\bf Fourier Series Basics}}} \lfoot{} \rfoot{\bf \thepage} \cfoot{}
+
+\begin{document}
+\input{../../../../Headers/TeachingDefinitionHeader.tex}
+{\bf Directions:} Write answers on this page and show any work on separate pages. 
+
+\vspace{0.1cm}
+
+{\bf Problem 1:} Compute the following indefinite integrals.  In each case, assume $n$ is constant.  Show work by applying integration techniques. $\left(Recall: i=\sqrt{-1}\,\, \implies \, i \,\, is \,\, a \,\, constant \right)$
+
+\vspace{0.1cm}
+
+\setlength{\extrarowheight}{0.1cm}
+\begin{tabular}{cl}
+	(a) & $\D{\int \sin (nx) \, dx = }$ \\
+	\\
+	(b) & $\D{\int e^{inx} \, dx = }$ \\
+	\\
+	(c) & $\D{\int xe^{inx} \, dx = }$ \\
+	\\
+	(d) & $\D{\int x^2 e^{inx} \, dx = }$ \\
+\end{tabular}
+
+\vspace{0.3cm}
+
+{\bf Problem 2:} Determine all possible values of the expressions below for $n=1,2,3,...$ by rewriting each expression as a piece-wise function of $n$ or preferably as an equivalent single function of $n$.  ({\em Hint: Try some values of n to see a pattern})
+
+\setlength{\extrarowheight}{0.2cm}
+\begin{tabular}{clp{2.1cm}clp{2.1cm}cl}
+	(a) & $\D{\sin (\pi n) = }$ & &
+	    & $\D{\cos (\pi n) = }$ & &
+	    & $\D{e^{i\pi n} = }$ \\
+	\\
+	(b) & $\D{\sin (2\pi n) = }$ & &
+	    & $\D{\cos (2\pi n) = }$ & &
+	    & $\D{e^{i2\pi n} = }$ \\
+	\\
+	(c) & $\D{\sin \left(\frac{\pi}{2}n\right)  = }$ & &
+	    & $\D{\cos \left(\frac{\pi}{2}n\right) = }$ & &
+	    & $\D{e^{i\pi n/2} = }$ \\
+\end{tabular}
+
+\vspace{0.4cm}
+
+{\bf Problem 3:} Circle the correct answer in brackets [ ] and/or fill in any blanks.
+
+\vspace{0.1cm}
+
+\setlength{\extrarowheight}{-0.0cm}
+\begin{tabular}{cl}
+	(a) & If $f(x)$ is an even function then \,\, \UL{$\hspace{3.0cm}$} ({\em Look up the definition somewhere}) \\
+	\\
+	(b) & If $f(x)$ is an odd function then \,\, \UL{$\hspace{3.0cm}$} \\
+	\\
+	(c) & If $f(x)$ is an even function then \,\, $\int \limits_{-L}^{L} f(x) \, dx = $\\
+	\\
+	(d) & If $f(x)$ is an odd function then \,\, $\int \limits_{-L}^{L} f(x) \, dx = $ \\
+	\\
+	(e) & Cosine is an [ EVEN / ODD ] function, therefore $\D{\cos (-x) = }$ \\
+	\\
+	(f) & Sine is an [ EVEN / ODD ] function, therefore $\D{\sin (-x) = }$ \\
+	\\
+	(g) & By Euler's formula and (e) \& (f), $\D{e^{-inx}+e^{inx} = }$ \\
+	\\
+	(h) & By Euler's formula and (e) \& (f), $\D{(e^{-inx}-e^{inx})i = }$ \\
+\end{tabular}
+
+\end{document}

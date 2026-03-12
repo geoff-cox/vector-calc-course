@@ -1,0 +1,239 @@
+%
+% Section 9.4_SeriesComparison
+%
+
+%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} Section 9.4 : Series Comparison}}
+\scriptsize
+\vspace{0.8cm}
+\begin{block}{Homework Problems:}
+
+\vspace{0.2cm}
+\centering
+15-26
+	
+\end{block}
+\vspace{0.5cm}
+\begin{block}{Section Example Problems to Read:}
+
+\vspace{0.2cm}
+\centering
+1-5
+\end{block}
+\vspace{0.5cm}
+\begin{block}{This section will enable you to ...}
+%-------LIST---------
+\begin{itemize}
+	%\item[...] apply the Direct Comparison Test to determine the convergence or divergence of a series.
+	\item[...] apply the Limit Comparison Test to determine the convergence or divergence of a series.
+\end{itemize}
+%-------------------
+\end{block}
+\vspace{3.0cm}
+\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{I. Comparison Test}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%	\begin{columns}\fcolorbox{blue}{white}{\begin{column}{9.4cm}
+%	% Type the contents of the box here
+%	\underline{Comparison Test}:
+%	Suppose $0 < a_n \le b_n$ \quad ($n \ge 1$)
+%	%-------LIST---------
+%	\begin{itemize}
+%		\item[1.] $\D{\sum \limits_{n=1}^{\infty} b_n \quad \text{converges} \quad \implies \quad \sum \limits_{n=1}^{\infty} a_n \quad \text{converges}}$ 
+%		\item[2.] $\D{\sum \limits_{n=1}^{\infty} a_n \quad \text{diverges} \quad \implies \quad \sum \limits_{n=1}^{\infty} b_n \quad \text{diverges}}$
+%	\end{itemize}
+%	%-------------------t
+%	\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+%	\vspace{0.8cm}
+%	Determine if the series converges or diverges\\
+%	\vspace{0.2cm}
+%	$\D{\sum \limits_{n=1}^{\infty} \frac{1}{8+5^n}}$ \hspace{0.6cm}
+%	\ON<2->{\B{Note \quad $\D{0 < \frac{1}{8+5^n} \le \frac{1}{5^n}}$}} \quad \ON<3->{\B{{\em (Decreasing the denominator, makes the fraction bigger)}}} \\
+%	\vspace{0.2cm}
+%	\ON<4->{\B{Since \quad $\D{\sum \limits_{n=1}^{\infty} \frac{1}{5^n} = \sum \limits_{n=1}^{\infty} \left(\frac{1}{5}\right)^n}$}} \quad \ON<5->{\B{converges by the GST ($|r| = \frac{1}{5} < 1$),}} \\
+%	\vspace{0.2cm}
+%	\ON<6->{\B{ then by the comparison test \hspace{0.6cm}
+%	\fbox{$\D{\sum \limits_{n=1}^{\infty} \frac{1}{8+5^n}}$ converges}}} \\
+%	\vspace{0.2cm}
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{I. Limit Comparison Test}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	\begin{columns}\fcolorbox{blue}{white}{\begin{column}{9.4cm}
+	% Type the contents of the box here
+	\underline{Limit Comparison Test (LCT)}:
+	\quad Suppose \\
+	\vspace{0.2cm}
+	%-------LIST---------
+	\begin{itemize}
+		\item[1.] $a_n > 0,\,\, b_n > 0, \,\,$ (``eventually'')
+		\vspace{0.2cm}
+		\item[2.] $\D{\lim \limits_{n \to \infty}\, \frac{a_n}{b_n} = L}$ \quad where \quad $0 < L < \infty$
+	\end{itemize}
+	%-------------------
+	%-------LIST---------
+	\begin{center}
+		then \quad $\D{\sum \limits_{n=1}^{\infty} a_n \quad \text{and} \quad \sum \limits_{n=1}^{\infty} b_n}$ \quad EITHER both converge OR both diverge \\
+	\end{center}
+	%-------------------
+	\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+	\vspace{0.2cm}
+	Determine the convergence or divergence\\
+	\vspace{0.2cm}
+	$\D{\sum \limits_{n=1}^{\infty} \frac{1}{n^2 - 1}}$
+	\quad \ON<2->{\B{let \quad $\D{a_n = \frac{1}{n^2 - 1} > 0}$ \quad and \quad $\D{b_n = \frac{1}{n^2} > 0}$}} \\
+	compute \quad $\D{\ON<3->{\B{\lim \limits_{n \to \infty}\, \frac{a_n}{b_n} = \lim \limits_{n \to \infty}\, a_n \cdot \frac{1}{b_n} = }} \ON<4->{\B{\lim \limits_{n \to \infty}\, \frac{1}{n^2 - 1} \cdot n^2 = \lim \limits_{n \to \infty}\, \frac{n^2}{n^2 - 1}} = 1 = L}}$\\
+	\ON<5->{\B{Since $0 < L < \infty$ \quad and \quad $\D{\sum \limits_{n=1}^{\infty} \frac{1}{n^2}}$}} \quad \ON<6->{\B{converges by the $p$-test ($p=2>1$) then}} \ON<7->{\B{by the LCT}} \\
+	\ON<7->{\B{\fbox{$\D{\sum \limits_{n=1}^{\infty} \frac{1}{n^2 - 1}}$ converges}}}
+	
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{II. Choosing $b_n$}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	%Suppose we want to determine the convergence or divergence of \qquad $\D{\sum \limits_{n=1}^{\infty} a_n}$ \\
+	The key to effectively applying the Limit Comparison Test (LCT) is to \ON<2->{\B{chose the correct $b_n$}} \\
+	\vspace{0.2cm}
+	The ideal qualities of $b_n$ should be such that
+	%-------LIST---------
+	\begin{itemize}
+		\item \ON<3->{\B{$b_n$ that grows at a similar rate as $a_n$ ($b_n$ keeps the dominating terms of $a_n$)}}
+		\item \ON<4->{\B{we know whether $\sum \limits_{n=1}^{\infty} b_n$ converges or diverges.}}
+	\end{itemize}
+	%-------------------
+	For each series, chose the $b_n$ you would use for the LCT \\
+	\vspace{0.1cm}
+	$\D{\sum \limits_{n=1}^{\infty} \frac{1}{3n^2 + 2}} \,\, \qquad $  \,\, $a_n = \, \D{ \frac{1}{3n^2 + 2}}$ \quad and \quad $b_n = $ \ON<5->{\B{$\D{ \frac{1}{3n^2}}$ \quad ($\sum \limits_{n=1}^{\infty} \frac{1}{3n^2}$ converges by $p$-test)}} \\
+	\vspace{0.2cm}
+	$\D{\sum \limits_{k=1}^{\infty} \frac{1}{\sqrt{k} - 1}} \,\, \qquad $ \,\, $a_k = \, \D{ \frac{1}{\sqrt{k} - 1}}$ \quad and \quad $b_k = $ \ON<6->{\B{$\D{\frac{1}{\sqrt{k}} = \frac{1}{k^{1/2}}}$\quad ($\sum \limits_{k=1}^{\infty} \frac{1}{k^{1/2}}$ diverges by $p$-test)}} \\
+	\vspace{0.2cm}
+	$\D{\sum \limits_{n=1}^{\infty} \frac{3^n}{4^n + 5}} \,\, \qquad $ \,\, $a_n = \, \D{ \frac{3^n}{4^n + 5}}$ \quad and \quad $b_n = $ \ON<7->{\B{$\D{\frac{3^n}{4^n} = \left(\frac{3}{4}\right)^n}$\quad ($\sum \limits_{n=1}^{\infty} \left(\frac{3}{4}\right)^n$ converges by GST)}} \\
+	\vspace{0.2cm}
+	$\D{\sum \limits_{n=1}^{\infty} \frac{3}{\sqrt{n^2 - n + 4}}} \qquad a_n = \, \D{ \frac{3}{\sqrt{n^2 - n + 4}}}$ \,\, and \,\, $b_n = $ \ON<8->{\B{$\D{\frac{3}{\sqrt{n^2}} = \frac{3}{|n|} = \frac{3}{n}}$\quad ($\sum \limits_{n=1}^{\infty} \frac{3}{n}$ div by $p$-test)}} \\
+	\vspace{0.2cm}
+	$\D{\sum \limits_{n=4}^{\infty} \frac{5n-3}{n^3 - 2n^2 + 5}} \,\, \qquad  \,\, a_n = \, \D{ \frac{5n-3}{n^3 - 2n^2 + 5}}$ \quad and \quad $b_n = $ \ON<9->{\B{$\D{\frac{5n}{n^3} = \frac{5}{n^2}}$\quad ($\sum \limits_{n=1}^{\infty} \frac{5}{n^2}$ conv by $p$-test)}} \\
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{11.0cm}
+Determine if the series converge or diverge\\
+
+$\D{\sum \limits_{n=2}^{\infty} \frac{1}{\sqrt{n^3 + 1}}}$
+
+\vspace{4.0cm}
+
+$\D{}$
+
+\vspace{6.5cm}
+
+\end{column}
+\begin{column}{0.5cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{11.0cm}
+\\
+
+$\D{\sum \limits_{n=1}^{\infty} \frac{n}{(n + 1)2^{n-1}}}$
+
+\vspace{4.0cm}
+
+$\D{}$
+
+\vspace{6.5cm}
+
+\end{column}
+\begin{column}{0.5cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{11.0cm}
+\\
+
+$\D{\sum \limits_{n=4}^{\infty} \frac{n(10-n)}{(n + 1)(n-1)^2}}$
+
+\vspace{4.0cm}
+
+$\D{}$
+
+\vspace{6.5cm}
+
+\end{column}
+\begin{column}{0.5cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{11.0cm}
+(a) Verify the series \quad $\D{\sum \limits_{k=1}^{\infty} \frac{1}{(2k-1)^2}}$ \quad converges\\
+
+\vspace{4.0cm}
+
+(b) It is known that $\D{\sum \limits_{k=1}^{\infty} \frac{1}{(2k-1)^2}} = \frac{\pi^2}{8}$.  \,\,Find the sum of \quad $\D{\sum \limits_{k=3}^{\infty} \frac{1}{(2k-1)^2}}$
+
+\vspace{6.5cm}
+
+\end{column}
+\begin{column}{0.5cm}
+	
+\end{column}
+\end{columns}
+\end{frame}

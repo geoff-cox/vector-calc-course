@@ -1,0 +1,20 @@
+\def\CHT{01} \def\SEC{01}
+\newcommand{\BACKROOT}{../../..}
+\newcommand{\PATHTOHEADERS}{/Users/rhcocker/Desktop/CurrentTeaching/Headers}
+
+\documentclass[a4paper]{article}
+\usepackage{pdfpages}
+\usepackage{standalone}
+
+\input{\PATHTOHEADERS/TeachingPackageHeader.tex}
+
+\usetikzlibrary{arrows,shapes}
+
+\pgfplotsset{compat=1.11}
+
+\begin{document}
+
+\includepdf[pages=1-last,nup=1x2,landscape=false,frame=false,
+            noautoscale=false,scale=1.0,delta=0mm 0mm]{AdvMathLecture.pdf}
+            
+\end{document}

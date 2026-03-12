@@ -1,0 +1,203 @@
+\documentclass[12pt]{amsart}
+\input{../../../../../Headers/TeachingPackageHeader}
+
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+
+\numberwithin{equation}{section}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\textheight = 10.8 in
+\topmargin = -1.0in
+\textwidth = 8.0in
+\oddsidemargin = -0.9in
+\evensidemargin = -0.9in
+
+\begin{document}
+
+\input{../../../../../Headers/TeachingDefinitionHeader.tex}
+
+$\quad$
+
+\vspace{1.6cm}
+
+\begin{center}
+\LARGE {MA 301} \\
+
+\Large{Test 3} \\
+
+\large{Spring - 2014} \\
+
+\vspace{0.6cm}
+
+\setlength{\extrarowheight}{0.4cm}
+\begin{tabular}{|c|c|c|}
+\hline
+Problem & points & out of  \\
+\hline
+\hline
+1 & & 10 \\
+\hline
+2 & & 10 \\
+\hline
+3 & & 6 \\
+\hline
+\hline
+Score & & 26\\
+\hline
+\end{tabular}
+
+\vspace{0.8cm}
+
+%--------TABLE---------
+	\setlength{\extrarowheight}{0.1cm}
+	\begin{tabular}{rcc}
+		Name: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&$\hspace{1.4cm}$\\
+		HR: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&\\
+		Signature: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+	\end{tabular}
+%--------------------
+
+\vspace{2.5cm}
+
+%--------TABLE---------
+\setlength{\extrarowheight}{0.1cm}
+\begin{tabular}{|cclccclc|}
+	\hline
+	\hline
+	\multicolumn{8}{|c|}{\bf Formula Sheet}\\
+	\hline
+	Fourier Series:
+	& $f(x)$ & \multicolumn{2}{c}{$\D{= 
+	\sum \limits_{n=-\infty}^{\infty} d_n e^{i \pi n x/L}}$}
+	& where & $d_n$ & $\D{= 
+	\frac{1}{2L}\int \limits_{-L}^{L} f(x)\, e^{-i\pi nx/L} \, dx}$ & \\
+	& & 	& 
+	\multicolumn{2}{c}{if $f(x)$ is even then} & $d_n$ & $\D{= 
+	\frac{1}{L}\int \limits_{0}^{L} f(x) \cos\left(\frac{\pi nx}{L}\right)	\,dx}$ & \\
+	& & & 
+	\multicolumn{2}{c}{if $f(x)$ is odd then} & $d_n$ & $\D{=
+	\frac{-i}{L}\int \limits_{0}^{L} f(x) \sin\left(\frac{\pi nx}{L}\right)	\,dx}$ & \\
+	\hline
+	\hline
+\end{tabular}
+%--------------------
+
+\end{center}
+ 
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 1:} Consider the sawtooth function, $f(x)$, below. Determine the Fourier Series of $f(x)$ in :
+
+\vspace{0.2cm}
+
+\begin{tabular}{p{9.2cm}l}
+	    & \multirow{3}{*}{\includegraphics[scale = 0.38]{../../../Figures/11_4_Fig11_3.png}} \\
+	    (a) Exponential Form: $\D{e^{i \pi n x/L}}$ & \\
+	    &\\
+	    (b) Cosine \& Sine Form: $\D{\cos\left(\frac{\pi n x}{L}\right)}$ \& $\D{\sin\left(\frac{\pi n x}{L}\right)}$ & \\
+\end{tabular}
+
+\vspace{15.4cm}
+
+\begin{tabular}{|p{4.3cm}p{7.8cm}p{7cm}|}
+	\hline 
+    Input answers here: & &\\
+	\hline 
+    &&\\
+    (a) Exponential Form: & $\D{f(x) = \sum \limits_{n=-\infty}^{\infty} d_n e^{i \pi n x/4} }$ \hspace{3.0cm} where & 	$d_n = \left\{
+	\begin{array}{p{4.4cm}l}
+		& \multirow{2}{*}{$n = 0$} \\
+		& \\
+		& \\
+		& \multirow{2}{*}{$n \ne 0$}  \\
+		& \\
+	\end{array}
+	\right. $ \\
+    &&\\&&\\
+    (b) Cosine \& Sine Form: & $\D{f(x) = a_0 + \sum \limits_{n=1}^{\infty} a_n \cos\left(\frac{\pi n x}{4}\right) + b_n \sin\left(\frac{\pi n x}{4}\right) }$ & where $
+	\begin{array}{cc}
+		a_0 = & \\
+		&\\ &\\
+		a_n = & \\
+		&\\ &\\
+		b_n = & \\
+	\end{array}
+	$ \\
+    &&\\
+    \hline 
+\end{tabular}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 2:} For the function depicted below, determine the Fourier Series in:  
+
+\vspace{0.1cm}
+
+\begin{tabular}{p{11.2cm}c}
+	    & \multirow{3}{*}{\includegraphics[scale = 0.38]{../../../Figures/Test3_Fig4.png}} \\
+	    (a) Exponential Form: $\D{e^{i \pi n x/L}}$ & \\
+	    &\\
+	    (b) Cosine \& Sine Form: $\D{\cos\left(\frac{\pi n x}{L}\right)}$ \& $\D{\sin\left(\frac{\pi n x}{L}\right)}$ & \\
+	    &\\ 
+	    Write you answers in the same format as in {\bf Problem 1}. 
+	    &\\ &\\
+	    & (assume periodic extension along the x-axis)\\
+\end{tabular}
+
+\vspace{13.6cm}
+
+\begin{tabular}{|p{4.3cm}p{7.8cm}p{7cm}|}
+	\hline 
+    Input answers here: & &\\
+	\hline 
+    &&\\
+    (a) Exponential Form: & $\D{f(x) = \phantom{\sum \limits_{n=-\infty}^{\infty} d_n e^{i \pi n x/4}} }$ \hspace{3.0cm} where & 	$d_n = \left\{
+	\begin{array}{p{4.4cm}l}
+		& \multirow{2}{*}{$n = 0$} \\
+		& \\
+		& \\
+		& \multirow{2}{*}{$n \ne 0$}  \\
+		& \\
+	\end{array}
+	\right. $ \\
+    &&\\&&\\
+    (b) Cosine \& Sine Form: & $\D{f(x) = \phantom{a_0 + \sum \limits_{n=1}^{\infty} a_n \cos\left(\frac{\pi n x}{4}\right) + b_n \sin\left(\frac{\pi n x}{4}\right)} }$ & where $
+	\begin{array}{cc}
+		a_0 = & \\
+		&\\ &\\
+		a_n = & \\
+		&\\ &\\
+		b_n = & \\
+	\end{array}
+	$ \\
+    &&\\
+    \hline 
+\end{tabular}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 3:} {\bf\em\UL{SETUP the integral (or sum of integrals)}} needed to compute the Fourier coefficients of $f(x)$ 
+
+(i.e. $d_0$ \& $d_n$).  Fully complete $d_0$ \& $d_n$ up to the point where you would begin to find the anti-derivative.  
+
+Assume $f(x)$ periodic extends along the x-axis.
+
+\vspace{0.2cm}
+
+\begin{tabular}{p{14.0cm}l}
+	    & \multirow{3}{*}{\includegraphics[scale = 0.26]{../../../Figures/11_2_Fig6.png}} \\
+	    $d_0 = $ & \\
+	    &\\&\\&\\&\\&\\&\\&\\&\\
+	    $d_n = $ & \\
+\end{tabular}
+
+\end{document}

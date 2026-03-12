@@ -1,0 +1,298 @@
+\documentclass[11pt]{article}
+
+\input{../../../../Headers/TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+\usepackage[osf]{mathpazo}
+\geometry{textheight=9.6in, textwidth=7.4in}
+
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+%\textheight = 9.4 in
+\topmargin = -0.6in
+%\textwidth = 8in
+\oddsidemargin = -0.5in
+\evensidemargin = -0.5in
+
+\fancyheadoffset[LE,RO]{0.1cm}
+
+\renewcommand{\headrulewidth}{0.3pt}
+
+\pagestyle{fancy}\lhead{Final Review} \rhead{part 3}
+\chead{{\large{\bf Exam 4  Material}}} \lfoot{} \rfoot{\bf \thepage} \cfoot{}
+
+\begin{document}
+
+\input{../../../../Headers/TeachingDefinitionHeader.tex}
+
+{\bf Topics:}
+
+\vspace{0.2cm}
+
+%-------LIST---------
+\begin{itemize}
+	\item[$\Box$] Approximating definite integrals (Area) by summing the areas of rectangles.
+	\item[$\Box$] Rewrite and/or compute an integral using the properties of integrals.
+	\item[$\Box$] Compute a definite integral of $f$ over an interval by plugging the endpoints of the interval into the anti-derivative of $f$ (Fundamental Theorem of Calculus Part 2).
+	\item[$\Box$] Compute an indefinite integral (i.e. anti-derivative).
+	\item[$\Box$] Find an integral using the substitution technique.
+	\item[$\Box$] Take the derivative of an integral when one of the endpoints is a variable (Fundamental Theorem of Calculus Part 1). 
+\end{itemize}
+%-------------------
+
+{\bf Items of discussion. } In addition to your questions, we will also go over:
+
+\vspace{0.2cm}
+
+%-------LIST---------
+\begin{itemize}
+	\item[$\Box$] Exam 1, Problem 2 (Approximating the derivative)
+	\item[$\Box$] Exam 2, Problem 10 (Intrepreting the derivative)
+\end{itemize}
+%-------------------
+
+\vspace{0.2cm}
+
+\newcounter{N}
+\setcounter{N}{0}
+
+{\bf Practice Problems:} 
+
+\vspace{0.2cm}
+
+\stepcounter{N}
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{0.24cm}p{6.0cm}p{1.0cm}p{0.24cm}p{6.0cm}}
+	\arabic{N}. & \multicolumn{4}{l}{Compute the following indefinite integrals:}\\
+	&\\
+	(a) & $\D \int (x^5-x) \, dx$
+	&&
+	(e) & $\D \int \frac{3}{x^5} \, dx$ \\
+	&\\
+	(b) & $\D \int x\left(x^2 + \frac{1}{x}\right) \, dx$
+	&&
+	(f) & $\D \int \frac{1}{1+2x} \, dx$ \\
+	&\\
+	(c) & $\D \int x\sqrt{x^2-1} \, dx$
+	&&
+	(g) & $\D \int 3x^2 e^{x^{3}} \, dx$ \\
+	&\\
+	(d) & $\D \int \limits_{}^{} \frac{2x-1}{(x^2-x)^2} \, dx$
+	&&
+	(h) & $\D \int x^{1/3} \, dx$ \\
+\end{tabular}}
+
+{\huge \bf \underline{\hspace{18.0cm}}}
+
+\vspace{0.1cm}
+
+\stepcounter{N}
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{0.24cm}p{6.0cm}p{1.0cm}p{0.24cm}p{6.0cm}}
+	\arabic{N}. & \multicolumn{4}{l}{Compute the following definite integrals:}\\
+	&\\
+	(a) & $\D \int \limits_{1}^{4} (8x^3-x) \, dx$
+	&&
+	(c) & $\D \int \limits_{-3}^{-1} 7 \, dx$ \\
+	&\\
+	(b) & $\D \int \limits_{1}^{2} \left(e^x + \frac{1}{x} \right) \,dx$
+	&&
+	(d) & $\D \int \limits_{0}^{1} x(x^2 + 7)^6 \, dx$ \\
+\end{tabular}}
+
+{\huge \bf \underline{\hspace{18.0cm}}}
+
+\vspace{0.1cm}
+
+\stepcounter{N}
+\setlength{\extrarowheight}{-0.2cm}
+\begin{tabular}{p{0.2cm}p{17.0cm}}
+\arabic{N}. & Let \,\, $\D F(q) = \D \int^{q}_{3}\sqrt{t^2 - 1}\,dt $.  \, Compute $F'(q)$ using the Fundamental Theorem of Calculus part 1. \\
+\end{tabular}
+
+{\huge \bf \underline{\hspace{18.0cm}}}
+
+\vspace{0.1cm}
+
+\stepcounter{N}
+\setlength{\extrarowheight}{-0.3cm}
+\begin{tabular}{p{0.2cm}p{17.0cm}}
+\arabic{N}. & If \,\,
+$\D \int \limits_{9}^{26} f(x)\, dx \,\, - \int \limits_{9}^{25} f(x)\, dx = \int \limits_{a}^{b} f(x)\, dx $, \,\, then $a = \hspace{2.0cm}$, and $b = $\\
+\end{tabular}
+
+{\huge \bf \underline{\hspace{18.0cm}}}
+
+\newpage
+\thispagestyle{empty}
+
+\stepcounter{N}
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{0.24cm}p{15.0cm}}
+	\arabic{N}. & Suppose MAJ Libertini is driving to conference in a car that has a broken odometer (the meter that tells you the mileage of a car).  In order to get a reimbursement on travel costs, she must report the mileage (assume she doesn't know about google maps).  Fortunately, her speedometer still works and she can use this fact to get a decent approximation of the distance travelled.  The total trip took an hour and table lists the readings she took of her speedometer every 15 minutes. \\
+	&\\
+	& \multicolumn{1}{c}{
+	%--------TABLE---------
+	\setlength{\extrarowheight}{0.0cm}
+	\begin{tabular}{| c | c |}
+		\hline
+		time (min) & Speed (mph) \\
+		\hline
+		0 & 0 \\
+		\hline
+		15 & 60 \\
+		\hline
+		30 & 42 \\
+		\hline
+		45 & 78 \\
+		\hline
+		60 & 0 \\
+		\hline
+	\end{tabular}} \\
+	&\\
+	(a) & Based on the data, what is the smallest $\Delta t$ we can use in our Riemann Sum?\\
+	&\\
+	(b) & Sketch two identical plots of the data side by side. \\
+	&\\
+	(c) & On one plot from (b), draw rectangles (with left-hand heights) and approximate the total distance MAJ Libertini drove. \\
+	&\\
+	(d) & On the other plot from (b), draw rectangles (with right-hand heights) and approximate the total distance MAJ Libertini drove. \\
+	&\\
+	(e) & What could have MAJ Libertini done differently to improve her approximation. \\
+\end{tabular}}
+
+{\huge \bf \underline{\hspace{18.0cm}}}
+
+\vspace{0.1cm}
+
+\stepcounter{N}
+\setlength{\extrarowheight}{-0.2cm}
+\begin{tabular}{p{0.2cm}p{17.0cm}}
+\arabic{N}. & The graph of $f$ is given. \\
+&\\
+\multicolumn{2}{c}{\includegraphics[scale = 0.4]{../../../../Figures/ExamFig3.png}} \\
+&\\
+(a) & Using the right-height rule \& 4 rectangles, approximate $\D \int \limits_{-4}^{4} f(x)\, dx$ \\
+&\\
+(b) & Using the left-height rule \& 4 rectangles, approximate $\D \int \limits_{-4}^{4} f(x)\, dx$ \\
+\end{tabular}
+
+{\huge \bf \underline{\hspace{18.0cm}}}
+
+\vspace{0.1cm}
+
+\stepcounter{N}
+\setlength{\extrarowheight}{-0.4cm}
+\begin{tabular}{p{0.2cm}p{17.0cm}}
+\arabic{N}. & If \,\,
+$\D \int \limits_{0}^{1} 3f(x)\, dx = 15 $, \,\,then\,\, $\D \int \limits_{0}^{1} f(x)\, dx = $\\
+\end{tabular}
+
+{\huge \bf \underline{\hspace{18.0cm}}}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+\stepcounter{N}
+{\setlength{\extrarowheight}{-0.3cm}
+\begin{tabular}{p{0.21cm}p{4.4cm}p{5.4cm}p{7.2cm}}
+	\arabic{N}. & \multicolumn{3}{p{17.4cm}}{Below is the graph of some function, $g(x)$ on the interval $[-1,6]$.  Using the graph, answer the questions that follow.} \\
+	&\\
+	\multicolumn{4}{c}{\includegraphics[scale = 0.24]{HWFigs/JessicaClassGraph2.png}}\\
+	&\\
+	(a) & \multicolumn{3}{l}{{\it Fill in each box with either $<$, $>$, or $=$. }} \\
+	&\\
+	&
+	$\bullet$ \, $\D \int \limits_{-1}^{0} g(x) \, dx$ \, \fbox{$\phantom{M}$} \, $0$ &
+	$\bullet$ \, $\D \int \limits_{-1}^{2} g(x) \, dx$ \, \fbox{$\phantom{M}$} \, $0$ &
+	$\bullet$ \, $\D \int \limits_{1}^{6} g(x) \, dx$ \, \fbox{$\phantom{M}$} \, $-2$ \\
+	&\\
+	&
+	$\bullet$ \, $\D \int \limits_{-1}^{1} g(x) \, dx$ \, \fbox{$\phantom{M}$} \, $8$ &
+	$\bullet$ \, $\D \int \limits_{0}^{1} g(x) \, dx$ \, \fbox{$\phantom{M}$} \, $\D \int \limits_{1}^{0} g(x) \, dx$ &
+	$\bullet$ \, $\D \int \limits_{1}^{6} g(x) \, dx$ \, \fbox{$\phantom{M}$} \, $\D \int \limits_{0}^{6} g(x) \, dx - \int \limits_{0}^{1} g(x) \, dx$ \\
+	&\\
+	& 
+	$\bullet$ \, $\D \int \limits_{1}^{4} g(x) \, dx$ \, \fbox{$\phantom{M}$} \, $g'(4)$ &
+	$\bullet$ \, $\D \int \limits_{-1}^{1} g(x) \, dx$ \, \fbox{$\phantom{M}$} \, $\D \int \limits_{-1}^{2} g(x) \, dx$ &
+	$\bullet$ \, $\D \int \limits_{-1}^{6} g(x) \, dx$ \, \fbox{$\phantom{M}$} \, $\D \int \limits_{-1}^{1} g(x) \, dx$ \\
+\end{tabular}}
+
+{\huge \bf \underline{\hspace{18.0cm}}}
+
+\vspace{0.1cm}
+
+\stepcounter{N}
+\setlength{\extrarowheight}{-0.2cm}
+\begin{tabular}{p{0.2cm}p{17.0cm}}
+\arabic{N}. & Answer the following true/false questions: \\
+&\\
+(a) & (TRUE \,\, FALSE) \,\, $\D \int \limits_{a}^{b} [f(x) - g(x)]\, dx = \int \limits_{a}^{b} f(x)\, dx - \int \limits_{a}^{b} g(x)\, dx$ \\
+&\\
+(b) & (TRUE \,\, FALSE) \,\, $\D \int \limits_{a}^{b} f(x)\, dx + \int \limits_{a}^{b} f(x)\, dx = 2\int \limits_{a}^{b} f(x)\, dx$ \\
+&\\
+(c) & (TRUE \,\, FALSE) \,\, $\D \int \limits_{a}^{b} (x^2-1)(x+1)^4\, dx = \left(\int \limits_{a}^{b} x^2-1\, dx\right) \left(\int \limits_{a}^{b} (x+1)^4\, dx\right)$ \\
+\end{tabular}
+
+{\huge \bf \underline{\hspace{18.0cm}}}
+
+\vspace{0.1cm}
+
+\stepcounter{N}
+\setlength{\extrarowheight}{-0.4cm}
+\begin{tabular}{p{0.2cm}p{17.0cm}}
+\arabic{N}. & If \,\,
+$\D \int \limits_{6}^{12} f(x)\, dx = 6$, \,\,
+$\D \int \limits_{6}^{8} f(x)\, dx = 3$, \,\,
+$\D \int \limits_{10}^{12} f(x)\, dx = -2$, \,\, then\,\,
+$\D \int \limits_{8}^{10} f(x)\, dx = $\\
+\end{tabular}
+
+{\huge \bf \underline{\hspace{18.0cm}}}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+\stepcounter{N}
+\setlength{\extrarowheight}{-0.25cm}
+\begin{tabular}{p{0.2cm}p{8.0cm}p{0.2cm}p{8.0cm}}
+\arabic{N}. & \multicolumn{3}{l}{The graph of $f$ and some information about $g(x)$ are given.} \\
+&&&\\
+&\multirow{5}{*}{\includegraphics[scale = 0.3]{../../../../Figures/ExamFig1.png}} && \\
+&&&$\D \int \limits_{0}^{7} g(x) \, dx = -5$ \\
+&&&\\
+&&& $\D \int \limits_{1}^{7} g(x) \, dx = 4$ \\
+&&&\\
+&&& $\D \int \limits_{0}^{3} g(x) \, dx = 6$ \\
+&&&\\&&&\\
+\multicolumn{4}{l}{Using the above information about $f$ and $g$, compute the following:} \\
+&&&\\
+(a) & $\D \int \limits_{0}^{1} f(x) \, dx = $ & (d) & $\D \int \limits_{0}^{1} (f(x)-g(x))\, dx = $ \\
+&&&\\
+(b) & $\D \int \limits_{0}^{7} f(x) \, dx = $ & (e) & $\D \int \limits_{0}^{7} (3f(x)+2g(x)) \, dx = $ \\
+&&&\\
+(c) & $\D \int \limits_{0}^{1} g(x) \, dx = $ & (f) & $\D \int \limits_{1}^{3} 4g(x) \, dx = $ \\
+\end{tabular}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+\end{document}

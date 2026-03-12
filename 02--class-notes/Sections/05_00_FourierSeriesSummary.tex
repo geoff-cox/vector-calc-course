@@ -1,0 +1,54 @@
+%!TEX root = ../AdvMathLecture.tex
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+\centering
+%--------TABLE---------
+\setlength{\extrarowheight}{-0.0cm}
+\begin{tabular}{|p{0.8cm}|p{-0.1cm}l|p{0.1cm}l|}
+	\hline
+	\hline
+	\multicolumn{5}{|c|}{}\\
+	\multicolumn{5}{|c|}{\bf Summary of Fourier Series for $f(x)$ with Period $P=2L$}\\
+	\multicolumn{5}{|c|}{}\\
+	\hline
+	& & & & \\
+	\multicolumn{1}{|c|}{$f(x)$} & \multicolumn{2}{c|}{Fourier Coefficients}&\multicolumn{2}{c|}{Fourier Series}\\
+	& & & & \\
+	\hline
+	& & & & \\
+	\multicolumn{1}{|c|}{\multirow{5}{*}{even}} &
+	\multirow{5}{*}{$d_n$} & 
+	\multirow{5}{*}{$\D{= \frac{1}{L}\int \limits_{0}^{L} f(x) \cos\left(\frac{\pi nx}{L}\right)	\,dx}$} 
+	& $f(x)$ & ${= \sum \limits_{n=-\infty}^{\infty} d_n e^{i\pi nx/L} }$ \\
+	& & & & \\
+	& & & & ${= d_0+\sum \limits_{n=1}^{\infty} 2\,d_n \cos\left(\frac{\pi nx}{L}\right)}$ \\
+	& & & & \\
+	\hline
+	& & & & \\
+	\multicolumn{1}{|c|}{\multirow{5}{*}{odd}} &
+	\multirow{5}{*}{$d_n$} & 
+	\multirow{5}{*}{$\D{= \frac{-i}{L}\int \limits_{0}^{L} f(x) \sin\left(\frac{\pi nx}{L}\right)\,dx}$} 
+	& $f(x)$ & ${= \sum \limits_{n=-\infty}^{\infty} d_n e^{i\pi nx/L} }$ \\
+	& & & & \\
+	& & & & ${= \sum \limits_{n=1}^{\infty} 2\,i\,d_n \sin\left(\frac{\pi nx}{L}\right)}$ \\
+	& & & & \\
+	\hline
+	& & & & \\
+	\multicolumn{1}{|c|}{\multirow{5}{*}{neither}} &
+	\multirow{5}{*}{$d_n$} & 
+	\multirow{5}{*}{$\D{= \frac{1}{2L}\int \limits_{-L}^{L} f(x)\, e^{-i\pi nx/L} \, dx}$ }
+	& \multicolumn{2}{l|}{${f(x) = \sum \limits_{n=-\infty}^{\infty} d_n e^{i\pi nx/L} }$} \\
+	& & & & \\
+	& & & \multicolumn{2}{l|}{${= d_0 + \sum \limits_{n=1}^{\infty} [d_n+d_{-n}] \cos\left(\frac{\pi nx}{L}\right) + \sum \limits_{n=1}^{\infty} [d_n-d_{-n}]i \sin\left(\frac{\pi nx}{L}\right) }$} \\
+	& & & & \\
+	\hline
+	\hline
+\end{tabular}
+%--------------------
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}

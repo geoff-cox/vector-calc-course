@@ -1,0 +1,239 @@
+\documentclass[11pt]{article}
+
+\input{../../../../Headers/TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+% Set your name here
+%\def\name{Geoffrey W. Cox}
+
+% The following metadata will show up in the PDF properties
+%\hypersetup{
+%  colorlinks = true,
+%  urlcolor = black,
+%  pdfauthor = {\name},
+%  pdfkeywords = {economics empirical industrial organization econometrics
+%    microeconomics applied microeconomics},
+%  pdftitle = {\name: Curriculum Vitae},
+%  pdfsubject = {Curriculum Vitae},
+%  pdfpagemode = UseNone
+%}
+
+\geometry{textheight=9.0in, textwidth=6in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1em}
+  }
+}{
+  \end{list}
+}
+
+\pagestyle{fancy}\lhead{Complex Handout 2} \rhead{}
+\chead{{\large{\bf Euler's Formula}}} \lfoot{} \rfoot{\bf \thepage} \cfoot{}
+
+\begin{document}
+
+\input{../../../../Headers/TeachingDefinitionHeader.tex}
+
+$\diamond$ \, Real and Imaginary parts of a complex number:
+
+Let $z=a+bi$.  Then the {\bf real and imaginary parts of $z$} are denoted as
+\begin{center}
+	$Re(z) = a$ \hspace{1.0cm} \text{and} \hspace{1.0cm} $Im(z) = b$	
+\end{center}
+
+\vspace{0.2cm}
+ 
+$\diamond$ \, {\bf Euler's Formula}: \hspace{0.5cm} $\D{e^{i\theta} = \cos \theta + i \sin \theta}$
+
+\vspace{0.2cm}
+
+$\diamond$ \, These ideas lead to the following very important identities for $\cos \theta$ and $\sin \theta$.
+$$
+\cos\theta = Re(e^{i\theta}) = \frac{e^{i\theta}+e^{-i\theta}}{2} \hspace{1.0cm} \text{and} \hspace{1.0cm} 
+\sin\theta = Im(e^{i\theta}) = \frac{e^{i\theta}-e^{-i\theta}}{2i}
+$$
+$\diamond$ \, Euler's formula gives another way to view the polar form of a complex number.  
+
+Recall that $z=a+bi$ can be written in the following {\bf polar form}
+$$
+z=r(\cos \theta + i \sin \theta)	
+$$
+where $a=r\cos \theta$,  $b = r\sin \theta$, and $r = |z|=\sqrt{a^2+b^2}$
+
+In terms of Euler's formula, any complex number can therefore be written in the form
+$$
+z = |z|e^{i\theta}
+$$
+$\diamond$ \, Useful trig identities
+$$
+\cos(-\theta) = \cos(\theta) \hspace{1.0cm} \text{and} \hspace{1.0cm} \sin(-\theta) = -\sin(\theta)
+$$
+
+\UL{Example 1}: \,\, Write each of the following complex numbers in standard form ($a+bi$)
+
+\vspace{0.2cm}
+
+(a) $\D{e^{-i\pi/4}}$
+
+$
+\setlength{\extrarowheight}{0.2cm}
+\begin{array}{rrl}
+	Solution: & \D{e^{-i\pi/4} =} & \D{e^{i(-\pi/4)}} \\
+	&=&\D{\cos (-\pi/4) + i \sin (-\pi/4)}\\
+\end{array}
+$
+
+(b) $\D{e^{2e^{3+i\pi/6}}}$
+
+$
+\setlength{\extrarowheight}{0.2cm}
+\begin{array}{rrl}
+	Solution: & \D{2e^{3+i\pi/6} =} & \D{2e^{3}e^{i\pi/6}} \\
+	&=&\D{2e^{3}\left[\cos (\pi/6) + i \sin (\pi/6)\right]}\\
+	&=&\D{2e^{3}\cos (\pi/6) + i \,2e^{3}\sin (\pi/6)}\\
+\end{array}
+$
+
+(c) $\D{e^{e^{i}}}$
+
+$
+\setlength{\extrarowheight}{0.2cm}
+\begin{array}{rrl}
+	Solution: & \D{e^{e^{i}} =} & \D{e^{\cos (1) + i \sin (1)}} \\
+	&=&\D{e^{\cos (1)} e^{i \sin (1)}} \\
+	&=&\D{e^{\cos (1)} [\cos (\sin (1)) + i \sin (\sin (1))]} \\
+	&=&\D{e^{\cos (1)} \cos (\sin (1)) + i \, e^{\cos (1)}\sin (\sin (1))} \\
+\end{array}
+$
+
+\newpage
+\thispagestyle{empty}
+
+(d) $\D{\frac{e^{3i}-e^{-3i}}{2i}}$
+
+$
+\setlength{\extrarowheight}{0.4cm}
+\begin{array}{rrl}
+	Solution: & \D{\frac{e^{3i}-e^{-3i}}{2i} =} & \D{\frac{(\cos (3) + i \sin (3)) - (\cos (-3) + i \sin (-3))}{2i}} \\
+	&=&\D{\frac{[\cos (3) + i \sin (3)] - [\cos (3) - i \sin (3)]}{2i}} \\
+	&=&\D{\frac{ 2 i \sin (3)}{2i}} \\
+	&=&\D{\sin(3) = \sin(3) + 0i} \\
+\end{array}
+$
+
+\vspace{0.4cm}
+
+\UL{Example 2}: \,\, Write each of the following complex numbers in polar form ($re^{i\theta}$)
+
+\vspace{0.2cm}
+
+(a) $\D{\frac{1-i}{3}}$ 
+
+$
+\setlength{\extrarowheight}{0.4cm}
+\begin{array}{rrl}
+	Solution: & \multicolumn{2}{l}{\text{Note this point would be in the 4th quadrant}} \\
+	& \D{r =} & \D{\left|\frac{1-i}{3}\right| = \left|\frac{1}{3}-\frac{i}{3}\right| = \sqrt{\frac{1}{9}+\frac{1}{9}} = \sqrt{\frac{2}{9}} = \frac{\sqrt{2}}{3}} \\
+	& \D{\theta =} & \D{\tan^{-1}\left(\frac{\frac{1}{3}}{-\frac{1}{3}}\right) = \tan^{-1}(-1) = \frac{3\pi}{4} \,\,\text{or}\,\, -\frac{\pi}{4} } \\
+	& \multicolumn{2}{l}{\text{Since $\theta$ must be in the 4th quadrant $\quad \implies \quad \theta = -\frac{\pi}{4}$ }} \\
+	& \text{Therefore} & \quad \D{\frac{1-i}{3} = \frac{\sqrt{2}}{3}e^{-i\pi/4}} \\
+\end{array}
+$
+
+(b) $\D{(1+i)^6}$ 
+
+$
+\setlength{\extrarowheight}{0.4cm}
+\begin{array}{rrl}
+	Solution: & \multicolumn{2}{l}{\text{Lets convert $1+i$ first. (It is in the 1st quadrant)}} \\
+	& \D{r =} & \D{\left|1+i\right| = \sqrt{1+1} = \sqrt{2} } \\
+	& \D{\theta =} & \D{\tan^{-1}\left(\frac{1}{1}\right) = \tan^{-1}(1) = \frac{\pi}{4} \,\,\text{or}\,\, -\frac{\pi}{4} } \\
+	& \multicolumn{2}{l}{\text{Since $\theta$ must be in the 1st quadrant $\quad \implies \quad \theta = \frac{\pi}{4}$ }} \\
+	& \text{Therefore} & \quad \D{(1+i)^6 = \left(\sqrt{2}e^{i\pi/4}\right)^6 = (\sqrt{2})^6e^{i\,6\pi/4}= 8e^{i\,3\pi/2}} \\
+\end{array}
+$
+
+(c) $\D{(1+i)^{1/2}}$ 
+
+$
+\setlength{\extrarowheight}{0.4cm}
+\begin{array}{rrl}
+	Solution: & \multicolumn{2}{l}{\text{From (b), we have \,\, }\D{ 1+i = \sqrt{2}e^{i\pi/4} }} \\
+	& \text{Therefore} & \quad \D{(1+i)^{1/2} = \left(2^{1/2}e^{i\pi/4}\right)^{1/2} = 2^{1/4}\left(e^{i\,\pi/4}\right)^{1/2} = 2^{1/4} e^{i(\pi/8+2\pi k/2)} \quad k=0,1} \\
+	&& \D{k=0: \quad 2^{1/4}e^{i(\pi/8)}} \\
+	&& \D{k=1: \quad 2^{1/4}e^{i(9\pi/8)}} \\
+\end{array}
+$
+
+(d) $\D{\frac{2i}{3e^{4+i}}}$ 
+
+$
+\setlength{\extrarowheight}{0.4cm}
+\begin{array}{rrl}
+	Solution: & \D{\frac{2i}{3e^{4+i}} = \frac{2e^{i\pi/2}}{3e^4e^{i}} = \frac{2}{3e^4}e^{i\pi/2-i} = \frac{2}{3e^4}e^{i(\pi/2-1)}} \\
+\end{array}
+$
+
+\newpage
+\thispagestyle{empty}
+
+\UL{Exercises}
+
+\vspace{0.2cm}
+
+Using Euler's polar form only (no sines or cosines), compute the following complex powers and leave your final answer in Euler's polar form.
+%-------NUM LIST---------
+\begin{enumerate}
+	\item $\D{(\sqrt{3}-\sqrt{3}i)^6}$
+	\item $\D{(\sqrt{3}-\sqrt{3}i)^{1/3}}$
+	\item $\D{-3(-1+\sqrt{3}i)^3}$
+	\item $\D{-3(-1+\sqrt{3}i)^{1/5}}$
+	\item $\D{\left(\frac{1+\sqrt{3}i}{3i}\right)^{1/2}}$ \quad ({\it Hint: Write the quotient in Euler's form first})  
+\end{enumerate}
+%------------------------
+
+\vspace{0.2cm}
+
+Find all complex solutions of the following equations and leave your answers in Euler's polar form
+%-------NUM LIST---------
+\begin{enumerate}
+	\item[6.] $\D{z^{1/4}-10-10i = 0}$
+	\item[7.] $\D{z^3 + 5i = \sqrt{3}+1i}$
+	\item[8.] $\D{6iz^2 + 2 = 2i}$
+\end{enumerate}
+%------------------------
+
+\end{document}

@@ -1,0 +1,170 @@
+\documentclass[11pt]{article}
+
+\input{../../../TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+% Set your name here
+%\def\name{Geoffrey W. Cox}
+
+% The following metadata will show up in the PDF properties
+%\hypersetup{
+%  colorlinks = true,
+%  urlcolor = black,
+%  pdfauthor = {\name},
+%  pdfkeywords = {economics empirical industrial organization econometrics
+%    microeconomics applied microeconomics},
+%  pdftitle = {\name: Curriculum Vitae},
+%  pdfsubject = {Curriculum Vitae},
+%  pdfpagemode = UseNone
+%}
+
+\geometry{textheight=9.4in, textwidth=7.7in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1em}
+  }
+}{
+  \end{list}
+}
+
+\pagestyle{fancy}\lhead{MA 301 Formula Sheet} \rhead{}
+\chead{} \lfoot{} \rfoot{\bf \thepage} \cfoot{}
+
+\begin{document}
+\input{../../../TeachingDefinitionHeader.tex}
+Assume the following throughout this entire sheet 
+%-------LIST---------
+\begin{itemize}
+	\item[$\bullet$] ${\bf F}(x,y,z) = [M(x,y,z),N(x,y,z),P(x,y,z)] $ a vector-valued function in $\RRRE$ with continuous partial derivatives.
+	\item[$\bullet$] ${\bf G}(x,y) = [M(x,y),N(x,y)] $ a vector-valued function in $\RRE$ with continuous partial derivatives.
+	\item[$\bullet$] $g(x,y,z)$ a scalar-valued function with continuous first partial derivatives
+	\item[$\bullet$] ${\bf r}(t)$ represents some parameterization of a curve $C$ for $a \le t \le b$
+%	\item[$\bullet$] ${\bf r}(u,v)$ represents some parameterization of a surface $S$
+	\item[$\bullet$] $C_0$ is a simple closed curve enclosing a region $R$
+\end{itemize}
+%-------------------
+
+\vspace{0.2cm}
+
+\UL{Operators}:
+$\left. \, \right.$ $\nabla g(x,y,z) = [g_x,g_y,g_z]$ \hspace{1.0cm} div ${\bf F} = M_x + N_y + P_z$ \hspace{1.0cm} curl ${\bf F} = [P_y-N_z,M_z-P_x,N_x-M_y]$
+
+\vspace{0.2cm}
+
+\UL{Line Integrals}: Let $r(t)$ be a parameterization for the curve $C$\\
+\setlength{\extrarowheight}{0.2cm}
+\begin{tabular}{p{9.5cm}p{9.5cm}}
+	{\it Vector-Valued}: \,\,$\D{\WORK = \WORKT}$ & 
+	{\it Scalar-Valued}: \,\,$\D{\int \limits_{C} g \, ds = \int_{a}^{b} g({\bf r}) \cdot |\RPT| dt}$\\
+\end{tabular}
+
+\vspace{0.1cm}
+
+\UL{Surface Integrals}: Let $r(u,v)$ be a parameterization for the surface $S$\\
+\setlength{\extrarowheight}{0.2cm}
+\begin{tabular}{p{9.5cm}p{9.5cm}}
+	{\it Vector-Valued}: \,\,$\D{\FLUXX = \FLUXXX}$ &
+	{\it Scalar-Valued}: \,\,$\D{\iint \limits_{R} g({\bf r}(u,v)) \cdot |{\bf N}| dudv}$ \\
+\end{tabular}
+
+\vspace{0.1cm}
+
+\UL{Stokes' Theorem}:  Let $C$ be a closed curve which is the boundary for a surface $S$.  Then
+$$
+\OWORK = \STOKECURL
+$$
+* Recall: Green's Theorem is a special case of Stokes' Theorem where $S$ is in the $xy$-plane and ${\bf n} = [0,0,1]$.
+
+\vspace{0.1cm}
+
+\UL{Divergence Theorem}: Let $S$ be a surface that is the boundary of $T$. Then
+$$
+\FLUX = \DIVTHM
+$$
+
+\vspace{0.1cm}
+
+\UL{Complex Numbers}:
+
+Let $z = re^{\theta i} = r(\cos \theta + i\sin \theta)$
+
+\qquad \, $\D{z^n = r^ne^{n\theta i} = r^n\left[\cos (n\theta) + i\sin (n\theta)\right]}$
+
+\qquad \, $\D{z^{1/n} = r^{1/n}e^{\frac{\theta+2\pi k}{n}i} = r^{1/n}\left[\cos \left(\frac{\theta+2\pi k}{n}\right) + i\sin \left(\frac{\theta+2\pi k}{n}\right)\right]}$ \quad for \,\,$k=0,1,2,...,n-1$
+
+\vspace{0.1cm}
+
+\UL{Special Coordinates}
+\begin{center}
+	$
+	\setlength{\extrarowheight}{0.3cm}
+	\begin{array}{| l | c | l | c |}
+		\hline
+		\multicolumn{2}{| p{9cm} |}{ \text{Cylindrical}} & \multicolumn{2}{ p{9cm} |}{ \text{Spherical}} \\
+		\hline
+		%&&&\\
+		x = r\cos \theta & \multirow{5}{*}{\includegraphics[scale = 0.21]{10_7_Fig5.png}} & x = \rho \sin \phi \cos \theta & \multirow{5}{*}{\includegraphics[scale = 0.21]{10_7_Fig6.png}}\\
+		y = r \sin \theta & & y = \rho \sin \phi \sin \theta &\\
+		z = z & & z = \rho \cos \phi &\\
+		%&&&\\
+		\cline{1-1} \cline{3-3}
+		%&&&\\
+		x^2+y^2 = r^2 & & x^2+y^2+z^2 = \rho^2 &\\
+		dV =	\, r\,dr\,d\theta\,dz & & dV = \, \rho^2 \sin \phi \, d\rho \, d\theta \, d\phi &\\
+		%&&&\\
+		\hline
+	\end{array}
+	$
+\end{center}
+
+\UL{Fourier Series}
+
+\setlength{\extrarowheight}{0.1cm}
+\begin{tabular}{cccccclc}
+	$f(x)= 
+	\sum \limits_{n=-\infty}^{\infty} d_n e^{i \pi n x/L}$
+	& where & $\D{d_n = 
+	\frac{1}{2L}\int \limits_{-L}^{L} f(x)\, e^{-i\pi nx/L} \, dx}$ & \\
+	&
+	$f(x)$ is even: & $\D{d_n =
+	\frac{1}{L}\int \limits_{0}^{L} f(x) \cos\left(\frac{\pi nx}{L}\right)	\,dx}$ & \\
+	&
+	$f(x)$ is odd: & $\D{d_n =
+	\frac{-i}{L}\int \limits_{0}^{L} f(x) \sin\left(\frac{\pi nx}{L}\right)	\,dx}$ & \\
+\end{tabular}
+%--------------------
+
+\end{document}

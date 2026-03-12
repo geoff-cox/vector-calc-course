@@ -1,0 +1,1233 @@
+%!TEX root = ../AdvMathLecture.tex
+%
+% Section 11.3 Forced Oscillations
+% 
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{Topic: Fourier Series and Differential Equations}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+
+\vspace{0.1cm}
+
+\UL{I. Introduction}
+
+\vspace{0.1cm}
+
+In this section we will explore one of the ways Fourier series can be used to find solutions of differential equations.
+
+\vspace{0.2cm}
+
+In particular, we will continue to investigate differential equations of the form:
+\begin{center}
+	\hspace{2.0cm} $\D{y^{(M)} + a_{M-1}y^{(M-1)} + a_{M-2}y^{(M-2)} + \dots + a_{1}y' + a_0 y = f(t)}$ \hspace{2.0cm} (1)
+\end{center}
+
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{2.05cm}p{11.6cm}}
+	\UL{New Assumption:} &  $f(t)$ is a 
+	\ON<2->{\B{periodic function of $t$}}\\
+	&\\
+\end{tabular}}
+
+\vspace{0.2cm}
+
+{\setlength{\extrarowheight}{-0.2cm}
+\begin{tabular}{p{0.45cm}p{10.8cm}}
+	\UL{Note}: & Since we are only making assumptions for the function on the right hand side of (1), \\
+	&\\
+	& only the 
+	\ON<3->{\B{\,\, particular \,\,}} solution 
+	\ON<4->{\B{\,\,($y_p$)\,\,}} is changed. \\
+	&\\
+	& The 
+	\ON<5->{\B{\,\, homogeneous \,\,}} solution 
+	\ON<6->{\B{\,\,($y_h$)\,\,}} on the other hand, is exactly the same. \\
+\end{tabular}}
+
+\vspace{0.2cm}
+
+Suppose $f(t)$ looked like one of the following:
+
+{\setlength{\extrarowheight}{-0.4cm}
+\begin{tabular}{c}
+	\\
+	\hspace{0.5cm} \includegraphics[scale = 0.13]{Figures/11_4_Fig22.png} \hspace{1.0cm} \includegraphics[scale = 0.2]{Figures/11_4_Fig11.png} \\
+	\\
+\end{tabular}}
+
+The next question is: What does $y_p(t)$ look like?  That is, what would be our guess for $y_p(t)$?
+
+\vspace{0.1cm}
+
+Based on the work we did in the previous section, then $y_p(t)$ should be 
+\ON<7->{\B{similar to $f(t)$.}}
+
+\vspace{0.1cm}
+
+Unfortunately, there is a serious problem with this.  Why?
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+
+{\setlength{\extrarowheight}{-0.4cm}
+\begin{tabular}{c}
+	\\
+	\hspace{0.5cm} \includegraphics[scale = 0.13]{Figures/11_4_Fig22.png} \hspace{1.0cm} \includegraphics[scale = 0.2]{Figures/11_4_Fig11.png} \\
+	\\
+\end{tabular}}
+
+Periodic functions are often not differentiable at certain points (see above). So choosing $y_p(t)$ similar to $f(t)$ would mean that $y_p$ would also not be differentiable.
+
+\vspace{0.3cm}
+
+Therefore, it wouldn't make sense to plug it into, say $y'' -4y = f(t)$, since we can't compute $y_p''$
+
+\vspace{0.3cm}
+
+Luckily, since $f(t)$ is periodic, then it can be written as a Fourier Series which is differentiable everywhere!
+
+\vspace{0.3cm}
+
+Therefore, the guess for $y_p(t)$ would also be a Fourier Series.
+
+\vspace{0.3cm}
+
+Let the Fourier Series for $f(t)$ be given by: \quad $\D{f(t) = \sum \limits_{n=-\infty}^{\infty} f_n \, e^{i\pi nt/L}}$
+
+\vspace{0.3cm}
+
+Let the Fourier Series for $y_p(t)$ be given by: \quad $\D{y_p(t) = \sum \limits_{n=-\infty}^{\infty} d_n \, e^{i\pi nt/L}}$
+
+\vspace{0.3cm}
+
+For every differential equation, the Fourier coefficients ($f_n$ and $d_n$) are related.
+
+\vspace{0.3cm}
+
+It turns out that if we know $f_n$ we can find $d_n$.  
+
+\vspace{0.3cm}
+
+Knowing $y_n$ is the same as knowing the solution to the differential equation.
+
+\vspace{0.3cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\scriptsize
+\begin{columns}\begin{column}{12.2cm}
+
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{0.05cm}p{5cm}}
+	\EX & Solve the differential equation: \\
+	&\\
+	\multicolumn{2}{c}{$\D{y'+2y=f(t)}$} \\
+	&\\
+	& where $f(t)$ is given by the figure.\\
+	&\\
+	& First, we need to represent $f$ by a differentiable function. That is, \\
+	&\\
+	& $\D{f(t) = \sum \limits_{n=-\infty}^{\infty} f_n \, e^{i\pi nt/L}}$ \quad (with $L=\pi$) \\
+\end{tabular}
+\begin{tabular}{c}
+	\includegraphics[scale = 0.18]{Figures/11_1_fig2_2.png} \\
+	\\
+	$f(t) = 
+	\ON<2->{\B{\left\{
+	\begin{array}{rr}
+		\R{-1} & \R{-\pi < t < 0} \\
+		\G{1} & \G{0 < t < \pi} \\
+	\end{array}
+	\right. \hspace{0.2cm} f(t+2\pi) = f(t)}}$ \\
+\end{tabular}}
+
+\vspace{0.2cm}
+
+The Fourier coefficients of $f(t)$ are 
+\ON<3->{\B{$\D{\,\,f_n = \frac{1 - (-1)^n}{i\pi n}}$}}
+\ON<4->{\B{$\D{ \quad \implies \quad f(t) = \sum \limits_{n=-\infty}^{\infty} \frac{1 - (-1)^n}{i\pi n} \, e^{int}}$}}
+
+{\setlength{\extrarowheight}{-0.165cm}
+\begin{tabular}{p{0.07cm}p{0.9cm}p{10.6cm}}
+	(1) & Guess: & ${
+	\ON<5->{\B{y_p(t) = \sum d_n \, e^{int} }}}$ \hspace{4.0cm} $\left(Note: \sum = \sum \limits_{n=-\infty}^{\infty}\right)$\\
+	&&\\
+	(2) & Compute: & $
+	\ON<6->{\B{y_p'(t) = \frac{d}{dt}\left[\sum d_n \, e^{int} \right] }} 
+	\ON<7->{\B{\, = \sum d_n \, \frac{d}{dt}\left[ e^{int} \right] }}
+	\ON<8->{\B{\, = \sum d_n \, ine^{int} }} $ \\
+	&&\\
+	(3) & Plug: & $
+	\ON<9->{\B{y_p'+2y_p=f(t)}} $ \\
+	&&\\
+	&& $
+	\ON<10->{\B{\sum d_n \, in \, e^{int} + 2\sum d_n \, e^{int} = \sum f_n \, e^{int} }} $ \\
+	&&\\
+	(4) & Group: & $
+	\ON<11->{\B{\sum 
+	\only<12->{\US{\B{ Equal }}}{
+	\only<12->{\UBT}{ \left( in + 2 \right) d_n }} \, e^{int} = \sum 
+	\only<12->{\US{\B{ Equal }}}{
+	\only<12->{\UBT}{ f_n }} \, e^{int}}} $ \\
+	&&\\
+	(5) & Solve: & $\D{
+	\ON<13->{\B{\left( in + 2 \right) d_n = f_n \,\, }}
+	\ON<14->{\B{\implies \,\,d_n = \frac{1}{in + 2} \,\, f_n \,\, = \frac{1}{in + 2} \,\, \frac{1 - (-1)^n}{i\pi n} \,\, = \frac{1 - (-1)^n}{i\pi n(in + 2)}}} }$ \\
+	&&\\
+	\multicolumn{3}{c}{$\D{
+	\ON<15->{\B{\implies \quad y_p(t) = \sum \limits_{n=-\infty}^{\infty} \frac{1 - (-1)^n}{i\pi n(in + 2)} \, e^{int}}} \quad \text{and} \quad y_h(t) = c_1e^{2t} \,\, \implies \,\, y(t) = c_1e^{2t} + \sum \limits_{n=-\infty}^{\infty} \frac{1 - (-1)^n}{i\pi n(in + 2)} \, e^{int} }$} \\
+\end{tabular}}
+
+\vspace{4.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\scriptsize
+%\begin{columns}\begin{column}{12.0cm}
+%
+%{\setlength{\extrarowheight}{-0.1cm}
+%\begin{tabular}{p{0.15cm}p{11.6cm}}
+%	\EX & Find the periodic solutions to the differential equation: \\
+%	&\\
+%	\multicolumn{2}{c}{$\D{y'+2y=f(t)}$} \\
+%	&\\
+%	& where $f(t)$ is a periodic function with period $2\pi$. \\
+%\end{tabular}}
+%
+%\vspace{8.2cm}
+%
+%\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+%\end{frame}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{frame}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{0.15cm}p{11.6cm}}
+	\EX & Consider the following second order differential equation: \\
+	&\\
+	\multicolumn{2}{c}{$\D{a_2y'' + a_{1}y' + a_0 y = f(t)}$} \\
+	&\\
+	& where $f(t)=f(t+2L)$. \\
+	&\\
+	& Derive the relationship between Fourier coefficients of $f(t)$ and $y_p(t)$\\
+	&\\
+\end{tabular}}
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{1.45cm}p{10.6cm}}
+	Let & \\
+	\multicolumn{2}{l}{$\D{f(t) = 
+	\ON<2->{\B{ \sum \limits_{n=-\infty}^{\infty} f_n \, e^{i\pi nt/L}}}}$ \qquad and } \\
+	&\\
+	\multicolumn{2}{l}{
+	$\D{y_p(t) = 
+	\ON<3->{\B{\sum \limits_{n=-\infty}^{\infty} d_n \, e^{i\pi nt/L}}} }$ \qquad $\implies$ \,\,
+	$\D{y_p'(t) = 
+	\ON<4->{\B{\sum \limits_{n=-\infty}^{\infty} \left(\frac{in\pi}{L}\right)d_n e^{in\pi t/L}}} }$ \qquad $\implies$ \,\,
+	$\D{y_p''(t) = 
+	\ON<5->{\B{\sum \limits_{n=-\infty}^{\infty} \left(\frac{in\pi}{L}\right)^2 d_n e^{in\pi t/L}}} }$} \\
+	&\\
+	Plugging in & $\D{a_2y_p'' + a_{1}y_p' + a_0 y_p = f(t)}$ \\
+	&\\
+	& 
+	$\D{
+	\ON<6->{\B{
+	a_2 \sum \limits_{n=-\infty}^{\infty} \left(\frac{in\pi}{L}\right)^2 d_n e^{in\pi t/L} + \,
+	a_1 \sum \limits_{n=-\infty}^{\infty} \left(\frac{in\pi}{L}\right)d_n e^{in\pi t/L} + \,
+	a_0 \sum \limits_{n=-\infty}^{\infty} d_n \, e^{i\pi nt/L} = 
+	    \sum \limits_{n=-\infty}^{\infty} f_n \, e^{i\pi nt/L} }}}$ \\
+	&\\
+	& 
+	$\D{
+	\ON<7->{\B{\sum \limits_{n=-\infty}^{\infty} \left[a_2 \left(\frac{in\pi}{L}\right)^2 + a_1 \left(\frac{in\pi}{L}\right) + a_0 \right] d_n e^{in\pi t/L} = 
+	    \sum \limits_{n=-\infty}^{\infty} f_n \, e^{i\pi nt/L} }} }$ \\
+	&\\
+	& $\D{
+	\ON<8->{\B{\left[a_2 \left(\frac{in\pi}{L}\right)^2 + a_1\left(\frac{in\pi}{L}\right) + a_0 \right]d_n = f_n }} }$
+	$\D{
+	\ON<9->{\B{\quad \implies \quad d_n = \left[a_2 \left(\frac{in\pi}{L}\right)^2 + a_1\left(\frac{in\pi}{L}\right) + a_0 \right]^{-1} f_n}}}$ \\
+\end{tabular}}
+
+\vspace{0.2cm}
+
+\centering
+
+\ON<10->{\B{$\fbox{\quad $\D{d_n = \left[\frac{L^2}{-a_2 \pi^2n^2+a_1\pi L i n+ a_0 L^2} \right] f_n}$\quad }$}}
+
+%\begin{center}
+%	$\D{y(t) = \sum \limits_{n=-\infty}^{\infty} y_n e^{in\pi x/L} \quad \implies \quad y'(t) = \sum \limits_{n=-\infty}^{\infty} \left[\frac{in\pi}{L}\right]y_n e^{in\pi x/L} \quad \implies \quad y''(t) = \sum \limits_{n=-\infty}^{\infty} \left[\frac{in\pi}{L}\right]^2 y_n e^{in\pi x/L}}$
+%\end{center}
+%In general,
+%\begin{center}
+%	$\D{y^{(M)}(t) = \sum \limits_{n=-\infty}^{\infty} \left[\frac{in\pi}{L}\right]^M y_n e^{in\pi x/L}}$
+%\end{center}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\scriptsize
+\begin{columns}\begin{column}{12.2cm}
+
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{0.05cm}p{5.6cm}}
+	\EX & Verify this result with the previous example: \\
+	&\\
+	\multicolumn{2}{c}{$\D{y'+2y=f(t)}$} \\
+	&\\
+	& where $f(t)$ is given by the figure.\\
+	&\\
+\end{tabular}
+\begin{tabular}{p{4cm}}
+	\includegraphics[scale = 0.18]{Figures/11_1_fig2_2.png} \\
+	\\
+\end{tabular}}
+
+In the previous example we found \,\, $\D{f_n = \frac{1 - (-1)^n}{i\pi n}}$ \,\, and \,\, $\D{d_n = \frac{1 - (-1)^n}{i\pi n(in + 2)}}$
+
+\vspace{0.2cm}
+
+and for this eqn: \quad 
+$a_2 = \ON<2->{\B{0}}$\,\,\,\, , 
+$a_1 = \ON<3->{\B{1}}$\,\,\,\, , 
+$a_0 = \ON<4->{\B{2}}$\,\,\,\, , 
+$L = \ON<5->{\B{\pi}}$
+
+\vspace{0.6cm}
+
+$\D{
+\ON<6->{\B{d_n = \left[\frac{L^2}{-a_2 \pi^2n^2+a_1\pi L i n+ a_0 L^2} \right] f_n}}
+\ON<7->{\B{\, = \left[\frac{\pi^2}{-(0) \pi^2n^2+(1)\pi^2 i n+ 2 \pi^2} \right] f_n}}
+\ON<8->{\B{\, = \left[\frac{\pi^2}{\pi^2 i n+ 2 \pi^2} \right] f_n}}
+\ON<9->{\B{\, = \left[\frac{1}{in + 2} \right] f_n}}
+}$
+
+\vspace{0.6cm}
+
+$\D{d_n = 
+\ON<10->{\B{\, \left[\frac{1}{in + 2} \right] \frac{1 - (-1)^n}{i\pi n} = }}
+\ON<11->{\B{\, \frac{1 - (-1)^n}{i\pi n(in + 2)} \qquad \checkmark}}
+}$
+
+\vspace{4.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{0.15cm}p{11.2cm}}
+	\EX & Solve the equation:  \, $\D{y''+2y'+y=\sin t}$ \, for $t\in[-\pi,\pi]$ \hspace{0.8cm} $\D{\left(\text{Note: } \sin t = 
+	\ON<2->{\B{\frac{e^{it}-e^{-it}}{2i} \,\, }} \right) }$ \\
+	&\\
+	\multicolumn{2}{c}{$\D{\sin t = 
+	\ON<3->{\B{\frac{1}{2i}e^{it}+\frac{-1}{2i}e^{-it} = }}
+	\ON<4->{\B{
+	\only<5->{\OS{\B{ n=1 }}}{
+	\only<5->{\OBT}{ 
+	\only<5->{\US{\B{ d_{1} }}}{
+	\only<5->{\UBT}{ \frac{1}{2i} }} e^{i(1)t} }}
+	+
+	\only<6->{\OS{\B{ n=-1 }}}{
+	\only<6->{\OBT}{ 
+	\only<6->{\US{\B{ d_{-1} }}}{
+	\only<6->{\UBT}{ \frac{-1}{2i} }} e^{i(-1)t} }} }} }$ \,\, 
+	\ON<7->{\B{$\leftarrow \,\, \text{ Fourier Series \, where } f_n = $ }}
+	$\D{ 
+	\ON<8->{\B{\left\{
+	{\setlength{\extrarowheight}{-0.3cm}
+	\begin{array}{cl}
+		\ON<9->{\D{\frac{1}{2i}}} & 
+		\ON<9->{n=1} \\
+		&\\
+		\ON<10->{\B{\D{\frac{-1}{2i}}}} & 
+		\ON<10->{\B{n=-1}} \\
+		&\\
+		\ON<11->{\B{0}} & 
+		\ON<11->{\B{n\ne \pm 1}} \\
+	\end{array}} \right.}}
+	}$}\\
+\end{tabular}}
+
+Assuming \, $\D{y_p(t) = 
+\ON<12->{\B{\sum \limits_{n=-\infty}^{\infty} d_n \, e^{i\pi nt/L}}} }$ \, and by the previous result with: 
+$a_2 = \ON<13->{\B{1}}$\,\, , 
+$a_1 = \ON<14->{\B{2}}$\,\, , 
+$a_0 = \ON<15->{\B{1}}$\,\, , 
+$L = \ON<16->{\B{\pi}}$
+
+\vspace{0.2cm}
+
+$\D{d_n = \left[\frac{L^2}{-a_2\pi^2n^2+a_1\pi L i n+ a_0 L^2} \right] f_n = 
+\ON<17->{\B{\, \left[\frac{\pi^2}{-\pi^2n^2+2\pi^2 i n+  \pi^2} \right] f_n = }}
+\ON<18->{\B{\, \left[\frac{1}{-n^2 + 2 i n + 1} \right] f_n}} }$
+
+\vspace{0.2cm}
+
+$\D{d_n = 
+\ON<19->{\B{\left\{
+	{\setlength{\extrarowheight}{-0.3cm}
+	\begin{array}{cl}
+		\ON<20->{\B{\D{\left[\frac{1}{2i}\right]\, f_1} }} & 
+		\ON<20->{n=1} \\
+		&\\
+		\ON<21->{\B{\D{\left[\frac{-1}{2i}\right]\, f_{-1}} }} & 
+		\ON<21->{\B{n=-1}} \\
+		&\\
+		\ON<22->{\B{0}} & 
+		\ON<22->{\B{n\ne \pm 1}} \\
+	\end{array}} \right.}}
+\ON<23->{\B{\quad \implies \quad d_n = \left\{
+	{\setlength{\extrarowheight}{-0.3cm}
+	\begin{array}{rl}
+		\ON<24->{\B{\D{ -\frac{1}{4}} }} & 
+		\ON<24->{n=1} \\
+		&\\
+		\ON<25->{\B{\D{ -\frac{1}{4}} }} & 
+		\ON<25->{\B{n=-1}} \\
+		&\\
+		\ON<26->{\B{0}} & 
+		\ON<26->{\B{n\ne \pm 1}} \\
+	\end{array}} \right.}}
+}$
+
+\vspace{0.2cm}
+
+$\D{ 
+\ON<27->{\B{\implies y_p(t) = \sum \limits_{n=-\infty}^{\infty} d_n \, e^{int} =}} \,\, 
+\ON<28->{\B{d_1 \, e^{i\pi (1)t/L} + d_{-1} \, e^{i(-1)t} =}} \, \,
+\ON<29->{\B{-\frac{1}{4} e^{it} - \frac{1}{4}e^{-it} }}
+\ON<30->{\B{\,\, = -\frac{1}{2} \cos(t) }} 
+ }$
+ 
+\vspace{0.2cm}
+
+$\D{
+\ON<31->{\B{\text{ Char Eqn: } \, r^2+2r+1 = }}
+\ON<32->{\B{\, (r+1)(r+1) \quad \implies \quad }}
+\ON<33->{\B{ y_h(t) = c_1e^{-t} + c_2te^{-t} }}
+}$
+
+\begin{center}
+	\ON<34->{\B{$\fbox{\qquad $\D{y(t) = 
+	\ON<35->{\B{\,\,\, c_1e^{-t} + c_2te^{-t} -\frac{1}{4} e^{it} - \frac{1}{4}e^{-it} \,\,\, = }} 
+	\ON<36->{\B{\,\,\, c_1e^{-t} + c_2te^{-t} -\frac{1}{2} \cos(t) }} }$\qquad }$}}
+\end{center}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+
+\UL{II. Even and Odd Extensions}
+
+\begin{center}
+{%\setlength{\extrarowheight}{-0.2cm}
+\begin{tabular}{|p{0.5cm}p{5.6cm}|c|}
+	\hline
+	\hline
+	&& \\
+	\DEF & Suppose $f(t)$ is defined on $(0,L)$. & 
+	\multirow{2}{*}{
+	\only<1-2>{\includegraphics[scale = 0.16]{Figures/11_4_Fig24_2.png}}
+	\only<3->{\includegraphics[scale = 0.16]{Figures/11_4_Fig24.png}}} \\
+	&&\\
+	\multicolumn{1}{|r}{(1)} & The even extension of $f(t)$ is defined by & \\
+	&&\\
+	& $f^E(t) = 
+	\ON<2->{\B{\left\{
+	\begin{array}{lr}
+		f(t) & 0 < t < L \\
+		f(-t) & -L < t < 0 \\
+	\end{array} \right.}}
+	$ & \\
+	&&\\
+	\hline
+	&& \\
+	\multicolumn{1}{|r}{(2)} & The odd extension of $f(t)$ is defined by & 
+	\multirow{2}{*}{
+	\only<1-4>{\includegraphics[scale = 0.16]{Figures/11_4_Fig25_2.png}}
+	\only<5->{\includegraphics[scale = 0.16]{Figures/11_4_Fig25.png}}} \\
+	&&\\
+	& $f^O(t) = 
+	\ON<4->{\B{\left\{
+	\begin{array}{lr}
+		f(t) & 0 < t < L \\
+		-f(-t) & -L < t < 0 \\
+	\end{array} \right.}}
+	$ & \\
+	&&\\&&\\&&\\&&\\
+	\hline
+	\hline
+\end{tabular}}
+\end{center}
+
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{0.45cm}p{10.6cm}}
+	\UL{Note}: & This is a handy trick if you have a function that is on defined for $0 < t < L$ and want to find its Fourier series. Moreover, since we are creating an even or odd function, we can utilize the Even/Odd properties to: \\
+	&\\
+	& (1) \, Simplify our calculations and \\
+	&\\
+	& (2) \, Choose to write our series in terms of either 
+	\ON<6->{\B{\,\, cosine\,\,}} or 
+	\ON<7->{\B{\,\, sine.\,\,}}\\
+	&\\
+\end{tabular}}
+
+\vspace{4.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\scriptsize
+\begin{columns}\begin{column}{12.2cm}
+
+{\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{p{0.15cm}p{10.6cm}}
+	\EX & Let \, $f(t) = t$ \, be defined for \, $0 < t < 2$. (1) Determine the even and odd extension of $f(t)$\\
+	& \hspace{4.63cm} (2) Find the corresponding cosine and sine series \\
+	&\\
+	\multicolumn{2}{l}{(1) \, Note: 
+	\ON<2->{\B{$L = 2$ and $f(-t) = -t$}}} \\
+\end{tabular}}
+
+{\setlength{\extrarowheight}{-0.16cm}
+\begin{tabular}{p{0.35cm}p{5.6cm}c}
+	&& \\
+	&& 
+	\multirow{2}{*}{
+	\only<1-4>{\includegraphics[scale = 0.2]{Figures/11_4_Fig11_2.png}}
+	\only<5-6>{\includegraphics[scale = 0.2]{Figures/11_4_Fig11_4.png}}
+	\only<7->{\includegraphics[scale = 0.2]{Figures/11_4_Fig11_3.png}}
+	}  \\
+	& $f^E(t) = 
+	\ON<3->{{\left\{
+	{\setlength{\extrarowheight}{0.0cm}
+	\begin{array}{lr}
+		\ON<3->{t} & 
+		\ON<3->{0 < t < 2} \\
+		\ON<4->{\B{-t}} & 
+		\ON<4->{\B{-2 < t < 0}} \\
+	\end{array}} \right.}}
+	$ \\
+	&& \\
+	&& \\
+	& $f^E(t) = \,
+	\ON<6->{\B{f^E(t+4)}}$ & \\
+	&& \\
+	&& \\
+	&& 
+	\multirow{2}{*}{
+	\only<1-9>{\includegraphics[scale = 0.13]{Figures/11_4_Fig22_4.png}}
+	\only<10-11>{\includegraphics[scale = 0.13]{Figures/11_4_Fig22_3.png}}
+	\only<12->{\includegraphics[scale = 0.13]{Figures/11_4_Fig22_2.png}}
+	} \\
+	& $f^O(t) = 
+	\ON<8->{{\left\{
+	{\setlength{\extrarowheight}{0.0cm}
+	\begin{array}{lr}
+		\ON<8->{t} & 
+		\ON<8->{0 < t < 2} \\
+		\ON<9->{\B{t}} & 
+		\ON<9->{\B{-2 < t < 0}} \\
+	\end{array}} \right.}}
+	$ \\
+	&& \\
+	&& \\
+	& $f^O(t) = \,
+	\ON<11->{\B{f^O(t+4)}}$ & \\
+	&& \\
+	\hline
+\end{tabular}}
+
+{\setlength{\extrarowheight}{-0.4cm}
+\begin{tabular}{p{0.35cm}p{10.6cm}}
+	(2) & $\D{f_0^E = 
+	\ON<13->{\B{\frac{1}{2} \int \limits_{0}^{2} t \, dt = 1 ,}} \qquad f_n^E = 
+	\ON<14->{\B{\frac{1}{2} \int \limits_{0}^{2} t \cos\left(\frac{n\pi t}{2}\right) \, dt = ... = \, }}
+	\ON<15->{\B{\frac{2}{n^2\pi^2} \left[(-1)^n - 1\right]}} }$ \\
+	&\\
+	& $\D{\implies \quad f^E(t) = f_0^E + \sum \limits_{n=1}^{\infty} 2\, f_n^E \cos\left(\frac{n\pi t}{2}\right) = 
+	\ON<16->{\B{1 + \sum \limits_{n=1}^{\infty} \frac{4}{n^2\pi^2} \left[(-1)^n - 1\right] \cos\left(\frac{n\pi t}{2}\right)}}}$ \\
+	& $\D{f_n^O = 
+	\ON<17->{\B{\frac{-i}{2} \int \limits_{0}^{2} t \sin\left(\frac{n\pi t}{2}\right) \, dt = ... = }} \, 
+	\ON<18->{\B{ \frac{-2i}{n\pi}(-1)^{n+1} }}}$ \\
+	&\\
+	& $\D{\implies \quad f^O(t) =  \sum \limits_{n=1}^{\infty} 2i\,f_n^O \sin\left(\frac{n\pi t}{2}\right) = 
+	\ON<19->{\B{\sum \limits_{n=1}^{\infty} \frac{4}{n\pi}(-1)^{n+1} \sin\left(\frac{n\pi t}{2}\right) }} }$ \\
+\end{tabular}}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\scriptsize
+\begin{columns}\begin{column}{12.2cm}
+
+{\setlength{\extrarowheight}{-0.2cm}
+\begin{tabular}{p{0.15cm}p{10.6cm}}
+	\EX & Use Fourier Series to solve the following Boundary Value Problem: \\
+	&\\
+	& \hspace{4.0cm} $\D{y''+4y=4t, \quad 0 < t < 1}$ \\
+	&\\
+	& \hspace{4.0cm}$\D{y(0)=y(1)=0}$ \\
+\end{tabular}}
+
+{\setlength{\extrarowheight}{-0.16cm}
+\begin{tabular}{p{0.35cm}p{5.6cm}c}
+	&& \\
+	&& 
+	\multirow{2}{*}{
+	\only<1-4>{\includegraphics[scale = 0.2]{Figures/11_4_Fig11_2.png}}
+	\only<5-6>{\includegraphics[scale = 0.2]{Figures/11_4_Fig11_4.png}}
+	\only<7->{\includegraphics[scale = 0.2]{Figures/11_4_Fig11_3.png}}
+	}  \\
+	& $f^E(t) = 
+	\ON<3->{{\left\{
+	{\setlength{\extrarowheight}{0.0cm}
+	\begin{array}{lr}
+		\ON<3->{t} & 
+		\ON<3->{0 < t < 2} \\
+		\ON<4->{\B{-t}} & 
+		\ON<4->{\B{-2 < t < 0}} \\
+	\end{array}} \right.}}
+	$ \\
+	&& \\
+	&& \\
+	& $f^E(t) = \,
+	\ON<6->{\B{f^E(t+2)}}$ & \\
+	&& \\
+	&& \\
+	&& 
+	\multirow{2}{*}{
+	\only<1-9>{\includegraphics[scale = 0.13]{Figures/11_4_Fig22_4.png}}
+	\only<10-11>{\includegraphics[scale = 0.13]{Figures/11_4_Fig22_3.png}}
+	\only<12->{\includegraphics[scale = 0.13]{Figures/11_4_Fig22_2.png}}
+	} \\
+	& $f^O(t) = 
+	\ON<8->{{\left\{
+	{\setlength{\extrarowheight}{0.0cm}
+	\begin{array}{lr}
+		\ON<8->{t} & 
+		\ON<8->{0 < t < 2} \\
+		\ON<9->{\B{t}} & 
+		\ON<9->{\B{-2 < t < 0}} \\
+	\end{array}} \right.}}
+	$ \\
+	&& \\
+	&& \\
+	& $f^O(t) = \,
+	\ON<11->{\B{f^O(t+2)}}$ & \\
+	&& \\
+	\hline
+\end{tabular}}
+
+{\setlength{\extrarowheight}{-0.4cm}
+\begin{tabular}{p{0.35cm}p{10.6cm}}
+	(2) & $\D{f_0^E = 
+	\ON<13->{\B{\frac{1}{2} \int \limits_{0}^{2} t \, dt = 2 ,}} \qquad f_n^E = 
+	\ON<14->{\B{\frac{1}{2} \int \limits_{0}^{2} t \cos\left(\frac{n\pi t}{2}\right) \, dt = ... = \, }}
+	\ON<15->{\B{\frac{2}{n^2\pi^2} \left[(-1)^n - 1\right]}} }$ \\
+	&\\
+	& $\D{\implies \quad f^E(t) = f_0^E + \sum \limits_{n=1}^{\infty} 2\, f_n^E \cos\left(\frac{n\pi t}{2}\right) = 
+	\ON<16->{\B{2 + \sum \limits_{n=1}^{\infty} \frac{4}{n^2\pi^2} \left[(-1)^n - 1\right] \cos\left(\frac{n\pi t}{2}\right)}}}$ \\
+	& $\D{f_n^O = 
+	\ON<17->{\B{\frac{-i}{2} \int \limits_{0}^{2} t \sin\left(\frac{n\pi t}{2}\right) \, dt = ... = }} \, 
+	\ON<18->{\B{ \frac{-2i}{n\pi}(-1)^{n+1} }}}$ \\
+	&\\
+	& $\D{\implies \quad f^O(t) =  \sum \limits_{n=1}^{\infty} 2i\,f_n^O \sin\left(\frac{n\pi t}{2}\right) = 
+	\ON<19->{\B{\sum \limits_{n=1}^{\infty} \frac{4}{n\pi}(-1)^{n+1} \sin\left(\frac{n\pi t}{2}\right) }} }$ \\
+\end{tabular}}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+
+%%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} Section 11.3 Forced Oscillations (Review part)}}
+%\scriptsize
+%
+%\vspace{0.2cm}
+%{\bf Homework Problems:} \quad TBA
+%
+%\vspace{0.2cm}
+%
+%{\bf Section Example Problems to Read:} \quad TBA
+%
+%\vspace{0.8cm}
+%
+%\begin{block}{Key Concepts:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] 2nd Order Linear Homogeneous DE with constant coefficients
+%	\item[...] Method of Undetermined coefficients
+%	\item[...] Mechanical Vibrations
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%\vspace{0.2cm}
+%
+%\begin{block}{Standard Mathematical Tools:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Solving 2nd Order ODEs using the method of Undetermined Coefficients
+%	\item[...] Solving the Spring Equation
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%%\vspace{3.0cm}
+%\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{I. Review - Diff Eq Techniques}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\setlength{\extrarowheight}{0.25cm}
+%\begin{tabular}{p{3.5cm} | p{5.5cm} }
+%	\multicolumn{1}{c|}{Solve: \quad ${4y = 3x^2}$} & \multicolumn{1}{c}{${4\left(\quad
+%	\ON<2->{\B{\frac{3}{4}x^2}}\quad\right) = 3x^2}$}\\
+%	& \multicolumn{1}{c}{${
+%	\ON<3->{\B{\text{ So } \quad y = \frac{3}{4}x^2}}}$ \quad 
+%	\ON<4->{\B{solves \quad $4y=3x^2$}}} \\
+%	&\\
+%	\multicolumn{1}{c|}{Solve: \quad ${y' = 3x^2}$} & \multicolumn{1}{c}{${\left(\quad
+%	\ON<5->{\B{x^3}}\quad\right)' = 3x^2}$}\\
+%	& \multicolumn{1}{c}{$\D{
+%	\ON<6->{\B{\text{ So } \quad y = x^3}}}$ \quad 
+%	\ON<7->{\B{solves \quad $y'=3x^2$}}} \\
+%	&\\
+%	\multicolumn{1}{c|}{Solve: \quad $\D{y'+4y = 3x^2}$} & \multicolumn{1}{c}{${\left(\quad
+%	\ON<10->{\B{Ax^2+Bx+C}}\quad\right)'+4\OS{
+%	\ON<8->{\B{\leftharpoondown\text{-poly of deg 2-}\rightharpoondown}}}{\left(\quad
+%	\ON<9->{\B{Ax^2+Bx+C}}\quad\right)} = 3x^2}$}\\
+%	& \multicolumn{1}{c}{${
+%	\ON<11->{\B{2Ax+B + 4Ax^2+4Bx+4C = 3x^2}}}$}\\
+%	& \multicolumn{1}{c}{$\D{
+%	\ON<12->{\B{4Ax^2+(2A+4B)x+(B+4C) = 3x^2+0x+0}}}$}\\
+%	& \multicolumn{1}{c}{${
+%	\ON<13->{\B{\implies \quad 4A = 3}}}$ \quad $\D{
+%	\ON<14->{\B{2A+4B = 0}}}$ \quad $\D{
+%	\ON<15->{\B{B+4C = 0}}}$}\\
+%	& \multicolumn{1}{c}{${
+%	\ON<16->{\B{\implies \quad A = \frac{3}{4}}}}$}\\
+%	& \multicolumn{1}{c}{${
+%	\ON<17->{\B{\implies \quad 2\left(\frac{3}{4}\right)+4B = 0 \quad \implies \quad B = -\frac{3}{8}}}}$}\\
+%	& \multicolumn{1}{c}{${
+%	\ON<18->{\B{\implies \quad \left(-\frac{3}{8}\right)+4C = 0 \quad \implies \quad C = \frac{3}{32}}}}$}\\
+%	& \multicolumn{1}{c}{${
+%	\ON<19->{\B{\text{ So } \quad y = \frac{3}{4}x^2-\frac{3}{8}x+\frac{3}{32}}}}$ \quad 
+%	\ON<20->{\B{solves \quad $y'+4y=3x^2$}}} \\
+%	&\\
+%\end{tabular}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\setlength{\extrarowheight}{0.3cm}
+%\begin{tabular}{p{3.5cm} | p{5.5cm} }
+%	\multicolumn{1}{c|}{$\D{y''+4y = 3x^2}$} & \multicolumn{1}{c}{$\D{\left(\quad
+%	\ON<4->{\B{Ax^2+Bx+C}}\quad\right)''+4\OS{
+%	\ON<2->{\B{\leftharpoondown\text{-poly of deg 2-}\rightharpoondown}}}{\left(\quad
+%	\ON<3->{\B{Ax^2+Bx+C}}\quad\right)} = 3x^2}$}\\
+%	& \multicolumn{1}{c}{$\D{
+%	\ON<5->{\B{2A+4Ax^2+4Bx+4C = 3x^2}}}$}\\
+%	& \multicolumn{1}{c}{$\D{
+%	\ON<6->{\B{4Ax^2+4Bx+(2A+4C) = 3x^2+0x+0}}}$}\\
+%	& \multicolumn{1}{c}{$\D{
+%	\ON<7->{\B{\implies \quad 4A = 3}}}$ \quad $\D{
+%	\ON<8->{\B{4B = 0}}}$ \quad $\D{
+%	\ON<9->{\B{2A+4C = 0}}}$}\\
+%	& \multicolumn{1}{c}{$\D{
+%	\ON<10->{\B{\implies \quad A = \frac{3}{4}}}}$}\\
+%	& \multicolumn{1}{c}{$\D{
+%	\ON<11->{\B{\implies \quad B = 0}}}$}\\
+%	& \multicolumn{1}{c}{$\D{
+%	\ON<12->{\B{\implies \quad 2\left(\frac{3}{4}\right)+4C = 0 \quad \implies \quad C = -\frac{3}{8}}}}$}\\
+%	& \multicolumn{1}{c}{$\D{
+%	\ON<13->{\B{\text{ So } \quad y = \frac{3}{4}x^2-\frac{3}{8}}}}$ \quad 
+%	\ON<14->{\B{solves \quad $y'+4y=3x^2$}}} \\
+%	&\\
+%\end{tabular}
+%
+%\vspace{0.2cm}
+%
+%Notes:
+%
+%%-------LIST---------
+%\begin{itemize}
+%	\item While we were able to find solutions, these solutions are not the most general solutions.
+%	\vspace{0.2cm}
+%	\item The solutions we found are called 
+%	\ON<15->{\B{\quad particular solutions\quad}} (denoted $y_p$).
+%	\vspace{0.2cm}
+%	\item The method we used to obtain the solutions is known as 
+%	\ON<16->{\B{`Undetermined Coefficients'.}}
+%\end{itemize}
+%%-------------------
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%	Suppose \, $y_p$ \, is the particular solution for the equation \,\, $y''+4y=3x^2$ \,\,i.e.\,\, $y_p''+4y_p=3x^2$
+%	
+%	\vspace{0.2cm}
+%	
+%	Let \, $y_h$ \, be some function of $x$.
+%	
+%	\vspace{0.2cm}
+%	
+%	What must be true in order for \,\, $y_p + y_h$ \,\, to also be a solution of \,\, $y''+4y=3x^2$\,?
+%	
+%	\vspace{0.4cm}
+%	
+%	To find out, we 
+%	\ON<2->{\B{plug \, $y_p + y_h$ \, into}}
+%	\ON<3->{\B{ \,\, $y''+4y=3x^2$}}
+%	
+%	\vspace{0.6cm}
+%	
+%	$(
+%	\ON<4->{\B{\,\,y_p + y_h\,\,}})''+4(
+%	\ON<5->{\B{\,\,y_p + y_h\,\,}})=3x^2$
+%	
+%	\vspace{0.6cm}
+%	
+%	\ON<6->{\B{$y_p'' + y_h''+4y_p + 4y_h = 3x^2$}}
+%	
+%	\vspace{0.6cm}
+%	
+%	\ON<7->{\B{$\US{
+%	\ON<8->{\B{=\,3x^2}}}{\UB{
+%	\ON<7->{\B{y_p'' + 4y_p}}}} 
+%	\ON<7->{\B{+ \, y_h'' + 4y_h = 3x^2}}$}} \quad $
+%	\ON<9->{\B{\implies \quad 3x^2 + y_h'' + 4y_h = 3x^2}} \quad 
+%	\ON<10->{\B{\implies \quad y_h'' + 4y_h = 0}}$
+%	
+%	\vspace{0.6cm}
+%	
+%	So not only is $y_p$ a solution of \,\, $y''+4y=3x^2$, but so is \,\, 
+%	\ON<11->{\B{$y_p + y_h$ \,\, (as long as $y_h'' + 4y_h = 0$) }}
+%	
+%	\vspace{0.5cm}
+%	
+%	Therefore, the general solution of an equation like \,$y''+4y=3x^2$, is given by \, 
+%	\ON<12->{\B{$y_p+y_h$\, where}}
+%	
+%	\vspace{0.4cm}
+%	
+%	(1) $y_p$ - the solution of 
+%	\ON<13->{\B{$y_p''+4y_p=3x^2$ \quad (particular solution)}}
+%	
+%	\vspace{0.2cm}
+%	
+%	(2) $y_h$ - the solution of 
+%	\ON<14->{\B{$y_h''+4y_h=0$ \quad (homogeneous ``solution")}}
+%	
+%	\vspace{1.2cm}
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%\EX Find the particular solution $y_p$ of the ODE: \quad $y''+3y'+4y=3x+2$
+%
+%\vspace{0.3cm}
+%
+%\SOL
+%
+%\vspace{7.8cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%\EX Find the particular solution $y_p$ of \quad $y''-4y=2e^{3x}$
+%
+%\vspace{0.3cm}
+%
+%\SOL
+%
+%\vspace{7.8cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%\EX Find the particular solution $y_p$ of \quad $3y''+y'-2y=2\cos x$
+%
+%\vspace{0.3cm}
+%
+%\SOL
+%
+%\vspace{7.8cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%\EX What would you use as your guess to find the particular solution $y_p$ of  \quad $3y''-2y=2\cos x$?
+%
+%\vspace{0.3cm}
+%
+%\SOL
+%
+%\vspace{7.8cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{II. Review}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%Recall that a 2nd Order Linear Homogeneous Differential Equation with constant coefficients is given by:
+%
+%\begin{center}
+%	$\D{Ay''(t) + By'(t) + Cy(t) = 0}$
+%\end{center}
+%
+%and the solution of such an equation found by finding the roots of the characteristic equation:
+%
+%\begin{center}
+%	\ON<2->{\B{$\D{Ar^2 + Br + C = 0}$}}
+%\end{center}
+%
+%Suppose $r_1$ and $r_2$ are the roots of the characteristic equation.  Then we follow...
+%
+%\vspace{0.5cm}
+%
+%\setlength{\extrarowheight}{0.2cm}
+%\begin{tabular}{| p{6.5cm} | p{4.5cm} |}
+%	\hline
+%	If & Then \\
+%	\hline
+%	\hline
+%	\ON<3->{\B{$\D{r_1 \ne r_2}$ and are real}} & 
+%	\ON<4->{\B{$\D{y(t) = Ae^{r_1t} + Be^{r_2t}}$}}\\
+%	\hline
+%	\ON<5->{\B{$\D{r_1 = r_2}$ and are real}} & 
+%	\ON<6->{\B{$\D{y(t) = Ae^{r_1t} + Bte^{r_1t} = (A + Bt)e^{r_1t}}$}}\\
+%	\hline
+%	\ON<7->{\B{$\D{r_1 \, \&  \, r_2}$ are complex (say $\D{r_1 = a+ib \,\, \& \,\, r_2 = a-ib}$)}} & 
+%	\ON<8->{\B{$\D{y(t) = e^{at}\left[A\cos(bt)+B\sin(bt)\right]}$}}\\
+%	\hline
+%\end{tabular}
+%
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%Find the general solution of \,\, $\D{y''+4y = 3x^2}$
+%
+%\vspace{8.2cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%Find the general solution of \,\, $\D{3y''+y'-2y=2\cos x}$
+%
+%\vspace{8.2cm}
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{III. Mechanical Vibrations}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%Derive the spring equation considering 
+%
+%\vspace{0.2cm}
+%	
+%Total Force of a Mass attached to a Spring:
+%
+%\vspace{0.2cm}
+%	
+%$F = F_S + F_R + F_E$
+%
+%\vspace{0.2cm}
+%
+%$F_S: $ Spring Force
+%
+%\vspace{0.2cm}
+%
+%$F_R: $ Dampening Force
+%
+%\vspace{0.2cm}
+%
+%$F_E: $ External Force
+%
+%\vspace{0.2cm}
+%
+%\begin{center}
+%	\includegraphics[scale = 0.2]{Figures/11_3_fig2_2.png}
+%\end{center}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\begin{columns}
+%\begin{column}{6.0cm}
+%{\bf Forced Damped Motion}:
+%
+%\vspace{0.2cm}
+%
+%\begin{center}
+%	$\D{m x''(t) + c x'(t) + kx(t) = F(t)}$
+%\end{center}
+%\end{column}
+%\begin{column}{5.0cm}
+%	\begin{center}
+%		\includegraphics[scale = 0.12]{Figures/11_3_Fig3.png}
+%	\end{center}
+%\end{column}
+%\end{columns}
+%
+%\vspace{1.0cm}
+%
+%\begin{columns}
+%\begin{column}{13.0cm}{\huge \bf \underline{\hspace{25.0cm}} \\}\end{column}
+%\begin{column}{0.5cm}\end{column}
+%\end{columns}
+%
+%\vspace{1.0cm}
+%
+%%----------------------
+%\begin{columns}
+%\begin{column}{6.0cm}
+%
+%{\bf Free Damped Motion}:	
+%
+%\vspace{0.4cm}
+%
+%Free $\implies F(t) = 0$
+%\begin{center}
+%	$\D{m x''(t) + c x'(t) + kx(t) = 0}$
+%\end{center}
+%
+%\end{column}
+%\begin{column}{5.0cm}
+%	\begin{center}
+%		\includegraphics[scale = 0.12]{Figures/11_3_Fig4.png}
+%	\end{center}
+%\end{column}
+%\end{columns}
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%%----------------------
+%\begin{columns}
+%\begin{column}{6.0cm}
+%{\bf Forced Undamped Motion}:
+%
+%\vspace{0.4cm}
+%
+%Undamped $\implies c = 0$
+%\begin{center}
+%	$\D{m x''(t) + kx(t) = F(t)}$
+%\end{center}
+%
+%\end{column}
+%\begin{column}{5.0cm}
+%	\begin{center}
+%		\includegraphics[scale = 0.12]{Figures/11_3_Fig6.png}
+%	\end{center}
+%\end{column}
+%\end{columns}
+%
+%\vspace{1.0cm}
+%
+%\begin{columns}
+%\begin{column}{13.0cm}{\huge \bf \underline{\hspace{25.0cm}} \\}\end{column}
+%\begin{column}{0.5cm}\end{column}
+%\end{columns}
+%
+%\vspace{1.0cm}
+%
+%%----------------------
+%\begin{columns}
+%\begin{column}{6.0cm}
+%	{\bf Free Undamped Motion} (Hooke's law):
+%
+%\vspace{0.4cm}
+%
+%Free $\implies F(t) = 0$
+%
+%\vspace{0.3cm}
+%
+%Undamped $\implies c = 0$
+%
+%\vspace{0.3cm}
+%
+%\begin{center}
+%	$\D{m x''(t) + kx(t) = 0}$
+%\end{center}
+%
+%\end{column}
+%\begin{column}{5.0cm}
+%	\begin{center}
+%		\includegraphics[scale = 0.12]{Figures/11_3_Fig5.png}
+%	\end{center}
+%\end{column}
+%\end{columns}	
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%Determine the solution for the free undamped motion of a spring where the object attached to the spring has a mass of $\frac{1}{2}$ kg.  Suppose the spring requires 100 N to stretch 2 m.  If the spring is set in motion with initial position $x_0=1$ m and initial velocity $v_0=-5$ m/s then find the displacement solution, $x(t)$.
+%
+%\vspace{0.2cm}
+%
+%\SOL First use Hooke's law to determine the spring constant $k$:  
+%
+%\vspace{0.6cm}
+%
+%So the equation we wish to solve is \quad $x'' + 100x = 0$
+%
+%\vspace{5.8cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}

@@ -1,0 +1,626 @@
+%!TEX root = ../AdvMathLecture.tex
+%
+% Section 10.7: Divergence Theorem
+% 
+
+%%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} Section 10.7: Divergence Theorem}}
+%\scriptsize
+%
+%\vspace{0.2cm}
+%
+%\begin{block}{Key Concepts:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Divergence Theorem
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%\vspace{1.2cm}
+%
+%\begin{block}{Mathematical Tools:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Using the divergence Theorem to evaluate flux
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%%\vspace{3.0cm}
+%\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{Topic: Divergence Theorem}
+\begin{columns}\begin{column}{12.0cm}
+\UL{I. Introduction}
+
+\scriptsize
+
+\vspace{0.2cm}
+
+To motivate this section, lets start with a problem
+
+\vspace{0.2cm}
+
+Compute the flux of ${\bf F} = [x^2,0,z^2]$ \, through the rectangular box: $|x| \le 1$, \, $|y| \le 3$, \, and $0 \le z \le 2$. \, Let $S$ be the surface of the box.
+
+\vspace{0.2cm}
+
+Note: Since $S$ is composed of 6 surfaces, we need to compute the flux through each surface.
+
+%$\circ$ \,\, The Good News: \B{Sides of rectangular boxes do not need to be parameterized to find the flux.}
+
+\vspace{0.2cm}
+ 
+$\D{Flux = \iint \limits_{S} {\bf F} \cdot {\bf n}\, dA}$
+
+$\D{ \qquad = \iint \limits_{S_{x-}} {\bf F} \cdot {\bf n}_{x-}\, dA + \iint \limits_{S_{x+}} {\bf F} \cdot {\bf n}_{x+}\, dA + \iint \limits_{S_{y-}} {\bf F} \cdot {\bf n}_{y-}\, dA + \iint \limits_{S_{y+}} {\bf F} \cdot {\bf n}_{y+}\, dA + \iint \limits_{S_{z-}} {\bf F} \cdot {\bf n}_{z-}\, dA + \iint \limits_{S_{z+}} {\bf F} \cdot {\bf n}_{z+}\, dA}$
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{7.0cm}
+	$S_{x-}$: \, 
+	$x=\ON<3->{\B{-1}}$,\, 
+	$\ON<4->{\B{-3}} \le y 
+	\ON<4->{\B{\le 3}}$,\, 
+	$\ON<5->{\B{0}} \le z \le 
+	\ON<5->{\B{2}}$, \, and \, ${\bf n}_{x-} = 
+	\ON<6->{\B{[-1,0,0]}}$
+	
+	\vspace{0.4cm}
+	
+	$S_{x+}$: \, 
+	$x=\ON<7->{\B{1}}$,\, 
+	$\ON<8->{\B{-3}} \le y \le 
+	\ON<8->{\B{3}}$,\, 
+	$\ON<9->{\B{0}} \le z \le 
+	\ON<9->{\B{2}}$, \, and \, ${\bf n}_{x+} = 
+	\ON<10->{\B{[1,0,0]}}$
+	
+	\vspace{0.4cm}
+	
+	$S_{y-}$: \, 
+	$y=\ON<11->{\B{-3}}$,\, 
+	$\ON<12->{\B{-1}} \le x \le 
+	\ON<12->{\B{1}}$,\, 
+	$\ON<13->{\B{0}} \le z \le 
+	\ON<13->{\B{2}}$, \, and \, ${\bf n}_{y-} = 
+	\ON<14->{\B{[0,-1,0]}}$
+	
+	\vspace{0.4cm}
+	
+	$S_{y+}$: \, 
+	$y=\ON<15->{\B{3}}$,\, 
+	$\ON<16->{\B{-1}} \le x \le 
+	\ON<16->{\B{1}}$,\, 
+	$\ON<17->{\B{0}} \le z \le 
+	\ON<17->{\B{2}}$, \, and \, ${\bf n}_{y+} = 
+	\ON<18->{\B{[0,1,0]}}$
+	
+	\vspace{0.4cm}
+	
+	$S_{z-}$: \, 
+	$z=\ON<19->{\B{0}}$,\, 
+	$\ON<20->{\B{-1}} \le x \le 
+	\ON<20->{\B{1}}$,\, 
+	$\ON<21->{\B{-3}} \le y \le 
+	\ON<21->{\B{3}}$, \, and \, ${\bf n}_{z-} = 
+	\ON<22->{\B{[0,0,-1]}}$
+	
+	\vspace{0.4cm}
+	
+	$S_{z+}$: \, 
+	$z=\ON<23->{\B{2}}$,\, 
+	$\ON<24->{\B{-1}} \le x \le 
+	\ON<24->{\B{1}}$,\, 
+	$\ON<25->{\B{-3}} \le y \le 
+	\ON<25->{\B{3}}$, \, and \, ${\bf n}_{z+} = 
+	\ON<26->{\B{[0,0,1]}}$
+\end{column}
+\begin{column}{4.0cm}
+	\only<1>{\includegraphics[scale = 0.25]{Figures/10_7_Fig2.png}}
+	\only<2->{\includegraphics[scale = 0.25]{Figures/10_7_Fig3.png}}
+\end{column}
+\end{columns}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+
+$\D{Flux = \iint \limits_{S_{x-}} {\bf F} \cdot {\bf n}_{x-}\, dA + \iint \limits_{S_{x+}} {\bf F} \cdot {\bf n}_{x+}\, dA + \iint \limits_{S_{y-}} {\bf F} \cdot {\bf n}_{y-}\, dA + \iint \limits_{S_{y+}} {\bf F} \cdot {\bf n}_{y+}\, dA + \iint \limits_{S_{z-}} {\bf F} \cdot {\bf n}_{z-}\, dA + \iint \limits_{S_{z+}} {\bf F} \cdot {\bf n}_{z+}\, dA}$
+
+\vspace{0.4cm}
+
+$\D{\iint \limits_{S_{x-}} {\bf F} \cdot {\bf n}_{x-}\, dA = 
+\ON<2->{\B{\iint \limits_{S_{x-}} [x^2,0,z^2] \cdot [-1,0,0]\, dA \,=\, }}
+\ON<3->{\B{\iint \limits_{S_{x-}} -x^2 \, dA \OS{\B{x=-1}}{\quad=\quad} }}
+\ON<4->{\B{\iint \limits_{S_{x-}} -1 \, dA = -Area(S_{x-}) \,=\, -12}}}$
+
+\vspace{0.2cm}
+
+$\D{\iint \limits_{S_{x+}} {\bf F} \cdot {\bf n}_{x+}\, dA = 
+\ON<5->{\B{\iint \limits_{S_{x+}} [x^2,0,z^2] \cdot [1,0,0]\, dA \,=\, }}
+\ON<6->{\B{\iint \limits_{S_{x+}} x^2 \, dA \OS{\B{x=1}}{\quad=\quad} }}
+\ON<7->{\B{\iint \limits_{S_{x+}} 1 \, dA = Area(S_{x+}) \,=\, 12}}}$
+
+\vspace{0.2cm}
+
+$\D{\iint \limits_{S_{y-}} {\bf F} \cdot {\bf n}_{y-}\, dA = 
+\ON<8->{\B{\iint \limits_{S_{y-}} [x^2,0,z^2] \cdot [0,-1,0]\, dA \,=\,}}
+\ON<9->{\B{\iint \limits_{S_{y-}} 0 \, dA \, = \, 0 }}}$
+
+\vspace{0.2cm}
+
+$\D{\iint \limits_{S_{y+}} {\bf F} \cdot {\bf n}_{y+}\, dA = 
+\ON<10->{\B{\iint \limits_{S_{y+}} [x^2,0,z^2] \cdot [0,1,0]\, dA \,=\,}}
+\ON<11->{\B{\iint \limits_{S_{y+}} 0 \, dA \, = \, 0 }}}$
+
+\vspace{0.2cm}
+
+$\D{\iint \limits_{S_{z-}} {\bf F} \cdot {\bf n}_{z-}\, dA = 
+\ON<12->{\B{\iint \limits_{S_{z-}} [x^2,0,z^2] \cdot [0,0,-1]\, dA \,=\, }}
+\ON<13->{\B{\iint \limits_{S_{z-}} -z^2 \, dA \OS{\B{z=0}}{\quad=\quad} }}
+\ON<14->{\B{\iint \limits_{S_{z-}} 0 \, dA \,=\, 0}}}$
+
+\vspace{0.2cm}
+
+$\D{\iint \limits_{S_{z+}} {\bf F} \cdot {\bf n}_{z+}\, dA = 
+\ON<15->{\B{\iint \limits_{S_{z+}} [x^2,0,z^2] \cdot [0,0,1]\, dA \,=\, }}
+\ON<16->{\B{\iint \limits_{S_{z+}} z^2 \, dA \OS{\B{z=2}}{\quad=\quad} }}
+\ON<17->{\B{\iint \limits_{S_{z+}} 4 \, dA = 4Area(S_{z+}) \,=\, 4(12) = 48}}}$
+	
+\vspace{0.3cm}
+
+\begin{center}
+	$\D{\implies \quad Flux = \ON<18->{\B{-12+12+0+0+0+48 = 48}}}$
+\end{center}
+
+Fortunately, just like Green's Theorem, there is a relationship between the boundary and the enclosed solid that makes this easier.
+	
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%Recall that Green's Theorem gave us a way to compute a line integral using a double integral over the region enclosed by the curve. 
+%
+%\vspace{0.4cm}
+%
+%\hspace{2.0cm} (General Form) \qquad $\D{\OWORK = \GINT}$
+%	
+%	\vspace{0.4cm}
+%	
+%\hspace{1.5cm} (Component Form) \qquad $\D{\GREENSL = \GREENSA}$
+%
+%\vspace{0.2cm}
+%
+%\begin{center}
+%	\includegraphics[scale = 0.2]{Figures/10_5_Fig2.png} \hspace{1.0cm} \includegraphics[scale = 0.2]{Figures/10_5_Fig3.png}
+%\end{center}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\UL{II. Divergence Theorem}
+
+\vspace{0.2cm}
+
+\scriptsize
+
+Recall:  Green's Thm relates a 
+\ON<2->{\B{\, planar closed curve \,}} with the 
+\ON<3->{\B{\, region it bounds}}
+
+\vspace{0.2cm}
+
+The Divergence Theorem relates a 
+\ON<5->{\B{\,\,closed surface\,\,}} with the 
+\ON<6->{\B{\,\,solid it bounds}}
+
+\vspace{0.2cm}
+
+\THM Let \,${\bf F} = [M(x,y,z),N(x,y,z),P(x,y,z)]$ \,\,be a vector field that has continuous 1st partial derivatives.  Also, let $T$ be a bounded volume with boundary $S$ (oriented outward) which is imbedded in ${\bf F}$.  Then
+
+\begin{center}
+	$\D{\iint \limits_{S} {\bf F} \cdot {\bf n}\, dA =  
+\ON<7->{\B{\,\,\, \iiint \limits_{T} \text{div} \,{\bf F} \,dV}}
+\ON<8->{\B{\,\, = \iiint \limits_{T} \left(\frac{\PP M}{\PP x} + \frac{\PP N}{\PP y} + \frac{\PP P}{\PP z}\right)\, dV}}
+\ON<9->{\B{\,\, = \iiint \limits_{T} \left(M_x + N_y + P_z\right)\, dV}}
+}$
+\end{center}
+\begin{columns}
+\begin{column}{5.0cm}
+\centering 
+
+	\includegraphics[scale = 0.18]{Figures/10_5_Fig2.png}
+	
+	\vspace{0.2cm}
+	
+	Green's Theorem
+	
+	\vspace{0.2cm}
+	
+	$\D{\WORK = 
+	\ON<4->{\B{\,\GREENCURL}}}$
+\end{column}
+\begin{column}{5.0cm}
+\centering 
+
+	\includegraphics[scale = 0.18]{Figures/10_7_Fig1.png} 
+
+	\vspace{0.2cm}
+	
+	Divergence Theorem
+	
+	\vspace{0.2cm}
+	
+	$\D{\iint \limits_{S} {\bf F} \cdot {\bf n}\, dA =  
+\ON<10->{\B{\,\,\, \iiint \limits_{T} \text{div} \,{\bf F} \,dV}}}$
+
+\end{column}
+\end{columns}		
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+Back to our first problem:
+
+\vspace{0.2cm}
+
+\EX Compute the flux of ${\bf F} = [x^2,0,z^2]$ \, through the rectangular box: $|x| \le 1$, \, $|y| \le 3$, and $0 \le z \le 2$.
+
+\vspace{0.2cm}
+
+$\D{
+\ON<2->{\B{\text{div} \, {\bf F} }}
+\ON<3->{\B{\,= (x^2)_x + (0)_y + (z^2)_z}}
+\ON<4->{\B{\,= 2x + 2z}}}$
+%--------EQN----------
+\begin{align*}
+	Flux = 
+	\ON<5->{\B{\, 
+	\only<6->{\OS{\B{ Divergence \, Theorem }}}{
+	\only<6->{\OB}{ \iint \limits_{S} {\bf F} \cdot {\bf n}\, dA 
+	\, = \iiint \limits_{T} \text{div} {\bf F} \,\, dV}} }} 
+	&\ON<7->{\B{\, =\iiint \limits_{T} 2x + 2z \,\, dV}} \\
+	&\ON<8->{\B{\, = \int \limits_{0}^{2} \int \limits_{-3}^{3}\int \limits_{-1}^{1} 2x+2z\, dx\,dy\,dz}} \\
+	&\ON<9->{\B{\, = 6\int \limits_{0}^{2} \int \limits_{-1}^{1} 2x+2z\, dx\,dz}} \\
+	&\ON<10->{\B{\, = 6\int \limits_{0}^{2} \left. (x^2+2xz) \right|_{-1}^{1}\,dz}} \\
+	&\ON<11->{\B{\, = 6\int \limits_{0}^{2} (1+2z)-(1-2z) \,dz}} \\
+	&\ON<12->{\B{\, = 6\int \limits_{0}^{2} 4z \,dz}}
+	 \ON<13->{\B{\, = 6 \left.(2z^2)\right|_{0}^{2}}}
+	 \ON<14->{\B{\, = 6 (8-0) = 48}}
+\end{align*}
+%----------------------
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+
+\UL{III. Review: Cylindrical \& Spherical Coordinates}
+
+\scriptsize
+
+Since we will be computing triple integrals, we should review the different types of coordinates that we may use.
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{5.0cm}
+	{\bf Cylindrical Coordinates}:
+	
+	\vspace{0.3cm}
+	
+	$x = 
+	\ON<2->{\B{r\cos \theta}}$
+	
+	\vspace{0.2cm}
+	
+	$y = 
+	\ON<3->{\B{r \sin \theta}}$
+
+	\vspace{0.2cm}
+	
+	$z = 
+	\ON<4->{\B{z}}$
+	
+	\vspace{0.2cm}
+	
+	$\quad \cdot \quad 
+	\ON<5->{\B{x^2+y^2 = r^2}}$
+	
+	\vspace{0.2cm}
+	
+	$\quad \cdot \quad 
+	dV =
+	\ON<6->{\B{\, r\,dr\,d\theta\,dz}}$
+\end{column}
+\begin{column}{5.0cm}
+	\includegraphics[scale = 0.2]{Figures/10_7_Fig5.png}
+\end{column}
+\end{columns}
+
+\vspace{0.6cm}
+
+\begin{columns}
+\begin{column}{5.0cm}
+	{\bf Spherical Coordinates}:
+	
+	\vspace{0.3cm}
+	
+	$x = 
+	\ON<7->{\B{\rho \sin \phi \cos \theta}}$
+	
+	\vspace{0.2cm}
+	
+	$y = 
+	\ON<8->{\B{\rho \sin \phi \sin \theta}}$
+	
+	\vspace{0.2cm}
+	
+	$z = 
+	\ON<9->{\B{\rho \cos \phi}}$
+	
+	\vspace{0.2cm}
+	
+	$\quad \cdot \quad 
+	\ON<10->{\B{x^2+y^2+z^2 = \rho^2}}$
+	
+	\vspace{0.2cm}
+	
+	$\quad \cdot \quad dV = 
+	\ON<11->{\B{\, \rho^2 \sin \phi \, d\rho \, d\theta \, d\phi}}$
+\end{column}
+\begin{column}{5.0cm}
+	\includegraphics[scale = 0.2]{Figures/10_7_Fig6.png}
+\end{column}
+\end{columns}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+\EX Evaluate \, $\D{\iint \limits_{S} {\bf F} \cdot {\bf n} \, dA}$	\,\, if $F = [x^3-y^3,y^3-z^3,z^3-x^3]$ and $S$ is given by: $x^2 + y^2 + z^2 \le 25$, \, $z \ge 0$
+
+\vspace{0.1cm}
+
+\ON<2->{\B{Since $S$ is closed, lets apply the Divergence Theorem}}
+
+\vspace{0.2cm}
+
+$\D{
+\ON<3->{\B{\text{div } {\bf F} = 3x^2 + 3y^2 + 3z^2}}
+\ON<4->{\B{\, = 3(x^2 + y^2 + z^2)}}}$
+
+\vspace{0.2cm}
+
+$\D{\iint \limits_{S} {\bf F} \cdot {\bf n}\, dA = 
+\ON<5->{\B{\,\iiint \limits_{T} \text{div} {\bf F} \,\, dV}}
+\ON<6->{\B{\,  = \iiint \limits_{T} 3(x^2 + y^2 + z^2) \,\, dV = \, (*)}}
+}$
+
+\vspace{0.2cm}
+
+Now we need to choose our coordinates.  Since $S$ is a sphere, we should use spherical coordinates.
+
+\vspace{0.2cm}
+
+$\ON<7->{\B{x = \rho \sin \phi \cos \theta}}
+\ON<8->{\B{ \hspace{1.0cm} 0 \le \rho \le 5}} $ \hspace{1.8cm} Remember:
+	
+\vspace{0.1cm}
+	
+$\ON<9->{\B{y = \rho \sin \phi \sin \theta}}
+\ON<10->{\B{ \hspace{1.0cm} 0 \le \theta \le 2\pi}} \hspace{2.0cm} 
+\ON<11->{\B{\cdot \quad x^2+y^2+z^2 = \rho^2}}$	
+	
+\vspace{0.1cm}
+	
+$\ON<12->{\B{z = \rho \cos \phi}} \hspace{1.6cm} 
+\ON<13->{\B{0 \le \phi \le \pi}} \hspace{2.15cm} 
+\ON<14->{\B{\cdot \quad dV = \rho^2 \sin \phi \, d\rho \, d\theta \, d\phi}}$ 
+%--------EQN----------
+\begin{align*}
+\ON<15->{\B{(*)}}
+\ON<16->{\B{\, = \,\iiint \limits_{T} 3(\rho^2) \,\, dV}}
+\ON<17->{\B{\, = \,\int \limits_{0}^{\pi} \int \limits_{0}^{2\pi} \, \int \limits_{0}^{5} \, 3(\rho^2) \,\, \rho^2 \sin \phi \, d\rho \, d\theta \, d\phi}}
+&\ON<18->{\B{\, = \,3\int \limits_{0}^{\pi} \int \limits_{0}^{2\pi} \, \int \limits_{0}^{5} \, \rho^4 \, \sin \phi \, d\rho \, d\theta \, d\phi}} \\
+&\ON<19->{\B{\, = \,3\int \limits_{0}^{\pi} \sin \phi \, d\phi \int \limits_{0}^{2\pi} \, d\theta \int \limits_{0}^{5} \, \rho^4 \, d\rho}} \\
+&\ON<20->{\B{\, = \,3 \left(\left.- \cos \phi \right|_{\phi = 0}^{\phi = \pi}\right) \left(\left. \theta \right|_{\theta = 0}^{\theta = 2\pi}\right) \, \left(\left.\frac{1}{5}\rho^5 \right|_{\rho = 0}^{\rho = 5} \right)}} \\
+&\ON<21->{\B{\, = \,3 (1 + 1) \left( 2\pi -0\right) \, \left(\frac{1}{5}(5^5-0) \right)}} \\
+&\ON<22->{\B{\, = \,12\pi \cdot 5^4}} \\
+\end{align*}
+%----------------------
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+	
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+\EX The the closed cube-like surface, $S$, shown below has a top that is an unknown smooth surface. Let ${\bf F} = x{\bf i} - 2y{\bf j} + (z + 3){\bf k}$ and suppose the outward flux through side $A$ is 1 and through side $B$ is - 3. Find the outward flux through the top?	
+
+\vspace{0.1cm}
+
+\begin{columns}
+\begin{column}{6.7cm}
+Let $S$ be the total surface and T the solid bounded by $S$
+
+\vspace{0.2cm}
+
+Want: \quad 
+\ON<2->{\B{$\D{\iint \limits_{Top} {\bf F} \cdot {\bf n}\, dA = \, ?}$}}
+
+\vspace{0.1cm}
+
+We are given:
+%-------NUM LIST---------
+\begin{enumerate}
+	\item \ON<3->{\B{$\D{\iint \limits_{A} {\bf F} \cdot {\bf n}\, dA = 1}$}}
+	\item \ON<4->{\B{$\D{\iint \limits_{B} {\bf F} \cdot {\bf n}\, dA = -3}$}}
+\end{enumerate}
+%------------------------
+
+\ON<5->{\B{By the Divergence Theorem we also know}}
+%--------EQN----------
+\begin{align*}
+	\ON<5->{\B{\iint \limits_{S} {\bf F} \cdot {\bf n}\, dA }}
+	& \ON<6->{\B{\, = \iiint \limits_{T} \text{div} {\bf F} \,\, dV}} \\
+	& \ON<7->{\B{\, = \iiint \limits_{T} 1-2+1 \, dV }}
+	  \ON<8->{\B{\,= \iiint \limits_{T} 0\, dV = 0}}
+\end{align*}
+%----------------------
+
+\end{column}
+\begin{column}{4.5cm}
+	\includegraphics[scale = 0.18]{Figures/10_9_Fig3.png}
+	
+	\vspace{0.4cm}
+	
+\end{column}
+\end{columns}
+
+\ON<9->{\B{Since the flux through $S$ is equal to the flux through all of its sides, we have}}
+
+\vspace{0.1cm}
+
+$\D{
+\ON<10->{\B{\iint \limits_{S} {\bf F} \cdot {\bf n}\, dA = \iint \limits_{Top} {\bf F} \cdot {\bf n}\, dA + \iint \limits_{Base} {\bf F} \cdot {\bf n}\, dA + \iint \limits_{A} {\bf F} \cdot {\bf n}\, dA + \iint \limits_{B} {\bf F} \cdot {\bf n}\, dA + \iint \limits_{C} {\bf F} \cdot {\bf n}\, dA + \iint \limits_{D} {\bf F} \cdot {\bf n}\, dA}}}$
+
+\vspace{0.2cm}
+
+$\D{
+\hspace{0.6cm} 
+\ON<11->{\B{0}} \hspace{0.6cm} 
+\ON<12->{\B{\,= 
+\only<13->{\US{\B{ want }}}{
+\only<13->{\UB}{ \iint \limits_{Top} {\bf F} \cdot {\bf n}\, dA  }} \,+ }}
+\ON<14->{\B{\, 
+\only<15->{\US{\B{ ? }}}{
+\only<15->{\UB}{ \iint \limits_{Base} {\bf F} \cdot {\bf n}\, dA \,}}+\hspace{0.6cm}}} 
+\ON<16->{\B{\,1 \hspace{0.7cm} + \hspace{0.5cm} }}
+\ON<17->{\B{\,-3 \hspace{0.5cm} +}}
+\ON<18->{\B{\, 
+\only<19->{\US{\B{ ? }}}{
+\only<19->{\UB}{ \iint \limits_{C} {\bf F} \cdot {\bf n}\, dA }} +}}
+\ON<20->{\B{\, 
+\only<21->{\US{\B{ ? }}}{
+\only<21->{\UB}{ \iint \limits_{D} {\bf F} \cdot {\bf n}\, dA }} \,\, (*)}}
+}$ 
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+For the Base, we know: \quad 
+\ON<2->{\B{$\D{{\bf n} = [0,0,-1]}$}} \quad and \quad 
+\ON<3->{\B{$z = 0$}}
+
+\vspace{0.1cm}
+
+$\D{\implies {\bf F} \cdot {\bf n} = 
+\ON<4->{\B{ \, [x,-2y,z-3] \cdot [0,0,-1]}}
+\ON<5->{\B{\, = z - 3 \,\only<2->{\OS{\B{ z=0 }}}{ = } -3}}}$ 
+
+\vspace{0.2cm}
+
+$\D{\implies \iint \limits_{Base} {\bf F} \cdot {\bf n}\, dA = 
+\ON<6->{\B{\, \iint \limits_{Base} -3 \, dA }}
+\ON<7->{\B{\, = -3 \cdot \text{Area}(Base) = -3}}}$ 
+
+\vspace{0.4cm}
+
+For Side $C$, we know: \quad 
+\ON<8->{\B{$\D{{\bf n} = [-1,0,0]}$}} \quad and \quad 
+\ON<9->{\B{$x = 0$}}
+
+\vspace{0.1cm}
+
+$\D{\implies {\bf F} \cdot {\bf n} = 
+\ON<10->{\B{ \, [x,-2y,z-3] \cdot [-1,0,0]}}
+\ON<11->{\B{\, = -x \,\only<2->{\OS{\B{ x=0 }}}{ = } 0}}}$ 
+
+\vspace{0.2cm}
+
+$\D{\implies \iint \limits_{C} {\bf F} \cdot {\bf n}\, dA = 
+\ON<12->{\B{\, \iint \limits_{C} 0 \, dA }}
+\ON<13->{\B{\, = 0}}}$
+
+\vspace{0.4cm}
+
+For Side $D$, we know: \quad 
+\ON<14->{\B{$\D{{\bf n} = [0,-1,0]}$}} \quad and \quad 
+\ON<15->{\B{$y = 0$}}
+
+\vspace{0.1cm}
+
+$\D{\implies {\bf F} \cdot {\bf n} = 
+\ON<16->{\B{ \, [x,-2y,z-3] \cdot [0,-1,0]}}
+\ON<17->{\B{\, = 2y \,\only<2->{\OS{\B{ y=0 }}}{ = } 0}}}$ 
+
+\vspace{0.2cm}
+
+$\D{\implies \iint \limits_{D} {\bf F} \cdot {\bf n}\, dA = 
+\ON<18->{\B{\, \iint \limits_{D} 0 \, dA }}
+\ON<19->{\B{\, = 0}}}$
+
+\vspace{0.4cm}
+
+Updating (*), we have:
+
+%\vspace{0.2cm}
+%
+%$\D{
+%\hspace{0.6cm} 0 \hspace{0.6cm} = \iint \limits_{Top} {\bf F} \cdot {\bf n}\, dA + \iint \limits_{Base} {\bf F} \cdot {\bf n}\, dA + \hspace{0.6cm} 1 \hspace{0.5cm} + \hspace{0.5cm} -3 \hspace{0.5cm} + \iint \limits_{C} {\bf F} \cdot {\bf n}\, dA + \iint \limits_{D} {\bf F} \cdot {\bf n}\, dA }$\,\, (*)
+
+\vspace{0.4cm}
+
+$\D{
+\ON<20->{\B{\hspace{0.6cm} 0 \hspace{0.6cm} = \iint \limits_{Top} {\bf F} \cdot {\bf n}\, dA + \hspace{0.4cm} -3 \hspace{0.6cm} + \hspace{0.6cm} 1 \hspace{0.5cm} + \hspace{0.5cm} -3 \hspace{0.5cm} + \hspace{0.6cm} 0 \hspace{0.6cm} + \hspace{0.6cm} 0 }}}$
+
+\vspace{0.2cm}
+
+Therefore, 
+\ON<21->{\B{\quad $\D{\iint \limits_{Top} {\bf F} \cdot {\bf n}\, dA = 5}$}}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}

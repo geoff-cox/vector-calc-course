@@ -1,0 +1,545 @@
+%!TEX root = ../AdvMathLecture.tex
+%
+% Section 9.8: Divergence
+% 
+
+%%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} \UL{Divergence \& Curl}}}
+%\scriptsize
+%
+%\begin{block}{Key Concepts:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Divergence
+%	\item[...] Curl
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%\begin{block}{Standard Mathematical Tools:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Compute the divergence of a vector field.
+%	\item[...] Compute the curl of a vector field.
+%	\item[...] Determine whether a vector field is incompressible and/or irrotational.
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{Topic: Divergence \& Curl}
+\begin{columns}\begin{column}{12.0cm}
+
+\vspace{0.1cm}
+
+{\UL{I. Divergence}}
+\scriptsize
+\begin{center}
+{%\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{|p{0.4cm}p{10.6cm}|}
+	\hline
+	\hline
+	&\\
+	\DEF & Let \,\, ${\bf F}(x,y,z) = [M(x,y,z),\,N(x,y,z),\,P(x,y,z)]$ \,\, be a vector-valued function. \\
+	& The {\bf divergence} of ${\bf F}$, denoted div(${\bf F}$), is given by \\
+	&\\
+	\multicolumn{2}{|c|}{$\D{\text{div}({\bf F}) = 
+	\ON<2->{\B{\frac{\PP M}{\PP x} + \frac{\PP N}{\PP y} + \frac{\PP P}{\PP z} = M_x + N_y + P_z }} }$} \\
+	& \\
+	Note: & This can be remembered as: \quad $\D{\text{div}({\bf F}) = 
+	\ON<3->{\B{\DELF}} }$ \\
+	&\\
+	& where \, $\D{\nabla = \ON<4->{\B{\left[\PPX,\PPY,\PPZ\right]}}}$ \, is the {\bf del operator}.  \\
+	&\\
+	\hline
+	\hline
+\end{tabular}}
+\end{center}
+
+{%\setlength{\extrarowheight}{0.1cm}
+\begin{tabular}{p{0.15cm}p{11.6cm}|}
+	\EX & Let ${\bf F}(x,y,z) = [0,\cos(xyz),\sin(xyz)]$.  Find div(${\bf F}$) at $P=(2,\frac{\pi}{2},0)$ \\
+	&\\
+	& Since \,\, $\D{
+	\ON<5->{\B{M_x = 0,}} \qquad 
+	\ON<6->{\B{N_y = \,}} 
+	\ON<7->{\B{-\sin(xyz)}}
+	\ON<8->{\B{(xz),}} \qquad 
+	\ON<9->{\B{P_z = \,}}
+	\ON<10->{\B{\cos(xyz)(xy)}} }$ \\
+	& \\
+	& $\D{\implies \quad \text{div}({\bf F}) = 
+	\ON<11->{\B{\frac{\PP F_1}{\PP x} + \frac{\PP F_2}{\PP y} + \frac{\PP F_3}{\PP z} =\,}} 
+	\ON<12->{\B{-\sin(xyz)(xz) + \cos(xyz)(xy)}}}$ \\
+	& \\
+	& $\implies \quad \D{\text{div}({\bf F})(P) = 
+	\ON<13->{\B{\,-\sin(0)(0) + \cos(0)(\pi) = \,}}
+	\ON<14->{\B{\pi}}}$ \\
+\end{tabular}}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+
+\vspace{0.1cm}
+
+{\UL{II. Curl}}
+\scriptsize
+
+\begin{center}
+{%\setlength{\extrarowheight}{-0.1cm}
+\begin{tabular}{|p{0.4cm}p{10.6cm}|}
+	\hline
+	\hline
+	&\\
+	\DEF & Let \,\, ${\bf F}(x,y,z) = [M(x,y,z),\,N(x,y,z),\,P(x,y,z)]$ \,\, be a vector-valued function. \\
+	& The {\bf curl} of ${\bf F}$, denoted curl(${\bf F}$), is given by \\
+	&\\
+	\multicolumn{2}{|c|}{ $\D{\text{curl}({\bf F}) = 
+	\ON<2->{\B{\left[
+	\ON<2->{\B{\frac{\PP P}{\PP y} - \frac{\PP N}{\PP z},}}\,\, 
+	\ON<3->{\B{\frac{\PP M}{\PP z} - \frac{\PP P}{\PP x},}}\,\, 
+	\ON<4->{\B{\frac{\PP N}{\PP x} - \frac{\PP M}{\PP y}}}\right]}}
+	\ON<5->{\B{\, = \left[P_y-N_z\,,\,M_z-P_x\,,\,N_x-M_y\right]}}
+	}$ } \\
+	& \\
+	Note: & This can be remembered as: \quad $\D{\text{curl}({\bf F}) = 
+	\ON<6->{\B{\CURLF}} }$ \\
+	&\\
+	\hline
+	\hline
+\end{tabular}}
+\end{center}
+
+{\setlength{\extrarowheight}{0.01cm}
+\begin{tabular}{p{0.15cm}p{11.6cm}}
+	\EX & Let ${\bf F}(x,y,z) = [
+	\only<7->{\OS{\B{ M }}}{
+	\only<7->{\OBT}{ e^{-z^2} }}\,,\,
+	\only<7->{\OS{\B{ N }}}{
+	\only<7->{\OBT}{ e^{-x^2} }}\,,\,
+	\only<7->{\OS{\B{ P }}}{
+	\only<7->{\OBT}{ e^{-y^2} }}]$.  Find curl(${\bf F}$)\\
+	&\\
+	& $\D{
+	\ON<8->{\B{P_y-N_z }}
+	\ON<9->{\B{\, = \left(e^{-y^2}\right)_y - \left(e^{-x^2}\right)_z }}
+	\ON<10->{\B{\, = -2ye^{-y^2} - 0}}}$ \\
+	&\\
+	& $\D{
+	\ON<11->{\B{M_z-P_x }}
+	\ON<12->{\B{\,= \left(e^{-z^2}\right)_z - \left(e^{-y^2}\right)_x }}
+	\ON<13->{\B{= -2ze^{-z^2} - 0}}}$ \\
+	&\\
+	& $\D{
+	\ON<14->{\B{N_x-M_y }}
+	\ON<15->{\B{\,= \left(e^{-x^2}\right)_x - \left(e^{-z^2}\right)_y }}
+	\ON<16->{\B{\,= -2xe^{-x^2} - 0}}}$ \\
+	&\\
+	& $\D{ 
+	\ON<17->{\B{\implies \quad \text{curl}({\bf F}) = [-2ye^{-y^2},-2ze^{-z^2},-2xe^{-x^2}]}}}$ \\
+\end{tabular}}
+
+\vspace{1.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+
+{\UL{III. Additional Concepts}}
+\scriptsize
+
+\begin{center}
+{\setlength{\extrarowheight}{-0.12cm}
+\begin{tabular}{|p{0.4cm}p{10.6cm}|}
+	\hline
+	\hline
+	&\\
+	\DEF & Let \,\, $f(x,y,z)$ \,\, be a scalar-valued function.  The {\bf Laplacian} of ${\bf f}$ is \\
+	&\\
+	\multicolumn{2}{|c|}{$\text{div($\nabla f$)} = 
+	\ON<2->{\B{\DEL \nabla f = \,}}
+	\ON<3->{\B{\nabla^2 f}}$ } \\
+	& \\
+	\hline
+	\hline
+\end{tabular}}
+\end{center}
+\begin{center}
+{\setlength{\extrarowheight}{-0.12cm}
+\begin{tabular}{|p{0.4cm}p{10.6cm}|}
+	\hline
+	\hline
+	&\\
+	\DEF & Let \,\, ${\bf F}(x,y,z)$ \,\, be a vector-valued function.  We say ${\bf F}$ is an {\bf incompressible} (or {\bf solenoidal}) vector field if \\
+	&\\
+	\multicolumn{2}{|c|}{
+	\ON<4->{\B{$\text{div(${\bf F}$)} = 0$}}} \\
+	&\\
+	\hline
+	\hline
+\end{tabular}}
+\end{center}
+\begin{center}
+{\setlength{\extrarowheight}{-0.12cm}
+\begin{tabular}{|p{0.4cm}p{10.6cm}|}
+	\hline
+	\hline
+	&\\
+	\DEF & Let \, ${\bf F}(x,y,z)$ \, be a vector-valued function.  We say ${\bf F}$ is an {\bf irrotational} vector field if \\
+	&\\
+	\multicolumn{2}{|c|}{
+	\ON<5->{\B{$\text{curl(${\bf F}$)} = {\bf 0}$}}} \\
+	&\\
+	Note: & Irrotational field are 
+\ON<6->{\B{Conservative.}} \\
+	\hline
+	\hline
+\end{tabular}}
+\end{center}
+\begin{center}
+{\setlength{\extrarowheight}{-0.12cm}
+\begin{tabular}{|p{0.4cm}p{10.6cm}|}
+	\hline
+	\hline
+	&\\
+	\THM & Let \, $f$ \, be scalar-valued and \, ${\bf F}$ \, be vector-valued. \\
+	&\\
+	& \OBUL Gradient fields are irrotational: \quad \ON<7->{\B{curl(\,$\nabla f$) = ${\bf 0}$}} \\
+	& \\
+	& \OBUL The curl of a vector field is incompressible: \quad \ON<8->{\B{div(curl ${\bf F}$) = $0$}} \\
+	& \\
+	\hline
+	\hline
+\end{tabular}}
+\end{center}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+
+\EX Let $\D{{\bf v} = [0,\, 3z^2,\, 0]}$ be a velocity field of some steady fluid flow.  Answer the following:
+
+\vspace{0.1cm} 
+
+\OBUL Is the flow incompressible?  \quad
+\ON<2->{\B{(i.e. is \, div$({\bf v}) = 0$\, ?)}}
+
+\vspace{0.1cm}
+
+\OBUL Is the flow irrotational?  \quad
+\ON<3->{\B{(i.e. is \, curl$({\bf v}) = {\bf 0}$\, ?)}}
+
+\vspace{0.1cm}
+
+%\OBUL Find the path of the particles in the fluid (also called the streamlines)?
+
+%\vspace{0.2cm}
+%
+%\SOL
+
+\vspace{0.6cm}
+
+$\D{\quad
+\ON<4->{\B{\text{div}({\bf v})}}
+\ON<5->{\B{\, = (0)_x + (3z^2)_y + (0)_z}}
+\ON<6->{\B{\, = 0 + 0 + 0 = 0}}}$ \quad 
+\ON<7->{\B{${\bf v}$ is incompressible.}}
+
+\vspace{0.8cm}
+
+$\D{\qquad
+\ON<8->{\B{P_y-N_z }}
+\ON<9->{\B{\, = \left(0\right)_y - \left(3z^2\right)_z }}
+\ON<10->{\B{\, = -6z}}}$
+
+\vspace{0.3cm}
+
+$\D{\qquad
+\ON<11->{\B{M_z-P_x }}
+\ON<12->{\B{\,= \left(0\right)_z - \left(0\right)_x }}
+\ON<13->{\B{= 0}}}$
+
+\vspace{0.3cm}
+
+$\D{\qquad
+\ON<14->{\B{N_x-M_y }}
+\ON<15->{\B{\,= \left(3z^2\right)_x - \left(0\right)_y }}
+\ON<16->{\B{\,= 0}}}$
+
+\vspace{0.3cm}
+
+$\D{\quad 
+\ON<17->{\B{So \quad \text{curl}({\bf v}) = [-6z,0,0] }}
+\ON<18->{\B{\, \ne [0,0,0]}}
+\ON<19->{\B{\quad \implies {\bf v} \text{\, is not irrotational}}}}$
+
+\vspace{3.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+
+\EX Find the general form for \, $N(x,y,z)$ \, for which \, ${\bf F} = [-x\ln z,\, N,\, z^2]$ \,\, is incompressible?
+
+\vspace{0.2cm}
+
+\ON<2->{\B{Want to find $N$ such that $\D{\text{div}({\bf F}) = 0}$}}
+
+\vspace{0.2cm}
+
+\ON<3->{\B{That is,}}
+
+\vspace{0.2cm}
+
+$\D{
+\ON<4->{\B{0 = \text{div}({\bf F})}}
+\ON<5->{\B{ \, = (-x\ln z)_x + N_y + (z^2)_z }}
+\ON<6->{\B{ \, = -\ln z + N_y + 2z}}}$
+
+\vspace{0.2cm}
+
+$\D{\quad 
+\ON<7->{\B{\implies \quad N_y = \ln z - 2z}}}$
+
+\vspace{0.2cm}
+
+$\D{\quad 
+\ON<8->{\B{\implies \quad N = }}
+\ON<9->{\B{\, y\ln z - }}
+\ON<10->{\B{\,2yz + g(x,z)}} \qquad }$ 
+\ON<11->{\B{($g$ can be any function of $x$ and $z$)}}
+ 
+\vspace{5.8cm}
+
+	
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{IV. Physical Meaning}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\OBUL Divergence at a point, $P$, can be roughly thought of as follows: \quad Suppose you put an \NEWLINE tiny box around $P$. The divergence is a measurement of much flow goes in the box \NEWLINE compared to  how much flow goes out of the box.  (Net flow leaving/staying in the box)
+%
+%\vspace{0.2cm}
+%
+%\OBUL Curl at a point, $P$, measures the tendency for a flow to ``curl" around a point.
+%
+%\vspace{0.2cm}
+%
+%\begin{columns}
+%\begin{column}{5.0cm}
+%	\includegraphics[scale = 0.20]{Figures/9_8_Fig9.png}
+%\end{column}
+%\begin{column}{5.0cm}
+%\begin{center}
+%	\includegraphics[scale = 0.12]{Figures/9_8_Fig1.png}
+%	
+%	\vspace{0.2cm}
+%	
+%	\includegraphics[scale = 0.45]{Figures/9_8_Fig11.png}
+%\end{center}
+%\end{column}
+%\end{columns}
+%
+%\vspace{0.2cm}
+%
+%\OBUL If the amount flowing out $=$ amount flowing in (i.e. net flow out $=$ 0) then \ON<2->{\B{div(flow) $=$ 0}}
+%
+%\vspace{0.1cm}
+%
+%\OBUL If the amount flowing out $>$ amount flowing in (i.e. net flow out $>$ 0) then \ON<3->{\B{div(flow) $>$ 0}}
+%
+%\vspace{0.1cm}
+%
+%\OBUL If the amount flowing out $<$ amount flowing in (i.e. net flow out $<$ 0) then \ON<4->{\B{div(flow) $<$ 0}}
+%
+%\vspace{0.25cm}
+%
+%\OBUL Flow acting counterclockwise around a point produces a curl pointing \ON<5->{\B{out of the board.}}
+%
+%\vspace{0.1cm}
+%
+%\OBUL Flow acting clockwise around a point produces a curl pointing \ON<6->{\B{into the board.}}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+
+{\UL{IV. Physical Meaning}}
+
+\scriptsize
+
+\vspace{0.3cm}
+
+\begin{columns}
+\begin{column}{6.0cm}
+The Divergence at a point, $P$, can be thought of as a measurement of much flow goes in the box compared to  how much flow goes out of the box (Net flow).
+\begin{center}
+	\includegraphics[scale = 0.20]{Figures/9_8_Fig9.png}	
+	
+	\vspace{0.2cm}
+
+	If the outflow $=$ inflow (net flow out $=$ 0) then \ON<2->{\B{div(flow) $=$ 0}}
+	
+	\vspace{0.1cm}
+
+	If outflow $>$ inflow (net flow out $>$ 0) then \ON<3->{\B{div(flow) $>$ 0}}
+
+	\vspace{0.1cm}
+
+	If outflow $<$ inflow (net flow out $<$ 0) then \ON<4->{\B{div(flow) $<$ 0}}
+\end{center}
+
+\end{column}
+\begin{column}{5.0cm}
+The Curl at a point, $P$, measures the tendency for a flow to ``curl" around a point.
+\begin{center}
+	\includegraphics[scale = 0.15]{Figures/9_8_Fig1.png}
+	
+	\vspace{0.2cm}
+	
+	\includegraphics[scale = 0.50]{Figures/9_8_Fig11.png}
+\end{center}	
+Flow acting counterclockwise around a point produces a curl pointing \ON<5->{\B{out of the board.}}
+
+\vspace{0.1cm}
+
+Flow acting clockwise around a point produces a curl pointing \ON<6->{\B{into the board.}}
+
+\end{column}
+\end{columns}
+
+\vspace{0.8cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+\EX Let ${\bf F}$ be the flow field below.  Is the flow... 
+
+\OBUL ...incompressible? \ON<2->{\B{Yes}} \hspace{0.1cm} If not, then is div$({\bf F})$ positive or negative?
+
+\OBUL ...irrotational? \ON<3->{\B{Yes}} \hspace{0.6cm} If not, then is curl$({\bf F})$ pointing into or out of the board?
+\begin{center}
+	\includegraphics[scale = 0.38]{Figures/9_8_Fig4.png}
+\end{center}
+	
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+\EX Let ${\bf F}$ be the flow field below.  Is the flow... 
+
+\OBUL ...incompressible? \ON<2->{\B{Yes}} \hspace{0.1cm} If not, then is div$({\bf F})$ positive or negative?
+
+\OBUL ...irrotational? \ON<3->{\B{No}} \hspace{0.7cm} If not, then is curl$({\bf F})$ pointing into or out of the board?
+\begin{center}
+	\includegraphics[scale = 0.38]{Figures/9_8_Fig5.png}
+\end{center}
+	
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+\EX Let ${\bf F}$ be the flow field below.  Is the flow... 
+
+\OBUL ...incompressible? \ON<2->{\B{No}} \hspace{0.2cm} If not, then is div$({\bf F})$ positive or negative? \ON<3->{\B{\quad positive}}
+
+\OBUL ...irrotational? \ON<4->{\B{Yes}} \hspace{0.6cm} If not, then is curl$({\bf F})$ pointing into or out of the board? 
+\begin{center}
+	\includegraphics[scale = 0.38]{Figures/9_8_Fig8.png}
+\end{center}
+	
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+
+{\UL{V. Summary}}
+
+\scriptsize
+
+\vspace{0.5cm}
+
+\OBUL $\D{{\bf F} \,\text{conservative} \iff {\bf F} = \GF \,\text{for some}\, f \iff \WORK \,\, \text{path independent} \iff \text{curl}({\bf F}) = {\bf 0}}$ 
+
+\OBUL $\D{{\bf F} \,\text{conservative} \,\, \& \,\, C \, \text{closed} \,\, \implies \,\, \WORK = 0}$
+
+\vspace{0.5cm}
+
+\OBUL $\D{\text{div}({\bf F}) = \DELF }$ \quad (divergence)
+
+\vspace{0.5cm}
+
+\OBUL $\D{\text{curl}({\bf F}) = \CURLF }$ \quad (curl)
+
+\vspace{0.5cm}
+
+\OBUL $\text{div($\nabla f$)} = \DEL \nabla f = \nabla^2 f$ \quad (Laplacian)
+
+\vspace{0.5cm}
+
+\OBUL $\text{div(${\bf F}$)} = 0 \quad \implies \quad {\bf F}$ \,\, incompressible/solenoidal
+
+\vspace{0.5cm}
+
+\OBUL $\text{curl(${\bf F}$)} = {\bf 0} \quad \implies \quad {\bf F}$ \,\, irrotational
+
+\vspace{0.5cm}
+
+\OBUL curl($\nabla f$) = ${\bf 0} \,\, \longleftarrow \,\, zero \, vector$ 
+
+\vspace{0.5cm}
+
+\OBUL div(curl ${\bf F}$) = $0$
+
+\vspace{2.0cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}

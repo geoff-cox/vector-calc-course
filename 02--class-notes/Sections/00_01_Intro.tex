@@ -1,0 +1,213 @@
+%!TEX root = ../AdvMathLecture.tex
+%
+% Section 9.1
+%
+
+%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{\LARGE {\color[rgb]{0.02,0.20,1.0} \UL{Introduction}}}
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{5.0cm}
+	I. Functions
+\end{column}
+\begin{column}{6.8cm}	\end{column}
+\end{columns}
+
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+
+\begin{columns}
+\begin{column}{7.5cm}
+	%-------LIST---------
+\begin{itemize}
+	\item Functions have \ON<2->{\B{inputs and outputs.}}
+	\item Inputs live in the \ON<2->{\B{Domain.}}
+	\item Outputs live in the \ON<2->{\B{Range.}}
+	\item For each Input there can be \ON<2->{\B{ONLY ONE Output.}}
+	\item 2 different inputs can correspond to \ON<2->{\B{1 Output.}}
+	\item 1 input can \ON<2->{\B{NEVER correspond to 2 different Outputs.}}
+\end{itemize}
+%-------------------
+\end{column}
+\begin{column}{4.0cm}
+%	The point of a function is to take ``objects" in the Domain and then do ``something" to them. The new objects now live in the Range.   
+	
+\centering
+
+$\D{F(Domain) \longrightarrow Range}$
+
+\vspace{0.2cm}
+	
+\hspace{0.2cm} $\D{F(Inputs) \hspace{0.1cm} \longrightarrow Outputs}$
+
+\end{column}
+\end{columns}
+
+\vspace{0.3cm}
+
+In Calculus 1 and 2, we had $f(x)$ ...
+
+%-------LIST---------
+\begin{itemize}
+	\item Domain/Input: \quad $x \in \RE$ \, (1D line, real numbers)
+	\item Range/Output: \quad $f(x) \in \RE$
+\end{itemize}
+%-------------------
+
+\vspace{0.1cm}
+
+In Calculus 3, we had $f(x,y)$ and $f(x,y,z)$ ... 
+
+%-------LIST---------
+\begin{itemize}
+	\item Domain/Input: \quad $(x,y) \in \RRE$ \, (2D plane) \, or \, $(x,y,z) \in \RRRE$ \, (3D space)
+	\item Range/Output: \quad $f(x,y) \in \RE$ \, or \, $f(x,y,z) \in \RE$
+\end{itemize}
+%-------------------
+
+\vspace{0.1cm}
+
+In This Class ... we consider $\VF(x)$, $\VF(x,y)$, and $\VF(x,y,z)$ ... 
+
+%-------LIST---------
+\begin{itemize}
+	\item Domain/Input: \quad $x \in \RRE$ (2D plane) \, or \, $\RRRE$ (3D space)
+	\item Range/Output: \quad $\VF(x) \in \RE$
+\end{itemize}
+%-------------------
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	
+	\DEF A {\bf vector}, ${\bf v}$, is a mathematical object that has both \ON<2->{\B{\quad magnitude/length \quad }} and \ON<3->{\B{\quad direction.}}
+
+\vspace{0.3cm}
+
+\UL{Notation}: \\
+
+\vspace{0.2cm}
+
+\OBUL  Vectors will written either in bold or with an arrow: \quad {\bf v}, $\vec{v}$.\\
+
+\vspace{0.2cm}
+
+\OBUL  A vector, $\vec{v}$, in $\mathbf{R}^2$ (\,$\vec{v} \in \mathbf{R}^2$\,) can be represented by \ON<6->{\B{\,2\,}} coordinates: \quad $\vec{v} = \ON<6->{\B{\VV \in \mathbf{R}^2}}$\\
+
+\vspace{0.2cm}
+
+\OBUL  A vector, $\vec{v}$, in $\mathbf{R}^3$ (\,$\vec{v} \in \mathbf{R}^3$\,) can be represented by \ON<7->{\B{\,3\,}} coordinates: \quad $\vec{v} = \ON<7->{\B{\VVV \in \mathbf{R}^3}}$\\
+
+\vspace{0.2cm}
+
+\OBUL  The special unit vectors {\bf i} = [1,0,0], {\bf j} = [0,1,0], and {\bf k} = [0,0,1] form a basis for $\RE^3$, \NEWLINE so we can write \,\, $\vec{v} = \VVV$ \,\, as \,\, \ON<8->{\B{$\vec{v} = v_1{\bf i} + v_2{\bf j} + v_3{\bf k}$ \quad (linear combination of \VI, \VJ, \VK)}}
+
+\vspace{0.3cm}
+
+\EX \\
+\vspace{0.1cm}
+\OBUL $[10,14], [0,1], [-1,2] \ON<9->{\B{\,\, \in \mathbf{R}^2}}$ \quad and \quad $[10,4] = \ON<10->{\B{10\VI + 4 \VJ}}$\\
+\vspace{0.2cm}
+\OBUL $[1,1,-1], [0,0,0], [-10,12,-8] \ON<11->{\B{\,\, \in \mathbf{R}^3}}$ \quad and \quad $[-10,12,-8] = \ON<12->{\B{-10\VI + 12 \VJ - 8\VK}}$\\
+
+\vspace{0.5cm}
+
+\THM Let ${\bf a} = [a_1,a_2,a_3]$ and ${\bf b} = [b_1,b_2,b_3]$ be vectors. Then
+\begin{center}
+	{\bf a} = {\bf b} \,\, $iff$ \quad \ON<13->{\B{$a_1 = b_1$, $a_2 = b_2$, $a_3 = b_3$}}
+\end{center}
+\EX \quad $[2,0,2d+c] = [c,0,1] \quad \implies$ \quad \ON<14->{\B{$c = 2$ \quad and \quad $2d+c=1$,}} \quad \ON<15->{\B{so \quad $d=-\frac{1}{2}$}}
+
+%-------------------
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+
+\begin{columns}
+\begin{column}{5.0cm}
+	II. Vectors \& Vector Fields
+\end{column}
+\begin{column}{6.8cm}	\end{column}
+\end{columns}
+
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+\UL{Vector Operation 1}: Addition
+
+\vspace{0.2cm}
+
+Let \,\, $\VA = \AAA$ \,\, and \,\, $\VB = \BBB$
+
+\vspace{0.2cm}
+
+Then 
+%--------EQN----------
+\begin{align*}
+	\VA + \VB = \AAA + \BBB = \ON<2->{\B{[a_1+b_1, a_2+b_2, a_3+b_3]}}
+\end{align*}
+%----------------------
+
+\begin{center}
+	\only<1-2>{\includegraphics[scale = 0.19]{Figures/9_1_Fig1.png}}
+	\only<3->{\includegraphics[scale = 0.19]{Figures/9_1_Fig2.png}}
+	\ON<4->{\B{\includegraphics[scale = 0.19]{Figures/9_1_Fig3.png}}}
+\end{center}
+
+\UL{Note}:
+
+\vspace{0.1cm}
+
+\OBUL $\VA,\VB \in \RE^3 \quad \implies \quad \ON<5->{\B{\VA + \VB \in \RE^3}}$ \\
+
+\vspace{0.1cm}
+
+\OBUL $\VA + \VB$ is known as the \ON<6->{\B{\,\,resultant\,\,}} of $\VA$ and $\VB$. (e.g. If $\VA$ and $\VB$ were forces then $\VA + \VB$ would be \NEWLINE the \ON<7->{\B{resultant force.}}
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+
+\vspace{10.2cm}
+
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+
+\begin{columns}
+\begin{column}{5.0cm}
+	III. Integrals
+\end{column}
+\begin{column}{6.8cm}	\end{column}
+\end{columns}
+
+
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+
+\vspace{10.2cm}
+
+\end{frame}

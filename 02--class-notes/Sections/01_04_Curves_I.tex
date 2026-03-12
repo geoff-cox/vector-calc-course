@@ -1,0 +1,1101 @@
+%!TEX root = ../AdvMathLecture.tex
+%
+% Section 10.1: Line Integrals
+% 
+
+%%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} \UL{Parametric Curves \& Integration Review}}}
+%\scriptsize
+%
+%\begin{block}{Key Concepts:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Parametric Curves
+%	\item[...] Review: Integration
+%	\item[...] Arclength of a Curve
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%\vspace{0.6cm}
+%
+%\begin{block}{Mathematical Tools:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Parametrizing curves
+%	\item[...] Compute the tangent vector of a curve
+%	\item[...] Deriving and Interpreting Integrals
+%	\item[...] Compute the arclength of a curve
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%%\vspace{3.0cm}
+%\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%	Derive the Integral Expression for:
+%	
+%	\OBUL Disc/Washer Method
+%	
+%	\OBUL Shell Method
+%	
+%	\OBUL Work/Energy
+%	
+%	\OBUL Mass
+%	
+%	\OBUL Surface Area
+%	
+%	\OBUL Volume
+%	
+%	\OBUL Arc Length
+%	
+%	\OBUL Position
+%	
+%	\OBUL Velocity
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{Parametric Curves \& Integration Review}
+\begin{columns}
+\begin{column}{12.0cm}
+
+{I. Parametric Curves}
+
+\vspace{0.2cm}
+
+\scriptsize
+
+	\DEF A {\bf parametric curve} is a curve in space that depends on a single variable which we called the parameter.  In the figure below, $t$ is the parameter.
+	
+\vspace{0.3cm}
+
+\begin{columns}
+\begin{column}{3.0cm}
+
+\begin{center}
+	\includegraphics[scale = 0.25]{Figures/9_5_Fig1.png} \\
+\end{center}
+		
+\end{column}
+\begin{column}{6.5cm}
+
+\vspace{0.2cm}
+
+${\bf r}(t) = [x(t),	y(t),	z (t)] = x(t)\VI + y(t)\VJ + z(t)\VK$
+
+\vspace{0.2cm}
+
+\OBUL If $t$ is defined on a finite interval $[a,b]$ then \NEWLINE $C$ will be a finite curve.
+
+\vspace{0.2cm}
+
+\OBUL If $t$ is defined on a infinite interval, say \NEWLINE $[0,\infty]$, then $C$ will be a infinite or closed curve.
+
+\begin{center}
+	\includegraphics[scale = 0.14]{Figures/9_5_Fig4.png} \quad	\includegraphics[scale = 0.12]{Figures/9_5_Fig3.png} \\
+	finite curve \hspace{1.5cm} closed curve
+\end{center}
+	
+\end{column}
+\end{columns}
+
+\vspace{0.6cm}
+	
+\UL{Note}: Defining a curve parametrically gives the curve an orientation (direction). \\
+
+\vspace{0.2cm}
+	
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	Find {\bf r}(t) by parametrizing the following curves
+	
+	\vspace{0.2cm}
+	
+	\EX $x = y^2 + y - 15,\,\, z = 0$ \quad (Intersection of 
+	\ON<1>{\B{\,\, a parabolic cylinder and plane  \,\,}})
+	
+	\vspace{0.2cm}
+	
+	The easy parameterization is to let \, 
+	\ON<1>{\B{$t=y$:}}
+	
+	\vspace{0.2cm}
+	
+	\begin{columns}
+	\begin{column}{1.0cm}
+		%--------TABLE---------
+		\begin{tabular}{l}
+			$x = \ON<1>{\B{t^2 + t - 15}}$ \\
+			$y = \ON<1>{\B{t}}$ \\
+			$z = \ON<1>{\B{0}}$
+		\end{tabular}
+	\end{column}
+	\begin{column}{0.3cm}
+		$\D{\implies}$
+	\end{column}
+	\begin{column}{6.3cm}
+		${\bf r}(t) = 
+		\ON<1>{\B{[\,t^2 + t - 15\,,\,t\,,\,0\,]}}$ \qquad $t \in 
+		\ON<1>{\B{\RE}}$
+	\end{column}
+	\end{columns}
+	
+	\vspace{0.9cm}
+	
+	\EX $4x - y = -1,\,\, 5x - z = 0$ \quad (Intersection of 
+	\ON<1>{\B{\,\, 2 planes \,\,}})
+	
+	\vspace{0.2cm}
+	
+	Let \, 
+	\ON<1>{\B{$t=x$}} 
+	\ON<1>{\B{\, and solve $y$ \& $z$ in terms of $x$ :}}
+	
+	\vspace{0.2cm}
+	
+	\begin{columns}
+	\begin{column}{1.0cm}
+		%--------TABLE---------
+		\begin{tabular}{l}
+			$x = \ON<1>{\B{t}}$ \\
+			$y = \ON<1>{\B{4t+1}}$ \\
+			$z = \ON<1>{\B{5t}}$
+		\end{tabular}
+	\end{column}
+	\begin{column}{0.3cm}
+		$\D{\implies}$
+	\end{column}
+	\begin{column}{6.3cm}
+		${\bf r}(t) = 
+		\ON<1>{\B{[\,t\,,\,4t+1\,,\,5t\,]}}$ \qquad $t \in 
+		\ON<1>{\B{\RE}}$
+	\end{column}
+	\end{columns}
+	
+	\vspace{0.9cm}
+	
+	\EX $x^2 + y^2 = 2$ , $z = -2$ \quad (Intersection of 
+	\ON<1>{\B{\,\, a cylinder and plane \,\,}} 
+	\ON<1>{\B{- \,\, circle of radius $\sqrt{2}$ \@ $z=-2$ \,\,}})
+	
+	\vspace{0.2cm}
+	
+	Let \,\ON<1>{\B{$t$ be the polar angle in the $xy$-plane:}} \,
+	
+	\vspace{0.2cm}
+	
+	\begin{columns}
+	\begin{column}{1.0cm}
+		%--------TABLE---------
+		\begin{tabular}{l}
+			$x = \ON<1>{\B{\sqrt{2}\cos t}}$ \\
+			$y = \ON<1>{\B{\sqrt{2}\sin t}}$ \\
+			$z = \ON<1>{\B{-2}}$
+		\end{tabular}
+	\end{column}
+	\begin{column}{0.3cm}
+		$\D{\implies}$
+	\end{column}
+	\begin{column}{6.7cm}
+		${\bf r}(t) = 
+		\ON<1>{\B{[\,\sqrt{2}\cos t\,,\,\sqrt{2}\sin t\,,\,-2\,]}}$ \qquad $t \in 
+		\ON<1>{\B{[0,2\pi]}}$
+	\end{column}
+	\end{columns}
+	
+	\vspace{0.9cm}
+	
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	
+	\vspace{0.2cm}
+	
+	\EX $x = y^3 + y,\,\, z = x - y$ \quad (Intersection of 
+	\ON<1>{\B{\,\, a cubic cylinder and plane  \,\,}})
+	
+	\vspace{0.2cm}
+	
+	The easy parameterization is to let \, 
+	\ON<1>{\B{$t=y$:}}
+	
+	\vspace{0.2cm}
+	
+	\begin{columns}
+	\begin{column}{1.0cm}
+		%--------TABLE---------
+		\begin{tabular}{l}
+			$x = \ON<1>{\B{t^3 + t}}$ \\
+			$y = \ON<1>{\B{t}}$ \\
+			$z = \ON<1>{\B{t^3 + t - t = t^3}}$
+		\end{tabular}
+	\end{column}
+	\begin{column}{0.3cm}
+		$\D{\implies}$
+	\end{column}
+	\begin{column}{6.3cm}
+		${\bf r}(t) = 
+		\ON<1>{\B{[\,t^3 + t\,,\,t\,,\,t^3\,]}}$ \qquad $t \in 
+		\ON<1>{\B{\RE}}$
+	\end{column}
+	\end{columns}
+	
+	\vspace{1.4cm}
+		
+	\EX $x^2 + y^2 = 16$ , $z = 2x + y$ \quad (Intersection of 
+	\ON<1>{\B{\,\, a cylinder and plane \,\,}})
+	
+	\vspace{0.2cm}
+	
+	Let \,\ON<1>{\B{$t$ be the polar angle in the $xy$-plane:}} \,
+	
+	\vspace{0.2cm}
+	
+	\begin{columns}
+	\begin{column}{1.0cm}
+		%--------TABLE---------
+		\begin{tabular}{l}
+			$x = \ON<1>{\B{4\cos t}}$ \\
+			$y = \ON<1>{\B{4\sin t}}$ \\
+			$z = \ON<1>{\B{8\cos t + 4\sin t}}$
+		\end{tabular}
+	\end{column}
+	\begin{column}{0.3cm}
+		$\D{\implies}$
+	\end{column}
+	\begin{column}{6.7cm}
+		${\bf r}(t) = 
+		\ON<1>{\B{[\,4\cos t\,,\,4\sin t\,,\,8\cos t + 4\sin t\,]}}$ \qquad $t \in 
+		\ON<1>{\B{[0,2\pi]}}$
+	\end{column}
+	\end{columns}
+	
+	\vspace{3.9cm}
+	
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+\EX Find the velocity function given the position function \quad $\RT = [
+\only<1>{\US{\B{ x(t) }}}{
+\only<1>{\UB}{ 1+t^3 }}, 
+\only<1>{\US{\B{ y(t) }}}{
+\only<1>{\UB}{ te^{-t} }}, 
+\only<1>{\US{\B{ z(t) }}}{
+\only<1>{\UB}{ \sin2t }}]$
+
+\vspace{0.2cm}
+
+Recall: $velocity = \RPT = 
+\ON<1>{\B{[ \,x'(t),\,}}
+\ON<1>{\B{y'(t),\,}}
+\ON<1>{\B{z'(t)\,]}}$
+\vspace{0.6cm}
+
+\vspace{0.2cm}
+	
+	\begin{columns}
+	\begin{column}{1.0cm}
+		%--------TABLE---------
+		\begin{tabular}{l}
+			$\ON<1>{\B{x'(t) = 3t^2}}$ \\
+			$\ON<1>{\B{y'(t) = e^{-t} - te^{-t}}}$ \\
+			$\ON<1>{\B{z'(t) = 2\cos(2t)}}$
+		\end{tabular}
+	\end{column}
+	\begin{column}{0.3cm}
+		\ON<1>{\B{$\D{\implies}$}}
+	\end{column}
+	\begin{column}{6.3cm}
+		$ 
+		\ON<1>{\B{\RPT = [\,3t^2\,,\,e^{-t} - te^{-t}\,,\,2\cos(2t)\,]}}$
+	\end{column}
+	\end{columns}
+	
+	\vspace{1.0cm}
+	
+\EX Let $\RT = [\sqrt{t}, 2-t]$.  \quad Find ${\bf r}(1)$ and ${\bf r}'(1)$
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{6.0cm}
+	
+	$\D{
+	\ON<1>{\B{{\bf r}(1) = [\sqrt{1}, 2-1]}}
+	\ON<1>{\B{ = [1,1]}}}$
+
+	\vspace{0.7cm}
+
+	$\D{
+	\ON<1>{\B{\RPT = \left[\frac{1}{2}t^{-1/2}, -1\right]}}}$
+
+	\vspace{0.7cm}
+
+	$\D{
+	\ON<1>{\B{{\bf r}'(1) = \left[\frac{1}{2}(1)^{-1/2}, -1\right]}}
+	\ON<1>{\B{ = \left[\frac{1}{2},-1\right]}}}$
+
+\end{column}
+\begin{column}{3.0cm}
+	\ON<1>{\includegraphics[scale = 0.2]{Figures/9_5_Fig2.png}}
+\end{column}
+\end{columns}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%	\DEF Line Integral
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%	Back to Work
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+{\bf Parameterizing a straight line curves}.  This is simple if you know: 
+
+\vspace{0.2cm}
+
+(1) \ON<1>{\B{a vector, {\bf v}, parallel to the line and}} 
+
+\vspace{0.1cm}
+
+(2) \ON<1>{\B{a point, P, on the line.}}
+
+\vspace{0.4cm}
+
+Then the parameterization is given by:
+
+\vspace{0.2cm}
+
+\begin{center}
+	$\D{\ON<1>{\B{\RT = {\bf v} t + P}}}$ \quad where \quad 
+	\ON<1>{\B{$t \in \RE$}}
+\end{center}
+
+\EX Suppose we know that a line is parallel to $[1,-1,0]$ and passes through $(0,5,5)$.  Then the parameterization for this line is:
+
+\begin{center}
+	$\D{\RT = \, 
+	\ON<1>{\B{[1,-1,0] t + (0,5,5)}}}$ \quad or \quad 
+	\ON<1>{\B{$\D{\RT = \, [t,-t+5,5]}$ \quad $t \in \RE$}}
+\end{center}
+
+\vspace{0.2cm}
+
+\EX Suppose we instead know that a line passes through the points $(-3,1,9)$ and $(-2,2,5)$.  Then we first find the \ON<1>{\B{vector parallel to the line by:}} 
+
+\begin{center}
+	\ON<1>{\B{$\D{{\bf v} = \, (-3,1,9)-(-2,2,5) = [-1,-1,4]}$}}
+\end{center}
+
+and so the parameterization is
+
+\begin{center}
+	$\D{\RT = \, 
+	\ON<1>{\B{[-1,-1,4] t + (-3,1,9)}}}$ \quad or \quad 
+	\ON<1>{\B{$\D{\RT = \, [-t-3,-t+1,4t+9]}$ \quad $t \in \RE$}}
+\end{center}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+{\bf Parameterizing a straight line segments}.  In this case we need just the initial and end points of the segment, say $P$ and $Q$.
+
+\vspace{0.4cm}
+
+Then the parameterization is given by:
+
+\vspace{0.2cm}
+
+\begin{center}
+	$\D{\RT = 
+	\ON<1>{\B{(Q-P) t + P}}}$ \quad where \quad 
+	\ON<1>{\B{$t \in [0,1]$}}
+\end{center}
+
+\vspace{0.2cm}
+
+\EX Suppose we wanted to parameterize a line with initial point $(-1,-1,-9)$ and end point $(10,0,15)$.  Then the parameterization is given by: 
+
+%--------EQN----------
+\begin{align*}
+	{\bf v} 
+	&= \, \ON<1>{\B{[(10,0,15)-(-1,-1,-9)]}} \, 
+	\ON<1>{\B{t}} 
+	\ON<1>{\B{\, + \, (-1,-1,-9)}} \hspace{1.0cm} \text{where} \, t \in [0,1] \\
+	&\ON<1>{\B{= \, [11,1,24] \, t + (-1,-1,-9)}} \\
+	&\ON<1>{\B{= \, [11t-1,t-1,24-9t]}} \\
+\end{align*}
+%----------------------
+
+\vspace{2.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}
+\begin{column}{12.0cm}
+
+{II. Review: Integration}
+
+\vspace{0.2cm}
+
+\scriptsize
+
+Remember, integration is another way of saying ``add up a lot of small areas to get a whole area''. So lets think about it as such: \\
+
+\vspace{0.2cm}
+
+\begin{itemize}
+	\item Let $dA$ be a small area (of a rectangle) and $A$ the whole area.
+	\vspace{0.2cm}
+	\item then \quad $\D{dA = \ON<1>{\B{f(x) \cdot dx \quad \text{(see figure) \quad }}}}$ and so
+	\vspace{0.2cm}
+	\item \quad \,A = \, \ON<1>{\B{$\D{\int_{a}^{b} dA}$}} \ON<1>{\B{$= \D{\int_{a}^{b} f(x) \,dx}$ }}
+\end{itemize}
+
+\begin{center}
+	\includegraphics[scale = 0.23]{Figures/7_1_Fig2.png}
+\end{center}
+	
+Note: The limits of integrations ($a$ \& $b$) tell you \ON<1>{\B{the range of the small pieces (in this example, $dx$)}}
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%In the case of area between two curves:
+%
+%\vspace{0.2cm}
+%
+%\begin{itemize}
+%	\item \quad $\D{dA = \ON<1>{\B{\overset{\text{Area of Rectangle}}{\overset{\text{to $f$ curve}}{\overbrace{f(x) \cdot dx}}} - \overset{\text{Area of Rectangle}}{\overset{\text{to $g$ curve}}{\overbrace{g(x) \cdot dx}}} = \left[f(x) - g(x)\right]\, dx \quad \text{(see figure) \quad }}}}$ and so
+%	\vspace{0.2cm}
+%	\item \quad \,A = \, \ON<1>{\B{$\D{\int_{a}^{b} dA}$}} \ON<1>{\B{$= \D{\int_{a}^{b} \left[f(x) - g(x)\right]\, dx}$ }}
+%\end{itemize}
+%
+%\vspace{0.4cm}
+%
+%\centering
+%\includegraphics[scale = 0.24]{Figures/7_1_Fig3.png}\\
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%Suppose we wanted the area under $\sin x$ for $x$ between $0$ and $\pi$ \\
+%
+%\vspace{0.2cm}
+%
+%\begin{center}
+%\only<1>{\includegraphics[scale = 0.25]{Figures/7_1_Fig4.png}}
+%\only<0>{\includegraphics[scale = 0.25]{Figures/7_1_Fig5.png}}
+%\only<0>{\includegraphics[scale = 0.25]{Figures/7_1_Fig6.png}}
+%\end{center}
+%$$
+%dA = \ON<1>{\B{\overset{height}{\overbrace{\sin x}} \, \overset{width}{\overbrace{dx}}}}
+%$$
+%$$
+%A = \int \limits_{0}^{\pi} dA = \ON<1>{\B{\int \limits_{0}^{\pi} \sin x \, dx}}
+%$$
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%Now, suppose we wanted the area between $\sin x$ and $\frac{1}{2}\sin x$ over $[0,\pi]$ \\
+%
+%\vspace{0.2cm}
+%
+%\begin{center}
+%\only<1>{\includegraphics[scale = 0.25]{Figures/7_1_Fig7.png}}
+%\only<0>{\includegraphics[scale = 0.25]{Figures/7_1_Fig10.png}}
+%\only<0>{\includegraphics[scale = 0.25]{Figures/7_1_Fig8.png}}
+%\only<0>{\includegraphics[scale = 0.25]{Figures/7_1_Fig9.png}}
+%\end{center}
+%$$
+%dA = (\,\,\ON<1>{\B{\overset{taller}{\overbrace{\sin x}}}} \ON<1>{\B{\,- \overset{shorter}{\overbrace{\frac{1}{2}\sin x}}}}\,\,)\, dx 
+%$$
+%$$
+%Area = \int \limits_{0}^{\pi} dA = \ON<1>{\B{\int \limits_{0}^{\pi} (\sin x - \frac{1}{2}\sin x)\, dx}}
+%$$
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%{\bf Arc Length Formula:} \\
+%\vspace{0.2cm}
+%Add up a collection of straight line segments to approximate the total length of the curved line.  \\
+%
+%\vspace{0.2cm}
+%In calculus, we integrate an arbitrary small segment from $a$ to $b$ to get the length of the whole curve.   \\
+%
+%\includegraphics[scale = 0.22]{Figures/7_4_Fig7.png} \hspace{0.5cm}\includegraphics[scale = 0.20]{Figures/7_4_Fig6.png}	\\
+%
+%\vspace{0.2cm}
+%
+%$$
+%length = s = \int \limits_{a}^{b} \, ds
+%$$
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\begin{columns}
+%\begin{column}{6.0cm}
+%	\includegraphics[scale = 0.2]{Figures/7_4_Fig5.png} \quad $\D{f'(x)=\frac{dy}{dx}}$\\
+%	\vspace{0.4cm}
+%	$\D{ds = \sqrt{dx^2 + dy^2} = \sqrt{dx^2\left( 1 + \frac{dy^2}{dx^2} \right)}}$ \\
+%	$\D{ \hspace{2.18cm} = \sqrt{1 + \left[\frac{dy}{dx}\right]^2}\sqrt{dx^2} }$\\
+%	$\D{ \hspace{2.18cm} = \sqrt{1 + \left[f'(x)\right]^2}\,\,dx }$
+%	\vspace{0.2cm}
+%\end{column}
+%\begin{column}{5.0cm}
+%	\includegraphics[scale = 0.2]{Figures/7_4_Fig8.png}\\
+%	\vspace{1.2cm}
+%\end{column}
+%\end{columns}
+%
+%\vspace{0.5cm}
+%
+%So the arc length of the curve on $f$ (as a function of $x$) from $a$ to $b$ is
+%$$
+%s = \int \limits_{a}^{b} \, ds = \int \limits_{a}^{b} \sqrt{1 + [f'(x)]^2}\, dx
+%$$
+%
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%%%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%\begin{frame}
+%%%{}
+%%%\scriptsize
+%%%\begin{columns}
+%%%\begin{column}{12.0cm}
+%%%
+%%%{\bf Volume of rotation formulas} \\
+%%%\vspace{0.1cm}
+%%%
+%%%\begin{columns}
+%%%\begin{column}{4.6cm}
+%%%1. The disk method \\
+%%%
+%%%\vspace{0.1cm}
+%%%\qquad $\circ$\,\, disk-shaped cross-sections \\
+%%%\vspace{1.0cm}
+%%%
+%%%Adding up small volumes:
+%%%\end{column}
+%%%\begin{column}{3.0cm}
+%%%	\includegraphics[scale = 0.12]{Figures/7_2_Fig14.png}
+%%%\end{column}
+%%%\end{columns}
+%%%
+%%%\vspace{0.2cm}
+%%%
+%%% \quad $Volume \, of \, a \, small \, disk = (
+%%% \ON<1>{\B{area \, of \, face}})(
+%%% \ON<1>{\B{small \, thickness}})$ 
+%%% 
+%%% \vspace{0.2cm}
+%%% 
+%%% \begin{columns}
+%%%\begin{column}{3.0cm}
+%%%	
+%%%	\ON<1>{\B{$area \, of \, face = $}}
+%%%	\ON<1>{\B{$\pi R(x)^2$}}
+%%% 	
+%%%	\vspace{0.2cm}
+%%%	
+%%% 	\ON<1>{\B{$small \, thickness = $}}
+%%% 	\ON<1>{\B{$dx$}}
+%%% 
+%%%\end{column}
+%%%\begin{column}{5.0cm} 
+%%%	\ON<1>{\B{$\implies \qquad \D{dV = \pi R(x)^2 dx}$}}
+%%%\end{column}
+%%%\end{columns}
+%%% 
+%%% \vspace{0.4cm}
+%%% 
+%%%\begin{center}
+%%%	$\D{Volume = \int \limits_{a}^{b} \, dV = 
+%%%	\ON<1>{\B{\int \limits_{a}^{b} \, \pi \left(R(x)\right)^2 dx}}}$ 
+%%%\end{center}
+%%%
+%%%\vspace{3.0cm}
+%%%
+%%%\end{column}
+%%%\begin{column}{0.0cm}\end{column}
+%%%\end{columns}
+%%%\end{frame}
+%%%
+%%%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%\begin{frame}
+%%%{}
+%%%\scriptsize
+%%%\begin{columns}
+%%%\begin{column}{12.0cm}
+%%%
+%%%%%
+%%%\begin{columns}
+%%%\begin{column}{4.6cm}
+%%%2. The washer method \\
+%%%\vspace{0.1cm}
+%%%\qquad $\circ$\,\, washer-shaped cross-sections \\
+%%%\vspace{1.0cm}
+%%%
+%%%Adding up small volumes:
+%%%\end{column}
+%%%\begin{column}{3.0cm}
+%%%	\includegraphics[scale = 0.12]{Figures/7_2_Fig23.png}
+%%%\end{column}
+%%%\end{columns}
+%%%%%
+%%%
+%%% \quad $Volume \, of \, a \, small \, washer = (
+%%% \ON<1>{\B{area \, of \, face}})(
+%%% \ON<1>{\B{small \, thickness}})$ 
+%%%  
+%%% \vspace{0.1cm}
+%%% 
+%%% \begin{columns}
+%%% \begin{column}{0.5cm}
+%%% \end{column}
+%%%\begin{column}{6.7cm}
+%%%	
+%%%	\ON<1>{\B{$area \, of \, face = $}}
+%%%	\ON<1>{\B{$area \, of \, disk - area \, of \, hole = $}}
+%%%	\ON<1>{\B{$\pi R(x)^2 - \pi r(x)^2$}} \\
+%%%	$\, \hspace{4.33cm}$ 
+%%%	\ON<1>{\B{$ = \pi \left(R(x)^2 - r(x)^2\right)$}}
+%%% 	
+%%%	\vspace{0.1cm}
+%%%	
+%%% 	\ON<1>{\B{$small \, thickness = $}}
+%%% 	\ON<1>{\B{$dx$}}
+%%% 
+%%%\end{column}
+%%%\begin{column}{4.4cm} 
+%%%	\ON<1>{\B{$\implies \,\, \D{dV = \pi \left(R(x)^2 - r(x)^2\right) dx}$}}
+%%%\end{column}
+%%%\end{columns}
+%%% 
+%%% \vspace{0.8cm}
+%%% 
+%%%\begin{center}
+%%%	$\D{Volume = \int \limits_{a}^{b} \, dV = 
+%%%	\ON<1>{\B{\int \limits_{a}^{b} \, \pi \left(R(x)^2 - r(x)^2\right) dx}}}$ 
+%%%\end{center}
+%%%
+%%%\vspace{3.0cm}
+%%%
+%%%\end{column}
+%%%\begin{column}{0.0cm}\end{column}
+%%%\end{columns}
+%%%\end{frame}
+%%%
+%%%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%\begin{frame}
+%%%{}
+%%%\scriptsize
+%%%\begin{columns}
+%%%\begin{column}{12.0cm}
+%%%
+%%%%%
+%%%\begin{columns}
+%%%\begin{column}{6.2cm}
+%%%3. The shell method \\
+%%%\vspace{0.1cm}
+%%%\quad $\circ$\,\, tube-shaped cross-sections \\
+%%%
+%%%\vspace{0.3cm}
+%%%
+%%%\quad $-$\,\, p(x) = distance from shell to axis of rotation. \\
+%%%
+%%%\quad $-$\,\, h(x) = height of shell. \\
+%%%
+%%%\vspace{0.2cm}
+%%%
+%%%
+%%%Adding up small volumes:
+%%%\end{column}
+%%%\begin{column}{2.0cm}
+%%%	\includegraphics[scale = 0.18]{Figures/7_2_Fig28.png}
+%%%\end{column}
+%%%\end{columns}
+%%%%%
+%%%
+%%%\vspace{0.2cm}
+%%%
+%%% \quad $Volume \, of \, a \, small \, shell = (
+%%% \ON<1>{\B{height}})(
+%%% \ON<1>{\B{circumference}})(
+%%% \ON<1>{\B{small \, thickness}})$
+%%% 
+%%%\vspace{0.2cm}
+%%% 
+%%% \begin{columns}
+%%%\begin{column}{3.0cm}
+%%%	
+%%%	\ON<1>{\B{$height = $}}
+%%%	\ON<1>{\B{$h(x)$}}
+%%% 	
+%%%	\vspace{0.2cm}
+%%%	
+%%%	\ON<1>{\B{$circumference = $}}
+%%%	\ON<1>{\B{$2\pi p(x)$}}
+%%% 	
+%%%	\vspace{0.2cm}
+%%%	
+%%% 	\ON<1>{\B{$small \, thickness = $}}
+%%% 	\ON<1>{\B{$dx$}}
+%%% 
+%%%\end{column}
+%%%\begin{column}{5.0cm} 
+%%%	\ON<1>{\B{$\implies \qquad \D{dV = 2\pi \, p(x) \, h(x) \, dx}$}}
+%%%\end{column}
+%%%\end{columns}
+%%% 
+%%% \vspace{0.4cm}
+%%% 
+%%%\begin{center}
+%%%	$\D{Volume = \int \limits_{a}^{b} \, dV = 
+%%%	\ON<1>{\B{\int \limits_{a}^{b} \, 2\pi \, p(x) \, h(x) \, dx}}}$ 
+%%%\end{center}
+%%%
+%%%\vspace{3.0cm}
+%%%
+%%%\end{column}
+%%%\begin{column}{0.0cm}\end{column}
+%%%\end{columns}
+%%%\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+{\bf Interpreting Integrals}: Identify the physical meaning of the Integral
+
+\vspace{0.2cm}
+
+\OBUL $\D{\iiint \limits_{E}^{} \rho(x,y,z)\, dV}$  \quad where \quad $E$ is a solid sphere and $\rho(x,y,z)$ is the density at any point in $E$
+
+\vspace{0.2cm}
+
+\begin{center}
+	\ON<1>{\B{Total Mass of E}}
+\end{center}
+
+\vspace{0.6cm}
+
+\OBUL $\D{\int \limits_{a}^{b} f(x)\, dx}$  \quad where \quad $f(x)$ is the force required to pull a wagon from $a$ to $b$
+
+\vspace{0.2cm}
+
+\begin{center}
+	\ON<1>{\B{Total Work required to pull the wagon a distance $b-a$}}
+\end{center}
+
+\vspace{0.6cm}
+
+\OBUL $\D{\int \limits_{C} |{\bf v}(t)|\, dt}$  \quad where \quad ${\bf v}(t)$ is the velocity of a particle traveling on a finite curve $C$
+
+\vspace{0.2cm}
+
+\begin{center}
+	\ON<1>{\B{Total distance traveled by the particle along $C$ (i.e. the \ON<1>{\B{\,\,\, arclength\,\,\,}} of $C$)}}
+\end{center}
+
+\vspace{0.6cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\begin{columns}
+\begin{column}{12.0cm}
+
+{III. Arclength of a Curve}
+
+\vspace{0.2cm}
+
+\scriptsize
+
+\begin{columns}
+\begin{column}{4.0cm}
+
+\includegraphics[scale = 0.2]{Figures/9_5_Fig7.png}
+
+\vspace{0.5cm}
+
+\includegraphics[scale = 0.2]{Figures/9_5_Fig5.png}
+	
+\end{column}
+\begin{column}{6.0cm}
+
+Derive the integral expression for $s(t)$.  
+
+\vspace{0.2cm}
+
+Assume $C$ is parametrized by ${\bf r}(t)$ \quad for $a\le t \le b$
+
+\vspace{0.2cm}
+
+We want to think of adding up many ``small" line segments,  so that we can use an integral
+
+\begin{center}
+	$\D{s = \int \limits_{C}^{} \, ds}$
+\end{center}
+
+But, what is $ds$? \,\, \ON<1>{\B{($ds$ is a ``small" distance)}}
+
+\vspace{0.2cm}
+
+Recall: distance = (rate)(time), so 
+
+\begin{center}
+	\ON<1>{\B{``small" distance = \,}} \ON<1>{\textcolor{red}{(rate)}} \ON<1>{\textcolor{orange}{(``small" time)}}
+	
+	\vspace{0.2cm}
+	
+	or \quad $\D{\ON<1>{\B{ds = \,}}\ON<1>{\textcolor{red}{|{\bf r}'(t)|}}\,\ON<1>{\textcolor{orange}{dt}}}$
+\end{center}
+Therefore
+\begin{center}
+	$\D{s(t) = \ON<1>{\B{\int \limits_{a}^{b} |{\bf r}'(t)|\, dt}}}$
+\end{center}
+
+\end{column}
+\end{columns}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+Compute the arclength of the curve: \quad ${\bf r}(t) = [\cos t, \sin t, t]$ \quad %for \quad $t \in [0,2\pi]$
+
+\begin{center}
+	\includegraphics[scale = 0.2]{Figures/9_5_Fig6.png}	
+\end{center}
+
+\vspace{0.2cm}
+
+Need: 
+\ON<1>{\B{\RPT \, and \, [a,b] \quad (Range of the parameter $t$) }}
+
+\vspace{0.2cm}
+
+Note: 
+\ON<1>{\B{Since $z=t$, then the range of $t$-values is the same as the range of $z$-values}} 
+
+\vspace{0.2cm}
+
+\ON<1>{\B{$\implies \quad t \in [0,2\pi]$  \quad (This is $[a,b]$)}}
+
+\vspace{0.2cm}
+
+$\D{
+\ON<1>{\B{\RPT = [
+\ON<1>{\B{\,\,-\sin t\,\,}}, 
+\ON<1>{\B{\,\,\cos t\,\,}} , 
+\ON<1>{\B{\,\,1\,\,}}]}}
+}$
+
+\vspace{0.2cm}
+
+$\D{
+\ON<1>{\B{||\RPT||^2 = \,}} 
+\ON<1>{\B{\sin^2 t + \cos^2 t + 1^2 =\,}} 
+\ON<1>{\B{1+1 = 2}} \quad 
+\ON<1>{\B{\implies \quad ||\RPT|| = \sqrt{2}}}}$
+
+\begin{center}
+	$\D{
+	\ON<1>{\B{s(t) = \int \limits_{a}^{b} |{\bf r}'(t)|\, dt = \,}} 
+	\ON<1>{\B{\int \limits_{0}^{2\pi} \sqrt{2}\, dt = \,}}
+	\ON<1>{\B{\left. \sqrt{2} \,t \,\right|_0^{2\pi} = 2\sqrt{2}\pi}}}$
+\end{center}
+
+\vspace{4.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%Additional Homework Problem for section 9.5:
+%
+%\vspace{0.2cm}
+%
+%Dervive an integral expression which represents the volume of a pyramid with a square base.  Let the height be $h$ and the side of the base be $b$.
+%
+%\vspace{0.5cm}
+%
+%\includegraphics[scale = 0.25]{Figures/9_5_Fig8.png}
+%
+%\vspace{3.0cm}
+% 	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%Suppose $C$ is some curve in $\RE^3$ and let ${\bf r}(t)$ represent the parameterization of $C$ for $t$ in $[a,b]$.	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}

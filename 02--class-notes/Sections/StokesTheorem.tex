@@ -1,0 +1,321 @@
+% Project Root: ../AdvMathLecture.tex
+%
+% Section 10.9: Stoke's Theorem
+% 
+
+%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} Section 10.9: Stokes' Theorem}}
+\scriptsize
+
+\vspace{0.2cm}
+{\bf Homework Problems:} \quad 13, 14, 15, 16, 17, 19, 20
+
+\vspace{0.2cm}
+
+{\bf Section Example Problems to Read:} \quad 1, 2, 3, 5
+
+\vspace{1.2cm}
+
+\begin{block}{Key Concepts:}
+%-------LIST---------
+\begin{itemize}
+	\item[...] Stokes' Theorem
+\end{itemize}
+%-------------------
+\end{block}
+
+\vspace{0.6cm}
+
+\begin{block}{Standard Mathematical Tools:}
+%-------LIST---------
+\begin{itemize}
+	\item[...] Computing Line Integrals over closed curves using Stokes' Theorem
+\end{itemize}
+%-------------------
+\end{block}
+
+%\vspace{3.0cm}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{I. Stokes' Theorem}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+Let $S$ be a surface with boundary $C$ and ${\bf F}(x,y,z)$ be a vector-valued function defined on $S$.  Then
+\begin{center}
+	$\D{\oint \limits_{C} {\bf F} \cdot d{\bf r} = 
+	\ON<2->{\B{\iint \limits_{S}(\text{curl}\,{\bf F}) \cdot {\bf n} \, dA = \,}}
+	\ON<3->{\B{\iint \limits_{S} \nabla \times {\bf F} \cdot {\bf n} \, dA}}}$
+\end{center}
+
+\begin{center}
+	\includegraphics[scale = 0.2]{Figures/10_9_Fig1.png} \hspace{1.0cm} \includegraphics[scale = 0.2]{Figures/10_9_Fig2.png}
+\end{center}
+
+We note that Green's Theorem is a special case of Stokes' theorem when $S$ is a plane region $R$. In this case, $\, {\bf n}$ is just \,\, \ON<2->{\B{${\bf k}=[0,0,1]$}} \,\, and
+
+\begin{center}
+	$\D{\OWORK = 
+	\ON<4->{\B{\iint \limits_{S}(\text{curl}\,{\bf F}) \cdot {\bf n} \, dA =\,}}
+	\ON<5->{\B{\GINT = \,}}
+	\ON<6->{\B{\GREENSA}}}$
+\end{center}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{II. Additional Concepts}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+\vspace{0.2cm}
+
+An interesting consequence of Stokes' Theorem is  
+
+\vspace{0.2cm}
+
+For any 2 surfaces, $S_1$ and $S_2$, that share the same boundary, $C$ we must have:
+
+\vspace{0.2cm}
+
+\begin{center}
+	$\D{\ON<2->{\B{\iint \limits_{S_1}(\text{curl}\,{\bf F}) \cdot {\bf n} \, dA = \iint \limits_{S_2}(\text{curl}\,{\bf F}) \cdot {\bf n} \, dA}}}$
+\end{center}
+
+\vspace{0.2cm}
+
+So these surface integrals only depend on \ON<3->{\B{the boundary!}}
+
+\vspace{8.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{III. Summary of Computing Line Integrals}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+To compute a line integral \quad $\D{\oint \limits_{C} {\bf F} \cdot d{\bf r}}$ \quad where $C$ is a {\em closed curve} $C$, 
+
+\vspace{0.4cm}
+
+we could use the following guideline:
+
+\vspace{0.4cm}
+
+$\circ$ \quad {\bf Step 1}: \quad 
+\ON<2->{\B{Compute curl\,{${\bf F}$}}}
+
+\vspace{0.2cm}
+
+\hspace{0.8cm} - \, if \, 
+\ON<3->{\B{curl\,{${\bf F} = 0$}}} \quad then \quad $\oint \limits_{C} {\bf F} \cdot d{\bf r} = 
+\ON<4->{\B{0}}$
+
+\vspace{0.2cm}
+
+\hspace{0.8cm} - \, if \, 
+\ON<5->{\B{curl\,{${\bf F} \ne 0$}}} \,\, then compute \,\, $\oint \limits_{C} {\bf F} \cdot d{\bf r}$ \,\, either \,
+$\left\{
+\begin{array}{l}
+	\ON<6->{\B{\text{directly}}}\\
+	\ON<7->{\B{\text{using Green's Thm ($S$ a plane)}}}\\
+	\ON<8->{\B{\text{using Stokes' Thm ($S$ not a plane)}}}
+\end{array}
+\right.$
+
+\vspace{0.6cm}
+
+$\circ$ \quad {\bf Step 2}: Assuming curl\,{${\bf F} \ne 0$}, decide how to compute \, $\oint \limits_{C} {\bf F} \cdot d{\bf r}$
+
+\begin{columns}
+\begin{column}{0.2cm}
+\end{column}
+\begin{column}{2.2cm}
+	i. Directly:
+	
+	\vspace{1.2cm}
+\end{column}
+\begin{column}{9.0cm}
+	%-------LIST---------
+\begin{itemize}
+	\item \ON<9->{\B{Parameterize $C$ to find ${\bf r}(t)$ for $t$ on $[a,b]$}}
+	\vspace{0.2cm}
+	\item \ON<10->{\B{Compute ${\bf F}({\bf r}(t))$ and ${\bf r}'(t)$}}
+	\vspace{0.2cm}
+	\item \ON<11->{\B{Evaluate $\oint \limits_{C} {\bf F} \cdot d{\bf r}$}}
+\end{itemize}
+%-------------------
+\end{column}
+\end{columns}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+\begin{columns}
+\begin{column}{0.2cm}
+\end{column}
+\begin{column}{2.2cm}
+	ii. Green's Thm:
+	
+	\vspace{1.6cm}
+\end{column}
+\begin{column}{9.0cm}
+	%-------LIST---------
+\begin{itemize}
+	\item Find \, 
+	\ON<2->{\B{$\frac{\PP F_2}{\PP x}$}} \, and \, 
+	\ON<3->{\B{$\frac{\PP F_1}{\PP y}$}}
+	\vspace{0.2cm}
+	\item Determine 
+	\ON<4->{\B{R (in the $x,y$-plane)}}
+	\vspace{0.2cm}
+	\item Setup and evaluate 
+	\ON<5->{\B{$\iint \limits_{R} \left(\frac{\PP F_2}{\PP x} - \frac{\PP F_1}{\PP y}\right)\, dxdy$}}
+\end{itemize}
+%-------------------
+\end{column}
+\end{columns}
+
+\vspace{0.8cm}
+
+\begin{columns}
+\begin{column}{0.2cm}
+\end{column}
+\begin{column}{2.1cm}
+	iii. Stokes' Thm:
+	
+	\vspace{3.2cm}
+\end{column}
+\begin{column}{9.0cm}
+	%-------LIST---------
+\begin{itemize}
+	\item Collect \, 
+	\ON<6->{\B{curl\,{${\bf F} = 0$} \, found in Step 1}}
+	\vspace{0.2cm}
+	\item $\left\{
+	\begin{array}{l}
+		 \text{If $S$ is a plane,  
+		 \ON<7->{\B{don't parameterize $S$ (i.e. don't find ${\bf r}$)}}} \\
+		 \text{If $S$ is a not a plane, 
+		 \ON<8->{\B{parameterize (i.e. find ${\bf r}$)}}}
+	\end{array}\right.$
+	\vspace{0.2cm}
+	\item $\left\{
+	\begin{array}{l}
+		 \text{If $S$ is a plane, 
+		 \ON<9->{\B{determine ${\bf n}$ (should be clear by observation)}}} \\
+		 \text{If $S$ is a not a plane, 
+		 \ON<10->{\B{compute ${\bf N} = {\bf r}_u \times {\bf r}_v$}}}
+	\end{array}\right.$
+	\vspace{0.2cm}
+	\item $\left\{
+	\begin{array}{l}
+		 \text{If $S$ is a plane, 
+		 \ON<11->{\B{evaluate $\iint \limits_{S} \text{curl}\,{\bf F} \cdot {\bf n} \, dA$}}} \\
+		 \text{If $S$ is a not a plane, 
+		 \ON<12->{\B{evaluate $\iint \limits_{S} \text{curl}\,{\bf F} \cdot {\bf N} \, dxdy$}}}
+	\end{array}\right.$
+\end{itemize}
+%-------------------
+\end{column}
+\end{columns}
+
+\vspace{6.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+\EX Let ${\bf F} = [y,z,x]$ \, and the surface $S$ be given by \,$\D{z = 1 - x^2 - y^2}$ for $z\ge0$.  If $C$ is the boundary curve of $S$ then compute $\WORK$ \quad (i) directly, and (ii) using Stokes' theorem.
+
+\vspace{8.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+\EX ${\bf F} = [-5y,4x,z]$, and $C$ is the circle $x^2 + y^2 = 16$, $z=4$	
+
+\vspace{9.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+\EX ${\bf F} = [-y,2z,0]$, $C$ is the boundary curve of $y^2+z^2=4$, \, $z \ge 0$, \, and \, $0 \le x \le h$.  \,\, Graph the surface and use Stokes' thm to compute \,\, $\WORK$.
+
+\vspace{8.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}

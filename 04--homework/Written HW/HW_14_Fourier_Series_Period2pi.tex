@@ -1,0 +1,154 @@
+\documentclass[11pt]{article}
+
+%\input{../../../TestQuizPackageHeader.tex}
+\input{../../../../Headers/TeachingPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+% Set your name here
+%\def\name{Geoffrey W. Cox}
+
+% The following metadata will show up in the PDF properties
+%\hypersetup{
+%  colorlinks = true,
+%  urlcolor = black,
+%  pdfauthor = {\name},
+%  pdfkeywords = {economics empirical industrial organization econometrics
+%    microeconomics applied microeconomics},
+%  pdftitle = {\name: Curriculum Vitae},
+%  pdfsubject = {Curriculum Vitae},
+%  pdfpagemode = UseNone
+%}
+
+\geometry{textheight=9.0in, textwidth=6in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1em}
+  }
+}{
+  \end{list}
+}
+
+\pagestyle{fancy}\lhead{Homework 10} \rhead{Due Apr 20}
+\chead{{\large{\bf Fourier Series}}} \lfoot{} \rfoot{\bf \thepage} \cfoot{}
+
+\begin{document}
+\input{../../../../Headers/TeachingDefinitionHeader.tex}
+Please hand in the following problems:
+
+\vspace{0.1cm}
+
+{\bf Problem 1:} Determine the Fourier Series for each of the periodic functions depicted in the graphs below.  Also, assume they periodically extend along the $x$-axis.
+
+%\setlength{\extrarowheight}{0.6cm}
+\begin{tabular}{lcp{2cm}lc}
+	(i) & & & (ii) &\\
+	    & \includegraphics[scale = 0.26]{../../Figures/11_1_Fig4.png} & 
+	    & \includegraphics[scale = 0.26]{../../Figures/11_1_Fig5.png} \\
+	(iii) & \\
+	    & \includegraphics[scale = 0.26]{../../Figures/11_1_Fig7.png} \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+{\bf Problem 2:} The point of this problem is to show that the two forms of the Fourier Series and Coefficients presented in class are equivalent.  That is,
+
+%--------TABLE---------
+\setlength{\extrarowheight}{-0.3cm}
+\begin{tabular}{p{1.1cm}p{3.6cm}p{4.7cm}p{4cm}p{0.1cm}}
+	\\
+	\multicolumn{5}{c}{$\D{f(x) = 
+	\sum \limits_{n=-\infty}^{\infty} d_n \, e^{inx}}$ \hspace{1.0cm} where \hspace{1.0cm} $\D{d_n = 
+	\frac{1}{2\pi}\int \limits_{-\pi}^{\pi} f(x)\, e^{-inx} \, dx}$} \\
+	\\
+	\multicolumn{5}{l}{is the same as computing} \\
+	\\
+	\multicolumn{5}{c}{$\D{f(x) = 
+	\, a_0 + \sum \limits_{n=1}^{\infty} \left(a_n\cos(nx) + b_n \sin(nx)\right)}$} \\
+	\\
+	where & $\D{a_0 = 
+	\frac{1}{2\pi}\int \limits_{-\pi}^{\pi} f(x)\, dx}$ &
+	$\D{a_n = 
+	\frac{1}{\pi}\int \limits_{-\pi}^{\pi} f(x) \cos(nx)\, dx}$ &
+	$\D{b_n = 
+	\frac{1}{\pi}\int \limits_{-\pi}^{\pi} f(x) \sin(nx)\, dx}$ &\\
+\end{tabular}
+%--------------------
+
+\vspace{0.5cm}
+
+$Proof$:
+
+\setlength{\extrarowheight}{-0.2cm}
+\begin{tabular}{rl}
+	$\D{\sum \limits_{n=-\infty}^{\infty} d_n \, e^{inx} }$
+%	& $\D{ = \OS{ [1] \, n = -\infty \,\, to \,\, -1}{\OB{ \sum \limits_{n=-\infty}^{-1} d_n \, e^{inx} }} +  
+%	         \OS{ [2] \, n=0}{\OB{ \vphantom{\sum \limits_{n=-\infty}^{-1}} d_0 e^{i(0)x} }} + 
+%	         \OS{ [3] \, n = 1 \,\, to \,\, \infty}{\OB{ \sum \limits_{n=1}^{\infty} d_n \, e^{inx} }}}$ \\
+	& $\D{ = d_0 + \sum \limits_{n=-\infty}^{-1} d_n \, e^{inx} + \sum \limits_{n=1}^{\infty} d_n \, e^{inx}}$ \\
+	\\
+	& $\D{ = [Details]}$ \\
+	\\
+	& $\D{ = \US{ a_0 }{\UBT[0.03cm][0.05cm]{ d_0 }} + \sum \limits_{n=1}^{\infty} \Big[
+	         \US{ a_n }{\UBT[0.03cm][0.05cm]{ (d_{-n} + d_n) }} \, \cos{nx} + 
+	         \US{ b_n }{\UBT[0.03cm][0.05cm]{ (-d_{-n} + d_n)i }} \, \sin{nx}\Big]}$ \\
+	\\
+\end{tabular}
+
+\vspace{0.5cm}
+
+Answer the following:
+
+\vspace{0.2cm}
+
+(a) Briefly explain or show why the first equality is true.
+
+\vspace{0.2cm}
+
+(b) Show the $[Details]$ above.
+
+\vspace{0.2cm}
+
+(c) Show that (i) $d_0 = a_0$, \,\, (ii) $d_{-n} + d_{n} = a_n$, \,\, (iii) $(-d_{-n} + d_n)i = b_n$, 
+
+%\OS{ [1] \, n = -\infty \,\, to \,\, -1}{\OB{ \sum \limits_{n=-\infty}^{-1} d_n \, e^{inx} }} +  
+%\OS{ [2] \, n=0}{\OB{ \vphantom{\sum \limits_{n=-\infty}^{-1}} d_0 e^{i(0)x} }} +
+%\OS{ [3] \, n = 1 \,\, to \,\, \infty}{\OB{ \sum \limits_{n=1}^{\infty} d_n \, e^{inx} }} = 
+%d_0 + \sum \limits_{n=-\infty}^{-1} d_n \, e^{inx} + \sum \limits_{n=1}^{\infty} d_n \, e^{inx}}$
+
+
+
+
+\end{document}
