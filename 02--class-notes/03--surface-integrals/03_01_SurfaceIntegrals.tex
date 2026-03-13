@@ -1,0 +1,1171 @@
+%!TEX root = ../AdvMathLecture.tex
+%
+% Section 10.6: Surface Integrals
+% 
+
+%%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} \UL{Surfaces \& Surface Integrals}}}
+%\scriptsize
+%
+%\begin{block}{Key Concepts:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Parameterizing Surfaces
+%	\item[...] Surface Integrals
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%\vspace{1.2cm}
+%
+%\begin{block}{Standard Mathematical Tools:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Finding a parameterization of a surface
+%	\item[...] Computing surface integrals
+%	\item[...] Computing surface area
+%	\item[...] Computing the flux through a surface
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%%\vspace{3.0cm}
+%\end{frame}
+
+\begin{frame}
+\frametitle{Topic: Surfaces \& Surface Integrals}
+\begin{columns}\begin{column}{12.0cm}
+\UL{I. Surface Parameterization}
+\scriptsize
+
+\vspace{0.2cm}
+
+Line Parameterization:
+
+\begin{center}
+\begin{columns}
+\begin{column}{2.0cm}
+	\includegraphics[scale = 0.16]{\FIGSDIR/10_6_Fig7.png}
+\end{column}
+\begin{column}{4.0cm}
+	\includegraphics[scale = 0.22]{\FIGSDIR/10_6_Fig10.png}
+\end{column}
+\begin{column}{4.0cm}
+$\left.
+\begin{array}{ccc}
+	x& = & ?\\
+	y& = & ?\\
+	z& = & ?\\
+\end{array}
+\right\}$
+1 parameter
+\end{column}
+\end{columns}
+\end{center}
+
+\vspace{0.2cm}
+
+Surface Parameterization:
+
+\begin{center}
+\begin{columns}
+\begin{column}{2.2cm}
+	\includegraphics[scale = 0.13]{\FIGSDIR/10_6_Fig21.png}
+\end{column}
+\begin{column}{4.6cm}
+	\includegraphics[scale = 0.19]{\FIGSDIR/10_6_Fig8.png}
+\end{column}
+\begin{column}{4.0cm}
+$\left.
+\begin{array}{ccc}
+	x& = & ?\\
+	y& = & ?\\
+	z& = & ?\\
+\end{array}
+\right\}$
+2 parameters
+\end{column}
+\end{columns}
+\end{center}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%%\begin{frame}
+%\frametitle{II. Surface Parameterization - Rules of Thumb }
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%%--------TABLE---------
+%\begin{table}
+%	\setlength{\extrarowheight}{0.2cm}
+%	\begin{tabular}{| c | p{1.8cm} | p{3.0cm} | p{2.5cm} |}
+%		\hline
+%		{\bf Coordinates} & {\bf Shape Type} & {\bf Typical equation properties} & {\bf Examples}\\
+%		\hline
+%		\multirow{2}{*}{Spherical} & Spheres; \hspace{1.0cm} Ellipsoids & 3 squared terms; all `+' & \\
+%		& & & \\
+%		\hline
+%		\multirow{2}{*}{Cylindrical} & Cylinders; Cones; Paraboloids; Hyperboloids &  & \\
+%		& & & \\
+%		\hline
+%		\multirow{2}{*}{Rectangular} & Any Surface & choose 2 variables as the parameters \& solve for the third in terms of these & \\
+%		& & & \\
+%		\hline
+%	\end{tabular}
+%	\label{}
+%	\caption{}
+%\end{table}
+%%--------------------
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+\begin{frame}
+\frametitle{}
+\begin{columns}\begin{column}{12.0cm}
+
+\scriptsize
+	\EX Find a parameterization of the following surfaces:
+	
+	\vspace{0.2cm}
+	
+	(a) $15x + 2z = 12$ \qquad
+	\ON<2->{\B{(plane extending in the $y$ direction)}}
+	
+	\vspace{0.2cm}
+	
+	\ON<3->{\B{Note: $y$ is independent of $x$ and $z$, so it should be one of the parameters.}} 
+	
+	\vspace{0.2cm}
+	
+	\ON<5->{\B{We are free to choose $x$ or $z$ as the other parameter.}}
+	
+	\begin{center}
+	
+%	%--------TABLE---------
+%	\setlength{\extrarowheight}{0.2cm}
+%	$\begin{array}{lcc}
+%		\ON<2->{\B{x = v}} & & \\
+%		\ON<2->{\B{y = u}} & 
+%		\ON<2->{\B{\implies}} & 
+%		\ON<2->{\B{{\bf r}(u,v) = \left[v,u,6 - \frac{15}{2}v\right]}} \\
+%		\ON<2->{\B{z = \frac{1}{2}\left(12 - 15x\right) }}
+%		\ON<2->{\B{\, = 6 - \frac{15}{2}v}} & & \\
+%	\end{array}$
+	%--------TABLE---------
+	\setlength{\extrarowheight}{0.1cm}
+	$\begin{array}{lclcc}
+		x =\ON<6->{\B{\, x}} & & 
+		\ON<9->{\B{x = v}} & & \\
+		y =\ON<4->{\B{\, y}} & 
+		\ON<8->{\B{\US{v = x}{\OS{u = y}{\quad \implies \quad }}}} & 
+		\ON<9->{\B{y = u}} & 
+		\ON<11->{\B{\implies}} & 
+		\ON<11->{\B{{\bf r}(u,v) = \left[v,u,6 - \frac{15}{2}v\right]}} \\
+		z =\ON<7->{\B{\, \frac{1}{2}\left(12 - 15x\right) }} & & 
+		\ON<10->{\B{z = 6 - \frac{15}{2}v }} & & 
+		\ON<12->{\B{ -\infty \le u \le \infty, \,\, -\infty \le v \le \infty}}\\
+	\end{array}$
+
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	(b) $(x+2)^2 + z^2 = 16$ \qquad 
+	\ON<13->{\B{(cylinder extending in the $y$ direction)}}
+	
+	\vspace{0.2cm}
+	
+	\ON<14->{\B{Note: Again , since $y$ is independent of $x$ and $z$, so it should be one of the parameters.}} 
+	
+	\vspace{0.2cm}
+	
+	\ON<16->{\B{Since $x$ and $z$ have a circular relationship (radius 4), so lets consider polar coordinates:}}
+	
+	\vspace{0.2cm}
+	
+	$\D{
+	\ON<17->{\B{\frac{(x+2)^2}{16} + \frac{z^2}{16} = 1 \quad \implies \quad }} 
+	\ON<18->{\B{\left(\frac{x+2}{4}\right)^2 + \left(\frac{z}{4}\right)^2 = 1}}}$ \\
+	\hspace{3.45cm} 
+	\ON<19->{\B{$\D{\OS{\uparrow}{\cos \theta}}$}} \hspace{0.37cm} 
+	\ON<19->{\B{$\D{\OS{\uparrow}{\sin \theta}}$}}
+	\begin{center}
+	%--------TABLE---------
+	\setlength{\extrarowheight}{0.1cm}
+	$\begin{array}{lclcc}
+		x =\ON<20->{\B{\, 4\cos \theta-2}} & & 
+		\ON<23->{\B{x = 4\cos v-2}} & & \\
+		y =\ON<15->{\B{\, y}} & 
+		\ON<21->{\B{\US{v = \theta}{\OS{u = y}{\quad \implies \quad }}}} & 
+		\ON<22->{\B{y = u}} & 
+		\ON<24->{\B{\implies}} & 
+		\ON<25->{\B{{\bf r}(u,v) = \left[4\cos v-2,u,4\sin v\right]}} \\
+		z =\ON<20->{\B{\, 4\sin \theta }} & & 
+		\ON<23->{\B{z = 4\sin v }} & & 
+		\ON<26->{\B{-\infty \le u \le \infty, \,\, 0 \le v \le 2\pi}}\\
+	\end{array}$
+	\end{center}
+
+	\vspace{0.2cm}
+	
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+
+\scriptsize
+	
+	\vspace{0.2cm}
+	
+	(c) $x^2 + y^2 - z^2 = 0$ \quad in the first octant and $0\le z \le 6$ \qquad
+	\ON<2->{\B{(cone extending in the $z$ direction)}}
+	
+	\vspace{0.2cm}
+	
+	\ON<3->{\B{Note: Writing the above we have: $x^2 + y^2 = z^2$.  This appears as a circle of radius $z$.}} 
+	
+	\vspace{0.2cm}
+	
+	\ON<4->{\B{Writing this circle in polar coordinates would be:}}
+	
+	\vspace{0.2cm}
+	
+	$\D{
+	\ON<5->{\B{x^2 + y^2 = z^2 \quad \implies \quad }} 
+	\ON<6->{\B{\left(\frac{x}{z}\right)^2 + \left(\frac{y}{z}\right)^2 = 1}}}$ \\
+	\hspace{2.51cm} 
+	\ON<7->{\B{$\D{\OS{\uparrow}{\cos \theta}}$}} \hspace{0.12cm} 
+	\ON<7->{\B{$\D{\OS{\uparrow}{\sin \theta}}$}}
+	\begin{center}
+	%--------TABLE---------
+	\setlength{\extrarowheight}{0.1cm}
+	$\begin{array}{lclcc}
+		x =\ON<8->{\B{\, z\cos \theta}} & & 
+		\ON<11->{\B{x = u\cos v}} & & \\
+		y =\ON<8->{\B{\, z\sin \theta}} & 
+		\ON<10->{\B{\US{v = \theta}{\OS{u = z}{\quad \implies \quad }}}} & 
+		\ON<11->{\B{y = u\sin v}} & 
+		\ON<12->{\B{\implies}} & 
+		\ON<12->{\B{{\bf r}(u,v) = \left[u\cos v,u\sin v,u\right]}} \\
+		z =\ON<9->{\B{\, z }} & & 
+		\ON<11->{\B{z = u }} & & 
+		\ON<13->{\B{0 \le u \le 6, \,\, 0 \le v \le \frac{\pi}{2}}}\\
+	\end{array}$
+	
+	\end{center}
+	
+	\vspace{0.4cm}
+	
+	(d) $4x + 10y + 2z = 1$
+	\quad where $-1 \le y \le 2$ and $1 \le z \le 5$ \qquad
+	\ON<14->{\B{(plane)}}
+	
+	\vspace{0.2cm}
+	
+	\ON<15->{\B{Note: Though we are free to set $u$ and $v$ as any of the variables $x$, $y$, $z$, it is most convenient to use $y$ and $z$ since we already know their bounds.}} 
+	
+	\vspace{0.2cm}
+	
+	\begin{center}
+	
+%	%--------TABLE---------
+%	\setlength{\extrarowheight}{0.2cm}
+%	$\begin{array}{lcc}
+%		\ON<2->{\B{x = \frac{1}{4}\left(1 - 10u - 2v\right)}} & & \\
+%		\ON<2->{\B{y = u}} & 
+%		\ON<2->{\B{\implies}} & 
+%		\ON<2->{\B{{\bf r}(u,v) = \left[\frac{1}{4} - \frac{5}{2}u - \frac{1}{2}v,u,v\right]}} \\
+%		\ON<2->{\B{z = v }} & & 
+%		\ON<2->{\B{ -1 \le u \le 2, \,\, 1 \le v \le 5}}\\
+%	\end{array}$
+	%--------TABLE---------
+	\setlength{\extrarowheight}{0.1cm}
+	$\begin{array}{lclcc}
+		x = \ON<17->{\B{\, \frac{1}{4}\left(1 - 10y - 2z\right)}} & & 
+		\ON<19->{\B{x = \frac{1}{4} - \frac{5}{2}u - \frac{1}{2}v}} & & \\
+		y =\ON<16->{\B{\, y}} & 
+		\ON<18->{\B{\US{v = z}{\OS{u = y}{\quad \implies \quad }}}} & 
+		\ON<19->{\B{y = u}} & 
+		\ON<20->{\B{\implies}} & 
+		\ON<21->{\B{{\bf r}(u,v) = \left[\frac{1}{4} - \frac{5}{2}u - \frac{1}{2}v,u,v\right]}} \\
+		z = \ON<16->{\B{\, z }} & & 
+		\ON<19->{\B{z = v }} & & 
+		\ON<22->{\B{ -1 \le u \le 2, \,\, 1 \le v \le 5}}\\
+	\end{array}$
+	\end{center}
+	
+	\vspace{0.6cm}
+	
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+
+\vspace{0.2cm}
+	
+	(e) $-4x + 5y^2 + 7z^2 = 0$ \quad in the first octant and $0\le z \le 6$
+	\ON<2->{\B{, $1\le y \le 2$ \quad (paraboloid along $x$-axis)}}
+	
+	\vspace{0.2cm}
+	
+	\ON<3->{\B{Note: Although polar could be used in this case, the better option is usually rectangular}}
+	
+	\vspace{0.2cm}
+	
+	\ON<4->{\B{Solve for $x$ and set $y$ and $z$ as parameters}}
+	\begin{center}
+	\setlength{\extrarowheight}{0.1cm}
+	$\begin{array}{lclcc}
+		x =\ON<6->{\B{\, \frac{5}{4}y^2 + \frac{7}{4}z^2}} & & 
+		\ON<8->{\B{x = \frac{5}{4}u^2 + \frac{7}{4}v^2}} & & \\
+		y =\ON<5->{\B{\, y}} & 
+		\ON<7->{\B{\US{v = z}{\OS{u = y}{\quad \implies \quad }}}} & 
+		\ON<8->{\B{y = u}} & 
+		\ON<9->{\B{\implies}} & 
+		\ON<9->{\B{{\bf r}(u,v) = \left[\frac{5}{4}u^2 + \frac{7}{4}v^2,u,v\right]}} \\
+		z =\ON<5->{\B{\, z }} & & 
+		\ON<8->{\B{z = v }} & & 
+		\ON<10->{\B{ 1 \le u \le 2, \,\, 0 \le v \le 6}}\\
+	\end{array}$
+	\end{center}
+	
+	\vspace{0.8cm}
+	
+	(f) $4x^2 + y^2 + 9z^2 = 4$ \quad
+	\ON<11->{\B{(ellipsoid) \quad Note: Need spherical coordinates}}
+	
+	\vspace{0.2cm}
+	
+	$\D{
+	\ON<11->{\B{\frac{4x^2}{4} + \frac{y^2}{4} + \frac{9z^2}{4} = 1 \quad \implies \quad }} 
+	\ON<12->{\B{\left(x\right)^2 \hspace{0.35cm} + \hspace{0.35cm} 
+	 \left(\frac{y}{2}\right)^2 \hspace{0.35cm} + \hspace{0.35cm} \left(\frac{3z}{2}\right)^2 = 1}}
+	}$ \\
+	\hspace{3.11cm} 
+	\ON<13->{\B{$\D{\OS{\uparrow}{\sin \phi \cos \theta}}$}} \hspace{0.12cm} 
+	\ON<13->{\B{$\D{\OS{\uparrow}{\sin \phi \sin \theta}}$}} \hspace{0.62cm} 
+	\ON<13->{\B{$\D{\OS{\uparrow}{\cos \phi }}$}}
+	\begin{center}
+	\setlength{\extrarowheight}{0.1cm}
+	$\begin{array}{lclcc}
+		x =\ON<14->{\B{\, \sin \phi \cos \theta}} & & 
+		\ON<15->{\B{x = \sin u \cos v}} & & \\
+		y =\ON<14->{\B{\, 2\sin \phi \sin \theta}} & 
+		\ON<15->{\B{\US{v = \theta}{\OS{u = \phi}{\quad \implies \quad }}}} & 
+		\ON<15->{\B{y = 2\sin u \sin v}} & 
+		\ON<16->{\B{\implies}} & 
+		\ON<16->{\B{{\bf r}(u,v) = \left[\sin u \cos v,2\sin u \sin v,\frac{2}{3}\cos u\right]}} \\
+		z =\ON<14->{\B{\, \frac{2}{3}\cos \phi }} & & 
+		\ON<15->{\B{z = \frac{2}{3}\cos u }} & & 
+		\ON<17->{\B{ 0 \le u \le \pi, \,\, 0 \le v \le 2\pi}}\\
+	\end{array}$
+	\end{center}
+	
+	\vspace{0.8cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\UL{II. Surface Tangents and Normal Vectors}
+
+\scriptsize
+
+Let \,\, ${\bf r}(u,v) = [x(u,v),y(u,v),z(u,v)]$ \,\, be a parameterization of a surface, $S$.
+
+\vspace{0.6cm}
+
+\begin{columns}
+\begin{column}{2.5cm}
+	\UL{Surface Tangents}:
+	
+	\vspace{0.2cm}
+	
+	Tangent along $C_2$:
+	
+	\vspace{0.2cm}
+	
+	$\D{{\bf r}_u = \ON<2->{\B{\left[\frac{\partial x}{\partial u},\frac{\partial y}{\partial u},\frac{\partial z}{\partial u}\right]}}}$
+	
+	\vspace{0.4cm}
+	
+	Tangent along $C_1$:
+	
+	\vspace{0.2cm}
+	
+	$\D{{\bf r}_v = \ON<3->{\B{\left[\frac{\partial x}{\partial v},\frac{\partial y}{\partial v},\frac{\partial z}{\partial v}\right]}}}$
+\end{column}
+\begin{column}{8.0cm}
+\begin{center}
+	\includegraphics[scale = 0.15]{\FIGSDIR/10_6_Fig12.png} \hspace{0.2cm} \includegraphics[scale = 0.17]{\FIGSDIR/10_6_Fig13.png}
+\end{center}	
+\end{column}
+\end{columns}
+
+\vspace{0.4cm}
+
+\begin{columns}
+\begin{column}{5.0cm}
+\UL{Normal}:
+
+\vspace{0.2cm}
+
+Normal: \quad ${\bf N} = 	\ON<4->{\B{{\bf r}_u \times {\bf r}_v}}$
+
+\vspace{0.6cm}
+
+Unit Normal: \quad $\D{{\bf n} = \ON<5->{\B{\frac{{\bf N}}{|{\bf N}|} = \frac{{\bf r}_u \times {\bf r}_v}{|{\bf r}_u \times {\bf r}_v|}}}}$
+\end{column}
+\begin{column}{5.0cm}
+\begin{center}
+	\includegraphics[scale = 0.16]{\FIGSDIR/10_6_Fig18.png}
+\end{center}	
+\end{column}
+\end{columns}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+
+Derive the integral expression for surface area of a surface $S$ with parameterization ${\bf r}(u,v)$:
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{1.8cm}
+\vspace{1.2cm}
+
+	\includegraphics[scale = 0.12]{\FIGSDIR/10_6_Fig21.png}
+\end{column}
+\begin{column}{5.0cm}
+	\includegraphics[scale = 0.18]{\FIGSDIR/10_6_Fig20.png}
+\end{column}
+\begin{column}{3.0cm}
+	\includegraphics[scale = 0.10]{\FIGSDIR/10_6_Fig15.png}
+\end{column}
+\end{columns}
+
+\begin{center}
+	Area of $S$ = 
+	\ON<2->{\B{Sum of many ``small" areas \quad (Scalar Quantity)}}
+	
+	\vspace{0.4cm}
+	
+	$\D{\implies \quad Area(S) = 
+	\ON<3->{\B{\iint \limits_{S} \, dS}}}$ \qquad 
+	\ON<4->{\B{What is $dS$?}}
+\end{center}
+\ON<5->{\B{$dS$ represents the area of the small part of the plane approximating the patch of $S$ (see figure)}}
+
+\vspace{0.2cm}
+
+\ON<6->{\B{Note that the small part is a }}
+\ON<7->{\B{parallelogram spanned by the vectors: }}
+\ON<8->{\B{${\bf r}_u du$ \, and \, ${\bf r}_v dv$}}
+
+\vspace{0.3cm}
+
+\ON<9->{\B{Therefore, \qquad }}
+$\D{
+\ON<10->{\B{dS = }}
+\ON<11->{\B{\,\,|{\bf r}_u du \times {\bf r}_v dv|}} 
+\ON<12->{\B{\,= |{\bf r}_u du \times {\bf r}_v| \,dv}} 
+\ON<13->{\B{\,= |{\bf r}_u \times {\bf r}_v|\,du\,dv}}}$ \qquad 
+\ON<13->{\B{and so}}
+
+\begin{center}
+	$\D{ \quad Area(S) =
+	\ON<14->{\B{\,\iint \limits_{S} \, dS }}
+	\ON<15->{\B{\,= \iint \limits_{R} \, |{\bf r}_u \times {\bf r}_v|\,du\,dv}}}$
+\end{center}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\UL{III. Surface Integrals}
+\scriptsize
+
+\vspace{0.2cm}
+
+Let ${\bf F}$ be a vector field.
+
+\vspace{0.7cm}
+
+Line Integral \,\, - \,\, $C$ is a curve
+
+\begin{center}
+	$\D{\int \limits_{C} {\bf F}({\bf r}) \cdot d{\bf r} = 
+	\ON<2->{\B{\int \limits_{a}^{b} {\bf F}(\RT) \cdot \RPT \, dt}}}$
+\end{center}
+
+\vspace{0.2cm}
+
+Surface Integral \,\, - \,\, $S$ is a surface
+
+\begin{center}
+	$\D{\int \limits_{S} {\bf F}({\bf r}) \cdot d{\bf A} = 
+	\ON<3->{\B{\iint \limits_{S} {\bf F} \cdot \only<4->{\OS{\B{ d{\bf A} }}}{\only<4->{\OB}{ {\bf n} \, dA }} =\,}} 
+	\ON<5->{\B{\iint \limits_{S} {\bf F} \cdot \only<6->{\OS{\B{ {\bf n} }}}{\only<6->{\OB}{ \frac{{\bf N}}{\only<7->{\CAN}{|{\bf N}|}}\, }} \only<6->{\OS{\B{ dA }}}{\only<6->{\OB}{ \only<7->{\CAN}{|{\bf r}_u \times {\bf r}_v|} \, du\,dv }} \,=\,}} 
+	\ON<8->{\B{\iint \limits_{R} {\bf F}({\bf r}(u,v)) \cdot {\bf N}(u,v) \, du \, dv}}}$
+\end{center}
+
+\vspace{0.3cm}
+
+where \, ${\bf N} = {\bf r}_u \times {\bf r}_v$ \,  is the normal vector to the surface and \, ${\bf n} = \frac{{\bf N}}{|{\bf N}|}$ \, is the unit normal. $R$ is the region in the $u,v$-plane (parameter plane).
+
+\vspace{1.8cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\UL{IV. Flux}
+\scriptsize
+
+\vspace{0.4cm}
+
+Flux is a very important concept when modeling physical phenomena.
+
+\vspace{0.2cm}
+	
+Mathematically, it is given by the surface integral
+	
+\begin{center}
+	\text{Flux through a surface } S = 
+	\ON<2->{\B{$\FLUX$}}
+\end{center}
+Where ${\bf F}$ is a vector field and ${\bf n}$ is the unit normal to the surface.
+
+\vspace{0.2cm}
+
+When dealing with flow through a surface, the vector field is typically written as: 
+\ON<3->{\B{${\bf F} = \rho {\bf v}$}}
+
+\vspace{0.2cm}
+
+where 
+\ON<4->{\B{\,\,\, $\rho$ is the density \,\,\, }} of the flowing substance and 
+\ON<5->{\B{\,\,\,${\bf v}$ is the velocity\,\,\,}} of the flow.
+
+\begin{center}
+	\includegraphics[scale = 0.2]{\FIGSDIR/10_6_Fig17.png} \hspace{1.0cm} \includegraphics[scale = 0.2]{\FIGSDIR/10_6_Fig16.png}
+\end{center}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+\EX Compute the flux of water through the parabolic cylinder $S:\, y=x^2$ where $0 \le x \le 2$ and $0 \le z \le 3$ if the velocity flow of water is given by ${\bf v} = [3z^2, 6, 6xz]$ (units: {\em m/s}).  Note, the density of water is $\rho = 1 \, kg/m^3$.
+
+\vspace{0.3cm}
+
+Set-up: we need ${\bf F}$, ${\bf r}(u,v)$, ${\bf r}_u$, ${\bf r}_v$ and ${\bf N}$
+
+\vspace{0.4cm}
+
+Since we are dealing with fluid flow, \,\, ${\bf F} = 
+\ON<2->{\B{\, \rho{\bf v} \quad \implies \quad {\bf F} = [3z^2, 6, 6xz]}}$
+
+\vspace{0.3cm}
+
+For ${\bf r}(u,v)$, we need
+
+\vspace{0.2cm}
+
+\quad $
+x =
+\ON<3->{\B{\,u}}$
+
+\quad $
+y =
+\ON<5->{\B{\,u^2}}
+\ON<6->{\B{\quad \implies}} \quad {\bf r}(u,v) =
+\ON<7->{\B{\, [u,u^2,v]}}$ \qquad where 
+\ON<8->{\B{$0 \le u \le 2$ and $0 \le v \le 3$}}
+
+\quad $
+z =
+\ON<4->{\B{\,v}}$
+
+\vspace{0.2cm}
+\hspace{1.3cm} $\D{
+\implies \quad {\bf r}_u =
+\ON<9->{\B{\, [1,2u,0]}}}$ \qquad 
+and
+\qquad $\D{
+{\bf r}_v = 
+\ON<10->{\B{\,[0,0,1]}}}$
+
+\vspace{0.3cm}
+
+{\bf N} = \,
+$\ON<11->{\B{
+\begin{array}{| ccc |}
+	{\bf i}&{\bf j}&{\bf k} \\
+	1      &2u     &0 \\
+ 	0      &0      &1 \\
+\end{array}
+= \,}}$
+$\ON<12->{\B{
+\begin{array}{| cc |}
+		  2u&0 \\
+ 		  0 &1 \\
+\end{array}
+ \,\,{\bf i} \, - }}$\,\,
+$\ON<13->{\B{
+\begin{array}{| cc |}
+		  1&0 \\
+ 		  0&1 \\
+\end{array}
+ \,\,{\bf j} \, + }}$\,\,
+$\ON<14->{\B{
+\begin{array}{| cc |}
+		  1&2u \\
+ 		  0&0 \\
+\end{array}
+\,\,{\bf k} \, }}$
+$
+\ON<15->{\B{\, = \, 2u \,{\bf i} - {\bf j} + 0\,{\bf k} = \, [2u,-1,0]}}$
+
+\vspace{0.4cm}
+
+$\D{{\bf F}({\bf r}(u,v)) = 
+\ON<16->{\B{\,[3v^2, 6, 6uv]}}}$
+
+\vspace{0.3cm}
+
+$\D{{\bf F}({\bf r}(u,v)) \cdot {\bf N} = 
+\ON<17->{\B{\,[3v^2, 6, 6uv] \cdot [2u,-1,0]}}
+\ON<18->{\B{\, = 6uv^2 - 6}}}$
+
+\vspace{1.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+%--------EQN----------
+\begin{align*}
+	Flux = \FLUX = \FLUXX 
+	&\ON<2->{\B{\, = \int \limits_{0}^{3}\int \limits_{0}^{2} 6uv^2 - 6 \, dudv}} \\
+	&\ON<3->{\B{\, = \int \limits_{0}^{3} \left[6\left(\frac{u^2}{2}\right)v^2 - 6u \right]_{u=0}^{u=2} \, dv}} \\
+	&\ON<4->{\B{\, = \int \limits_{0}^{3} \left[6\left(2\right)v^2 - 6(2) \right] \, dv}} \\
+	&\ON<5->{\B{\, = \left.4v^3 - 12v\right|_0^3 }}
+	\ON<6->{\B{\, = 4(27) - 12(3)}} 
+	\ON<7->{\B{\, = 72 \,\,kg/s}}
+\end{align*}
+%----------------------
+
+{\em Translation}: \ON<8->{\B{$72 \,\, kg $ of water pass through the surface $S$ every second}}
+
+\begin{center}
+	\includegraphics[scale = 0.22]{\FIGSDIR/10_6_Fig19.png}	
+\end{center}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+\EX Compute the surface integral of ${\bf F} = [e^y, -e^z, e^x]$ over the surface $S:\, x^2 + y^2 = 25$ \, for $x \ge 0$, $y \ge 0$, and $0 \le z \le 2$
+
+\vspace{0.2cm}
+
+\quad $
+x =
+\ON<2->{\B{\,5 \cos u}}$
+
+\quad $
+y =
+\ON<3->{\B{\,5 \sin u}}
+\ON<5->{\B{\quad \implies}} \quad {\bf r}(u,v) =
+\ON<6->{\B{\, [5\cos u,5 \sin u,v]}}$ \qquad where \quad
+\ON<7->{\B{$\D{0 \le u \le \frac{\pi}{2}}$ and $0 \le v \le 2$}}
+
+\quad $
+z =
+\ON<4->{\B{\,v}}$
+
+\vspace{0.2cm}
+\hspace{1.3cm} $\D{
+\implies \quad {\bf r}_u =
+\ON<8->{\B{\, [-5\sin u,5\cos u,0]}}}$ \qquad 
+and
+\qquad $\D{
+{\bf r}_v = 
+\ON<9->{\B{\,[0,0,1]}}}$
+
+\vspace{0.3cm}
+
+{\bf N} = \,
+$\ON<10->{\B{
+\begin{array}{| ccc |}
+	{\bf i}&{\bf j}&{\bf k} \\
+	-5\sin u      &5\cos u     &0 \\
+ 	0      &0      &1 \\
+\end{array}
+= \,}}$
+$\ON<11->{\B{
+\begin{array}{| cc |}
+		  5\cos u&0 \\
+ 		  0 &1 \\
+\end{array}
+ \,\,{\bf i} \, - }}$\,\,
+$\ON<12->{\B{
+\begin{array}{| cc |}
+		  -5\sin u&0 \\
+ 		  0&1 \\
+\end{array}
+ \,\,{\bf j} \, + }}$\,\,
+$\ON<13->{\B{
+\begin{array}{| cc |}
+		  -5\sin u&5\cos u \\
+ 		  0&0 \\
+\end{array}
+\,\,{\bf k} \, }}$\\
+
+\vspace{0.3cm}
+
+\hspace{3.65cm} $\ON<14->{\B{\, = \, 5\cos u \,{\bf i} + 5\sin u\,{\bf j} + 0\,{\bf k} = \, [5\cos u,5\sin u,0]}}$
+
+\vspace{0.4cm}
+
+$\D{{\bf F}({\bf r}(u,v)) = 
+\ON<15->{\B{\,\left[e^{5\sin u}, -e^{v}, e^{5\cos u}\right]}}}$
+
+\vspace{0.3cm}
+
+$\D{{\bf F}({\bf r}(u,v)) \cdot {\bf N} = 
+\ON<16->{\B{\,\left[e^{5\sin u}, -e^{v}, e^{5\cos u}\right] \cdot [5\cos u,5\sin u,0]}}
+\ON<17->{\B{\, = 5e^{5\sin u}\cos u - 5e^v\sin u}}}$
+
+\vspace{2.8cm}
+
+	
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+\begin{columns}
+\begin{column}{8.0cm}
+%--------EQN----------
+\begin{align*}
+	\FLUXX 
+	&\ON<2->{\B{\, = \int \limits_{0}^{2}\int \limits_{0}^{\pi/2} 5e^{5\sin u}\cos u - 5e^v\sin u \, dudv}} \\
+	&\ON<5->{\B{\, = \int \limits_{0}^{2}\int \limits_{u=0}^{u=\pi/2} e^w - 5e^v\sin u\, dudv}} \\
+	&\ON<6->{\B{\, = \int \limits_{0}^{2}\left[e^w + 5e^v\cos u \right]_{u=0}^{u=\pi/2} \, dv}} \\
+	&\ON<7->{\B{\, = \int \limits_{0}^{2}\left[e^{5\sin u} + 5e^v\cos u \right]_{u=0}^{u=\pi/2} \, dv}} \\
+	&\ON<8->{\B{\, = \int \limits_{0}^{2}\left[e^{5\sin (\pi/2)} + 5e^v\cos (\pi/2) \right]-\left[e^{5\sin (0)} + 5e^v\cos (0) \right] \, dv}} \\
+	%&\ON<2->{\B{\, = \int \limits_{0}^{2}\left[e^{5} - 0\right]-\left[e^{0} + 5e^v \right] \, dv}} \\
+	&\ON<9->{\B{\, = \int \limits_{0}^{2}e^{5}-1 - 5e^v \, dv}}\\
+	&\ON<10->{\B{\, = \left.v(e^{5}-1) - 5e^v \right|_0^2}} \\
+	&\ON<11->{\B{\, = [2(e^{5}-1) - 5e^2] - [-5]}}
+	\ON<12->{\B{\, = 2(e^{5}-1) - 5e^2 + 5}}
+\end{align*}
+%----------------------	
+\end{column}
+\begin{column}{2.0cm}
+	\ON<3->{\B{$\D{w=5\sin u}$}}
+	
+	\vspace{0.2cm}
+	
+	\ON<4->{\B{$\D{dw=5\cos u\,du}$}}
+	
+	\vspace{6.2cm}
+	
+\end{column}
+\end{columns}
+
+\vspace{4.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\UL{V. Other Surface Integrals}
+\scriptsize
+
+\vspace{0.2cm}
+
+Let $g$ be a scalar-valued function.
+
+\vspace{0.7cm}
+
+Line Integral \,\, - \,\, $C$ is a curve
+
+\begin{center}
+	$\D{\int \limits_{C} g \, ds = 
+	\ON<2->{\B{\int \limits_{a}^{b} g\,(\RT)\, 
+	\only<3->{\OS{\B{ ds }}}{
+	\only<3->{\OB}{ |\RPT| \, dt }}}}}$
+\end{center}
+
+\vspace{0.2cm}
+
+Surface Integral \,\, - \,\, $S$ is a surface
+
+\begin{center}
+	$\D{\int \limits_{S} g \, dA = 
+	\ON<4->{\B{\iint \limits_{R} g({\bf r}\,(u,v)) \, \only<5->{\OS{\B{ dA }}}{\only<5->{\OB}{ |{\bf r}_u \times {\bf r}_v| \, du \, dv }} = \,}}
+	\ON<6->{\B{\iint \limits_{R} g({\bf r}\,(u,v)) \, |{\bf N}(u,v)| \, du \, dv}}}$
+\end{center}
+
+\vspace{0.5cm}
+
+$R$ is the region in the $u,v$-plane (parameter plane).
+
+\vspace{1.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+
+\EX Compute the surface integral \qquad $\D{\iint \limits_{S} (1 + 9xz)^{3/2}\, dA}$
+
+\vspace{0.1cm}
+
+where $S$ is given by the parameterization: ${\bf r}(u,v) = [u,v,u^3]$,\,\, $0 \le u \le 1$,\,\, $-2 \le v \le 2$
+
+\vspace{0.2cm}
+
+$\D{
+\implies \quad {\bf r}_u =
+\ON<2->{\B{\, [1,0,3u^2]}}}$ \qquad 
+and
+\qquad $\D{
+{\bf r}_v = 
+\ON<3->{\B{\,[0,1,0]}}}$
+
+\vspace{0.3cm}
+
+{\bf N} = \,
+$\ON<4->{\B{
+\begin{array}{| ccc |}
+	{\bf i}&{\bf j}&{\bf k} \\
+	1 &0 &3u^2 \\
+ 	0 &1 &0 \\
+\end{array}
+= \,}}$
+$\ON<5->{\B{
+\begin{array}{| cc |}
+	0 &3u^2 \\
+ 	1 &0 \\
+\end{array}
+ \,\,{\bf i} \, - }}$\,\,
+$\ON<6->{\B{
+\begin{array}{| cc |}
+	1 &3u^2 \\
+ 	0 &0 \\
+\end{array}
+ \,\,{\bf j} \, + }}$\,\,
+$\ON<7->{\B{
+\begin{array}{| cc |}
+	1 &0 \\
+ 	0 &1 \\
+\end{array}
+\,\,{\bf k} \,}}$
+$\D{
+\ON<8->{\B{\, = \, -3u^2 \,{\bf i} - 0\,{\bf j} + {\bf k} = \, [-3u^2,0,1]}}}$
+
+\vspace{0.4cm}
+
+$\D{g({\bf r}(u,v)) = 
+\ON<9->{\B{\,(1+9u^4)^{3/2}}}}$
+\quad and \quad 
+$\D{|{\bf N}| = 
+\ON<10->{\B{\,(9u^4+1)^{1/2}}}}$
+
+\vspace{0.3cm}
+
+$\D{g({\bf r}(u,v))\, |{\bf N}| = 
+\ON<11->{\B{\,(1+9u^4)^2 = 1 + 18u^4 + 81u^8}}}$
+
+%--------EQN----------
+\begin{align*} 
+	\int \limits_{S} (1 + 9xz)^{3/2} \, dA
+	&\ON<12->{\B{\, = \int \limits_{-2}^{2}\int \limits_{0}^{1} 1 + 18u^4 + 81u^8 \, dudv}} \\
+	&\ON<13->{\B{\, = \int \limits_{-2}^{2} \left[u + \frac{18}{5}u^5 + \frac{81}{9}u^9 \right]_{u=0}^{u=1} \, dv}} \\
+	&\ON<14->{\B{\, = \int \limits_{-2}^{2} 1 + \frac{18}{5} + 9 \, dv}}
+	\ON<15->{\B{\, = \int \limits_{-2}^{2} \frac{68}{5} \, dv}}
+	\ON<16->{\B{\, = (4)\frac{68}{5}}} 
+	\ON<17->{\B{\, = 272}}
+\end{align*}
+%----------------------
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+%%\begin{frame}
+%\frametitle{VI. Summary of Symbols:}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\vspace{0.2cm}
+%1. Line Integrals:
+%
+%\vspace{0.2cm}
+%
+%%-------LIST---------
+%\begin{itemize}
+%	\item $\D{C}$ - general curve
+%	\vspace{0.1cm}
+%	\item $\D{ds = 
+%	\ON<2->{\B{|\RPT|\, dt}}}$
+%	\vspace{0.1cm}
+%	\item $\D{d{\bf r} = 
+%	\ON<3->{\B{\RPT \, dt}}}$
+%\end{itemize}
+%%-------------------
+%
+%\vspace{1.0cm}
+%
+%2. Surface Integrals:
+%
+%\vspace{0.2cm}
+%
+%%-------LIST---------
+%\begin{itemize}
+%	\item $\D{S}$ - general surface
+%	\vspace{0.1cm}
+%	\item $\D{R}$ - \B{region in u,v-parameter plane}
+%	\vspace{0.1cm}
+%	\item $\D{dA = 
+%	\ON<4->{\B{|{\bf r}_u \times {\bf r}_v| \, du \, dv}}}$
+%	\vspace{0.1cm}
+%	\item $\D{d{\bf A} = 
+%	\ON<5->{\B{{\bf n} \, dA}}}$
+%	\vspace{0.1cm}
+%	\item $\D{{\bf N} = 
+%	\ON<6->{\B{{\bf r}_u \times {\bf r}_v}}}$
+%	\vspace{0.1cm}
+%	\item $\D{{\bf n} = 
+%	\ON<7->{\B{\frac{{\bf N}}{|{\bf N}|}}}}$
+%\end{itemize}
+%%-------------------
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%\begin{frame}
+%\frametitle{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\begin{center}
+%	\includegraphics[scale = 0.38]{\FIGSDIR/10_6_Fig1.png}
+%\end{center}
+%Parametrization: (Spherical coordinates are typically the best option)
+%
+%\vspace{0.3cm}
+%
+%\hspace{2.4cm} $x=
+%\ON<2->{\B{a\,\sin u \cos v}}$
+%
+%\vspace{0.1cm}
+%
+%\hspace{2.4cm} $y=
+%\ON<3->{\B{b\,\sin u \sin v}}$ \quad 
+%$\ON<5->{\B{\implies \quad {\bf r}(u,v) = [a\,\sin u \cos v, \, b\,\sin u \sin v, \,c\,\cos u]}}$
+%
+%\vspace{0.1cm}
+%
+%\hspace{2.4cm} $z=
+%\ON<4->{\B{c\,\cos u}}$
+%
+%\vspace{0.3cm}
+%
+%for \ON<6->{\B{\, $0 \le u \le \pi$ \, and \, $0 \le v \le 2\pi$}}
+%
+%\vspace{0.6cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%\begin{frame}
+%\frametitle{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\begin{center}
+%	\includegraphics[scale = 0.38]{\FIGSDIR/10_6_Fig2.png}
+%\end{center}
+%Parametrization: (Standard parameterization)
+%
+%\vspace{0.3cm}
+%
+%\hspace{2.4cm} $x=
+%\ON<2->{\B{u}}$
+%
+%\vspace{0.1cm}
+%
+%\hspace{2.4cm} $y=
+%\ON<3->{\B{v}}$ \hspace{2.8cm} $\D{
+%\ON<5->{\B{\implies \quad {\bf r}(u,v) = \left[u, \, v, \, \frac{c}{a^2}u^2 + \frac{c}{b^2}v^2\right]}}}$
+%
+%\vspace{0.1cm}
+%
+%\hspace{2.4cm} $\D{z=
+%\ON<4->{\B{\frac{c}{a^2}u^2 + \frac{c}{b^2}v^2}}}$
+%
+%\vspace{0.3cm}
+%
+%where 
+%\ON<6->{\B{the range of $u$ and $v$ depend on the range of $x$ and $y$.}}
+%
+%\vspace{0.6cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%\begin{frame}
+%\frametitle{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\begin{center}
+%	\includegraphics[scale = 0.38]{\FIGSDIR/10_6_Fig3.png}
+%\end{center}
+%Parametrization: (Standard parameterization)
+%
+%\vspace{0.3cm}
+%
+%\hspace{2.4cm} $x=
+%\ON<2->{\B{u}}$
+%
+%\vspace{0.1cm}
+%
+%\hspace{2.4cm} $y=
+%\ON<3->{\B{v}}$ \hspace{2.8cm} $\D{
+%\ON<5->{\B{\implies \quad {\bf r}(u,v) = \left[u, \, v, \, \frac{c}{a^2}u^2 - \frac{c}{b^2}v^2\right]}}}$
+%
+%\vspace{0.1cm}
+%
+%\hspace{2.4cm} $\D{z=
+%\ON<4->{\B{\frac{c}{a^2}u^2 - \frac{c}{b^2}v^2}}}$
+%
+%\vspace{0.3cm}
+%
+%where 
+%\ON<6->{\B{the range of $u$ and $v$ depend on the range of $x$ and $y$.}}
+%
+%\vspace{0.6cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%\begin{frame}
+%\frametitle{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\begin{center}
+%	\includegraphics[scale = 0.38]{\FIGSDIR/10_6_Fig6.png}
+%\end{center}
+%Parametrization: (Standard parameterization, but you must choose only 1 half of the cone)
+%
+%\vspace{0.3cm}
+%
+%\hspace{2.4cm} $x= 
+%\ON<2->{\B{u}}$
+%
+%\vspace{0.1cm}
+%
+%\hspace{2.4cm} $y= 
+%\ON<3->{\B{v}}$ \hspace{2.0cm} $
+%\ON<5->{\B{\implies \quad {\bf r}(u,v) = \left[u, \, v, \,\frac{c^2}{a^2}u^2 + \frac{c^2}{b^2}v^2\right]}}$
+%
+%\vspace{0.1cm}
+%
+%\hspace{2.4cm} $\D{z=
+%\ON<4->{\B{\frac{c^2}{a^2}u^2 + \frac{c^2}{b^2}v^2}}}$
+%
+%\vspace{0.3cm}
+%
+%where 
+%\ON<6->{\B{the range of $u$ and $v$ depend on the range of $x$ and $y$.}}
+%
+%\vspace{0.6cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%\begin{frame}
+%\frametitle{}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\begin{center}
+%	\includegraphics[scale = 0.38]{\FIGSDIR/10_6_Fig5.png}
+%\end{center}
+%Parametrization: (Cylindrical coordinates are typically the best option)
+%
+%\vspace{0.3cm}
+%
+%\hspace{2.4cm} $x= 
+%\ON<2->{\B{a\cos u}}$
+%
+%\vspace{0.1cm}
+%
+%\hspace{2.4cm} $y= 
+%\ON<3->{\B{b\sin u}}$ \quad $
+%\ON<5->{\B{\implies \quad {\bf r}(u,v) = [a\cos u, \, b\sin u, \, v]}}$
+%
+%\vspace{0.1cm}
+%
+%\hspace{2.4cm} $z=
+%\ON<4->{\B{v}}$
+%
+%\vspace{0.3cm}
+%
+%where 
+%\ON<6->{\B{the range of $v$ depends on the range of $z$ \, and \, $0 \le u \le 2\pi$}}
+%
+%\vspace{0.6cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}

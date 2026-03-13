@@ -1,0 +1,13 @@
+{
+    "xml.fileAssociations": [
+        {
+            "pattern": "**/source/**.ptx",
+            "systemId": "/home/gcox/.vscode-server/extensions/oscarlevin.pretext-tools-0.35.0/assets/schema/pretext.rng"
+        }
+    ],
+    "terminal.integrated.env.linux": {
+        "VIRTUAL_ENV": "/home/gcox/pretext-venv",
+        "PATH": "/home/gcox/pretext-venv/bin:${env:PATH}"
+    },
+    "terminal.integrated.defaultProfile.linux": "bash"
+}

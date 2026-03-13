@@ -1,0 +1,732 @@
+%
+% Section 9.8_PowerSeries
+%
+
+%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} Power Series}}
+\scriptsize
+\vspace{0.6cm}
+\begin{block}{Homework Problems:}
+
+\vspace{0.8cm}
+
+TBA
+%\hspace{0.2cm} {\bf 9.7}: 13, 15, 18, 19, 25, 26, 27 \hspace{0.5cm} {\bf 9.8}: 1-4, 11-22 \hspace{0.5cm} {\bf 9.10}: 21-26
+	
+\end{block}
+\vspace{0.2cm}
+
+%\begin{block}{Section Example Problems to Read:}
+%
+%\vspace{0.2cm}
+%
+%\hspace{2.0cm} {\bf 9.7}: 3-6 \hspace{1.0cm} {\bf 9.8}: 1-7 \hspace{1.0cm} {\bf 9.10}: 3, 6
+%	
+%\end{block}
+\vspace{0.1cm}
+
+\begin{block}{This section will enable you to ...}
+%-------LIST---------
+\begin{itemize}
+%	\item[...] define what power series is and where it is centered.
+%	\item[...] explain how a function can be written as a power series.
+	\item[...] determine the radius of convergence of a power series.
+	\item[...] determine the interval of convergence of a power series.
+	\item[...] find the Taylor polynomials of a given function.
+	\item[...] find the Taylor polynomials from a known Taylor polynomial.
+\end{itemize}
+%-------------------
+\end{block}
+\vspace{3.0cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{I. Introduction}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+Consider the following infinite series:
+$$
+\ON<2->{f(\B{x}) = } \sum \limits_{n=0}^{\infty} \ON<1->{\textcolor<2->{blue}{x}}^n
+$$
+There is one major difference between this series and the ones we've been working with.  This series is a function of $x$ and for every value you plug into $f(x)$, you get an \ON<3->{\B{infinite series.}}
+
+\begin{center}
+	\setlength{\extrarowheight}{0.3cm}
+	\begin{tabular}{| c | p{4.4cm} | c |}
+		\hline
+		$x=0$ & $\displaystyle{f(0) = \ON<4->{\B{\sum \limits_{n=1}^{\infty} (0)^n}}}$ & \ON<5->{\B{converges (by the GST)}} \\
+		\hline
+		$x=1$ & $\displaystyle{f(1) = \ON<5->{\B{\sum \limits_{n=1}^{\infty} (1)^n}}}$ & \ON<6->{\B{diverges by the GST}}\\
+		\hline
+		$x=0.75$ & $\displaystyle{f(0.75) = \ON<7->{\B{\sum \limits_{n=1}^{\infty} (0.75)^n }}}$ & \ON<8->{\B{converges by the GST}}\\
+		\hline
+		$x=-\frac{1}{3}$ & $f\left(-\frac{1}{3}\right) = \ON<9->{\B{\displaystyle{\sum \limits_{n=1}^{\infty} \left(-\frac{1}{3}\right)^n}}}$ & \ON<10->{\B{converges by the GST}}\\
+		\hline
+		$x=10$ & $\displaystyle{f(10) = \ON<11->{\B{\sum \limits_{n=1}^{\infty} (10)^n}}}$ & \ON<12->{\B{diverges by the GST}}\\
+		\hline
+	\end{tabular}	
+\end{center}
+
+One obvious question then is: What values of $x$ make $f(x)$ converge?
+
+\vspace{0.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{II. Power Series }
+\scriptsize
+\vspace{0.1cm}
+\begin{columns}
+\begin{column}{12.0cm}
+	\begin{columns}\fcolorbox{blue}{white}{\begin{column}{10.4cm}
+	% Type the contents of the box here
+	\underline{Power Series}:
+	A infinite series of the form
+	$$
+	f(x) = \sum \limits_{n=0}^{\infty} b_{n}(x-c)^n = b_0 + b_1(x-c) + b_2(x-c)^2 + ... + b_{n} (x-c)^n + ...
+	$$
+	is called a {\bf power series centered at $c$}, where $c$ is constant. \\
+	\vspace{0.1cm}
+	\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+	
+	\vspace{0.5cm}
+	
+For each of the following power series, identify $b_{n}$ and $c$ in the power series definition. \\
+
+\vspace{0.1cm}
+
+\begin{columns}
+\begin{column}{3.0cm}
+	%--------EQN----------
+	\begin{align*}
+		g(x) = \sum \limits_{n=0}^{\infty} n^2 (x-3)^n \\
+		\\
+		\\
+	\end{align*}
+	%----------------------
+
+	$b_{n} = \ON<2->{\B{n^2}}$ \quad and \quad $c = \ON<3->{\B{3}}$
+
+	\vspace{1.2cm}
+	
+\end{column}
+\begin{column}{4.0cm}
+	%--------EQN----------
+	\begin{align*}
+	h(x) &= \sum \limits_{n=0}^{\infty} (-1)^n \frac{(x+1)^n}{n-1} \\
+	&\ON<5->{\B{\,= \sum \limits_{n=0}^{\infty} \frac{(-1)^n}{n-1}\left(x-(-1)\right)^n}}
+	\end{align*}
+	%----------------------
+
+	\vspace{0.2cm}
+	
+	$b_{n} = \ON<6->{\B{\displaystyle{\frac{(-1)^n}{n - 1}}}}$ \quad and \quad $c = \ON<7->{\B{-1}}$
+
+	\vspace{1.2cm}
+	
+\end{column}
+\begin{column}{3.5cm}
+	%--------EQN----------
+	\begin{align*}
+		g(x) &= \sum \limits_{n=0}^{\infty} \frac{(2x)^n}{n^2} \\
+		&\ON<8->{\B{\, = \sum \limits_{n=0}^{\infty} \frac{2^n x^n}{n^2}}} \ON<9->{\B{\, = \sum \limits_{n=0}^{\infty} \frac{2^n}{n^2}x^n}}
+	\end{align*}
+	%----------------------
+	
+	\vspace{0.2cm}
+	
+	$b_{n} = \ON<10->{\B{\displaystyle{\frac{2^n}{n^2}}}}$ \quad and \quad $c = \ON<11->{\B{0}}$
+
+	\vspace{1.2cm}
+	
+\end{column}
+\end{columns}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{III. Interval and Radius of Convergence }
+\scriptsize
+\vspace{0.1cm}
+\begin{columns}
+\begin{column}{12.0cm}
+	\begin{columns}\fcolorbox{blue}{white}{\begin{column}{10.4cm}
+	% Type the contents of the box here
+	Consider the power series centered at $c$
+	$$
+	f(x) = \sum \limits_{n=0}^{\infty} b_{n}(x-c)^n = b_0 + b_1(x-c) + b_2(x-c)^2 + ... + b_{n} (x-c)^n + ...
+	$$
+	%\vspace{0.2cm}
+	\underline{Interval of Convergence}:
+	The interval that contains the values of $x$ for which $f(x)$ is a convergent infinite series is called the {\bf interval of convergence}.  \\
+	\vspace{0.2cm}
+	\underline{Radius of Convergence}: 
+	Half the width of the interval of convergence.\\
+	\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+	\vspace{0.3cm}
+	\centering
+	There are 3 main forms of the interval of convergence.  They are
+	\vspace{0.2cm}
+	\setlength{\extrarowheight}{0.07cm}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		Interval of Convergence & Number Line & Radius of Convergence \\
+		\hline
+		\multirow{3}{*}{$c$} & \multirow{3}{*}{\includegraphics[scale = 0.125]{\FIGSDIR/9_8_Fig1.png}} & \multirow{3}{*}{0}\\
+		&&\\
+		&&\\
+		\hline
+		\multirow{3}{*}{$(c-R,c+R)$} & \multirow{3}{*}{\includegraphics[scale = 0.125]{\FIGSDIR/9_8_Fig2.png}} & \multirow{3}{*}{R}\\
+		&&\\
+		&&\\
+		\hline
+		\multirow{3}{*}{$(-\infty, \infty)$} & \multirow{3}{*}{\includegraphics[scale = 0.125]{\FIGSDIR/9_8_Fig3.png}} & \multirow{3}{*}{$\infty$}\\
+		&&\\
+		&&\\
+		\hline
+	\end{tabular}
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{IV. Finding the Interval of Convergence }
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	To find the interval of convergence of a power series
+	$$
+	f(x) = \sum \limits_{n=0}^{\infty} b_{n}(x-c)^n
+	$$
+	we go through the following steps:\\
+	\vspace{0.2cm}
+	%-------LIST---------
+	\begin{itemize}
+		\item[1.] Identify \ON<2->{\B{$c$ and $b_{n}$.}}
+		\item[2.] Find the radius of convergence, $R$, using \ON<3->{\B{$\displaystyle{\frac{1}{R} = \lim \limits_{n \to \infty}\, \left|\frac{b_{n+1}}{b_{n}}\right|}$ \quad (ratio test limit)}}
+		\item[] $\circ$ If \,\,\ON<4->{\B{$R = 0$}}\,\, then the interval of convergence is \ON<5->{\B{the single point $c$.}}
+		\item[] $\circ$ If \,\,\ON<6->{\B{$R = \infty$}} \,\,then the interval of convergence is \,\,\ON<7->{\B{$(-\infty,\infty)$.}}
+		\item[] $\circ$ If \,\,\ON<8->{\B{$0 < R < \infty$ (finite)}}\,\, then the interval of convergence is \ON<9->{\B{at least \,\,$(c-R,c+R)$.}} \\
+		\vspace{0.2cm}
+		%-------LIST---------
+		\begin{itemize}
+		\scriptsize
+			\item if $f(c-R)$ converges then we \ON<10->{\B{include the left endpoint of $(c-R,c+R)$}}
+			\vspace{0.1cm}
+			\begin{center}
+				\ON<11->{\B{square bracket $\displaystyle{\rightarrow [c-R,c+R)}$}}
+			\end{center}
+			\vspace{0.1cm}
+			\item if $f(c+R)$ converges then we \ON<12->{\B{include the right endpoint of $(c-R,c+R)$}}
+			\vspace{0.1cm}
+			\begin{center}
+				\ON<13->{\B{$\displaystyle{(c-R,c+R] \leftarrow }$ square bracket}}
+			\end{center}
+			\vspace{0.2cm}
+				\item if both series above converge then we \ON<14->{\B{include both endpoints}}
+				\vspace{0.2cm}
+			\begin{center}
+				\ON<15->{\B{square bracket $\displaystyle{\rightarrow [c-R,c+R] \leftarrow }$ square bracket}}
+			\end{center}
+		\end{itemize}
+		%------------------- 
+	\end{itemize}
+	%-------------------
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{12.0cm}
+Find the interval of convergence of the power series \\
+
+\begin{columns}
+\begin{column}{4.0cm}
+	$\displaystyle{\sum \limits_{n=0}^{\infty} \left(\frac{x}{5}\right)^n \ON<2->{\B{\,= \sum \limits_{n=0}^{\infty} \frac{x^n}{5^n}}}}$
+\end{column}
+\begin{column}{6.5cm}
+	\underline{Step 1}: Identify \quad $c = \ON<3->{\B{0}}$ \quad and \quad $\displaystyle{b_{n} = \ON<4->{\B{\frac{1}{5^n}}}}$ \\
+	\underline{Step 2}: Compute \ON<1->{\B{$\displaystyle{\frac{1}{R} = \lim \limits_{n \to \infty}\, \left|\frac{b_{n+1}}{b_{n}}\right|}$}}\\
+\end{column}
+\end{columns}
+
+%--------EQN----------
+\begin{align*}
+	\frac{1}{R} = \lim \limits_{n \to \infty}\, \left|\frac{b_{n+1}}{b_{n}} \right|	= 
+	\ON<6->{\B{\lim \limits_{n \to \infty}\, \left|\frac{1}{5^{n+1}}\cdot\frac{5^n}{1}\right|}} 
+	\ON<7->{\B{\,= \lim \limits_{n \to \infty}\, \left|\frac{1}{\only<2->{\cancel}{5^{n}}\cdot5}\cdot\frac{\only<2->{\cancel}{5^{n}}}{1}\right|}}
+	\ON<8->{\B{\,= \lim \limits_{n \to \infty}\, \frac{1}{5}}}
+	\ON<9->{\B{\,= \frac{1}{5}}} \hspace{2.0cm}
+\end{align*}
+%----------------------
+So \quad \ON<10->{\B{$\displaystyle{\frac{1}{R} = \frac{1}{5}}$}} \quad and the radius of convergence (RoC) is \quad \ON<11->{\B{$\displaystyle{R = 5}$.}}  \\
+
+\vspace{0.2cm}
+
+Therefore, the interval of convergence (IoC) is at least \ON<12->{\B{$(c-R,c+R) = (-5,5)$}}
+
+\vspace{0.2cm}
+
+Check Left Endpoint: \ON<13->{\B{$x = -5$}} \\
+
+\vspace{0.2cm}
+
+$\displaystyle{\ON<14->{\B{\sum \limits_{n=0}^{\infty} \left(\frac{(-5)}{5}\right)^n}} \ON<15->{\B{\,= \sum \limits_{n=0}^{\infty} \left(-1\right)^n}}}$ \quad 
+\ON<16->{\B{diverges by the GST $\rightarrow |r| = 1 \ge 1$ }}
+
+\vspace{0.3cm}
+
+Check Right Endpoint: \ON<17->{\B{$x = 5$}} \\
+
+\vspace{0.2cm}
+
+$\displaystyle{\ON<18->{\B{\sum \limits_{n=0}^{\infty} \left(\frac{(5)}{5}\right)^n}} \ON<19->{\B{\,= \sum \limits_{n=0}^{\infty} \left(1\right)^n}}}$ \quad 
+\ON<20->{\B{diverges by the GST $\rightarrow |r| = 1 \ge 1$ }}
+
+\vspace{0.3cm}
+
+Therefore, the \fbox{IoC = \ON<21->{\B{$(-5,5)$}}}
+\vspace{10.5cm}
+
+\end{column}
+\begin{column}{0.0cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{12.0cm}
+
+\begin{columns}
+\begin{column}{4.8cm}
+	$\displaystyle{\sum \limits_{n=0}^{\infty} \frac{(-1)^n(x+1)^n}{n} \ON<2->{\B{\,= \sum \limits_{n=0}^{\infty} \frac{(-1)^n}{n}(x+1)^n}}}$\\
+\end{column}
+\begin{column}{6.0cm}
+	\underline{Step 1}: Identify \quad $c = \ON<3->{\B{-1}}$ \quad and \quad $\displaystyle{b_{n} = \ON<4->{\B{\frac{(-1)^n}{n}}}}$ \\
+	\underline{Step 2}: Compute \ON<1->{\B{$\displaystyle{\frac{1}{R} = \lim \limits_{n \to \infty}\, \left|\frac{b_{n+1}}{b_{n}}\right|}$}}\\
+\end{column}
+\end{columns}
+
+%--------EQN----------
+\begin{align*}
+	\frac{1}{R} = \lim \limits_{n \to \infty}\, \left|\frac{b_{n+1}}{b_{n}} \right|	= 
+	\ON<6->{\B{\lim \limits_{n \to \infty}\, \left|\frac{(-1)^{n+1}}{n+1}\cdot\frac{n}{(-1)^n}\right|}}
+	\ON<7->{\B{\, = \lim \limits_{n \to \infty}\, \frac{n}{n+1}}}
+	\ON<8->{\B{\, \overset{LH}{=} \lim \limits_{n \to \infty}\, \frac{1}{1}}} 
+	\ON<9->{\B{\,= 1}} \hspace{2.0cm}
+\end{align*}
+%----------------------
+So \quad \ON<10->{\B{$\displaystyle{\frac{1}{R} = 1}$}} \quad and the radius of convergence (RoC) is \quad \ON<11->{\B{$\displaystyle{R = 1}$.}}  \\
+
+\vspace{0.2cm}
+
+Therefore, the interval of convergence (IoC) is at least \ON<12->{\B{$(c-R,c+R) = (-2,0)$}}
+
+\vspace{0.2cm}
+
+Check Left Endpoint: \ON<13->{\B{$x = -2$}} \\
+
+\vspace{0.2cm}
+
+$\displaystyle{\ON<14->{\B{\sum \limits_{n=0}^{\infty} \frac{(-1)^n((-2)+1)^n}{n}}} \ON<15->{\B{\,= \sum \limits_{n=0}^{\infty} \frac{(-1)^n(-1)^n}{n}}} \ON<16->{\B{\,= \sum \limits_{n=0}^{\infty} \frac{((-1)^n)^2}{n}}} \ON<17->{\B{\,= \sum \limits_{n=0}^{\infty} \frac{1}{n}}} }$ \quad 
+\ON<18->{\B{diverges by the p-test }}
+
+\vspace{0.3cm}
+
+Check Right Endpoint: \ON<19->{\B{$x = 0$}} \\
+
+\vspace{0.2cm}
+
+$\displaystyle{\ON<20->{\B{\sum \limits_{n=0}^{\infty} \frac{(-1)^n((0)+1)^n}{n}}} \ON<21->{\B{\,= \sum \limits_{n=0}^{\infty} \frac{(-1)^n(1)^n}{n}}} \ON<22->{\B{\,= \sum \limits_{n=0}^{\infty} \frac{(-1)^n}{n}}} }$ \quad 
+\ON<23->{\B{ Apply AST $\implies$ let  $a_n = \frac{1}{n}$. }}\\
+\ON<24->{\B{Since \, (i) \, $\displaystyle{\frac{1}{n}}$ is clearly decreasing and}} \ON<25->{\B{(ii) \,$\displaystyle{\lim \limits_{n \to \infty}\, \frac{1}{n} = 0}$}} \ON<26->{\B{, \, then $\displaystyle{\sum \limits_{n=0}^{\infty} \frac{(-1)^n}{n}}$ converges by AST }}
+
+\vspace{0.1cm}
+
+Therefore, the \fbox{IoC = \ON<27->{\B{$(-2,0]$}}}
+\vspace{10.5cm}
+
+\end{column}
+\begin{column}{0.0cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.0cm}
+
+\begin{columns}
+\begin{column}{12.5cm}
+
+\begin{columns}
+\begin{column}{4.0cm}
+	$\displaystyle{\sum \limits_{n=0}^{\infty} \frac{n!(x-3)^n}{3^n}}$
+\end{column}
+\begin{column}{6.0cm}
+	\underline{Step 1}: Identify \quad $c = \ON<2->{\B{3}}$ \quad and \quad $\displaystyle{b_{n} = \ON<3->{\B{\frac{n!}{3^n}}}}$ \\
+	\underline{Step 2}: Compute \ON<1->{\B{$\displaystyle{\frac{1}{R} = \lim \limits_{n \to \infty}\, \left|\frac{b_{n+1}}{b_{n}}\right|}$}}
+\end{column}
+\end{columns}
+
+\vspace{0.4cm}
+
+%--------EQN----------
+\begin{align*}
+	\frac{1}{R} = \lim \limits_{n \to \infty}\, \left|\frac{b_{n+1}}{b_{n}} \right|	= 
+	\ON<5->{\B{\lim \limits_{n \to \infty}\, \left|\frac{(n+1)!}{3^{n+1}}\cdot\frac{3^n}{n!}\right|}} 
+	\ON<6->{\B{\,= \lim \limits_{n \to \infty}\, \left|\frac{(n+1)\only<7->{\cancel}{n!}}{\only<7->{\cancel}{3^{n}}\cdot3^{1}}\cdot\frac{\only<7->{\cancel}{3^{n}}}{\only<7->{\cancel}{n!}}\right|}} 
+	\ON<8->{\B{\,= \lim \limits_{n \to \infty}\, \frac{n+1}{3}}}
+	\ON<9->{\B{\,= \infty}}
+\end{align*}
+%----------------------
+
+\vspace{0.2cm}
+
+So \quad \ON<10->{\B{$\displaystyle{\frac{1}{R} = \infty}$}} \quad and the radius of convergence (RoC) is \quad \ON<11->{\B{$\displaystyle{R = 0}$.}}
+
+\vspace{0.4cm}
+
+Therefore, \fbox{IoC = \ON<12->{\B{$c = 3$}}}
+
+\vspace{5.2cm}
+
+\end{column}
+\begin{column}{0.0cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{12.0cm}
+
+\begin{columns}
+\begin{column}{4.0cm}
+	$\displaystyle{\sum \limits_{n=0}^{\infty} \frac{x^n}{(2n)!}}$
+\end{column}
+\begin{column}{6.5cm}
+	\underline{Step 1}: Identify \quad $c = \ON<2->{\B{0}}$ \quad and \quad $\displaystyle{b_{n} = \ON<3->{\B{\frac{1}{(2n)!}}}}$ \\
+	\underline{Step 2}: Compute \ON<4->{\B{$\displaystyle{\frac{1}{R} = \lim \limits_{n \to \infty}\, \left|\frac{b_{n+1}}{b_{n}}\right|}$}}\\
+\end{column}
+\end{columns}
+
+\vspace{0.2cm}
+
+%--------EQN----------
+\begin{align*}
+	\frac{1}{R} = \lim \limits_{n \to \infty}\, \left|\frac{b_{n+1}}{b_{n}} \right|	&\,=
+	\ON<5->{\B{\lim \limits_{n \to \infty}\, \left|\frac{1}{(2(n+1))!}\cdot\frac{(2n)!}{1}\right|}}
+	\ON<6->{\B{\, =\lim \limits_{n \to \infty}\, \left|\frac{1}{(2n+2)!}\cdot\frac{(2n)!}{1}\right|}} \\
+	&\,\ON<7->{\B{\, =\lim \limits_{n \to \infty}\, \left|\frac{1}{(2n+2)(2n+1)\only<8->{\cancel}{(2n)!}}\cdot\frac{\only<8->{\cancel}{(2n)!}}{1}\right|}}
+	\ON<9->{\B{\, =\lim \limits_{n \to \infty}\,\frac{1}{(2n+2)(2n+1)}}} 
+	\ON<10->{\B{\,= 0}}
+\end{align*}
+%----------------------
+
+\vspace{0.2cm}
+
+So \quad \ON<11->{\B{$\displaystyle{\frac{1}{R} = 0}$}} \quad and the radius of convergence (RoC) is \quad \ON<12->{\B{$\displaystyle{R = \infty}$.}}  \\
+
+\vspace{0.4cm}
+
+Therefore, \fbox{IoC = \ON<13->{\B{$(-\infty,\infty)$}}}
+
+\vspace{5.5cm}
+
+\end{column}
+\begin{column}{0.0cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{V. Taylor Series \& Maclaurin Series }
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+\vspace{0.2cm}
+
+We now consider the following idea: 
+
+\begin{center}
+	{\em Some functions can be approximated by special polynomials} \\
+	\vspace{0.2cm}
+	$\D{f(x)\approx p_K(x)}$ \quad ({\em $K$ is the degree of the polynomial})
+\end{center}
+where the bigger the $K$, the better the approximation.  In fact,
+\begin{center}
+	$\D{f(x) = \lim \limits_{K \to \infty}\,p_K(x)}$	
+\end{center}
+we call this $p_K(x)$ the Taylor Polynomial of degree $K$ \\
+
+\vspace{0.2cm}
+
+%\begin{columns}\fcolorbox{blue}{white}{\begin{column}{10.4cm}
+%% Type the contents of the box here
+%The {\bf Taylor series for ${\bf f(x)}$ at c} is defined as
+%$$
+%\sum \limits_{n=0}^{\infty} \frac{f^{(n)}(c)}{n!}(x-c)^n = f(c) + f'(c)(x-c) + \frac{f''(c)}{2}(x-c)^2 + \frac{f^{(3)}(c)}{3!}(x-c)^3 + ...
+%$$
+%If $c=0$, then we call this series a {\bf Maclaurin series for ${\bf f(x)}$}
+%\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+%
+%\vspace{0.8cm}
+%
+%When discussing finite sum versions of the above, we defined the following
+%
+%\vspace{0.2cm}
+
+\begin{columns}\fcolorbox{blue}{white}{\begin{column}{10.4cm}
+% Type the contents of the box here
+The {\bf Taylor series for ${\bf f(x)}$ at c of degree K} is defined as
+$$
+f(x) \approx \only<2->{\B}{f(c)} + \only<2->{\B}{f'(c)}(x-c) + \frac{\only<2->{\B}{f''(c)}}{2}(x-c)^2 + ... + \frac{\only<2->{\B}{f^{(K)}(c)}}{K!}(x-c)^K
+$$
+If $c=0$, then we call this series a {\bf Maclaurin series for ${\bf f(x)}$ of degree K}
+\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+
+\vspace{0.2cm}
+
+So computing Taylor polnomials amounts to finding:\quad \only<2->{\B}{$f(c),\, f'(c), \, f''(c),\, ...,\, f^{(K)}(c)$}\quad. \\
+
+\vspace{2.2cm}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+%%\begin{frame}
+%\frametitle{V. Taylor Series \& Maclaurin Series }
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%\vspace{0.2cm}
+%
+%There is a very important power series known as a Taylor Series.
+%
+%\vspace{0.2cm}
+%
+%\begin{columns}\fcolorbox{blue}{white}{\begin{column}{10.4cm}
+%% Type the contents of the box here
+%The {\bf Taylor series for ${\bf f(x)}$ at c} is defined as
+%$$
+%\sum \limits_{n=0}^{\infty} \frac{f^{(n)}(c)}{n!}(x-c)^n = f(c) + f'(c)(x-c) + \frac{f''(c)}{2}(x-c)^2 + \frac{f^{(3)}(c)}{3!}(x-c)^3 + ...
+%$$
+%If $c=0$, then we call this series a {\bf Maclaurin series for ${\bf f(x)}$}
+%\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+%
+%\vspace{0.8cm}
+%
+%When discussing finite sum versions of the above, we defined the following
+%
+%\vspace{0.2cm}
+%
+%\begin{columns}\fcolorbox{blue}{white}{\begin{column}{10.4cm}
+%% Type the contents of the box here
+%The {\bf Taylor series for ${\bf f(x)}$ at c of degree K} is defined as
+%$$
+%\sum \limits_{n=0}^{K} \frac{\only<2->{\B}{f^{(n)}(c)}}{n!}(x-c)^n = \only<2->{\B}{f(c)} + \only<2->{\B}{f'(c)}(x-c) + \frac{\only<2->{\B}{f''(c)}}{2}(x-c)^2 + ... + \frac{\only<2->{\B}{f^{(K)}(c)}}{K!}(x-c)^K
+%$$
+%If $c=0$, then we call this series a {\bf Maclaurin series for ${\bf f(x)}$ of degree K}
+%\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+%
+%\vspace{0.2cm}
+%
+%To compute Taylor series we need to find:\quad \only<2->{\B}{$f(c),\, f'(c), \, f''(c),\, ...,\, f^{(K)}(c)$}\quad and plug these into the above formula.
+%\vspace{2.2cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{12.0cm}
+For \quad $\displaystyle{f(x) = e^{-2x}}$ \quad find \\
+
+(i) the Taylor series of degree 3 centered at c = 1; \\
+\vspace{0.02cm}
+(ii) the Maclaurin series of degree 3. \\
+
+\vspace{0.1cm}
+
+Strategy for (i):\\
+\vspace{0.05cm}
+%-------LIST---------
+\begin{itemize}
+	\item compute \, \ON<2->{\B{$f(1), \, f'(1), \, f''(1), \, f'''(1)$}}
+	\item plug into \ON<3->{\B{\quad $\displaystyle{f(1) + f'(1)(x-1) + \frac{f''(1)}{2}(x-1)^2 + \frac{f'''(1)}{6}(x-1)^3}$}}
+\end{itemize}
+%-------------------
+	\setlength{\extrarowheight}{0.2cm}
+	\begin{tabular}{p{0.3cm}lclcl}
+		&$\displaystyle{f(x) = 
+		\ON<4->{\B{e^{-2x}}}}$ & 
+		\ON<5->{\B{$\implies$}} & 
+		\ON<5->{\B{$\displaystyle{f(1) = e^{-2}}$}} & 
+		\ON<15->{\B{\&}} & 
+		\ON<15->{\B{$\displaystyle{f(0) = 1}$}} \\
+		&$\displaystyle{f'(x) = 
+		\ON<6->{\B{-2e^{-2x}}}}$ & 
+		\ON<7->{\B{$\implies$}} & 
+		\ON<7->{\B{$\displaystyle{f'(1) = -2e^{-2}}$}} & 
+		\ON<16->{\B{\&}} & 
+		\ON<16->{\B{$\displaystyle{f'(0) = -2}$}} \\
+		&$\displaystyle{f''(x) = 
+		\ON<8->{\B{-2(-2)e^{-2x} = 4e^{-2x}}}}$ & 
+		\ON<9->{\B{$\implies$}} & 
+		\ON<9->{\B{$\displaystyle{f''(1) = 4e^{-2}}$}} & 
+		\ON<17->{\B{\&}} & 
+		\ON<17->{\B{$\displaystyle{f''(0) = 4}$}} \\
+		&$\displaystyle{f'''(x) = 
+		\ON<10->{\B{4(-2)e^{-2x} = -8e^{-2x}}}}$ & 
+		\ON<11->{\B{$\implies$}} & 
+		\ON<11->{\B{$\displaystyle{f'''(1) = -8e^{-2}}$}} & 
+		\ON<18->{\B{\&}} & 
+		\ON<18->{\B{$\displaystyle{f''(0) = -8}$}}
+	\end{tabular}
+
+\vspace{0.1cm}
+
+So the 3rd degree Taylor series is \ON<12->{\B{\fbox {\quad $\displaystyle{e^{-2} - 2e^{-2}(x-1) + \frac{4e^{-2}}{2}(x-1)^2 - \frac{8e^{-2}}{6}(x-1)^3}$ \quad }}} \\
+
+\vspace{0.15cm}
+Strategy for (ii):\\
+\vspace{0.05cm} 
+%-------LIST---------
+\begin{itemize}
+	\item compute \, \ON<13->{\B{$f(0), \, f'(0), \, f''(0), \, f'''(0)$}}
+	\item plug into \ON<14->{\B{\quad $\displaystyle{f(0) + f'(0)x + \frac{f''(0)}{2}x^2 + \frac{f'''(0)}{6}x^3}$}}
+\end{itemize}
+%-------------------
+
+So the 3rd degree Maclaurin series is \ON<19->{\B{\fbox{\quad $\displaystyle{1 - 2x + \frac{4}{2}x^2 - \frac{8}{6}x^3}$ \quad}}} \\
+
+\vspace{3.2cm}
+
+\end{column}
+\begin{column}{0.0cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{12.0cm}
+For \quad $\displaystyle{f(x) = \sin x}$ \quad find the Taylor series of degree 2 centered at $c = \frac{\pi}{4}$; \\
+
+\vspace{0.1cm}
+
+Strategy:\\
+\vspace{0.05cm}
+%-------LIST---------
+\begin{itemize}
+	\item compute \, \ON<2->{\B{$f\left(\frac{\pi}{4}\right), \, f'\left(\frac{\pi}{4}\right), \, f''\left(\frac{\pi}{4}\right)$}}
+	\item plug into \ON<3->{\B{\quad $\displaystyle{f\left(\frac{\pi}{4}\right) + f'\left(\frac{\pi}{4}\right)\left(x-\frac{\pi}{4}\right) + \frac{f''\left(\frac{\pi}{4}\right)}{2}\left(x-\frac{\pi}{4}\right)^2}$}}
+\end{itemize}
+%-------------------
+	\setlength{\extrarowheight}{0.4cm}
+	\begin{tabular}{p{0.3cm}lcl}
+		&$\displaystyle{f(x) = \ON<4->{\B{\sin x}}}$ & 
+		\ON<5->{\B{$\implies$}} & 
+		\ON<5->{\B{$\displaystyle{f\left(\frac{\pi}{4}\right) = \sin \left(\frac{\pi}{4}\right) = \frac{\sqrt{2}}{2}}$}}\\
+		&$\displaystyle{f'(x) = 
+		\ON<6->{\B{\cos x}}}$ & 
+		\ON<7->{\B{$\implies$}} & 
+		\ON<7->{\B{$\displaystyle{f'\left(\frac{\pi}{4}\right) = \cos\left(\frac{\pi}{4}\right) = \frac{\sqrt{2}}{2}}$}} \\
+		&$\displaystyle{f''(x) = 
+		\ON<8->{\B{-\sin x}}}$ & 
+		\ON<9->{\B{$\implies$}} & 
+		\ON<9->{\B{$\displaystyle{f''\left(\frac{\pi}{4}\right) = - \frac{\sqrt{2}}{2}}$}}
+	\end{tabular}
+
+\vspace{0.5cm}
+
+So the 2nd degree Taylor series at $\frac{\pi}{4}$ is \quad \ON<10->{\B{\fbox {\quad $\displaystyle{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(x-\frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(x-\frac{\pi}{4}\right)^2}$ \quad }}} \\
+
+\vspace{3.2cm}
+
+\end{column}
+\begin{column}{0.0cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{VI. Finding Taylor series from other series }
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+	On your formula sheets you will find a list of Maclaurin Series such as:
+	%--------EQN----------
+	\begin{align*}
+		e^x &\,= 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + ... \\
+		\sin x &\,= x - \frac{x^3}{3!} + \frac{x^5}{5!} - ... \\
+		\cos x &\,= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - ... 
+	\end{align*}
+	%----------------------
+	
+	\vspace{0.4cm}
+	
+	We can use these to find the Maclaurin series of other functions such as:
+    %--------EQN----------
+	\begin{align*}
+		e^{x^2} &\,= 1 + (\,\ON<2->{\B{x^2}}\,) + \frac{(\,\ON<2->{\B{x^2}}\,)^2}{2!} + \frac{(\,\ON<2->{\B{x^2}}\,)^3}{3!} + ... = \ON<3->{\B{ 1 + x^2 + \frac{x^4}{2!} + \frac{x^6}{3!} + ... }}\\
+		\sin (-2x) &\,= (\,\ON<4->{\B{-2x}}\,) - \frac{(\,\ON<4->{\B{-2x}}\,)^3}{3!} + \frac{(\,\ON<4->{\B{-2x}}\,)^5}{5!} - ... = \ON<5->{\B{ -2x + \frac{8x^3}{3!} - \frac{32x^5}{5!} - ...}} \\
+		\cos (\sqrt{x}) &\,= 1 - \frac{(\,\ON<6->{\B{\sqrt{x}}}\,)^2}{2!} + \frac{(\,\ON<6->{\B{\sqrt{x}}}\,)^4}{4!} - ... = \ON<7->{\B{ 1 - \frac{x}{2!} + \frac{x^2}{4!} - ...}} \qquad (x\ge0)\\
+	\end{align*}
+	%----------------------
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}

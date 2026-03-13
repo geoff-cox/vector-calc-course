@@ -1,0 +1,543 @@
+%!TEX root = ../AdvMathLecture.tex
+%
+% Section 10.9: Stoke's Theorem
+% 
+
+%%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\begin{frame}
+%\frametitle{\Large {\color[rgb]{0.02,0.20,1.0} \UL{Stokes' Theorem}}}
+%\scriptsize
+%
+%\vspace{0.2cm}
+%
+%\begin{block}{Key Concepts:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Stokes' Theorem
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%\vspace{1.6cm}
+%
+%\begin{block}{Standard Mathematical Tools:}
+%%-------LIST---------
+%\begin{itemize}
+%	\item[...] Computing Line Integrals over closed curves using Stokes' Theorem
+%\end{itemize}
+%%-------------------
+%\end{block}
+%
+%%\vspace{3.0cm}
+%\end{frame}
+
+\begin{frame}
+\frametitle{Topic: Stokes' Theorem}
+\begin{columns}\begin{column}{12.0cm}
+\UL{I. Stokes' Theorem}
+\scriptsize
+
+\vspace{0.2cm}
+
+{\setlength{\extrarowheight}{-0.2cm}
+\begin{tabular}{|p{0.4cm}p{10.6cm}|}
+	\hline
+	\hline
+	&\\
+	\THM & Let $S$ be a surface with boundary $C$ and ${\bf F}(x,y,z)$ be a vector-valued function defined on $S$.  Then\\
+	&\\
+	\multicolumn{2}{|c|}{
+	$\D{\oint \limits_{C} {\bf F} \cdot d{\bf r} = 
+	\ON<2->{\B{\iint \limits_{S}(\text{curl}\,{\bf F}) \cdot {\bf n} \, dA = \,}}
+	\ON<3->{\B{\iint \limits_{S} \nabla \times {\bf F} \cdot {\bf n} \, dA}}}$}\\
+	&\\
+	\hline
+	\hline
+\end{tabular}}
+\begin{center}
+	\includegraphics[scale = 0.2]{\FIGSDIR/10_9_Fig1.png} \hspace{1.0cm} \includegraphics[scale = 0.2]{\FIGSDIR/10_9_Fig2.png}
+\end{center}
+Note that Green's Theorem is a special case of Stokes' theorem when $S$ is a plane region $R$. In this case, $\, {\bf n}$ is just \,\, \ON<4->{\B{${\bf k}=[0,0,1]$}} \,\, and
+\begin{center}
+	$\D{\OWORK = 
+	\ON<5->{\B{\iint \limits_{S}(\text{curl}\,{\bf F}) \cdot {\bf n} \, dA =\,}}
+	\ON<6->{\B{\GINT = \,}}
+	\ON<7->{\B{\GREENSA}}}$
+\end{center}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+
+%%\begin{frame}
+%\begin{columns}\begin{column}{12.0cm}
+%\UL{II. Additional Concepts}
+%\scriptsize
+%
+%\vspace{0.2cm}
+%
+%An interesting consequence of Stokes' Theorem is  
+%
+%\vspace{0.2cm}
+%
+%For any 2 surfaces, $S_1$ and $S_2$, that share the same boundary, $C$ we must have:
+%
+%\vspace{0.2cm}
+%
+%\begin{center}
+%	$\D{\ON<2->{\B{\iint \limits_{S_1}(\text{curl}\,{\bf F}) \cdot {\bf n} \, dA = \iint \limits_{S_2}(\text{curl}\,{\bf F}) \cdot {\bf n} \, dA}}}$
+%\end{center}
+%
+%\vspace{0.2cm}
+%
+%So these surface integrals only depend on \ON<3->{\B{the boundary!}}
+%
+%\vspace{8.2cm}
+%
+%\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+%\end{frame}
+
+%%\begin{frame}
+%\frametitle{III. Summary of Computing Line Integrals}
+%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%To compute a line integral \quad $\D{\oint \limits_{C} {\bf F} \cdot d{\bf r}}$ \quad where $C$ is a {\em closed curve} $C$, 
+%
+%\vspace{0.4cm}
+%
+%we could use the following guideline:
+%
+%\vspace{0.4cm}
+%
+%$\circ$ \quad {\bf Step 1}: \quad 
+%\ON<2->{\B{Compute curl\,{${\bf F}$}}}
+%
+%\vspace{0.2cm}
+%
+%\hspace{0.8cm} - \, if \, 
+%\ON<3->{\B{curl\,{${\bf F} = 0$}}} \quad then \quad $\oint \limits_{C} {\bf F} \cdot d{\bf r} = 
+%\ON<4->{\B{0}}$
+%
+%\vspace{0.2cm}
+%
+%\hspace{0.8cm} - \, if \, 
+%\ON<5->{\B{curl\,{${\bf F} \ne 0$}}} \,\, then compute \,\, $\oint \limits_{C} {\bf F} \cdot d{\bf r}$ \,\, either \,
+%$\left\{
+%\begin{array}{l}
+%	\ON<6->{\B{\text{directly}}}\\
+%	\ON<7->{\B{\text{using Green's Thm ($S$ a plane)}}}\\
+%	\ON<8->{\B{\text{using Stokes' Thm ($S$ not a plane)}}}
+%\end{array}
+%\right.$
+%
+%\vspace{0.6cm}
+%
+%$\circ$ \quad {\bf Step 2}: Assuming curl\,{${\bf F} \ne 0$}, decide how to compute \, $\oint \limits_{C} {\bf F} \cdot d{\bf r}$
+%
+%\begin{columns}
+%\begin{column}{0.2cm}
+%\end{column}
+%\begin{column}{2.2cm}
+%	i. Directly:
+%	
+%	\vspace{1.2cm}
+%\end{column}
+%\begin{column}{9.0cm}
+%	%-------LIST---------
+%\begin{itemize}
+%	\item \ON<9->{\B{Parameterize $C$ to find ${\bf r}(t)$ for $t$ on $[a,b]$}}
+%	\vspace{0.2cm}
+%	\item \ON<10->{\B{Compute ${\bf F}({\bf r}(t))$ and ${\bf r}'(t)$}}
+%	\vspace{0.2cm}
+%	\item \ON<11->{\B{Evaluate $\oint \limits_{C} {\bf F} \cdot d{\bf r}$}}
+%\end{itemize}
+%%-------------------
+%\end{column}
+%\end{columns}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%
+%\begin{columns}
+%\begin{column}{0.2cm}
+%\end{column}
+%\begin{column}{2.2cm}
+%	ii. Green's Thm:
+%	
+%	\vspace{1.6cm}
+%\end{column}
+%\begin{column}{9.0cm}
+%	%-------LIST---------
+%\begin{itemize}
+%	\item Find \, 
+%	\ON<2->{\B{$\frac{\PP F_2}{\PP x}$}} \, and \, 
+%	\ON<3->{\B{$\frac{\PP F_1}{\PP y}$}}
+%	\vspace{0.2cm}
+%	\item Determine 
+%	\ON<4->{\B{R (in the $x,y$-plane)}}
+%	\vspace{0.2cm}
+%	\item Setup and evaluate 
+%	\ON<5->{\B{$\iint \limits_{R} \left(\frac{\PP F_2}{\PP x} - \frac{\PP F_1}{\PP y}\right)\, dxdy$}}
+%\end{itemize}
+%%-------------------
+%\end{column}
+%\end{columns}
+%
+%\vspace{0.8cm}
+%
+%\begin{columns}
+%\begin{column}{0.2cm}
+%\end{column}
+%\begin{column}{2.1cm}
+%	iii. Stokes' Thm:
+%	
+%	\vspace{3.2cm}
+%\end{column}
+%\begin{column}{9.0cm}
+%	%-------LIST---------
+%\begin{itemize}
+%	\item Collect \, 
+%	\ON<6->{\B{curl\,{${\bf F} = 0$} \, found in Step 1}}
+%	\vspace{0.2cm}
+%	\item $\left\{
+%	\begin{array}{l}
+%		 \text{If $S$ is a plane,  
+%		 \ON<7->{\B{don't parameterize $S$ (i.e. don't find ${\bf r}$)}}} \\
+%		 \text{If $S$ is a not a plane, 
+%		 \ON<8->{\B{parameterize (i.e. find ${\bf r}$)}}}
+%	\end{array}\right.$
+%	\vspace{0.2cm}
+%	\item $\left\{
+%	\begin{array}{l}
+%		 \text{If $S$ is a plane, 
+%		 \ON<9->{\B{determine ${\bf n}$ (should be clear by observation)}}} \\
+%		 \text{If $S$ is a not a plane, 
+%		 \ON<10->{\B{compute ${\bf N} = {\bf r}_u \times {\bf r}_v$}}}
+%	\end{array}\right.$
+%	\vspace{0.2cm}
+%	\item $\left\{
+%	\begin{array}{l}
+%		 \text{If $S$ is a plane, 
+%		 \ON<11->{\B{evaluate $\iint \limits_{S} \text{curl}\,{\bf F} \cdot {\bf n} \, dA$}}} \\
+%		 \text{If $S$ is a not a plane, 
+%		 \ON<12->{\B{evaluate $\iint \limits_{S} \text{curl}\,{\bf F} \cdot {\bf N} \, dxdy$}}}
+%	\end{array}\right.$
+%\end{itemize}
+%%-------------------
+%\end{column}
+%\end{columns}
+%
+%\vspace{6.2cm}
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+%%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%\EX Let ${\bf F} = [y,z,x]$ \, and the surface $S$ be given by \,$\D{z = 1 - x^2 - y^2}$ for $z\ge0$.  If $C$ is the boundary curve of $S$ then compute $\WORK$ \quad (i) directly, and (ii) using Stokes' theorem.
+%
+%\vspace{0.2cm}
+%
+%$\D{\text{curl}\, {\bf F} = [0,0,9]}$
+%
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+%
+%%\begin{frame}
+%%\scriptsize
+%\begin{columns}
+%\begin{column}{12.0cm}
+%	
+%\end{column}
+%\begin{column}{0.0cm}\end{column}
+%\end{columns}
+%\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+
+\EX ${\bf F} = [-5y,4x,z]$, and $C$ is the circle $x^2 + y^2 = 16$, $z=4$. \quad Find $\D{\OWORK}$
+
+\vspace{0.4cm}
+
+Note:
+$\D{
+\text{curl}\, {\bf F} =
+\ON<2->{\B{\, [0,0,9]}}}$ \quad and $\D{{\bf n} = 
+\ON<3->{\B{\,[0,0,1]}}}$
+
+\vspace{0.4cm}
+
+So 
+\ON<4->{\B{ by Stokes' Theorem and the fact $S$ is a circle}}
+
+\vspace{0.4cm}
+
+$\D{\OWORK = 
+\ON<5->{\B{\,\STOKECURL}}
+\ON<6->{\B{\, = \iint \limits_{S} 9\, dA}}
+\ON<7->{\B{\, = 9 \cdot Area(S)}}
+\ON<8->{\B{\, = 9 (\pi \cdot 4^2) = 144 \pi}}}$
+
+\vspace{9.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+
+
+Let $\D{{\bf F} = [4yz\,,\,6z-3xy\,,\, x]}$. Compute $\D{\OWORK}$ for each of the following curves:
+%-------NUM LIST---------
+\begin{enumerate}
+	\item[a.] $C$ is the union of the straight paths from $(0,0,0)$ to $(0,0,5)$ to $(0,3,5)$ and back to $(0,0,0)$
+	
+	\vspace{0.2cm}
+	
+	\item[b.] $C$ is the union of the straight paths from $(0,0,5)$ to $(2,0,0)$ to $(0,5,0)$ and back to $(0,0,5)$
+			
+\end{enumerate}
+%------------------------
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{5.8cm}
+\vspace{0.2cm}
+
+	\ON<3->{\B{curl ${\bf F} = [-6,\, 4y-1\,, \,-3y-4z]$ \, \& \, ${\bf n} = [-1,0,0]$}}
+	
+	\vspace{0.3cm}
+	
+	\ON<4->{\B{$\D{\implies \quad  \text{curl} \,{\bf F} \cdot {\bf n} = 6}$}}
+	
+	\vspace{0.6cm}
+	
+	$\D{\OWORK = 
+\ON<5->{\B{\,\STOKECURL}}}$
+
+\vspace{0.2cm}
+
+\hspace{0.9cm} 
+\ON<6->{\B{\, $\D{= \iint \limits_{S} 6\, dA}$}}
+
+\vspace{0.2cm}
+
+\hspace{0.9cm} 
+\ON<7->{\B{\, $\D{= 6 \cdot Area(S)}$}} 
+
+\vspace{0.2cm}
+
+\hspace{0.9cm} 
+\ON<8->{\B{\, $\D{= 6 \left[\frac{1}{2}(5)(3)\right] = 45}$}}
+
+\end{column}
+\begin{column}{5.0cm}
+	\only<1>{\B{\includegraphics[scale = 0.22]{\FIGSDIR/10_8_Fig4.png}}}
+	\only<2->{\B{\includegraphics[scale = 0.22]{\FIGSDIR/10_8_Fig1.png}}}
+\end{column}
+\end{columns}
+
+\vspace{2.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\scriptsize
+\begin{columns}\begin{column}{12.0cm}
+
+	\ON<3->{\B{curl ${\bf F} = [-6,\, 4y-1\,, \,-3y-4z]$ \, \& \, ${\bf n} = \, ?$}}
+	
+	\vspace{0.2cm}
+
+Need the Eqn of the plane which passes through: $(2,0,0), (0,5,0), (0,0,5)$	
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{6.5cm}
+General Form: $ax+by+cz=d$
+
+\vspace{0.2cm}
+
+By observation of where the plane intersects with each axis, we can determine that the \ON<4->{\B{equation of the plane must be $5x + 2y + 2z = 10$}}
+	
+%\begin{tabular}{p{0.06cm}p{0.25cm}p{0.25cm}p{0.45cm}}
+%	$a(2)$ & $+b(0)$ & $+c(0)$ & $=d$\\
+%	$a(0)$ & $+b(5)$ & $+c(0)$ & $=d$\\
+%	$a(0)$ & $+b(0)$ & $+c(5)$ & $=d$\\
+%\end{tabular}
+%$\implies$
+%\begin{tabular}{r}
+%	$2a=d$\\
+%	$5b=d$\\
+%	$5c=d$\\
+%\end{tabular}
+%\, $(\infty \, many \, solutions)$
+%
+%\vspace{0.2cm}
+%
+%let $a=5 \, \implies \, d = 10 \, \implies \, b,c = 2 $
+
+%\vspace{0.2cm}
+%
+%\ON<4->{\B{So the eqn of the plane is $5x + 2y + 2z = 10$}}
+
+	\vspace{0.3cm}
+	
+	\ON<5->{\B{Setting $u=x$ and $v=y$ we have:}}
+	
+	\vspace{0.3cm}
+	
+	\ON<6->{\B{$\D{{\bf r}(u,v)	= [u,v,5-\frac{5}{2}u-v]}$}}
+	
+	\vspace{0.3cm}
+	
+	\ON<7->{\B{${\bf N} = [5,2,2]$ \,\, (coefficients of the plane eqn)}}
+	
+	\vspace{0.3cm}
+	
+	$  
+	\begin{array}{rl}
+		\ON<8->{\B{\implies \,\, \text{curl}({\bf F})\cdot{\bf N}}} & 
+		\ON<9->{\B{= -30+8y-2-6y-8z }} \\
+		&\ON<10->{\B{= -32 + 2y - 8z}}\\
+		&\ON<11->{\B{= -32 + 2v - 8\left(5-\frac{5}{2}u-v\right)}}\\
+		&\ON<12->{\B{= -72 + 20u + 10v}}\\
+	\end{array}
+	$
+
+\end{column}
+\begin{column}{4.3cm}
+	\only<1>{\B{\includegraphics[scale = 0.2]{\FIGSDIR/10_8_Fig4.png}}}
+	\only<2->{\B{\includegraphics[scale = 0.2]{\FIGSDIR/10_8_Fig2.png}}}
+\end{column}
+\end{columns}
+
+$
+\begin{array}{rl}
+	\OWORK = 
+	\ON<13->{\B{\,\STOKECURL}}
+	\ON<14->{\B{\, = \D{\iint \limits_{R} \text{curl} \,{\bf F} \cdot {\bf N}\, dudv}}} & 
+%	\ON<14->{\B{\, = \D{\iint \limits_{R} \,-32 + 2y - 8z\, dudv}}} \\
+%	& 
+%	\ON<14->{\B{\, = \D{\iint \limits_{R} \text{curl} \,-32 + 2v - 8\left(5-\frac{5}{2}u-v\right)\, dudv}}} \\
+%	&
+	\ON<15->{\B{\, = \D{\int \limits_{0}^{2} \int \limits_{0}^{-\frac{5}{2}u+5} -72 + 20u + 10v\, dudv}}}\\
+\end{array}
+$
+
+\vspace{1.2cm}
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+
+\EX ${\bf F} = [-y,2z,0]$, $C$ is the boundary of side of the cylinder $y^2+z^2=4$, \, with $z \ge 0$,  \, $0 \le x \le 3$ and oriented outward.  \,\, Graph the surface and use Stokes' thm to compute \,\, $\WORK$.
+
+\begin{columns}
+\begin{column}{5.0cm}
+	
+	curl ${\bf F} = 
+	\ON<3->{\B{[-2,0,1]}}$ \quad \& \quad ${\bf n} = \, 
+	\ON<4->{\B{?}}$
+	
+	\vspace{0.2cm}
+	Using \ON<5->{\B{\quad polar\quad }} coordinates
+	%--------TABLE---------
+	\setlength{\extrarowheight}{0.15cm}
+	$\begin{array}{lcl}
+		x = 
+		\ON<6->{\B{\, x}} & & \\
+		%\ON<11->{\B{x = u\cos v}} & & \\
+		y = 
+		\ON<6->{\B{\, 2\cos \theta}} & 
+		\ON<7->{\B{\US{v = \theta}{\OS{u = x}{\, \implies \, }}}} & 
+		%\ON<11->{\B{y = u\sin v}} & 
+		%&\ON<12->{\B{\implies}} & 
+		\ON<8->{\B{{\bf r}(u,v) = \left[u,2\cos v,2\sin v\right]}} \\
+		z = 
+		\ON<6->{\B{\, 2\sin \theta }} & & 
+		%\ON<11->{\B{z = u }} & & 
+		\ON<9->{\B{0 \le u \le 3, \,\, 0 \le v \le \pi}}\\
+	\end{array}$
+	
+	\vspace{0.2cm}
+	
+	%--------TABLE---------
+	\setlength{\extrarowheight}{0.15cm}
+	$\begin{array}{lcl}
+		{\bf r}_u = 
+		\ON<10->{\B{[1,0,0]}} && \\
+		{\bf r}_v = 
+		\ON<11->{\B{[0,-2\sin v,2\cos v]}} && \\
+		{\bf N} = 
+		\ON<12->{\B{[0,-2\cos v,-2\sin v]}} && \\
+	\end{array}$
+	\vspace{0.2cm}
+	
+	Note: 
+	\ON<13->{\B{With this parameterization, our orientation is reversed. }}
+	
+	\vspace{0.2cm}
+
+	$\implies \,\,{\bf N} = 
+	\ON<14->{\B{\,\,[0,2\cos v,2\sin v]}}$
+
+\end{column}
+\begin{column}{5.0cm}
+	\only<1>{\B{\includegraphics[scale = 0.22]{\FIGSDIR/10_8_Fig5.png}}}
+	\only<2->{\B{\includegraphics[scale = 0.22]{\FIGSDIR/10_8_Fig3.png}}}
+\end{column}
+\end{columns}
+
+\vspace{0.2cm}
+
+%--------TABLE---------
+	\setlength{\extrarowheight}{0.05cm}
+	$\begin{array}{lcl}
+		\,\,\, \implies \,\, \text{curl} \, {\bf F} \cdot {\bf N} = 
+		\ON<15->{\B{\,\, 2\sin v}} &&
+	\end{array}$
+	%--------EQN----------
+	\begin{align*}
+	\OWORK = \,\STOKECURL
+		\ON<16->{\B{\,\, = \iint \limits_{R} \text{curl} \,{\bf F} \cdot {\bf N}\, dudv}}
+		&\ON<17->{\B{\,\, = \int \limits_{0}^{\pi} \int \limits_{0}^{3} 2\sin v\, dudv}}
+		\ON<18->{\B{\,\, = 12}} \hspace{1.0cm}\\
+		%&\ON<16->{\B{\, = \int \limits_{0}^{2} \left. -112v + 45uv + 9v^2 \right|_{0}^{-\frac{5}{2}u+5}\, dudv}}\\
+	\end{align*}
+	%----------------------
+	
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}\begin{column}{12.0cm}
+\scriptsize
+
+
+\end{column}\begin{column}{0.0cm}\end{column}\end{columns}
+\end{frame}

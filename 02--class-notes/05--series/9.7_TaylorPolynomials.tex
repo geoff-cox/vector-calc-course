@@ -1,0 +1,285 @@
+%
+% Section 9.7_TaylorPolynomials
+%
+
+%~~~~~~~~~~~~~~~~~~~~~~   []   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{frame}
+\frametitle{\LARGE {\color[rgb]{0.02,0.20,1.0} Section 9.7 : Taylor Polynomials}}
+\scriptsize
+\vspace{0.8cm}
+\begin{block}{Homework Problems:}
+
+\vspace{0.2cm}
+\centering
+WebWork
+	
+\end{block}
+\vspace{0.5cm}
+
+\begin{block}{Section Example Problems to Read:}
+
+\vspace{0.2cm}
+\centering
+1-7
+\end{block}
+\vspace{0.3cm}
+
+\begin{block}{This section will enable you to ...}
+%-------LIST---------
+\begin{itemize}
+	\item[...] find the Taylor polynomials of a given function.
+\end{itemize}
+%-------------------
+\end{block}
+\vspace{3.0cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{I. Taylor polynomial \& Maclaurin polynomial}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+
+\vspace{0.3cm}
+
+An extremely important concept in math \& science is the Taylor polynomial.
+
+\vspace{0.4cm}
+
+\begin{columns}\fcolorbox{blue}{white}{\begin{column}{11.7cm}
+% Type the contents of the box here
+The {\bf Taylor polynomial of degree K of $f(x)$ centered at c} is defined as
+$$
+T_K(x) = \sum \limits_{n=0}^{K} \frac{f^{(n)}(c)}{n!}(x-c)^n = 
+\ON<2->{\B{\,f(\ON<2->{\B{c}})\,}} + 
+\ON<3->{\B{\,f'(c)(x-c)\,}} + 
+\ON<4->{\B{\,\frac{f''(c)}{2!}(x-c)^2\,}} + 
+\ON<5->{\B{\,\frac{f^{(3)}(c)}{3!}(x-c)^3\,}} + ... + 
+\ON<6->{\B{\,\frac{f^{(K)}(c)}{K!}(x-c)^K\,}}
+$$
+\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+
+\vspace{0.4cm}
+
+Main Concept: \,\, 
+\ON<7->{\B{$\D{T_K(x) \approx f(x)}$ \quad for }}
+\ON<8->{\B{$x$ \, ``near'' \, $c$}}
+
+\vspace{0.5cm}
+
+When $c=\ON<9->{\B{\,0\,}}$, we have a special Taylor polynomial call a Maclaurin Polynomial
+
+\vspace{0.2cm}
+
+\begin{columns}\fcolorbox{blue}{white}{\begin{column}{11.7cm}
+% Type the contents of the box here
+The {\bf McClaurin polynomial of degree K of $f(x)$ centered at c} is defined as
+$$
+P_K(x) = \sum \limits_{n=0}^{K} \frac{f^{(n)}(0)}{n!}x^n = 
+\ON<10->{\B{\,f(\ON<2->{\B{0}})\,}} + 
+\ON<11->{\B{\,f'(0)x\,}} + 
+\ON<12->{\B{\,\frac{f''(0)}{2!}x^2\,}} + 
+\ON<13->{\B{\,\frac{f^{(3)}(0)}{3!}x^3\,}} + ... + 
+\ON<14->{\B{\,\frac{f^{(K)}(0)}{K!}x^K\,}}
+$$
+\end{column}}\begin{column}{0.0cm}\end{column}\end{columns}
+
+\vspace{0.4cm}
+
+Main Concept: \,\, 
+\ON<15->{\B{$\D{P_K(x) \approx f(x)}$ \quad for }}
+\ON<16->{\B{$x$ \, ``near'' \, $0$}}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{12.0cm}
+For \quad $\D{f(x) = e^{-2x}}$ \quad find \\
+
+(i) the Taylor polynomial of degree 3 centered at c = 1; \\
+\vspace{0.02cm}
+(ii) the Maclaurin polynomial of degree 3. \\
+
+\vspace{0.1cm}
+
+Strategy for (i):\\
+\vspace{0.05cm}
+%-------LIST---------
+\begin{itemize}
+	\item compute \, \ON<2->{\B{$f(1), \, f'(1), \, f''(1), \, f'''(1)$}}
+	\item plug into \ON<3->{\B{\quad $\D{f(1) + f'(1)(x-1) + \frac{f''(1)}{2}(x-1)^2 + \frac{f'''(1)}{6}(x-1)^3}$}}
+\end{itemize}
+%-------------------
+	\setlength{\extrarowheight}{0.2cm}
+	\begin{tabular}{p{0.3cm}lclcl}
+		&$\D{f(x) = 
+		\ON<4->{\B{e^{-2x}}}}$ & 
+		\ON<5->{\B{$\implies$}} & 
+		\ON<5->{\B{$\D{f(1) = e^{-2}}$}} & 
+		\ON<15->{\B{\&}} & 
+		\ON<15->{\B{$\D{f(0) = 1}$}} \\
+		&$\D{f'(x) = 
+		\ON<6->{\B{-2e^{-2x}}}}$ & 
+		\ON<7->{\B{$\implies$}} & 
+		\ON<7->{\B{$\D{f'(1) = -2e^{-2}}$}} & 
+		\ON<16->{\B{\&}} & 
+		\ON<16->{\B{$\D{f'(0) = -2}$}} \\
+		&$\D{f''(x) = 
+		\ON<8->{\B{-2(-2)e^{-2x} = 4e^{-2x}}}}$ & 
+		\ON<9->{\B{$\implies$}} & 
+		\ON<9->{\B{$\D{f''(1) = 4e^{-2}}$}} & 
+		\ON<17->{\B{\&}} & 
+		\ON<17->{\B{$\D{f''(0) = 4}$}} \\
+		&$\D{f'''(x) = 
+		\ON<10->{\B{4(-2)e^{-2x} = -8e^{-2x}}}}$ & 
+		\ON<11->{\B{$\implies$}} & 
+		\ON<11->{\B{$\D{f'''(1) = -8e^{-2}}$}} & 
+		\ON<18->{\B{\&}} & 
+		\ON<18->{\B{$\D{f''(0) = -8}$}}
+	\end{tabular}
+
+\vspace{0.1cm}
+
+So the 3rd degree Taylor polynomial is \,\, $T_3(x) =$ \, \ON<12->{\B{ $\D{e^{-2} - 2e^{-2}(x-1) + \frac{4e^{-2}}{2}(x-1)^2 - \frac{8e^{-2}}{6}(x-1)^3}$}} \\
+
+\vspace{0.15cm}
+Strategy for (ii):\\
+\vspace{0.05cm} 
+%-------LIST---------
+\begin{itemize}
+	\item compute \, \ON<13->{\B{$f(0), \, f'(0), \, f''(0), \, f'''(0)$}}
+	\item plug into \ON<14->{\B{\quad $\D{f(0) + f'(0)x + \frac{f''(0)}{2}x^2 + \frac{f'''(0)}{6}x^3}$}}
+\end{itemize}
+%-------------------
+
+So the 3rd degree Maclaurin polynomial is \,\,  $P_3(x) =$ \, \ON<19->{\B{$\D{1 - 2x + \frac{4}{2}x^2 - \frac{8}{6}x^3 = 1 - 2x + 2x^2 - \frac{4}{3}x^3}$}} \\
+
+\vspace{3.2cm}
+
+\end{column}
+\begin{column}{0.0cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\scriptsize
+\begin{columns}
+\begin{column}{12.0cm}
+Use the Maclaurin polynomial, $P_3(x)$, in the previous example to approximate the value of \,\, $e^{-1/4}$
+
+\vspace{0.4cm}
+
+Remember: \ON<3->{\B{ $f(x) \approx P_3(x)$ when $x$ is ``near'' 0}}
+
+\vspace{0.4cm}
+
+\ON<4->{\B{So what x value is used to get $e^{-1/4}$ \,\, [i.e. $f(?) = e^{-1/4}$]?}}
+
+\vspace{0.4cm}
+
+\ON<5->{\B{What $x$ goes inside $\longrightarrow$ \,\, $\D{f(\,\ON<6->{\B{1/8}}\,) = e^{-2(\,\ON<6->{\B{1/8}}\,)} = e^{-1/4} } $}}
+
+\vspace{0.5cm}
+
+Therefore, since \,\, 
+\ON<7->{\B{$\D{\frac{1}{8}}$}} \,\, is fairly close to 0, we have: 
+%--------EQN----------
+\begin{align*}
+	e^{-1/4} = 
+	\ON<8->{\B{\, f(1/8) \, }} 
+	\ON<9->{\B{\, \approx \, }} 
+	\ON<10->{\B{P_3(1/8) = \,}} 
+	&\ON<11->{\B{1 - 2\left(\frac{1}{8}\right) + 2\left(\frac{1}{8}\right)^2 - \frac{4}{3}\left(\frac{1}{8}\right)^3}}\\
+	&\ON<12->{\B{= 1 - \frac{1}{4} + \frac{1}{32} - \frac{1}{144}}} \\
+	&\ON<13->{\B{= \frac{223}{288} \approx 0.7743 }}
+\end{align*}
+%----------------------
+
+\vspace{0.5cm}
+
+Using a calculator, we can verify that \quad $e^{-1/4} \approx 
+\ON<14->{\B{0.7788}}$
+
+\vspace{0.2cm}
+
+So the error in using this approximation is about:
+
+\begin{center}
+	error \ON<15->{\B{$= |e^{-1/4} - P_3(1/8)| \approx |0.7788 - 0.7743| = 0.0045$}}
+\end{center}
+
+\end{column}
+\begin{column}{0.0cm}\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\scriptsize
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{12.0cm}
+For \quad $\D{f(x) = \sin x}$ \quad find $T_2(x)$ centered at $c = \frac{\pi}{4}$; \\
+
+\vspace{0.6cm}
+
+Strategy:
+
+\vspace{0.2cm}
+
+%-------LIST---------
+\begin{itemize}
+	\item compute \, \ON<2->{\B{$f\left(\frac{\pi}{4}\right), \, f'\left(\frac{\pi}{4}\right), \, f''\left(\frac{\pi}{4}\right)$}}
+	\vspace{0.2cm}
+	\item plug into \ON<3->{\B{\quad $\D{f\left(\frac{\pi}{4}\right) + f'\left(\frac{\pi}{4}\right)\left(x-\frac{\pi}{4}\right) + \frac{f''\left(\frac{\pi}{4}\right)}{2}\left(x-\frac{\pi}{4}\right)^2}$}}
+	\vspace{0.2cm}
+\end{itemize}
+%-------------------
+	\setlength{\extrarowheight}{0.4cm}
+	\begin{tabular}{p{0.3cm}lcl}
+		&$\D{f(x) = \ON<6->{\B{\sin x}}}$ & 
+		\ON<7->{\B{$\implies$}} & 
+		\ON<7->{\B{$\D{f\left(\frac{\pi}{4}\right) = \sin \left(\frac{\pi}{4}\right) = \frac{\sqrt{2}}{2}}$}}\\
+		&$\D{f'(x) = 
+		\ON<9->{\B{\cos x}}}$ & 
+		\ON<10->{\B{$\implies$}} & 
+		\ON<10->{\B{$\D{f'\left(\frac{\pi}{4}\right) = \cos\left(\frac{\pi}{4}\right) = \frac{\sqrt{2}}{2}}$}} \\
+		&$\D{f''(x) = 
+		\ON<12->{\B{-\sin x}}}$ & 
+		\ON<13->{\B{$\implies$}} & 
+		\ON<13->{\B{$\D{f''\left(\frac{\pi}{4}\right) = - \frac{\sqrt{2}}{2}}$}}
+	\end{tabular}
+
+\vspace{0.5cm}
+
+So the 2nd degree Taylor polynomial at $\frac{\pi}{4}$ is
+
+\begin{center}
+	 $T_2(x) = \, $
+	 \ON<4->{\B{ $\D{\left[\,
+	 \ON<8->{\B{\frac{\sqrt{2}}{2}}}\,\right] \,+\, \left[\,
+	 \ON<11->{\B{\frac{\sqrt{2}}{2}}}\,\right]\left(x-\frac{\pi}{4}\right) \,+ \,\frac{\left[\,
+	 \ON<14->{\B{-\frac{\sqrt{2}}{2}}}\,\right]}{2}\left(x-\frac{\pi}{4}\right)^2}$ = }}
+	 \ON<15->{\B{ $\D{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(x-\frac{\pi}{4}\right) + \frac{\sqrt{2}}{4}\left(x-\frac{\pi}{4}\right)^2}$}} \\
+\end{center}
+
+\end{column}
+\begin{column}{0.0cm}
+	
+\end{column}
+\end{columns}
+\end{frame}
