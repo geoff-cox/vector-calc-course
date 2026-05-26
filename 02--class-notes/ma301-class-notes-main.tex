@@ -1,28 +1,41 @@
 \documentclass[aspectratio=1610, xcolor=dvipsnames]{beamer}
-\usepackage{tikz}
 \usecolortheme[named=Black]{structure}
 
-\newcommand{\CLASS}{MA123}
-\newcommand{\CHT}{02}
-\newcommand{\CHTNAME}{Derivatives}
-\newcommand{\SEC}{03}
-\newcommand{\SECNAME}{power-rule}
-
+\newcommand{\CLASS}{MA301}
 \newcommand{\FIGSDIR}{../05--figures}
-\input{TeachingPackageHeader}
-\input{TeachingSlideHeader}
+\input{ma301-beamer-packages}
+
+\newcommand\SLIDETITLE[1]{
+  \frametitle{\quad
+    \setlength{\extrarowheight}{-0.4cm}
+    \begin{tabular}{p{5.4in}} 
+      #1\\
+      \hline
+    \end{tabular}
+    \smallskip
+    }
+}
+
+% ============ BEAMER OPTIONS ============ 
+\setbeamertemplate{navigation symbols}{}
+\usefonttheme{serif}%pslatex
+%\setbeamercovered{transparent}
+\setbeamercovered{invisible}
+% ========================================
 
 \begin{document}
 
-  \input{TeachingDefinitionHeader}
-  \input{1-1-notes-vectors}
+  \input{ma301-beamer-shortcuts}
 
-  %\input{Sections/00_01_Intro.tex}
-  %\input{Sections/01_01_Vectors.tex}
-  %\input{Sections/01_02_Dot_Product.tex}
-  %\input{Sections/01_03_Cross_Product.tex}
-  %\input{Sections/01_04_Curves.tex}
-  \input{Sections/01_05_Gradient.tex}
+  % \input{TeachingDefinitionHeader}
+  \input{01--functions-vectors/1-1-notes-vectors.tex}
+
+  \input{01--functions-vectors/00_01_Intro.tex}
+  \input{01--functions-vectors/01_01_Vectors.tex}
+  \input{01--functions-vectors/01_02_Dot_Product.tex}
+  \input{01--functions-vectors/01_03_Cross_Product.tex}
+  \input{01--functions-vectors/01_04_Curves.tex}
+  \input{01--functions-vectors/01_05_Gradient.tex}
   %\input{Sections/02_01_LineIntegrals.tex}
   %\input{Sections/02_02_Divergence_Curl.tex}
   %\input{Sections/02_03_PathIndependence.tex}
