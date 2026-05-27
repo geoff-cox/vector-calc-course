@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    publication-instructor.ptx
+    Instructor key: blanks visible AND solutions/answers shown inline.
+
+    Same source tree as the student build; the only difference is that
+    <task-default>, <solutions-divisional>, and <solutions-worksheet>
+    here list every part of an exercise, so the <solution> bodies appear.
+-->
+<publication>
+	<source>
+		<directories external="../assets" generated="../generated-assets" />
+		<version include="web readings emoji example-solution" />
+	</source>
+
+	<common>
+		<!-- Level at which are html files generated (chapter/section/etc) -->
+		<chunking level="3" />
+		<!-- Depth for table of contents.  0 means no TOC -->
+		<tableofcontents level="3" />
+		<!-- Visibility of exercise components where they first appear -->
+		<exercise-inline statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-divisional statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-worksheet statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-reading statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-project statement="yes" hint="yes" answer="yes" solution="yes" />
+		<!-- Style of fill-in-the-blanks -->
+		<fillin textstyle="underline" mathstyle="shade" />
+		<!-- You can set a watermark -->
+		<!-- <watermark scale="0.5">DRAFT</watermark> -->
+		<!-- Mermaid diagram themes -->
+		<!-- <mermaid theme="default" /> -->
+		<!-- QR code image: set path to an image to put in center of QR codes -->
+		<!-- <qrcode image="image.png" /> -->
+        <tabular top="major" bottom="minor"/>
+
+        <task-default>
+            <statement/>
+            <hint/>
+            <answer/>
+            <solution/>
+        </task-default>
+
+        <solutions-divisional>
+            <statement/>
+            <hint/>
+            <answer/>
+            <solution/>
+        </solutions-divisional>
+        <solutions-worksheet>
+            <statement/>
+            <hint/>
+            <answer/>
+            <solution/>
+        </solutions-worksheet>
+	</common>
+    
+    <numbering/>
+
+</publication>

@@ -2,3 +2,8 @@
 03--tests
 04--homework
 06--demos
+notes-vector-calculus/.cache
+notes-vector-calculus/generated-assets
+notes-vector-calculus/logs
+notes-vector-calculus/output
+notes-vector-calculus/.error_schema.log

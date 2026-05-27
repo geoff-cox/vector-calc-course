@@ -2,12 +2,16 @@
     "xml.fileAssociations": [
         {
             "pattern": "**/source/**.ptx",
-            "systemId": "/home/gcox/.vscode-server/extensions/oscarlevin.pretext-tools-0.35.0/assets/schema/pretext.rng"
+            "systemId": "/home/gcox/.vscode-server/extensions/oscarlevin.pretext-tools-0.37.0/assets/schema/pretext.rng"
         }
     ],
-    "terminal.integrated.env.linux": {
-        "VIRTUAL_ENV": "/home/gcox/pretext-venv",
-        "PATH": "/home/gcox/pretext-venv/bin:${env:PATH}"
+    "python.defaultInterpreterPath": "~/.pretext-venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "claudeCode.preferredLocation": "panel",
+    "remote.autoForwardPortsSource": "hybrid",
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.db": "sqlite-viewer.view"
     },
-    "terminal.integrated.defaultProfile.linux": "bash"
 }

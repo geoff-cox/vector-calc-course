@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    project.ptx
+    PreTeXt CLI project manifest.
+
+    Four build targets are defined so that the same source tree
+    produces four different artifacts:
+
+        web-student        HTML, blanks shown, solutions hidden
+        web-instructor     HTML, blanks + solutions revealed
+        print-student      PDF,  blanks shown, solutions hidden
+        print-instructor   PDF,  blanks + solutions revealed
+
+    Build any target from the project root with, e.g.,
+
+        pretext build web-student
+        pretext view  web-student
+        pretext build print-instructor
+
+    The student/instructor difference is controlled entirely by the
+    publication file each target points to; the source tree is shared.
+-->
+<project ptx-version="2">
+    <targets>
+		<target	
+			name="web-stu"
+            source="main.ptx"
+			format="html"
+			publication="publication-stu.ptx"
+			output-dir="web-stu"
+		>
+			<stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+		</target>
+		<target	
+			name="web-key"
+            source="main.ptx"
+			format="html"
+			publication="publication-key.ptx"
+			output-dir="web-key"
+		>
+			<stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+		</target>
+		<target	
+			name="print-key"
+            source="main.ptx"
+			format="pdf"
+			publication="publication-key.ptx"
+			output-dir="print-key"
+            output-filename="vector-calc-notes-key.pdf"
+		>
+			<stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+		</target>
+    </targets>
+</project>

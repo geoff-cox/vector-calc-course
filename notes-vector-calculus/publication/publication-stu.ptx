@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    publication-student.ptx
+    Student handout: blanks visible, solutions and answers suppressed.
+
+    The <task-default> and <solutions-divisional> blocks list which
+    *parts* of a task/exercise are emitted.  By listing only <statement/>
+    we get the question prose (with any <fillin/> blanks intact) but
+    everything inside <solution>, <answer>, or <hint> is dropped.
+-->
+<publication>
+    <common>
+        <!-- A printable-friendly tabular default; adjust to taste. -->
+        <tabular top="major" bottom="minor"/>
+    </common>
+
+    <source>
+        <!-- Nothing special; main.ptx is named in project.ptx. -->
+    </source>
+
+    <numbering>
+        <!-- Default numbering schemes are fine for a notes packet. -->
+    </numbering>
+
+    <!--
+        Task / exercise visibility controls.
+        These settings cause <solution>, <answer>, and <hint> children
+        of <task> and <exercise> to be omitted from this build.
+    -->
+    <common>
+        <task-default>
+            <statement/>
+            <!-- no <hint/>, no <answer/>, no <solution/> -->
+        </task-default>
+    </common>
+
+    <!--
+        If you also include divisional <exercise>s elsewhere in the book,
+        the same idea applies:
+    -->
+    <common>
+        <solutions-divisional>
+            <statement/>
+        </solutions-divisional>
+        <solutions-worksheet>
+            <statement/>
+        </solutions-worksheet>
+    </common>
+</publication>

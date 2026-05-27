@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    ws-function-notation.ptx
+    Worksheet 1.1: Review of Multivariable Function Notation.
+
+    Two "guided notes" mechanisms are used:
+
+    1. <fillin characters="N"/>  for short in-prose blanks.  The blank
+       always renders as an underline; the *answer* lives in the
+       surrounding <solution> of the enclosing <task>, OR is just known
+       to you because you wrote the worksheet.  In a few places below
+       I have put a key phrase inside the <fillin> itself, e.g.
+       <fillin characters="14">exactly one</fillin>.  PreTeXt then
+       displays the text on the instructor key and a blank line on
+       the student copy (via the task-default settings in the
+       publication files).
+
+    2. <task><statement>...</statement><solution>...</solution></task>
+       for multi-step worked examples and "your turn" exercises.
+       The whole <solution> is suppressed for students.
+-->
+<worksheet xml:id="ws-function-notation">
+    <title>Review: Multivariable Function Notation</title>
+
+    <objectives>
+        <ul>
+            <li>Recall the input/output structure of a function and the
+                vocabulary of domain and range.</li>
+            <li>Distinguish scalar functions of one, two, and three
+                variables from one another.</li>
+            <li>Preview vector-valued functions, which are the central
+                objects of this course.</li>
+            <li>Evaluate and find the (natural) domain of a
+                multivariable function.</li>
+        </ul>
+    </objectives>
+
+    <!-- ============================================================
+         Page 1: The function concept
+         ============================================================ -->
+    <page>
+        <p><alert>I. What is a function?</alert></p>
+
+        <p>
+            A <term>function</term> <m>f</m> takes inputs from a set
+            called the <term>domain</term> and produces outputs in a
+            set called the <term>range</term> (or codomain).
+            Schematically,
+            <me>
+                f \colon \underbrace{\text{Domain}}_{\text{inputs}}
+                \;\longrightarrow\;
+                \underbrace{\text{Range}}_{\text{outputs}}.
+            </me>
+        </p>
+
+        <p>The defining properties of a function:</p>
+        <ul>
+            <li>
+                For each input there is
+                <fillin characters="14">exactly one</fillin> output.
+            </li>
+            <li>
+                Two different inputs
+                <fillin characters="4">can</fillin>
+                produce the same output.
+            </li>
+            <li>
+                One input
+                <fillin characters="12">can never</fillin>
+                produce two different outputs.
+            </li>
+        </ul>
+
+        <p>
+            We use the notation <m>f(x)</m>, <m>f(x,y)</m>,
+            <m>f(x,y,z)</m>, and (later) <m>\vF(x,y)</m>,
+            <m>\vF(x,y,z)</m> depending on what kind of input the
+            function takes and what kind of output it produces.
+        </p>
+    </page>
+
+    <!-- ============================================================
+         Page 2: Build-up of dimension
+         ============================================================ -->
+    <page>
+        <p><alert>II. Building up from one variable to many.</alert></p>
+
+        <p><em>In Calculus 1 and 2</em>, you worked with functions
+            <m>f(x)</m> of a single variable:</p>
+        <ul>
+            <li>Input: <m>x \in</m>
+                <fillin characters="3"><m>\R</m></fillin>
+                <nbsp/>(a real number, i.e., a point on the
+                <m>1</m>-dimensional line).</li>
+            <li>Output: <m>f(x) \in</m>
+                <fillin characters="3"><m>\R</m></fillin>.</li>
+            <li>In symbols, <m>f \colon \R \to \R</m>.</li>
+        </ul>
+
+        <p><em>In Calculus 3</em>, you met functions of two and three
+            variables:</p>
+        <ul>
+            <li>Input for <m>f(x,y)</m>: <m>(x,y) \in</m>
+                <fillin characters="4"><m>\R^2</m></fillin>
+                <nbsp/>(a point in the <m>2</m>-dimensional plane).</li>
+            <li>Input for <m>f(x,y,z)</m>: <m>(x,y,z) \in</m>
+                <fillin characters="4"><m>\R^3</m></fillin>
+                <nbsp/>(a point in <m>3</m>-dimensional space).</li>
+            <li>Output: still a single real number,
+                <m>f(x,y) \in</m>
+                <fillin characters="3"><m>\R</m></fillin>
+                <nbsp/>or <m>f(x,y,z) \in</m>
+                <fillin characters="3"><m>\R</m></fillin>.</li>
+            <li>In symbols, <m>f \colon \R^2 \to \R</m> or
+                <m>f \colon \R^3 \to \R</m>.</li>
+        </ul>
+
+        <p><em>In this course</em>, we'll also need <term>vector-valued
+            functions</term> <m>\vF(x,y)</m> and <m>\vF(x,y,z)</m>:</p>
+        <ul>
+            <li>Input: a point in
+                <fillin characters="4"><m>\R^2</m></fillin>
+                <nbsp/>or <fillin characters="4"><m>\R^3</m></fillin>
+                <nbsp/>(same as before).</li>
+            <li>Output: a <em>vector</em>,
+                <m>\vF(x,y) \in</m>
+                <fillin characters="4"><m>\R^2</m></fillin>
+                <nbsp/>or <m>\vF(x,y,z) \in</m>
+                <fillin characters="4"><m>\R^3</m></fillin>.</li>
+            <li>In symbols, <m>\vF \colon \R^2 \to \R^2</m> or
+                <m>\vF \colon \R^3 \to \R^3</m>.</li>
+        </ul>
+
+        <p>
+            <alert>Vocabulary.</alert>
+            A function whose output is a single real number is called
+            a <term>scalar function</term> (or <term>scalar
+            field</term>).  A function whose output is a vector is
+            called a <term>vector-valued function</term> (or
+            <term>vector field</term>).
+        </p>
+    </page>
+
+    <!-- ============================================================
+         Page 3: Evaluating scalar functions
+         ============================================================ -->
+    <page>
+        <p><alert>III. Evaluating scalar functions of several
+            variables.</alert></p>
+
+        <p>
+            To <term>evaluate</term> a multivariable function at a
+            point, substitute the coordinates of the point for the
+            variables and simplify &#8212; exactly as you did with
+            <m>f(x)</m>, just with more variables.
+        </p>
+
+        <example xml:id="ex-eval-fxy">
+            <title>Evaluating <m>f(x,y)</m></title>
+            <statement>
+                <p>
+                    Let <m>f(x,y) = x - x\sqrt{y}</m>.  Compute
+                    <m>f(1,4)</m>.
+                </p>
+            </statement>
+            <solution>
+                <p>
+                    <md>
+                        <mrow>
+                            f(1,4) \amp = (1) - (1)\sqrt{4}        </mrow>
+                        <mrow>
+                                    \amp = 1 - 2 = -1.              </mrow>
+                    </md>
+                    So <m>f(1,4) = -1</m>, which is a scalar &#8212;
+                    consistent with <m>f \colon \R^2 \to \R</m>.
+                </p>
+            </solution>
+        </example>
+
+        <example xml:id="ex-eval-fxyz">
+            <title>Evaluating <m>f(x,y,z)</m></title>
+            <statement>
+                <p>
+                    Let
+                    <me>
+                        g(x,y,z) = \frac{\cos z}{x} - x.
+                    </me>
+                    Compute <m>g(-1,\,0,\,\pi)</m>.
+                </p>
+            </statement>
+            <solution>
+                <p>
+                    <md>
+                        <mrow>
+                            g(-1,0,\pi) \amp
+                                = \frac{\cos\pi}{-1} - (-1)         </mrow>
+                        <mrow>
+                                    \amp = \frac{-1}{-1} + 1
+                                    = 1 + 1 = 2.                    </mrow>
+                    </md>
+                </p>
+            </solution>
+        </example>
+
+        <p>
+            <alert>Your turn.</alert>
+            Work each of the following with a neighbor.  Solutions
+            appear on the instructor key.
+        </p>
+
+        <exercise xml:id="exer-eval-practice">
+            <title>Evaluation practice</title>
+            <task xml:id="task-eval-a">
+                <statement>
+                    <p>
+                        Let <m>f(x,y) = x^2 - 3xy + y^2</m>.  Find
+                        <m>f(2,-1)</m>.
+                    </p>
+                </statement>
+                <solution>
+                    <p>
+                        <m>f(2,-1) = 4 - 3(2)(-1) + 1 = 4 + 6 + 1
+                        = 11</m>.
+                    </p>
+                </solution>
+            </task>
+            <task xml:id="task-eval-b">
+                <statement>
+                    <p>
+                        Let <m>h(x,y) = \dfrac{x+y}{x-y}</m>.  Find
+                        <m>h(3,1)</m> and explain why
+                        <m>h(2,2)</m> is undefined.
+                    </p>
+                </statement>
+                <solution>
+                    <p>
+                        <m>h(3,1) = \dfrac{3+1}{3-1} = \dfrac{4}{2}
+                        = 2</m>.  For <m>(2,2)</m> the denominator
+                        is <m>2 - 2 = 0</m>, so the formula is
+                        undefined there.
+                    </p>
+                </solution>
+            </task>
+            <task xml:id="task-eval-c">
+                <statement>
+                    <p>
+                        Let <m>k(x,y,z) = xy + yz + zx</m>.  Find
+                        <m>k(1,2,3)</m>.
+                    </p>
+                </statement>
+                <solution>
+                    <p>
+                        <m>k(1,2,3) = (1)(2) + (2)(3) + (3)(1)
+                        = 2 + 6 + 3 = 11</m>.
+                    </p>
+                </solution>
+            </task>
+        </exercise>
+    </page>
+
+    <!-- ============================================================
+         Page 4: Domain
+         ============================================================ -->
+    <page>
+        <p><alert>IV. The (natural) domain of a multivariable
+            function.</alert></p>
+
+        <p>
+            When a function is given by a formula and the domain is
+            not specified, the <term>natural domain</term> is the
+            set of all inputs for which the formula yields a real
+            number.  The familiar restrictions still apply:
+        </p>
+        <ul>
+            <li>Cannot divide by
+                <fillin characters="6">zero</fillin>.</li>
+            <li>Cannot take an even root of a
+                <fillin characters="9">negative</fillin>
+                <nbsp/>number.</li>
+            <li>Cannot take the logarithm of a
+                <fillin characters="14">non-positive</fillin>
+                <nbsp/>number.</li>
+        </ul>
+
+        <example xml:id="ex-domain-disk">
+            <title>A disk-shaped domain</title>
+            <statement>
+                <p>
+                    Find the natural domain of
+                    <me>
+                        f(x,y) = \sqrt{4 - x^2 - y^2}.
+                    </me>
+                </p>
+            </statement>
+            <solution>
+                <p>
+                    We need <m>4 - x^2 - y^2 \ge 0</m>, equivalently
+                    <m>x^2 + y^2 \le 4</m>.  So the natural domain is
+                    the closed disk of radius <m>2</m> centered at the
+                    origin in <m>\R^2</m>.
+                </p>
+            </solution>
+        </example>
+
+        <exercise xml:id="exer-domain-practice">
+            <title>Domain practice</title>
+            <task xml:id="task-dom-a">
+                <statement>
+                    <p>
+                        Find the natural domain of
+                        <m>g(x,y) = \dfrac{\ln(x+y)}{x-y}</m>.
+                    </p>
+                </statement>
+                <solution>
+                    <p>
+                        The logarithm requires <m>x + y > 0</m>; the
+                        denominator requires <m>x - y \ne 0</m>, i.e.,
+                        <m>y \ne x</m>.  So
+                        <me>
+                            \dom(g) = \{(x,y) \in \R^2
+                            : x + y > 0 \text{ and } y \ne x\},
+                        </me>
+                        the open half-plane above the line
+                        <m>y = -x</m>, minus the line <m>y = x</m>.
+                    </p>
+                </solution>
+            </task>
+            <task xml:id="task-dom-b">
+                <statement>
+                    <p>
+                        Find the natural domain of
+                        <m>h(x,y,z) = \dfrac{1}{\sqrt{1 - x^2 - y^2 - z^2}}</m>.
+                    </p>
+                </statement>
+                <solution>
+                    <p>
+                        We need the radicand strictly positive (it
+                        sits in the denominator):
+                        <m>1 - x^2 - y^2 - z^2 > 0</m>, i.e.,
+                        <m>x^2 + y^2 + z^2 &lt; 1</m>.  The natural
+                        domain is the open unit ball in <m>\R^3</m>.
+                    </p>
+                </solution>
+            </task>
+        </exercise>
+    </page>
+
+    <!-- ============================================================
+         Page 5: Looking ahead - vector-valued functions
+         ============================================================ -->
+    <page>
+        <p><alert>V. A first look at vector-valued
+            functions.</alert></p>
+
+        <p>
+            A vector-valued function in <m>\R^2</m> assigns to each
+            input point <m>(x,y)</m> a <em>vector</em> in <m>\R^2</m>,
+            for instance
+            <me>
+                \vF(x,y) = \langle\, x - y,\; x + y \,\rangle
+                = (x-y)\,\vi + (x+y)\,\vj.
+            </me>
+            The two real-valued expressions
+            <m>F_1(x,y) = x-y</m> and <m>F_2(x,y) = x+y</m> are called
+            the <term>component functions</term> of <m>\vF</m>.  Each
+            component is a scalar function of the same inputs.
+        </p>
+
+        <p>
+            Evaluation works component-by-component:
+            <fillin characters="40"/>
+        </p>
+        <p>
+            (We will fill in this blank together by computing
+            <m>\vF(2,3)</m>.)
+        </p>
+
+        <example xml:id="ex-eval-vf">
+            <title>Evaluating a vector-valued function</title>
+            <statement>
+                <p>
+                    With <m>\vF(x,y) = \langle x-y,\, x+y \rangle</m>
+                    as above, compute <m>\vF(2,3)</m>.
+                </p>
+            </statement>
+            <solution>
+                <p>
+                    <m>\vF(2,3) = \langle 2 - 3,\, 2 + 3 \rangle
+                    = \langle -1,\, 5 \rangle</m>, a vector in
+                    <m>\R^2</m>.
+                </p>
+            </solution>
+        </example>
+
+        <exercise xml:id="exer-vf-practice">
+            <title>Vector-valued evaluation</title>
+            <task xml:id="task-vf-a">
+                <statement>
+                    <p>
+                        Let
+                        <m>\vG(x,y,z) = \langle xy,\; y - z,\; xz^2 \rangle</m>.
+                        Compute <m>\vG(2,-1,3)</m>.
+                    </p>
+                </statement>
+                <solution>
+                    <p>
+                        <md>
+                            <mrow>
+                                \vG(2,-1,3) \amp
+                                = \langle (2)(-1),\,
+                                          (-1)-(3),\,
+                                          (2)(3)^2 \rangle           </mrow>
+                            <mrow>
+                                            \amp
+                                = \langle -2,\, -4,\, 18 \rangle.    </mrow>
+                        </md>
+                    </p>
+                </solution>
+            </task>
+            <task xml:id="task-vf-b">
+                <statement>
+                    <p>
+                        Let
+                        <m>\vF(x,y) = \langle -y,\, x \rangle</m>.
+                        Compute <m>\vF(1,0)</m>, <m>\vF(0,1)</m>,
+                        <m>\vF(-1,0)</m>, and <m>\vF(0,-1)</m>.
+                        Sketch each output vector with its tail at
+                        the corresponding input point.  What does the
+                        picture suggest?
+                    </p>
+                </statement>
+                <solution>
+                    <p>
+                        <m>\vF(1,0) = \langle 0,1 \rangle</m>,
+                        <m>\vF(0,1) = \langle -1,0 \rangle</m>,
+                        <m>\vF(-1,0) = \langle 0,-1 \rangle</m>,
+                        <m>\vF(0,-1) = \langle 1,0 \rangle</m>.
+                        Each output is a <m>90^\circ</m>
+                        counterclockwise rotation of the input
+                        position vector; the picture is a rotational
+                        vector field.
+                    </p>
+                </solution>
+            </task>
+        </exercise>
+
+        <p>
+            <alert>Summary.</alert>
+            All of the function notation from this course fits in
+            the same pattern: an input from
+            <fillin characters="12"><m>\R^n</m></fillin>
+            and an output in either
+            <fillin characters="3"><m>\R</m></fillin>
+            <nbsp/>(scalar function) or
+            <fillin characters="6"><m>\R^m</m></fillin>
+            <nbsp/>(vector-valued function).  The next worksheet
+            zooms in on the structure of those output vectors.
+        </p>
+    </page>
+
+</worksheet>
