@@ -28,8 +28,10 @@
     <!-- Class meeting 1: Review of multivariable function notation -->
     <xi:include href="./ws-function-notation.ptx"/>
 
+    <!-- Class meeting 2: Vectors -->
+    <xi:include href="./ws-vectors.ptx"/>
+
     <!-- Future worksheets in this chapter (uncomment as you write them): -->
-    <!-- <xi:include href="./ws-vectors.ptx"/>             -->
     <!-- <xi:include href="./ws-dot-cross-product.ptx"/>   -->
     <!-- <xi:include href="./ws-curves.ptx"/>              -->
     <!-- <xi:include href="./ws-vector-fields.ptx"/>       -->

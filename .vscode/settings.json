@@ -2,7 +2,7 @@
     "xml.fileAssociations": [
         {
             "pattern": "**/source/**.ptx",
-            "systemId": "/home/gcox/.vscode-server/extensions/oscarlevin.pretext-tools-0.37.0/assets/schema/pretext.rng"
+            "systemId": "/home/gcox/.vscode-server/extensions/oscarlevin.pretext-tools-0.38.0/assets/schema/pretext.rng"
         }
     ],
     "python.defaultInterpreterPath": "~/.pretext-venv/bin/python",

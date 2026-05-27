@@ -25,13 +25,19 @@
             \newcommand{\R}{\mathbb{R}}
             \newcommand{\vF}{\mathbf{F}}
             \newcommand{\vG}{\mathbf{G}}
+            \newcommand{\va}{\mathbf{a}}
+            \newcommand{\vb}{\mathbf{b}}
+            \newcommand{\vc}{\mathbf{c}}
+            \newcommand{\vu}{\mathbf{u}}
             \newcommand{\vv}{\mathbf{v}}
+            \newcommand{\vw}{\mathbf{w}}
             \newcommand{\vr}{\mathbf{r}}
             \newcommand{\vn}{\mathbf{n}}
             \newcommand{\vi}{\mathbf{i}}
             \newcommand{\vj}{\mathbf{j}}
             \newcommand{\vk}{\mathbf{k}}
             \newcommand{\vzero}{\mathbf{0}}
+            \newcommand{\norm}[1]{\left\lvert #1 \right\rvert}
             \DeclareMathOperator{\dom}{dom}
             \DeclareMathOperator{\range}{range}
         </macros>
@@ -42,21 +48,13 @@
         <subtitle>Guided Lecture Notes</subtitle>
 
         <frontmatter xml:id="frontmatter">
-            <bibinfo>
-
-                <author>
-                    <personname>Geoffrey W. Cox, Ph.D.</personname>
-                    <department>Applied Mathematics</department>
-                    <institution>Virginia Military Institute</institution>
-                    <email>coxgeoff@vmi.edu</email>
-                </author>
-
-                <date><today /></date>
-
-            </bibinfo>
-            
             <titlepage>
-                <titlepage-items/>
+                <author>
+                    <personname>(Your Name)</personname>
+                    <department>(Your Department)</department>
+                    <institution>(Your Institution)</institution>
+                </author>
+                <date><today/></date>
             </titlepage>
 
             <preface xml:id="preface">
