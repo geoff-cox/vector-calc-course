@@ -1,0 +1,170 @@
+\documentclass[11pt]{article}
+
+\input{../../../../../Headers/TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+\geometry{textheight=10.0in, textwidth=7.7in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+
+\begin{document}
+\newcounter{Prob}
+\setcounter{Prob}{0}
+\input{../../../../../Headers/TestDefinitionHeader.tex}
+
+$\quad$
+
+\vspace{1.0cm}
+
+\begin{center}
+\LARGE {MA 301} \\
+
+\Large{Test 1} \\
+
+\large{Spring - 2015} \\
+
+\vspace{0.5cm}
+
+\setlength{\extrarowheight}{0.4cm}
+\begin{tabular}{|c|c|c|}
+\hline
+Problem & points & out of  \\
+\hline
+\hline
+1 & & 8 \\
+\hline
+2 & & 6 \\
+\hline
+3 & & 6 \\
+\hline
+4 & & 3 \\
+\hline
+5 & & 3 \\
+\hline
+6 & & 2 \\
+\hline
+7 & & 2 \\
+\hline
+\hline
+Score & & 30\\
+\hline
+\end{tabular}
+\vspace{0.5cm}
+
+%--------TABLE---------
+	\setlength{\extrarowheight}{0.1cm}
+	\begin{tabular}{rcc}
+		Name: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&$\hspace{1.4cm}$\\
+		HR: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&\\
+		Signature: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+	\end{tabular}
+%--------------------
+
+\vspace{0.5cm}
+
+	\setlength{\extrarowheight}{0.1cm}
+	\begin{tabular}{| p{12cm} |}
+		\hline
+		\multicolumn{1}{|c|}{{\bf READ BEFORE YOU START}} \\
+		\hline
+		 * Show all work.\\
+		 * Change your calculator mode to RADIANS.\\
+		 * Sloppy solutions may be penalized.\\
+		 * Use calculators ONLY for computations.\\
+		 * You must write up every problem in a clear and \\
+		 $\,\,$ organized way.\\
+		 * If you write solutions on a page different than the \\
+		 $\,\,$ question, then clearly state where it is located.\\
+		\hline
+	\end{tabular}
+
+\end{center}
+
+\vspace{1.0cm}
+
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_01.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_02.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_03.tex}
+%\thispagestyle{empty}        \thispagestyle{empty}\input{301TestProblems/301_15.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_06.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_07.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_08.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_09.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_10.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_11.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_12.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_13.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_14.tex}
+
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_16.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_17.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_18.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_19.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_20.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_21.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_22.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_23.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_24.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_25.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_26.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_27.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_28.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_29.tex}
+\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_30.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_31.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_32.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_33.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_34.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_35.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_36.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_37.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_38.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_39.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_40.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_41.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_42.tex}
+
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_44.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_45.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_46.tex}
+%\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_47.tex}
+\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_48.tex}
+\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_50.tex}
+\thispagestyle{empty}\newpage\thispagestyle{empty}\input{301TestProblems/301_04.tex}
+\thispagestyle{empty}        \thispagestyle{empty}\input{301TestProblems/301_05.tex}
+\thispagestyle{empty}        \thispagestyle{empty}\input{301TestProblems/301_49.tex}
+\thispagestyle{empty}        \thispagestyle{empty}\input{301TestProblems/301_43.tex}
+
+\end{document}

@@ -1,0 +1,231 @@
+\documentclass[11pt]{article}
+
+\input{../../../../../Headers/TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+\geometry{textheight=10.0in, textwidth=7.7in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+
+\begin{document}
+
+\input{../../../../../Headers/TestDefinitionHeader.tex}
+
+$\quad$
+
+\vspace{1.0cm}
+
+\begin{center}
+\LARGE {MA 301} \\
+
+\Large{Test 1} \\
+
+\large{Spring - 2014} \\
+
+\vspace{0.5cm}
+
+\setlength{\extrarowheight}{0.4cm}
+\begin{tabular}{|c|c|c|}
+\hline
+Problem & points & out of  \\
+\hline
+\hline
+1 & & 5 \\
+\hline
+2 & & 5 \\
+\hline
+3 & & 5 \\
+\hline
+4 & & 5 \\
+\hline
+5 & & 10 \\
+\hline
+6 & & 8 \\
+\hline
+\hline
+Score & & 38\\
+\hline
+\end{tabular}
+\vspace{0.5cm}
+
+%--------TABLE---------
+	\setlength{\extrarowheight}{0.1cm}
+	\begin{tabular}{rcc}
+		Name: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&$\hspace{1.4cm}$\\
+		HR: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&\\
+		Signature: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+	\end{tabular}
+%--------------------
+
+\vspace{0.5cm}
+
+	\setlength{\extrarowheight}{0.1cm}
+	\begin{tabular}{| p{12cm} |}
+		\hline
+		\multicolumn{1}{|c|}{{\bf READ BEFORE YOU START}} \\
+		\hline
+		 * Show all work.\\
+		 * Change your calculator mode to RADIANS.\\
+		 * Sloppy solutions may be penalized.\\
+		 * Use calculators ONLY for computations.\\
+		 * You must write up every problem in a clear and \\
+		 $\,\,$ organized way.\\
+		 * If you write solutions on a page different than the \\
+		 $\,\,$ question, then clearly state where it is located.\\
+		\hline
+	\end{tabular}
+
+\end{center}
+
+\vspace{1.0cm}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 1:} Let {\bf F}$=[z^2,x-y,7]$ and $C$ be the intersection curve of the surfaces $x=y+z$ and $y=z^2$. For $0 \le y \le 9$, compute \,\,$\D{\int \limits_{C} {\bf F} \cdot d{\bf r}}$
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 2:} Let \, $\D{{\bf F} = \left[\frac{y^2}{x},\,2y\ln x,\,3z^2\right]}$ compute the work required to move an object along $C$ (shown below). Justify your work.
+
+\hspace{14.0cm}	\includegraphics[scale = 0.38]{../../../Figures/Test1_Fig3.png}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 3:} Let \(C\) be the triangle with vertices \((0,0)\), \((1,0)\), \((1,4)\) oriented counter-clockwise and 
+\[{\bf F}(x,y) = (xe^{y}-3xy) {\bf i} + \frac{3}{2}y^2 {\bf j}\]
+Find the flux of \({\bf F}\) around \(C\): \(\D{\int_C {\bf F}\cdot {\bf N} \, ds}\) where \({\bf N}\) is the unit normal to \(C\)
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 4:} Let $R$ be a region bounded by the upper half of the circle $x^2+y^2=10$ and the x-axis.  Let $C$ be the boundary of $R$ with counter-clockwise orientation.  Compute the following line integral 
+
+
+$\D{\int_{C} (15x-4xy) \, dx + (\cos y-6xy) \, dy}$ 
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+%{\bf Problem 6:} Answer the following true/false questions
+%
+%\vspace{0.1cm}
+%
+%	\setlength{\extrarowheight}{0.2cm}
+%	\begin{tabular}{| c | p{17.2cm} |}
+%		\hline
+%		T\quad/\quad F & If $C$ is an ellipse and {\bf F} is irrotational then $\D{\int \limits_{C} {\bf F} \cdot d{\bf r}=0}$\\
+%		\hline
+%%		T\quad/\quad F & If $\WORK = 0$ for one particular closed path, the ${\bf F}$ is path-independent.\\
+%%		\hline
+%%		T\quad/\quad F & If ${\bf F}$ is path-independent, then there is a potential function for ${\bf F}$\\
+%%		\hline
+%		T\quad/\quad F & If $\WORK \ne 0$ for some closed path $C$, then ${\bf F}$ is conservative.\\
+%		\hline
+%		T\quad/\quad F & If ${\bf F} = \nabla f$ then ${\bf F}$ is conservative.\\
+%		\hline
+%%		T\quad/\quad F & If ${\bf F}$ is incompressible then ${\bf F}$ is conservative.\\
+%%		\hline
+%		T\quad/\quad F & If ${\bf F}$ is conservative then the work required to move an object along any path is zero.\\
+%		\hline
+%		T\quad/\quad F & A vector field, ${\bf F}$, can be both incompressible and irrotational.\\
+%		\hline
+%		T\quad/\quad F & If ${\bf F}$ is path-independent and $C$ is any closed curve, then $\WORK = 0$\\
+%		\hline
+%%		T\quad/\quad F & If $S_1$ is a rectangle with area = 1 and $S_2$ is a rectangle with area = 2, then
+%%$2\iint \limits_{S_1} {\bf F} \cdot d{\bf A} = \iint \limits_{S_2} {\bf F} \cdot d{\bf A}$\\
+%%		\hline
+%%		T\quad/\quad F & Let $S$ be a sphere of radius 1 centered at the origin and oriented outward.  If ${\bf F} = [x,y,z]$ then $\FLUX$ is positive\\
+%%		\hline
+%%		T\quad/\quad F & Let $S$ be a sphere of radius 1 centered at the origin and oriented outward.  If $\FLUX = 0$, then ${\bf F} = {\bf 0}$\\
+%%		\hline
+%%		T\quad/\quad F & Let $S$ be the surface of a cube centered at the origin with side length 2 and oriented outward.  If ${\bf F} = 2\VI - \VK$ then the flux of ${\bf F}$ through $S$ is 27.\\
+%%		\hline
+%%		T\quad/\quad F & If ${\bf F}$ and ${\bf G}$ are vector-fields satisfying div(${\bf F}$) = div(${\bf G}$), then ${\bf F} = {\bf G}$\\
+%%		\hline
+%%		T\quad/\quad F & If ${\bf F}$ is a vector-field such that div(${\bf F}$) = 1 and $S$ is a closed surface oriented outward, then $\FLUX$ is equal to the volume enclosed by $S$.\\
+%%		\hline
+%%		T\quad/\quad F & If $\FLUX = 12$ and $S$ is a flat disk of area $4\pi$, then div$({\bf F}) = \frac{3}{\pi}$\\
+%%		\hline
+%	\end{tabular}
+%
+%\thispagestyle{empty}
+%\newpage
+%\thispagestyle{empty}
+
+{\bf Problem 5:} Answer the following questions.  
+
+(a) Consider the vector field \({\bf F}\) shown in the figure, together with the paths \(C_1\), \(C_2\), and \(C_3\). Order the line integrals $\D{\left(\int_{C_1} {\bf F} \cdot d{\bf r}, \,\, \int_{C_2} {\bf F} \cdot d{\bf r}, \,\, \int_{C_3} {\bf F} \cdot d{\bf r}\right)}$ from smallest to largest.  Explain your reasoning.
+
+\hspace{11.0cm} \includegraphics[scale = 0.4]{../../../Figures/Test_Fig15.png}
+
+\vspace{0.4cm}
+
+(b) Suppose \({\bf F}\) is conservative and 
+\(\int_{(0,0)}^{(0,1)}{\bf F} \cdot d{\bf r} = 2.4\), \,\,
+\(\int_{(0,1)}^{(1,1)}{\bf F} \cdot d{\bf r} = -1.2\) \,\, and
+\(\int_{(0,0)}^{(1,0)}{\bf F} \cdot d{\bf r} = 7.5\). \,\,Then
+
+$\D{\int_{(1,0)}^{(1,1)}{\bf F} \cdot d{\bf r} = }$
+
+\vspace{0.4cm}
+
+(c) Let ${\bf F} = [-y,x]$ and $C$ be a simple closed curve in the $xy-$plane. 
+
+Show that $\D{\oint \limits_{C} \text{\bf F} \cdot d\text{\bf r} = 2\cdot \text{Area}(R)}$ \quad where $R$ is the region bounded by $C$.
+
+\vspace{0.2cm}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 6:} Let $\text{\bf F} = [x+y,2xy]$ and $C$ be the boundary of the region enclosed by the curves $y=x^2$, $y=x+2$, and $x=0$ in the first quadrant. \\
+(a) \UL{Setup} the integral you would use to compute \,\, $\D{\oint \limits_{C} \text{\bf F}\cdot d\text{\bf r}}$ \,\, directly \,\,\,({\em don't leave integrand as a dot product})
+
+(b) Compute \,\, $\D{\oint \limits_{C} \text{\bf F}\cdot d\text{\bf r}}$ \,\, using green's theorem.
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+\end{document}

@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+
+%\input{../../TestPackageHeader}
+\input{../../../TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+%\usepackage{geometry}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{amsthm}
+%\usepackage{amscd}
+%\usepackage{amsfonts}
+%\usepackage{graphicx}%
+%\usepackage{fancyhdr}
+%\usepackage{array}
+%\usepackage{pgf,tikz}
+%\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+% Set your name here
+%\def\name{Geoffrey W. Cox}
+
+% The following metadata will show up in the PDF properties
+%\hypersetup{
+%  colorlinks = true,
+%  urlcolor = black,
+%  pdfauthor = {\name},
+%  pdfkeywords = {economics empirical industrial organization econometrics
+%    microeconomics applied microeconomics},
+%  pdftitle = {\name: Curriculum Vitae},
+%  pdfsubject = {Curriculum Vitae},
+%  pdfpagemode = UseNone
+%}
+
+\geometry{textheight=9.0in, textwidth=6in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1em}
+  }
+}{
+  \end{list}
+}
+
+\pagestyle{fancy}\lhead{Written Homework 02} \rhead{Due Wednesday Feb. 05}
+\chead{{\large{\bf Line Integrals/Gradient}}} \lfoot{} \rfoot{\bf \thepage} \cfoot{}
+
+\begin{document}
+
+%\input{../../../TestDefinitionHeader.tex}
+\input{../../../TeachingDefinitionHeader.tex}
+
+In addition to the online homework, please hand in the following problems:
+
+\vspace{0.2cm}
+
+{\bf Problem 1:} Determine the work done in moving a mass through ${\bf F} = 3y \VI + 2x \VJ + 4z \VK$ from $(0,0,0)$ to $(1,1,1)$ along each of the following paths:
+
+\quad i. The straight-line C1
+
+\quad ii. The curved path C2 (intersection of 2 parabolic cylinders: $y = x^2$ and $z=y^2$)
+
+\quad iii.  The path $C3 \cup C4$ consisting of the line segment from $(0, 0, 0)$ to $(1, 1, 0)$ followed \\
+$\text{}$ \hspace{0.8cm} by the segment from $(1, 1, 0)$ to $(1, 1, 1)$
+
+\begin{center}
+	\includegraphics[scale = 0.25]{HWFigs/HW5_fig2.png}
+\end{center}
+
+\vspace{0.3cm}
+
+{\bf Problem 2:} Find the mass of a wire that lies along the curve $\D{\RT = (t^2-1)\VJ + 2t \VK}$, \, $0 \le t \le 1$ \, if the density is given by $\D{\delta(x,y,z) = \frac{5}{2}z}$
+
+\vspace{0.1cm}
+
+{\bf Problem 3:} Is there a direction {\bf u} in which the rate of change of the temperature function \,\, $T(x,y,z) = 2xy-yz$ \,\, at \,\, $P(1, -1,0)$ \,  equals \,  $-3^{\circ} C/ft$? If so, find it. If not, say why. 
+
+\vspace{0.1cm}
+
+{\bf Problem 4:} Prove the following properties of gradients:
+
+\quad a. $\D{\quad \nabla(kf) = k\GF }$ \quad for $k$ constant
+
+\vspace{0.1cm}
+
+\quad b. $\D{\quad \nabla\left(\frac{f}{g}\right) = \frac{\GF \cdot g - f \cdot \GG}{g^2}}$
+
+\end{document}

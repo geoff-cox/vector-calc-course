@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+
+\input{../../../../Headers/TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+% Set your name here
+%\def\name{Geoffrey W. Cox}
+
+% The following metadata will show up in the PDF properties
+%\hypersetup{
+%  colorlinks = true,
+%  urlcolor = black,
+%  pdfauthor = {\name},
+%  pdfkeywords = {economics empirical industrial organization econometrics
+%    microeconomics applied microeconomics},
+%  pdftitle = {\name: Curriculum Vitae},
+%  pdfsubject = {Curriculum Vitae},
+%  pdfpagemode = UseNone
+%}
+
+\geometry{textheight=9.0in, textwidth=6in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1em}
+  }
+}{
+  \end{list}
+}
+
+\pagestyle{fancy}\lhead{Written Homework 04} \rhead{Due: Feb. 16}
+\chead{{\large{\bf Path Independence}}} \lfoot{} \rfoot{\bf \thepage} \cfoot{}
+
+\begin{document}
+
+\input{../../../../Headers/TeachingDefinitionHeader.tex}
+
+In addition to the online homework, please hand in the following problems:
+
+\vspace{0.2cm}
+
+%{\bf Problem 1:} In class, we discussed the condition for which a three dimensional vector field was conservative.  Derive the conservative conditions for a two dimensional (planar) vector field. 
+%
+%\vspace{0.1cm}
+
+%{\bf Problem 1:} Suppose {\bf F} conservative vector field and 
+%$$
+%g(x,y,z) = \int \limits_{(1,-2,0)}^{(x,y,z)} \FDR
+%$$
+%Show that $\D{\nabla g = {\bf F}}$
+%
+%\vspace{0.1cm}
+
+%{\bf Problem 2:} You have been asked to find the path along which a force field ${\bf F}$ will perform the least amount of work in moving a particle between two locations.  A quick calculation on your part shows ${\bf F}$ to conservative. How should you respond?  Justify your answer.
+%
+%\vspace{0.2cm}
+
+{\bf Problem 1:} Which of the following vector fields are conservative.
+%-------NUM LIST---------
+\begin{enumerate}
+	\item[a.] $\D{{\bf F} = 2x\VI + 3y \VJ + 4z\VK}$
+	\item[b.] $\D{{\bf F} = [y,x+z,-y]}$
+	\item[c.] $\D{{\bf F} = -y\VI + x \VJ}$
+	\item[d.] $\D{{\bf F} = [e^{y+2z},xe^{y+2z},2xe^{y+2z}]}$
+\end{enumerate}
+%------------------------I
+
+\vspace{0.2cm}
+
+{\bf Problem 2:} For the fields that were conservative in {\bf Problems 2}, find the corresponding potential functions.
+%and compute the following two line integrals:  
+(Show work)
+
+
+%%-------NUM LIST---------
+%\begin{enumerate}
+%	\item[a.] $\D{\int \limits_C {\bf F} \cdot d{\bf r} }$ where $C$ is given by 
+%	\item[b.] $\D{{\bf F} = [y,x+z,-y]}$
+%	\item[c.] $\D{{\bf F} = -y\VI + x \VJ}$
+%	\item[d.] $\D{{\bf F} = [e^{y+2z},xe^{y+2z},2xe^{y+2z}]}$
+%\end{enumerate}
+%%------------------------I
+
+
+%
+%\vspace{0.2cm}
+%
+%{\bf Problem 3:} Let $f = f(x,y,z)$ be a scalar function and $C$ be some curve parameterized by $\RT$.  Prove that $\D{\nabla f \cdot d{\bf r} = \frac{df}{dt}dt}$
+
+		
+%\thispagestyle{empty}
+%\newpage
+%\thispagestyle{empty}
+
+\end{document}

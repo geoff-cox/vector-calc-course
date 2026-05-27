@@ -1,0 +1,575 @@
+%\documentclass[12pt]{article}
+%\input{../../../../../Headers/TestPackageHeader}
+%
+%%\usepackage{geometry}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{amsthm}
+%\usepackage{amscd}
+%\usepackage{amsfonts}
+%\usepackage{graphicx}%
+%\usepackage{array}
+%\usepackage{pgf,tikz}
+%\usetikzlibrary{arrows}
+%
+%% Uncomment the following lines to use the Palatino font.  Remove the
+%% [osf] bit if you don't like the old style figures.
+%
+%%\usepackage[T1]{fontenc}
+%%\usepackage[osf]{mathpazo}
+%
+%\renewcommand{\headrulewidth}{0pt} % remove lines as well
+%
+%\numberwithin{equation}{section}
+%
+%\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+%
+%\textheight = 10.8 in
+%\topmargin = -1.0in
+%\textwidth = 7.7in
+%\oddsidemargin = -0.7in
+%\evensidemargin = -0.7in
+%\newcommand{\A}{{(\alpha)}}
+%\newcommand{\B}{{(\beta)}}
+%\newcommand{\K}{\kappa^{(i)}}
+%
+%\usepackage{sectsty}
+%\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+
+\documentclass[11pt]{article}
+
+\input{../../../../../Headers/TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+% Set your name here
+%\def\name{Geoffrey W. Cox}
+
+% The following metadata will show up in the PDF properties
+%\hypersetup{
+%  colorlinks = true,
+%  urlcolor = black,
+%  pdfauthor = {\name},
+%  pdfkeywords = {economics empirical industrial organization econometrics
+%    microeconomics applied microeconomics},
+%  pdftitle = {\name: Curriculum Vitae},
+%  pdfsubject = {Curriculum Vitae},
+%  pdfpagemode = UseNone
+%}
+
+\geometry{textheight=10.0in, textwidth=7.7in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+
+\begin{document}
+
+\input{../../../../../Headers/TestDefinitionHeader.tex}
+
+$\quad$
+
+\vspace{1.0cm}
+
+\begin{center}
+\LARGE {MA 301} \\
+
+\Large{Test 1} \\
+
+\large{Fall - 2013} \\
+
+\vspace{0.5cm}
+
+\setlength{\extrarowheight}{0.4cm}
+\begin{tabular}{|c|c|c|}
+\hline
+Problem & points & out of  \\
+\hline
+\hline
+1 & & 12 \\
+\hline
+2 & & 5 \\
+\hline
+3 & & 5 \\
+\hline
+4 & & 5 \\
+\hline
+5 & & 5 \\
+\hline
+6 & & 7 \\
+\hline
+7 & & 4 \\
+\hline
+8 & & 4 \\
+\hline
+\hline
+Score & & 47\\
+\hline
+\end{tabular}
+\vspace{0.5cm}
+
+%--------TABLE---------
+	\setlength{\extrarowheight}{0.1cm}
+	\begin{tabular}{rcc}
+		Name: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&$\hspace{1.4cm}$\\
+		HR: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+		&&\\
+		Signature: & \underline{$\qquad \qquad \qquad \qquad \quad$}& \\
+	\end{tabular}
+%--------------------
+
+\vspace{0.5cm}
+
+	\setlength{\extrarowheight}{0.1cm}
+	\begin{tabular}{| p{12cm} |}
+		\hline
+		\multicolumn{1}{|c|}{{\bf READ BEFORE YOU START}} \\
+		\hline
+		 * Show all work.\\
+		 * Change your calculator mode to RADIANS.\\
+		 * Sloppy solutions may be penalized.\\
+		 * Use calculators ONLY for computations.\\
+		 * You must write up every problem in a clear and \\
+		 $\,\,$ organized way.\\
+		 * If you write solutions on a page different than the \\
+		 $\,\,$ question, then clearly state where it is located.\\
+		\hline
+	\end{tabular}
+
+\end{center}
+
+\vspace{1.0cm}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 1:} Compute \,\,$\D{\WORK}$ \,\, for each of the following:
+
+\quad (a) ${\bf F} = [x^2 + 4y, x + y^2]$ and $C$ is the rectangle in the $xy-$plane with $0 \le x \le 4$ and $-1 \le y \le 2$
+
+\quad (b) \({\bf F} = [y, x]\) and \(C\) is the parameterized path \(x = t^{3}\), \(y=t^{2}\), \(1\le t \le 4\).
+
+\quad (c) \({\bf F}(x,y) = [2 y, 6 x]\) and \(C\) is the positively oriented circle \(x^{2} + y^{2} = 100\).
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 2:} Let \, $\D{{\bf F} = \left[\frac{y^2}{x},\,2y\ln x,\,3z^2\right]}$ compute the work required to move an object along $C$ (shown below). Justify your work.
+
+\hspace{14.0cm}	\includegraphics[scale = 0.38]{../../../Figures/Test1_Fig3.png}
+
+\vspace{9.2cm}
+
+%{\bf Problem 3:} Let ${\bf F} = [-y,x]$ and $C$ be a simple closed curve in the $xy-$plane. Let $R$ be the region inside $C$.
+% 
+%(a) Show that $\D{\text{Area}(R) = \frac{1}{2}\oint \limits_{C} \text{\bf F} \cdot d\text{\bf r}}$
+%
+%(b) Use part (a) to find the area inside the ellipse $C$: $4x^2 + y^2 = 4$ \,\,({\em Do NOT use a double integral to get the area})
+
+\medskip\goodbreak\hrule\nobreak
+
+{\bf Problem 3:} Suppose a straight wire from initial point \((0,1,5)\) to end point \((2,2,3)\) has a linear density function given by $\delta(x,y,z) = x^3 z$. Find the total mass of the wire.
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 4:}  Let \({\bf F}=\nabla (2x^{2}+2y^{3})\) and  \(C\) is the quarter of the circle \(x^2+y^2 = 1\) in the fourth quadrant, oriented counterclockwise. Compute \(\D{\int_C {\bf F}\cdot d{\bf r} }\)
+
+\vspace{4.2cm}
+
+\medskip\goodbreak\hrule\nobreak
+
+%{\bf Problem 6:} Suppose $\D{{\bf F}(x,y)= [x^{\alpha}y, x-\alpha y\sin(y)]}$.  What value(s) of $\alpha$ make ${\bf F}$ conservative. 
+
+{\bf Problem 5:} Let \(C\) be the triangle with vertices \((0,0)\), \((1,0)\), \((1,4)\) oriented counter-clockwise and 
+\[{\bf F}(x,y) = (xe^{y}-3xy) {\bf i} + \frac{3}{2}y^2 {\bf j}\]
+Find the flux of \({\bf F}\) around \(C\): \(\D{\int_C {\bf F}\cdot {\bf N} \, ds}\) where \({\bf N}\) is the unit normal to \(C\)
+
+\vspace{10.3cm}
+
+\medskip\goodbreak\hrule\nobreak
+
+%{\bf Problem 6:} Let $R$ be a region bounded by the upper half of the circle $x^2+y^2=10$ and the x-axis.  Let $C$ be the boundary of $R$ with counter-clockwise orientation.  Compute the following line integral 
+%\par 
+%\(\int_{C} (15x-4xy) \, dx + (\cos x-6xy) \, dy\) 
+%
+%%(c) The surface area of $S$ with parameterization: ${\bf r}(u,v) = [u,v,u^3]$,\,\, $0 \le u \le 1$,\,\, $-2 \le v \le 2$.
+%
+%\medskip\goodbreak\hrule\nobreak
+
+{\bf Problem 6:} Answer the following true/false questions
+
+\vspace{0.1cm}
+
+	\setlength{\extrarowheight}{0.2cm}
+	\begin{tabular}{| c | p{17.2cm} |}
+		\hline
+%		T\quad/\quad F & The line integral of any vector field {\bf F} around any closed curve $C$ is zero\\
+%		\hline
+%		T\quad/\quad F & If $\WORK = 0$ for one particular closed path, the ${\bf F}$ is path-independent.\\
+%		\hline
+		T\quad/\quad F & If ${\bf F}$ is path-independent, then there is a potential function for ${\bf F}$\\
+		\hline
+		T\quad/\quad F & If $\WORK \ne 0$ for some closed path $C$, then ${\bf F}$ is path-dependent.\\
+		\hline
+		T\quad/\quad F & If ${\bf F} = \nabla f$ then ${\bf F}$ is conservative.\\
+		\hline
+		T\quad/\quad F & If ${\bf F}$ is incompressible then ${\bf F}$ is conservative.\\
+		\hline
+		T\quad/\quad F & If ${\bf F}$ is conservative then the work required to move an object along any path is zero.\\
+		\hline
+		T\quad/\quad F & A vector field, ${\bf F}$, can be both incompressible and irrotational.\\
+		\hline
+		T\quad/\quad F & If ${\bf F}$ is path-independent and $C$ is any closed curve, then $\WORK = 0$\\
+%		\hline
+%		T\quad/\quad F & If $S_1$ is a rectangle with area = 1 and $S_2$ is a rectangle with area = 2, then
+%$2\iint \limits_{S_1} {\bf F} \cdot d{\bf A} = \iint \limits_{S_2} {\bf F} \cdot d{\bf A}$\\
+%		\hline
+%		T\quad/\quad F & Let $S$ be a sphere of radius 1 centered at the origin and oriented outward.  If ${\bf F} = [x,y,z]$ then $\FLUX$ is positive\\
+%		\hline
+%		T\quad/\quad F & Let $S$ be a sphere of radius 1 centered at the origin and oriented outward.  If $\FLUX = 0$, then ${\bf F} = {\bf 0}$\\
+%		\hline
+%		T\quad/\quad F & Let $S$ be the surface of a cube centered at the origin with side length 2 and oriented outward.  If ${\bf F} = 2\VI - \VK$ then the flux of ${\bf F}$ through $S$ is 27.\\
+%		\hline
+%		T\quad/\quad F & If ${\bf F}$ and ${\bf G}$ are vector-fields satisfying div(${\bf F}$) = div(${\bf G}$), then ${\bf F} = {\bf G}$\\
+%		\hline
+%		T\quad/\quad F & If ${\bf F}$ is a vector-field such that div(${\bf F}$) = 1 and $S$ is a closed surface oriented outward, then $\FLUX$ is equal to the volume enclosed by $S$.\\
+%		\hline
+%		T\quad/\quad F & If $\FLUX = 12$ and $S$ is a flat disk of area $4\pi$, then div$({\bf F}) = \frac{3}{\pi}$\\
+		\hline
+	\end{tabular}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+{\bf Problem 7:} Consider the vector fields below.  Based on the visual inspection, circle the terms below each figure that apply to that particular field.
+
+\begin{center}
+	\includegraphics[scale = 0.55]{../../../Figures/Test_Fig11.png} \hspace{1.0cm}
+	\includegraphics[scale = 0.55]{../../../Figures/Test_Fig12.png} \\
+	incompressible $**$ irrotational $**$ conservative \hspace{1.5cm}
+	incompressible $**$ irrotational $**$ conservative
+\end{center}
+
+\vspace{0.4cm}
+
+\medskip\goodbreak\hrule\nobreak
+
+{\bf Problem 8:} Consider the vector field \({\bf F}\) shown in the figure, together with the paths \(C_1\), \(C_2\), and \(C_3\). Order the line integrals below from smallest to largest.  For full credit you must clearly explain your answer.
+
+\begin{center}
+	\includegraphics[scale = 0.6]{../../../Figures/Test_Fig13.png}
+\end{center}
+
+\begin{center}
+[1] \(\D \int_{C_1} {\bf F} \cdot d{\bf r}\) \hspace{3.0cm}
+[2] \(\D \int_{C_2} {\bf F} \cdot d{\bf r}\) \hspace{3.0cm}
+[3] \(\D \int_{C_3} {\bf F} \cdot d{\bf r}\)
+\end{center}
+
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+
+%{\bf Problem :} Compute the total mass of a wire bent in a quarter circle with parametric equations: $x = 6 \cos t, \ y = 6 \sin t, \ 0 \leq t \leq \frac{\pi}{2}$ and density function $\rho(x, y) = x^2 + y^2$. 
+%
+%{\bf Problem :} Let {\bf  F } be any nonconstant vector field of the form \(\mathbf{F} = f \left( x \right)
+%\mathbf{i} + g \left( y \right) \mathbf{j} + h \left( z \right) \mathbf{k}\) and let
+%{\bf  G } be any nonconservative vector field of the form \(\mathbf{F} = f \left( y, z \right)
+%\mathbf{i} + g \left( x, z \right) \mathbf{j} + h \left( x, y \right) \mathbf{k}\).
+%Indicate whether the following statements are true or false by placing "T" or "F" to
+%the left of the statement. \leavevmode\\\relax 
+%
+%\par\begin{enumerate}
+%\item[\mbox{\parbox[t]{3ex}{\hrulefill}}1.] {\bf  G } is irrotational
+%\item[\mbox{\parbox[t]{3ex}{\hrulefill}}2.] {\bf  F } is irrotational
+%\item[\mbox{\parbox[t]{3ex}{\hrulefill}}3.] {\bf  G } is incompressible
+%\item[\mbox{\parbox[t]{3ex}{\hrulefill}}4.] {\bf  F } is incompressible
+%\end{enumerate}
+%
+
+%{\bf Problem :} If \({\bf F}\) is a path-independent vector field, with
+%\(\int_{(0,0)}^{(0,1)}{\bf F} \cdot d{\bf r} = 5.4\) and
+%\(\int_{(0,1)}^{(1,1)}{\bf F} \cdot d{\bf r} = 2.2\) and
+%\(\int_{(0,0)}^{(1,0)}{\bf F} \cdot d{\bf r} = 4.5\),
+%find
+%\[\int_{(1,0)}^{(1,1)}{\bf F} \cdot d{\bf r}.\]
+%
+%\par 
+%\(\int_{(1,0)}^{(1,1)}{\bf F} \cdot d{\bf r} =\) \mbox{\parbox[t]{17.5ex}{\hrulefill}}
+
+
+%{\bf Problem :} Suppose C is some curve from \(\left( 0, 0, 0 \right)\) to \(\left( 1, 1, 1
+%\right)\) and \(\mathbf{F} \left( x, y, z \right) = \left( 4 z + 4 y \right)
+%\mathbf{i} + \left( z + 4 x \right) \mathbf{j} + \left( y + 4 x \right)
+%\mathbf{k}\). Compute the line integral directly \(\int_{C} \mathbf{F} \cdot d\mathbf{r}\). ({\em Do not try to find a potential function})
+%  \par 
+%\mbox{\parbox[t]{20ex}{\hrulefill}}
+%
+%{\bf Problem :} Consider the vector field \(\mathbf{F} \left( x, y, z \right) = x
+%\mathbf{i} + y \mathbf{j} + z \mathbf{k}\).
+%\par 
+%a) Find a function \(f\) such that \(\mathbf{F}= \nabla f\).
+%\leavevmode\\\relax 
+%\(f(x,y,z) =\) \mbox{\parbox[t]{20ex}{\hrulefill}}
+%\par 
+%b) Use part a) to compute the work done by {\bf  F
+%} on a particle moving along the curve C  given by \(\mathbf{r} \left( t \right) = \left( 1+ \sin t\right) \mathbf{i} + \left( 1+ 5 \sin^2 t \right) \mathbf{j} + \left( 1+ 4 \sin^3 t \right) \mathbf{k}, \quad 0 \leq t \leq \frac{\pi}{2}\).  \par 
+%\mbox{\parbox[t]{20ex}{\hrulefill}}
+
+
+
+%{\bf Problem :} Evaluate the line integral \(\displaystyle \int_C  x^4 z \; ds\),
+%where C is the line segment from \((0,1,8)\) to \((8,2,3)\).
+
+
+%Find the line integral of \({\bf F}(x,y,z) = 
+%x^3{\bf i} + y^2{\bf j} + z{\bf k}\) along 
+%the line segment \(C\) from the origin to the point
+%\((4,3,7)\).
+%\leavevmode\\\relax 
+%\leavevmode\\\relax 
+%\(\displaystyle \int_C {\bf F} \cdot d{\bf r}\) = \mbox{\parbox[t]{10ex}{\hrulefill}}
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Compute the total mass of a wire bent in a quarter circle with parametric
+%equations: \(x = 6 \cos t, \ y = 6 \sin t, \ 0 \leq t \leq \frac{\pi}{2}\) and
+%density function \(\rho(x, y) = x^2 + y^2\).
+%\par 
+%\mbox{\parbox[t]{20ex}{\hrulefill}}
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Find \(\int_C{\bf F} \cdot d{\bf r}\) for
+%\({\bf F} = 8 y{\bf i} - (\sin y){\bf j}\) on the curve
+%counterclockwise around the unit circle
+%\(C\) starting at the point \((1,0).\)
+%
+%\par 
+%\(\int_C{\bf F} \cdot d{\bf r} =\) \mbox{\parbox[t]{17.5ex}{\hrulefill}}
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Determine whether the vector field is conservative and, if so, find the
+%general potential function.
+%\par 
+%\[\mathbf{F} = \left[ \cos z ,2 y^{13}, -x\sin z\right]\]
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Verify that \(\mathbf{F}=\nabla f\) and evaluate the line integral of
+%\(\mathbf{F}\) over the given path:
+%\par 
+%\(\mathbf{F} = \left[x^{7}y^{8},x^{8}y^{7}\right]\) , \(\quad f(x,y)=\frac1{8}x^{8}y^{8}\) ; \leavevmode\\\relax  
+%Upper half of a circle with radius \(12\), centered at the origin and oriented counterclockwise
+%\par 
+%Answer : \mbox{\parbox[t]{10ex}{\hrulefill}}
+%\par 
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Let \(\mathbf{F} = (6 xy, 5 y^2)\) be a vector field in the
+%    plane, and \(C\) the path \(y = 4 x^2\) joining (0,0) to (1,4)
+%    in the plane.
+%  \leavevmode\\\relax 
+%  \leavevmode\\\relax 
+%    {\bf  A. } Evaluate \(\int_C \mathbf{F}\cdot d\mathbf{r}\)
+%    \mbox{\parbox[t]{15ex}{\hrulefill}}
+%\leavevmode\\\relax 
+%\leavevmode\\\relax 
+%
+%    {\bf  B. } Does the integral in part (A) depend on the path joining (0,0) to (1,4)? \mbox{\parbox[t]{5ex}{\hrulefill}} (y/n)
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Let \(C\) be the straight path from \((0, 0)\) to \((2, 2)\)
+%and let \({\bf F} = (y-x + 3){\bf i} + ( \sin(y-x) + 3){\bf j}\).
+%\par 
+%{\bf (a)}
+%At each point of \(C\), what angle does \({\bf F}\) make with a
+%tangent vector to \(C\)?
+%\leavevmode\\\relax 
+%angle = \mbox{\parbox[t]{5ex}{\hrulefill}}
+%\leavevmode\\\relax 
+%{\it (Give your answer in radians.)} 
+%
+%\par 
+%{\bf (b)}
+%Find the magnitude \(\Vert {\bf F}\Vert\) at each point of \(C\).
+%\leavevmode\\\relax 
+%\(\Vert {\bf F}\Vert =\) \mbox{\parbox[t]{17.5ex}{\hrulefill}}
+%
+%\par 
+%Evaluate \(\int_C {\bf F} \cdot d{\bf r}\).
+%\leavevmode\\\relax 
+%\(\int_C {\bf F} \cdot d{\bf r} =\) \mbox{\parbox[t]{17.5ex}{\hrulefill}}
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%{\bf 2. {\footnotesize (1 pt) MA301\-/Div and Curl\-/02.pg}}\newline Compute the curl of the vector field 
+%\({\bf F} =  \left<x^{5},y^{5},z^{5}\right>\).  (Notation:  Use "\(<\ast,\ast,\ast>\)" or "\(* {\bf i} + * {\bf j} + *{\bf k}\)" for vectors)
+%\leavevmode\\\relax 
+%\leavevmode\\\relax 
+%\(\mathrm{curl}({\bf F}(x,y,z))\) = 
+%\mbox{\parbox[t]{15ex}{\hrulefill}}
+%\leavevmode\\\relax 
+%\leavevmode\\\relax 
+%What is the curl at the point \(\left(-3,1,-5\right)\)?
+%\leavevmode\\\relax 
+%\leavevmode\\\relax 
+%\(\mathrm{curl}({\bf F}\left(-3,1,-5\right))\) = 
+%\mbox{\parbox[t]{15ex}{\hrulefill}}
+%\leavevmode\\\relax 
+%\leavevmode\\\relax 
+%Is this vector field irrotational or not?
+%\fbox{?}
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Determine whether the divergence of each 
+%vector field (in green) at the indicated
+%point \(P\) (in blue) is positive, negative, or zero.  (You get ONLY 2 Attempts!)
+%\leavevmode\\\relax 
+%\leavevmode\\\relax 
+%\begin{center}
+%\par\medskip\centerline{\kern 0pt\vbox{\halign{#\hfil&&\kern 1em #\hfil\cr
+%\hfil \includegraphics[width=0.31\linewidth]{/opt/webwork/courses/ma301/html/tmp/gif/coxgw10-3658-setHW_07_Div_And_Curlprob3image3.png}
+%&\hfil \includegraphics[width=0.31\linewidth]{/opt/webwork/courses/ma301/html/tmp/gif/coxgw10-3658-setHW_07_Div_And_Curlprob3image2.png}
+%&\hfil \includegraphics[width=0.31\linewidth]{/opt/webwork/courses/ma301/html/tmp/gif/coxgw10-3658-setHW_07_Div_And_Curlprob3image1.png}
+%\cr
+%\hfil \fbox{?}&\hfil \fbox{?}&\hfil \fbox{?}\cr}}\kern 0pt}\medskip
+%\leavevmode\\\relax (Click on a graph to enlarge it)
+%\end{center}
+
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Let \(\mathbf{F} = (9 xy, 4 y, 4 z)\).
+%\par 
+%  \(\,\) Is there a function \(f\) such that \(\mathbf{F} = \nabla f\)? 
+%\mbox{\parbox[t]{5ex}{\hrulefill}} (yes/no)
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Let C be the positively oriented circle \(x^{2} + y^{2} = 1\). Use Green's Theorem to
+%evaluate the line integral.
+%  \par 
+%\(\int_{C} 12y \, dx + 8x \, dy\) = \mbox{\parbox[t]{20ex}{\hrulefill}}
+
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Let \(\mathbf{F} = 4x \mathbf{i} + 4y \mathbf{j}\) and let
+%{\bf  N } be the outward unit normal vector to the positively
+%oriented (counter-clockwise) circle \(x^{2} + y^{2} = 4\). 
+%\par 
+%Compute the flux integral
+%\par 
+%\(\int_{C} \mathbf{F \cdot N} \, ds\) = \mbox{\parbox[t]{17.5ex}{\hrulefill}} 
+%\leavevmode\\\relax 
+%(See Section III of the Green's Theorem lecture notes)
+
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%Suppose \({\bf F}(x,y) = \langle x^2 + 6 y, \, 7 x - 3 y^2 \rangle\) and let \(C\) be the boundary of the triangle with vertices \((12,0)\), \((0,6)\), and \((-12,0)\) oriented counter-clockwise. 
+%\leavevmode\\\relax 
+%\leavevmode\\\relax 
+%\(\displaystyle \oint_C {\bf F} \cdot d{\bf r}\) = 
+%\mbox{\parbox[t]{20ex}{\hrulefill}}
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+%
+%{\bf 5. {\footnotesize (1 pt) MA301\-/GreensThm\-/Prob10.pg}}\newline Let \(\mathbf{F} = 2 x \mathbf{i} + 2 y \mathbf{j}\) and let {\bf  N } be the
+%outward unit normal vector to the positively oriented circle \(x^{2} + y^{2} =
+%1\).
+%  \par 
+%\(\oint_{C} \mathbf{F \cdot n} \, ds\) = \mbox{\parbox[t]{20ex}{\hrulefill}}
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip{\bf 6. {\footnotesize (1 pt) MA301\-/GreensThm\-/Prob5.pg}}\newline Let \({\bf F} = 6 x e^{y}\,{\bf i} + 3 x^2 e^{y}\,{\bf j}\) and
+%\({\bf G} = 6(x - y)\,{\bf i} + 3(x + y)\,{\bf j}\).
+%\leavevmode\\\relax 
+%Let \(C\) be the path consisting of lines
+%from \((0,0)\) to \((4,0)\) to \((4,3)\) to \((0,0)\).
+%\leavevmode\\\relax 
+%Find each of the following integrals exactly:
+
+%\par 
+%{\bf (a)}
+%\(\int_{C}{\bf F} \cdot d{\bf r} =\) \mbox{\parbox[t]{22.5ex}{\hrulefill}}
+%
+%\par 
+%{\bf (b)}
+%\(\int_{C}{\bf G}\cdot d{\bf r} =\) \mbox{\parbox[t]{22.5ex}{\hrulefill}}
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%{\bf 7. {\footnotesize (1 pt) MA301\-/GreensThm\-/Prob6.pg}}\newline Let \(C\) be the circular path with center \((a, b)\) and radius
+%\(m\), oriented counterclockwise.
+%
+%\par 
+%\(\int_C ((7 x + 8 y)\,{\bf i} + (2 x + 6 y)\,{\bf j})\cdot d{\bf r} =\)
+%\mbox{\parbox[t]{17.5ex}{\hrulefill}}
+%
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+
+%\medskip\goodbreak\hrule\nobreak\smallskip
+%
+%{\bf 10. {\footnotesize (1 pt) MA301\-/GreensThm\-/Prob4.pg}}\newline \par\medskip\hbox{\qquad\vtop{\advance\hsize by -3em \[{\bf F}(x,y) = (xe^{y^2}-3xy) {\bf i} + \frac{3}{2}y^2 {\bf j}\] 
+%\leavevmode\\\relax 
+%\(C\) is the sector of a circle centered at the origin with radius \(3\) and central angle \(\pi / 4\).\par \(\displaystyle \oint_C {\bf F} \cdot d{\bf r}\) = \mbox{\parbox[t]{20ex}{\hrulefill}}}}\medskip\hbox{\qquad\vtop{\advance\hsize by -3em \begin{center} %\includegraphics[width=0.7\linewidth]{/opt/webwork/courses/ma301/html/tmp/gif/coxgw10-2578-setHW_08_GreensThmprob10image1.png}
+%\end{center} }}\medskip
+
+%\medskip\goodbreak\hrule\nobreak\smallskip
+
+%\begin{center} 
+%\includegraphics[scale = 0.6]{../../../Figures/Test_Fig1.png}
+%\includegraphics[scale = 0.6]{../../../Figures/Test_Fig2.png}
+%\includegraphics[scale = 0.8]{../../../Figures/Test_Fig3.png}
+%\includegraphics[scale = 0.6]{../../../Figures/Test_Fig4.png}
+%\includegraphics[scale = 0.6]{../../../Figures/Test_Fig5.png}
+%\includegraphics[scale = 0.6]{../../../Figures/Test_Fig6.png}
+%\includegraphics[scale = 0.6]{../../../Figures/Test_Fig7.png}
+%\includegraphics[scale = 0.6]{../../../Figures/Test_Fig8.png}
+%\end{center}
+%
+
+\end{document}

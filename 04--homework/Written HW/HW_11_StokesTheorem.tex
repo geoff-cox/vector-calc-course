@@ -1,0 +1,109 @@
+\documentclass[11pt]{article}
+
+\input{../../../../Headers/TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+% Set your name here
+%\def\name{Geoffrey W. Cox}
+
+% The following metadata will show up in the PDF properties
+%\hypersetup{
+%  colorlinks = true,
+%  urlcolor = black,
+%  pdfauthor = {\name},
+%  pdfkeywords = {economics empirical industrial organization econometrics
+%    microeconomics applied microeconomics},
+%  pdftitle = {\name: Curriculum Vitae},
+%  pdfsubject = {Curriculum Vitae},
+%  pdfpagemode = UseNone
+%}
+
+\geometry{textheight=9.0in, textwidth=6in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1em}
+  }
+}{
+  \end{list}
+}
+
+\pagestyle{fancy}\lhead{} \rhead{}
+\chead{{\large{\bf Stokes' Theorem}}} \lfoot{} \rfoot{\bf \thepage} \cfoot{}
+
+\begin{document}
+
+\input{../../../../Headers/TeachingDefinitionHeader.tex}
+
+\vspace{0.2cm}
+
+{\bf Problem 1:} Compute $\D{\OWORK}$ for each of the following:
+
+%-------NUM LIST---------
+\begin{enumerate}
+	\item[a.] $\D{{\bf F} = [2y,3z,x]}$ \,\, and \, $C$: consists of the straight paths from $(0,2,0)$ to $(2,2,0)$ to $(2,2,1)$ and back to $(0,2,0)$
+	
+	\vspace{0.2cm}
+	
+	\item[b.] $\D{{\bf F} = [2y,3z,x]}$ \,\, and \, $C$: consists of the straight paths from $(0,0,0)$ to $(0,2,0)$ to $(1,1,1)$ and back to $(0,0,0)$ 
+	
+	\vspace{0.2cm}
+	
+	\item[c.] $\D{{\bf F} = y\,\VI + (2-3yz)\, \VJ + (x^2+y^2)\, \VK}$ \,\, and \, $C$ is the boundary of the side of the cylinder $\D{x^2 + z^2 = 16}$ \, in the first octant with \, $0 \le y \le 2$. 
+		
+\end{enumerate}
+%------------------------I
+
+\vspace{0.2cm}
+
+%{\bf Problem 2:} Let $f$ and $g$ be scalar functions whose partial derivatives exist and are continuous.  Suppose that the curve, $C$, and surface, $S$, satisfy the conditions of Stokes' Theorem.  Verify the following:
+%
+%%-------NUM LIST---------
+%\begin{enumerate}
+%	\item[a.] $\D{\int \limits_{C} ( f \nabla f ) \cdot d{\bf r} = 0}$ 
+%		
+%	\vspace{0.2cm}
+%	
+%	\item[b.] $\D{\int \limits_{C} ( f \nabla g + g \nabla f ) \cdot d{\bf r} = 0}$ 
+%		
+%\end{enumerate}
+%%------------------------
+
+%\thispagestyle{empty}
+%\newpage
+%\thispagestyle{empty}
+
+
+\end{document}

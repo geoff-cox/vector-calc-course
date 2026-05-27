@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+
+\input{../../../../Headers/TestQuizPackageHeader.tex}
+
+%\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+% Uncomment the following lines to use the Palatino font.  Remove the
+% [osf] bit if you don't like the old style figures.
+
+%\usepackage[T1]{fontenc}
+\usepackage[osf]{mathpazo}
+%\usepackage{mathpazo}
+
+% Set your name here
+%\def\name{Geoffrey W. Cox}
+
+% The following metadata will show up in the PDF properties
+%\hypersetup{
+%  colorlinks = true,
+%  urlcolor = black,
+%  pdfauthor = {\name},
+%  pdfkeywords = {economics empirical industrial organization econometrics
+%    microeconomics applied microeconomics},
+%  pdftitle = {\name: Curriculum Vitae},
+%  pdfsubject = {Curriculum Vitae},
+%  pdfpagemode = UseNone
+%}
+
+\geometry{textheight=9.0in, textwidth=6in}
+
+%% Customize page headers
+%\pagestyle{myheadings}
+%\markright{\name}
+%\thispagestyle{empty}
+
+% Customize section headings
+\usepackage{sectsty}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1em}
+  }
+}{
+  \end{list}
+}
+
+\pagestyle{fancy}\lhead{Written Homework 06} \rhead{Due Mar 04}
+\chead{{\large{\bf Surface Integrals}}} \lfoot{} \rfoot{\bf \thepage} \cfoot{}
+
+\begin{document}
+
+\input{../../../../Headers/TeachingDefinitionHeader.tex}
+
+In addition to the online homework, please hand in the following problems:
+
+\vspace{0.2cm}
+
+{\bf Problem 1:} Let ${\bf F} = [x,y,z]$. Find the flux of ${\bf F}$ through each of the surfaces below.
+
+%-------NUM LIST---------
+\begin{enumerate}
+	\item[a.] $\D{S: \,\,z = 4 - x^2 - y^2}$ \, lying above the $xy$-plane and oriented by an upward pointing normal.
+	
+	\vspace{0.2cm}
+	
+	\item[b.] $\D{S: 4x + 8y + z = 4}$ \, in the first octant with an upward pointing normal.
+	
+	\vspace{0.2cm}
+	
+	\item[c.] $\D{S: \,\,x^2 + y^2 + z^2 = 4}$ \, with outward pointing normal.
+\end{enumerate}
+%------------------------I
+
+		
+%\thispagestyle{empty}
+%\newpage
+%\thispagestyle{empty}
+
+
+\end{document}
