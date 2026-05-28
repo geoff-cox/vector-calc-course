@@ -1,0 +1,75 @@
+name: Claude Code
+
+# Interactive Claude Code action.
+#
+# It wakes up whenever an issue, a PR comment, a PR review, or a review-thread
+# comment contains "@claude". That single trigger covers the whole workflow:
+#
+#   * Open a GitHub issue containing "@claude run Task N ..."  -> Claude does
+#     the work and opens a pull request.
+#   * Comment "@claude ..." on that PR (or leave a review with @claude in it)
+#     -> Claude addresses the feedback on the same PR branch.
+#
+# This is the "submit as a PR, then subscribe to address reviews" loop. There
+# is no automatic review of every push here on purpose, so Claude never reviews
+# its own PRs; reviews are human-initiated via @claude.
+#
+# v1 notes (do not regress to the old @beta syntax):
+#   * action is anthropics/claude-code-action@v1
+#   * mode is auto-detected (no `mode:` input)
+#   * use `prompt:` (not `direct_prompt:`); CLI options go in `claude_args:`
+# Verified against the GA docs at https://code.claude.com/docs/en/github-actions
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+  issues:
+    types: [opened, assigned]
+
+# Least privilege needed to read context and push branches / open & comment PRs.
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
+# Don't pile up runs if several comments land quickly on the same PR/issue.
+concurrency:
+  group: claude-${{ github.event.issue.number || github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  claude:
+    # Only run when "@claude" actually appears in the relevant text for the
+    # event type. This keeps unrelated comments from burning Actions minutes.
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && contains(github.event.issue.body, '@claude'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so diffs/builds have context
+
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # No `prompt:` here: for issue/PR comments the action responds to the
+          # "@claude" trigger and reads the request text directly. Project
+          # conventions and the Task catalog come from CLAUDE.md +
+          # BUILD-CHECKLIST.md, which the action reads from the repo root.
+          claude_args: |
+            --max-turns 30
+          # To use Opus 4.7 for these (deeper reasoning, higher cost), add it
+          # to claude_args above, e.g.:
+          #   --max-turns 30
+          #   --model claude-opus-4-7

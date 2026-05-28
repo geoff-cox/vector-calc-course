@@ -7,3 +7,15 @@ notes-vector-calculus/generated-assets
 notes-vector-calculus/logs
 notes-vector-calculus/output
 notes-vector-calculus/.error_schema.log
+
+# PreTeXt build output
+/output/
+
+# PreTeXt CLI logs and caches
+*.log
+.error_schema.log
+cli.log
+
+# OS / editor cruft
+.DS_Store
+*~
