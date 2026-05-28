@@ -60,12 +60,12 @@
                 </p>
             </statement>
         </definition>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Blanks, in order: <q>magnitude</q> (or
                 <q>length</q>) and <q>direction</q>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <p><alert>Notation conventions used in this course.</alert></p>
         <ul>
@@ -99,13 +99,13 @@
                 </me>
             </li>
         </ul>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Blanks, in order: <q>2</q>, <m>[v_1,\,v_2]</m>,
                 <q>3</q>, <m>[v_1,\,v_2,\,v_3]</m>, and
                 <m>v_1\,\vi + v_2\,\vj + v_3\,\vk</m>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <example xml:id="ex-vector-examples">
             <title>Reading vectors</title>
@@ -127,14 +127,14 @@
                 </ol>
             </statement>
         </example>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Part (1) blanks: <m>\R^2</m> and
                 <m>10\,\vi + 4\,\vj</m>.  Part (2) blanks:
                 <m>\R^3</m> and
                 <m>-10\,\vi + 12\,\vj - 8\,\vk</m>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <theorem xml:id="thm-vector-equality">
             <title>Vector equality</title>
@@ -147,14 +147,14 @@
                 </p>
             </statement>
         </theorem>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Fill in:
                 <m>a_1 = b_1</m>, <m>a_2 = b_2</m>, and
                 <m>a_3 = b_3</m> &#8212; the components match
                 one-by-one.
             </p>
-        </commentary>
+        </commentary> -->
 
         <exercise xml:id="exer-equality">
             <title>Using vector equality</title>
@@ -212,12 +212,12 @@
             </me>
             Vector addition is just <em>componentwise</em> addition.
         </p>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Fill in:
                 <m>[a_1 + b_1,\; a_2 + b_2,\; a_3 + b_3]</m>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <figure xml:id="fig-vector-addition">
             <caption>Vector addition by the parallelogram (or
@@ -250,12 +250,12 @@
                 <fillin characters="18"/>.
             </li>
         </ul>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Blanks, in order: <m>\R^3</m>, and
                 <q>resultant force</q>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <exercise xml:id="ex-add">
             <title>Adding two vectors</title>
@@ -328,12 +328,12 @@
             </me>
             Scalar multiplication is componentwise.
         </p>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Fill in:
                 <m>[c\,v_1,\; c\,v_2,\; c\,v_3]</m>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <figure xml:id="fig-scalar-multiplication">
             <caption>Scalar multiples of a vector.</caption>
@@ -361,12 +361,12 @@
                 <fillin characters="6"/>.
             </li>
         </ul>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Blanks, in order: <q>stretch</q>,
                 <q>compress</q>, <q>flip</q>, and <m>\R^n</m>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <exercise xml:id="ex-scalar-mult">
             <title>A scalar multiple</title>
@@ -451,13 +451,13 @@
                 </p>
             </statement>
         </definition>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Fill in:
                 <m>\norm{\vv} = \sqrt{v_1^2 + v_2^2}</m> and
                 <m>\norm{\vw} = \sqrt{w_1^2 + w_2^2 + w_3^2}</m>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <exercise xml:id="ex-length">
             <title>Computing a length</title>
@@ -484,9 +484,9 @@
             <m>\norm{\vw} \in</m> <fillin characters="14"/>.
             Length is a single non-negative real number.
         </p>
-        <commentary>
+        <!-- <commentary>
             <p>Fill in: <m>\R</m> (a scalar).</p>
-        </commentary>
+        </commentary> -->
 
         <definition xml:id="def-unit-vector">
             <statement>
@@ -496,9 +496,9 @@
                 </p>
             </statement>
         </definition>
-        <commentary>
+        <!-- <commentary>
             <p>Fill in: <m>\norm{\vv} = 1</m>.</p>
-        </commentary>
+        </commentary> -->
 
         <p>
             <alert>Producing a unit vector.</alert>
@@ -510,11 +510,11 @@
             <m>\vw</m>.  We sometimes say we have
             <term>normalized</term> the vector.
         </p>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Fill in: <m>\dfrac{\vw}{\norm{\vw}}</m>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <exercise xml:id="ex-unit">
             <title>A unit vector in a given direction</title>
@@ -611,12 +611,12 @@
                 \vF = \fillin[18]
             </me>
         </p>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Fill in:
                 <m>\displaystyle\sum_{i=1}^{n} \vF_i</m>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <definition xml:id="def-equilibrium">
             <statement>
@@ -627,9 +627,9 @@
                 </p>
             </statement>
         </definition>
-        <commentary>
+        <!-- <commentary>
             <p>Fill in: <m>\vF = \vzero</m>.</p>
-        </commentary>
+        </commentary> -->
 
         <exercise xml:id="ex-resultant">
             <title>A resultant force</title>

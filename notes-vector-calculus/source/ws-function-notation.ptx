@@ -49,30 +49,32 @@
             called the <term>domain</term> and produces outputs in
             a set called the <term>range</term> (or codomain).
             Schematically,
-            <me>
+            <md>
                 f \colon \underbrace{\text{Domain}}_{\text{inputs}}
                 \;\longrightarrow\;
                 \underbrace{\text{Range}}_{\text{outputs}}.
-            </me>
+            </md>
         </p>
 
-        <p>The defining properties of a function:</p>
-        <ul>
-            <li>For each input there is <fillin characters="14"/>
-                output.</li>
-            <li>Two different inputs <fillin characters="4"/>
-                produce the same output.</li>
-            <li>One input <fillin characters="12"/> produce two
-                different outputs.</li>
-        </ul>
-        <commentary>
+        <p>
+            The defining properties of a function:
+            <ul>
+                <li>For each input there is <fillin characters="14"/>
+                    output.</li>
+                <li>Two different inputs <fillin characters="4"/>
+                    produce the same output.</li>
+                <li>One input <fillin characters="12"/> produce two
+                    different outputs.</li>
+            </ul>
+        </p>
+        <!-- <commentary>
             <p>
                 Fill in, in order:
                 <q>exactly one</q>,
                 <q>can</q>,
                 <q>can never</q>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <p>
             We use the notation <m>f(x)</m>, <m>f(x,y)</m>,
@@ -88,62 +90,68 @@
     <page>
         <p><alert>II. Building up from one variable to many.</alert></p>
 
-        <p><em>In Calculus 1 and 2</em>, you worked with functions
-            <m>f(x)</m> of a single variable:</p>
-        <ul>
-            <li>Input: <m>x \in</m> <fillin characters="3"/>
-                <nbsp/>(a real number, i.e., a point on the
-                <m>1</m>-dimensional line).</li>
-            <li>Output: <m>f(x) \in</m> <fillin characters="3"/>.</li>
-            <li>In symbols, <m>f \colon \R \to \R</m>.</li>
-        </ul>
-        <commentary>
+        <p>
+            <em>In Calculus 1 and 2</em>, you worked with functions
+            <m>f(x)</m> of a single variable:
+            <ul>
+                <li>Input: <m>x \in</m> <fillin characters="3"/>
+                    <nbsp/>(a real number, i.e., a point on the
+                    <m>1</m>-dimensional line).</li>
+                <li>Output: <m>f(x) \in</m> <fillin characters="3"/>.</li>
+                <li>In symbols, <m>f \colon \R \to \R</m>.</li>
+            </ul>
+        </p>
+        <!-- <commentary>
             <p>Both blanks: <m>\R</m>.</p>
-        </commentary>
+        </commentary> -->
 
-        <p><em>In Calculus 3</em>, you met functions of two and
-            three variables:</p>
-        <ul>
-            <li>Input for <m>f(x,y)</m>: <m>(x,y) \in</m>
-                <fillin characters="4"/>
-                <nbsp/>(a point in the <m>2</m>-dimensional plane).</li>
-            <li>Input for <m>f(x,y,z)</m>: <m>(x,y,z) \in</m>
-                <fillin characters="4"/>
-                <nbsp/>(a point in <m>3</m>-dimensional space).</li>
-            <li>Output: still a single real number,
-                <m>f(x,y) \in</m> <fillin characters="3"/>
-                <nbsp/>or <m>f(x,y,z) \in</m>
-                <fillin characters="3"/>.</li>
-            <li>In symbols, <m>f \colon \R^2 \to \R</m> or
-                <m>f \colon \R^3 \to \R</m>.</li>
-        </ul>
-        <commentary>
+        <p>
+            <em>In Calculus 3</em>, you met functions of two and
+            three variables:
+            <ul>
+                <li>Input for <m>f(x,y)</m>: <m>(x,y) \in</m>
+                    <fillin characters="4"/>
+                    <nbsp/>(a point in the <m>2</m>-dimensional plane).</li>
+                <li>Input for <m>f(x,y,z)</m>: <m>(x,y,z) \in</m>
+                    <fillin characters="4"/>
+                    <nbsp/>(a point in <m>3</m>-dimensional space).</li>
+                <li>Output: still a single real number,
+                    <m>f(x,y) \in</m> <fillin characters="3"/>
+                    <nbsp/>or <m>f(x,y,z) \in</m>
+                    <fillin characters="3"/>.</li>
+                <li>In symbols, <m>f \colon \R^2 \to \R</m> or
+                    <m>f \colon \R^3 \to \R</m>.</li>
+            </ul>
+        </p>
+        <!-- <commentary>
             <p>
                 Blanks, in order: <m>\R^2</m>, <m>\R^3</m>, <m>\R</m>,
                 <m>\R</m>.
             </p>
-        </commentary>
+        </commentary> -->
 
-        <p><em>In this course</em>, we'll also need
+        <p>
+            <em>In this course</em>, we'll also need
             <term>vector-valued functions</term> <m>\vF(x,y)</m> and
-            <m>\vF(x,y,z)</m>:</p>
-        <ul>
-            <li>Input: a point in <fillin characters="4"/>
-                <nbsp/>or <fillin characters="4"/>
-                <nbsp/>(same as before).</li>
-            <li>Output: a <em>vector</em>, <m>\vF(x,y) \in</m>
-                <fillin characters="4"/>
-                <nbsp/>or <m>\vF(x,y,z) \in</m>
-                <fillin characters="4"/>.</li>
-            <li>In symbols, <m>\vF \colon \R^2 \to \R^2</m> or
-                <m>\vF \colon \R^3 \to \R^3</m>.</li>
-        </ul>
-        <commentary>
+            <m>\vF(x,y,z)</m>:
+            <ul>
+                <li>Input: a point in <fillin characters="4"/>
+                    <nbsp/>or <fillin characters="4"/>
+                    <nbsp/>(same as before).</li>
+                <li>Output: a <em>vector</em>, <m>\vF(x,y) \in</m>
+                    <fillin characters="4"/>
+                    <nbsp/>or <m>\vF(x,y,z) \in</m>
+                    <fillin characters="4"/>.</li>
+                <li>In symbols, <m>\vF \colon \R^2 \to \R^2</m> or
+                    <m>\vF \colon \R^3 \to \R^3</m>.</li>
+            </ul>
+        </p>
+        <!-- <commentary>
             <p>
                 Blanks, in order: <m>\R^2</m>, <m>\R^3</m>,
                 <m>\R^2</m>, <m>\R^3</m>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <p>
             <alert>Vocabulary.</alert>
@@ -196,9 +204,9 @@
             <statement>
                 <p>
                     Let
-                    <me>
+                    <md>
                         g(x,y,z) = \frac{\cos z}{x} - x.
-                    </me>
+                    </md>
                     Compute <m>g(-1,\,0,\,\pi)</m>.
                 </p>
             </statement>
@@ -292,21 +300,21 @@
             <li>Cannot take the logarithm of a
                 <fillin characters="14"/> <nbsp/>number.</li>
         </ul>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Blanks, in order: <q>zero</q>, <q>negative</q>,
                 <q>non-positive</q>.
             </p>
-        </commentary>
+        </commentary> -->
 
         <exercise xml:id="ex-domain-disk">
             <title>A disk-shaped domain</title>
             <statement>
                 <p>
                     Find the natural domain of
-                    <me>
+                    <md>
                         f(x,y) = \sqrt{4 - x^2 - y^2}.
-                    </me>
+                    </md>
                 </p>
             </statement>
             <solution>
@@ -333,10 +341,10 @@
                         The logarithm requires <m>x + y > 0</m>;
                         the denominator requires <m>x - y \ne 0</m>,
                         i.e., <m>y \ne x</m>.  So
-                        <me>
+                        <md>
                             \dom(g) = \{(x,y) \in \R^2
                             : x + y > 0 \text{ and } y \ne x\},
-                        </me>
+                        </md>
                         the open half-plane above the line
                         <m>y = -x</m>, minus the line
                         <m>y = x</m>.
@@ -375,10 +383,10 @@
             A vector-valued function in <m>\R^2</m> assigns to each
             input point <m>(x,y)</m> a <em>vector</em> in <m>\R^2</m>,
             for instance
-            <me>
+            <md>
                 \vF(x,y) = \langle\, x - y,\; x + y \,\rangle
                 = (x-y)\,\vi + (x+y)\,\vj.
-            </me>
+            </md>
             The two real-valued expressions
             <m>F_1(x,y) = x-y</m> and <m>F_2(x,y) = x+y</m> are
             called the <term>component functions</term> of
@@ -465,12 +473,12 @@
             <nbsp/>(vector-valued function).  The next worksheet
             zooms in on the structure of those output vectors.
         </p>
-        <commentary>
+        <!-- <commentary>
             <p>
                 Blanks, in order: <m>\R^n</m>, <m>\R</m>,
                 <m>\R^m</m>.
             </p>
-        </commentary>
+        </commentary> -->
     </page>
 
 </worksheet>
