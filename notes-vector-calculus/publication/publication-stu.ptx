@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    publication-instructor.ptx
-    Instructor key: blanks visible AND solutions/answers shown inline.
+    publication-stu.ptx
+    Student handout: blanks visible, but solutions and answers suppressed.
 
-    Same source tree as the student build; the only difference is that
-    <task-default>, <solutions-divisional>, and <solutions-worksheet>
-    here list every part of an exercise, so the <solution> bodies appear.
+    Same source tree as the instructor key (publication-key.ptx); the only
+    difference is that here <task-default>, <solutions-divisional>, and
+    <solutions-worksheet> emit only the <statement/>, and the <exercise-*>
+    visibility flags set solution="no" / answer="no", so the <solution>
+    bodies are dropped from this build.  The <fillin/> blanks still render
+    (students write in them during class).
 -->
 <publication>
 	<source>
@@ -19,39 +22,25 @@
 		<!-- Depth for table of contents.  0 means no TOC -->
 		<tableofcontents level="3" />
 		<!-- Visibility of exercise components where they first appear -->
-		<exercise-inline statement="yes" hint="yes" answer="no" solution="yes" />
-		<exercise-divisional statement="yes" hint="yes" answer="no" solution="yes" />
-		<exercise-worksheet statement="yes" hint="yes" answer="no" solution="yes" />
-		<exercise-reading statement="yes" hint="yes" answer="no" solution="yes" />
-		<exercise-project statement="yes" hint="yes" answer="yes" solution="yes" />
+		<exercise-inline statement="yes" hint="yes" answer="no" solution="no" />
+		<exercise-divisional statement="yes" hint="yes" answer="no" solution="no" />
+		<exercise-worksheet statement="yes" hint="yes" answer="no" solution="no" />
+		<exercise-reading statement="yes" hint="yes" answer="no" solution="no" />
+		<exercise-project statement="yes" hint="yes" answer="no" solution="no" />
 		<!-- Style of fill-in-the-blanks -->
 		<fillin textstyle="underline" mathstyle="shade" />
-		<!-- You can set a watermark -->
-		<!-- <watermark scale="0.5">DRAFT</watermark> -->
-		<!-- Mermaid diagram themes -->
-		<!-- <mermaid theme="default" /> -->
-		<!-- QR code image: set path to an image to put in center of QR codes -->
-		<!-- <qrcode image="image.png" /> -->
         <tabular top="major" bottom="minor"/>
 
         <task-default>
             <statement/>
             <hint/>
-            <answer/>
-            <solution/>
         </task-default>
 
         <solutions-divisional>
             <statement/>
-            <hint/>
-            <answer/>
-            <solution/>
         </solutions-divisional>
         <solutions-worksheet>
             <statement/>
-            <hint/>
-            <answer/>
-            <solution/>
         </solutions-worksheet>
 	</common>
     

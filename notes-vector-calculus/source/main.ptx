@@ -40,6 +40,8 @@
             \newcommand{\norm}[1]{\left\lvert #1 \right\rvert}
             \DeclareMathOperator{\dom}{dom}
             \DeclareMathOperator{\range}{range}
+            \DeclareMathOperator{\proj}{proj}
+            \DeclareMathOperator{\comp}{comp}
         </macros>
     </docinfo>
 
