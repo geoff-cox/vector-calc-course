@@ -34,8 +34,10 @@
     <!-- Class meeting 3: The dot product -->
     <xi:include href="./ws-dot-product.ptx"/>
 
+    <!-- Class meeting 4: The cross product -->
+    <xi:include href="./ws-cross-product.ptx"/>
+
     <!-- Future worksheets in this chapter (uncomment as you write them): -->
-    <!-- <xi:include href="./ws-cross-product.ptx"/>       -->
     <!-- <xi:include href="./ws-curves.ptx"/>              -->
     <!-- <xi:include href="./ws-vector-fields.ptx"/>       -->
     <!-- <xi:include href="./ws-gradient.ptx"/>            -->
