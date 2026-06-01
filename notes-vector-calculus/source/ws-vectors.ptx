@@ -1,712 +1,712 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    ws-vectors.ptx
-    Worksheet 1.2: Vectors.
+	ws-vectors.ptx
+	Worksheet 1.2: Vectors.
 
-    Ports the original 01_01_Vectors.tex slide deck.  Same five-part
-    organization as the Beamer notes:
-        I.   Vector basics (notation, components, basis vectors, equality)
-        II.  Vector addition (and "resultant" terminology)
-        III. Scalar multiplication
-        IV.  Length / norm / unit vectors
-        V.   Application: resultant force and equilibrium
+	Ports the original 01_01_Vectors.tex slide deck.  Same five-part
+	organization as the Beamer notes:
+		I.   Vector basics (notation, components, basis vectors, equality)
+		II.  Vector addition (and "resultant" terminology)
+		III. Scalar multiplication
+		IV.  Length / norm / unit vectors
+		V.   Application: resultant force and equilibrium
 
-    Guided-notes pattern (see ws-function-notation.ptx for full
-    explanation):
-        - <fillin characters="N"/> draws a blank in BOTH builds.
-        - The matching answer follows in a <commentary> block,
-          which appears only on the instructor build (per the
-          'commentary' stringparam in project.ptx).
-        - Multi-step worked computations are <exercise>s with a
-          <solution> body whose visibility is controlled by the
-          <exercise-worksheet @solution="..."/> entry in the
-          publication file.
+	Guided-notes pattern (see ws-function-notation.ptx for full
+	explanation):
+		- <fillin characters="N"/> draws a blank in BOTH builds.
+		- The matching answer follows in a <commentary> block,
+		  which appears only on the instructor build (per the
+		  'commentary' stringparam in project.ptx).
+		- Multi-step worked computations are <exercise>s with a
+		  <solution> body whose visibility is controlled by the
+		  <exercise-worksheet @solution="..."/> entry in the
+		  publication file.
 
-    Figures (parallelogram rule, scalar-multiple stretching) are
-    left as <figure> placeholders so the existing PNGs from the
-    LaTeX source can be dropped in later.
+	Figures (parallelogram rule, scalar-multiple stretching) are
+	left as <figure> placeholders so the existing PNGs from the
+	LaTeX source can be dropped in later.
 -->
 <worksheet xml:id="ws-vectors">
-    <title>Vectors</title>
+	<title>Vectors</title>
 
-    <objectives>
-        <ul>
-            <li>Read and write vectors in <m>\R^2</m> and <m>\R^3</m>
-                in both bracket and <m>\vi,\vj,\vk</m> form.</li>
-            <li>Test two vectors for equality and use equality to
-                solve for unknown components.</li>
-            <li>Add vectors and multiply vectors by scalars, both
-                algebraically and geometrically.</li>
-            <li>Compute the length (norm) of a vector and produce a
-                unit vector in a prescribed direction.</li>
-            <li>Apply vector addition to find a resultant force and
-                test a system of forces for equilibrium.</li>
-        </ul>
-    </objectives>
+	<objectives>
+		<ul>
+			<li>Read and write vectors in <m>\R^2</m> and <m>\R^3</m>
+				in both bracket and <m>\vi,\vj,\vk</m> form.</li>
+			<li>Test two vectors for equality and use equality to
+				solve for unknown components.</li>
+			<li>Add vectors and multiply vectors by scalars, both
+				algebraically and geometrically.</li>
+			<li>Compute the length (norm) of a vector and produce a
+				unit vector in a prescribed direction.</li>
+			<li>Apply vector addition to find a resultant force and
+				test a system of forces for equilibrium.</li>
+		</ul>
+	</objectives>
 
-    <!-- ============================================================
-         Page 1: Vector basics, notation, equality
-         ============================================================ -->
-    <page>
-        <p><alert>I. Vector basics.</alert></p>
+	<!-- ============================================================
+		 Page 1: Vector basics, notation, equality
+		 ============================================================ -->
+	<page>
+		<p><alert>I. Vector basics.</alert></p>
 
-        <definition xml:id="def-vector">
-            <statement>
-                <p>
-                    A <term>vector</term> <m>\vv</m> is a
-                    mathematical object that has both
-                    <fillin characters="20"/>
-                    <nbsp/>and <fillin characters="12"/>.
-                </p>
-            </statement>
-        </definition>
-        <!-- <commentary>
-            <p>
-                Blanks, in order: <q>magnitude</q> (or
-                <q>length</q>) and <q>direction</q>.
-            </p>
-        </commentary> -->
+		<definition xml:id="def-vector">
+			<statement>
+				<p>
+					A <term>vector</term> <m>\vv</m> is a
+					mathematical object that has both
+					<fillin characters="20"/>
+					<nbsp/>and <fillin characters="12"/>.
+				</p>
+			</statement>
+		</definition>
+		<!-- <commentary>
+			<p>
+				Blanks, in order: <q>magnitude</q> (or
+				<q>length</q>) and <q>direction</q>.
+			</p>
+		</commentary> -->
 
-        <p><alert>Notation conventions used in this course.</alert></p>
-        <ul>
-            <li>
-                A vector is written in <term>bold</term> or with an
-                <term>arrow</term>: <m>\vv</m>, <m>\vec{v}</m>.  In
-                handwriting we'll use the arrow.
-            </li>
-            <li>
-                A vector <m>\vv</m> in <m>\R^2</m> is described by
-                <fillin characters="3"/> <nbsp/>coordinates:
-                <m>\vv = </m> <fillin characters="10"/>
-                <m>\in \R^2</m>.
-            </li>
-            <li>
-                A vector <m>\vv</m> in <m>\R^3</m> is described by
-                <fillin characters="3"/> <nbsp/>coordinates:
-                <m>\vv = </m> <fillin characters="14"/>
-                <m>\in \R^3</m>.
-            </li>
-            <li>
-                The <term>standard basis vectors</term>
-                <me>
-                    \vi = [1,0,0], \quad
-                    \vj = [0,1,0], \quad
-                    \vk = [0,0,1]
-                </me>
-                let us rewrite any vector as a linear combination:
-                <me>
-                    \vv = [v_1, v_2, v_3] = \fillin[24]
-                </me>
-            </li>
-        </ul>
-        <!-- <commentary>
-            <p>
-                Blanks, in order: <q>2</q>, <m>[v_1,\,v_2]</m>,
-                <q>3</q>, <m>[v_1,\,v_2,\,v_3]</m>, and
-                <m>v_1\,\vi + v_2\,\vj + v_3\,\vk</m>.
-            </p>
-        </commentary> -->
+		<p><alert>Notation conventions used in this course.</alert></p>
+		<ul>
+			<li>
+				A vector is written in <term>bold</term> or with an
+				<term>arrow</term>: <m>\vv</m>, <m>\vec{v}</m>.  In
+				handwriting we'll use the arrow.
+			</li>
+			<li>
+				A vector <m>\vv</m> in <m>\R^2</m> is described by
+				<fillin characters="3"/> <nbsp/>coordinates:
+				<m>\vv = </m> <fillin characters="10"/>
+				<m>\in \R^2</m>.
+			</li>
+			<li>
+				A vector <m>\vv</m> in <m>\R^3</m> is described by
+				<fillin characters="3"/> <nbsp/>coordinates:
+				<m>\vv = </m> <fillin characters="14"/>
+				<m>\in \R^3</m>.
+			</li>
+			<li>
+				The <term>standard basis vectors</term>
+				<md>
+					\vi = [1,0,0], \quad
+					\vj = [0,1,0], \quad
+					\vk = [0,0,1]
+				</md>
+				let us rewrite any vector as a linear combination:
+				<md>
+					\vv = [v_1, v_2, v_3] = \fillin[24]
+				</md>
+			</li>
+		</ul>
+		<!-- <commentary>
+			<p>
+				Blanks, in order: <q>2</q>, <m>[v_1,\,v_2]</m>,
+				<q>3</q>, <m>[v_1,\,v_2,\,v_3]</m>, and
+				<m>v_1\,\vi + v_2\,\vj + v_3\,\vk</m>.
+			</p>
+		</commentary> -->
 
-        <example xml:id="ex-vector-examples">
-            <title>Reading vectors</title>
-            <statement>
-                <p>Classify each vector and rewrite it in
-                    <m>\vi,\vj,\vk</m> form when possible.</p>
-                <ol>
-                    <li><m>[10, 14]</m>, <m>[0, 1]</m>,
-                        <m>[-1, 2]</m> are in
-                        <fillin characters="4"/>, and
-                        <m>[10, 4] = </m> <fillin characters="16"/>.</li>
-                    <li><m>[1, 1, -1]</m>, <m>[0, 0, 0]</m>,
-                        <m>[-10, 12, -8]</m> are in
-                        <fillin characters="4"/>, and
-                        <me>
-                            [-10, 12, -8] = \fillin[28]
-                        </me>
-                    </li>
-                </ol>
-            </statement>
-        </example>
-        <!-- <commentary>
-            <p>
-                Part (1) blanks: <m>\R^2</m> and
-                <m>10\,\vi + 4\,\vj</m>.  Part (2) blanks:
-                <m>\R^3</m> and
-                <m>-10\,\vi + 12\,\vj - 8\,\vk</m>.
-            </p>
-        </commentary> -->
+		<example xml:id="ex-vector-examples">
+			<title>Reading vectors</title>
+			<statement>
+				<p>Classify each vector and rewrite it in
+					<m>\vi,\vj,\vk</m> form when possible.</p>
+				<ol>
+					<li><m>[10, 14]</m>, <m>[0, 1]</m>,
+						<m>[-1, 2]</m> are in
+						<fillin characters="4"/>, and
+						<m>[10, 4] = </m> <fillin characters="16"/>.</li>
+					<li><m>[1, 1, -1]</m>, <m>[0, 0, 0]</m>,
+						<m>[-10, 12, -8]</m> are in
+						<fillin characters="4"/>, and
+						<md>
+							[-10, 12, -8] = \fillin[28]
+						</md>
+					</li>
+				</ol>
+			</statement>
+		</example>
+		<!-- <commentary>
+			<p>
+				Part (1) blanks: <m>\R^2</m> and
+				<m>10\,\vi + 4\,\vj</m>.  Part (2) blanks:
+				<m>\R^3</m> and
+				<m>-10\,\vi + 12\,\vj - 8\,\vk</m>.
+			</p>
+		</commentary> -->
 
-        <theorem xml:id="thm-vector-equality">
-            <title>Vector equality</title>
-            <statement>
-                <p>
-                    Let <m>\va = [a_1, a_2, a_3]</m> and
-                    <m>\vb = [b_1, b_2, b_3]</m>.  Then
-                    <m>\va = \vb</m> if and only if
-                    <fillin characters="40"/>.
-                </p>
-            </statement>
-        </theorem>
-        <!-- <commentary>
-            <p>
-                Fill in:
-                <m>a_1 = b_1</m>, <m>a_2 = b_2</m>, and
-                <m>a_3 = b_3</m> &#8212; the components match
-                one-by-one.
-            </p>
-        </commentary> -->
+		<theorem xml:id="thm-vector-equality">
+			<title>Vector equality</title>
+			<statement>
+				<p>
+					Let <m>\va = [a_1, a_2, a_3]</m> and
+					<m>\vb = [b_1, b_2, b_3]</m>.  Then
+					<m>\va = \vb</m> if and only if
+					<fillin characters="40"/>.
+				</p>
+			</statement>
+		</theorem>
+		<!-- <commentary>
+			<p>
+				Fill in:
+				<m>a_1 = b_1</m>, <m>a_2 = b_2</m>, and
+				<m>a_3 = b_3</m> &#8212; the components match
+				one-by-one.
+			</p>
+		</commentary> -->
 
-        <exercise xml:id="exer-equality">
-            <title>Using vector equality</title>
-            <task xml:id="task-eq-a">
-                <statement>
-                    <p>
-                        Find <m>c</m> and <m>d</m> so that
-                        <me>
-                            [2,\; 0,\; 2d+c] = [c,\; 0,\; 1].
-                        </me>
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        Matching components gives <m>c = 2</m> and
-                        <m>2d + c = 1</m>.  Substituting,
-                        <m>2d + 2 = 1</m>, so
-                        <m>d = -\tfrac{1}{2}</m>.
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-eq-b">
-                <statement>
-                    <p>
-                        Find all <m>s, t</m> so that
-                        <m>[s^2,\; t] = [4,\; s + t]</m>.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        From the first component, <m>s = \pm 2</m>.
-                        From the second, <m>t = s + t</m> gives
-                        <m>s = 0</m> &#8212; which contradicts
-                        <m>s = \pm 2</m>.  So no solution exists.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
-    </page>
+		<exercise xml:id="exer-equality">
+			<title>Using vector equality</title>
+			<task xml:id="task-eq-a">
+				<statement>
+					<p>
+						Find <m>c</m> and <m>d</m> so that
+						<md>
+							[2,\; 0,\; 2d+c] = [c,\; 0,\; 1].
+						</md>
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Matching components gives <m>c = 2</m> and
+						<m>2d + c = 1</m>.  Substituting,
+						<m>2d + 2 = 1</m>, so
+						<m>d = -\tfrac{1}{2}</m>.
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-eq-b">
+				<statement>
+					<p>
+						Find all <m>s, t</m> so that
+						<m>[s^2,\; t] = [4,\; s + t]</m>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						From the first component, <m>s = \pm 2</m>.
+						From the second, <m>t = s + t</m> gives
+						<m>s = 0</m> &#8212; which contradicts
+						<m>s = \pm 2</m>.  So no solution exists.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+	</page>
 
-    <!-- ============================================================
-         Page 2: Vector addition (and "resultant")
-         ============================================================ -->
-    <page>
-        <p><alert>II. Vector addition.</alert>
-            (Vector Operation #1)</p>
+	<!-- ============================================================
+		 Page 2: Vector addition (and "resultant")
+		 ============================================================ -->
+	<page>
+		<p><alert>II. Vector addition.</alert>
+			(Vector Operation #1)</p>
 
-        <p>
-            Let <m>\va = [a_1, a_2, a_3]</m> and
-            <m>\vb = [b_1, b_2, b_3]</m>.  Then
-            <me>
-                \va + \vb
-                = [a_1, a_2, a_3] + [b_1, b_2, b_3]
-                = \fillin[34]
-            </me>
-            Vector addition is just <em>componentwise</em> addition.
-        </p>
-        <!-- <commentary>
-            <p>
-                Fill in:
-                <m>[a_1 + b_1,\; a_2 + b_2,\; a_3 + b_3]</m>.
-            </p>
-        </commentary> -->
+		<p>
+			Let <m>\va = [a_1, a_2, a_3]</m> and
+			<m>\vb = [b_1, b_2, b_3]</m>.  Then
+			<md>
+				\va + \vb
+				= [a_1, a_2, a_3] + [b_1, b_2, b_3]
+				= \fillin[34]
+			</md>
+			Vector addition is just <em>componentwise</em> addition.
+		</p>
+		<!-- <commentary>
+			<p>
+				Fill in:
+				<m>[a_1 + b_1,\; a_2 + b_2,\; a_3 + b_3]</m>.
+			</p>
+		</commentary> -->
 
-        <figure xml:id="fig-vector-addition">
-            <caption>Vector addition by the parallelogram (or
-                head-to-tail) rule.</caption>
-            <!-- TODO: drop in the existing 9_1_Fig1/2/3 PNGs, e.g.
-                 <image source="figures/vec-add-parallelogram.png"
-                        width="60%"/>
-                 or replace with an inline TikZ <latex-image>. -->
-            <image>
-                <description>Two vectors a and b drawn tail-to-tail
-                    from a common origin, completed into a
-                    parallelogram whose diagonal from the origin is
-                    the sum a + b.</description>
-            </image>
-        </figure>
+		<figure xml:id="fig-vector-addition">
+			<caption>Vector addition by the parallelogram (or
+				head-to-tail) rule.</caption>
+			<!-- TODO: drop in the existing 9_1_Fig1/2/3 PNGs, e.g.
+				 <image source="figures/vec-add-parallelogram.png"
+						width="60%"/>
+				 or replace with an inline TikZ <latex-image>. -->
+			<image>
+				<description>Two vectors a and b drawn tail-to-tail
+					from a common origin, completed into a
+					parallelogram whose diagonal from the origin is
+					the sum a + b.</description>
+			</image>
+		</figure>
 
-        <p><alert>Notes.</alert></p>
-        <ul>
-            <li>
-                If <m>\va, \vb \in \R^3</m> then
-                <m>\va + \vb \in</m> <fillin characters="6"/>.
-                Adding vectors of the same dimension produces a
-                vector of the same dimension.
-            </li>
-            <li>
-                The sum <m>\va + \vb</m> is called the
-                <term>resultant</term> of <m>\va</m> and
-                <m>\vb</m>.  If <m>\va</m> and <m>\vb</m> are
-                forces, then <m>\va + \vb</m> is the
-                <fillin characters="18"/>.
-            </li>
-        </ul>
-        <!-- <commentary>
-            <p>
-                Blanks, in order: <m>\R^3</m>, and
-                <q>resultant force</q>.
-            </p>
-        </commentary> -->
+		<p><alert>Notes.</alert></p>
+		<ul>
+			<li>
+				If <m>\va, \vb \in \R^3</m> then
+				<m>\va + \vb \in</m> <fillin characters="6"/>.
+				Adding vectors of the same dimension produces a
+				vector of the same dimension.
+			</li>
+			<li>
+				The sum <m>\va + \vb</m> is called the
+				<term>resultant</term> of <m>\va</m> and
+				<m>\vb</m>.  If <m>\va</m> and <m>\vb</m> are
+				forces, then <m>\va + \vb</m> is the
+				<fillin characters="18"/>.
+			</li>
+		</ul>
+		<!-- <commentary>
+			<p>
+				Blanks, in order: <m>\R^3</m>, and
+				<q>resultant force</q>.
+			</p>
+		</commentary> -->
 
-        <exercise xml:id="ex-add">
-            <title>Adding two vectors</title>
-            <statement>
-                <p>
-                    Let <m>\va = [1, -3, 2]</m> and
-                    <m>\vb = [4, 0, -1]</m>.  Compute
-                    <m>\va + \vb</m>.
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    <md>
-                        <mrow>
-                            \va + \vb
-                            \amp = [1 + 4,\; -3 + 0,\; 2 + (-1)] </mrow>
-                        <mrow>
-                            \amp = [5,\; -3,\; 1].              </mrow>
-                    </md>
-                </p>
-            </solution>
-        </exercise>
+		<exercise xml:id="ex-add">
+			<title>Adding two vectors</title>
+			<statement>
+				<p>
+					Let <m>\va = [1, -3, 2]</m> and
+					<m>\vb = [4, 0, -1]</m>.  Compute
+					<m>\va + \vb</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<md>
+						<mrow>
+							\va + \vb
+							\amp = [1 + 4,\; -3 + 0,\; 2 + (-1)] </mrow>
+						<mrow>
+							\amp = [5,\; -3,\; 1].			  </mrow>
+					</md>
+				</p>
+			</solution>
+		</exercise>
 
-        <exercise xml:id="exer-add">
-            <title>Addition practice</title>
-            <task xml:id="task-add-a">
-                <statement>
-                    <p>
-                        With <m>\va = [2, 5]</m> and
-                        <m>\vb = [-3, 4]</m>, compute
-                        <m>\va + \vb</m>.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <m>\va + \vb = [2 + (-3),\; 5 + 4]
-                        = [-1,\; 9]</m>.
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-add-b">
-                <statement>
-                    <p>
-                        With <m>\vu = 3\vi - \vj + 2\vk</m> and
-                        <m>\vv = -\vi + 4\vj + \vk</m>, compute
-                        <m>\vu + \vv</m> in <m>\vi,\vj,\vk</m> form.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <m>\vu + \vv = (3-1)\vi + (-1+4)\vj
-                        + (2+1)\vk = 2\vi + 3\vj + 3\vk</m>.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
-    </page>
+		<exercise xml:id="exer-add">
+			<title>Addition practice</title>
+			<task xml:id="task-add-a">
+				<statement>
+					<p>
+						With <m>\va = [2, 5]</m> and
+						<m>\vb = [-3, 4]</m>, compute
+						<m>\va + \vb</m>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<m>\va + \vb = [2 + (-3),\; 5 + 4]
+						= [-1,\; 9]</m>.
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-add-b">
+				<statement>
+					<p>
+						With <m>\vu = 3\vi - \vj + 2\vk</m> and
+						<m>\vv = -\vi + 4\vj + \vk</m>, compute
+						<m>\vu + \vv</m> in <m>\vi,\vj,\vk</m> form.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<m>\vu + \vv = (3-1)\vi + (-1+4)\vj
+						+ (2+1)\vk = 2\vi + 3\vj + 3\vk</m>.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+	</page>
 
-    <!-- ============================================================
-         Page 3: Scalar multiplication
-         ============================================================ -->
-    <page>
-        <p><alert>III. Scalar multiplication.</alert></p>
+	<!-- ============================================================
+		 Page 3: Scalar multiplication
+		 ============================================================ -->
+	<page>
+		<p><alert>III. Scalar multiplication.</alert></p>
 
-        <p>
-            Let <m>\vv = [v_1, v_2, v_3] \in \R^3</m> and let
-            <m>c \in \R</m> be a scalar.  Then
-            <me>
-                c\,\vv = c\,[v_1, v_2, v_3] = \fillin[24]
-            </me>
-            Scalar multiplication is componentwise.
-        </p>
-        <!-- <commentary>
-            <p>
-                Fill in:
-                <m>[c\,v_1,\; c\,v_2,\; c\,v_3]</m>.
-            </p>
-        </commentary> -->
+		<p>
+			Let <m>\vv = [v_1, v_2, v_3] \in \R^3</m> and let
+			<m>c \in \R</m> be a scalar.  Then
+			<md>
+				c\,\vv = c\,[v_1, v_2, v_3] = \fillin[24]
+			</md>
+			Scalar multiplication is componentwise.
+		</p>
+		<!-- <commentary>
+			<p>
+				Fill in:
+				<m>[c\,v_1,\; c\,v_2,\; c\,v_3]</m>.
+			</p>
+		</commentary> -->
 
-        <figure xml:id="fig-scalar-multiplication">
-            <caption>Scalar multiples of a vector.</caption>
-            <!-- TODO: drop in 9_1_Fig4. -->
-            <image>
-                <description>The vector v, together with 2v (longer,
-                    same direction), 0.5v (shorter, same direction),
-                    and -v (same length, opposite direction).</description>
-            </image>
-        </figure>
+		<figure xml:id="fig-scalar-multiplication">
+			<caption>Scalar multiples of a vector.</caption>
+			<!-- TODO: drop in 9_1_Fig4. -->
+			<image>
+				<description>The vector v, together with 2v (longer,
+					same direction), 0.5v (shorter, same direction),
+					and -v (same length, opposite direction).</description>
+			</image>
+		</figure>
 
-        <p><alert>Notes.</alert></p>
-        <ul>
-            <li>
-                Scalar multiplication can <fillin characters="10"/>
-                <nbsp/>(when <m>\norm{c} > 1</m>),
-                <fillin characters="10"/>
-                <nbsp/>(when <m>0 &lt; \norm{c} &lt; 1</m>), or
-                <fillin characters="6"/> <nbsp/>(when
-                <m>c &lt; 0</m>) a vector.
-            </li>
-            <li>
-                The dimension is unchanged: <m>\vv \in \R^n</m>
-                and <m>c \in \R</m> give <m>c\vv \in</m>
-                <fillin characters="6"/>.
-            </li>
-        </ul>
-        <!-- <commentary>
-            <p>
-                Blanks, in order: <q>stretch</q>,
-                <q>compress</q>, <q>flip</q>, and <m>\R^n</m>.
-            </p>
-        </commentary> -->
+		<p><alert>Notes.</alert></p>
+		<ul>
+			<li>
+				Scalar multiplication can <fillin characters="10"/>
+				<nbsp/>(when <m>\norm{c} > 1</m>),
+				<fillin characters="10"/>
+				<nbsp/>(when <m>0 &lt; \norm{c} &lt; 1</m>), or
+				<fillin characters="6"/> <nbsp/>(when
+				<m>c &lt; 0</m>) a vector.
+			</li>
+			<li>
+				The dimension is unchanged: <m>\vv \in \R^n</m>
+				and <m>c \in \R</m> give <m>c\vv \in</m>
+				<fillin characters="6"/>.
+			</li>
+		</ul>
+		<!-- <commentary>
+			<p>
+				Blanks, in order: <q>stretch</q>,
+				<q>compress</q>, <q>flip</q>, and <m>\R^n</m>.
+			</p>
+		</commentary> -->
 
-        <exercise xml:id="ex-scalar-mult">
-            <title>A scalar multiple</title>
-            <statement>
-                <p>
-                    Let <m>\vv = [2, -1, 4]</m> and <m>c = -3</m>.
-                    Compute <m>c\,\vv</m>.
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    <m>c\,\vv = -3\,[2, -1, 4]
-                    = [-6,\; 3,\; -12]</m>.  The result has the
-                    same direction line as <m>\vv</m> but points
-                    the opposite way and is three times as long.
-                </p>
-            </solution>
-        </exercise>
+		<exercise xml:id="ex-scalar-mult">
+			<title>A scalar multiple</title>
+			<statement>
+				<p>
+					Let <m>\vv = [2, -1, 4]</m> and <m>c = -3</m>.
+					Compute <m>c\,\vv</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<m>c\,\vv = -3\,[2, -1, 4]
+					= [-6,\; 3,\; -12]</m>.  The result has the
+					same direction line as <m>\vv</m> but points
+					the opposite way and is three times as long.
+				</p>
+			</solution>
+		</exercise>
 
-        <exercise xml:id="exer-scalar-mult">
-            <title>Combining the two operations</title>
-            <task xml:id="task-sm-a">
-                <statement>
-                    <p>
-                        With <m>\va = [1, 2, -1]</m> and
-                        <m>\vb = [3, 0, 4]</m>, compute
-                        <m>2\,\va - 3\,\vb</m>.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <md>
-                            <mrow>
-                                2\,\va - 3\,\vb
-                                \amp = [2, 4, -2] - [9, 0, 12]    </mrow>
-                            <mrow>
-                                \amp = [2-9,\; 4-0,\; -2-12]      </mrow>
-                            <mrow>
-                                \amp = [-7,\; 4,\; -14].          </mrow>
-                        </md>
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-sm-b">
-                <statement>
-                    <p>
-                        Find a scalar <m>c</m> so that
-                        <m>c\,[3, -6, 9] = [1, -2, 3]</m>.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <m>c = \tfrac{1}{3}</m>; each component of
-                        the right-hand side is one-third of the
-                        corresponding component on the left.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
-    </page>
+		<exercise xml:id="exer-scalar-mult">
+			<title>Combining the two operations</title>
+			<task xml:id="task-sm-a">
+				<statement>
+					<p>
+						With <m>\va = [1, 2, -1]</m> and
+						<m>\vb = [3, 0, 4]</m>, compute
+						<m>2\,\va - 3\,\vb</m>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<md>
+							<mrow>
+								2\,\va - 3\,\vb
+								\amp = [2, 4, -2] - [9, 0, 12]	</mrow>
+							<mrow>
+								\amp = [2-9,\; 4-0,\; -2-12]	  </mrow>
+							<mrow>
+								\amp = [-7,\; 4,\; -14].		  </mrow>
+						</md>
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-sm-b">
+				<statement>
+					<p>
+						Find a scalar <m>c</m> so that
+						<m>c\,[3, -6, 9] = [1, -2, 3]</m>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<m>c = \tfrac{1}{3}</m>; each component of
+						the right-hand side is one-third of the
+						corresponding component on the left.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+	</page>
 
-    <!-- ============================================================
-         Page 4: Length / norm and unit vectors
-         ============================================================ -->
-    <page>
-        <p><alert>IV. Length (norm) of a vector.</alert></p>
+	<!-- ============================================================
+		 Page 4: Length / norm and unit vectors
+		 ============================================================ -->
+	<page>
+		<p><alert>IV. Length (norm) of a vector.</alert></p>
 
-        <definition xml:id="def-norm">
-            <statement>
-                <p>
-                    Let <m>\vv = [v_1, v_2] \in \R^2</m> and
-                    <m>\vw = [w_1, w_2, w_3] \in \R^3</m>.  The
-                    <term>length</term> (or <term>norm</term>) of
-                    each, denoted <m>\norm{\vv}</m> and
-                    <m>\norm{\vw}</m>, is
-                    <md>
-                        <mrow>
-                            \norm{\vv} \amp = \fillin[24] </mrow>
-                        <mrow>
-                            \norm{\vw} \amp = \fillin[32] </mrow>
-                    </md>
-                </p>
-            </statement>
-        </definition>
-        <!-- <commentary>
-            <p>
-                Fill in:
-                <m>\norm{\vv} = \sqrt{v_1^2 + v_2^2}</m> and
-                <m>\norm{\vw} = \sqrt{w_1^2 + w_2^2 + w_3^2}</m>.
-            </p>
-        </commentary> -->
+		<definition xml:id="def-norm">
+			<statement>
+				<p>
+					Let <m>\vv = [v_1, v_2] \in \R^2</m> and
+					<m>\vw = [w_1, w_2, w_3] \in \R^3</m>.  The
+					<term>length</term> (or <term>norm</term>) of
+					each, denoted <m>\norm{\vv}</m> and
+					<m>\norm{\vw}</m>, is
+					<md>
+						<mrow>
+							\norm{\vv} \amp = \fillin[24] </mrow>
+						<mrow>
+							\norm{\vw} \amp = \fillin[32] </mrow>
+					</md>
+				</p>
+			</statement>
+		</definition>
+		<!-- <commentary>
+			<p>
+				Fill in:
+				<m>\norm{\vv} = \sqrt{v_1^2 + v_2^2}</m> and
+				<m>\norm{\vw} = \sqrt{w_1^2 + w_2^2 + w_3^2}</m>.
+			</p>
+		</commentary> -->
 
-        <exercise xml:id="ex-length">
-            <title>Computing a length</title>
-            <statement>
-                <p>Find the length of <m>\vw = [1, -2, 4]</m>.</p>
-            </statement>
-            <solution>
-                <p>
-                    <md>
-                        <mrow>
-                            \norm{\vw}
-                            \amp = \sqrt{(1)^2 + (-2)^2 + (4)^2} </mrow>
-                        <mrow>
-                            \amp = \sqrt{1 + 4 + 16}             </mrow>
-                        <mrow>
-                            \amp = \sqrt{21}.                    </mrow>
-                    </md>
-                </p>
-            </solution>
-        </exercise>
+		<exercise xml:id="ex-length">
+			<title>Computing a length</title>
+			<statement>
+				<p>Find the length of <m>\vw = [1, -2, 4]</m>.</p>
+			</statement>
+			<solution>
+				<p>
+					<md>
+						<mrow>
+							\norm{\vw}
+							\amp = \sqrt{(1)^2 + (-2)^2 + (4)^2} </mrow>
+						<mrow>
+							\amp = \sqrt{1 + 4 + 16}			 </mrow>
+						<mrow>
+							\amp = \sqrt{21}.					</mrow>
+					</md>
+				</p>
+			</solution>
+		</exercise>
 
-        <p><alert>Note.</alert>
-            <m>\vw \in \R^3</m> is a <em>vector</em>, but its length
-            <m>\norm{\vw} \in</m> <fillin characters="14"/>.
-            Length is a single non-negative real number.
-        </p>
-        <!-- <commentary>
-            <p>Fill in: <m>\R</m> (a scalar).</p>
-        </commentary> -->
+		<p><alert>Note.</alert>
+			<m>\vw \in \R^3</m> is a <em>vector</em>, but its length
+			<m>\norm{\vw} \in</m> <fillin characters="14"/>.
+			Length is a single non-negative real number.
+		</p>
+		<!-- <commentary>
+			<p>Fill in: <m>\R</m> (a scalar).</p>
+		</commentary> -->
 
-        <definition xml:id="def-unit-vector">
-            <statement>
-                <p>
-                    A vector <m>\vv</m> is a <term>unit
-                    vector</term> if <fillin characters="14"/>.
-                </p>
-            </statement>
-        </definition>
-        <!-- <commentary>
-            <p>Fill in: <m>\norm{\vv} = 1</m>.</p>
-        </commentary> -->
+		<definition xml:id="def-unit-vector">
+			<statement>
+				<p>
+					A vector <m>\vv</m> is a <term>unit
+					vector</term> if <fillin characters="14"/>.
+				</p>
+			</statement>
+		</definition>
+		<!-- <commentary>
+			<p>Fill in: <m>\norm{\vv} = 1</m>.</p>
+		</commentary> -->
 
-        <p>
-            <alert>Producing a unit vector.</alert>
-            Given any non-zero vector <m>\vw</m>, the vector
-            <me>
-                \vu = \fillin[18]
-            </me>
-            is a unit vector pointing in the same direction as
-            <m>\vw</m>.  We sometimes say we have
-            <term>normalized</term> the vector.
-        </p>
-        <!-- <commentary>
-            <p>
-                Fill in: <m>\dfrac{\vw}{\norm{\vw}}</m>.
-            </p>
-        </commentary> -->
+		<p>
+			<alert>Producing a unit vector.</alert>
+			Given any non-zero vector <m>\vw</m>, the vector
+			<md>
+				\vu = \fillin[18]
+			</md>
+			is a unit vector pointing in the same direction as
+			<m>\vw</m>.  We sometimes say we have
+			<term>normalized</term> the vector.
+		</p>
+		<!-- <commentary>
+			<p>
+				Fill in: <m>\dfrac{\vw}{\norm{\vw}}</m>.
+			</p>
+		</commentary> -->
 
-        <exercise xml:id="ex-unit">
-            <title>A unit vector in a given direction</title>
-            <statement>
-                <p>
-                    Find a unit vector <m>\vu</m> in the same
-                    direction as <m>\vw = [1, -2, 4]</m>.
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    From the previous example,
-                    <m>\norm{\vw} = \sqrt{21}</m>, so
-                    <md>
-                        <mrow>
-                            \vu \amp = \frac{\vw}{\norm{\vw}}
-                                  = \frac{1}{\sqrt{21}}[1,-2,4]   </mrow>
-                        <mrow>
-                                \amp = \left[
-                                \frac{1}{\sqrt{21}},\;
-                                \frac{-2}{\sqrt{21}},\;
-                                \frac{4}{\sqrt{21}}
-                                \right].                          </mrow>
-                    </md>
-                    Quick check:
-                    <m>\norm{\vu}^2 = \tfrac{1 + 4 + 16}{21} = 1</m>,
-                    so indeed <m>\norm{\vu} = 1</m>.
-                </p>
-            </solution>
-        </exercise>
+		<exercise xml:id="ex-unit">
+			<title>A unit vector in a given direction</title>
+			<statement>
+				<p>
+					Find a unit vector <m>\vu</m> in the same
+					direction as <m>\vw = [1, -2, 4]</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					From the previous example,
+					<m>\norm{\vw} = \sqrt{21}</m>, so
+					<md>
+						<mrow>
+							\vu \amp = \frac{\vw}{\norm{\vw}}
+								  = \frac{1}{\sqrt{21}}[1,-2,4]   </mrow>
+						<mrow>
+								\amp = \left[
+								\frac{1}{\sqrt{21}},\;
+								\frac{-2}{\sqrt{21}},\;
+								\frac{4}{\sqrt{21}}
+								\right].						  </mrow>
+					</md>
+					Quick check:
+					<m>\norm{\vu}^2 = \tfrac{1 + 4 + 16}{21} = 1</m>,
+					so indeed <m>\norm{\vu} = 1</m>.
+				</p>
+			</solution>
+		</exercise>
 
-        <exercise xml:id="exer-norm">
-            <title>Norm and unit-vector practice</title>
-            <task xml:id="task-norm-a">
-                <statement>
-                    <p>Find <m>\norm{\va}</m> for
-                        <m>\va = [3, -4]</m>.</p>
-                </statement>
-                <solution>
-                    <p>
-                        <m>\norm{\va} = \sqrt{9 + 16} = \sqrt{25}
-                        = 5</m>.
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-norm-b">
-                <statement>
-                    <p>
-                        Find a unit vector in the direction of
-                        <m>\vb = [2, 2, 1]</m>.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <m>\norm{\vb} = \sqrt{4 + 4 + 1} = 3</m>,
-                        so <m>\vu = \tfrac{1}{3}[2,2,1]
-                        = \left[\tfrac{2}{3},\, \tfrac{2}{3},\,
-                                \tfrac{1}{3}\right]</m>.
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-norm-c">
-                <statement>
-                    <p>
-                        Find a vector of length <m>10</m> in the
-                        direction of <m>\vb = [2, 2, 1]</m>.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        Scale the unit vector from part&#160;(b)
-                        by <m>10</m>:
-                        <m>10\,\vu
-                        = \left[\tfrac{20}{3},\, \tfrac{20}{3},\,
-                                \tfrac{10}{3}\right]</m>.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
-    </page>
+		<exercise xml:id="exer-norm">
+			<title>Norm and unit-vector practice</title>
+			<task xml:id="task-norm-a">
+				<statement>
+					<p>Find <m>\norm{\va}</m> for
+						<m>\va = [3, -4]</m>.</p>
+				</statement>
+				<solution>
+					<p>
+						<m>\norm{\va} = \sqrt{9 + 16} = \sqrt{25}
+						= 5</m>.
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-norm-b">
+				<statement>
+					<p>
+						Find a unit vector in the direction of
+						<m>\vb = [2, 2, 1]</m>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<m>\norm{\vb} = \sqrt{4 + 4 + 1} = 3</m>,
+						so <m>\vu = \tfrac{1}{3}[2,2,1]
+						= \left[\tfrac{2}{3},\, \tfrac{2}{3},\,
+								\tfrac{1}{3}\right]</m>.
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-norm-c">
+				<statement>
+					<p>
+						Find a vector of length <m>10</m> in the
+						direction of <m>\vb = [2, 2, 1]</m>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Scale the unit vector from part&#160;(b)
+						by <m>10</m>:
+						<m>10\,\vu
+						= \left[\tfrac{20}{3},\, \tfrac{20}{3},\,
+								\tfrac{10}{3}\right]</m>.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+	</page>
 
-    <!-- ============================================================
-         Page 5: Application - resultant force and equilibrium
-         ============================================================ -->
-    <page>
-        <p><alert>V. Application: resultant force and
-            equilibrium.</alert></p>
+	<!-- ============================================================
+		 Page 5: Application - resultant force and equilibrium
+		 ============================================================ -->
+	<page>
+		<p><alert>V. Application: resultant force and
+			equilibrium.</alert></p>
 
-        <p>
-            If forces <m>\vF_1, \vF_2, \ldots, \vF_n</m> act on a
-            body, the <term>resultant force</term> on the body is
-            their vector sum:
-            <me>
-                \vF = \fillin[18]
-            </me>
-        </p>
-        <!-- <commentary>
-            <p>
-                Fill in:
-                <m>\displaystyle\sum_{i=1}^{n} \vF_i</m>.
-            </p>
-        </commentary> -->
+		<p>
+			If forces <m>\vF_1, \vF_2, \ldots, \vF_n</m> act on a
+			body, the <term>resultant force</term> on the body is
+			their vector sum:
+			<md>
+				\vF = \fillin[18]
+			</md>
+		</p>
+		<!-- <commentary>
+			<p>
+				Fill in:
+				<m>\displaystyle\sum_{i=1}^{n} \vF_i</m>.
+			</p>
+		</commentary> -->
 
-        <definition xml:id="def-equilibrium">
-            <statement>
-                <p>
-                    The forces <m>\vF_1, \vF_2, \ldots, \vF_n</m>
-                    are in <term>equilibrium</term> if the resultant
-                    is the zero vector: <fillin characters="14"/>.
-                </p>
-            </statement>
-        </definition>
-        <!-- <commentary>
-            <p>Fill in: <m>\vF = \vzero</m>.</p>
-        </commentary> -->
+		<definition xml:id="def-equilibrium">
+			<statement>
+				<p>
+					The forces <m>\vF_1, \vF_2, \ldots, \vF_n</m>
+					are in <term>equilibrium</term> if the resultant
+					is the zero vector: <fillin characters="14"/>.
+				</p>
+			</statement>
+		</definition>
+		<!-- <commentary>
+			<p>Fill in: <m>\vF = \vzero</m>.</p>
+		</commentary> -->
 
-        <exercise xml:id="ex-resultant">
-            <title>A resultant force</title>
-            <statement>
-                <p>
-                    Two forces act on an object,
-                    <m>\vF_1 = [3,\,4]</m> and
-                    <m>\vF_2 = [-1,\,2]</m> (in newtons).  Find the
-                    resultant force and its magnitude.
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    The resultant is
-                    <me>
-                        \vF = \vF_1 + \vF_2
-                            = [3 + (-1),\; 4 + 2]
-                            = [2,\; 6].
-                    </me>
-                    Its magnitude is
-                    <m>\norm{\vF} = \sqrt{2^2 + 6^2}
-                    = \sqrt{40} = 2\sqrt{10}</m>
-                    newtons.
-                </p>
-            </solution>
-        </exercise>
+		<exercise xml:id="ex-resultant">
+			<title>A resultant force</title>
+			<statement>
+				<p>
+					Two forces act on an object,
+					<m>\vF_1 = [3,\,4]</m> and
+					<m>\vF_2 = [-1,\,2]</m> (in newtons).  Find the
+					resultant force and its magnitude.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The resultant is
+					<md>
+						\vF = \vF_1 + \vF_2
+							= [3 + (-1),\; 4 + 2]
+							= [2,\; 6].
+					</md>
+					Its magnitude is
+					<m>\norm{\vF} = \sqrt{2^2 + 6^2}
+					= \sqrt{40} = 2\sqrt{10}</m>
+					newtons.
+				</p>
+			</solution>
+		</exercise>
 
-        <exercise xml:id="exer-equilibrium">
-            <title>Equilibrium</title>
-            <task xml:id="task-eq-resultant-a">
-                <statement>
-                    <p>
-                        In the previous example, what third force
-                        <m>\vF_3</m> would have to be applied so
-                        that the three forces are in equilibrium?
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        We need <m>\vF_1 + \vF_2 + \vF_3 = \vzero</m>,
-                        so <m>\vF_3 = -([2,6]) = [-2,\,-6]</m>
-                        newtons.
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-eq-resultant-b">
-                <statement>
-                    <p>
-                        Three forces act on a body:
-                        <m>\vF_1 = [1, 0, 2]</m>,
-                        <m>\vF_2 = [-3, 4, 1]</m>,
-                        <m>\vF_3 = [2, -4, -3]</m>.  Is the body
-                        in equilibrium?  If not, find the force
-                        needed to put it in equilibrium.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <m>\vF_1 + \vF_2 + \vF_3
-                        = [1 - 3 + 2,\; 0 + 4 - 4,\; 2 + 1 - 3]
-                        = [0, 0, 0] = \vzero</m>.  Yes, the body
-                        <em>is</em> in equilibrium; no additional
-                        force is needed.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
+		<exercise xml:id="exer-equilibrium">
+			<title>Equilibrium</title>
+			<task xml:id="task-eq-resultant-a">
+				<statement>
+					<p>
+						In the previous example, what third force
+						<m>\vF_3</m> would have to be applied so
+						that the three forces are in equilibrium?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						We need <m>\vF_1 + \vF_2 + \vF_3 = \vzero</m>,
+						so <m>\vF_3 = -([2,6]) = [-2,\,-6]</m>
+						newtons.
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-eq-resultant-b">
+				<statement>
+					<p>
+						Three forces act on a body:
+						<m>\vF_1 = [1, 0, 2]</m>,
+						<m>\vF_2 = [-3, 4, 1]</m>,
+						<m>\vF_3 = [2, -4, -3]</m>.  Is the body
+						in equilibrium?  If not, find the force
+						needed to put it in equilibrium.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<m>\vF_1 + \vF_2 + \vF_3
+						= [1 - 3 + 2,\; 0 + 4 - 4,\; 2 + 1 - 3]
+						= [0, 0, 0] = \vzero</m>.  Yes, the body
+						<em>is</em> in equilibrium; no additional
+						force is needed.
+					</p>
+				</solution>
+			</task>
+		</exercise>
 
-        <p>
-            <alert>Looking ahead.</alert>
-            We've defined one vector operation (addition) and one
-            way to combine a scalar with a vector.  The next
-            worksheet introduces <em>two</em> ways to multiply two
-            vectors together &#8212; the <term>dot product</term>
-            (which produces a scalar) and the <term>cross
-            product</term> (which produces a vector).
-        </p>
-    </page>
+		<p>
+			<alert>Looking ahead.</alert>
+			We've defined one vector operation (addition) and one
+			way to combine a scalar with a vector.  The next
+			worksheet introduces <em>two</em> ways to multiply two
+			vectors together &#8212; the <term>dot product</term>
+			(which produces a scalar) and the <term>cross
+			product</term> (which produces a vector).
+		</p>
+	</page>
 
 </worksheet>

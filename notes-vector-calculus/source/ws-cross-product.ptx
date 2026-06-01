@@ -1,521 +1,521 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    ws-cross-product.ptx
-    Worksheet 1.4: The Cross Product.
+	ws-cross-product.ptx
+	Worksheet 1.4: The Cross Product.
 
-    Ports the original 01_03_Cross_Product.tex slide deck.  Board
-    organization of the Beamer notes:
-        I.   Definition (geometric form, the determinant recipe, and
-             the component formula)
-        II.  Geometric interpretation (dot vs. cross side by side, the
-             parallelogram-area reading) and algebraic properties
-        III. Application: torque (commented out in the original deck;
-             restored here as an enrichment, flagged in the PR)
+	Ports the original 01_03_Cross_Product.tex slide deck.  Board
+	organization of the Beamer notes:
+		I.   Definition (geometric form, the determinant recipe, and
+			 the component formula)
+		II.  Geometric interpretation (dot vs. cross side by side, the
+			 parallelogram-area reading) and algebraic properties
+		III. Application: torque (commented out in the original deck;
+			 restored here as an enrichment, flagged in the PR)
 
-    Guided-notes pattern (see ws-function-notation.ptx for the full
-    explanation):
-        - <fillin characters="N"/> in prose, or \fillin[N] inside <m>
-          math, draws a blank in every build.
-        - The intended answer follows in a <commentary> block.  As in
-          the other worksheets these are kept COMMENTED OUT for now
-          (no target currently enables the 'commentary' stringparam;
-          see the 'can't-use-commentary' history), preserved in order
-          so they can be switched on later.
-        - Multi-step worked computations are <exercise>s with a
-          <solution> body, whose visibility is controlled by the
-          publication file's <exercise-worksheet @solution="..."/>.
+	Guided-notes pattern (see ws-function-notation.ptx for the full
+	explanation):
+		- <fillin characters="N"/> in prose, or \fillin[N] inside <m>
+		  math, draws a blank in every build.
+		- The intended answer follows in a <commentary> block.  As in
+		  the other worksheets these are kept COMMENTED OUT for now
+		  (no target currently enables the 'commentary' stringparam;
+		  see the 'can't-use-commentary' history), preserved in order
+		  so they can be switched on later.
+		- Multi-step worked computations are <exercise>s with a
+		  <solution> body, whose visibility is controlled by the
+		  publication file's <exercise-worksheet @solution="..."/>.
 
-    Figures (the perpendicular-component picture and the
-    parallelogram-area picture) are left as <figure> placeholders so
-    the original 9_3_Fig4 / 9_3_Fig1 PNGs can be dropped in later.
+	Figures (the perpendicular-component picture and the
+	parallelogram-area picture) are left as <figure> placeholders so
+	the original 9_3_Fig4 / 9_3_Fig1 PNGs can be dropped in later.
 -->
 <worksheet xml:id="ws-cross-product">
-    <title>The Cross Product</title>
+	<title>The Cross Product</title>
 
-    <objectives>
-        <ul>
-            <li>Compute the cross product of two vectors in <m>\R^3</m>
-                two ways: by the determinant recipe and by the
-                component formula.</li>
-            <li>Recognize that the cross product of two vectors is a
-                <em>vector</em>, perpendicular to both factors.</li>
-            <li>Use <m>\norm{\va \times \vb} = \norm{\va}\,\norm{\vb}\sin\theta</m>
-                to find the area of a parallelogram and to test whether
-                two vectors are parallel.</li>
-            <li>State and use the algebraic properties of the cross
-                product, including its anticommutativity.</li>
-            <li>Apply the cross product to compute torque.</li>
-        </ul>
-    </objectives>
+	<objectives>
+		<ul>
+			<li>Compute the cross product of two vectors in <m>\R^3</m>
+				two ways: by the determinant recipe and by the
+				component formula.</li>
+			<li>Recognize that the cross product of two vectors is a
+				<em>vector</em>, perpendicular to both factors.</li>
+			<li>Use <m>\norm{\va \times \vb} = \norm{\va}\,\norm{\vb}\sin\theta</m>
+				to find the area of a parallelogram and to test whether
+				two vectors are parallel.</li>
+			<li>State and use the algebraic properties of the cross
+				product, including its anticommutativity.</li>
+			<li>Apply the cross product to compute torque.</li>
+		</ul>
+	</objectives>
 
-    <!-- ============================================================
-         Page 1: Definition - geometric form, determinant, components
-         ============================================================ -->
-    <page>
-        <p><alert>I. Definition.</alert>
-            (Vector Operation #3)</p>
+	<!-- ============================================================
+		 Page 1: Definition - geometric form, determinant, components
+		 ============================================================ -->
+	<page>
+		<p><alert>I. Definition.</alert>
+			(Vector Operation #3)</p>
 
-        <p>
-            The dot product multiplied two vectors to make a scalar.
-            The <term>cross product</term> instead multiplies two
-            vectors in <m>\R^3</m> to make a <em>new vector</em>.  Let
-            <m>\va = [a_1, a_2, a_3]</m> and <m>\vb = [b_1, b_2, b_3]</m>,
-            and let <m>\vn</m> be the unit vector perpendicular to both
-            <m>\va</m> and <m>\vb</m> whose direction is fixed by the
-            right-hand rule.  Then
-            <me>
-                \va \times \vb = \left(\norm{\va}\,\norm{\vb}\sin\theta\right)\vn,
-            </me>
-            and taking lengths (since <m>\norm{\vn} = 1</m>),
-            <me>
-                \norm{\va \times \vb} = \fillin[16].
-            </me>
-        </p>
-        <!-- <commentary>
-            <p>Blank: <m>\norm{\va}\,\norm{\vb}\sin\theta</m>.</p>
-        </commentary> -->
+		<p>
+			The dot product multiplied two vectors to make a scalar.
+			The <term>cross product</term> instead multiplies two
+			vectors in <m>\R^3</m> to make a <em>new vector</em>.  Let
+			<m>\va = [a_1, a_2, a_3]</m> and <m>\vb = [b_1, b_2, b_3]</m>,
+			and let <m>\vn</m> be the unit vector perpendicular to both
+			<m>\va</m> and <m>\vb</m> whose direction is fixed by the
+			right-hand rule.  Then
+			<md>
+				\va \times \vb = \left(\norm{\va}\,\norm{\vb}\sin\theta\right)\vn,
+			</md>
+			and taking lengths (since <m>\norm{\vn} = 1</m>),
+			<md>
+				\norm{\va \times \vb} = \fillin[16].
+			</md>
+		</p>
+		<!-- <commentary>
+			<p>Blank: <m>\norm{\va}\,\norm{\vb}\sin\theta</m>.</p>
+		</commentary> -->
 
-        <p><alert>Notes.</alert></p>
-        <ul>
-            <li>
-                For <m>\va, \vb \in \R^3</m>, the cross product
-                <m>\va \times \vb \in</m> <fillin characters="6"/>
-                <nbsp/>&#8212; it is a <fillin characters="6"/>, not a
-                scalar (contrast the dot product).  Moreover
-                <m>\va \times \vb</m> is <fillin characters="13"/>
-                <nbsp/>to both <m>\va</m> and <m>\vb</m>.
-            </li>
-            <li>
-                Order matters: <m>\va \times \vb</m>
-                <fillin characters="3"/> <nbsp/><m>\vb \times \va</m>,
-                so the cross product is <em>not</em>
-                <fillin characters="12"/>.  (We will see in a moment
-                that swapping the order flips the sign.)
-            </li>
-        </ul>
-        <!-- <commentary>
-            <p>
-                Blanks, in order: <m>\R^3</m>; <q>vector</q>;
-                <q>perpendicular</q> (orthogonal); <m>\ne</m>;
-                <q>commutative</q>.
-            </p>
-        </commentary> -->
+		<p><alert>Notes.</alert></p>
+		<ul>
+			<li>
+				For <m>\va, \vb \in \R^3</m>, the cross product
+				<m>\va \times \vb \in</m> <fillin characters="6"/>
+				<nbsp/>&#8212; it is a <fillin characters="6"/>, not a
+				scalar (contrast the dot product).  Moreover
+				<m>\va \times \vb</m> is <fillin characters="13"/>
+				<nbsp/>to both <m>\va</m> and <m>\vb</m>.
+			</li>
+			<li>
+				Order matters: <m>\va \times \vb</m>
+				<fillin characters="3"/> <nbsp/><m>\vb \times \va</m>,
+				so the cross product is <em>not</em>
+				<fillin characters="12"/>.  (We will see in a moment
+				that swapping the order flips the sign.)
+			</li>
+		</ul>
+		<!-- <commentary>
+			<p>
+				Blanks, in order: <m>\R^3</m>; <q>vector</q>;
+				<q>perpendicular</q> (orthogonal); <m>\ne</m>;
+				<q>commutative</q>.
+			</p>
+		</commentary> -->
 
-        <p>
-            <alert>The determinant recipe.</alert>
-            Computing <m>\va \times \vb</m> from the angle <m>\theta</m>
-            is awkward; in practice we expand a symbolic
-            <m>3 \times 3</m> determinant along its first row:
-            <me>
-                \va \times \vb
-                = \begin{vmatrix}
-                    \vi \amp \vj \amp \vk \\
-                    a_1 \amp a_2 \amp a_3 \\
-                    b_1 \amp b_2 \amp b_3
-                  \end{vmatrix}
-                = \begin{vmatrix} a_2 \amp a_3 \\ b_2 \amp b_3 \end{vmatrix}\vi
-                - \begin{vmatrix} a_1 \amp a_3 \\ b_1 \amp b_3 \end{vmatrix}\vj
-                + \begin{vmatrix} a_1 \amp a_2 \\ b_1 \amp b_2 \end{vmatrix}\vk.
-            </me>
-            Each <m>2 \times 2</m> determinant evaluates as
-            <m>\begin{vmatrix} p \amp q \\ r \amp s \end{vmatrix} = ps - qr</m>,
-            so multiplying out gives the <term>component formula</term>
-            <me>
-                \va \times \vb
-                = \fillin[40].
-            </me>
-            Notice the minus sign on the middle (<m>\vj</m>) term &#8212;
-            the single most common place to slip.
-        </p>
-        <!-- <commentary>
-            <p>
-                Blank:
-                <m>[\,a_2 b_3 - a_3 b_2,\ \ a_3 b_1 - a_1 b_3,\ \ a_1 b_2 - a_2 b_1\,]</m>,
-                equivalently
-                <m>(a_2 b_3 - a_3 b_2)\vi - (a_1 b_3 - a_3 b_1)\vj + (a_1 b_2 - a_2 b_1)\vk</m>.
-            </p>
-        </commentary> -->
+		<p>
+			<alert>The determinant recipe.</alert>
+			Computing <m>\va \times \vb</m> from the angle <m>\theta</m>
+			is awkward; in practice we expand a symbolic
+			<m>3 \times 3</m> determinant along its first row:
+			<md>
+				\va \times \vb
+				= \begin{vmatrix}
+					\vi \amp \vj \amp \vk \\
+					a_1 \amp a_2 \amp a_3 \\
+					b_1 \amp b_2 \amp b_3
+				  \end{vmatrix}
+				= \begin{vmatrix} a_2 \amp a_3 \\ b_2 \amp b_3 \end{vmatrix}\vi
+				- \begin{vmatrix} a_1 \amp a_3 \\ b_1 \amp b_3 \end{vmatrix}\vj
+				+ \begin{vmatrix} a_1 \amp a_2 \\ b_1 \amp b_2 \end{vmatrix}\vk.
+			</md>
+			Each <m>2 \times 2</m> determinant evaluates as
+			<m>\begin{vmatrix} p \amp q \\ r \amp s \end{vmatrix} = ps - qr</m>,
+			so multiplying out gives the <term>component formula</term>
+			<md>
+				\va \times \vb
+				= \fillin[40].
+			</md>
+			Notice the minus sign on the middle (<m>\vj</m>) term &#8212;
+			the single most common place to slip.
+		</p>
+		<!-- <commentary>
+			<p>
+				Blank:
+				<m>[\,a_2 b_3 - a_3 b_2,\ \ a_3 b_1 - a_1 b_3,\ \ a_1 b_2 - a_2 b_1\,]</m>,
+				equivalently
+				<m>(a_2 b_3 - a_3 b_2)\vi - (a_1 b_3 - a_3 b_1)\vj + (a_1 b_2 - a_2 b_1)\vk</m>.
+			</p>
+		</commentary> -->
 
-        <p>
-            <em>Worked example.</em> Compute a cross product by the
-            determinant recipe; then try one on your own.
-        </p>
-        <exercise xml:id="ex-cp-compute">
-            <statement>
-                <p>
-                    Find <m>\va \times \vb</m> for
-                    <m>\va = [1, 2, 3]</m> and <m>\vb = [4, 5, 6]</m>.
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    Expanding along the first row,
-                    <md>
-                        <mrow>
-                            \va \times \vb \amp =
-                            \begin{vmatrix}
-                                \vi \amp \vj \amp \vk \\
-                                1 \amp 2 \amp 3 \\
-                                4 \amp 5 \amp 6
-                            \end{vmatrix}                          </mrow>
-                        <mrow>
-                            \amp = (2\cdot 6 - 3\cdot 5)\vi
-                                 - (1\cdot 6 - 3\cdot 4)\vj
-                                 + (1\cdot 5 - 2\cdot 4)\vk         </mrow>
-                        <mrow>
-                            \amp = -3\,\vi + 6\,\vj - 3\,\vk
-                                 = [-3, 6, -3].                     </mrow>
-                    </md>
-                    Quick check: <m>\va \cdot (\va \times \vb)
-                    = (1)(-3) + (2)(6) + (3)(-3) = 0</m>, confirming the
-                    result is perpendicular to <m>\va</m>.
-                </p>
-            </solution>
-        </exercise>
-        <exercise xml:id="exer-cp-compute">
-            <title>Cross-product practice</title>
-            <task xml:id="task-cp-a">
-                <statement>
-                    <p>
-                        Compute <m>\va \times \vb</m> for
-                        <m>\va = [2, 0, -1]</m> and
-                        <m>\vb = [1, 3, 1]</m>.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <md>
-                            <mrow>
-                                \va \times \vb \amp =
-                                (0\cdot 1 - (-1)\cdot 3)\vi
-                                - (2\cdot 1 - (-1)\cdot 1)\vj
-                                + (2\cdot 3 - 0\cdot 1)\vk          </mrow>
-                            <mrow>
-                                \amp = 3\,\vi - 3\,\vj + 6\,\vk
-                                     = [3, -3, 6].                  </mrow>
-                        </md>
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-cp-b">
-                <statement>
-                    <p>
-                        Compute <m>\vi \times \vj</m> directly from the
-                        determinant recipe.  What basis vector do you
-                        get?
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        With <m>\vi = [1,0,0]</m> and
-                        <m>\vj = [0,1,0]</m>,
-                        <me>
-                            \vi \times \vj
-                            = (0\cdot 0 - 0\cdot 1)\vi
-                            - (1\cdot 0 - 0\cdot 0)\vj
-                            + (1\cdot 1 - 0\cdot 0)\vk
-                            = [0,0,1] = \vk.
-                        </me>
-                        The right-hand rule agrees: curling from
-                        <m>\vi</m> to <m>\vj</m> points the thumb along
-                        <m>\vk</m>.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
-    </page>
+		<p>
+			<em>Worked example.</em> Compute a cross product by the
+			determinant recipe; then try one on your own.
+		</p>
+		<exercise xml:id="ex-cp-compute">
+			<statement>
+				<p>
+					Find <m>\va \times \vb</m> for
+					<m>\va = [1, 2, 3]</m> and <m>\vb = [4, 5, 6]</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Expanding along the first row,
+					<md>
+						<mrow>
+							\va \times \vb \amp =
+							\begin{vmatrix}
+								\vi \amp \vj \amp \vk \\
+								1 \amp 2 \amp 3 \\
+								4 \amp 5 \amp 6
+							\end{vmatrix}						  </mrow>
+						<mrow>
+							\amp = (2\cdot 6 - 3\cdot 5)\vi
+								 - (1\cdot 6 - 3\cdot 4)\vj
+								 + (1\cdot 5 - 2\cdot 4)\vk		 </mrow>
+						<mrow>
+							\amp = -3\,\vi + 6\,\vj - 3\,\vk
+								 = [-3, 6, -3].					 </mrow>
+					</md>
+					Quick check: <m>\va \cdot (\va \times \vb)
+					= (1)(-3) + (2)(6) + (3)(-3) = 0</m>, confirming the
+					result is perpendicular to <m>\va</m>.
+				</p>
+			</solution>
+		</exercise>
+		<exercise xml:id="exer-cp-compute">
+			<title>Cross-product practice</title>
+			<task xml:id="task-cp-a">
+				<statement>
+					<p>
+						Compute <m>\va \times \vb</m> for
+						<m>\va = [2, 0, -1]</m> and
+						<m>\vb = [1, 3, 1]</m>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<md>
+							<mrow>
+								\va \times \vb \amp =
+								(0\cdot 1 - (-1)\cdot 3)\vi
+								- (2\cdot 1 - (-1)\cdot 1)\vj
+								+ (2\cdot 3 - 0\cdot 1)\vk		  </mrow>
+							<mrow>
+								\amp = 3\,\vi - 3\,\vj + 6\,\vk
+									 = [3, -3, 6].				  </mrow>
+						</md>
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-cp-b">
+				<statement>
+					<p>
+						Compute <m>\vi \times \vj</m> directly from the
+						determinant recipe.  What basis vector do you
+						get?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						With <m>\vi = [1,0,0]</m> and
+						<m>\vj = [0,1,0]</m>,
+						<md>
+							\vi \times \vj
+							= (0\cdot 0 - 0\cdot 1)\vi
+							- (1\cdot 0 - 0\cdot 0)\vj
+							+ (1\cdot 1 - 0\cdot 0)\vk
+							= [0,0,1] = \vk.
+						</md>
+						The right-hand rule agrees: curling from
+						<m>\vi</m> to <m>\vj</m> points the thumb along
+						<m>\vk</m>.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+	</page>
 
-    <!-- ============================================================
-         Page 2: Geometric interpretation and properties
-         ============================================================ -->
-    <page>
-        <p><alert>II. Geometric interpretation.</alert></p>
+	<!-- ============================================================
+		 Page 2: Geometric interpretation and properties
+		 ============================================================ -->
+	<page>
+		<p><alert>II. Geometric interpretation.</alert></p>
 
-        <p>
-            The dot and cross products both factor as
-            (a component of <m>\va</m>) times (the length of
-            <m>\vb</m>) &#8212; but they pick off
-            <em>different</em> components.  Fill in the parallel.
-        </p>
-        <ul>
-            <li>
-                Dot product:
-                <m>\va \cdot \vb
-                = \left(\norm{\va}\fillin[10]\right)\norm{\vb}</m>,
-                using the component of <m>\va</m>
-                <fillin characters="9"/> <nbsp/><m>\vb</m>.
-            </li>
-            <li>
-                Cross product:
-                <m>\norm{\va \times \vb}
-                = \left(\norm{\va}\fillin[10]\right)\norm{\vb}</m>,
-                using the component of <m>\va</m>
-                <fillin characters="14"/> <nbsp/>to <m>\vb</m>.
-            </li>
-        </ul>
-        <!-- <commentary>
-            <p>
-                Blanks, in order: <m>\cos\theta</m>, <q>along</q>;
-                <m>\sin\theta</m>, <q>perpendicular</q>.
-            </p>
-        </commentary> -->
+		<p>
+			The dot and cross products both factor as
+			(a component of <m>\va</m>) times (the length of
+			<m>\vb</m>) &#8212; but they pick off
+			<em>different</em> components.  Fill in the parallel.
+		</p>
+		<ul>
+			<li>
+				Dot product:
+				<m>\va \cdot \vb
+				= \left(\norm{\va}\fillin[10]\right)\norm{\vb}</m>,
+				using the component of <m>\va</m>
+				<fillin characters="9"/> <nbsp/><m>\vb</m>.
+			</li>
+			<li>
+				Cross product:
+				<m>\norm{\va \times \vb}
+				= \left(\norm{\va}\fillin[10]\right)\norm{\vb}</m>,
+				using the component of <m>\va</m>
+				<fillin characters="14"/> <nbsp/>to <m>\vb</m>.
+			</li>
+		</ul>
+		<!-- <commentary>
+			<p>
+				Blanks, in order: <m>\cos\theta</m>, <q>along</q>;
+				<m>\sin\theta</m>, <q>perpendicular</q>.
+			</p>
+		</commentary> -->
 
-        <figure xml:id="fig-cp-components">
-            <caption>The dot product reads off the component of
-                <m>\va</m> along <m>\vb</m>
-                (<m>\norm{\va}\cos\theta</m>); the cross product reads
-                off the component perpendicular to <m>\vb</m>
-                (<m>\norm{\va}\sin\theta</m>).</caption>
-            <!-- TODO: drop in the original 9_3_Fig4.png, e.g.
-                 <image source="figures/cross-product-components.png"
-                        width="40%"/>
-                 or replace with an inline TikZ <latex-image>. -->
-            <image>
-                <description>Vectors a and b from a common point with
-                    angle theta between them; the component of a along b
-                    (length |a|cos theta) and the component of a
-                    perpendicular to b (length |a|sin theta) are marked
-                    as the legs of a right triangle.</description>
-            </image>
-        </figure>
+		<figure xml:id="fig-cp-components">
+			<caption>The dot product reads off the component of
+				<m>\va</m> along <m>\vb</m>
+				(<m>\norm{\va}\cos\theta</m>); the cross product reads
+				off the component perpendicular to <m>\vb</m>
+				(<m>\norm{\va}\sin\theta</m>).</caption>
+			<!-- TODO: drop in the original 9_3_Fig4.png, e.g.
+				 <image source="figures/cross-product-components.png"
+						width="40%"/>
+				 or replace with an inline TikZ <latex-image>. -->
+			<image>
+				<description>Vectors a and b from a common point with
+					angle theta between them; the component of a along b
+					(length |a|cos theta) and the component of a
+					perpendicular to b (length |a|sin theta) are marked
+					as the legs of a right triangle.</description>
+			</image>
+		</figure>
 
-        <p>
-            That perpendicular-component reading has a clean
-            geometric payoff. The magnitude
-            <m>\norm{\va \times \vb} = \norm{\va}\,\norm{\vb}\sin\theta</m>
-            is exactly the <fillin characters="30"/> <nbsp/>determined
-            by <m>\va</m> and <m>\vb</m>.
-        </p>
-        <!-- <commentary>
-            <p>
-                Blank: <q>area of the parallelogram</q> (with sides
-                <m>\va</m> and <m>\vb</m>).
-            </p>
-        </commentary> -->
+		<p>
+			That perpendicular-component reading has a clean
+			geometric payoff. The magnitude
+			<m>\norm{\va \times \vb} = \norm{\va}\,\norm{\vb}\sin\theta</m>
+			is exactly the <fillin characters="30"/> <nbsp/>determined
+			by <m>\va</m> and <m>\vb</m>.
+		</p>
+		<!-- <commentary>
+			<p>
+				Blank: <q>area of the parallelogram</q> (with sides
+				<m>\va</m> and <m>\vb</m>).
+			</p>
+		</commentary> -->
 
-        <figure xml:id="fig-cp-area">
-            <caption>The length <m>\norm{\va \times \vb}</m> equals the
-                area of the parallelogram spanned by <m>\va</m> and
-                <m>\vb</m>.</caption>
-            <!-- TODO: drop in the original 9_3_Fig1.png, e.g.
-                 <image source="figures/cross-product-area.png"
-                        width="40%"/>
-                 or replace with an inline TikZ <latex-image>. -->
-            <image>
-                <description>A parallelogram with adjacent sides given
-                    by vectors a and b; its height is |a| sin theta and
-                    its area equals the magnitude of the cross product.</description>
-            </image>
-        </figure>
+		<figure xml:id="fig-cp-area">
+			<caption>The length <m>\norm{\va \times \vb}</m> equals the
+				area of the parallelogram spanned by <m>\va</m> and
+				<m>\vb</m>.</caption>
+			<!-- TODO: drop in the original 9_3_Fig1.png, e.g.
+				 <image source="figures/cross-product-area.png"
+						width="40%"/>
+				 or replace with an inline TikZ <latex-image>. -->
+			<image>
+				<description>A parallelogram with adjacent sides given
+					by vectors a and b; its height is |a| sin theta and
+					its area equals the magnitude of the cross product.</description>
+			</image>
+		</figure>
 
-        <exercise xml:id="ex-cp-area">
-            <title>Area of a parallelogram</title>
-            <statement>
-                <p>
-                    Find the area of the parallelogram with adjacent
-                    sides <m>\va = [1, 2, 3]</m> and
-                    <m>\vb = [4, 5, 6]</m>.
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    From the worked example on the previous page,
-                    <m>\va \times \vb = [-3, 6, -3]</m>, so the area is
-                    <me>
-                        \norm{\va \times \vb}
-                        = \sqrt{(-3)^2 + 6^2 + (-3)^2}
-                        = \sqrt{54} = 3\sqrt{6}.
-                    </me>
-                </p>
-            </solution>
-        </exercise>
+		<exercise xml:id="ex-cp-area">
+			<title>Area of a parallelogram</title>
+			<statement>
+				<p>
+					Find the area of the parallelogram with adjacent
+					sides <m>\va = [1, 2, 3]</m> and
+					<m>\vb = [4, 5, 6]</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					From the worked example on the previous page,
+					<m>\va \times \vb = [-3, 6, -3]</m>, so the area is
+					<md>
+						\norm{\va \times \vb}
+						= \sqrt{(-3)^2 + 6^2 + (-3)^2}
+						= \sqrt{54} = 3\sqrt{6}.
+					</md>
+				</p>
+			</solution>
+		</exercise>
 
-        <exercise xml:id="exer-cp-geometry">
-            <title>Area and parallel vectors</title>
-            <task xml:id="task-cpg-a">
-                <statement>
-                    <p>
-                        Find the area of the triangle with vertices
-                        <m>P=(0,0,0)</m>, <m>Q=(2,0,-1)</m>, and
-                        <m>R=(1,3,1)</m>.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        The triangle is half the parallelogram on
-                        <m>\overrightarrow{PQ} = [2,0,-1]</m> and
-                        <m>\overrightarrow{PR} = [1,3,1]</m>.  From an
-                        earlier task, their cross product is
-                        <m>[3,-3,6]</m>, so
-                        <me>
-                            \text{area} = \tfrac12\,\norm{[3,-3,6]}
-                            = \tfrac12\sqrt{9+9+36}
-                            = \tfrac12\sqrt{54} = \tfrac{3\sqrt{6}}{2}.
-                        </me>
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-cpg-b">
-                <statement>
-                    <p>
-                        Show that <m>\va = [2, -1, 3]</m> and
-                        <m>\vb = [-4, 2, -6]</m> are parallel by computing
-                        <m>\va \times \vb</m>.  Why does the result make
-                        sense?
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <md>
-                            <mrow>
-                                \va \times \vb \amp =
-                                ((-1)(-6) - (3)(2))\vi
-                                - ((2)(-6) - (3)(-4))\vj
-                                + ((2)(2) - (-1)(-4))\vk            </mrow>
-                            <mrow>
-                                \amp = (6-6)\vi - (-12+12)\vj + (4-4)\vk
-                                     = \vzero.                       </mrow>
-                        </md>
-                        The cross product is the zero vector.  This makes
-                        sense because <m>\vb = -2\,\va</m>, so
-                        <m>\theta = \pi</m> (or <m>0</m>) and
-                        <m>\sin\theta = 0</m>: parallel vectors span no
-                        parallelogram.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
+		<exercise xml:id="exer-cp-geometry">
+			<title>Area and parallel vectors</title>
+			<task xml:id="task-cpg-a">
+				<statement>
+					<p>
+						Find the area of the triangle with vertices
+						<m>P=(0,0,0)</m>, <m>Q=(2,0,-1)</m>, and
+						<m>R=(1,3,1)</m>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						The triangle is half the parallelogram on
+						<m>\overrightarrow{PQ} = [2,0,-1]</m> and
+						<m>\overrightarrow{PR} = [1,3,1]</m>.  From an
+						earlier task, their cross product is
+						<m>[3,-3,6]</m>, so
+						<md>
+							\text{area} = \tfrac12\,\norm{[3,-3,6]}
+							= \tfrac12\sqrt{9+9+36}
+							= \tfrac12\sqrt{54} = \tfrac{3\sqrt{6}}{2}.
+						</md>
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-cpg-b">
+				<statement>
+					<p>
+						Show that <m>\va = [2, -1, 3]</m> and
+						<m>\vb = [-4, 2, -6]</m> are parallel by computing
+						<m>\va \times \vb</m>.  Why does the result make
+						sense?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<md>
+							<mrow>
+								\va \times \vb \amp =
+								((-1)(-6) - (3)(2))\vi
+								- ((2)(-6) - (3)(-4))\vj
+								+ ((2)(2) - (-1)(-4))\vk			</mrow>
+							<mrow>
+								\amp = (6-6)\vi - (-12+12)\vj + (4-4)\vk
+									 = \vzero.					   </mrow>
+						</md>
+						The cross product is the zero vector.  This makes
+						sense because <m>\vb = -2\,\va</m>, so
+						<m>\theta = \pi</m> (or <m>0</m>) and
+						<m>\sin\theta = 0</m>: parallel vectors span no
+						parallelogram.
+					</p>
+				</solution>
+			</task>
+		</exercise>
 
-        <p><alert>Properties of the cross product.</alert>
-            Let <m>\va, \vb, \vc \in \R^3</m> and let <m>d</m> be a
-            scalar.  Fill in the blanks.</p>
-        <ul>
-            <li>
-                Scalars factor out:
-                <m>d(\va \times \vb) = \fillin[20]</m>.
-            </li>
-            <li>
-                Distributive:
-                <m>\va \times (\vb + \vc) = \fillin[20]</m>.
-            </li>
-            <li>
-                Anticommutative:
-                <m>\va \times \vb = \fillin[12]</m>.
-            </li>
-            <li>
-                A vector crossed with itself:
-                <m>\va \times \va = \fillin[6]</m>.
-            </li>
-        </ul>
-        <!-- <commentary>
-            <p>
-                Blanks, in order:
-                <m>(d\va) \times \vb = \va \times (d\vb)</m>;
-                <m>\va \times \vb + \va \times \vc</m>;
-                <m>-(\vb \times \va)</m>; <m>\vzero</m>.
-                The last follows from anticommutativity (a vector
-                parallel to itself spans no area).
-            </p>
-        </commentary> -->
-    </page>
+		<p><alert>Properties of the cross product.</alert>
+			Let <m>\va, \vb, \vc \in \R^3</m> and let <m>d</m> be a
+			scalar.  Fill in the blanks.</p>
+		<ul>
+			<li>
+				Scalars factor out:
+				<m>d(\va \times \vb) = \fillin[20]</m>.
+			</li>
+			<li>
+				Distributive:
+				<m>\va \times (\vb + \vc) = \fillin[20]</m>.
+			</li>
+			<li>
+				Anticommutative:
+				<m>\va \times \vb = \fillin[12]</m>.
+			</li>
+			<li>
+				A vector crossed with itself:
+				<m>\va \times \va = \fillin[6]</m>.
+			</li>
+		</ul>
+		<!-- <commentary>
+			<p>
+				Blanks, in order:
+				<m>(d\va) \times \vb = \va \times (d\vb)</m>;
+				<m>\va \times \vb + \va \times \vc</m>;
+				<m>-(\vb \times \va)</m>; <m>\vzero</m>.
+				The last follows from anticommutativity (a vector
+				parallel to itself spans no area).
+			</p>
+		</commentary> -->
+	</page>
 
-    <!-- ============================================================
-         Page 3: Application - torque
-         ============================================================ -->
-    <page>
-        <p><alert>III. Application: torque.</alert></p>
+	<!-- ============================================================
+		 Page 3: Application - torque
+		 ============================================================ -->
+	<page>
+		<p><alert>III. Application: torque.</alert></p>
 
-        <p>
-            <term>Torque</term> (or moment of force) measures the
-            tendency of a force to rotate an object about an axis.  If a
-            force <m>\vF</m> is applied at the end of a position vector
-            <m>\vr</m> measured from the axis, the torque is the cross
-            product
-            <me>
-                \boldsymbol{\tau} = \vr \times \vF,
-                \qquad
-                \norm{\boldsymbol{\tau}}
-                = \norm{\vr}\,\norm{\vF}\sin\theta.
-            </me>
-            The <m>\sin\theta</m> factor matches experience: a force
-            applied along the lever arm
-            (<m>\theta = \fillin[4]</m>) produces no
-            turning effect, while a force applied at a right angle
-            (<m>\theta = \fillin[6]</m>) is the most
-            effective.
-        </p>
-        <!-- <commentary>
-            <p>Blanks, in order: <m>0</m> and <m>\pi/2</m>.</p>
-        </commentary> -->
+		<p>
+			<term>Torque</term> (or moment of force) measures the
+			tendency of a force to rotate an object about an axis.  If a
+			force <m>\vF</m> is applied at the end of a position vector
+			<m>\vr</m> measured from the axis, the torque is the cross
+			product
+			<md>
+				\boldsymbol{\tau} = \vr \times \vF,
+				\qquad
+				\norm{\boldsymbol{\tau}}
+				= \norm{\vr}\,\norm{\vF}\sin\theta.
+			</md>
+			The <m>\sin\theta</m> factor matches experience: a force
+			applied along the lever arm
+			(<m>\theta = \fillin[4]</m>) produces no
+			turning effect, while a force applied at a right angle
+			(<m>\theta = \fillin[6]</m>) is the most
+			effective.
+		</p>
+		<!-- <commentary>
+			<p>Blanks, in order: <m>0</m> and <m>\pi/2</m>.</p>
+		</commentary> -->
 
-        <exercise xml:id="ex-cp-torque">
-            <title>Torque on a wrench</title>
-            <statement>
-                <p>
-                    A force of magnitude <m>20</m> lb is applied to the
-                    end of a wrench <m>3</m> ft long, at an angle of
-                    <m>70^\circ</m> to the wrench.  Find the magnitude of
-                    the torque about the bolt.
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    <me>
-                        \norm{\boldsymbol{\tau}}
-                        = \norm{\vr}\,\norm{\vF}\sin\theta
-                        = (3)(20)\sin 70^\circ
-                        \approx 60(0.94)
-                        \approx 56.4 \text{ ft-lb}.
-                    </me>
-                    If the wrench lies in the <m>xy</m>-plane, the
-                    right-hand rule puts <m>\boldsymbol{\tau}</m> along
-                    <m>[0,0,-1]</m>, so
-                    <m>\boldsymbol{\tau} \approx [0, 0, -56.4]</m>.
-                </p>
-            </solution>
-        </exercise>
+		<exercise xml:id="ex-cp-torque">
+			<title>Torque on a wrench</title>
+			<statement>
+				<p>
+					A force of magnitude <m>20</m> lb is applied to the
+					end of a wrench <m>3</m> ft long, at an angle of
+					<m>70^\circ</m> to the wrench.  Find the magnitude of
+					the torque about the bolt.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<md>
+						\norm{\boldsymbol{\tau}}
+						= \norm{\vr}\,\norm{\vF}\sin\theta
+						= (3)(20)\sin 70^\circ
+						\approx 60(0.94)
+						\approx 56.4 \text{ ft-lb}.
+					</md>
+					If the wrench lies in the <m>xy</m>-plane, the
+					right-hand rule puts <m>\boldsymbol{\tau}</m> along
+					<m>[0,0,-1]</m>, so
+					<m>\boldsymbol{\tau} \approx [0, 0, -56.4]</m>.
+				</p>
+			</solution>
+		</exercise>
 
-        <exercise xml:id="exer-cp-torque">
-            <title>Torque from vectors</title>
-            <task xml:id="task-cpt-a">
-                <statement>
-                    <p>
-                        A force <m>\vF = [0, 0, 10]</m> N is applied at
-                        the point with position vector
-                        <m>\vr = [2, 0, 0]</m> m from the axis.  Find
-                        the torque <m>\boldsymbol{\tau} = \vr \times \vF</m>
-                        and its magnitude.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <md>
-                            <mrow>
-                                \boldsymbol{\tau} = \vr \times \vF
-                                \amp = (0\cdot 10 - 0\cdot 0)\vi
-                                     - (2\cdot 10 - 0\cdot 0)\vj
-                                     + (2\cdot 0 - 0\cdot 0)\vk      </mrow>
-                            <mrow>
-                                \amp = [0, -20, 0],                  </mrow>
-                        </md>
-                        with magnitude
-                        <m>\norm{\boldsymbol{\tau}} = 20</m> N<m>\cdot</m>m.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
+		<exercise xml:id="exer-cp-torque">
+			<title>Torque from vectors</title>
+			<task xml:id="task-cpt-a">
+				<statement>
+					<p>
+						A force <m>\vF = [0, 0, 10]</m> N is applied at
+						the point with position vector
+						<m>\vr = [2, 0, 0]</m> m from the axis.  Find
+						the torque <m>\boldsymbol{\tau} = \vr \times \vF</m>
+						and its magnitude.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<md>
+							<mrow>
+								\boldsymbol{\tau} = \vr \times \vF
+								\amp = (0\cdot 10 - 0\cdot 0)\vi
+									 - (2\cdot 10 - 0\cdot 0)\vj
+									 + (2\cdot 0 - 0\cdot 0)\vk	  </mrow>
+							<mrow>
+								\amp = [0, -20, 0],				  </mrow>
+						</md>
+						with magnitude
+						<m>\norm{\boldsymbol{\tau}} = 20</m> N<m>\cdot</m>m.
+					</p>
+				</solution>
+			</task>
+		</exercise>
 
-        <p>
-            <alert>Looking ahead.</alert>
-            We now have three vector operations: addition, the dot
-            product (vectors to a scalar), and the cross product
-            (vectors to a perpendicular vector). Together they let us
-            measure lengths, angles, areas, and turning effects.  Next
-            we set the algebra aside and let vectors <em>move</em>:
-            vector-valued functions trace out <term>curves</term> in
-            space, and the derivatives we build from them carry these
-            same products forward.
-        </p>
-    </page>
+		<p>
+			<alert>Looking ahead.</alert>
+			We now have three vector operations: addition, the dot
+			product (vectors to a scalar), and the cross product
+			(vectors to a perpendicular vector). Together they let us
+			measure lengths, angles, areas, and turning effects.  Next
+			we set the algebra aside and let vectors <em>move</em>:
+			vector-valued functions trace out <term>curves</term> in
+			space, and the derivatives we build from them carry these
+			same products forward.
+		</p>
+	</page>
 
 </worksheet>

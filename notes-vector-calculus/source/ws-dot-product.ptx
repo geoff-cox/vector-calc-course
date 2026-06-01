@@ -1,563 +1,563 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    ws-dot-product.ptx
-    Worksheet 1.3: The Dot Product.
+	ws-dot-product.ptx
+	Worksheet 1.3: The Dot Product.
 
-    Ports the original 01_02_Dot_Product.tex slide deck.  Same board
-    organization as the Beamer notes:
-        I.   Definition (geometric and component forms)
-        II.  Geometric interpretation, angle, and orthogonality
-        III. Projections (enrichment growing out of the "component
-             of a along b" line in the deck)
-        IV.  Properties of the dot product and the basic inequalities
-        V.   Application: work done by a constant force
+	Ports the original 01_02_Dot_Product.tex slide deck.  Same board
+	organization as the Beamer notes:
+		I.   Definition (geometric and component forms)
+		II.  Geometric interpretation, angle, and orthogonality
+		III. Projections (enrichment growing out of the "component
+			 of a along b" line in the deck)
+		IV.  Properties of the dot product and the basic inequalities
+		V.   Application: work done by a constant force
 
-    Guided-notes pattern (see ws-function-notation.ptx for the full
-    explanation):
-        - <fillin characters="N"/> (or \fillin[N] inside math) draws a
-          blank in every build.
-        - The intended answer follows in a <commentary> block.  As in
-          ws-vectors.ptx and ws-function-notation.ptx, those blocks are
-          kept COMMENTED OUT for now: the project currently has no
-          target that turns the 'commentary' stringparam on (see the
-          'can't-use-commentary' history), so an uncommented block would
-          stay hidden in every build anyway.  They are preserved in the
-          source, in order, ready to switch on once a key target sets
-          commentary="yes".
-        - Multi-step worked computations are <exercise>s with a
-          <solution> body, whose visibility is controlled by the
-          publication file's <exercise-worksheet @solution="..."/>.
+	Guided-notes pattern (see ws-function-notation.ptx for the full
+	explanation):
+		- <fillin characters="N"/> (or \fillin[N] inside math) draws a
+		  blank in every build.
+		- The intended answer follows in a <commentary> block.  As in
+		  ws-vectors.ptx and ws-function-notation.ptx, those blocks are
+		  kept COMMENTED OUT for now: the project currently has no
+		  target that turns the 'commentary' stringparam on (see the
+		  'can't-use-commentary' history), so an uncommented block would
+		  stay hidden in every build anyway.  They are preserved in the
+		  source, in order, ready to switch on once a key target sets
+		  commentary="yes".
+		- Multi-step worked computations are <exercise>s with a
+		  <solution> body, whose visibility is controlled by the
+		  publication file's <exercise-worksheet @solution="..."/>.
 
-    Figures (the geometric-interpretation picture and the wagon/work
-    diagram) are left as <figure> placeholders so the original
-    9_2_Fig5 / 9_2_Fig6 / 9_2_Fig10 PNGs can be dropped in later.
+	Figures (the geometric-interpretation picture and the wagon/work
+	diagram) are left as <figure> placeholders so the original
+	9_2_Fig5 / 9_2_Fig6 / 9_2_Fig10 PNGs can be dropped in later.
 -->
 <worksheet xml:id="ws-dot-product">
-    <title>The Dot Product</title>
+	<title>The Dot Product</title>
 
-    <objectives>
-        <ul>
-            <li>Compute the dot product of two vectors two different
-                ways and recognize that the result is a scalar.</li>
-            <li>Use <m>\va \cdot \vb = \norm{\va}\,\norm{\vb}\cos\theta</m>
-                to find the angle between vectors and to test for
-                orthogonality.</li>
-            <li>Compute scalar and vector projections of one vector
-                onto another.</li>
-            <li>State and use the algebraic properties of the dot
-                product and the triangle and Cauchy&#8211;Schwarz
-                inequalities.</li>
-            <li>Apply the dot product to compute the work done by a
-                constant force.</li>
-        </ul>
-    </objectives>
+	<objectives>
+		<ul>
+			<li>Compute the dot product of two vectors two different
+				ways and recognize that the result is a scalar.</li>
+			<li>Use <m>\va \cdot \vb = \norm{\va}\,\norm{\vb}\cos\theta</m>
+				to find the angle between vectors and to test for
+				orthogonality.</li>
+			<li>Compute scalar and vector projections of one vector
+				onto another.</li>
+			<li>State and use the algebraic properties of the dot
+				product and the triangle and Cauchy&#8211;Schwarz
+				inequalities.</li>
+			<li>Apply the dot product to compute the work done by a
+				constant force.</li>
+		</ul>
+	</objectives>
 
-    <!-- ============================================================
-         Page 1: Definition (geometric and component forms)
-         ============================================================ -->
-    <page>
-        <p><alert>I. Definition.</alert>
-            (Vector Operation #2)</p>
+	<!-- ============================================================
+		 Page 1: Definition (geometric and component forms)
+		 ============================================================ -->
+	<page>
+		<p><alert>I. Definition.</alert>
+			(Vector Operation #2)</p>
 
-        <p>
-            The <term>dot product</term> is our first way to
-            <em>multiply</em> two vectors.  Unlike vector addition, it
-            combines two vectors into a single number.  Let
-            <m>\va = [a_1, a_2, a_3]</m> and
-            <m>\vb = [b_1, b_2, b_3]</m>.  Geometrically, the dot
-            product is
-            <me>
-                \va \cdot \vb = \fillin[18]
-            </me>
-            where <m>\theta</m> is the angle between <m>\va</m> and
-            <m>\vb</m>.  An easier way to compute the dot product of two
-            known vectors is to use components:
-            <me>
-                \va \cdot \vb
-                = [a_1, a_2, a_3] \cdot [b_1, b_2, b_3]
-                = \fillin[28]
-            </me>
-        </p>
-        <!-- <commentary>
-            <p>
-                Blanks, in order:
-                <m>\norm{\va}\,\norm{\vb}\cos\theta</m> and
-                <m>a_1 b_1 + a_2 b_2 + a_3 b_3</m>.
-            </p>
-        </commentary> -->
+		<p>
+			The <term>dot product</term> is our first way to
+			<em>multiply</em> two vectors.  Unlike vector addition, it
+			combines two vectors into a single number.  Let
+			<m>\va = [a_1, a_2, a_3]</m> and
+			<m>\vb = [b_1, b_2, b_3]</m>.  Geometrically, the dot
+			product is
+			<md>
+				\va \cdot \vb = <fillin characters="14"/>
+			</md>
+			where <m>\theta</m> is the angle between <m>\va</m> and
+			<m>\vb</m>.  An easier way to compute the dot product of two
+			known vectors is to use components:
+			<md>
+				\va \cdot \vb
+				= [a_1, a_2, a_3] \cdot [b_1, b_2, b_3]
+				= \fillin[28]
+			</md>
+		</p>
+		<!-- <commentary>
+			<p>
+				Blanks, in order:
+				<m>\norm{\va}\,\norm{\vb}\cos\theta</m> and
+				<m>a_1 b_1 + a_2 b_2 + a_3 b_3</m>.
+			</p>
+		</commentary> -->
 
-        <p>
-            <alert>Note.</alert>
-            Both formulas produce the same single real number, so for
-            <m>\va, \vb \in \R^3</m> the dot product
-            <m>\va \cdot \vb \in</m> <fillin characters="6"/>
-            <nbsp/>&#8212; a <fillin characters="8"/>, never a vector.
-            (For this reason the dot product is also called the
-            <term>scalar product</term>.)
-        </p>
-        <!-- <commentary>
-            <p>Blanks, in order: <m>\R</m>, and <q>scalar</q>.</p>
-        </commentary> -->
+		<p>
+			<alert>Note.</alert>
+			Both formulas produce the same single real number, so for
+			<m>\va, \vb \in \R^3</m> the dot product
+			<m>\va \cdot \vb \in</m> <fillin characters="6"/>
+			<nbsp/>&#8212; a <fillin characters="8"/>, never a vector.
+			(For this reason the dot product is also called the
+			<term>scalar product</term>.)
+		</p>
+		<!-- <commentary>
+			<p>Blanks, in order: <m>\R</m>, and <q>scalar</q>.</p>
+		</commentary> -->
 
-        <exercise xml:id="ex-dp-compute">
-            <title>Computing a dot product</title>
-            <statement>
-                <p>
-                    Compute <m>\va \cdot \vb</m> for
-                    <m>\va = [1, 2, 3]</m> and
-                    <m>\vb = [-2, 0, 5]</m>.
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    Using the component formula,
-                    <md>
-                        <mrow>
-                            \va \cdot \vb
-                            \amp = (1)(-2) + (2)(0) + (3)(5) </mrow>
-                        <mrow>
-                            \amp = -2 + 0 + 15 = 13.          </mrow>
-                    </md>
-                    The answer is a single number, as it must be.
-                </p>
-            </solution>
-        </exercise>
+		<exercise xml:id="ex-dp-compute">
+			<title>Computing a dot product</title>
+			<statement>
+				<p>
+					Compute <m>\va \cdot \vb</m> for
+					<m>\va = [1, 2, 3]</m> and
+					<m>\vb = [-2, 0, 5]</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Using the component formula,
+					<md>
+						<mrow>
+							\va \cdot \vb
+							\amp = (1)(-2) + (2)(0) + (3)(5) </mrow>
+						<mrow>
+							\amp = -2 + 0 + 15 = 13.		  </mrow>
+					</md>
+					The answer is a single number, as it must be.
+				</p>
+			</solution>
+		</exercise>
 
-        <exercise xml:id="exer-dp-compute">
-            <title>Dot-product practice</title>
-            <task xml:id="task-dp-a">
-                <statement>
-                    <p>
-                        With <m>\va = [3, -1, 2]</m> and
-                        <m>\vb = [4, 5, 1]</m>, compute
-                        <m>\va \cdot \vb</m>.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <m>\va \cdot \vb = (3)(4) + (-1)(5) + (2)(1)
-                        = 12 - 5 + 2 = 9</m>.
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-dp-b">
-                <statement>
-                    <p>
-                        With <m>\vu = 2\vi - \vj + 3\vk</m> and
-                        <m>\vv = \vi + 4\vj - \vk</m>, compute
-                        <m>\vu \cdot \vv</m>.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <m>\vu \cdot \vv = (2)(1) + (-1)(4) + (3)(-1)
-                        = 2 - 4 - 3 = -5</m>.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
-    </page>
+		<exercise xml:id="exer-dp-compute">
+			<title>Dot-product practice</title>
+			<task xml:id="task-dp-a">
+				<statement>
+					<p>
+						With <m>\va = [3, -1, 2]</m> and
+						<m>\vb = [4, 5, 1]</m>, compute
+						<m>\va \cdot \vb</m>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<m>\va \cdot \vb = (3)(4) + (-1)(5) + (2)(1)
+						= 12 - 5 + 2 = 9</m>.
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-dp-b">
+				<statement>
+					<p>
+						With <m>\vu = 2\vi - \vj + 3\vk</m> and
+						<m>\vv = \vi + 4\vj - \vk</m>, compute
+						<m>\vu \cdot \vv</m>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<m>\vu \cdot \vv = (2)(1) + (-1)(4) + (3)(-1)
+						= 2 - 4 - 3 = -5</m>.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+	</page>
 
-    <!-- ============================================================
-         Page 2: Geometric interpretation, angle, orthogonality
-         ============================================================ -->
-    <page>
-        <p><alert>II. Geometric interpretation.</alert></p>
+	<!-- ============================================================
+		 Page 2: Geometric interpretation, angle, orthogonality
+		 ============================================================ -->
+	<page>
+		<p><alert>II. Geometric interpretation.</alert></p>
 
-        <p>
-            Solving the geometric formula for <m>\cos\theta</m> turns
-            the dot product into an angle-measuring tool:
-            <me>
-                \cos\theta = \fillin[22]
-            </me>
-            Because <m>\norm{\va}</m> and <m>\norm{\vb}</m> are
-            positive, the <em>sign</em> of <m>\va \cdot \vb</m> alone
-            already tells you the kind of angle: a positive dot product
-            means an <fillin characters="6"/> <nbsp/>angle, a negative
-            one means an <fillin characters="7"/> <nbsp/>angle, and a
-            zero dot product means a <fillin characters="5"/>
-            <nbsp/>angle.
-        </p>
-        <!-- <commentary>
-            <p>
-                Blanks, in order:
-                <m>\dfrac{\va \cdot \vb}{\norm{\va}\,\norm{\vb}}</m>;
-                <q>acute</q>, <q>obtuse</q>, <q>right</q>.
-            </p>
-        </commentary> -->
+		<p>
+			Solving the geometric formula for <m>\cos\theta</m> turns
+			the dot product into an angle-measuring tool:
+			<md>
+				\cos\theta = \fillin[22]
+			</md>
+			Because <m>\norm{\va}</m> and <m>\norm{\vb}</m> are
+			positive, the <em>sign</em> of <m>\va \cdot \vb</m> alone
+			already tells you the kind of angle: a positive dot product
+			means an <fillin characters="6"/> <nbsp/>angle, a negative
+			one means an <fillin characters="7"/> <nbsp/>angle, and a
+			zero dot product means a <fillin characters="5"/>
+			<nbsp/>angle.
+		</p>
+		<!-- <commentary>
+			<p>
+				Blanks, in order:
+				<m>\dfrac{\va \cdot \vb}{\norm{\va}\,\norm{\vb}}</m>;
+				<q>acute</q>, <q>obtuse</q>, <q>right</q>.
+			</p>
+		</commentary> -->
 
-        <figure xml:id="fig-dp-interpretation">
-            <caption>The dot product as
-                <m>(\text{component of } \va \text{ along } \vb)
-                \times (\text{length of } \vb)</m>.</caption>
-            <!-- TODO: drop in the original 9_2_Fig5.png, e.g.
-                 <image source="figures/dot-product-projection.png"
-                        width="50%"/>
-                 or replace with an inline TikZ <latex-image>. -->
-            <image>
-                <description>Two vectors a and b drawn from a common
-                    point with angle theta between them.  A
-                    perpendicular dropped from the tip of a onto the
-                    line through b marks off the segment of length
-                    |a| cos(theta), the component of a along b.</description>
-            </image>
-        </figure>
+		<figure xml:id="fig-dp-interpretation">
+			<caption>The dot product as
+				<m>(\text{component of } \va \text{ along } \vb)
+				\times (\text{length of } \vb)</m>.</caption>
+			<!-- TODO: drop in the original 9_2_Fig5.png, e.g.
+				 <image source="figures/dot-product-projection.png"
+						width="50%"/>
+				 or replace with an inline TikZ <latex-image>. -->
+			<image>
+				<description>Two vectors a and b drawn from a common
+					point with angle theta between them.  A
+					perpendicular dropped from the tip of a onto the
+					line through b marks off the segment of length
+					|a| cos(theta), the component of a along b.</description>
+			</image>
+		</figure>
 
-        <p>
-            That last case is important enough to record as a theorem.
-        </p>
+		<p>
+			That last case is important enough to record as a theorem.
+		</p>
 
-        <theorem xml:id="thm-orthogonal">
-            <title>Orthogonality test</title>
-            <statement>
-                <p>
-                    Let <m>\va</m> and <m>\vb</m> be nonzero vectors.
-                    Then <m>\va</m> and <m>\vb</m> are
-                    <term>orthogonal</term> (perpendicular) if and only
-                    if <m>\va \cdot \vb = \fillin[2]</m>.
-                </p>
-            </statement>
-        </theorem>
-        <!-- <commentary>
-            <p>Fill in: <m>0</m>.</p>
-        </commentary> -->
+		<theorem xml:id="thm-orthogonal">
+			<title>Orthogonality test</title>
+			<statement>
+				<p>
+					Let <m>\va</m> and <m>\vb</m> be nonzero vectors.
+					Then <m>\va</m> and <m>\vb</m> are
+					<term>orthogonal</term> (perpendicular) if and only
+					if <m>\va \cdot \vb = \fillin[2]</m>.
+				</p>
+			</statement>
+		</theorem>
+		<!-- <commentary>
+			<p>Fill in: <m>0</m>.</p>
+		</commentary> -->
 
-        <exercise xml:id="ex-dp-angle">
-            <title>The angle between two vectors</title>
-            <statement>
-                <p>
-                    Find the angle between <m>\va = [1, 0, 1]</m> and
-                    <m>\vb = [0, 1, 1]</m>.
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    <md>
-                        <mrow>
-                            \cos\theta
-                            \amp = \frac{\va \cdot \vb}
-                                        {\norm{\va}\,\norm{\vb}}
-                                 = \frac{0 + 0 + 1}
-                                        {\sqrt{2}\,\sqrt{2}}    </mrow>
-                        <mrow>
-                            \amp = \frac{1}{2}.                  </mrow>
-                    </md>
-                    So <m>\theta = \dfrac{\pi}{3}</m>; the vectors are
-                    sixty degrees apart.
-                </p>
-            </solution>
-        </exercise>
+		<exercise xml:id="ex-dp-angle">
+			<title>The angle between two vectors</title>
+			<statement>
+				<p>
+					Find the angle between <m>\va = [1, 0, 1]</m> and
+					<m>\vb = [0, 1, 1]</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<md>
+						<mrow>
+							\cos\theta
+							\amp = \frac{\va \cdot \vb}
+										{\norm{\va}\,\norm{\vb}}
+								 = \frac{0 + 0 + 1}
+										{\sqrt{2}\,\sqrt{2}}	</mrow>
+						<mrow>
+							\amp = \frac{1}{2}.				  </mrow>
+					</md>
+					So <m>\theta = \dfrac{\pi}{3}</m>; the vectors are
+					sixty degrees apart.
+				</p>
+			</solution>
+		</exercise>
 
-        <exercise xml:id="exer-dp-ortho">
-            <title>Testing for orthogonality</title>
-            <task xml:id="task-ortho-a">
-                <statement>
-                    <p>
-                        Are <m>\va = [1, 2, -1]</m> and
-                        <m>\vb = [3, -1, 1]</m> orthogonal?
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <m>\va \cdot \vb = 3 - 2 - 1 = 0</m>, so yes
-                        &#8212; the two vectors meet at a right angle.
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-ortho-b">
-                <statement>
-                    <p>
-                        Find a value of <m>c</m> for which
-                        <m>[2, c, -3]</m> and <m>[4, 1, c]</m> are
-                        orthogonal.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        Set the dot product to zero:
-                        <m>8 + c - 3c = 0</m>, i.e.
-                        <m>8 - 2c = 0</m>, so <m>c = 4</m>.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
-    </page>
+		<exercise xml:id="exer-dp-ortho">
+			<title>Testing for orthogonality</title>
+			<task xml:id="task-ortho-a">
+				<statement>
+					<p>
+						Are <m>\va = [1, 2, -1]</m> and
+						<m>\vb = [3, -1, 1]</m> orthogonal?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<m>\va \cdot \vb = 3 - 2 - 1 = 0</m>, so yes
+						&#8212; the two vectors meet at a right angle.
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-ortho-b">
+				<statement>
+					<p>
+						Find a value of <m>c</m> for which
+						<m>[2, c, -3]</m> and <m>[4, 1, c]</m> are
+						orthogonal.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Set the dot product to zero:
+						<m>8 + c - 3c = 0</m>, i.e.
+						<m>8 - 2c = 0</m>, so <m>c = 4</m>.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+	</page>
 
-    <!-- ============================================================
-         Page 3: Projections (enrichment)
-         ============================================================ -->
-    <page>
-        <p><alert>III. Projections.</alert></p>
+	<!-- ============================================================
+		 Page 3: Projections (enrichment)
+		 ============================================================ -->
+	<page>
+		<p><alert>III. Projections.</alert></p>
 
-        <p>
-            The geometric picture above measures <q>how much</q> of one
-            vector points along another &#8212; the length of the shadow
-            <m>\va</m> casts on the line through <m>\vb</m>.  That length
-            is the <term>scalar projection</term> of <m>\va</m> onto
-            <m>\vb</m>,
-            <me>
-                \comp_{\vb} \va = \norm{\va}\cos\theta = \fillin[16]
-            </me>
-            and stretching the unit vector
-            <m>\vb / \norm{\vb}</m> to that length gives the
-            <term>vector projection</term> of <m>\va</m> onto
-            <m>\vb</m>,
-            <me>
-                \proj_{\vb} \va = \fillin[22]
-            </me>
-        </p>
-        <!-- <commentary>
-            <p>
-                Blanks, in order:
-                <m>\dfrac{\va \cdot \vb}{\norm{\vb}}</m> and
-                <m>\left(\dfrac{\va \cdot \vb}{\norm{\vb}^2}\right)\vb</m>.
-            </p>
-        </commentary> -->
+		<p>
+			The geometric picture above measures <q>how much</q> of one
+			vector points along another &#8212; the length of the shadow
+			<m>\va</m> casts on the line through <m>\vb</m>.  That length
+			is the <term>scalar projection</term> of <m>\va</m> onto
+			<m>\vb</m>,
+			<md>
+				\comp_{\vb} \va = \norm{\va}\cos\theta = \fillin[16]
+			</md>
+			and stretching the unit vector
+			<m>\vb / \norm{\vb}</m> to that length gives the
+			<term>vector projection</term> of <m>\va</m> onto
+			<m>\vb</m>,
+			<md>
+				\proj_{\vb} \va = \fillin[22]
+			</md>
+		</p>
+		<!-- <commentary>
+			<p>
+				Blanks, in order:
+				<m>\dfrac{\va \cdot \vb}{\norm{\vb}}</m> and
+				<m>\left(\dfrac{\va \cdot \vb}{\norm{\vb}^2}\right)\vb</m>.
+			</p>
+		</commentary> -->
 
-        <exercise xml:id="ex-dp-proj">
-            <title>A projection</title>
-            <statement>
-                <p>
-                    Find <m>\comp_{\vb}\va</m> and
-                    <m>\proj_{\vb}\va</m> for <m>\va = [3, 4, 0]</m>
-                    and <m>\vb = [2, 0, 0]</m>.
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    Here <m>\va \cdot \vb = 6</m> and
-                    <m>\norm{\vb} = 2</m>, so
-                    <md>
-                        <mrow>
-                            \comp_{\vb}\va \amp = \frac{6}{2} = 3, </mrow>
-                        <mrow>
-                            \proj_{\vb}\va
-                            \amp = \frac{6}{4}\,[2, 0, 0]
-                                 = [3, 0, 0].                      </mrow>
-                    </md>
-                    The shadow of <m>\va</m> on the <m>x</m>-axis has
-                    length <m>3</m>, exactly the first component of
-                    <m>\va</m> &#8212; as expected, since <m>\vb</m>
-                    points along the <m>x</m>-axis.
-                </p>
-            </solution>
-        </exercise>
-    </page>
+		<exercise xml:id="ex-dp-proj">
+			<title>A projection</title>
+			<statement>
+				<p>
+					Find <m>\comp_{\vb}\va</m> and
+					<m>\proj_{\vb}\va</m> for <m>\va = [3, 4, 0]</m>
+					and <m>\vb = [2, 0, 0]</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>\va \cdot \vb = 6</m> and
+					<m>\norm{\vb} = 2</m>, so
+					<md>
+						<mrow>
+							\comp_{\vb}\va \amp = \frac{6}{2} = 3, </mrow>
+						<mrow>
+							\proj_{\vb}\va
+							\amp = \frac{6}{4}\,[2, 0, 0]
+								 = [3, 0, 0].					  </mrow>
+					</md>
+					The shadow of <m>\va</m> on the <m>x</m>-axis has
+					length <m>3</m>, exactly the first component of
+					<m>\va</m> &#8212; as expected, since <m>\vb</m>
+					points along the <m>x</m>-axis.
+				</p>
+			</solution>
+		</exercise>
+	</page>
 
-    <!-- ============================================================
-         Page 4: Properties and inequalities
-         ============================================================ -->
-    <page>
-        <p><alert>IV. Properties of the dot product.</alert></p>
+	<!-- ============================================================
+		 Page 4: Properties and inequalities
+		 ============================================================ -->
+	<page>
+		<p><alert>IV. Properties of the dot product.</alert></p>
 
-        <p>
-            Let <m>\va, \vb, \vc \in \R^3</m> and let <m>k</m> be a
-            scalar.  Fill in the blanks.
-        </p>
-        <ul>
-            <li>
-                Length: <m>\va \cdot \va = \fillin[8]</m>,
-                equivalently <m>\norm{\va} = \fillin[10]</m>.
-            </li>
-            <li>
-                Commutative:
-                <m>\va \cdot \vb = \fillin[8]</m>.
-            </li>
-            <li>
-                Distributive:
-                <m>(\va + \vb) \cdot \vc = \fillin[16]</m>.
-            </li>
-            <li>
-                Scalars factor out:
-                <m>k(\va \cdot \vb) = (k\va) \cdot \vb
-                = \va \cdot (k\vb)</m>.
-            </li>
-        </ul>
-        <!-- <commentary>
-            <p>
-                Blanks, in order:
-                <m>\norm{\va}^2</m>; <m>\sqrt{\va \cdot \va}</m>;
-                <m>\vb \cdot \va</m>;
-                <m>\va \cdot \vc + \vb \cdot \vc</m>.
-            </p>
-        </commentary> -->
+		<p>
+			Let <m>\va, \vb, \vc \in \R^3</m> and let <m>k</m> be a
+			scalar.  Fill in the blanks.
+		</p>
+		<ul>
+			<li>
+				Length: <m>\va \cdot \va = \fillin[8]</m>,
+				equivalently <m>\norm{\va} = \fillin[10]</m>.
+			</li>
+			<li>
+				Commutative:
+				<m>\va \cdot \vb = \fillin[8]</m>.
+			</li>
+			<li>
+				Distributive:
+				<m>(\va + \vb) \cdot \vc = \fillin[16]</m>.
+			</li>
+			<li>
+				Scalars factor out:
+				<m>k(\va \cdot \vb) = (k\va) \cdot \vb
+				= \va \cdot (k\vb)</m>.
+			</li>
+		</ul>
+		<!-- <commentary>
+			<p>
+				Blanks, in order:
+				<m>\norm{\va}^2</m>; <m>\sqrt{\va \cdot \va}</m>;
+				<m>\vb \cdot \va</m>;
+				<m>\va \cdot \vc + \vb \cdot \vc</m>.
+			</p>
+		</commentary> -->
 
-        <p>
-            The very first property, <m>\va \cdot \va = \norm{\va}^2</m>,
-            is the same length idea from the previous worksheet written
-            in dot-product language &#8212; it is the bridge between the
-            two formulas for <m>\va \cdot \vb</m>.
-        </p>
+		<p>
+			The very first property, <m>\va \cdot \va = \norm{\va}^2</m>,
+			is the same length idea from the previous worksheet written
+			in dot-product language &#8212; it is the bridge between the
+			two formulas for <m>\va \cdot \vb</m>.
+		</p>
 
-        <p><alert>Two important inequalities.</alert></p>
-        <ul>
-            <li>
-                Triangle inequality:
-                <m>\norm{\va + \vb} \le \fillin[16]</m>.
-            </li>
-            <li>
-                Cauchy&#8211;Schwarz inequality:
-                <m>\norm{\va \cdot \vb} \le \fillin[14]</m>.
-            </li>
-        </ul>
-        <!-- <commentary>
-            <p>
-                Blanks, in order:
-                <m>\norm{\va} + \norm{\vb}</m> and
-                <m>\norm{\va}\,\norm{\vb}</m>.
-            </p>
-        </commentary> -->
+		<p><alert>Two important inequalities.</alert></p>
+		<ul>
+			<li>
+				Triangle inequality:
+				<m>\norm{\va + \vb} \le \fillin[16]</m>.
+			</li>
+			<li>
+				Cauchy&#8211;Schwarz inequality:
+				<m>\norm{\va \cdot \vb} \le \fillin[14]</m>.
+			</li>
+		</ul>
+		<!-- <commentary>
+			<p>
+				Blanks, in order:
+				<m>\norm{\va} + \norm{\vb}</m> and
+				<m>\norm{\va}\,\norm{\vb}</m>.
+			</p>
+		</commentary> -->
 
-        <p>
-            Cauchy&#8211;Schwarz is exactly the statement that
-            <m>\cos\theta = \dfrac{\va \cdot \vb}
-            {\norm{\va}\,\norm{\vb}}</m> never leaves the interval
-            <m>[-1, 1]</m> &#8212; so the angle formula always makes
-            sense.
-        </p>
-    </page>
+		<p>
+			Cauchy&#8211;Schwarz is exactly the statement that
+			<m>\cos\theta = \dfrac{\va \cdot \vb}
+			{\norm{\va}\,\norm{\vb}}</m> never leaves the interval
+			<m>[-1, 1]</m> &#8212; so the angle formula always makes
+			sense.
+		</p>
+	</page>
 
-    <!-- ============================================================
-         Page 5: Application - work done by a constant force
-         ============================================================ -->
-    <page>
-        <p><alert>V. Application: work.</alert></p>
+	<!-- ============================================================
+		 Page 5: Application - work done by a constant force
+		 ============================================================ -->
+	<page>
+		<p><alert>V. Application: work.</alert></p>
 
-        <p>
-            In its most basic, one-dimensional form, the
-            <term>work</term> done on an object is
-            <me>
-                \text{Work} = (\text{force on the object})
-                \times (\text{distance moved}).
-            </me>
-            This simple product assumes two things:
-        </p>
-        <ul>
-            <li>the force is <fillin characters="10"/>
-                <nbsp/>(it does not change as the object moves), and</li>
-            <li>the force acts in the
-                <fillin characters="14"/> <nbsp/>direction as the
-                motion.</li>
-        </ul>
-        <!-- <commentary>
-            <p>Blanks, in order: <q>constant</q>, <q>same</q>.</p>
-        </commentary> -->
+		<p>
+			In its most basic, one-dimensional form, the
+			<term>work</term> done on an object is
+			<md>
+				\text{Work} = (\text{force on the object})
+				\times (\text{distance moved}).
+			</md>
+			This simple product assumes two things:
+		</p>
+		<ul>
+			<li>the force is <fillin characters="10"/>
+				<nbsp/>(it does not change as the object moves), and</li>
+			<li>the force acts in the
+				<fillin characters="14"/> <nbsp/>direction as the
+				motion.</li>
+		</ul>
+		<!-- <commentary>
+			<p>Blanks, in order: <q>constant</q>, <q>same</q>.</p>
+		</commentary> -->
 
-        <p>
-            Now let <m>\vF</m> be a constant force pulling a wagon and
-            <m>\vr</m> the displacement of the wagon.  In general the
-            force is <em>not</em> aligned with the motion, so we must
-            decompose <m>\vF</m> to find how much of it actually acts
-            along the displacement.
-        </p>
+		<p>
+			Now let <m>\vF</m> be a constant force pulling a wagon and
+			<m>\vr</m> the displacement of the wagon.  In general the
+			force is <em>not</em> aligned with the motion, so we must
+			decompose <m>\vF</m> to find how much of it actually acts
+			along the displacement.
+		</p>
 
-        <figure xml:id="fig-dp-work">
-            <caption>A force <m>\vF</m> applied at an angle
-                <m>\theta</m> to the displacement <m>\vr</m> of a
-                wagon.</caption>
-            <!-- TODO: drop in the original 9_2_Fig6.png / 9_2_Fig10.png,
-                 e.g. <image source="figures/work-wagon.png" width="55%"/>
-                 or replace with an inline TikZ <latex-image>. -->
-            <image>
-                <description>A wagon on the ground pulled by a force F
-                    directed up and to the right at angle theta above
-                    the horizontal displacement r.  The horizontal
-                    component |F| cos(theta) is the part of the force
-                    doing work.</description>
-            </image>
-        </figure>
+		<figure xml:id="fig-dp-work">
+			<caption>A force <m>\vF</m> applied at an angle
+				<m>\theta</m> to the displacement <m>\vr</m> of a
+				wagon.</caption>
+			<!-- TODO: drop in the original 9_2_Fig6.png / 9_2_Fig10.png,
+				 e.g. <image source="figures/work-wagon.png" width="55%"/>
+				 or replace with an inline TikZ <latex-image>. -->
+			<image>
+				<description>A wagon on the ground pulled by a force F
+					directed up and to the right at angle theta above
+					the horizontal displacement r.  The horizontal
+					component |F| cos(theta) is the part of the force
+					doing work.</description>
+			</image>
+		</figure>
 
-        <p>
-            The component of the force in the direction of motion is
-            <m>\norm{\vF}\cos\theta</m>, and the distance travelled is
-            <m>\norm{\vr}</m>.  Multiplying and recognizing the
-            geometric form of the dot product,
-            <me>
-                \text{Work}
-                = (\norm{\vF}\cos\theta)(\norm{\vr})
-                = \norm{\vF}\,\norm{\vr}\cos\theta
-                = \fillin[10]
-            </me>
-            So for any constant force, work is simply a dot product.
-        </p>
-        <!-- <commentary>
-            <p>Fill in: <m>\vF \cdot \vr</m>.</p>
-        </commentary> -->
+		<p>
+			The component of the force in the direction of motion is
+			<m>\norm{\vF}\cos\theta</m>, and the distance travelled is
+			<m>\norm{\vr}</m>.  Multiplying and recognizing the
+			geometric form of the dot product,
+			<md>
+				\text{Work}
+				= (\norm{\vF}\cos\theta)(\norm{\vr})
+				= \norm{\vF}\,\norm{\vr}\cos\theta
+				= \fillin[10]
+			</md>
+			So for any constant force, work is simply a dot product.
+		</p>
+		<!-- <commentary>
+			<p>Fill in: <m>\vF \cdot \vr</m>.</p>
+		</commentary> -->
 
-        <exercise xml:id="ex-dp-work">
-            <title>Work done on a wagon</title>
-            <statement>
-                <p>
-                    A wagon is pulled by a constant force
-                    <m>\vF = [-5, 10]</m> newtons while its
-                    displacement is <m>\vr = [-4, 0]</m> metres.  How
-                    much work is done on the wagon?
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    <md>
-                        <mrow>
-                            \text{Work} = \vF \cdot \vr
-                            \amp = [-5, 10] \cdot [-4, 0]      </mrow>
-                        <mrow>
-                            \amp = (-5)(-4) + (10)(0)          </mrow>
-                        <mrow>
-                            \amp = 20 \text{ N}\cdot\text{m}.  </mrow>
-                    </md>
-                    Only the horizontal part of the force does work
-                    here, since the displacement is purely horizontal.
-                </p>
-            </solution>
-        </exercise>
+		<exercise xml:id="ex-dp-work">
+			<title>Work done on a wagon</title>
+			<statement>
+				<p>
+					A wagon is pulled by a constant force
+					<m>\vF = [-5, 10]</m> newtons while its
+					displacement is <m>\vr = [-4, 0]</m> metres.  How
+					much work is done on the wagon?
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<md>
+						<mrow>
+							\text{Work} = \vF \cdot \vr
+							\amp = [-5, 10] \cdot [-4, 0]	  </mrow>
+						<mrow>
+							\amp = (-5)(-4) + (10)(0)		  </mrow>
+						<mrow>
+							\amp = 20 \text{ N}\cdot\text{m}.  </mrow>
+					</md>
+					Only the horizontal part of the force does work
+					here, since the displacement is purely horizontal.
+				</p>
+			</solution>
+		</exercise>
 
-        <exercise xml:id="exer-dp-work">
-            <title>Work practice</title>
-            <task xml:id="task-work-a">
-                <statement>
-                    <p>
-                        A constant force <m>\vF = [3, 4]</m> newtons
-                        moves an object along the displacement
-                        <m>\vr = [10, 0]</m> metres.  Find the work
-                        done.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        <m>\text{Work} = \vF \cdot \vr
-                        = (3)(10) + (4)(0) = 30</m> N<m>\cdot</m>m.
-                    </p>
-                </solution>
-            </task>
-            <task xml:id="task-work-b">
-                <statement>
-                    <p>
-                        A force of magnitude <m>50</m> N is applied at
-                        <m>60^\circ</m> above the horizontal to drag a
-                        crate <m>8</m> m horizontally.  Find the work
-                        done.
-                    </p>
-                </statement>
-                <solution>
-                    <p>
-                        Using
-                        <m>\text{Work} = \norm{\vF}\,\norm{\vr}\cos\theta
-                        = (50)(8)\cos 60^\circ = (400)\!\left(\tfrac12\right)
-                        = 200</m> N<m>\cdot</m>m.
-                    </p>
-                </solution>
-            </task>
-        </exercise>
+		<exercise xml:id="exer-dp-work">
+			<title>Work practice</title>
+			<task xml:id="task-work-a">
+				<statement>
+					<p>
+						A constant force <m>\vF = [3, 4]</m> newtons
+						moves an object along the displacement
+						<m>\vr = [10, 0]</m> metres.  Find the work
+						done.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						<m>\text{Work} = \vF \cdot \vr
+						= (3)(10) + (4)(0) = 30</m> N<m>\cdot</m>m.
+					</p>
+				</solution>
+			</task>
+			<task xml:id="task-work-b">
+				<statement>
+					<p>
+						A force of magnitude <m>50</m> N is applied at
+						<m>60^\circ</m> above the horizontal to drag a
+						crate <m>8</m> m horizontally.  Find the work
+						done.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Using
+						<m>\text{Work} = \norm{\vF}\,\norm{\vr}\cos\theta
+						= (50)(8)\cos 60^\circ = (400)\!\left(\tfrac12\right)
+						= 200</m> N<m>\cdot</m>m.
+					</p>
+				</solution>
+			</task>
+		</exercise>
 
-        <p>
-            <alert>Looking ahead.</alert>
-            The dot product multiplies two vectors to produce a
-            <em>scalar</em>, and we have seen it measure lengths,
-            angles, orthogonality, and work.  The next worksheet
-            introduces the <term>cross product</term>, a second way to
-            multiply two vectors &#8212; this time producing a
-            <em>vector</em> perpendicular to both.
-        </p>
-    </page>
+		<p>
+			<alert>Looking ahead.</alert>
+			The dot product multiplies two vectors to produce a
+			<em>scalar</em>, and we have seen it measure lengths,
+			angles, orthogonality, and work.  The next worksheet
+			introduces the <term>cross product</term>, a second way to
+			multiply two vectors &#8212; this time producing a
+			<em>vector</em> perpendicular to both.
+		</p>
+	</page>
 
 </worksheet>

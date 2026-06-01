@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    publication-instructor.ptx
-    Instructor key: blanks visible AND solutions/answers shown inline.
+	publication-instructor.ptx
+	Instructor key: blanks visible AND solutions/answers shown inline.
 
-    Same source tree as the student build; the only difference is that
-    <task-default>, <solutions-divisional>, and <solutions-worksheet>
-    here list every part of an exercise, so the <solution> bodies appear.
+	Same source tree as the student build; the only difference is that
+	<task-default>, <solutions-divisional>, and <solutions-worksheet>
+	here list every part of an exercise, so the <solution> bodies appear.
 -->
 <publication>
 	<source>
@@ -32,29 +32,29 @@
 		<!-- <mermaid theme="default" /> -->
 		<!-- QR code image: set path to an image to put in center of QR codes -->
 		<!-- <qrcode image="image.png" /> -->
-        <tabular top="major" bottom="minor"/>
+		<tabular top="major" bottom="minor"/>
 
-        <task-default>
-            <statement/>
-            <hint/>
-            <answer/>
-            <solution/>
-        </task-default>
+		<task-default>
+			<statement/>
+			<hint/>
+			<answer/>
+			<solution/>
+		</task-default>
 
-        <solutions-divisional>
-            <statement/>
-            <hint/>
-            <answer/>
-            <solution/>
-        </solutions-divisional>
-        <solutions-worksheet>
-            <statement/>
-            <hint/>
-            <answer/>
-            <solution/>
-        </solutions-worksheet>
+		<solutions-divisional>
+			<statement/>
+			<hint/>
+			<answer/>
+			<solution/>
+		</solutions-divisional>
+		<solutions-worksheet>
+			<statement/>
+			<hint/>
+			<answer/>
+			<solution/>
+		</solutions-worksheet>
 	</common>
-    
-    <numbering/>
+	
+	<numbering/>
 
 </publication>

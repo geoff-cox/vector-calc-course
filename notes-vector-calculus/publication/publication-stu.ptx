@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    publication-stu.ptx
-    Student handout: blanks visible, but solutions and answers suppressed.
+	publication-stu.ptx
+	Student handout: blanks visible, but solutions and answers suppressed.
 
-    Same source tree as the instructor key (publication-key.ptx); the only
-    difference is that here <task-default>, <solutions-divisional>, and
-    <solutions-worksheet> emit only the <statement/>, and the <exercise-*>
-    visibility flags set solution="no" / answer="no", so the <solution>
-    bodies are dropped from this build.  The <fillin/> blanks still render
-    (students write in them during class).
+	Same source tree as the instructor key (publication-key.ptx); the only
+	difference is that here <task-default>, <solutions-divisional>, and
+	<solutions-worksheet> emit only the <statement/>, and the <exercise-*>
+	visibility flags set solution="no" / answer="no", so the <solution>
+	bodies are dropped from this build.  The <fillin/> blanks still render
+	(students write in them during class).
 -->
 <publication>
 	<source>
@@ -29,21 +29,21 @@
 		<exercise-project statement="yes" hint="yes" answer="no" solution="no" />
 		<!-- Style of fill-in-the-blanks -->
 		<fillin textstyle="underline" mathstyle="shade" />
-        <tabular top="major" bottom="minor"/>
+		<tabular top="major" bottom="minor"/>
 
-        <task-default>
-            <statement/>
-            <hint/>
-        </task-default>
+		<task-default>
+			<statement/>
+			<hint/>
+		</task-default>
 
-        <solutions-divisional>
-            <statement/>
-        </solutions-divisional>
-        <solutions-worksheet>
-            <statement/>
-        </solutions-worksheet>
+		<solutions-divisional>
+			<statement/>
+		</solutions-divisional>
+		<solutions-worksheet>
+			<statement/>
+		</solutions-worksheet>
 	</common>
-    
-    <numbering/>
+	
+	<numbering/>
 
 </publication>

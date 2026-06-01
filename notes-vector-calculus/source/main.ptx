@@ -1,98 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pretext SYSTEM "pretext.dtd">
+
 <!--
-    main.ptx
-    Root source file for the lecture notes.
+	main.ptx
+	Root source file for the lecture notes.
 
-    The overall structure mirrors the existing course:
+	The overall structure mirrors the existing course:
 
-        Ch 1  Functions, Vectors, and Vector Fields
-        Ch 2  Line Integrals and Green's Theorem
-        Ch 3  Surface Integrals, Stokes' Theorem, and the Divergence Theorem
+		Ch 1  Functions, Vectors, and Vector Fields
+		Ch 2  Line Integrals and Green's Theorem
+		Ch 3  Surface Integrals, Stokes' Theorem, and the Divergence Theorem
 
-    Each chapter contains one <worksheet> per class meeting (rather
-    than one <section> per topic), which matches the "guided notes"
-    style the course already uses.
+	Each chapter contains one <worksheet> per class meeting (rather
+	than one <section> per topic), which matches the "guided notes"
+	style the course already uses.
 
-    New chapters/worksheets are added by:
-        1. dropping a new file in source/,
-        2. adding an <xi:include/> below.
+	New chapters/worksheets are added by:
+		1. dropping a new file in source/,
+		2. adding an <xi:include/> below.
 -->
 <pretext xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <docinfo>
-        <macros>
-            \newcommand{\R}{\mathbb{R}}
-            \newcommand{\vF}{\mathbf{F}}
-            \newcommand{\vG}{\mathbf{G}}
-            \newcommand{\va}{\mathbf{a}}
-            \newcommand{\vb}{\mathbf{b}}
-            \newcommand{\vc}{\mathbf{c}}
-            \newcommand{\vu}{\mathbf{u}}
-            \newcommand{\vv}{\mathbf{v}}
-            \newcommand{\vw}{\mathbf{w}}
-            \newcommand{\vr}{\mathbf{r}}
-            \newcommand{\vn}{\mathbf{n}}
-            \newcommand{\vi}{\mathbf{i}}
-            \newcommand{\vj}{\mathbf{j}}
-            \newcommand{\vk}{\mathbf{k}}
-            \newcommand{\vzero}{\mathbf{0}}
-            \newcommand{\norm}[1]{\left\lvert #1 \right\rvert}
-            \DeclareMathOperator{\dom}{dom}
-            \DeclareMathOperator{\range}{range}
-            \DeclareMathOperator{\proj}{proj}
-            \DeclareMathOperator{\comp}{comp}
-        </macros>
-    </docinfo>
+	<docinfo>
+		<macros>
+			\newcommand{\R}{\mathbb{R}}
+			\newcommand{\vF}{\mathbf{F}}
+			\newcommand{\vG}{\mathbf{G}}
+			\newcommand{\va}{\mathbf{a}}
+			\newcommand{\vb}{\mathbf{b}}
+			\newcommand{\vc}{\mathbf{c}}
+			\newcommand{\vu}{\mathbf{u}}
+			\newcommand{\vv}{\mathbf{v}}
+			\newcommand{\vw}{\mathbf{w}}
+			\newcommand{\vr}{\mathbf{r}}
+			\newcommand{\vn}{\mathbf{n}}
+			\newcommand{\vi}{\mathbf{i}}
+			\newcommand{\vj}{\mathbf{j}}
+			\newcommand{\vk}{\mathbf{k}}
+			\newcommand{\vzero}{\mathbf{0}}
+			\newcommand{\norm}[1]{\left\lvert #1 \right\rvert}
+			\DeclareMathOperator{\dom}{dom}
+			\DeclareMathOperator{\range}{range}
+			\DeclareMathOperator{\proj}{proj}
+			\DeclareMathOperator{\comp}{comp}
+		</macros>
+	</docinfo>
 
-    <book xml:id="vector-calc-notes">
-        <title>Vector Calculus</title>
-        <subtitle>Guided Lecture Notes</subtitle>
+	<book xml:id="vector-calc-notes">
+		<title>Vector Calculus</title>
+		<subtitle>Guided Lecture Notes</subtitle>
 
-        <frontmatter xml:id="frontmatter">
-            <titlepage>
-                <author>
-                    <personname>(Your Name)</personname>
-                    <department>(Your Department)</department>
-                    <institution>(Your Institution)</institution>
-                </author>
-                <date><today/></date>
-            </titlepage>
+		<frontmatter xml:id="frontmatter">
+			<bibinfo>
 
-            <preface xml:id="preface">
-                <title>How to Use These Notes</title>
-                <p>
-                    These notes are a <term>guided</term> handout: most
-                    pages contain blanks (<m>\underline{\hspace{2em}}</m>)
-                    and worked examples whose final lines are left empty
-                    on the student copy.  We will fill in these gaps
-                    together during class.
-                </p>
-                <p>
-                    Each set of notes is a <term>worksheet</term>
-                    covering one class meeting's worth of material.
-                    Bring the worksheet for the day, a pencil, and a
-                    fresh stack of patience.
-                </p>
-            </preface>
-        </frontmatter>
+				<author>
+					<personname>Geoffrey W. Cox, Ph.D.</personname>
+					<department>Applied Mathematics</department>
+					<institution>Virginia Military Institute</institution>
+					<email>coxgeoff@vmi.edu</email>
+				</author>
 
-        <!-- Chapter 1 -->
-        <xi:include href="./ch-functions-vectors.ptx"/>
+				<date><today /></date>
 
-        <!-- Chapter 2 (stub: drop in ch-line-integrals.ptx when ready) -->
-        <!-- <xi:include href="./ch-line-integrals.ptx"/> -->
+				<edition>1st Edition</edition>
 
-        <!-- Chapter 3 (stub: drop in ch-surface-integrals.ptx when ready) -->
-        <!-- <xi:include href="./ch-surface-integrals.ptx"/> -->
+				<website>
+					<url href="https://vmi-math.com">https://vmi-math.com</url>
+				</website>
 
-        <backmatter xml:id="backmatter">
-            <colophon>
-                <p>
-                    Built with <pubtitle>PreTeXt</pubtitle>.
-                </p>
-            </colophon>
-        </backmatter>
+				<copyright>
+					<year>2025<ndash />2026</year>
+					<holder>Geoffrey W. Cox, Ph.D.</holder>
+					<!-- <minilicense>CC BY-SA 4.0</minilicense> -->
+					<!-- <shortlicense>
+						This textbook is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)</a>.
+						You may copy, share, adapt, or remix this work—even commercially—as long as you give proper attribution and license any derivative works under the same terms.
+						Attribution format: <q>Exploring Differential Equations, by Geoffrey Cox, licensed CC BY-SA 4.0</q>.
+					</shortlicense> -->
+				</copyright>
 
-    </book>
+			</bibinfo>
+
+			<titlepage>
+				<titlepage-items/>
+			</titlepage>
+
+			<preface xml:id="preface">
+				<title>How to Use These Notes</title>
+				<p>
+					These notes are a <term>guided</term> handout: most
+					pages contain blanks (<m>\underline{\hspace{2em}}</m>)
+					and worked examples whose final lines are left empty
+					on the student copy.  We will fill in these gaps
+					together during class.
+				</p>
+				<p>
+					Each set of notes is a <term>worksheet</term>
+					covering one class meeting's worth of material.
+					Bring the worksheet for the day, a pencil, and a
+					fresh stack of patience.
+				</p>
+			</preface>
+		</frontmatter>
+
+		<!-- Chapter 1 -->
+		<xi:include href="./ch-functions-vectors.ptx"/>
+
+		<!-- Chapter 2 (stub: drop in ch-line-integrals.ptx when ready) -->
+		<!-- <xi:include href="./ch-line-integrals.ptx"/> -->
+
+		<!-- Chapter 3 (stub: drop in ch-surface-integrals.ptx when ready) -->
+		<!-- <xi:include href="./ch-surface-integrals.ptx"/> -->
+
+		<backmatter xml:id="backmatter">
+			<colophon>
+				<p>
+					Built with <pubtitle>PreTeXt</pubtitle>.
+				</p>
+			</colophon>
+		</backmatter>
+
+	</book>
 </pretext>

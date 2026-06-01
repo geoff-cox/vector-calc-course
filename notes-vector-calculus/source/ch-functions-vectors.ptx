@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    ch-functions-vectors.ptx
-    Chapter 1: Functions, Vectors, and Vector Fields.
+	ch-functions-vectors.ptx
+	Chapter 1: Functions, Vectors, and Vector Fields.
 
-    A chapter is a container; each class meeting gets its own
-    <worksheet> file, which we pull in with <xi:include/>.  This
-    keeps individual worksheets small enough to edit comfortably
-    and lets you re-order class meetings by re-ordering includes.
+	A chapter is a container; each class meeting gets its own
+	<worksheet> file, which we pull in with <xi:include/>.  This
+	keeps individual worksheets small enough to edit comfortably
+	and lets you re-order class meetings by re-ordering includes.
 -->
 <chapter xml:id="ch-functions-vectors"
-         xmlns:xi="http://www.w3.org/2001/XInclude">
+		 xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <title>Functions, Vectors, and Vector Fields</title>
+	<title>Functions, Vectors, and Vector Fields</title>
 
-    <introduction>
-        <p>
-            We open the course by reviewing the function notation you
-            already know from Calculus 1&#8211;3 and then expanding it
-            to handle the multivariable, vector-valued objects that
-            this course is really about.  By the end of the chapter
-            we'll be comfortable with scalar functions of two and
-            three variables, vector-valued functions, and the algebra
-            and geometry of vectors in <m>\R^2</m> and <m>\R^3</m>.
-        </p>
-    </introduction>
+	<introduction>
+		<p>
+			We open the course by reviewing the function notation you
+			already know from Calculus 1&#8211;3 and then expanding it
+			to handle the multivariable, vector-valued objects that
+			this course is really about.  By the end of the chapter
+			we'll be comfortable with scalar functions of two and
+			three variables, vector-valued functions, and the algebra
+			and geometry of vectors in <m>\R^2</m> and <m>\R^3</m>.
+		</p>
+	</introduction>
 
-    <!-- Class meeting 1: Review of multivariable function notation -->
-    <xi:include href="./ws-function-notation.ptx"/>
+	<!-- Class meeting 1: Review of multivariable function notation -->
+	<xi:include href="./ws-function-notation.ptx"/>
 
-    <!-- Class meeting 2: Vectors -->
-    <xi:include href="./ws-vectors.ptx"/>
+	<!-- Class meeting 2: Vectors -->
+	<xi:include href="./ws-vectors.ptx"/>
 
-    <!-- Class meeting 3: The dot product -->
-    <xi:include href="./ws-dot-product.ptx"/>
+	<!-- Class meeting 3: The dot product -->
+	<xi:include href="./ws-dot-product.ptx"/>
 
-    <!-- Class meeting 4: The cross product -->
-    <xi:include href="./ws-cross-product.ptx"/>
+	<!-- Class meeting 4: The cross product -->
+	<xi:include href="./ws-cross-product.ptx"/>
 
-    <!-- Future worksheets in this chapter (uncomment as you write them): -->
-    <!-- <xi:include href="./ws-curves.ptx"/>              -->
-    <!-- <xi:include href="./ws-vector-fields.ptx"/>       -->
-    <!-- <xi:include href="./ws-gradient.ptx"/>            -->
+	<!-- Future worksheets in this chapter (uncomment as you write them): -->
+	<!-- <xi:include href="./ws-curves.ptx"/>			  -->
+	<!-- <xi:include href="./ws-vector-fields.ptx"/>	   -->
+	<!-- <xi:include href="./ws-gradient.ptx"/>			-->
 
 </chapter>
