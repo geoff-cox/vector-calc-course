@@ -214,7 +214,7 @@
                     Let <m>\va</m> and <m>\vb</m> be nonzero vectors.
                     Then <m>\va</m> and <m>\vb</m> are
                     <term>orthogonal</term> (perpendicular) if and only
-                    if <m>\va \cdot \vb = <fillin characters="2"/></m>.
+                    if <m>\va \cdot \vb = \fillin[2]</m>.
                 </p>
             </statement>
         </theorem>
@@ -356,16 +356,16 @@
         </p>
         <ul>
             <li>
-                Length: <m>\va \cdot \va = <fillin characters="8"/></m>,
-                equivalently <m>\norm{\va} = <fillin characters="10"/></m>.
+                Length: <m>\va \cdot \va = \fillin[8]</m>,
+                equivalently <m>\norm{\va} = \fillin[10]</m>.
             </li>
             <li>
                 Commutative:
-                <m>\va \cdot \vb = <fillin characters="8"/></m>.
+                <m>\va \cdot \vb = \fillin[8]</m>.
             </li>
             <li>
                 Distributive:
-                <m>(\va + \vb) \cdot \vc = <fillin characters="16"/></m>.
+                <m>(\va + \vb) \cdot \vc = \fillin[16]</m>.
             </li>
             <li>
                 Scalars factor out:
@@ -393,11 +393,11 @@
         <ul>
             <li>
                 Triangle inequality:
-                <m>\norm{\va + \vb} \le <fillin characters="16"/></m>.
+                <m>\norm{\va + \vb} \le \fillin[16]</m>.
             </li>
             <li>
                 Cauchy&#8211;Schwarz inequality:
-                <m>\norm{\va \cdot \vb} \le <fillin characters="14"/></m>.
+                <m>\norm{\va \cdot \vb} \le \fillin[14]</m>.
             </li>
         </ul>
         <!-- <commentary>
