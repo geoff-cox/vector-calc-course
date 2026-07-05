@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file, the project manifest, provides the overall configuration for your PreTeXt project. To edit the content of your document, open `source/main.ptx`. See https://pretextbook.org/doc/guide/html/processing-CLI.html#cli-project-manifest. -->
+<project 
+  ptx-version="2"
+  output-dir="pretext-output"
+  stage="pretext-output/deployed"
+  >
+  <targets>
+    <target 
+      name="homepage" 
+      format="html" 
+      source="homepage.ptx"
+      publication="homepage-pub.ptx"
+      output-dir="homepage"
+      deploy-dir="homepage"
+      >
+        <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+    </target>
+    <target	
+      name="web-stu"
+      source="notes.ptx"
+      format="html"
+      publication="publication-stu.ptx"
+      output-dir="web-stu"
+    >
+      <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+    </target>
+    <target	
+      name="web-key"
+      source="notes.ptx"
+      format="html"
+      publication="publication-key.ptx"
+      output-dir="web-key"
+    >
+      <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+    </target>
+    <target	
+      name="pdf-key"
+      source="notes.ptx"
+      format="pdf"
+      publication="publication-key.ptx"
+      output-dir="pdf-key"
+      output-filename="ma301-notes-key.pdf"
+    >
+      <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+    </target>
+  </targets>
+</project>

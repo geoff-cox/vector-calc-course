@@ -1,0 +1,72 @@
+<section label="ma311-resources">
+	<title>Resources</title>
+
+    <introduction>
+        <p>
+            The resources listed will be used in this course. You are expected to access and use them regularly, as each one plays a specific role in supporting your learning and success in MA311.
+        </p>
+    </introduction>
+
+    <subsection label="ma311-materials-textbook">
+        <title>Textbook</title>
+
+        <p>
+            The online textbook, below, will be your primary source for learning the course material. Reading assignments will be assigned regularly, and you are expected to complete them before class so you come prepared for discussion and problem solving.
+            <dl>
+                <li><title>Textbook</title><em>Exploring Differential Equations</em>, Geoffrey Cox PhD.</li>
+                <li><title>URL</title><url href="https://runestone.academy/ns/books/published/debookrs/frontmatter.html?mode=browsing">Textbook via Runestone</url></li>
+            </dl>
+        </p>
+    </subsection>
+
+    <subsection label="ma311-materials-runestone">
+        <title>Runestone</title>
+
+        <p>
+            The Runestone platform is where you will access the interactive online version of the textbook. To get credit for the reading assignments, you must create a Runestone account. The interactive exercises must be answered directly in Runestone so that your progress can be recorded in Canvas.
+        </p>
+
+        <p>
+            Create an account and enroll using the link and course code below: 
+            <dl>
+                <li><title>URL</title><url href="https://runestone.academy">Runestone Academy</url></li>
+                <li><title>Course Code</title><p><c>vmi-differential-eqns-fall-25-cox</c></p></li>
+            </dl>
+        </p>
+    </subsection>
+
+    <subsection label="ma311-materials-webwork">
+        <title>WebWork</title>
+
+        <p>
+            WeBWorK is the online homework system we will use to practice problem solving with differential equations. It provides immediate feedback on your answers and multiple opportunities to correct mistakes. Homework assignments in WeBWorK are designed to reinforce concepts from class and the textbook, and they are a key part of building proficiency. You are encouraged to attempt problems multiple times and to use mistakes as learning opportunities.
+        </p>
+
+        <p>
+            The following link will take you to the WebWork page for this course
+            <dl><li><title>URL</title><url href="https://vmi-math.com/webwork2/ma311-fa25-cox">WebWork</url></li></dl>
+            Your username and temporary password is the part of your VMI email address before the <c>@</c> symbol. For example, if your email is <c>smith66@vmi.edu</c>, you would log in with:
+            <aside>
+                <title>Forgot Password?</title>
+                <p>
+                    If you forget or lose your password, you must email me to reset it.
+                </p>
+            </aside>
+            <dl>
+                <li><title>Username:</title>smith66</li>
+                <li><title>Password:</title>smith66</li>
+            </dl>
+            After you log in for the first time change your password in "Account Settings." 
+        </p>
+
+    </subsection>
+
+    <subsection label="ma311-materials-canvas">
+        <title>Canvas</title>
+
+        <p>
+            Canvas will serve as the central hub for course communication and materials. Announcements, lecture slides, discussion worksheets, and assignment links will be posted here. It is your responsibility to check Canvas regularly and read announcements in a timely manner.
+            <dl><li><title>URL</title><url href="https://vmi.instructure.com/courses/23993" visual="vmi.instructure.com/courses/23993">Canvas</url></li></dl>
+        </p>
+    </subsection>
+</section>

@@ -1,0 +1,13 @@
+<section label="ma311-instructor-info">
+	<title>Instructor Information</title>
+
+	<p>
+		<dl>
+			<li><title>Instructor</title><p>Geoffrey Cox PhD (LTC)</p></li>
+			<li><title>Email</title><p><url href="mailto:coxgeoff@vmi.edu">coxgeoff@vmi.edu</url></p></li>
+			<li><title>Office</title><p>MA 425</p></li>
+			<li><title>Office Hours</title><p>MWF: 1430-1600, By Appointment</p></li>
+		</dl>
+	</p>
+
+</section>

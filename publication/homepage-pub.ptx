@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	This is the publication file for a newly generated PreTeXt book. By changing the values of attributes here, 
+	you can change how the output looks and functions. For the complete documentation of publication-file options, 
+	see https://pretextbook.org/doc/guide/html/publisher-file-reference.html
+-->
+
+<publication>
+
+	<source>
+		<directories external="../assets" generated="../generated-assets" />
+		<version include="html" />
+	</source>
+
+	<common>
+		<!-- Level at which are html files generated (chapter/section/etc) -->
+		<chunking level="2" />
+		<!-- Depth for table of contents.  0 means no TOC -->
+		<tableofcontents level="2" />
+		<!-- Visibility of exercise components where they first appear -->
+		<exercise-inline statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-divisional statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-worksheet statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-reading statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-project statement="yes" hint="yes" answer="yes" solution="yes" />
+		<!-- Style of fill-in-the-blanks -->
+		<fillin textstyle="underline" mathstyle="shade" />
+		<!-- You can set a watermark -->
+		<!-- <watermark scale="0.5">DRAFT</watermark> -->
+		<!-- Mermaid diagram themes -->
+		<!-- <mermaid theme="default" /> -->
+		<!-- QR code image: set path to an image to put in center of QR codes -->
+		<!-- <qrcode image="image.png" /> -->
+	</common>
+
+	<numbering>
+		<divisions chapter-start="1" level="2" />
+		<!-- 
+			Set how deep the levels break up the numbering of the 
+			respective divisions. Can't be more than the @level on 
+			divisions above.
+		-->
+		<blocks		level="1" />
+		<projects	level="1" />
+		<equations	level="1" />
+		<footnotes	level="1" />
+	</numbering>
+
+	<!--
+		LaTeX specific options:
+			@print={"yes","no"} to get pdf set up for printing
+			@sides={"one","two"} one or two-sided printing  
+			@pageref={"yes","no"} if page numbers are included in cross-references
+			@font-size={"10","11","12"} font size for the document
+			@draft={"yes","no"} to show overfull boxes
+			@latex-style={"","AIM","chaos","CLP","dyslexic-font","guide"}
+	-->
+	<latex
+			print="no"
+			sides="one"
+			open-odd="no"
+			pageref="no"
+			font-size="11"
+			draft="no"
+			latex-style=""
+			class="exam"
+	>
+		<!-- 
+			Control text justification and bottom page behavior. Add content
+			intended for \geometry{} inside the <geometry> element.
+		-->
+		<page right-alignment="flush" bottom-alignment="ragged" >
+			<geometry></geometry>
+		</page>
+		<asymptote links="no" />
+		<!-- Covers: provide paths to pdfs for front and back covers -->
+		<covers front="cover-front.pdf" back="cover-back.pdf" />
+		<!-- Set @formatted to "no" to remove formatting on worksheets -->
+		<worksheets formatted="yes" />
+	</latex>
+
+	<!-- @short-answer-responses={"always","graded"} -->
+	<html short-answer-responses="always">
+
+		<baseurl href="vmi.instructure.com"/>
+		
+		<!-- @host={"web","runestone"} -->
+		<platform host="web"/>
+
+		<knowl
+			audio="yes"
+			theorem="yes"
+			proof="yes"
+			definition="yes"
+			example="yes"
+			example-solution="yes"
+			project="yes"
+			task="no"
+			remark="no"
+			objectives="no"
+			outcomes="yes"
+			assemblage="yes"
+			figure="no"
+			table="no"
+			listing="no"
+			list="no"
+			activity="no"
+			exercise-inline="no"
+			exercise-divisional="no"
+			exercise-worksheet="no"
+			exercise-readingquestion="no"
+		/>
+
+		<!--
+			Specify the style of the html by giving names to override defaults.
+			Ex: to use "style_oscarlevin.css" put <css style="oscarlevin"/>
+			See also
+			https://pretextbook.org/doc/guide/html/publication-file-online.html#online-style-options
+			Themes: 
+				"default"
+				"oscarlevin"
+				"custom"
+				"denver"
+				"salem"
+				"tacoma"
+				"greeley"
+
+			Palettes:
+				"earth-sea"
+			palette="earth-sea"
+		-->
+
+    	<!-- <css
+			theme="oscarlevin"
+			colors="blue_red"
+			knowls="crc"
+			toc="crc"
+			banner="crc"
+			navbar="crc"
+		/> -->
+
+		<!-- @variant={"default", "none"} -->
+		<search variant="default" />
+
+		<!-- Table of Contents -->
+		<!-- @focused={"yes", "no"} (enables expand/collapse functionality) -->
+		<!-- @preexpanded-levels={"0","1","2",...} (how deep to expand toc initially). -->
+		<toc focused="yes" preexpanded-levels="4" />
+
+		<!--
+			@logic={"linear", "tree"}
+			@upbutton={"yes", "no"}
+		-->
+		<navigation logic="tree" upbutton="yes" />
+
+		<!-- 
+			@knowled={"maximum", "never", "cross-page"}
+		-->
+		<cross-references knowled="maximum" />
+
+		<!--
+			Embedded calculators.
+			@model={"none", "geogebra-classic", "geogebra-graphing", "geogebra-geometry", "geogebra-3d"}
+			@activecode={"none", "python", "javascript", ...}
+		-->
+		<calculator model="geogebra-classic" activecode="python" />
+		<!--
+			Control behavior of online WeBWorK
+		-->
+		<webwork
+			inline			=	"dynamic"
+			divisional	    =	"dynamic"
+			reading			=	"dynamic"
+			worksheet		=	"static"
+			project			=	"dynamic"
+		/>
+
+		<!--
+			Use the tabbed viewer for tasks in exercises. 
+			@tabbed-tasks={"project", "reading", "inline divisional"}
+			@task-reveal={"show", "answer", "solution"}
+		-->
+		<exercises tabbed-tasks="project reading inline divisional" task-reveal="solution"/>
+
+		<!--
+			@privacy={"yes,"no"} "yes" disables certain tracking cookies for embedded videos.
+		-->
+		<audio privacy="yes"/>
+
+		<!--
+			Asymptote Click to Enlarge links
+		-->
+		<baseurl href="vmi.instructure.com"/>
+		<asymptote links="yes"/>
+
+		<!--
+			Magic IDs identify HTML pages to analytics services. Presence implies relevant Javascript 
+			will be added StatCounter requires both values to be set
+		-->
+		<!-- <analytics
+			google-gst="UA-0123456-1"
+			statcounter-project="0123456"
+			statcounter-security="0123456"
+		/> -->
+
+	</html>
+
+	<epub>
+		<!-- The cover tag can have a @front attribute to specify a cover image. -->
+		<!-- <cover front="cover.jpg"> -->
+	</epub>
+
+	<!-- To use WeBWorK, you need a server. -->
+	<webwork server="https://webwork-ptx.aimath.org" />
+	<!--
+		@course, @coursepassword, @user, and @userpassword can also be set. 
+		You can also set how tasks are revealed for webwork problems using the @task-reveal attribute on the above
+	-->
+
+</publication>

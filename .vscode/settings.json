@@ -1,17 +1,6 @@
 {
-    "xml.fileAssociations": [
-        {
-            "pattern": "**/source/**.ptx",
-            "systemId": "/home/gcox/.vscode-server/extensions/oscarlevin.pretext-tools-0.38.1/assets/schema/pretext.rng"
-        }
-    ],
-    "python.defaultInterpreterPath": "~/.pretext-venv/bin/python",
-    "python.terminal.activateEnvironment": true,
-    "terminal.integrated.defaultProfile.linux": "bash",
-    "claudeCode.preferredLocation": "panel",
-    "remote.autoForwardPortsSource": "hybrid",
-    "workbench.editorAssociations": {
-        "*.copilotmd": "vscode.markdown.preview.editor",
-        "*.db": "sqlite-viewer.view"
-    },
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python-envs.workspaceSearchPaths": [
+    "./.venv"
+  ]
 }

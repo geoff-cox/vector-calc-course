@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<docinfo>
+
+	<!-- Math-related macros from "macros.tex" in previous LaTeX version -->
+	<macros>
+		\newcommand\DLGray{\color{Gray}}
+		\newcommand\DLO{\color{BurntOrange}}
+		\newcommand\DLRa{\color{WildStrawberry}}
+		\newcommand\DLGa{\color{Green}}
+		\newcommand\DLGb{\color{PineGreen}}
+		\newcommand\DLBa{\color{RoyalBlue}}
+		\newcommand\DLBb{\color{Cerulean}}
+		\newcommand\ds{\displaystyle}
+		\newcommand\ddx{\frac{d}{dx}}
+		\newcommand\os{\overset}
+		\newcommand\us{\underset}
+		\newcommand\ob{\overbrace}
+		\newcommand\obt{\overbracket}
+		\newcommand\ub{\underbrace}
+		\newcommand\ubt{\underbracket}
+		\newcommand\ul{\underline}
+		\newcommand\laplacesym{\mathscr{L}}
+		\newcommand\lap[1]{\laplacesym\left\{#1\right\}}
+		\newcommand\ilap[1]{\laplacesym^{-1}\left\{#1\right\}}
+		\newcommand\tikznode[3][]%
+			{\tikz[remember picture,baseline=(#2.base)]
+				\node[minimum size=0pt,inner sep=0pt,#1](#2){#3};%
+			}
+	</macros>
+
+	<!-- this is the default, but supresses a warning -->
+	<cross-references text="type-global" />
+
+	<!-- tikz package and libraries for images -->
+	<latex-image-preamble>
+		\usepackage{tikz}
+		\usetikzlibrary{backgrounds}
+		\usetikzlibrary{arrows,arrows.meta,matrix}
+		\usetikzlibrary{decorations}
+		\usetikzlibrary{animations}
+		\usetikzlibrary{tikzmark,calc}
+		\usetikzlibrary{bending, positioning}
+		\usetikzlibrary{3d}
+		\usepackage{pgfplots, pgfplotstable}
+		\pgfplotsset{compat=1.18}
+		\usepgfmodule {nonlineartransformations}\usetikzlibrary {curvilinear}
+		\usepackage{graphicx} % For scalebox
+		\usepackage{xfrac}
+		\usepackage{mathtools}
+		\usepackage{ulem}
+		\usepackage{transparent}
+		\usepackage{ifthen}
+	</latex-image-preamble>
+
+  <!-- It is possible to rename elements: -->
+  <rename element="aside" xml:lang="en-US">📌</rename>
+
+  <!-- Specify the default type of cross reference: -->
+  <!-- <cross-references text="type-global" /> -->
+</docinfo>

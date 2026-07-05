@@ -1,0 +1,135 @@
+<section xmlns:xi="http://www.w3.org/2001/XInclude" label="ma311-policies">
+	<title>Policies</title>
+
+	<introduction>
+		<p>
+			The following policies aim to clarify expectations for submitted work, collaboration, AI usage, and classroom behavior. 
+			Read them carefully and ask questions early if anything is unclear.
+		</p>
+	</introduction>
+
+	<subsection label="ma311-coursework-policy">
+		<title>Coursework Policies</title>
+
+		<paragraphs>
+			<title>In-Class and Out-of-Class ODPs</title>
+			<p>
+				ODPs are formal assessments of proficiency and must be treated like quizzes/tests. The following rules apply:
+				<ul>
+					<li>
+						<term>Do not discuss</term> the content of any ODP with others until the ODP is returned to you graded.
+					</li>
+					<li>
+						<p>
+							<term>Permitted resources</term>:
+							<ul>
+								<li>
+									<term>Out-of-class ODPs</term>: class notes, a provided formula sheet, and a basic calculator for arithmetic only.
+								</li>
+								<li>
+									<term>In-class ODPs</term>: a provided formula sheet and a basic calculator for arithmetic only. Closed book, no notes.
+								</li>
+							</ul>
+						</p>
+					</li>
+					<li>
+						<term>Calculators</term> may be used for basic arithmetic only. They may not be used to take derivatives/integrals, graph, solve differential equations, or otherwise perform the core mathematics for you.
+					</li>
+					<li>
+						<term>Devices</term>: No phones, music devices, laptops, or tablets may be used during in-class ODPs. Phones may not be used as calculators.
+					</li>
+				</ul>
+			</p>
+		</paragraphs>
+
+		<paragraphs>
+			<title>Homework</title>
+			<p>
+				Homework includes online exercises (Runestone/WeBWorK) and written Modeling Scenarios. Online sets are designed for practice with immediate feedback; Modeling Scenarios emphasize communication and application.
+				<ul>
+					<li>
+						<term>Online exercises</term>: Complete problems <em>before</em> the posted deadline. Work may be submitted up to fours days late (including weekends and holidays). Only 60% of your score will be recorded. Fours days after the deadline, the submission window will close and you will receive a <m>0</m> for that assignment.  
+					</li>
+					<li>
+						<term>Modeling Scenarios</term>: Submit printed copies in class (or by end of day under my office door if noted). Unless otherwise stated, late submissions are accepted up to 24 hours with a <m>-20</m>% penalty; after that, a you will receive a <m>0</m> for the assignment.
+					</li>
+					<li>
+						<term>Collaboration</term>: You may discuss approaches with peers currently enrolled in the course, but your write‑up and final solutions must be entirely in your own words. You may not view or use work from cadets who previously completed the course.
+					</li>
+					<li>
+						<term>Showing work</term>: Write clearly, justify steps, and use appropriate notation and units where applicable. Unreadable or unsupported answers may receive reduced or no credit.
+					</li>
+				</ul>
+			</p>
+		</paragraphs>
+	</subsection>
+
+	<subsection label="ma311-ai-policy">
+		<title>AI Usage Policy</title>
+		<p>
+			AI tools can be useful when used responsibly, but my job is to assess YOUR understanding of the material, not the AI's accuracy. Assume any usage of AI is NOT permitted if it is not on the listed here. 
+		</p>
+
+		<p>
+			For <term>Reading Assignments</term>, you may ask AI to ...
+			<ul>
+				<li>Clarify any statements or steps in the book.</li>
+				<li>Explain steps of an example or derivation.</li>
+				<li>Show more detailed steps or alternative approaches (not shortcuts).</li>
+				<li>Clarify what a reading question is asking.</li>
+			</ul> 
+		</p>
+		
+		<p>
+			For <term>Online Homework</term>, you may ask AI to ...
+			<ul>
+				<li>check steps of a problem for errors. You must provide the steps.</li>
+			</ul> 
+		</p>
+
+		<p>
+			For <term>Modeling Scenarios</term>, you may ask AI to ...
+			<ul>
+				<li>check my work for spelling and grammar mistakes.</li>
+			</ul> 
+		</p>
+
+		<p>
+			For <term>ODPs and the Final Exam</term>, you may NOT use AI in any capacity.
+		</p>
+
+		<p>
+			<em>Note: If you believe there is a valuable and responsible way to use AI that is not listed here, you are welcome to ask me about it. If I determine that it does not undermine your learning of the material, I will allow it and I may even add it to this list so that others may benefit from it.</em>
+		</p>
+	</subsection>
+
+	<subsection xml:id="ma311-policy-late">
+		<title>Late Homework</title>
+		<p>
+			Late work will be accepted up to 5 days (including weekends and furlough days) after the due date and will incur a penalty of <m>-50 \%</m>. No work will be accepted beyond this.
+		</p>
+	</subsection>
+
+	<subsection xml:id="ma311-policy-getting-help">
+		<title>Getting Help</title>
+		<p>
+			The following are acceptable sources of help for the material in this course:
+			<ul>
+				<li>Instructor</li>
+				<li>VMI instructors</li>
+				<li>Online text or video tutorials.</li>
+				<li>Physical Resources (e.g., books, other class notes, etc.)</li>    
+				<li>Private or VMI tutoring services</li>
+		    </ul>
+        </p>
+
+        <p>
+            Ensure that you clearly and properly document such resources on any and all work that you submit for grade.
+        </p>
+	</subsection>
+
+	<xi:include href="common/merc.ptx" />
+	<xi:include href="common/policy-grade-disputes.ptx" />
+	<xi:include href="common/policy-classroom-behavior.ptx" />
+
+</section>

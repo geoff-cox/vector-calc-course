@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	ch-functions-vectors.ptx
-	Chapter 1: Functions, Vectors, and Vector Fields.
+	sec-functions-vectors.ptx
+	Section 1: Functions, Vectors, and Vector Fields.
 
-	A chapter is a container; each class meeting gets its own
+	A section is a container; each class meeting gets its own
 	<worksheet> file, which we pull in with <xi:include/>.  This
 	keeps individual worksheets small enough to edit comfortably
 	and lets you re-order class meetings by re-ordering includes.
 -->
-<chapter xml:id="ch-functions-vectors"
+<section xml:id="sec-functions-vectors"
 		 xmlns:xi="http://www.w3.org/2001/XInclude">
 
 	<title>Functions, Vectors, and Vector Fields</title>
@@ -18,7 +18,7 @@
 			We open the course by reviewing the function notation you
 			already know from Calculus 1&#8211;3 and then expanding it
 			to handle the multivariable, vector-valued objects that
-			this course is really about.  By the end of the chapter
+			this course is really about.  By the end of the section
 			we'll be comfortable with scalar functions of two and
 			three variables, vector-valued functions, and the algebra
 			and geometry of vectors in <m>\R^2</m> and <m>\R^3</m>.
@@ -37,9 +37,9 @@
 	<!-- Class meeting 4: The cross product -->
 	<xi:include href="./ws-cross-product.ptx"/>
 
-	<!-- Future worksheets in this chapter (uncomment as you write them): -->
+	<!-- Future worksheets in this section (uncomment as you write them): -->
 	<!-- <xi:include href="./ws-curves.ptx"/>			  -->
 	<!-- <xi:include href="./ws-vector-fields.ptx"/>	   -->
 	<!-- <xi:include href="./ws-gradient.ptx"/>			-->
 
-</chapter>
+</section>

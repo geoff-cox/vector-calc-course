@@ -1,0 +1,21 @@
+<section xmlns:xi="http://www.w3.org/2001/XInclude" label="ma311-general-info">
+	<title>General</title>
+
+	<xi:include href="./common/instructor-info.ptx" />
+
+	<subsection label="ma311-course-info">
+		<title>Course Information</title>
+		<p>
+			<dl>
+				<li><title>Course Description</title>
+					<p>
+						Ordinary differential equations (ODEs); Applications; Laplace transforms; Systems of ODEs.
+					</p>
+				</li>
+				<li><title>Meetings</title><p>Room: MH 413 on MWF 1100 - 1150</p></li>
+				<li><title>Prerequisite</title><p>Grade of C or better in MA 124</p></li>
+				<li><title>Department Head</title><p>COL Troy Siemers</p></li>
+			</dl>
+		</p>
+	</subsection>
+</section>

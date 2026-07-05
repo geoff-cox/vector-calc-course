@@ -1,0 +1,109 @@
+<section label="ma311-grades">
+	<title>Grades &amp; Coursework</title>
+
+	<subsection label="ma311-final-grade">
+		<title>Final Grades</title>
+		<p>
+			Your final grade is determined by a combination of the following items:
+			<ul>
+				<li>Number of Core Topic Passes (# of Ps)</li>
+				<li>Number of Secondary Topic Passes (# of Ps)</li>
+				<li>Overall Homework Score (%)</li>
+				<li>Final Exam Score (%)</li>
+			</ul>
+			The table below shows that the letter grade you will receive will come from the first row where <term>EVERY</term> requirement is met.
+	
+			<table component="web">
+				<title>Minimum Requirements for Final Grades</title>
+				<tabular bottom="minor" top="minor" left="minor" right="minor" halign="center">
+					<col width="10%"/>
+					<col width="15%"/>
+					<col width="15%"/>
+					<col width="15%"/>
+					<col width="15%"/>
+					<row>
+						<cell><p><m>\textbf{Final}</m> <m>\textbf{Grade}</m></p></cell>
+						<cell><p><m>\textbf{Core}</m> <m>\textbf{Passes}</m></p></cell>
+						<cell><p><m>\textbf{Secondary}</m> <m>\textbf{Passes}</m></p></cell>
+						<cell><p><m>\textbf{Homework}</m> <m>\textbf{Score}</m></p></cell>
+						<cell><p><m>\textbf{Final Exam}</m> <m>\textbf{Score}</m></p></cell>
+					</row>
+					<row><cell><m>\textbf{A}</m></cell><cell>2 Ps ➜ all</cell><cell>1 P ➜ 9+</cell><cell><m>80\%+</m></cell><cell><m>70\%+</m></cell></row>
+					<row><cell><m>\textbf{B}</m></cell><cell>2 Ps ➜ all</cell><cell>1 P ➜ 5+</cell><cell><m>65\%+</m></cell><cell><m>60\%+</m></cell></row>
+					<row><cell><m>\textbf{C}</m></cell><cell>2 Ps ➜ all</cell><cell>1 P ➜ 2+</cell><cell><m>50\%+</m></cell><cell><m>50\%+</m></cell></row>
+					<row><cell><m>\textbf{D}</m></cell><cell>1 P ➜ 10+</cell><cell>N/A</cell><cell><m>35\%+</m></cell><cell><m>40\%+</m></cell></row>
+					<row><cell><m>\textbf{F}</m></cell><cell colspan="4">Otherwise</cell></row>
+				</tabular>
+			</table>
+
+			<table component="hard">
+				<title>Minimum Requirements for Final Grades</title>
+				<tabular bottom="minor" top="minor" left="minor" right="minor" halign="center">
+					<col halign="center" width="10%"/>
+					<col halign="center" width="20%"/>
+					<col halign="center" width="18%"/>
+					<col halign="center" width="18%"/>
+					<col halign="center" width="12%"/>
+					<row>
+						<cell><p><term>Final Grade</term></p></cell>
+						<cell><p><term>Core Passes</term></p></cell>
+						<cell><p><term>Secondary Passes</term></p></cell>
+						<cell><p><term>Homework Score</term></p></cell>
+						<cell><p><term>Final Exam Score</term></p></cell>
+					</row>
+					<row><cell>A</cell><cell>2 passes on all</cell><cell>1 pass on 9+</cell><cell><m>80\%+</m></cell><cell><m>70\%+</m></cell></row>
+					<row><cell>B</cell><cell>2 passes on all</cell><cell>1 pass on 5+</cell><cell><m>65\%+</m></cell><cell><m>60\%+</m></cell></row>
+					<row><cell>C</cell><cell>2 passes on all</cell><cell>N/A</cell><cell><m>50\%+</m></cell><cell><m>50\%+</m></cell></row>
+					<row><cell>D</cell><cell>1 pass on 10+</cell><cell>N/A</cell><cell><m>35\%+</m></cell><cell><m>40\%+</m></cell></row>
+					<row><cell>F</cell><cell colspan="4">Otherwise</cell></row>
+				</tabular>
+			</table>
+		</p>
+	</subsection>
+
+	<subsection label="ma311-homework">
+		<title>Homework</title>
+
+		<paragraphs>
+			<title>Reading Assignments (35%)</title>
+				<p>
+					Each section of the textbook includes some reading questions that <term>must be completed through Runestone</term>. These are straight-forward questions designed to reinforce your understanding of the key concepts.
+				</p>
+		</paragraphs>
+
+		<paragraphs>
+			<title>Online Exercises (65%)</title>
+				<p>
+					Each topic also includes a set of online exercises that must be completed in WeBWorK. Most problems require step-by-step work, so you should complete them on paper before entering final answers online. Problems may allow multiple attempts; if you struggle, use it as a chance to learn and ask for help before using all of your attempts.
+				</p>
+		</paragraphs>
+
+		<!-- <paragraphs>
+			<title>Modeling Scenarios</title>
+				<p>
+					Modeling scenarios connect course concepts to real-world applications. You will translate a real question into a differential equation, solve the equation, and explain how the solution answers the original question. Your write-up should include both the mathematical work and a clear explanation in your own words. Submissions must be printed and handed in on paper.
+				</p>
+		</paragraphs> -->
+	</subsection>
+
+	<subsection label="ma311-odps">
+		<title>Opportunities to Demonstrate Proficiency (ODPs)</title>
+		<p>
+			Instead of traditional quizzes or tests, you will complete ODPs, which are short assessments scored on a <term>P</term> or <term>N</term> scale:
+		</p>
+		<ul>
+			<li><term>P</term>: Proficient — you have demonstrated mastery of the topic.</li>
+			<li><term>N</term>: Not yet proficient — you need more practice with the topic.</li>
+		</ul>
+		<p>
+			ODPs focus on specific course topics. Some are completed in class, while others are assigned outside of class. Because proficiency is about eventual mastery, you will have multiple opportunities to pass each topic.
+		</p>
+	</subsection>
+
+	<subsection label="ma311-final">
+		<title>Final Exam</title>
+		<p>
+			You will take a traditional final exam that is points-based and covers all topics from the course. You will also have one final opportunity to demonstrate proficiency in one or more core topics. While the exam may include secondary topics, those questions will not count toward secondary passes.
+		</p>
+	</subsection>
+</section>

@@ -1,0 +1,670 @@
+<section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="syllabus-ma311">
+	<title>Syllabus</title>
+		
+	<introduction>
+		<p>
+			Carefully review every item of this syllabus. By taking this course, you are agreeing 
+			to the polices laid out in this document. Let me know if you have any questions.  
+		</p>
+	</introduction>
+	
+	<subsection label="ma311-general-info">
+		<title>General</title>
+
+		<xi:include href="./syllabus/common/instructor-info.ptx" />
+
+		<subsubsection label="ma311-course-info">
+			<title>Course Information</title>
+			<p>
+				<dl>
+					<li><title>Course Description</title>
+						<p>
+							Ordinary differential equations (ODEs); Applications; Laplace transforms; Systems of ODEs.
+						</p>
+					</li>
+					<li><title>Meetings</title><p>Room: MH 413 on MWF 1100 - 1150</p></li>
+					<li><title>Prerequisite</title><p>Grade of C or better in MA 124</p></li>
+					<li><title>Department Head</title><p>COL Troy Siemers</p></li>
+				</dl>
+			</p>
+		</subsubsection>
+	</subsection>
+
+	<subsection label="ma311-grades">
+		<title>Grades &amp; Coursework</title>
+
+		<subsubsection label="ma311-final-grade">
+			<title>Final Grades</title>
+			<p>
+				Your final grade is determined by a combination of the following items:
+				<ul>
+					<li>Number of Core Topic Passes (# of Ps)</li>
+					<li>Number of Secondary Topic Passes (# of Ps)</li>
+					<li>Overall Homework Score (%)</li>
+					<li>Final Exam Score (%)</li>
+				</ul>
+				The table below shows that the letter grade you will receive will come from the first row where <term>EVERY</term> requirement is met.
+		
+				<table component="web">
+					<title>Minimum Requirements for Final Grades</title>
+					<tabular bottom="minor" top="minor" left="minor" right="minor" halign="center">
+						<col width="10%"/>
+						<col width="15%"/>
+						<col width="15%"/>
+						<col width="15%"/>
+						<col width="15%"/>
+						<row>
+							<cell><p><m>\textbf{Final}</m> <m>\textbf{Grade}</m></p></cell>
+							<cell><p><m>\textbf{Core}</m> <m>\textbf{Passes}</m></p></cell>
+							<cell><p><m>\textbf{Secondary}</m> <m>\textbf{Passes}</m></p></cell>
+							<cell><p><m>\textbf{Homework}</m> <m>\textbf{Score}</m></p></cell>
+							<cell><p><m>\textbf{Final Exam}</m> <m>\textbf{Score}</m></p></cell>
+						</row>
+						<row><cell><m>\textbf{A}</m></cell><cell>2 Ps ➜ all</cell><cell>1 P ➜ 9+</cell><cell><m>80\%+</m></cell><cell><m>70\%+</m></cell></row>
+						<row><cell><m>\textbf{B}</m></cell><cell>2 Ps ➜ all</cell><cell>1 P ➜ 5+</cell><cell><m>65\%+</m></cell><cell><m>60\%+</m></cell></row>
+						<row><cell><m>\textbf{C}</m></cell><cell>2 Ps ➜ all</cell><cell>1 P ➜ 2+</cell><cell><m>50\%+</m></cell><cell><m>50\%+</m></cell></row>
+						<row><cell><m>\textbf{D}</m></cell><cell>1 P ➜ 10+</cell><cell>N/A</cell><cell><m>35\%+</m></cell><cell><m>40\%+</m></cell></row>
+						<row><cell><m>\textbf{F}</m></cell><cell colspan="4">Otherwise</cell></row>
+					</tabular>
+				</table>
+
+				<table component="hard">
+					<title>Minimum Requirements for Final Grades</title>
+					<tabular bottom="minor" top="minor" left="minor" right="minor" halign="center">
+						<col halign="center" width="10%"/>
+						<col halign="center" width="20%"/>
+						<col halign="center" width="18%"/>
+						<col halign="center" width="18%"/>
+						<col halign="center" width="12%"/>
+						<row>
+							<cell><p><term>Final Grade</term></p></cell>
+							<cell><p><term>Core Passes</term></p></cell>
+							<cell><p><term>Secondary Passes</term></p></cell>
+							<cell><p><term>Homework Score</term></p></cell>
+							<cell><p><term>Final Exam Score</term></p></cell>
+						</row>
+						<row><cell>A</cell><cell>2 passes on all</cell><cell>1 pass on 9+</cell><cell><m>80\%+</m></cell><cell><m>70\%+</m></cell></row>
+						<row><cell>B</cell><cell>2 passes on all</cell><cell>1 pass on 5+</cell><cell><m>65\%+</m></cell><cell><m>60\%+</m></cell></row>
+						<row><cell>C</cell><cell>2 passes on all</cell><cell>N/A</cell><cell><m>50\%+</m></cell><cell><m>50\%+</m></cell></row>
+						<row><cell>D</cell><cell>1 pass on 10+</cell><cell>N/A</cell><cell><m>35\%+</m></cell><cell><m>40\%+</m></cell></row>
+						<row><cell>F</cell><cell colspan="4">Otherwise</cell></row>
+					</tabular>
+				</table>
+			</p>
+		</subsubsection>
+
+		<subsubsection label="ma311-homework">
+			<title>Homework</title>
+
+			<paragraphs>
+				<title>Reading Assignments (35%)</title>
+					<p>
+						Each subsection of the textbook includes some reading questions that <term>must be completed through Runestone</term>. These are straight-forward questions designed to reinforce your understanding of the key concepts.
+					</p>
+			</paragraphs>
+
+			<paragraphs>
+				<title>Online Exercises (65%)</title>
+					<p>
+						Each topic also includes a set of online exercises that must be completed in WeBWorK. Most problems require step-by-step work, so you should complete them on paper before entering final answers online. Problems may allow multiple attempts; if you struggle, use it as a chance to learn and ask for help before using all of your attempts.
+					</p>
+			</paragraphs>
+
+			<!-- <paragraphs>
+				<title>Modeling Scenarios</title>
+					<p>
+						Modeling scenarios connect course concepts to real-world applications. You will translate a real question into a differential equation, solve the equation, and explain how the solution answers the original question. Your write-up should include both the mathematical work and a clear explanation in your own words. Submissions must be printed and handed in on paper.
+					</p>
+			</paragraphs> -->
+		</subsubsection>
+
+		<subsubsection label="ma311-odps">
+			<title>Opportunities to Demonstrate Proficiency (ODPs)</title>
+			<p>
+				Instead of traditional quizzes or tests, you will complete ODPs, which are short assessments scored on a <term>P</term> or <term>N</term> scale:
+			</p>
+			<ul>
+				<li><term>P</term>: Proficient — you have demonstrated mastery of the topic.</li>
+				<li><term>N</term>: Not yet proficient — you need more practice with the topic.</li>
+			</ul>
+			<p>
+				ODPs focus on specific course topics. Some are completed in class, while others are assigned outside of class. Because proficiency is about eventual mastery, you will have multiple opportunities to pass each topic.
+			</p>
+		</subsubsection>
+
+		<subsubsection label="ma311-final">
+			<title>Final Exam</title>
+			<p>
+				You will take a traditional final exam that is points-based and covers all topics from the course. You will also have one final opportunity to demonstrate proficiency in one or more core topics. While the exam may include secondary topics, those questions will not count toward secondary passes.
+			</p>
+		</subsubsection>
+	</subsection>
+
+	<subsection label="ma311-resources">
+		<title>Resources</title>
+
+			<introduction>
+					<p>
+							The resources listed will be used in this course. You are expected to access and use them regularly, as each one plays a specific role in supporting your learning and success in MA311.
+					</p>
+			</introduction>
+
+			<subsubsection label="ma311-materials-textbook">
+					<title>Textbook</title>
+
+					<p>
+							The online textbook, below, will be your primary source for learning the course material. Reading assignments will be assigned regularly, and you are expected to complete them before class so you come prepared for discussion and problem solving.
+							<dl>
+									<li><title>Textbook</title><em>Exploring Differential Equations</em>, Geoffrey Cox PhD.</li>
+									<li><title>URL</title><url href="https://runestone.academy/ns/books/published/debookrs/frontmatter.html?mode=browsing">Textbook via Runestone</url></li>
+							</dl>
+					</p>
+			</subsubsection>
+
+			<subsubsection label="ma311-materials-runestone">
+					<title>Runestone</title>
+
+					<p>
+							The Runestone platform is where you will access the interactive online version of the textbook. To get credit for the reading assignments, you must create a Runestone account. The interactive exercises must be answered directly in Runestone so that your progress can be recorded in Canvas.
+					</p>
+
+					<p>
+							Create an account and enroll using the link and course code below: 
+							<dl>
+									<li><title>URL</title><url href="https://runestone.academy">Runestone Academy</url></li>
+									<li><title>Course Code</title><p><c>vmi-differential-eqns-fall-25-cox</c></p></li>
+							</dl>
+					</p>
+			</subsubsection>
+
+			<subsubsection label="ma311-materials-webwork">
+					<title>WebWork</title>
+
+					<p>
+							WeBWorK is the online homework system we will use to practice problem solving with differential equations. It provides immediate feedback on your answers and multiple opportunities to correct mistakes. Homework assignments in WeBWorK are designed to reinforce concepts from class and the textbook, and they are a key part of building proficiency. You are encouraged to attempt problems multiple times and to use mistakes as learning opportunities.
+					</p>
+
+					<p>
+							The following link will take you to the WebWork page for this course
+							<dl><li><title>URL</title><url href="https://vmi-math.com/webwork2/ma311-fa25-cox">WebWork</url></li></dl>
+							Your username and temporary password is the part of your VMI email address before the <c>@</c> symbol. For example, if your email is <c>smith66@vmi.edu</c>, you would log in with:
+							<aside>
+									<title>Forgot Password?</title>
+									<p>
+											If you forget or lose your password, you must email me to reset it.
+									</p>
+							</aside>
+							<dl>
+									<li><title>Username:</title>smith66</li>
+									<li><title>Password:</title>smith66</li>
+							</dl>
+							After you log in for the first time change your password in "Account Settings." 
+					</p>
+
+			</subsubsection>
+
+			<subsubsection label="ma311-materials-canvas">
+					<title>Canvas</title>
+
+					<p>
+							Canvas will serve as the central hub for course communication and materials. Announcements, lecture slides, discussion worksheets, and assignment links will be posted here. It is your responsibility to check Canvas regularly and read announcements in a timely manner.
+							<dl><li><title>URL</title><url href="https://vmi.instructure.com/courses/23993" visual="vmi.instructure.com/courses/23993">Canvas</url></li></dl>
+					</p>
+			</subsubsection>
+	</subsection>
+
+	<subsection label="ma311-topics">
+		<title>ODP Topics</title>
+
+		<introduction>
+			<p>
+				In this course we use proficiency-based grading (PBG), sometimes called mastery-based grading. Instead of focusing on points, PBG emphasizes demonstrating understanding of key concepts. You will have multiple opportunities to show proficiency, and you are not penalized for mistakes made on early attempts. The goal is to ensure you eventually master the essential skills of the course.
+			</p>
+
+			<paragraphs label="ma311-odp-system">
+				<title>How ODPs Work</title>
+
+				<p>
+					ODPs are short assessments that let you show proficiency with specific topics. Each ODP is scored as:
+					<ul>
+						<li><term>P</term>: Proficient</li>
+						<li><term>N</term>: Not yet proficient</li>
+					</ul>
+				</p>
+
+				<p>
+					ODPs may be in-class or out-of-class. Out-of-class ODPs allow you to use some notes, a formula sheet, and basic calculator. In-class ODPs are closed book, with only the formula sheet and basic calculator allowed. Core topics appear on both types of ODPs; secondary topics appear only on in-class ODPs.
+				</p>
+			</paragraphs>
+		</introduction>
+
+		<subsubsection xml:id="ma311-core-topics">
+			<title>Core Topics</title>
+			<p>
+				There are 7 core topics that represent the most essential concepts of the course. To demonstrate proficiency in a core topic, you must pass it twice, with at least one pass occurring on an in-class ODP. Out-of-class ODPs usually offer each core topic three times, so you have multiple chances to succeed. If you do not pass a topic outside class, you can still demonstrate proficiency through in-class attempts.
+			</p>
+
+			<aside component="web"><title>Abbreviations</title>
+				<p>
+					<tabular>
+						<col width="5%"/>
+						<col />
+						<row><cell><p>DE:</p></cell><cell>Differential</cell></row>
+						<row><cell/><cell>Equation</cell></row>
+						<row><cell><p>IVP:</p></cell><cell>Initial-Value</cell></row>
+						<row><cell/><cell>Problem</cell></row>
+						<row><cell><p>L:</p></cell><cell>Linear</cell></row>
+						<row><cell><p>H:</p></cell><cell>Homogeneous</cell></row>
+						<row><cell><p>CC:</p></cell><cell>Constant</cell></row>
+						<row><cell/><cell>Coefficient</cell></row>
+						<row><cell><p>N:</p></cell><cell>Non-</cell></row>
+						<row><cell/><cell>homogeneous</cell></row>
+					</tabular>
+				</p>
+			</aside>
+
+			<aside component="hard"><title>Abbreviations</title>
+				<p>
+					<tabular>
+						<col width="5%"/>
+						<col />
+						<col width="5%"/>
+						<col />
+						<row>
+							<cell><p>DE:</p></cell><cell>Differential Equation</cell>
+							<cell><p>IVP:</p></cell><cell>Initial-Value Problem</cell>
+						</row>
+						<row>
+							<cell><p>L:</p></cell><cell>Linear</cell>
+							<cell><p>H:</p></cell><cell>Homogeneous</cell>
+						</row>
+						<row>
+							<cell><p>CC:</p></cell><cell>Constant Coefficient</cell>
+							<cell><p>N:</p></cell><cell>Nonhomogeneous</cell>
+						</row>
+					</tabular>
+				</p>
+			</aside>
+
+			<table>
+				<title>Core Proficiency Topics</title>
+				<tabular bottom="minor" top="minor" left="minor" right="minor">
+					<col halign="left" valign="top" width="19%"/>
+					<col halign="left" width="81%"/>
+					<row>
+						<cell><term>Topic</term></cell>
+						<cell><term>To demonstrate proficiency, be able to:</term></cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>C1</term>:</line><line>Solutions of DEs</line></p></cell>
+						<cell>
+							<p>
+								<line>Define the general and particular solutions of a DE or IVP.</line>
+								<line>Determine whether a given function is a solution to a DE or IVP, and explain how your work supports the conclusion.</line>
+								<line>Use initial condition(s) to find a particular solution.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>C2</term>:</line><line>Separable DEs</line></p></cell>
+						<cell>
+							<p>
+								<line>Determine whether a DE is separable and write it in separable form.</line>
+								<line>Solve separable equations correctly, including the proper use of logarithms and absolute values and correct handling of constants, with the solution in simplest form.</line>
+								<line>Apply initial condition(s) when provided.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>C3</term>:</line><line>Integrating Factor</line></p></cell>
+						<cell>
+							<p>
+								<line>Recognize when the integrating factor method applies.</line>
+								<line>Find the integrating factor and use it to simplify a DE.</line>
+								<line>Solve linear first-order equations using an integrating factor, including correct use of logarithms/absolute values and constants, with the solution in simplest form.</line>
+								<line>Apply initial condition(s) when provided.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>C4</term>:</line><line>LHCC Equations</line></p></cell>
+						<cell>
+							<p>
+								<line>Recognize when the LHCC technique applies.</line>
+								<line>Form the characteristic equation and use it appropriately.</line>
+								<line>Solve linear, homogeneous equations with constant coefficients using the characteristic equation.</line>
+								<line>Apply initial condition(s) when provided.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>C5</term>:</line><line>LNCC Equations</line></p></cell>
+						<cell>
+							<p>
+								<line>Determine when the method of undetermined coefficients applies.</line>
+								<line>Identify an appropriate form for the particular solution <m>y_p</m>.</line>
+								<line>Solve linear, nonhomogeneous equations with constant coefficients using undetermined coefficients.</line>
+								<line>Apply initial condition(s) when provided.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>C6</term>:</line><line>Laplace Transforms</line></p></cell>
+						<cell>
+							<p>
+								<line>Decide when solving with Laplace transforms is appropriate.</line>
+								<line>Solve differential equations using Laplace transforms.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>C7</term>:</line><line>Approximating Solutions</line></p></cell>
+						<cell>
+							<p>
+								<line>Describe the difference between an Analytic vs Numerical Solution.</line>
+								<line>Approximate the solution to a first-order DE using Euler's Method.</line>
+							</p>
+						</cell>
+					</row>
+				</tabular>
+			</table>
+		</subsubsection>
+
+		<subsubsection xml:id="ma311-secondary-topics">
+			<title>Secondary Topics</title>
+
+			<p>
+				In addition to the core topics, there are 13 secondary topics. These cover supporting skills and applications. You only need to pass each secondary topic once, and they are only assessed on in-class ODPs. While you must pass all core topics to earn a C or higher, proficiency in secondary topics can help raise your grade to a B or an A.
+			</p>
+
+			<table>
+				<title>Secondary Proficiency Topics (Tentative)</title>
+				<tabular bottom="minor" top="minor" left="minor" right="minor">
+					<col halign="left" width="25%"/>
+					<col halign="left" width="75%"/>
+					<row>
+						<cell><term>Topic</term></cell>
+						<cell><term>To demonstrate proficiency, be able to:</term></cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S1</term>:</line><line>Classify DEs 1</line></p></cell>
+						<cell>
+							<p>
+								<line>Identify the order of a DE.</line>
+								<line>Determine whether a DE is linear or nonlinear.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S2</term>:</line><line>Classify DEs 2</line></p></cell>
+						<cell>
+							<p>
+								<line>Determine whether a DE is homogeneous or nonhomogeneous.</line>
+								<line>Decide whether a DE has constant coefficients.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S3</term>:</line><line>LNCC 1</line></p></cell>
+						<cell>
+							<p>
+								<line>Make a correct first guess for the particular solution <m>y_p</m>.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S4</term>:</line><line>LNCC 2</line></p></cell>
+						<cell>
+							<p>
+								<line>Decide when the first guess for <m>y_p</m> must be adjusted.</line>
+								<line>Make and justify the correct adjustment to the guess for <m>y_p</m> when needed.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S5</term>:</line><line>Forward Transform</line></p></cell>
+						<cell>
+							<p>
+								<line>Use a provided table to compute a forward Laplace transform.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S6</term>:</line><line>Inverse Transform</line></p></cell>
+						<cell>
+							<p>Use a provided table to compute an inverse Laplace transform.</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S7</term>:</line><line>Step Functions 1</line></p></cell>
+						<cell>
+							<p>
+								<line>Rewrite a piecewise function in unit step form.</line>
+								<line>Sketch a function involving step functions.</line>
+								<line>Write a discontinuous function using step functions.</line>
+								<line>Evaluate unit step functions correctly.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S8</term>:</line><line>Step Functions 2</line></p></cell>
+						<cell>
+							<p>
+								<line>Transform a piecewise function using unit step functions.</line>
+								<line>Find an inverse transform of a function involving step functions.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S9</term>:</line><line>Discontinuous Forcing</line></p></cell>
+						<cell>
+							<p>
+								<line>Solve a LNCC equation with a discontinuous forcing term.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S10</term>:</line><line>Slope Fields &amp; Equilibria</line></p></cell>
+						<cell>
+							<p>
+								<line>Create a slope field for a DE.</line>
+								<line>Sketch solution curves for an IVP on a slope field.</line>
+								<line>Determine the stability of equilibria for autonomous DEs.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S11</term>:</line><line>Numerical Solution</line></p></cell>
+						<cell>
+							<p>Find the numerical solution for an IVP and interpret the result.</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S12</term>:</line><line>Systems of DEs</line></p></cell>
+						<cell>
+							<p>
+								<line>Model scenarios using systems of DEs.</line>
+								<line>Find a numerical solution for a system of DEs.</line>
+							</p>
+						</cell>
+					</row>
+
+					<row>
+						<cell><p><line><term>S13</term>:</line><line>Higher-Order DEs</line></p></cell>
+						<cell>
+							<p>
+								<line>Convert a high-order DE into a system of 1st-order DEs.</line>
+								<line>Find a numerical solution for a higher-order DE (directly or via system conversion) and interpret the result.</line>
+							</p>
+						</cell>
+					</row>
+				</tabular>
+			</table>
+
+			<p>
+				<em>Note: This secondary topics list is tentative and subject to change.</em>
+			</p>
+		</subsubsection>
+
+	</subsection>
+
+	<subsection label="ma311-policies">
+		<title>Policies</title>
+
+		<introduction>
+			<p>
+				The following policies aim to clarify expectations for submitted work, collaboration, AI usage, and classroom behavior. 
+				Read them carefully and ask questions early if anything is unclear.
+			</p>
+		</introduction>
+
+		<subsubsection label="ma311-coursework-policy">
+			<title>Coursework Policies</title>
+
+			<paragraphs>
+				<title>In-Class and Out-of-Class ODPs</title>
+				<p>
+					ODPs are formal assessments of proficiency and must be treated like quizzes/tests. The following rules apply:
+					<ul>
+						<li>
+							<term>Do not discuss</term> the content of any ODP with others until the ODP is returned to you graded.
+						</li>
+						<li>
+							<p>
+								<term>Permitted resources</term>:
+								<ul>
+									<li>
+										<term>Out-of-class ODPs</term>: class notes, a provided formula sheet, and a basic calculator for arithmetic only.
+									</li>
+									<li>
+										<term>In-class ODPs</term>: a provided formula sheet and a basic calculator for arithmetic only. Closed book, no notes.
+									</li>
+								</ul>
+							</p>
+						</li>
+						<li>
+							<term>Calculators</term> may be used for basic arithmetic only. They may not be used to take derivatives/integrals, graph, solve differential equations, or otherwise perform the core mathematics for you.
+						</li>
+						<li>
+							<term>Devices</term>: No phones, music devices, laptops, or tablets may be used during in-class ODPs. Phones may not be used as calculators.
+						</li>
+					</ul>
+				</p>
+			</paragraphs>
+
+			<paragraphs>
+				<title>Homework</title>
+				<p>
+					Homework includes online exercises (Runestone/WeBWorK) and written Modeling Scenarios. Online sets are designed for practice with immediate feedback; Modeling Scenarios emphasize communication and application.
+					<ul>
+						<li>
+							<term>Online exercises</term>: Complete problems <em>before</em> the posted deadline. Work may be submitted up to fours days late (including weekends and holidays). Only 60% of your score will be recorded. Fours days after the deadline, the submission window will close and you will receive a <m>0</m> for that assignment.  
+						</li>
+						<li>
+							<term>Modeling Scenarios</term>: Submit printed copies in class (or by end of day under my office door if noted). Unless otherwise stated, late submissions are accepted up to 24 hours with a <m>-20</m>% penalty; after that, a you will receive a <m>0</m> for the assignment.
+						</li>
+						<li>
+							<term>Collaboration</term>: You may discuss approaches with peers currently enrolled in the course, but your write‑up and final solutions must be entirely in your own words. You may not view or use work from cadets who previously completed the course.
+						</li>
+						<li>
+							<term>Showing work</term>: Write clearly, justify steps, and use appropriate notation and units where applicable. Unreadable or unsupported answers may receive reduced or no credit.
+						</li>
+					</ul>
+				</p>
+			</paragraphs>
+		</subsubsection>
+
+		<subsubsection label="ma311-ai-policy">
+			<title>AI Usage Policy</title>
+			<p>
+				AI tools can be useful when used responsibly, but my job is to assess YOUR understanding of the material, not the AI's accuracy. Assume any usage of AI is NOT permitted if it is not on the listed here. 
+			</p>
+
+			<p>
+				For <term>Reading Assignments</term>, you may ask AI to ...
+				<ul>
+					<li>Clarify any statements or steps in the book.</li>
+					<li>Explain steps of an example or derivation.</li>
+					<li>Show more detailed steps or alternative approaches (not shortcuts).</li>
+					<li>Clarify what a reading question is asking.</li>
+				</ul> 
+			</p>
+			
+			<p>
+				For <term>Online Homework</term>, you may ask AI to ...
+				<ul>
+					<li>check steps of a problem for errors. You must provide the steps.</li>
+				</ul> 
+			</p>
+
+			<p>
+				For <term>Modeling Scenarios</term>, you may ask AI to ...
+				<ul>
+					<li>check my work for spelling and grammar mistakes.</li>
+				</ul> 
+			</p>
+
+			<p>
+				For <term>ODPs and the Final Exam</term>, you may NOT use AI in any capacity.
+			</p>
+
+			<p>
+				<em>Note: If you believe there is a valuable and responsible way to use AI that is not listed here, you are welcome to ask me about it. If I determine that it does not undermine your learning of the material, I will allow it and I may even add it to this list so that others may benefit from it.</em>
+			</p>
+		</subsubsection>
+
+		<subsubsection xml:id="ma311-policy-late">
+			<title>Late Homework</title>
+			<p>
+				Late work will be accepted up to 5 days (including weekends and furlough days) after the due date and will incur a penalty of <m>-50 \%</m>. No work will be accepted beyond this.
+			</p>
+		</subsubsection>
+
+		<subsubsection xml:id="ma311-policy-getting-help">
+			<title>Getting Help</title>
+			<p>
+				The following are acceptable sources of help for the material in this course:
+				<ul>
+					<li>Instructor</li>
+					<li>VMI instructors</li>
+					<li>Online text or video tutorials.</li>
+					<li>Physical Resources (e.g., books, other class notes, etc.)</li>    
+					<li>Private or VMI tutoring services</li>
+					</ul>
+					</p>
+
+					<p>
+							Ensure that you clearly and properly document such resources on any and all work that you submit for grade.
+					</p>
+		</subsubsection>
+
+		<xi:include href="./syllabus/common/merc.ptx" />
+		<xi:include href="./syllabus/common/policy-grade-disputes.ptx" />
+		<xi:include href="./syllabus/common/policy-classroom-behavior.ptx" />
+
+	</subsection>
+
+	<xi:include href="./syllabus/common/workforgrade.ptx" />
+	<xi:include href="./syllabus/common/attendance.ptx" />
+	<xi:include href="./syllabus/common/accessibility.ptx" />
+
+</section>

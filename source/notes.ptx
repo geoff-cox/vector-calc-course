@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	main.ptx
+	Root source file for the lecture notes.
+
+	The overall structure mirrors the existing course:
+
+		Ch 1  Functions, Vectors, and Vector Fields
+		Ch 2  Line Integrals and Green's Theorem
+		Ch 3  Surface Integrals, Stokes' Theorem, and the Divergence Theorem
+
+	Each chapter contains one <worksheet> per class meeting (rather
+	than one <section> per topic), which matches the "guided notes"
+	style the course already uses.
+
+	New chapters/worksheets are added by:
+		1. dropping a new file in source/,
+		2. adding an <xi:include/> below.
+-->
+<pretext xml:lang="en-US" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<xi:include href="./bookends/docinfo.ptx" />
+
+	<article xml:id="ma301-notes">
+		<title>MA 301</title>
+		<subtitle>Guided Lecture Notes</subtitle>
+
+    <xi:include href="./bookends/frontmatter.ptx" />
+
+		<!-- Chapter 1 -->
+		<xi:include href="./notes/sec-functions-vectors.ptx"/>
+
+		<!-- Chapter 2 (stub: drop in ch-line-integrals.ptx when ready) -->
+		<!-- <xi:include href="./ch-line-integrals.ptx"/> -->
+
+		<!-- Chapter 3 (stub: drop in ch-surface-integrals.ptx when ready) -->
+		<!-- <xi:include href="./ch-surface-integrals.ptx"/> -->
+
+	</article>
+</pretext>
