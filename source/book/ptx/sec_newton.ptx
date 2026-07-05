@@ -1,0 +1,1443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec_newton" label="sec_newton">
+  <title>Newton's Method</title>
+  <p>
+    Solving equations is one of the most important things we do in mathematics,
+    yet we are surprisingly limited in what we can solve analytically.
+    For instance, equations as simple as <m>x^5+x+1=0</m> or
+    <m>\cos(x) =x</m> cannot be solved by algebraic methods in terms of familiar functions.
+    Fortunately,
+    there are methods that can give us <em>approximate</em>
+    solutions to equations like these.
+    These methods can usually give an approximation correct to as many decimal places as we like.
+    In <xref ref="sec_continuity"/>
+    we learned about the Bisection Method.
+    This section focuses on another technique
+    (which generally works faster),
+    called Newton's Method.
+  </p>
+
+  <p>
+    Newton's Method is built around tangent lines.
+    The main idea is that if <m>x</m> is sufficiently close to a root of <m>f(x)</m>,
+    then the tangent line to the graph at
+    <m>(x,f(x))</m> will cross the <m>x</m>-axis at a point closer to the root than <m>x</m>.
+  </p>
+
+  <p>
+    We start Newton's Method with an initial guess about roughly where the root is.
+    Call this <m>x_0</m>.
+    (See <xref ref="fig_newt1a"/>.)
+    Draw the tangent line to the graph at
+    <m>(x_0,f(x_0))</m> and see where it meets the <m>x</m>-axis.
+    Call this point <m>x_1</m>.
+    Then repeat the process <mdash/> draw the tangent line to the graph at
+    <m>(x_1, f(x_1))</m> and see where it meets the <m>x</m>-axis.
+    (See <xref ref="fig_newt1b"/>.)
+    Call this point <m>x_2</m>.
+    Repeat the process again to get <m>x_3</m>, <m>x_4</m>, etc.
+    This sequence of points will often converge rather quickly to a root of <m>f</m>.
+  </p>
+
+  <figure xml:id="fig_newt1">
+    <caption>Demonstrating the geometric concept behind Newton's Method</caption>
+    <sidebyside widths="31% 31% 31%" margins="0%">
+      <figure xml:id="fig_newt1a">
+        <caption/>
+        <image>
+          <shortdescription>
+            A tangent line is drawn to the graph at (x_0,f(x_0)) and and meets on the x-axis at point x_1.
+          </shortdescription>
+          <description>
+            <p>
+              This graph depicts the iterations of Newton's method for finding the root of a function.
+              The <m>y</m> axis represents function values <m>(1,0.5,0,-0.5,-1)</m>,
+              while the <m>x</m> axis represents iterations <m>(x_0, x_1)</m>.
+              The graph shows the initial guess <m>x_0</m> and the subsequent approximation <m>x_1</m>.
+            </p>
+            <p>
+              A tangent line is drawn from the point <m>(x_0,f(x_0))</m>  to intersect the <m>x</m> axis at <m>x_1</m>,
+              providing a refined approximation of the function’s root.
+            </p>
+          </description>
+          <latex-image label="img_newt1a">
+          \begin{tikzpicture}
+          \begin{axis}[
+          xtick=\empty,%
+          extra x ticks={.45,2.52},
+          extra x tick labels={$x_0$,$x_1$},
+          ymin=-1.1,ymax=1.1,
+          xmin=-.3,xmax=2.7
+          ]
+          \addplot+ [infinite,domain=-.3:2.7] {cos(deg(x))};
+          \addplot [tangentlineseg,domain=.45:2.52] {-0.434*(x-.45)+.9};
+          \addplot [guideline] coordinates {(0.45,0) (0.45,0.9)};
+          \addplot [soliddot] coordinates {(0.45,0.9)};
+          \end{axis}
+          \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <figure xml:id="fig_newt1b">
+        <caption/>
+        <image>
+          <shortdescription>A tangent line is drawn to the graph at (x_1,f(x_1)) and and meets on the x-axis at point x_2.</shortdescription>
+          <description>
+            <p>
+              The second graph has values <m>(1, 0.5, 0, -0.5, -1)</m> on the <m>y</m> axis,while the <m>x</m> axis represents iterations <m>(x_0, x_2, x_1)</m>.
+              A tangent line is drawn from the point <m>(x_1)</m> to intersect the <m>x</m> axis and the new point is called <m>x_2</m>.
+            </p>
+          </description>
+          <latex-image label="img_newt1b">
+          \begin{tikzpicture}
+          \begin{axis}[
+          xtick=\empty,
+          extra x ticks={.5,2.52,1.12},
+          extra x tick labels={$x_0$,$x_1$,$x_2$},
+          ymin=-1.1,ymax=1.1,%
+          xmin=-.3,xmax=2.7%
+          ]
+          \addplot+ [infinite,domain=-.3:2.7] {cos(deg(x))};
+          \addplot [tangentlineseg,domain=1.12:2.52] {-0.58*(x-2.52)-.813};
+          \addplot [guideline] coordinates {(2.52,0) (2.52,-0.813)};
+          \addplot [soliddot] coordinates {(2.52,-.813)};
+          \end{axis}
+          \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <figure xml:id="fig_newt1c">
+        <caption/>
+        <image>
+          <shortdescription>A tangent line is drawn to the graph at (x_2,f(x_2)) and and meets on the x-axis at point x_3.</shortdescription>
+          <description>
+            <p>
+              On the third graph, the <m>y</m> axis has values <m>(1,0.5, 0, -0.5, -1)</m>,
+              while the <m>x</m> axis represents iterations <m>(x_0,x_1,x_2,x_3)</m>.
+              A tangent line is drawn from the point <m>(x_2)</m> to intersect the x-axis and the new point is called <m>x_3</m>.
+            </p>
+          </description>
+          <latex-image label="img_newt1c">
+          \begin{tikzpicture}
+          \begin{axis}[
+          xtick=\empty,%
+          extra x ticks={.5,2.52,1.12,1.6},
+          extra x tick labels={$x_0$,$x_1$,$x_2$,$x_3$},
+          ymin=-1.1,ymax=1.1,%
+          xmin=-.3,xmax=2.7%
+          ]
+          \addplot+ [infinite,domain=-.3:2.7] {cos(deg(x))};
+          \addplot [tangentlineseg,domain=1.12:1.6] {-.9*(x-1.12)+.432};
+          \addplot [guideline] coordinates {(1.12,0) (1.12,0.432)};
+          \addplot [soliddot] coordinates {(1.12,.432)};
+          \end{axis}
+          \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </sidebyside>
+  </figure>
+
+  <exercise label="APEX-PROTEUS-sec-4_1-newton-1-v1" component="proteus">
+    <title>PROTEUS EXERCISE</title>
+    <statement>
+      <p>
+        Let <m>f(x)</m> be a function of <m>x</m> and let <m>x_0</m> be some <m>x</m>-value.
+        Match each expression on the left with its geometric meaning on the right. 
+      </p>
+    </statement>
+    <cardsort>
+      <match>
+        <premise><md>(x_0, f(x_0))</md></premise>
+        <response>A point on the graph of <m>f(x)</m>.</response>
+      </match>
+      <match>
+        <premise><md>f'(x_0)</md></premise>
+        <response>Slope of the tangent line passing through <m>(x_0, f(x_0))</m>.</response>
+      </match>
+      <match>
+        <premise><md>y = f'(x_0)(x-x_0)+f(x_0)</md></premise>
+        <response>Equation of the tangent line passing through <m>(x_0, f(x_0))</m>.</response>
+      </match>
+      <match>
+        <premise><md>0 = f'(x_0)(x-x_0)-f(x_0)</md></premise>
+        <response>First step in finding the <m>x</m>-intercept of a line (<em>setting <m>y=0</m></em>).</response>
+      </match>
+      <match>
+        <premise><md>x = x_0 - \dfrac{f(x_0)}{f'(x_0)}</md></premise>
+        <response>The (solved) <m>x</m>-intercept of the tangent line.</response>
+      </match>
+      <match>
+        <premise><md>x_1 = x_0 - \dfrac{f(x_0)}{f'(x_0)}</md></premise>
+        <response>First Approximation in Newton's Method.</response>
+      </match>
+    </cardsort>
+  </exercise>
+
+  <p>
+    We can use this <em>geometric</em>
+    process to create an <em>algebraic</em> process.
+    Let's look at how we found <m>x_1</m>.
+    We started with the tangent line to the graph at <m>(x_0,f(x_0))</m>.
+    The slope of this tangent line is
+    <m>\fp(x_0)</m> and the equation of the line is
+    <md>
+      y=\fp(x_0)(x-x_0)+f(x_0)
+    </md>.
+  </p>
+
+  <p>
+    This line crosses the <m>x</m>-axis when <m>y=0</m>,
+    and the <m>x</m>-value where it crosses is what we called <m>x_1</m>.
+    So let <m>y=0</m> and replace <m>x</m> with <m>x_1</m>,
+    giving the equation:
+    <md>
+      0 = \fp(x_0)(x_1-x_0)+f(x_0)
+    </md>.
+  </p>
+
+  <p>
+    Now solve for <m>x_1</m>:
+    <md>
+      x_1=x_0-\frac{f(x_0)}{\fp(x_0)}
+    </md>.
+  </p>
+
+  <p>
+    Since we repeat the same geometric process to find <m>x_2</m> from <m>x_1</m>, we have
+    <md>
+      x_2=x_1-\frac{f(x_1)}{\fp(x_1)}
+    </md>.
+  </p>
+
+  <p>
+    In general, given an approximation <m>x_n</m>,
+    we can find the next approximation,
+    <m>x_{n+1}</m> as follows:
+    <md>
+      x_{n+1} = x_{n} - \frac{f(x_{n})}{\fp(x_{n})}
+    </md>.
+  </p>
+
+  <p>
+    We summarize this process as follows.
+  </p>
+
+  <insight xml:id="idea_Newton">
+    <title>Newton's Method</title>
+    <p>
+      Let <m>f</m> be a differentiable function on an interval <m>I</m> with a root in <m>I</m>.
+      To approximate the value of the root,
+      accurate to <m>d</m> decimal places:
+      <idx><h>Newton's Method</h></idx>
+    </p>
+
+    <p>
+      <ol>
+        <li>
+          <p>
+            Choose a value <m>x_0</m> as an initial approximation of the root.
+            (This is often done by looking at a graph of <m>f</m>.)
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Create successive approximations iteratively;
+            given an approximation <m>x_n</m>,
+            compute the next approximation <m>x_{n+1}</m> as
+            <md>
+              x_{n+1} = x_n - \frac{f(x_n)}{\fp(x_n)}
+            </md>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Stop the iterations when successive approximations do not differ in the first <m>d</m> places after the decimal point.
+          </p>
+        </li>
+      </ol>
+    </p>
+  </insight>
+
+  <aside vshift="3">
+    <title>Newton's Method is not Infallible</title>
+    <p>
+      The sequence of approximate values may not converge,
+      or it may converge so slowly that one is <q>tricked</q>
+      into thinking a certain approximation is better than it actually is.
+      These issues will be discussed at the end of the section.
+    </p>
+  </aside>
+
+  <p>
+    Let's practice Newton's Method with a concrete example.
+  </p>
+
+  <example xml:id="ex_newt2">
+    <title>Using Newton's Method</title>
+    <statement>
+      <p>
+        Approximate the real root of <m>x^3-x^2-1=0</m>,
+        accurate to the first three places after the decimal,
+        using Newton's Method and an initial approximation of <m>x_0=1</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        To begin, we compute <m>\fp(x)=3x^2-2x</m>.
+        Then we apply the Newton's Method algorithm,
+        outlined in <xref ref="idea_Newton"/>.
+        <ul marker="" cols="2">
+          <li>
+            <p>
+              <m>\begin{aligned}
+                x_1\amp=1-\frac{f(1)}{\fp(1)}\\
+                \amp=1-\frac{1^3-1^2-1}{3\cdot 1^2-2\cdot 1}\\
+                \amp =2\end{aligned}
+              </m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\begin{aligned}
+                x_2\amp =2-\frac{f(2)}{\fp(2)}\\
+                \amp =2-\frac{2^3-2^2-1}{3\cdot 2^2-2\cdot 2}\\
+                \amp=1.625\end{aligned}
+              </m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\begin{aligned}
+                x_3\amp =1.625-\frac{f(1.625)}{\fp(1.625)}\\
+                \amp = 1.625-\frac{1.625^3-1.625^2-1}{3\cdot 1.625^2-2\cdot 1.625}\\
+                \amp \approx 1.48579\end{aligned}
+              </m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\begin{aligned}
+                x_4 \amp =1.48579-\frac{f(1.48579)}{\fp(1.48579)}\\
+                \amp \approx  1.46596\end{aligned}
+              </m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\begin{aligned}
+                x_5 \amp = 1.46596 - \frac{f(1.46596)}{\fp(1.46596)}\\
+                \amp \approx 1.46557\end{aligned}
+              </m>
+            </p>
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        We performed five iterations of Newton's Method to find a root accurate to the first three places after the decimal;
+        our final approximation is <m>1.465</m>.
+        The exact value of the root, to six decimal places,
+        is <m>1.465571</m>; It turns out that our <m>x_5</m> is accurate to more than just three decimal places.
+      </p>
+
+      <p>
+        A graph of <m>f(x)</m> is given in <xref ref="fig_newt2"/>.
+        We can see from the graph that our initial approximation of <m>x_0=1</m> was not particularly accurate;
+        a closer guess would have been <m>x_0=1.5</m>.
+        Our choice was based on ease of initial calculation,
+        and shows that Newton's Method can be robust enough that we do not have to make a very accurate initial approximation.
+      </p>
+
+      <figure xml:id="fig_newt2" vshift="3">
+        <caption>A graph of <m>f(x) = x^3-x^2-1</m> in <xref ref="ex_newt2"/></caption>
+        <image width="47%">
+          <shortdescription>
+            A cubic graph features a curve with two turning points.
+          </shortdescription>
+          <description>
+            <p>
+              The <m>y</m> axis represents function values <m>(0.5, 0, -0.5, -1,-1.5)</m>, while the <m>x</m> axis represents values of <m>(0,0.5,1,1.5)</m>.
+              The graph intersects the <m>y</m> axis at <m>-1</m> and <m>1.5</m> on <m>x</m> axis and forms a curve.
+            </p>
+          </description>
+          <latex-image label="img_newt2">
+          \begin{tikzpicture}
+          \begin{axis}[
+          ymin=-1.5,ymax=.6,%
+          xmin=-0.1,xmax=1.6%
+          ]
+          \addplot+ [infinite,domain=-.05:1.58] {x^3-x^2-1};
+          \end{axis}
+          \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </solution>
+  </example>
+
+  <p>
+    We can automate this process on a calculator that has an <c>ANS</c> key that returns the result of the previous calculation.
+    Start by pressing <c>1</c> and then <c>Enter</c>. (We have just entered our initial guess,
+    <m>x_0=1</m>.) Now compute
+    <md>
+      \texttt{ ANS }  - \frac{f(\texttt{ ANS } )}{\fp(\texttt{ ANS } )}
+    </md>
+    by entering the following and repeatedly press the <c>Enter</c> key.
+    <cd>
+      <cline>ANS-(ANS^3-ANS^2-1)/(3*ANS^2-2*ANS)</cline>
+    </cd>
+  </p>
+
+  <p>
+    Each time we press the <c>Enter</c> key,
+    we are finding the successive approximations, <m>x_1</m>,
+    <m>x_2</m>,
+    <ellipsis/>, and each one is getting closer to the root.
+    In fact, once we get past around <m>x_7</m> or so,
+    the approximations don't appear to be changing.
+    They actually are changing,
+    but the change is far enough to the right of the decimal point that it doesn't show up on the calculator's display.
+    When this happens,
+    we can be pretty confident that we have found an accurate approximation.
+  </p>
+
+  <p>
+    Using a calculator in this manner makes the calculations simple;
+    many iterations can be computed very quickly.
+  </p>
+
+  <example xml:id="ex_newt3">
+    <title>Using Newton's Method to find where functions intersect</title>
+    <statement>
+      <p>
+        Use Newton's Method to approximate a solution to <m>\cos(x) = x</m>,
+        accurate to five places after the decimal.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Newton's Method provides a method of solving <m>f(x) = 0</m>;
+        it is not (directly) a method for solving equations like <m>f(x) = g(x)</m>.
+        However, this is not a problem;
+        we can rewrite the latter equation as
+        <m>f(x) - g(x)=0</m> and then use Newton's Method.
+      </p>
+
+      <p>
+        So we rewrite <m>\cos(x) =x</m> as <m>\cos(x)-x=0</m>.
+        Written this way, we are finding a root of <m>f(x)=\cos(x) -x</m>.
+        We compute <m>\fp(x)=-\sin(x) - 1</m>.
+        Next we need a starting value, <m>x_0</m>.
+        Consider <xref ref="fig_newt3"/>,
+        where <m>f(x) = \cos(x) -x</m> is graphed.
+        It seems that <m>x_0=0.75</m> is pretty close to the root,
+        so we will use that as our <m>x_0</m>. (The figure also shows the graphs of <m>y=\cos(x)</m> and <m>y=x</m>.
+        Note how they intersect at the same <m>x</m> value as when <m>f(x) = 0</m>.)
+      </p>
+
+      <figure xml:id="fig_newt3" vshift="0">
+        <caption>A graph of <m>f(x)=\cos(x) -x</m> used to find an initial approximation of its root</caption>
+        <image width="47%">
+          <shortdescription>
+            A graph of f(x) = cos x - x used to find an initial approximation of its root.
+          </shortdescription>
+          <description>
+            <p>
+              The <m>y</m> axis and <m>x</m> axis both have values of <m>(-1,0.5,0,0.5,1)</m>.
+              A broken line with equation <m>y=x</m> crosses the origin.
+              A second broken line depicts a downward parabola of equation <m>y=\cos(x)</m>, the parabola intersects the first line <m>y=x</m>.
+              A solid line from the point where <m>y=1</m> on the <m>y</m> axis to approximately <m>x=0.75</m> on the <m>x</m> axis demonstrates an approach to estimating the root of the equation <m>f(x) = \cos(x) - x</m>.
+            </p>
+          </description>
+          <latex-image label="img_newt3">
+          \begin{tikzpicture}
+          \begin{axis}[
+          ymin=-1.1,ymax=1.1,%
+          xmin=-1.1,xmax=1.1%
+          ]
+          \addplot+ [infinite,domain=-.1:1] {cos(deg(x))-x};
+          \addplot+ [infinite,domain=-1:1] {cos(deg(x))};
+          \addplot+ [infinite,domain=-1:1] {x};
+          \addplot [guideline] coordinates {(0.739,0) (0.739,0.739)};
+          \end{axis}
+          \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <p>
+        We now compute <m>x_1</m>, <m>x_2</m>, etc.
+        The formula for <m>x_1</m> is
+        <md>
+          <mrow>x_1 \amp= 0.75 - \frac{\cos(0.75)-0.75}{-\sin(0.75)-1}</mrow>
+          <mrow>\amp \approx 0.7391111388</mrow>
+        </md>.
+      </p>
+
+      <p>
+        Apply Newton's Method again to find <m>x_2</m>:
+        <md>
+          <mrow>x_2 \amp= 0.7391111388 - \frac{\cos(0.7391111388)-0.7391111388}{-\sin(0.7391111388)-1}</mrow>
+          <mrow>\amp \approx 0.7390851334</mrow>
+        </md>.
+      </p>
+
+      <p>
+        We can continue this way, but it is really best to automate this process.
+        On a calculator with an <c>ANS</c> key,
+        we would start by entering <c>0.75</c>,
+        then <c>Enter</c>,
+        inputting our initial approximation.
+        We then enter:
+        <cd>
+          <cline>ANS - (cos(ANS)-ANS)/(-sin(ANS)-1)</cline>
+        </cd>
+      </p>
+
+      <p>
+        Repeatedly pressing the <c>Enter</c> key gives successive approximations.
+        We quickly find:
+        <md>
+          <mrow>x_3 \amp = 0.7390851332</mrow>
+          <mrow>x_4 \amp = 0.7390851332</mrow>
+        </md>.
+      </p>
+
+      <p>
+        Our approximations <m>x_2</m> and <m>x_3</m> did not differ for at least the first five places after the decimal,
+        so we could have stopped.
+        However, using our calculator in the manner described is easy,
+        so finding <m>x_4</m> was not hard.
+        It is interesting to see how we found an approximation,
+        accurate to as many decimal places as our calculator displays,
+        in just four iterations.
+      </p>
+    </solution>
+  </example>
+
+  <exercise label="APEX-PROTEUS-sec-4_1-newton-2-v1" component="proteus">
+    <title>PROTEUS EXERCISE</title>
+    <statement>
+        <p>
+          Select all situations where Newton's Method would be a reasonable tool.
+        </p>
+    </statement>
+    <choices randomize="yes">
+      <choice correct="yes">
+        <statement><p>Approximating the solution to <m>\cos(x)=x</m>.</p></statement>
+        <feedback><p>Correct—this equation cannot be solved algebraically but Newton's Method can approximate the solution.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p>Finding the exact solution to <m>x^2=9</m>.</p></statement>
+        <feedback><p>Not needed—this equation has an exact solution, so Newton's Method is unnecessary.</p></feedback>
+      </choice>
+      <choice correct="yes">
+        <statement><p>Programming a calculator or computer to approximate roots efficiently.</p></statement>
+        <feedback><p>Correct—Newton's Method is fast and widely used in computational root finding.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p>Estimating the slope of a tangent line at a point.</p></statement>
+        <feedback><p>No—Newton's Method uses tangent slopes, but its goal is to find roots, not slopes.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+  <p>
+    If you know how to program,
+    you can translate the following pseudocode into your favorite language to perform the computation in this problem.
+  </p>
+
+  <pre>
+  x = 0.75
+  while true
+      oldx = x
+      x = x - (cos(x)-x)/(-sin(x)-1)
+      print x
+      if abs(x-oldx) &lt; 0.0000000001
+          break
+  </pre>
+
+  <p>
+    This code calculates <m>x_1</m>, <m>x_2</m>,
+    etc., storing each result in the variable <c>x</c>.
+    The previous approximation is stored in the variable <c>oldx</c>.
+    We continue looping until the difference between two successive approximations, <c>abs(x-oldx)</c>,
+    is less than some small tolerance,
+    in this case, <c>0.0000000001</c>.
+  </p>
+  
+  <paragraphs xml:id="paragraphs-newton-convergence">
+    <title>Convergence of Newton's Method</title>
+    <p>
+      What should one use for the initial guess, <m>x_0</m>?
+      Generally, the closer to the actual root the initial guess is,
+      the better.
+      However, some initial guesses should be avoided.
+      For instance, consider <xref ref="ex_newt2"/>
+      where we sought the root to <m>f(x) = x^3-x^2-1</m>.
+      Choosing <m>x_0=0</m> would have been a particularly poor choice.
+      Consider <xref ref="fig_newt2a"/>,
+      where <m>f(x)</m> is graphed along with its tangent line at <m>x=0</m>.
+      Since <m>\fp(0)=0</m>,
+      the tangent line is horizontal and does not intersect the <m>x</m>-axis.
+      Graphically, we see that Newton's Method fails.
+    </p>
+
+    <figure xml:id="fig_newt2a" vshift="-1">
+      <caption>A graph of <m>f(x) = x^3-x^2-1</m>, showing why an initial approximation of <m>x_0=0</m> with Newton's Method fails</caption>
+      <image width="47%">
+        <shortdescription>
+          A cubic graph features an "S" shaped curve  with two turning points.
+        </shortdescription>
+        <description>
+            <p>
+              The <m>y</m> axis represents function values <m>(0.5, 0, -0.5, -1,-1.5)</m>, while the <m>x</m> axis represents values of <m>(-0.5,0,0.5,1,1.5)</m>.
+              The graph intersects the <m>y</m> axis at <m>-1</m> and <m>1.5</m> on the <m>x</m> axis, and forms an <q>S</q> shaped curve.
+            </p>
+            <p>
+              A horizontal tangent line is drawn at <m>-1</m> on the <m>y</m> axis and 0 on the <m>x</m> axis
+            </p>
+        </description>
+        <latex-image label="img_newt2a">
+
+        \begin{tikzpicture}
+        \begin{axis}[
+        ymin=-1.5,ymax=.6,
+        xmin=-0.6,xmax=1.6
+        ]
+
+        \addplot+ [infinite,domain=-.5:1.55] {-1};
+        \addplot [tangentline,domain=-.5:1.55] {x^3-x^2-1};
+
+        \end{axis}
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>
+      We can also see analytically that it fails.
+      Since
+      <md>
+        x_1 = 0 -\frac{f(0)}{\fp(0)}
+      </md>
+      and <m>\fp(0)=0</m>, we see that <m>x_1</m> is not well defined.
+    </p>
+
+    <p>
+      This problem can also occur if, for instance,
+      it turns out that <m>\fp(x_5)=0</m>.
+      Adjusting the initial approximation <m>x_0</m> by a very small amount will likely fix the problem.
+    </p>
+
+    <p>
+      It is also possible for Newton's Method to not converge while each successive approximation is well defined.
+      Consider <m>f(x) = x^{1/3}</m>,
+      as shown in <xref ref="fig_newt4"/>.
+      It is clear that the root is <m>x=0</m>,
+      but let's approximate this with <m>x_0=0.1</m>.
+      <xref ref="fig_newt4a"/>
+      shows graphically the calculation of <m>x_1</m>;
+      notice how it is farther from the root than <m>x_0</m>.
+      <xref ref="fig_newt4b"/>
+      and <xref ref="fig_newt4c"/>
+      show the calculation of <m>x_2</m> and <m>x_3</m>,
+      which are even farther away;
+      our successive approximations are getting worse.
+      (It turns out that in this particular example,
+      each successive approximation is twice as far from the true answer as the previous approximation.)
+    </p>
+
+    <figure xml:id="fig_newt4">
+    <caption>Newton's Method fails to find a root of <m>f(x) = x^{1/3}</m>, regardless of the choice of <m>x_0</m>.</caption>
+      <sidebyside widths="31% 31% 31%" margins="0%">
+        <figure xml:id="fig_newt4a">
+          <caption/>
+          <image>
+            <shortdescription>
+              The graph illustrates the cube root function with initial guess x_0 as 0.1
+            </shortdescription>
+            <description>
+              <p>
+                The <m>y</m> axis represents function values <m>(-1,0,1)</m>, while the <m>x</m> axis represents values of <m>(-1,0,1)</m>.
+                The graph illustrates the cube root function, <m>f(x) = x^{1/3}</m>. It exhibits a curve that passes through the origin <m>(0,0)</m>
+                and extends into the positive and negative regions of the <m>x</m> axis.
+              </p>
+              <p>
+                It starts with an initial guess <m>x_0=0.1</m>. A tangent line is drawn at this point and intersects the <m>x</m> axis at the next
+                approximation, bringing it further from the root <m>x=0</m>.
+              </p>
+            </description>
+            <latex-image label="img_newt4a">
+
+            \begin{tikzpicture}
+            \begin{axis}[
+            xtick={-1,1},
+            extra x ticks={.1,-.2},
+            extra x tick labels={$x_0$,$x_1$},
+            ymin=-1.6,ymax=1.6,%
+            xmin=-1.6,xmax=1.6%
+            ]
+
+            \addplot+ [infinite,domain=-1.16:1.16] ({x^3},{x});
+            \addplot [tangentlineseg,domain = -.2:.1] {1.547*(x-.1)+.464};
+            \addplot [guideline] coordinates {(0.1,0) (0.1,0.464)};
+            \addplot [soliddot] coordinates {(.1,.464)};
+
+            \end{axis}
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+
+        </figure>
+        <figure xml:id="fig_newt4b">
+          <caption/>
+          <image>
+            <shortdescription>
+              The graph illustrates the cube root function with point x_1
+            </shortdescription>
+            <description>
+              <p>
+                The graph illustrates the cube root function, <m>f(x) = x^{1/3}</m>. It exhibits a curve that passes through the origin <m>(0,0)</m>
+                and extends into the positive and negative regions of the <m>x</m> axis.
+              </p>
+              <p>
+                Here <m>x_1</m> is twice as much as the initial guess bringing it more further from the root.
+                A tangent line is drawn at this point and intersects the <m>x</m> axis at the next
+                approximation, <m>x_2</m>.
+              </p>
+            </description>
+            <latex-image label="img_newt4b">
+
+            \begin{tikzpicture}
+            \begin{axis}[
+            xtick={-1,1},
+            extra x ticks={.1,-.2,.4},
+            extra x tick labels={$x_0$, $x_1$,$x_2$},
+            ymin=-1.6,ymax=1.6,%
+            xmin=-1.6,xmax=1.6%
+            ]
+
+            \addplot+ [infinite,domain=-1.16:1.16]({x^3},{x});
+            \addplot [tangentlineseg,domain = -.2:.4] {.975*(x+.2)-.585};
+            \addplot [guideline] coordinates {(-0.2,0) (-0.2,-0.585)};
+            \addplot [soliddot] coordinates {(-.2,-.585)};
+
+            \end{axis}
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+
+        <figure xml:id="fig_newt4c">
+          <caption/>
+          <image>
+            <shortdescription>
+              The graph illustrates the cube root function with point x_2
+            </shortdescription>
+            <description>
+              <p>
+                The graph illustrates the cube root function, <m>f(x) = x^{1/3}</m>. It exhibits a curve that passes through the origin <m>(0,0)</m>
+                and extends into the positive and negative regions of the <m>x</m> axis.
+              </p>
+              <p>
+                Here <m>x_2</m> is twice as much as the <m>x_1</m>bringing it even more further from the root.
+                A tangent line is drawn at this point and intersects the <m>x</m> axis at the next approximation,<m>x_3</m>.
+              </p>
+
+              <p>
+                Each successive approximation is twice as far from the true answer as the previous approximation.
+                This shows that Newton's Method doesn't work every time.
+              </p>
+
+            </description>
+            <latex-image label="img_newt4c">
+
+            \begin{tikzpicture}
+            \begin{axis}[
+            xtick={-1,1},
+            extra x ticks={.1,-.2,.4,-.8},
+            extra x tick labels={$x_0$,$x_1$,$x_2$,$x_3$},
+            ymin=-1.6,ymax=1.6,%
+            xmin=-1.6,xmax=1.6%
+            ]
+
+            \addplot+ [infinite,domain=-1.16:1.16] ({x^3},{x});
+            \addplot [tangentlineseg,domain = -.8:.4] {.614*(x-.4)+.737};
+            \addplot [guideline] coordinates {(0.4,0) (0.4,0.737)};
+            \addplot [soliddot] coordinates {(.4,.737)};
+
+            \end{axis}
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <p>
+      There is no <q>fix</q> to this problem; Newton's Method simply will not work and another method must be used. (In this case the particular reason Newton's Method fails is that the tangent line is vertical at the root).
+    </p>
+
+    <exercise label="APEX-PROTEUS-sec-4_1-newton-3-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      <statement>
+        <p>
+          Starting with an initial guess, <m>x_0</m>, suppose you compute the next value, <m>x_1</m>, 
+          in Newton's Method using the formula:
+          <md>x_{1} = x_{0} - \dfrac{f(x_{0})}{f'(x_{0})}</md>
+          Which of the following might be an indication that you have a <q>bad</q> initial guess?
+        </p>
+      </statement>
+      <choices randomize="yes">
+        <choice correct="yes">
+          <statement><p>When computing <m>f'(x_0)</m>, you get a value very close to zero.</p></statement>
+          <feedback>
+            <p>
+              Yes, a very small <m>f'(x_0)</m> (<ie/>, denominator in the formula) 
+              usually leads to the next approximation being very far from the root.
+            </p>
+          </feedback>
+        </choice>
+        <choice correct="yes">
+          <statement><p>The value of <m>x_1</m> is very far from <m>x_0</m>.</p></statement>
+          <feedback>
+            <p>
+              Yes, this is a bad sign since it indicates that tangent line passes 
+              through a point near a <q>peak</q> or <q>valley</q> of <m>f(x)</m>.
+            </p>
+          </feedback>
+        </choice>
+        <choice>
+          <statement><p>When computing <m>f'(x_1)</m> in the formula, you get a value near zero.</p></statement>
+          <feedback><p>Since <m>f'(x_1)</m> is not in the formula for <m>x=x_0</m>, it shouldn't be part of the calculation.</p></feedback>
+        </choice>
+        <choice>
+          <statement><p>When computing <m>f(x_0)</m> in the formula, you get a value near zero.</p></statement>
+          <feedback><p>No, this is actually a good sign since <m>x_0</m> is near the root and Newton's method will likely converge.</p></feedback>
+        </choice>
+        <choice>
+          <statement><p>The value of <m>x_1</m> is very close to <m>x_0</m>.</p></statement>
+          <feedback>
+            <p>
+              No, this is a good sign since the only way this could happen is if <m>f(x_0)</m> is near zero, 
+              which means <m>x_0</m> is near the root and Newton's method will likely converge.
+            </p>
+          </feedback>
+        </choice>
+      </choices>
+    </exercise>
+
+    <p>
+      While Newton's Method does not always work,
+      it does work <q>most of the time,</q>
+      and it is generally very fast.
+      Once the approximations get close to the root, Newton's Method can as much as double the number of correct decimal places with each successive approximation.
+      A course in Numerical Analysis will introduce the reader to more iterative root finding methods,
+      as well as give greater detail about the strengths and weaknesses of Newton's Method.
+    </p>
+  </paragraphs>
+
+  <exercises xml:id="TaC-newtons-method">
+    <subexercises>
+      <title>Terms and Concepts</title>
+    
+      <exercise label="TaC-newtons-method-1">
+        <!-- <webwork xml:id="webwork-TaC-newtons-method-1">
+          <pg-code>
+            $true=PopUp(['?','True','False'],1);
+            $false=PopUp(['?','True','False'],2);
+          </pg-code> -->
+          <statement correct="no">
+            <p>
+              <!-- <var name="$false" form="popup"/> -->
+              Given a function <m>f(x)</m>, Newton's Method produces an exact solution to <m>f(x) = 0</m>.
+            </p>
+          </statement>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-newtons-method-2">
+        <!-- <webwork xml:id="webwork-TaC-newtons-method-2">
+          <pg-code>
+            $true=PopUp(['?','True','False'],1);
+            $false=PopUp(['?','True','False'],2);
+          </pg-code> -->
+          <statement correct="no">
+            <p>
+              <!-- <var name="$false" form="popup"/> -->
+              In order to get a solution to <m>f(x)=0</m> accurate to <m>d</m> places after the decimal,
+              at least <m>d+1</m> iterations of Newton's Method must be used.
+            </p>
+          </statement>
+        <!-- </webwork> -->
+      </exercise>      
+    </subexercises>
+    
+    <!--IN THIS GROUP, USE NEWTON'S METHOD TO FIND KNOWN ROOTS FOR FAMILIAR FUNCTIONS-->
+    <subexercises>
+      <title>Problems</title>
+
+      <exercisegroup cols="2" xml:id="exset-newtons-method-known-roots">
+        <introduction>
+          <p>
+            The roots of the function <m>f(x)</m> are known or are easily found.
+            Use five iterations of Newton's Method with the given initial approximation
+            to approximate the root.
+            Compare it to the known value of the root.
+          </p>
+        </introduction>
+        <!--Exercise 3: Newton's Method with cos(x)-->
+        <exercise label="ex-newtons-method-known-roots-1">
+          <webwork xml:id="webwork-ex-newtons-method-known-roots-1">
+            <pg-code>
+              $f=Compute('cos(x)');
+              Context("LimitedNumeric");
+              $x[0]=1.5;
+              $df=$f-&gt;D('x');
+              for my $i (1..5) {
+              $x[$i] = Compute($x[$i-1] - ($f-&gt;eval(x=&gt;$x[$i-1]))/($df-&gt;eval(x=&gt;$x[$i-1])));
+              };
+              $showwork = q![@ explanation_box(message =&gt; "Compare ".math_ev3('x_5')." to the known value of the root.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x) = <var name="$f"/></m>, <m>x_0=<var name="$x[0]"/></m>
+              </p>
+              <instruction>
+                Enter <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, <m>x_4</m>, <m>x_5</m>, into the given answer blanks.
+              </instruction>
+              <p>
+                <var name="$x[1]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[2]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[3]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[4]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[5]" width="10"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!--Exercise 4 sine function-->
+        <exercise label="ex-newtons-method-known-roots-2">
+          <webwork xml:id="webwork-ex-newtons-method-known-roots-2">
+            <pg-code>
+              $f=Compute('sin(x)');
+              Context("LimitedNumeric");
+              $x[0]=1;
+              $df=$f-&gt;D('x');
+              for my $i (1..5) {
+              $x[$i] = Compute($x[$i-1] - ($f-&gt;eval(x=&gt;$x[$i-1]))/($df-&gt;eval(x=&gt;$x[$i-1])));
+              };
+              $showwork = q![@ explanation_box(message =&gt; "Compare ".math_ev3('x_5')." to the known value of the root.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x) = <var name="$f"/></m>, <m>x_0=<var name="$x[0]"/></m>
+              </p>
+              <instruction>
+                Enter <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, <m>x_4</m>, <m>x_5</m>, into the given answer blanks.
+              </instruction>
+              <p>
+                <var name="$x[1]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[2]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[3]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[4]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[5]" width="10"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!--Exercise 5 quadratic function-->
+        <exercise label="ex-newtons-method-known-roots-3">
+          <webwork xml:id="webwork-ex-newtons-method-known-roots-3">
+            <pg-code>
+              $f=Compute('x^2+x-2');
+              Context("LimitedNumeric");
+              $x[0]=0;
+              $df=$f-&gt;D('x');
+              for my $i (1..5) {
+              $x[$i] = Compute($x[$i-1] - ($f-&gt;eval(x=&gt;$x[$i-1]))/($df-&gt;eval(x=&gt;$x[$i-1])));
+              };
+              $showwork = q![@ explanation_box(message =&gt; "Compare ".math_ev3('x_5')." to the known value of the root.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x) = <var name="$f"/></m>, <m>x_0=<var name="$x[0]"/></m>
+              </p>
+              <instruction>
+                Enter <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, <m>x_4</m>, <m>x_5</m>, into the given answer blanks.
+              </instruction>
+              <p>
+                <var name="$x[1]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[2]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[3]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[4]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[5]" width="10"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!--Exercise 6 quadratic function 2-->
+        <exercise label="ex-newtons-method-known-roots-4">
+          <webwork xml:id="webwork-ex-newtons-method-known-roots-4">
+            <pg-code>
+              $f=Compute('x^2-2');
+              Context("LimitedNumeric");
+              $x[0]=1.5;
+              $df=$f-&gt;D('x');
+              for my $i (1..5) {
+              $x[$i] = Compute($x[$i-1] - ($f-&gt;eval(x=&gt;$x[$i-1]))/($df-&gt;eval(x=&gt;$x[$i-1])));
+              };
+              $showwork = q![@ explanation_box(message =&gt; "Compare ".math_ev3('x_5')." to the known value of the root.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x) = <var name="$f"/></m>, <m>x_0=<var name="$x[0]"/></m>
+              </p>
+              <instruction>
+                Enter <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, <m>x_4</m>, <m>x_5</m>, into the given answer blanks.
+              </instruction>
+              <p>
+                <var name="$x[1]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[2]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[3]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[4]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[5]" width="10"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!--Exercise 7 ln(x) -->
+        <exercise label="ex-newtons-method-known-roots-5">
+          <webwork xml:id="webwork-ex-newtons-method-known-roots-5">
+            <pg-code>
+              $f=Compute('ln(x)');
+              Context("LimitedNumeric");
+              $x[0]=2;
+              $df=$f-&gt;D('x');
+              for my $i (1..5) {
+              $x[$i] = Compute($x[$i-1] - ($f-&gt;eval(x=&gt;$x[$i-1]))/($df-&gt;eval(x=&gt;$x[$i-1])));
+              };
+              $showwork = q![@ explanation_box(message =&gt; "Compare ".math_ev3('x_5')." to the known value of the root.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x) = <var name="$f"/></m>, <m>x_0=<var name="$x[0]"/></m>
+              </p>
+              <instruction>
+                Enter <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, <m>x_4</m>, <m>x_5</m>, into the given answer blanks.
+              </instruction>
+              <p>
+                <var name="$x[1]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[2]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[3]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[4]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[5]" width="10"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!--Exercise 8 x^3-x^2+x-1 -->
+        <exercise label="ex-newtons-method-known-roots-6">
+          <webwork xml:id="webwork-ex-newtons-method-known-roots-6">
+            <pg-code>
+              $f=Compute('x^3-x^2+x-1');
+              Context("LimitedNumeric");
+              $x[0]=2;
+              $df=$f-&gt;D('x');
+              for my $i (1..5) {
+              $x[$i] = Compute($x[$i-1] - ($f-&gt;eval(x=&gt;$x[$i-1]))/($df-&gt;eval(x=&gt;$x[$i-1])));
+              };
+              $showwork = q![@ explanation_box(message =&gt; "Compare ".math_ev3('x_5')." to the known value of the root.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x) = <var name="$f"/></m>, <m>x_0=<var name="$x[0]"/></m>
+              </p>
+              <instruction>
+                Enter <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, <m>x_4</m>, <m>x_5</m>, into the given answer blanks.
+              </instruction>
+              <p>
+                <var name="$x[1]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[2]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[3]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[4]" width="10"/>
+              </p>
+              <p>
+                <var name="$x[5]" width="10"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <!--IN THIS GROUP, FIND ROOTS OF FUNCTIONS, POSSIBLY ON AN INTERVAL-->
+      <exercisegroup xml:id="exset-newtons-method-find-root">
+        <introduction>
+          <p>
+            Use Newton's Method to approximate all roots of the given function accurate to three places after the decimal.
+            If an interval is given, find only the roots that lie within that interval.
+            Use technology to obtain good initial approximations.
+          </p>
+        </introduction>
+
+        <exercise label="ex-newtons-method-find-root-1">
+          <webwork xml:id="webwork-ex-newtons-method-find-root-1">
+            <pg-code>
+              $f = Compute('x^3+5x^2-x-1');
+              Context("FiniteSolutionSets");
+              Context()-&gt;flags-&gt;remove("NumberCheck");
+              Context()-&gt;flags-&gt;set(preferSetNotation=&gt;0);
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.0005);
+              $L = Formula("{-5.15632517465866,-0.369102386184855,0.525427560843517}");
+              $showwork = q![@ explanation_box(message =&gt; "Show the steps you took using Newton's Method.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use commas to separate roots.
+              </instruction>
+              <p>
+                <var name="$L" width="50"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-newtons-method-find-root-2">
+          <webwork xml:id="webwork-ex-newtons-method-find-root-2">
+            <pg-code>
+              $f = Compute('x^4+2x^3-7x^2-x+5');
+              Context("FiniteSolutionSets");
+              Context()-&gt;flags-&gt;remove("NumberCheck");
+              Context()-&gt;flags-&gt;set(preferSetNotation=&gt;0);
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.0005);
+              $L = Formula("{-3.71447874438776,-0.856722678160357,1,1.57120142254812}");
+              $showwork = q![@ explanation_box(message =&gt; "Show the steps you took using Newton's Method.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use commas to separate roots.
+              </instruction>
+              <p>
+                <var name="$L" width="50"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-newtons-method-find-root-3">
+          <webwork xml:id="webwork-ex-newtons-method-find-root-3">
+            <pg-code>
+              $f = Compute('x^17-2x^13-10x^8+10');
+              Context("FiniteSolutionSets");
+              Context()-&gt;flags-&gt;remove("NumberCheck");
+              Context()-&gt;flags-&gt;set(preferSetNotation=&gt;0);
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.0005);
+              $L = Formula("{-1.0134032173648748818979878,0.98831169481331833285038046,1.3934095863189322104023657}");
+              $showwork = q![@ explanation_box(message =&gt; "Show the steps you took using Newton's Method.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m> on <m>(-2,2)</m>
+              </p>
+              <instruction>
+                Use commas to separate roots.
+              </instruction>
+              <p>
+                <var name="$L" width="50"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-newtons-method-find-root-4">
+          <webwork xml:id="webwork-ex-newtons-method-find-root-4">
+            <pg-code>
+              $f = Compute('x^2cos(x) + (x-1)sin(x)');
+              Context("FiniteSolutionSets");
+              Context()-&gt;flags-&gt;remove("NumberCheck");
+              Context()-&gt;flags-&gt;set(preferSetNotation=&gt;0);
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.0005);
+              $L = Formula("{-2.16477423608072,0,0.524501487448536,1.81327843509828}");
+              $showwork = q![@ explanation_box(message =&gt; "Show the steps you took using Newton's Method.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m> on <m>(-3,3)</m>
+              </p>
+              <instruction>
+                Use commas to separate roots.
+              </instruction>
+              <p>
+                <var name="$L" width="50"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <!--IN THIS GROUP, FIND WHERE FUNCTIONS ARE EQUAL, POSSIBLY ON AN INTERVAL-->
+      <exercisegroup xml:id="exset-newtons-method-functions-equal">
+        <introduction>
+          <p>
+            Use Newton's Method to approximate when the given functions are equal,
+            accurate to 3 places after the decimal.
+            Use technology to obtain good initial approximations.
+          </p>
+        </introduction>
+
+        <!--ONE OF FOUR-->
+        <exercise label="ex-newtons-method-functions-equal-1">
+          <webwork xml:id="webwork-ex-newtons-method-functions-equal-1">
+            <pg-code>
+              $f = Compute('x^2');
+              $g = Compute('cos(x)');
+              Context("FiniteSolutionSets");
+              Context()-&gt;flags-&gt;remove("NumberCheck");
+              Context()-&gt;flags-&gt;set(preferSetNotation=&gt;0);
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.0005);
+              $L = Formula("{-0.82413231230252242296,0.82413231230252242296}");
+              $showwork = q![@ explanation_box(message =&gt; "Show the steps you took using Newton's Method.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>, <m>g(x)=<var name="$g"/></m>
+              </p>
+              <instruction>
+                Use commas to separate solutions.
+              </instruction>
+              <p>
+                <var name="$L" width="50"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <!--TWO OF FOUR-->
+        <exercise label="ex-newtons-method-functions-equal-2">
+          <webwork xml:id="webwork-ex-newtons-method-functions-equal-2">
+            <pg-code>
+              $f = Compute('x^2-1');
+              $g = Compute('sin(x)');
+              Context("FiniteSolutionSets");
+              Context()-&gt;flags-&gt;remove("NumberCheck");
+              Context()-&gt;flags-&gt;set(preferSetNotation=&gt;0);
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.0005);
+              $L = Formula("{-0.63673265080528201089,1.4096240040025962492}");
+              $showwork = q![@ explanation_box(message =&gt; "Show the steps you took using Newton's Method.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>, <m>g(x)=<var name="$g"/></m>
+              </p>
+              <instruction>
+                Use commas to separate solutions.
+              </instruction>
+              <p>
+                <var name="$L" width="50"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <!--THREE OF FOUR-->
+        <exercise label="ex-newtons-method-functions-equal-3">
+          <webwork xml:id="webwork-ex-newtons-method-functions-equal-3">
+            <pg-code>
+              $f = Compute('e^(x^2)');
+              $g = Compute('cos(x)');
+              Context("FiniteSolutionSets");
+              Context()-&gt;flags-&gt;remove("NumberCheck");
+              Context()-&gt;flags-&gt;set(preferSetNotation=&gt;0);
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.0005);
+              $L = Formula("{0}");
+              $showwork = q![@ explanation_box(message =&gt; "Show the steps you took using Newton's Method.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>, <m>g(x)=<var name="$g"/></m>
+              </p>
+              <instruction>
+                Use commas to separate solutions.
+              </instruction>
+              <p>
+                <var name="$L" width="50"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <!--FOUR OF FOUR-->
+        <exercise label="ex-newtons-method-functions-equal-4">
+          <webwork xml:id="webwork-ex-newtons-method-functions-equal-4">
+            <pg-code>
+              $f = Compute('x');
+              $g = Compute('tan(x)');
+              Context("FiniteSolutionSets");
+              Context()-&gt;flags-&gt;remove("NumberCheck");
+              Context()-&gt;flags-&gt;set(preferSetNotation=&gt;0);
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.0005);
+              $L = Formula("{-4.49340945790906,0,4.49340945790906}");
+              $showwork = q![@ explanation_box(message =&gt; "Show the steps you took using Newton's Method.") @]*!;
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>, <m>g(x)=<var name="$g"/></m> on <m>[-6,6]</m>
+              </p>
+              <instruction>
+                Use commas to separate solutions.
+              </instruction>
+              <p>
+                <var name="$L" width="50"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercise label="ex-newtons-method-explain-fail-1">
+        <!-- <webwork xml:id="webwork-ex-newtons-method-explain-fail-1"> -->
+          <statement>
+            <p>
+              Why does Newton's Method fail in finding a root of <m>f(x) = x^3-3x^2+x+3</m> when <m>x_0=1</m>?
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+          <solution>
+            <p>
+              The approximations alternate between <m>x=1</m> and <m>x=2</m>.
+            </p>
+          </solution>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="ex-newtons-method-explain-fail-2">
+        <!-- <webwork xml:id="webwork-ex-newtons-method-explain-fail-2"> -->
+          <statement>
+            <p>
+              Why does Newton's Method fail in finding a root of <m>f(x) = -17x^4+130x^3-301x^2+156x+156</m> when <m>x_0=1</m>?
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+          <solution>
+            <p>
+              The approximations alternate between <m>x=1</m>,
+              <m>x=2</m> and <m>x=3</m>.
+            </p>
+          </solution>
+        <!-- </webwork> -->
+      </exercise>
+    </subexercises>
+  </exercises>
+</section>

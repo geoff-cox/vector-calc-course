@@ -1,0 +1,1503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec_trig_sub" label="sec_trig_sub">
+  <title>Trigonometric Substitution</title>
+  <p>
+    In <xref ref="sec_def_int"/>
+    we defined the definite integral as the
+    <q>signed area under the curve.</q>
+    In that section we had not yet learned the Fundamental Theorem of Calculus,
+    so we only evaluated special definite integrals which described nice,
+    geometric shapes.
+    For instance, we were able to evaluate
+    <md number="yes" xml:id="eq_trigsub1">
+      \int_{-3}^3\sqrt{9-x^2}\, dx = \frac{9\pi}{2}
+    </md>
+    as we recognized that <m>f(x) = \sqrt{9-x^2}</m> described the upper half of a circle with radius 3.
+  </p>
+
+  <p>
+    We have since learned a number of integration techniques,
+    including Substitution and Integration by Parts,
+    yet we are still unable to evaluate the above integral without resorting to a geometric interpretation.
+    This section introduces Trigonometric Substitution,
+    a method of integration that fills this gap in our integration skill.
+    This technique works on the same principle as Substitution as found in <xref ref="sec_substitution"/>,
+    though it can feel <q>backward.</q>
+    In <xref ref="sec_substitution"/>, we set <m>u=f(x)</m>,
+    for some function <m>f</m>, and replaced <m>f(x)</m> with <m>u</m>.
+    In this section, we will set <m>x=f(\theta)</m>,
+    where <m>f</m> is a trigonometric function,
+    then replace <m>x</m> with <m>f(\theta)</m>.
+  </p>
+
+  <figure xml:id="vid-int-trigsub-intro" component="video" vshift="4">
+    <caption>Video introduction to <xref ref="sec_trig_sub"/></caption>
+    <video youtube="l3gtQyPLr-E" label="vid-int-trigsub-intro"/>
+  </figure>
+
+  <p>
+    We start by demonstrating this method in evaluating the integral in <xref ref="eq_trigsub1">Equation</xref>.
+    After the example,
+    we will generalize the method and give more examples.
+  </p>
+
+  <example xml:id="ex_trigsub1">
+    <title>Using Trigonometric Substitution</title>
+    <statement>
+      <p>
+        Evaluate <m>\ds \int_{-3}^3\sqrt{9-x^2}\, dx</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We begin by noting that <m>9\left(\sin^2(\theta) + \cos^2(\theta)\right) = 9</m>,
+        and hence <m>9\cos^2(\theta) = 9-9\sin^2(\theta)</m>.
+        If we let <m>x=3\sin(\theta)</m>,
+        then <m>9-x^2 = 9-9\sin^2(\theta) = 9\cos^2(\theta)</m>.
+      </p>
+
+      <p>
+        Setting <m>x=3\sin(\theta)</m> gives <m>dx = 3\cos(\theta) \, d\theta</m>.
+        We are almost ready to substitute.
+        We also wish to change our bounds of integration.
+        The bound <m>x=-3</m> corresponds to
+        <m>\theta = -\pi/2</m> (for when <m>\theta = -\pi/2</m>,
+        <m>x=3\sin(\theta) = -3</m>).
+        Likewise, the bound of <m>x=3</m> is replaced by the bound <m>\theta = \pi/2</m>.
+        Thus
+        <md>
+          <mrow>\int_{-3}^3\sqrt{9-x^2}\, dx \amp = \int_{-\pi/2}^{\pi/2} \sqrt{9-9\sin^2(\theta) }\,(3\cos(\theta) )\, d\theta</mrow>
+          <mrow>\amp = \int_{-\pi/2}^{\pi/2} 3\sqrt{9\cos^2(\theta) } \cos(\theta) \, d\theta</mrow>
+          <mrow>\amp =\int_{-\pi/2}^{\pi/2} 3\abs{3\cos(\theta) } \cos(\theta) \, d\theta</mrow>
+        </md>.
+        On <m>[-\pi/2,\pi/2]</m>, <m>\cos(\theta)</m> is always positive, so we can drop the absolute value bars, then employ a power-reducing formula:
+        <md>
+          <mrow>\int_{-3}^3\sqrt{9-x^2}\, dx \amp = \int_{-\pi/2}^{\pi/2} 9\cos^2(\theta) \, d\theta</mrow>
+          <mrow>\amp = \int_{-\pi/2}^{\pi/2} \frac{9}{2}\big(1+\cos(2\theta)\big)\, d\theta</mrow>
+          <mrow>\amp  = \left.\frac92 \big(\theta +\frac12\sin(2\theta)\big)\right|_{-\pi/2}^{\pi/2}</mrow>
+          <mrow>\amp = \frac92\pi</mrow>
+        </md>.
+      </p>
+
+      <p>
+        This matches our answer from before.
+      </p>
+    </solution>
+    <solution component="video" vshift="0">
+      <title>Video solution</title>
+      <video width="98%" youtube="5CKWeQvnGAU" label="vid-int-trigsub-ex-def-sine" component="video"/>
+    </solution>
+  </example>
+
+  <p>
+    We now describe in detail Trigonometric Substitution.
+    This method excels when dealing with integrands that contain <m>\sqrt{a^2-x^2}</m>,
+    <m>\sqrt{x^2-a^2}</m> and <m>\sqrt{x^2+a^2}</m>.
+    The following Key Idea outlines the procedure for each case,
+    followed by more examples.
+    Each right triangle acts as a reference to help us understand the relationships between <m>x</m> and <m>\theta</m>.
+  </p>
+
+
+  <insight xml:id="idea_trigsub">
+    <title>Trigonometric Substitution</title>
+    <p>
+      <ol>
+        <li xml:id="idea_trigsuba">
+          <title>Integrands containing <m>\sqrt{a^2-x^2}</m></title>
+
+          <sidebyside widths="55% 40%" margins="0%">
+            <p>
+              <idx><h>integration</h><h>trig. subst.</h></idx>
+
+              Let <m>x=a\sin(\theta)</m>, <m>dx = a\cos(\theta) \, d\theta</m>.
+              Thus <m>\theta = \sin^{-1}(x/a)</m>,
+              for <m>-\pi/2\leq \theta\leq \pi/2</m>.
+              On this interval, <m>\cos(\theta) \geq 0</m>,
+              so <m>\sqrt{a^2-x^2} = a\cos(\theta)</m>.
+            </p>
+
+            <figure xml:id="fig_trigsub_intro1">
+              <caption/>
+              <!-- START figures/fig_trigsub_intro1.tex -->
+              <image>
+                <shortdescription>
+                  Diagram showing trigonometric substitution with integrands containing square root of a^2-x^2.
+                </shortdescription>
+                <description>
+                  <p>
+                    The diagram is of a right angled triangle. The perpendicular is marked <m>x</m>
+                    the base as <m>\sqrt{a^2 -x^2}</m>. The hypotenuse is marked <m>a</m>. The angle
+                    opposite to the perpendicular is marked as <m>\theta</m>.
+                  </p>
+                </description>
+                <latex-image label="img_trigsub_intro1">
+
+                  \begin{tikzpicture}[scale=1.5]
+
+                  \draw [very thick] (0,0) -- node [below,pos=.5] { $\sqrt{a^2-x^2}$} (3,0) -- node [right,pos=.5] { $x$} (3,2) -- node [pos=.5,above] { $a$} (0,0);
+                  \draw [thick] (2.7,0) -- (2.7,.3) -- (3,.3);
+                  \draw (.75,.25) node {$\theta$};
+
+                  \end{tikzpicture}
+
+                </latex-image>
+              </image>
+              <!-- figures/fig_trigsub_intro1.tex END -->
+            </figure>
+          </sidebyside>
+        </li>
+
+        <li xml:id="idea_trigsubb">
+          <title>Integrands containing <m>\sqrt{x^2+a^2}</m></title>
+
+          <sidebyside widths="55% 40%" margins="0%">
+            <p>
+              Let <m>x=a\tan(\theta)</m>, <m>dx = a\sec^2(\theta) \, d\theta</m>.
+              Thus <m>\theta = \tan^{-1}(x/a)</m>,
+              for <m>-\pi/2 \lt \theta \lt \pi/2</m>.
+              On this interval, <m>\sec(\theta) \gt 0</m>,
+              so <m>\sqrt{x^2+a^2} = a\sec(\theta)</m>.
+            </p>
+
+            <figure xml:id="fig_trigsub_intro3">
+              <caption/>
+              <!-- START figures/fig_trigsub_intro3.tex -->
+              <image>
+                <shortdescription>
+                  Diagram showing trigonometric substitution with integrands containing square root of x^2+a^2.
+                </shortdescription>
+                <description>
+                  <p>
+                    The diagram is of a right angled triangle. The perpendicular is marked <m>x</m>
+                    the base as <m>a</m>. The hypotenuse is marked <m>\sqrt{x^2+a^2}</m>. The angle
+                    opposite to the perpendicular is marked as <m>\theta</m>.
+                  </p>
+                </description>
+                <latex-image label="img_trigsub_intro3">
+
+                  \begin{tikzpicture}[scale=1.5]
+
+                  \draw [very thick] (0,0) -- node [below,pos=.5] { $a$} (3,0) -- node [right,pos=.5] { $x$} (3,2) -- node [pos=.5,above,sloped] { $\sqrt{x^2+a^2}$} (0,0);
+                  \draw [thick] (2.7,0) -- (2.7,.3) -- (3,.3);
+                  \draw (.75,.25) node {$\theta$};
+
+                  \end{tikzpicture}
+
+                </latex-image>
+              </image>
+              <!-- figures/fig_trigsub_intro3.tex END -->
+            </figure>
+          </sidebyside>
+        </li>
+
+        <li xml:id="idea_trigsubc">
+          <title>Integrands containing <m>\sqrt{x^2-a^2}</m></title>
+
+          <sidebyside widths="55% 40%" margins="0%">
+            <p>
+              Let <m>x=a\sec(\theta)</m>,
+              <m>dx = a\sec(\theta) \tan(\theta) \, d\theta</m>.
+              Thus <m>\theta = \sec^{-1}(x/a)</m>.
+              If <m>x/a\geq 1</m>, then <m>0\leq\theta\lt \pi/2</m>;
+              if <m>x/a \leq -1</m>, then <m>\pi/2\lt \theta\leq \pi</m>.
+              We restrict our work to where <m>x\geq a</m>,
+              so <m>x/a\geq 1</m>, and <m>0\leq\theta\lt \pi/2</m>.
+              On this interval, <m>\tan(\theta) \geq 0</m>,
+              so <m>\sqrt{x^2-a^2} = a\tan(\theta)</m>.
+            </p>
+
+            <figure xml:id="fig_trigsub_intro2">
+              <caption/>
+              <!-- START figures/fig_trigsub_intro2.tex -->
+              <image>
+                <shortdescription>
+                  Diagram showing trigonometric substitution with integrands containing square root of x^2-a^2.
+                </shortdescription>
+                <description>
+                  <p>
+                    The diagram is of a right angled triangle. The perpendicular is marked <m>\sqrt{x^2-a^2}</m>
+                    the base as <m>a</m>. The hypotenuse is marked <m>x</m>. The angle opposite to the perpendicular
+                    is marked as <m>\theta</m>.
+                  </p>
+                </description>
+                <latex-image label="img_trigsub_intro2">
+
+                  \begin{tikzpicture}[scale=1.5]
+
+                  \draw [very thick] (0,0) -- node [below,pos=.5] { $a$} (3,0) -- node [right,xshift=3mm,pos=.9,rotate=-90] { $\sqrt{x^2-a^2}$} (3,2) -- node [pos=.5,above] { $x$} (0,0);
+                  \draw [thick] (2.7,0) -- (2.7,.3) -- (3,.3);
+                  \draw (.75,.25) node {$\theta$};
+
+                  \end{tikzpicture}
+
+                </latex-image>
+              </image>
+              <!-- figures/fig_trigsub_intro2.tex END -->
+            </figure>
+          </sidebyside>
+        </li>
+      </ol>
+    </p>
+  </insight>
+
+  <exercise component="proteus" label="APEX-PROTEUS-sec-6_4-trig-sub-1-v1">
+    <title>PROTEUS EXERCISE</title>
+    
+    <statement>
+      <p>
+        Match the integrals on the left to the correct substitution on the right.
+        If the integral can be more easily evaluated by another method, leave it unmatched.
+      </p>
+    </statement>
+
+    <cardsort>
+      <match>
+        <premise><m>\ds \int \frac{x^2}{\sqrt{1-x^2}}\,dx</m></premise>
+        <premise><m>\ds \int (1-x^2)^{5/2}\,dx</m></premise>
+        <response><m>x=\sin(\theta)</m></response>
+      </match>
+      <match>
+        <premise><m>\ds \int \sqrt{1+x^2}\,dx</m></premise>
+        <response><m>x = \tan(\theta)</m></response>
+      </match>
+      <match>
+        <premise><m>\ds \int (x^2-1)^{3/2}\,dx</m></premise>
+        <response><m>x = \sec(\theta)</m></response>
+      </match>
+      <match>
+        <premise><m>\ds\int \frac{x}{\sqrt{1-x^2}}\,dx</m></premise>
+        <premise><m>\ds\int (1-x)^{5/2}\,dx</m></premise>
+      </match>
+      
+    </cardsort>
+  </exercise>
+
+  <!--<p>
+    We will now apply <xref ref="idea_trigsubc"/>
+    to a type of problem that we were able to solve using algebra and substitution in <xref ref="sec_substitution"/>.
+    <xref ref="ex_trigsub1b"/>
+    shows an alternate way to approach these problems.
+  </p>
+
+  <example xml:id="ex_trigsub1b">
+    <title>Using Trigonometric Substitution</title>
+    <statement>
+      <p>
+        Evaluate <m>\ds \int \frac{1}{\sqrt{x^2-4}}\, dx</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Using <xref ref="idea_trigsubc"/>
+        from <xref ref="idea_trigsub"/>,
+        we recognize <m>a=2</m> and sethttps://opentext.uleth.ca/apex-standard/sec_antider.html
+        <m>x= 2\sec(\theta)</m> for <m>0 \leq \theta \lt \pi/2</m>.
+        This makes <m>dx = 2\sec(\theta)\tan(\theta) \, d\theta</m>.
+        We will use the Pythagorean identity
+        <m>\tan^2(\theta)=\sec^2(\theta)-1</m> and the fact that <m>\tan(\theta)\geq 0</m> on the interval.
+        Substituting, we have:
+        <md>
+          <mrow>\int \frac{1}{\sqrt{x^2-4}}\, dx \amp = \int \frac{1}{\sqrt{4\sec^2(\theta)-4}}\cdot 2 \sec(\theta)\tan(\theta)\, d\theta</mrow>
+          <mrow>\amp = 2\int \frac{1}{\sqrt{4(\sec^2(\theta)-1)}}\cdot \sec(\theta)\tan(\theta)\, d\theta</mrow>
+          <mrow>\amp = 2\int \frac{1}{\sqrt{4(\tan^2(\theta))}}\cdot\sec(\theta)\tan(\theta)\, d\theta</mrow>
+          <mrow>\amp = 2\int \frac{1}{2\abs{\tan(\theta)}}\sec(\theta)\tan(\theta)\, d\theta</mrow>
+          <mrow>\amp = \int \sec(\theta)\, d\theta</mrow>
+          <mrow>\amp =\ln \abs{\sec(\theta)+\tan(\theta)}</mrow>
+        </md>
+        However, our original integral involved <m>x</m>.
+      </p>
+    </solution>
+  </example>-->
+
+  <example xml:id="ex_trigsub3">
+    <title>Using Trigonometric Substitution</title>
+    <statement>
+      <p>
+        Evaluate <m>\ds \int \frac{1}{\sqrt{5+x^2}}\, dx</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Using <xref ref="idea_trigsubb" text="local">Item</xref> in <xref ref="idea_trigsub"/>,
+        we recognize <m>a=\sqrt{5}</m> and set <m>x= \sqrt{5}\tan(\theta)</m>.
+        This makes <m>dx = \sqrt{5}\sec^2(\theta) \, d\theta</m>.
+        We will use the fact that <m>\sqrt{5+x^2} = \sqrt{5+5\tan^2(\theta) } = \sqrt{5\sec^2(\theta) } = \sqrt{5}\sec(\theta)</m>.
+        Substituting, we have:
+        <md>
+          <mrow>\int \frac{1}{\sqrt{5+x^2}}\, dx \amp = \int \frac{1}{\sqrt{5+5\tan^2(\theta) }}\sqrt{5}\sec^2(\theta) \, d\theta</mrow>
+          <mrow>\amp = \int \frac{\sqrt{5}\sec^2(\theta) }{\sqrt{5}\sec(\theta) } \, d\theta</mrow>
+          <mrow>\amp = \int \sec(\theta) \, d\theta</mrow>
+          <mrow>\amp = \ln\abs{\sec(\theta) +\tan(\theta) }+C</mrow>
+        </md>.
+      </p>
+
+      <p>
+        While the integration steps are over, we are not yet done.
+        The original problem was stated in terms of <m>x</m>,
+        whereas our answer is given in terms of <m>\theta</m>.
+        We must convert back to <m>x</m>.
+      </p>
+
+      <p>
+        The reference triangle given in <xref ref="fig_trigsub_intro3"/> helps.
+        With <m>x=\sqrt{5}\tan(\theta)</m>, we have
+        <md>
+          \tan(\theta) = \frac x{\sqrt{5}} \text{ and }  \sec(\theta) = \frac{\sqrt{x^2+5}}{\sqrt{5}}
+        </md>.
+      </p>
+
+      <p>
+        This gives
+        <md>
+          <mrow>\int \frac{1}{\sqrt{5+x^2}}\, dx \amp = \ln\abs{\sec(\theta) +\tan(\theta) }+C</mrow>
+          <mrow>\amp = \ln\abs{\frac{\sqrt{x^2+5}}{\sqrt{5}}+ \frac x{\sqrt{5}}}+C</mrow>
+        </md>.
+      </p>
+
+      <p>
+        We can leave this answer as is,
+        or we can use a logarithmic identity to simplify it.
+        Note:
+        <md>
+          <mrow>\ln\abs{\frac{\sqrt{x^2+5}}{\sqrt{5}}+ \frac x{\sqrt{5}}}+C \amp = \ln\abs{\frac{1}{\sqrt{5}}\big(\sqrt{x^2+5}+ x\big)}+C</mrow>
+          <mrow>\amp = \ln\abs{\frac{1}{\sqrt{5}}} + \ln\abs{\sqrt{x^2+5}+ x}+C</mrow>
+          <mrow>\amp =	\ln\abs{\sqrt{x^2+5}+ x}+C</mrow>
+        </md>,
+        where the <m>\ln\big(1/\sqrt{5}\big)</m> term is absorbed into the constant <m>C</m>.
+        (In <xref ref="sec_hyperbolic"/>
+        we will learn another way of approaching this problem.)
+      </p>
+    </solution>
+    <solution component="video" vshift="3">
+      <title>Video solution</title>
+      <video width="98%" youtube="2a9Oks-FCg0" label="vid-int-trigsub-ex-tan1" component="video"/>
+    </solution>
+  </example>
+
+  <example xml:id="ex_trigsub2">
+    <title>Using Trigonometric Substitution</title>
+    <statement>
+      <p>
+        Evaluate <m>\ds \int \sqrt{4x^2-1}\, dx</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We start by rewriting the integrand so that it looks like
+        <m>\sqrt{x^2-a^2}</m> for some value of <m>a</m>:
+        <md>
+          <mrow>\sqrt{4x^2-1} \amp = \sqrt{4\left(x^2-\frac14\right)}</mrow>
+          <mrow>\amp = 2\sqrt{x^2-\left(\frac12\right)^2}</mrow>
+        </md>.
+      </p>
+
+      <p>
+        So we have <m>a=1/2</m>,
+        and following <xref ref="idea_trigsubc" text="local">Part</xref> of <xref ref="idea_trigsub"/>,
+        we set <m>x= \frac12\sec(\theta)</m>,
+        and hence <m>dx = \frac12\sec(\theta) \tan(\theta) \, d\theta</m>.
+        We now rewrite the integral with these substitutions:
+        <md>
+          <mrow>\int \sqrt{4x^2-1}\, dx \amp = \int 2\sqrt{x^2-\left(\frac12\right)^2}\, dx</mrow>
+          <mrow>\amp = \int 2\sqrt{\frac14\sec^2(\theta) - \frac14}\left(\frac12\sec(\theta) \tan(\theta) \right)\, d\theta</mrow>
+          <mrow>\amp =\int \sqrt{\frac14(\sec^2(\theta) -1)}\Big(\sec(\theta) \tan(\theta) \Big)\, d\theta</mrow>
+          <mrow>\amp =\int\sqrt{\frac14\tan^2(\theta) }\Big(\sec(\theta) \tan(\theta) \Big)\, d\theta</mrow>
+          <mrow>\amp =\int \frac12\tan^2(\theta) \sec(\theta) \, d\theta</mrow>
+          <mrow>\amp =\frac12\int \Big(\sec^2(\theta) -1\Big)\sec(\theta) \, d\theta</mrow>
+          <mrow>\amp =\frac12\int \big(\sec^3(\theta) - \sec(\theta) \big)\, d\theta</mrow>
+        </md>.
+      </p>
+
+      <p>
+        We integrated <m>\sec^3(\theta)</m> in <xref ref="ex_trigint6"/>,
+        finding its antiderivatives to be
+        <md>
+          \int \sec^3(\theta) \, d\theta = \frac12\Big(\sec(\theta) \tan(\theta) + \ln\abs{\sec(\theta) +\tan(\theta) }\Big)+C
+        </md>.
+      </p>
+
+      <p>
+        Thus
+        <md>
+          <mrow>\amp \int \sqrt{4x^2-1}\, dx =\frac12\int \big(\sec^3(\theta) - \sec(\theta) \big)\, d\theta</mrow>
+          <mrow>\amp = \frac12\left(\frac12\Big(\sec(\theta) \tan(\theta) + \ln\abs{\sec(\theta) +\tan(\theta) }\Big) -\ln\abs{\sec(\theta) + \tan(\theta) }\right) + C</mrow>
+          <mrow>\amp = \frac14\left(\sec(\theta) \tan(\theta) -\ln\abs{\sec(\theta) +\tan(\theta) }\right)+C</mrow>
+        </md>.
+      </p>
+
+      <p>
+        We are not yet done.
+        Our original integral is given in terms of <m>x</m>,
+        whereas our final answer, as given,
+        is in terms of <m>\theta</m>.
+        We need to rewrite our answer in terms of <m>x</m>.
+        With <m>a=1/2</m>, and <m>x=\frac12\sec(\theta)</m>,
+        the reference triangle in <xref ref="fig_trigsub_intro2"/> shows that
+        <md>
+          \tan(\theta) = \sqrt{x^2-1/4}\Big/(1/2) = 2\sqrt{x^2-1/4} \text{ and }  \sec(\theta) = 2x
+        </md>.
+      </p>
+
+      <p>
+        Thus
+        <md>
+          <mrow>\amp \frac14\Big(\sec(\theta) \tan(\theta) -\ln\abs{\sec(\theta) +\tan(\theta) }\Big)+C</mrow>
+          <mrow>\amp\quad = \frac14\Big(2x\cdot 2\sqrt{x^2-1/4} - \ln\abs{2x + 2\sqrt{x^2-1/4}}\Big)+C</mrow>
+          <mrow>\amp\quad = \frac14\Big(4x\sqrt{x^2-1/4} - \ln\abs{2x + 2\sqrt{x^2-1/4}}\Big)+C</mrow>
+        </md>.
+      </p>
+
+      <p>
+        The final answer is given in the last line above, repeated here:
+        <md>
+          \int \sqrt{4x^2-1}\, dx = \frac14\Big(4x\sqrt{x^2-1/4} - \ln\abs{2x + 2\sqrt{x^2-1/4}}\Big)+C
+        </md>.
+      </p>
+    </solution>
+    <solution component="video" vshift="3">
+      <title>Video solution</title>
+      <video width="98%" youtube="0oCjVzIa_t8" label="vid-int-trigsub-ex-sec1" component="video"/>
+    </solution>
+  </example>
+
+  <example xml:id="ex_trigsub4">
+    <title>Using Trigonometric Substitution</title>
+    <statement>
+      <p>
+        Evaluate <m>\ds \int \frac{\sqrt{4-x^2}}{x^2}\, dx</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We use <xref ref="idea_trigsuba" text="local">Part</xref> of <xref ref="idea_trigsub"/> with <m>a=2</m>,
+        <m>x=2\sin(\theta)</m>,
+        <m>dx = 2\cos(\theta)</m> and hence <m>\sqrt{4-x^2} = 2\cos(\theta)</m>.
+        This gives
+        <md>
+          <mrow>\int \frac{\sqrt{4-x^2}}{x^2}\, dx \amp = \int \frac{2\cos(\theta) }{4\sin^2(\theta) }(2\cos(\theta) )\, d\theta</mrow>
+          <mrow>\amp = \int \cot^2(\theta) \, d\theta</mrow>
+          <mrow>\amp =	\int (\csc^2(\theta) -1)\, d\theta</mrow>
+          <mrow>\amp = -\cot(\theta) -\theta + C</mrow>
+        </md>.
+      </p>
+
+      <p>
+        We need to rewrite our answer in terms of <m>x</m>.
+        Using the reference triangle found in <xref ref="fig_trigsub_intro1"/>,
+        we have <m>\cot(\theta) = \sqrt{4-x^2}/x</m> and <m>\theta = \sin^{-1}(x/2)</m>.
+        Thus
+        <md>
+          \int \frac{\sqrt{4-x^2}}{x^2}\, dx = -\frac{\sqrt{4-x^2}}x-\sin^{-1}\left(\frac x2\right) + C
+        </md>.
+      </p>
+    </solution>
+    <solution component="video" vshift="3">
+      <title>Video solution</title>
+      <video width="98%" youtube="E37-2LvYSsg" label="vid-int-trigsub-ex-sin2" component="video"/>
+    </solution>
+  </example>
+
+  <p>
+    Trigonometric Substitution can be applied in many situations,
+    even those not of the form <m>\sqrt{a^2-x^2}</m>,
+    <m>\sqrt{x^2-a^2}</m> or <m>\sqrt{x^2+a^2}</m>.
+    In the following example,
+    we apply it to an integral we already know how to handle.
+  </p>
+
+  <example xml:id="ex_trigsub5">
+    <title>Using Trigonometric Substitution</title>
+    <statement>
+      <p>
+        Evaluate <m>\ds \int\frac1{x^2+1}\, dx</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We know the answer already as <m>\tan^{-1}(x) +C</m>.
+        We apply Trigonometric Substitution here to show that we get the same answer without inherently relying on knowledge of the derivative of the arctangent function.
+      </p>
+
+      <p>
+        Using <xref ref="idea_trigsubb" text="local">Part</xref> of <xref ref="idea_trigsub"/>,
+        let <m>x=\tan(\theta)</m>,
+        <m>dx=\sec^2(\theta) \, d\theta</m> and note that <m>x^2+1 = \tan^2(\theta) +1 = \sec^2(\theta)</m>.
+        Thus
+        <md>
+          <mrow>\int \frac1{x^2+1}\, dx \amp = \int \frac{1}{\sec^2(\theta) }\sec^2(\theta) \, d\theta</mrow>
+          <mrow>\amp = \int 1\, d\theta</mrow>
+          <mrow>\amp = \theta + C</mrow>
+        </md>.
+      </p>
+
+      <p>
+        Since <m>x=\tan(\theta)</m>, <m>\theta = \tan^{-1}(x)</m>,
+        and we conclude that <m>\ds \int\frac1{x^2+1}\, dx = \tan^{-1}(x) +C</m>.
+      </p>
+    </solution>
+  </example>
+
+  <p>
+    The next example is similar to the previous one in that it does not involve a square-root.
+    It shows how several techniques and identities can be combined to obtain a solution.
+  </p>
+
+  <example xml:id="ex_trigsub7">
+    <title>Using Trigonometric Substitution</title>
+    <statement>
+      <p>
+        Evaluate <m>\ds\int\frac1{(x^2+6x+10)^2}\, dx</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We start by completing the square,
+        then make the substitution <m>u=x+3</m>,
+        followed by the trigonometric substitution of <m>u=\tan(\theta)</m>:
+        <md>
+          <mrow>\int \frac1{(x^2+6x+10)^2}\, dx \amp =\int \frac1{\big((x+3)^2+1\big)^2}\, dx = \int \frac1{(u^2+1)^2}\,du.</mrow>
+          <intertext>Now make the substitution <m>u=\tan(\theta)</m>, <m>du=\sec^2(\theta) \, d\theta</m>:</intertext>
+          <mrow>\amp =	\int \frac1{(\tan^2(\theta) +1)^2}\sec^2(\theta) \, d\theta</mrow>
+          <mrow>\amp = \int\frac 1{(\sec^2(\theta) )^2}\sec^2(\theta) \, d\theta</mrow>
+          <mrow>\amp = \int \cos^2(\theta) \, d\theta.</mrow>
+          <intertext>Applying a power reducing formula, we have</intertext>
+          <mrow>\amp = \int \left(\frac12 +\frac12\cos(2\theta)\right)\, d\theta</mrow>
+          <mrow number="yes" xml:id="eq_extrigsub7">\amp = \frac12\theta + \frac14\sin(2\theta) + C</mrow>
+        </md>.
+      </p>
+
+      <p>
+        We need to return to the variable <m>x</m>.
+        As <m>u=\tan(\theta)</m>, <m>\theta = \tan^{-1}(u)</m>.
+        Using the identity <m>\sin(2\theta) = 2\sin(\theta) \cos(\theta)</m> and using the reference triangle found in
+        <xref ref="fig_trigsub_intro3"/>, we have
+        <md>
+          \frac14\sin(2\theta) = \frac12\frac u{\sqrt{u^2+1}}\cdot\frac 1{\sqrt{u^2+1}} = \frac12\frac u{u^2+1}
+        </md>.
+      </p>
+
+      <p>
+        Finally, we return to <m>x</m> with the substitution <m>u=x+3</m>.
+        We start with the expression in <xref ref="eq_extrigsub7">Equation</xref>:
+        <md>
+          <mrow>\frac12\theta + \frac14\sin(2\theta) + C \amp = \frac12\tan^{-1}(u) + \frac12\frac{u}{u^2+1}+C</mrow>
+          <mrow>\amp = \frac12\tan^{-1}(x+3) + \frac{x+3}{2(x^2+6x+10)}+C</mrow>
+        </md>.
+      </p>
+
+      <p>
+        Stating our final result in one line,
+        <md>
+          \int\frac1{(x^2+6x+10)^2}\, dx=\frac12\tan^{-1}(x+3) + \frac{x+3}{2(x^2+6x+10)}+C
+        </md>.
+      </p>
+    </solution>
+    <solution component="video" vshift="3">
+      <title>Video solution</title>
+      <video width="98%" youtube="5JAXeV1-vCo" label="vid-int-trigsub-ex-complete-square" component="video"/>
+    </solution>
+  </example>
+
+  <exercise component="proteus" label="APEX-PROTEUS-sec-6_4-trig-sub-2-v1">
+    <title>PROTEUS EXERCISE</title>
+    
+    <statement>
+      <p>
+        By completing the square, determine whether each integral
+        is best evaluated using a sine, tangent, or secant substitution.
+      </p>
+
+      <p>
+        If no such substitution will work, leave the integral unmatched.
+      </p>
+    </statement>
+
+    <cardsort>
+      <match>
+        <premise><m>\ds \int \sqrt{-7+8x-x^2}\,dx</m></premise>
+        <response>sine</response>
+      </match>
+      <match>
+        <premise><m>\ds \int\frac{1}{\sqrt{x^2-6x+13}}\,dx</m></premise>
+        <response>tangent</response>
+      </match>
+      <match>
+        <premise><m>\ds \int\frac{1}{(x^2-10x+16)}\,dx</m></premise>
+        <response>secant</response>
+      </match>
+      <match>
+        <premise><m>\ds \int (-4+2x-x^2)^{3/2}\,dx</m></premise>
+      </match>
+      
+    </cardsort>
+  </exercise>
+
+  <p>
+    Our last example returns us to definite integrals,
+    as seen in our first example.
+    Given a definite integral that can be evaluated using Trigonometric Substitution,
+    we could first evaluate the corresponding indefinite integral
+    (by changing from an integral in terms of <m>x</m> to one in terms of <m>\theta</m>,
+    then converting back to <m>x</m>)
+    and then evaluate using the original bounds.
+    It is much more straightforward, though,
+    to change the bounds as we substitute.
+  </p>
+
+  <example xml:id="ex_trigsub6">
+    <title>Definite integration and Trigonometric Substitution</title>
+    <statement>
+      <p>
+        Evaluate <m>\ds\int_0^5\frac{x^2}{\sqrt{x^2+25}}\, dx</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Using <xref ref="idea_trigsubb" text="local">Part</xref> of <xref ref="idea_trigsub"/>,
+        we set <m>x=5\tan(\theta)</m>,
+        <m>dx = 5\sec^2(\theta) \, d\theta</m>,
+        and note that <m>\sqrt{x^2+25} = 5\sec(\theta)</m>.
+        As we substitute, we can also change the bounds of integration.
+      </p>
+
+      <p>
+        The lower bound of the original integral is <m>x=0</m>.
+        As <m>x=5\tan(\theta)</m>,
+        we solve for <m>\theta</m> and find <m>\theta = \tan^{-1}(x/5)</m>.
+        Thus the new lower bound is <m>\theta = \tan^{-1}(0) = 0</m>.
+        The original upper bound is <m>x=5</m>,
+        thus the new upper bound is <m>\theta = \tan^{-1}(5/5) = \pi/4</m>.
+      </p>
+
+      <p>
+        Thus we have
+        <md>
+          <mrow>\int_0^5\frac{x^2}{\sqrt{x^2+25}}\, dx \amp = \int_0^{\pi/4} \frac{25\tan^2(\theta) }{5\sec(\theta) }5\sec^2(\theta) \, d\theta</mrow>
+          <mrow>\amp = 25\int_0^{\pi/4} \tan^2(\theta) \sec(\theta) \, d\theta</mrow>
+        </md>.
+      </p>
+
+      <p>
+        We encountered this indefinite integral in <xref ref="ex_trigsub2"/> where we found
+        <md>
+          \int \tan^2(\theta) \sec(\theta) \, d\theta = \frac12\big(\sec(\theta) \tan(\theta) -\ln\abs{\sec(\theta) +\tan(\theta) }\big)
+        </md>.
+      </p>
+
+      <p>
+        So
+        <md>
+          <mrow>25\int_0^{\pi/4} \tan^2(\theta) \sec(\theta) \, d\theta \amp = \left.\frac{25}2\big(\sec(\theta) \tan(\theta) -\ln\abs{\sec(\theta) +\tan(\theta) }\big)\right|_0^{\pi/4}</mrow>
+          <mrow>\amp = \frac{25}2\big(\sqrt2-\ln(\sqrt2+1)\big)</mrow>
+          <mrow>\amp \approx 6.661</mrow>
+        </md>.
+      </p>
+    </solution>
+    <solution component="video" vshift="3">
+      <title>Video solution</title>
+      <video width="98%" youtube="Pz56QfleHX4" label="vid-int-trigsub-ex-tan-def" component="video"/>
+    </solution>
+  </example>
+
+  <p>
+    The following equalities are very useful when evaluating integrals using Trigonometric Substitution.
+  </p>
+
+  <insight xml:id="idea_useful_trigsub">
+    <title>Useful Equalities with Trigonometric Substitution</title>
+    <p>
+      <ol>
+        <li>
+          <p>
+            <m>\sin(2\theta) = 2\sin(\theta) \cos(\theta)</m>
+          </p>
+        </li>
+
+        <li>
+          <p>
+            <m>\cos(2\theta) = \cos^2(\theta) - \sin^2(\theta) = 2\cos^2(\theta) -1 = 1-2\sin^2(\theta)</m>
+          </p>
+        </li>
+
+        <li>
+          <p>
+            <m>\ds \int \sec^3(\theta) \, d\theta = \frac12\Big(\sec(\theta) \tan(\theta) + \ln\abs{\sec(\theta) +\tan(\theta) }\Big)+C</m>
+          </p>
+        </li>
+
+        <li>
+          <p>
+            <m>\ds \int \cos^2(\theta) \, d\theta = \int \frac12\big(1+\cos(2\theta)\big)\, d\theta = \frac12\big(\theta+\sin(\theta) \cos(\theta) \big)+C</m>.
+          </p>
+        </li>
+      </ol>
+    </p>
+  </insight>
+
+  <p>
+    The next section introduces Partial Fraction Decomposition,
+    which is an algebraic technique that turns <q>complicated</q>
+    fractions into sums of <q>simpler</q> fractions,
+    making integration easier.
+  </p>
+
+  <exercises>
+    <subexercises xml:id="TaC-trig-substitution">
+      <title>Terms and Concepts</title>
+      <!-- Exercise 1 -->
+      <exercise label="TaC-trig-substitution-1">
+        <!-- <webwork xml:id="webwork-TaC-trig-substitution-1">
+          <pg-code>
+            Context()-&gt;strings-&gt;add('backward'=&gt;{});
+            Context()-&gt;strings-&gt;add('backwards'=&gt;{alias=&gt;'backward'});
+          </pg-code> -->
+          <statement>
+            <p>
+              Trigonometric Substitution works on the same principles as Integration by Substitution,
+              though it can feel <fillin answer="backward" width="20"/>.
+            </p>
+          </statement>
+          <evaluation>
+            <evaluate>
+              <test correct="yes">
+                <strcmp case="insensitive">backwards?</strcmp>
+              </test>
+            </evaluate>
+          </evaluation>
+        <!-- </webwork> -->
+      </exercise>
+      <!-- Exercise 2 -->
+      <exercise label="TaC-trig-substitution-2">
+        <webwork xml:id="webwork-TaC-trig-substitution-2">
+          <pg-code>
+            $m = random(2,9,1);
+            if($envir{problemSeed}==1){$m=5;};
+            Context()-&gt;variables-&gt;add(theta=&gt;['Real',TeX=&gt;'\theta']);
+            $integrand = Formula("sqrt($m^2-x^2)");
+            $answer = OneOf(Formula("$m*sin(theta)"),Formula("$m*cos(theta)"));
+          </pg-code>
+          <statement>
+            <p>
+              If one uses Trigonometric Substitution on an integrand containing <m><var name="$integrand"/></m>,
+              then one should set <m>x</m> equal to what?
+            </p>
+            <p>
+              <var name="$answer" width="20"/>
+            </p>
+          </statement>
+        </webwork>
+      </exercise>
+      <!-- Exercise 3 -->
+      <exercise label="TaC-trig-substitution-3">
+        <webwork xml:id="webwork-TaC-trig-substitution-3">
+          <pg-code>
+            $m = random(2,9,1);
+            if($envir{problemSeed}==1){$m=9;};
+            Context()-&gt;variables-&gt;add(theta=&gt;['Real',TeX=&gt;'\theta']);
+            # Redefine tan() so the following equtaion is not an identity
+            package my::Function::numeric;
+            our @ISA = ('Parser::Function::numeric');
+            sub tan {
+              shift; my $x = shift;
+              return CORE::sin($x+2)/CORE::cos($x+2);
+            }
+            package main;
+            Context()-&gt;functions-&gt;set(tan =&gt; {class =&gt; 'my::Function::numeric'});
+            $I = ImplicitEquation("tan(theta)^2+1=sec(theta)^2");
+            $S = Formula("$m sec(theta)^2");
+          </pg-code>
+          <statement>
+            <p>
+              Consider the Pythagorean Identity <m>\sin^2(\theta) +\cos^2(\theta) = 1</m>.
+            </p>
+            <p>
+              <ol>
+                <li>
+                  <p>
+                    What identity is obtained when both sides are divided by <m>\cos^2(\theta)</m>?
+                  </p>
+                  <p>
+                    <var name="$I" width="20"/>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Use the new identity to simplify <m>9\tan^2(\theta) + 9</m>.
+                  </p>
+                  <p>
+                    <var name="$S" width="20"/>
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+        </webwork>
+      </exercise>
+      <!-- Exercise 4 -->
+      <exercise label="TaC-trig-substitution-4">
+        <!-- <webwork xml:id="webwork-TaC-trig-substitution-4"> -->
+          <statement>
+            <p>
+              Why does <xref ref="idea_trigsuba" text="local">Part</xref> of <xref ref="idea_trigsub"/>
+              state that <m>\sqrt{a^2-x^2} = a\cos(\theta)</m>,
+              and not <m>\abs{a\cos(\theta) }</m>?
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+          <solution>
+            <p>
+              Because we are considering <m>a&gt;0</m> and <m>x=a\sin(\theta)</m>,
+              which means <m>\theta = \sin^{-1}(x/a)</m>.
+              The arcsine function has a domain of <m>-\pi/2\leq \theta \leq \pi/2</m>;
+              on this domain, <m>\cos(\theta) \geq 0</m>,
+              so <m>a\cos(\theta)</m> is always non-negative,
+              allowing us to drop the absolute value signs.
+            </p>
+          </solution>
+        <!-- </webwork> -->
+      </exercise>
+    </subexercises>
+
+    <subexercises>
+      <title>Problems</title>
+      <exercisegroup cols="2" xml:id="exset-trig-sub-indefinite">
+        <introduction>
+          <p>
+            Apply Trigonometric Substitution to evaluate the indefinite integral.
+          </p>
+        </introduction>
+        <!-- Exercise 5 -->
+        <exercise label="ex-trig-sub-indefinite-1">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-1">
+            <pg-code>
+              Context("Fraction");
+              $F = FormulaUpToConstant("1/2 (x sqrt(x^2 + 1) + ln(sqrt(x^2 + 1) + x))");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int \sqrt{x^2+1}\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 6 -->
+        <exercise label="ex-trig-sub-indefinite-2">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-2">
+            <pg-code>
+              Context("Fraction");
+              $F = FormulaUpToConstant("x/2 sqrt(x^2 + 4) + 2 ln(sqrt(x^2 + 4)/2 + x/2)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int \sqrt{x^2+4}\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 7 -->
+        <exercise label="ex-trig-sub-indefinite-3">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-3">
+            <pg-code>
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[-1,1]});
+              $F = FormulaUpToConstant("1/2 asin(x) + x/2 sqrt(1 - x^2)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int \sqrt{1-x^2}\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 8 -->
+        <exercise label="ex-trig-sub-indefinite-4">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-4">
+            <pg-code>
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[-3,3]});
+              $F = FormulaUpToConstant("9/2 asin(x/3) + x/2 sqrt(9 - x^2)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int \sqrt{9-x^2}\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 9 -->
+        <exercise label="ex-trig-sub-indefinite-5">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-5">
+            <pg-code>
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[1,5]});
+              $F = FormulaUpToConstant("1/2 x sqrt(x^2 - 1) - 1/2 ln(abs(x+sqrt(x^2 - 1)))");
+              $F-&gt;{test_at} = [-2,-3,-4];
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int \sqrt{x^2-1}\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 10 -->
+        <exercise label="ex-trig-sub-indefinite-6">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-6">
+            <pg-code>
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[4,9]});
+              $F = FormulaUpToConstant("1/2 x sqrt(x^2 - 16) - 8 ln(abs(x/4 + sqrt(x^2 - 16)/4))");
+              $F-&gt;{test_at} = [-5,-6,-7];
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int \sqrt{x^2-16}\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 11 -->
+        <exercise label="ex-trig-sub-indefinite-7">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-7">
+            <pg-code>
+              $m = random(2,9,1);
+              if($envir{problemSeed}==1){$m=2;};
+              Context("Fraction");
+              $f = Formula("sqrt($m^2 x^2+1)");
+              $F = FormulaUpToConstant("x/2 sqrt($m^2 x^2+1)+1/(2*$m)*ln($m x + sqrt($m^2 x^2+1))")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 12 -->
+        <exercise label="ex-trig-sub-indefinite-8">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-8">
+            <pg-code>
+              $m = random(2,9,1);
+              if($envir{problemSeed}==1){$m=3;};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[-1/$m,1/$m]});
+              $f = Formula("sqrt(1 - $m^2 x^2)");
+              $F = FormulaUpToConstant("x/2 sqrt(1 - $m^2 x^2) + 1/(2*$m) asin($m x)")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 13 -->
+        <exercise label="ex-trig-sub-indefinite-9">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-9">
+            <pg-code>
+              $m = random(2,9,1);
+              if($envir{problemSeed}==1){$m=4;};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[1/$m,1/$m+4]});
+              $f = Formula("sqrt($m^2 x^2 - 1)");
+              $F = FormulaUpToConstant("x/2 sqrt($m^2 x^2 - 1) - 1/(2*$m) ln(abs($m x + sqrt($m^2 x^2 - 1)))")-&gt;reduce;
+              $F-&gt;{test_at} = [-1/$m-1,-1/$m-2,-1/$m-3];
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 14 -->
+        <exercise label="ex-trig-sub-indefinite-10">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-10">
+            <pg-code>
+              $a = random(2,9,1);
+              $b = list_random(2,3,5,6,7,10,11,13,14,15);
+              if($envir{problemSeed}==1){$a=8;$b=2};
+              Context("Fraction");
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $f = Formula("$a/sqrt(x^2 + $b)");
+              $F = FormulaUpToConstant("$a ln(x/sqrt($b) + sqrt(x^2/$b + 1))")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 15 -->
+        <exercise label="ex-trig-sub-indefinite-11">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-11">
+            <pg-code>
+              $a = random(2,9,1);
+              $b = list_random(2,3,5,6,7,10,11,13,14,15);
+              if($envir{problemSeed}==1){$a=3;$b=7};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[-sqrt($b),sqrt($b)]});
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $f = Formula("$a/sqrt($b - x^2)");
+              $F = FormulaUpToConstant("$a asin(x/sqrt($b))")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 16 -->
+        <exercise label="ex-trig-sub-indefinite-12">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-12">
+            <pg-code>
+              $a = random(2,9,1);
+              $b = list_random(2,3,5,6,7,10,11,13,14,15);
+              if($envir{problemSeed}==1){$a=5;$b=6};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[sqrt($b),sqrt($b)+4]});
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $f = Formula("$a/sqrt(x^2-$b)");
+              $F = FormulaUpToConstant("$a ln(abs(x/sqrt($b) + sqrt(x^2/$b - 1)))")-&gt;reduce;
+              $F-&gt;{test_at} = [-sqrt($b)-1,-sqrt($b)-2,-sqrt($b)-3];
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2">
+        <introduction>
+          <p>
+            Evaluate the indefinite integral.
+            Trigonometric Substitution may not be required.
+          </p>
+        </introduction>
+        <!-- Exercise 17 -->
+        <exercise label="ex-trig-sub-indefinite-13">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-13">
+            <pg-code>
+              $b = list_random(2,3,5,6,7,10,11,13,14,15);
+              if($envir{problemSeed}==1){$b=11};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[sqrt($b),sqrt($b)+4]});
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $f = Formula("sqrt(x^2-$b)/x");
+              $F = FormulaUpToConstant("sqrt(x^2 - $b) - sqrt($b) asec(x/sqrt($b))")-&gt;reduce;
+              $F-&gt;{test_at} = [-sqrt($b)-1,-sqrt($b)-2,-sqrt($b)-3];
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 18 -->
+        <exercise label="ex-trig-sub-indefinite-14">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-14">
+            <pg-code>
+              Context("Fraction");
+              $F = FormulaUpToConstant("1/2 atan(x) + x/[2(x^2+1)]");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int \frac {1}{(x^2+1)^2}\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 19 -->
+        <exercise label="ex-trig-sub-indefinite-15">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-15">
+            <pg-code>
+              $b = list_random(2,3,5,6,7,10,11,13,14,15);
+              if($envir{problemSeed}==1){$b=3};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[sqrt($b),sqrt($b)+4]});
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $f = Formula("x/sqrt(x^2-$b)");
+              $F = FormulaUpToConstant("sqrt(x^2 - $b)")-&gt;reduce;
+              $F-&gt;{test_at} = [-sqrt($b)-1,-sqrt($b)-2,-sqrt($b)-3];
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 20 -->
+        <exercise label="ex-trig-sub-indefinite-16">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-16">
+            <pg-code>
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[-1,1]});
+              $F = FormulaUpToConstant("1/8 asin(x) + x/8 sqrt(1-x^2) (2x^2 - 1)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int x^2\sqrt{1-x^2}\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 21 -->
+        <exercise label="ex-trig-sub-indefinite-17">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-17">
+            <pg-code>
+              $m = random(2,9,1);
+              if($envir{problemSeed}==1){$m=3};
+              Context("Fraction");
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $f = Formula("x/(x^2 + $m^2)^(3/2)");
+              $F = FormulaUpToConstant("-1/sqrt(x^2 + $m^2)")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 22 -->
+        <exercise label="ex-trig-sub-indefinite-18">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-18">
+            <pg-code>
+              $a = random(2,9,1);
+              $b = list_random(2,3,5,6,7,10,11,13,14,15);
+              if($envir{problemSeed}==1){$a=5;$b=10;};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[sqrt($b),sqrt($b)+4]});
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $f = Formula("($a x^2)/sqrt(x^2 - $b)");
+              $frac = Fraction($a,2);
+              ($num,$den) = $frac-&gt;value;
+              $frac2 = Fraction($a*$b,2);
+              $F = FormulaUpToConstant("($num x)/$den sqrt(x^2 - $b) + $frac2 ln(abs(x/sqrt($b) + sqrt(x^2/$b - 1)))")-&gt;reduce;
+              $F-&gt;{test_at} = [-sqrt($b)-1,-sqrt($b)-2,-sqrt($b)-3];
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 23 -->
+        <exercise label="ex-trig-sub-indefinite-19">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-19">
+            <pg-code>
+              $h = non_zero_random(-9,9,1);
+              $m = random(1,9,1);
+              if($envir{problemSeed}==1){$h=-2;$m=3;};
+              Context("Fraction");
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $f = Formula("1/(x^2 - (2*$h) x + (($h)^2+$m^2))^2")-&gt;reduce;
+              $frac = Fraction(1,2*$m**2);
+              $frac2 = Fraction(1,2*$m**3);
+              $F = FormulaUpToConstant("$frac (x-$h)/(x^2 - (2*$h) x + (($h)^2+$m^2)) + $frac2 atan((x-$h)/$m) ")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 24 -->
+        <exercise label="ex-trig-sub-indefinite-20">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-20">
+            <pg-code>
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[-1,1]});
+              $F = FormulaUpToConstant("x/sqrt(1-x^2)-asin(x)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int x^2(1-x^2)^{-3/2}\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 25 -->
+        <exercise label="ex-trig-sub-indefinite-21">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-21">
+            <pg-code>
+              $a = random(2,9,1);
+              $b = list_random(2,3,5,6,7,10,11,13,14,15);
+              if($envir{problemSeed}==1){$a=7;$b=5;};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[-sqrt($b),sqrt($b)]});
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $f = Formula("sqrt($b - x^2)/($a x^2)");
+              $F = FormulaUpToConstant("-sqrt($b - x^2)/($a x) - 1/$a asin(x/sqrt($b))")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 26 -->
+        <exercise label="ex-trig-sub-indefinite-22">
+          <webwork xml:id="webwork-ex-trig-sub-indefinite-22">
+            <pg-code>
+              $b = list_random(2,3,5,6,7,10,11,13,14,15);
+              if($envir{problemSeed}==1){$b=3;};
+              Context("Fraction");
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $f = Formula("x^2/sqrt(x^2 + $b)");
+              $frac = Fraction($b,2);
+              $F = FormulaUpToConstant("x/2 sqrt(x^2 + $b) - $frac ln(x/sqrt(3) + sqrt(x^2/$b + 1))")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$F" width="50"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+      
+      <exercisegroup cols="2" xml:id="exset-trig-sub-definite">
+        <introduction>
+          <p>
+            Evaluate the definite integral by making the proper trigonometric substitution <em>and</em>
+            changing the bounds of integration.
+            (Note: the corresponding indefinite integrals appeared previously in the <xref ref="sec_trig_sub"/> exercises.)
+          </p>
+        </introduction>
+        <!-- Exercise 27 -->
+        <exercise label="ex-trig-sub-definite-1">
+          <webwork xml:id="webwork-ex-trig-sub-definite-1">
+            <pg-code>
+              $answer = Compute("pi/2");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{-1}^1 \sqrt{1-x^2}\, dx</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 28 -->
+        <exercise label="ex-trig-sub-definite-2">
+          <webwork xml:id="webwork-ex-trig-sub-definite-2">
+            <pg-code>
+              $b = random(5,10,1);
+              if($envir{problemSeed}==1){$b=8;};
+              Context("Fraction");
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $arg = $b**2 - 16;
+              ($sq,$nsq) = (1,$arg);
+              while ($nsq % 4 == 0) {
+                $sq *= 2;
+                $nsq /= 4;
+              }
+              while ($nsq % 9 == 0) {
+                $sq *= 3;
+                $nsq /= 9;
+              }
+              $frac = Fraction($b*$sq,2);
+              $frac2 = Fraction($b,4);
+              $frac3 = Fraction($sq,4);
+              $answer = Formula("$frac sqrt($nsq) - 8 ln(abs($frac2 + $frac3 sqrt($nsq)))");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{4}^{<var name="$b"/>} \sqrt{x^2-16}\, dx</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 29 -->
+        <exercise label="ex-trig-sub-definite-3">
+          <webwork xml:id="webwork-ex-trig-sub-definite-3">
+            <pg-code>
+              $b = random(1,10,1);
+              if($envir{problemSeed}==1){$b=2;};
+              Context("Fraction");
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $arg = $b**2 + 4;
+              ($sq,$nsq) = (1,$arg);
+              while ($nsq % 4 == 0) {
+                $sq *= 2;
+                $nsq /= 4;
+              }
+              while ($nsq % 9 == 0) {
+                $sq *= 3;
+                $nsq /= 9;
+              }
+              $frac = Fraction($b*$sq,2);
+              $frac2 = Fraction($b,2);
+              $frac3 = Fraction($sq,2);
+              $answer = Formula("$frac sqrt($nsq) + 2 ln($frac2 + $frac3 sqrt($nsq))");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{0}^{<var name="$b"/>} \sqrt{x^2+4}\, dx</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 30 -->
+        <exercise label="ex-trig-sub-definite-4">
+          <webwork xml:id="webwork-ex-trig-sub-definite-4">
+            <pg-code>
+              $b = random(1,10,1);
+              if($envir{problemSeed}==1){$b=1;};
+              Context("Fraction");
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $frac = Fraction($b,$b**2 + 1);
+              $answer = Formula("atan($b) + $frac");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{-<var name="$b"/>}^{<var name="$b"/>} \frac1{(x^2+1)^2}\, dx</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 31 -->
+        <exercise label="ex-trig-sub-definite-5">
+          <webwork xml:id="webwork-ex-trig-sub-definite-5">
+            <pg-code>
+              $b = random(1,2,1);
+              if($envir{problemSeed}==1){$b=1;};
+              Context("Fraction");
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $arg = 9 - $b**2;
+              ($sq,$nsq) = (1,$arg);
+              while ($nsq % 4 == 0) {
+                $sq *= 2;
+                $nsq /= 4;
+              }
+              while ($nsq % 9 == 0) {
+                $sq *= 3;
+                $nsq /= 9;
+              }
+              $frac = Fraction($b,3);
+              $frac2 = Fraction($b*$sq,1);
+              $answer = Formula("9 asin($frac) + $frac2 sqrt($nsq)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{-<var name="$b"/>}^{<var name="$b"/>} \sqrt{9-x^2}\, dx</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 32 -->
+        <exercise label="ex-trig-sub-definite-6">
+          <webwork xml:id="webwork-ex-trig-sub-definite-6">
+            <pg-code>
+              $answer = Formula("pi/8");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{-1}^1 x^2\sqrt{1-x^2}\, dx</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+    </subexercises>
+  </exercises>
+</section>

@@ -1,0 +1,3188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec_riemann" label="sec_riemann">
+  <title>Riemann Sums</title>
+  <introduction>
+    <figure xml:id="vid_int_rie_intro" component="video" vshift="0">
+      <caption>Video introduction to <xref ref="sec_riemann"/></caption>
+      <video youtube="-4hZaGBw6EI" label="vid_int_rie_intro"/>
+    </figure>
+
+    <p>
+      In the previous section we defined the definite integral of a function on <m>[a,b]</m> to be the signed area between the curve and the <m>x</m>-axis.
+      Some areas were simple to compute;
+      we ended the section with a region whose area was not simple to compute.
+      In this section we develop a technique to find such areas.
+          <idx><h>Riemann Sum</h></idx>
+    </p>
+
+    <p>
+      A fundamental calculus technique is to first answer a given problem with an approximation,
+      then refine that approximation to make it better,
+      then use limits in the refining process to find the exact answer.
+      That is what we will do here.
+    </p>
+  </introduction>
+
+  <subsection xml:id="subsec-rectangle-approximation">
+    <title>Approximating area with rectangles</title>
+    
+    <p>
+      Consider the region given in <xref ref="fig_rie1a"/>,
+      which is the area under <m>y=4x-x^2</m> on <m>[0,4]</m>.
+      What is the signed area of this region <mdash/> <ie/>, what is <m>\int_0^4(4x-x^2)\, dx</m>?
+    </p>
+
+    <figure xml:id="fig_rie1a" vshift="0">
+      <caption>A graph of <m>f(x) = 4x-x^2</m>. What is the area of the shaded region?</caption>
+      <!-- START figures/fig_rie1a.tex -->
+      <image width="47%">
+        <shortdescription>A shaded downward opening parabola in the first quadrant.</shortdescription>
+        <description>
+          <p>
+            A parabola with the equation <m>y = 4x -x^2</m>.
+            It is a downward opening parabola lying in the first quadrant.
+            It has a maximum of <m>(2,4)</m>, and crosses the <m>x</m>-axis at <m>x=0</m> and <m>x = 4</m>.
+            The area between the curve and the <m>x</m>-axis is shaded on the interval <m>[0,4]</m>.
+          </p>
+        </description>
+        <latex-image label="img_rie1a">
+
+        \begin{tikzpicture}
+
+        \begin{axis}[
+        axis on top,
+        xtick={1,2,3,4},
+        ytick={1,2,3,4},
+        ymin=-1,ymax=5,
+        xmin=-.5,xmax=4.5
+        ]
+
+        \addplot [firstcurvestyle,areastyle,domain=0:4] {4*x-x^2};
+        \addplot [firstcurvestyle,domain=-0.2:4.2,samples=45] {4*x-x^2};
+
+        \end{axis}
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+      <!-- figures/fig_rie1a.tex END -->
+    </figure>
+
+    <p>
+      We start by approximating.
+      We can surround the region with a rectangle with height and width of 4 and find the area is approximately 16 square units.
+      This is obviously an <em>over-approximation</em>;
+      we are including area in the rectangle that is not under the parabola.
+    </p>
+
+    <figure xml:id="fig_rie1a2" vshift="-4.5">
+      <caption>Approximating area under a curve with one rectangle</caption>
+      <image width="47%">
+        <shortdescription>The previously described parabola with a large rectangle containing the shaded area.</shortdescription>
+        <description>
+          <p>
+            The curve shown in <xref ref="fig_rie1a"/>, with a rectangle entirely containing the shaded area.
+            The rectangle has a height and width of 4.
+            On the left and right sides of the parabola, area is included in the rectangle which is not shaded.
+            The rectangle clearly contains a greater area than is under the parabola.
+          </p>
+        </description>
+        <latex-image label="img_rie1a2">
+
+        \begin{tikzpicture}
+
+        \begin{axis}[
+        axis on top,
+        xtick={1,2,3,4},
+        ytick={1,2,3,4},
+        ymin=-1.2,ymax=5,
+        xmin=-.5,xmax=4.5
+        ]
+
+        \addplot [firstcurvestyle,areastyle,domain=0:4] {4*x-x^2} \closedcycle;
+        \addplot [firstcurvestyle,domain=-.2:4.2,samples=40] {4*x-x^2} node [pos=1, left] { $y=4x-x^2$};
+
+        \draw [thick,secondcolor] (axis cs:0,0) rectangle (axis cs:4,4);
+
+        \end{axis}
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+
+    </figure>
+
+    <p>
+      We have an approximation of the area, using one rectangle.
+      How can we refine our approximation to make it better?
+      The key to this section is this answer:
+      <em>use more rectangles.</em>
+    </p>
+
+    <p>
+      Let's use four rectangles with an equal width of 1.
+      This <em>partitions</em> the interval <m>[0,4]</m> into 4 <em>subintervals</em>,
+      <m>[0,1]</m>, <m>[1,2]</m>, <m>[2,3]</m> and <m>[3,4]</m>.
+      On each subinterval we will draw a rectangle.
+    </p>
+
+    <p>
+      There are three common ways to determine the height of these rectangles:
+      the <em>Left Hand Rule</em>,
+      the <em>Right Hand Rule</em>,
+      and the <em>Midpoint Rule</em>.
+      The <em>Left Hand Rule</em> says to evaluate the function at the left-hand endpoint of the subinterval and make the rectangle that height.
+      In <xref ref="fig_rie1b"/>,
+      the rectangle drawn on the interval <m>[2,3]</m> has height determined by the Left Hand Rule;
+      it has a height of <m>f(2)</m>. (The rectangle is labeled <q>LHR.</q>)
+          <idx><h>Left Hand Rule</h></idx>
+          <idx><h>Right Hand Rule</h></idx>
+          <idx><h>Midpoint Rule</h></idx>
+    </p>
+
+    <figure xml:id="fig_rie1b" vshift="-6.5">
+      <caption>Approximating <m>\int_0^4(4x-x^2)\, dx</m> using rectangles. The heights of the rectangles are determined using different rules.</caption>
+      <!-- START figures/fig_rie1b.tex -->
+      <image width="47%">
+        <shortdescription>The area of a downward opening parabola being approximated by 4 rectangles.</shortdescription>
+        <description>
+          <p>
+            The parabola shown in <xref ref="fig_rie1a"/>. The shaded are is being approximated by 4 rectangles of width 1.
+            The left most rectangle has a height of 3 and is labeled "RHR," for "Right Hand Rule."
+            The height of the rectangle is equal to the height of the parabola om the rightmost side, where <m>x = 1</m>.
+            The second rectangle has a height of 3.75, and is labeled "MPR," for "Midpoint Rule."
+            The height of the rectangle is equal to the height of the parabola at the center of the rectangle, where <m>x=1.5</m>.
+            The third rectangle had a height of 4, and is labeled "LHR," for "Left Hand Rule."
+            The height of the rectangle is given by the height of the parabola on the leftmost side, where <m>x = 2</m>.
+            The rightmost rectangle has a height of 2.6, and is labeled "other".
+            The height is given by the height of the parabola at a point slightly to the right of the center of the rectangle.
+          </p>
+        </description>
+        <latex-image label="img_rie1b">
+
+        \begin{tikzpicture}
+
+        \begin{axis}[
+        axis on top,
+        xtick={1,2,3,4},
+        ytick={1,2,3,4},
+        ymin=-1,ymax=5,
+        xmin=-.5,xmax=4.5
+        ]
+
+        \addplot [firstcurvestyle,areastyle,domain=0:4] {4*x-x^2};
+        \addplot [firstcurvestyle,domain=0:4,samples=40] {4*x-x^2};
+
+        \draw [thick,secondcolor] (axis cs:0,0) rectangle (axis cs:1,3);
+        \draw [thick,secondcolor] (axis cs:1,0) rectangle (axis cs:2,3.75);
+        \draw [thick,secondcolor] (axis cs:2,0) rectangle (axis cs:3,4);
+        \draw [thick,secondcolor] (axis cs:3,0) rectangle (axis cs:4,1.666);
+
+        \draw [fill=black] (axis cs:1,3) circle (1pt);
+        \draw [fill=black] (axis cs:1.5,3.75) circle (1pt);
+        \draw [fill=black] (axis cs:2,4) circle (1pt);
+        \draw [fill=black] (axis cs:3.53,1.666) circle (1pt);
+
+        \draw (axis cs:.5,.3) node { RHR};
+        \draw (axis cs:1.5,.3) node { MPR};
+        \draw (axis cs:2.5,.3) node { LHR};
+        \draw (axis cs:3.5,.3) node { other};
+        \end{axis}
+
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+      <!-- figures/fig_rie1b.tex END -->
+    </figure>
+
+    <p>
+      The <em>Right Hand Rule</em> says the opposite:
+      on each subinterval,
+      evaluate the function at the right endpoint and make the rectangle that height.
+      In the figure,
+      the rectangle drawn on <m>[0,1]</m> is drawn using <m>f(1)</m> as its height;
+      this rectangle is labeled <q>RHR.</q>.
+    </p>
+
+    <p>
+      The <em>Midpoint Rule</em> says that on each subinterval,
+      evaluate the function at the midpoint and make the rectangle that height.
+      The rectangle drawn on <m>[1,2]</m> was made using the Midpoint Rule,
+      with a height of <m>f(1.5)</m>.
+      That rectangle is labeled <q>MPR.</q>
+    </p>
+
+    <p>
+      These are the three most common rules for determining the heights of approximating rectangles,
+      but one is not forced to use one of these three methods.
+      The rectangle on <m>[3,4]</m> has a height of approximately <m>f(3.53)</m>,
+      very close to the Midpoint Rule.
+      It was chosen so that the area of the rectangle is <em>exactly</em>
+      the area of the region under <m>f</m> on <m>[3,4]</m>.
+      (Later you'll be able to figure how to do this, too.)
+    </p>
+
+    <p>
+      The following example will approximate the value of <m>\int_0^4 (4x-x^2)\, dx</m> using these rules.
+    </p>
+
+    <example xml:id="ex_rie2">
+      <title>Using the Left Hand, Right Hand and Midpoint Rules</title>
+      <statement>
+        <p>
+          Approximate the value of <m>\int_0^4 (4x-x^2)\, dx</m> using the Left Hand Rule,
+          the Right Hand Rule,
+          and the Midpoint Rule, using 4 equally spaced subintervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We break the interval <m>[0,4]</m> into four subintervals as before.
+          In <xref ref="fig_rie2a"/>
+          we see 4 rectangles drawn on
+          <m>f(x) = 4x-x^2</m> using the Left Hand Rule.
+          (The areas of the rectangles are given in each figure.)
+        </p>
+
+        <p>
+          Note how in the first subinterval,
+          <m>[0,1]</m>, the rectangle has height <m>f(0)=0</m>.
+          We add up the areas of each rectangle (height<times/> width) for our Left Hand Rule approximation:
+          <md>
+            <mrow>\amp f(0)\cdot 1 + f(1)\cdot 1+ f(2)\cdot 1+f(3)\cdot 1</mrow>
+            <mrow>=\amp 0+3+4+3 = 10</mrow>
+          </md>.
+        </p>
+
+        <p>
+          <xref ref="fig_rie2b"/>
+          shows 4 rectangles drawn under <m>f</m> using the Right Hand Rule;
+          note how the <m>[3,4]</m> subinterval has a rectangle of height 0.
+        </p>
+
+        <p>
+          In this example,
+          these rectangles seem to be the mirror image of those found in <xref ref="fig_rie2a"/>.
+          This is because of the symmetry of our shaded region.
+          Our approximation gives the same answer as before,
+          though calculated a different way:
+          <md>
+            <mrow>\amp f(1)\cdot 1 + f(2)\cdot 1+ f(3)\cdot 1+f(4)\cdot 1</mrow>
+            <mrow>\amp =3+4+3+0= 10</mrow>
+          </md>.
+        </p>
+
+        <p>
+          <xref ref="fig_rie2c"/>
+          shows 4 rectangles drawn under <m>f</m> using the Midpoint Rule.
+        </p>
+
+        <p>
+          This gives an approximation of <m>\int_0^4(4x-x^2)\, dx</m> as:
+          <md>
+            <mrow>f(0.5)\cdot 1 + f(1.5)\cdot 1+ f(2.5)\cdot 1 \amp +f(3.5)\cdot 1</mrow>
+            <mrow>\amp =1.75+3.75+3.75+1.75 = 11</mrow>
+          </md>.
+        </p>
+
+        <p>
+          Our three methods provide two approximations of <m>\int_0^4(4x-x^2)\, dx</m>: 10 and 11.
+        </p>
+        <figure xml:id="fig_rie2">
+          <caption>Approximating <m>\int_0^4(4x-x^2)\, dx</m> in <xref ref="ex_rie2"/></caption>
+          <sidebyside widths="31% 31% 31%" margins="0%">
+          <figure xml:id="fig_rie2a">
+          <caption>using the Left Hand Rule</caption>
+          <!-- START figures/fig_rie2a.tex -->
+          <image width="47%">
+            <shortdescription>A parabola approximated using the Left Hand Rule.</shortdescription>
+            <description>
+              <p>
+                The parabola in <xref ref="fig_rie1a"/> approximated using 4 strips of width 1.
+                The height of each strip is fiven by the left hand rule.
+                The first strip has a height of 0, and an area of 0.
+                The second strip has a height of 3, and an area of 3.
+                The third strip has a height of 4, and an area of 4.
+                The fourth strip has a height of 3, and an area of 3.
+                Each rectangle touches the curve in the top left corner.
+              </p>
+            </description>
+            <latex-image label="img_rie2a">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={1,2,3,4},
+            ytick={1,2,3,4},
+            ymin=-1,ymax=5,
+            xmin=-.5,xmax=4.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=0:4] {4*x-x^2};
+            \addplot [firstcurvestyle,domain=0:4,samples=40] {4*x-x^2};
+
+            \draw [thick,secondcolor] (axis cs:0,0) rectangle (axis cs:1,0);
+            \draw [thick,secondcolor] (axis cs:1,0) rectangle (axis cs:2,3);
+            \draw [thick,secondcolor] (axis cs:2,0) rectangle (axis cs:3,4);
+            \draw [thick,secondcolor] (axis cs:3,0) rectangle (axis cs:4,3);
+
+            \draw [fill=black] (axis cs:0,0) circle (1pt);
+            \draw [fill=black] (axis cs:1,3) circle (1pt);
+            \draw [fill=black] (axis cs:2,4) circle (1pt);
+            \draw [fill=black] (axis cs:3,3) circle (1pt);
+
+            \draw (axis cs:.5,.3) node {$0$};
+            \draw (axis cs:1.5,1.5) node {$3$};
+            \draw (axis cs:2.5,2) node {$4$};
+            \draw (axis cs:3.5,1.5) node {$3$};
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_rie2a.tex END -->
+        </figure>
+
+        <figure xml:id="fig_rie2b">
+          <caption>using the Right Hand Rule</caption>
+          <!-- START figures/fig_rie2b.tex -->
+          <image width="47%">
+            <shortdescription>A parabola approximated using the Right Hand Rule.</shortdescription>
+            <description>
+              <p>
+                The parabola in <xref ref="fig_rie1a"/> approximated using 4 strips of width 1.
+                The height of each strip is fiven by the right hand rule.
+                The first strip has height of 3, and an area of 3.
+                The second strip has height of 4, and an area of 4.
+                The third strip has height of 3, and an area of 3.
+                The fourth strip has height of 0, and an area of 0.
+                Each rectangle touches the curve in the top right corner.
+              </p>
+            </description>
+            <latex-image label="img_rie2b">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={1,2,3,4},
+            ytick={1,2,3,4},
+            ymin=-1,ymax=5,
+            xmin=-.5,xmax=4.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=0:4] {4*x-x^2};
+            \addplot [firstcurvestyle,domain=0:4,samples=40] {4*x-x^2};
+
+            \draw [thick,secondcolor] (axis cs:0,0) rectangle (axis cs:1,3);
+            \draw [thick,secondcolor] (axis cs:1,0) rectangle (axis cs:2,4);
+            \draw [thick,secondcolor] (axis cs:2,0) rectangle (axis cs:3,3);
+            \draw [thick,secondcolor] (axis cs:3,0) rectangle (axis cs:4,0);
+
+            \draw [fill=black] (axis cs:4,0) circle (1pt);
+            \draw [fill=black] (axis cs:1,3) circle (1pt);
+            \draw [fill=black] (axis cs:2,4) circle (1pt);
+            \draw [fill=black] (axis cs:3,3) circle (1pt);
+
+            \draw (axis cs:.5,1.5) node {$3$};
+            \draw (axis cs:1.5,2) node {$4$};
+            \draw (axis cs:2.5,1.5) node {$3$};
+            \draw (axis cs:3.5,.3) node {$0$};
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_rie2b.tex END -->
+        </figure>
+
+        <figure xml:id="fig_rie2c">
+          <caption>using the Midpoint Rule</caption>
+          <!-- START figures/fig_rie2c.tex -->
+          <image width="47%">
+            <shortdescription>A parabola approximated using the Midpoint Rule</shortdescription>
+            <description>
+              <p>
+                The parabola in <xref ref="fig_rie1a"/> approximated using 4 strips of width 1.
+                The height of each strip is fiven by the Midpoint Rule.
+                The first strip has a height and area of 1.75.
+                The second strip has a height and area of 3.75.
+                The third strip has a height and area of 3.75.
+                The fourth strip has a height and area of 1.75.
+                Each rectangle touches the curve in the top center of the rectangle.
+              </p>
+            </description>
+            <latex-image label="img_rie2c">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={1,2,3,4},
+            ytick={1,2,3,4},
+            ymin=-1,ymax=5,
+            xmin=-.5,xmax=4.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=0:4] {4*x-x^2};
+            \addplot [firstcurvestyle,domain=0:4,samples=40] {4*x-x^2};
+
+            \draw [thick,secondcolor] (axis cs:0,0) rectangle (axis cs:1,1.75);
+            \draw [thick,secondcolor] (axis cs:1,0) rectangle (axis cs:2,3.75);
+            \draw [thick,secondcolor] (axis cs:2,0) rectangle (axis cs:3,3.75);
+            \draw [thick,secondcolor] (axis cs:3,0) rectangle (axis cs:4,1.75);
+
+            \draw [fill=black] (axis cs:.5,1.75) circle (1pt);
+            \draw [fill=black] (axis cs:1.5,3.75) circle (1pt);
+            \draw [fill=black] (axis cs:2.5,3.75) circle (1pt);
+            \draw [fill=black] (axis cs:3.5,1.75) circle (1pt);
+
+            \draw (axis cs:.5,.875) node {\small $1.75$};
+            \draw (axis cs:1.5,1.875) node {\small $3.75$};
+            \draw (axis cs:2.5,1.875) node {\small $3.75$};
+            \draw (axis cs:3.5,.875) node {\small $1.75$};
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_rie2c.tex END -->
+        </figure>
+
+          </sidebyside>
+        </figure>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="qn8Q1i8s5Ng" label="vid_int_rie_approx" component="video"/>
+      </solution>
+    </example>
+
+    <exercise label="APEX-PROTEUS-sec-5_3-riemann-1-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>      
+      
+      <statement>
+        <p>
+          I want to resod my lawn this summer. Each roll of sod is 1 foot wide.
+          The graph below is a map of my lawn.
+          I want to ensure that each strip of sod is long enough to extend past the edge of the lawn,
+          so that no part of the lawn is left uncovered.
+        </p>
+
+        <p>
+          Thinking of the area of the lawn in terms a Riemann sum,
+          for each interval below, decide whether we should use the left endpoint,
+          right endpoint, or midpoint to determine the length of each strip of sod.
+        </p>
+
+        <image width="47%"> 
+          <shortdescription>Graph of a polynomial function in the first quadrant creating an area under a curve.</shortdescription>
+          <latex-image label="PROTEUS-lawn-area">
+            \begin{tikzpicture}
+              \pgfplotsset{grid style={dashed,darkgray}}
+              \begin{axis}[
+                axis on top,
+                xtick={1,3,5,7,9,11},
+                ytick={4,8,12,16},
+                ymin=-0.5,ymax=16,
+                xmin=-.5,xmax=12.5,
+                grid=both
+                ]
+
+                \addplot [firstcurvestyle,areastyle,domain=1:11] {-.015*(x-4)*(x-2)*(x-6)*(x-12)+10} \closedcycle;
+                \addplot [firstcurvestyle,domain=1:11,samples=100] {-.015*(x-4)*(x-2)*(x-6)*(x-12)+10};
+				        \draw [firstcolor,thick] (axis cs:1,0) -- (axis cs:1,7.5) (axis cs:11,0) -- (axis cs:11,14.725);
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+
+      </statement>
+
+      <cardsort>
+
+        <match>
+          <premise><m>(1,2)</m></premise>
+          <premise><m>(5,6)</m></premise>
+          <premise><m>(6,7)</m></premise>
+          <premise><m>(7,8)</m></premise>
+          <premise><m>(8,9)</m></premise>
+          <premise><m>(9,10)</m></premise>
+          <response>Right Endpoint</response>
+        </match>
+        
+        <match>
+          <premise><m>(2,3)</m></premise>
+          <response>Midpoint</response>
+        </match>
+        
+        <match>
+          <premise><m>(3,4)</m></premise>
+          <premise><m>(4,5)</m></premise>
+          <premise><m>(10,11)</m></premise>
+          <response>Left Endpoint</response>
+        </match>
+        
+      </cardsort>
+    </exercise>
+  </subsection>
+
+  <subsection xml:id="fig_rie_notation">
+    <title>Summation Notation</title>
+    <p>
+      It is hard to tell at this moment which is a better approximation: 10 or 11?
+      We can continue to refine our approximation by using more rectangles.
+      The notation can become unwieldy,
+      though, as we add up longer and longer lists of numbers.
+      We introduce <em>summation notation</em>
+      to ameliorate this problem.
+          <idx><h>summation</h><h>notation</h></idx>
+    </p>
+
+    <figure xml:id="vid_int_rie_sum_not" component="video" vshift="0">
+      <caption>Explaining summation notation</caption>
+      <video youtube="d0gSFClfRdY" label="vid_int_rie_sum_not"/>
+    </figure>
+
+
+    <p>
+      Suppose we wish to add up a list of numbers <m>a_1</m>,
+      <m>a_2</m>,
+      <m>a_3</m>, <ellipsis/>, <m>a_9</m>.
+      Instead of writing
+      <md>
+        a_1+a_2+a_3+a_4+a_5+a_6+a_7+a_8+a_9
+      </md>,
+      we use summation notation and write <m>\sum_{i=1}^9 a_i</m>.
+<!--ToDo: original has a diagram for this, named fig_rie_notation. Why not include here?-->
+      The upper case sigma,
+      <m>Sigma</m> represents the term <q>sum</q>. The index (counter) of summation in this example is <m>i</m>; any symbol can be used.
+      By convention, the index takes on only the integer values between
+      (and including)
+      the lower and upper bounds.
+      To the right of <m>\Sigma</m>,
+      the expression <m>a_i</m> is called the summand.
+      It tells us what we are summing.
+      This is summarized in <xref ref="eq_sigmanotation" text="global">Equation</xref>.
+      <md number="yes" xml:id="eq_sigmanotation">
+        \sum_{\underbrace{i=1}_{i \text{-index of summation}}}^{\overbrace{9}^\text{upper bound}} \underbrace{a_i}_\text{summand}
+      </md>
+    </p>
+
+    <p>
+      Let's practice using this notation.
+    </p>
+
+    <example xml:id="ex_rie3">
+      <title>Using summation notation</title>
+      <statement>
+        <p>
+          Let the numbers <m>\{a_i\}</m> be defined as
+          <m>a_i = 2i-1</m> for integers <m>i</m>, where <m>i\geq 1</m>.
+          So <m>a_1 = 1</m>, <m>a_2 = 3</m>,
+          <m>a_3 = 5</m>, etc. (The output is the positive odd integers).
+          Evaluate the following summations:
+
+          <ol>
+            <li><m>\sum_{i=1}^6 a_i </m></li>
+
+            <li><m>\sum_{i=3}^7 (3a_i-4) </m></li>
+
+            <li><m>\sum_{i=1}^4 (a_i)^2 </m></li>
+          </ol>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          <ol>
+            <li>
+              <p>
+                <md>
+                  <mrow>\sum_{i=1}^6 a_i \amp = a_1+a_2+a_3+a_4+a_5+a_6</mrow>
+                  <mrow>\amp =  1+3+5+7+9+11</mrow>
+                  <mrow>\amp =  36</mrow>
+                </md>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Note the starting value is different than 1:
+                <md>
+                  <mrow>\sum_{i=3}^7 (3a_i-4) \amp = (3a_3-4)+(3a_4-4)+(3a_5-4)+(3a_6-4)+(3a_7-4)</mrow>
+                  <mrow>\amp = 11+17+23+29+35</mrow>
+                  <mrow>\amp = 115</mrow>
+                </md>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                <md>
+                  <mrow>\sum_{i=1}^4 (a_i)^2 \amp =  (a_1)^2+(a_2)^2+(a_3)^2+(a_4)^2</mrow>
+                  <mrow>\amp =  1^2+3^2+5^2+7^2</mrow>
+                  <mrow>\amp =  84</mrow>
+                </md>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="GKaRI_a96-Q" label="vid_int_rie_sum_ex" component="video"/>
+      </solution>
+    </example>
+
+    <p>
+      It might seem odd to stress a new,
+      concise way of writing summations only to write each term out as we add them up.
+      It is.
+      The following theorem gives some of the properties of summations that allow us to work with them without writing individual terms.
+      Examples will follow.
+    </p>
+
+    <theorem xml:id="thm_summation">
+      <title>Properties of Summations</title>
+      <statement>
+          <p>
+            <idx><h>summation</h><h>properties</h></idx>
+
+            <ol cols="2">
+              <li>
+                <p>
+                  <m>\ds \sum_{i=1}^n c = c\cdot n</m>,
+                  where <m>c</m> is a constant.
+                </p>
+              </li>
+
+              <li><m>\sum_{i=m}^n (a_i\pm b_i) = \sum_{i=m}^n a_i \pm \sum_{i=m}^n b_i</m></li>
+
+              <li><m>\sum_{i=m}^n c\cdot a_i = c\cdot\sum_{i=m}^n a_i</m></li>
+
+              <li><m>\sum_{i=m}^j a_i + \sum_{i=j+1}^n a_i = \sum_{i=m}^n a_i</m></li>
+
+              <li><m>\sum_{i=1}^n i = \frac{n(n+1)}2</m></li>
+
+              <li><m>\sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}6</m></li>
+
+              <li><m>\sum_{i=1}^n i^3 = \left(\frac{n(n+1)}2\right)^2</m></li>
+            </ol>
+          </p>
+      </statement>
+    </theorem>
+
+    <figure xml:id="vid_int_rie_sum_prop" component="video" vshift="0">
+      <caption>Video presentation of <xref ref="thm_summation"/></caption>
+      <video youtube="w8jWl2KjOvQ" label="vid_int_rie_sum_prop"/>
+    </figure>
+
+
+    <example xml:id="ex_rie4">
+      <title>Evaluating summations using <xref ref="thm_summation"/></title>
+      <statement>
+        <p>
+          Revisit <xref ref="ex_rie3"/> and,
+          using <xref ref="thm_summation"/>, evaluate
+          <md>
+            \sum_{i=1}^6 a_i = \sum_{i=1}^6 (2i-1)
+          </md>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          <md>
+            <mrow>\sum_{i=1}^6 (2i-1) \amp  = \sum_{i=1}^6 2i - \sum_{i=1}^6 (1)</mrow>
+            <mrow>\amp =  \left(2\sum_{i=1}^6 i \right)- 6</mrow>
+            <mrow>\amp = 2\frac{6(6+1)}{2} - 6</mrow>
+            <mrow>\amp = 42-6 = 36</mrow>
+          </md>
+        </p>
+        <p>
+          We obtained the same answer without writing out all six terms.
+          When dealing with small sizes of <m>n</m>,
+          it may be faster to write the terms out by hand.
+          However, <xref ref="thm_summation"/>
+          is incredibly important when dealing with large sums as we'll soon see.
+        </p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Riemann Sums</title>
+    <p>
+      Consider again <m>\int_0^4(4x-x^2)\, dx</m>.
+      We will approximate this definite integral using 16 equally spaced subintervals and the Right Hand Rule in <xref ref="ex_rie7"/>.
+      Before doing so, it will pay to do some careful preparation.
+          <idx><h>Riemann Sum</h></idx>
+    </p>
+
+    <figure xml:id="fig_rie5" vshift="0">
+      <caption>Dividing <m>[0,4]</m> into 16 equally spaced subintervals</caption>
+      <image width="47%">
+        <shortdescription>A number line between 0 and 4 divided into 16 sections</shortdescription>
+        <description>
+          <p>
+            A number line ranging between 0 and 4.
+            The space between each number is divided into 4 equal sections, giving a total of 16 equal sections.
+            <m>x_0</m> is written under 0.
+            <m>x_4</m> is written under 1.
+            <m>x_8</m> is written under 2.
+            <m>x_12</m> is written under 3.
+            <m>x_16</m> is written under 4.
+          </p>
+        </description>
+        <latex-image label="img_rie5">
+
+        \begin{tikzpicture}
+
+        \draw [&lt;-&gt;] (-.5,0) -- (4.5,0);
+
+        \foreach \x in {0,.25,...,4} {
+            \draw (\x,-.1) -- (\x,.1);
+          }
+        \draw (0,-.25) node {\scriptsize $0$};
+        \draw (1,-.25) node {\scriptsize $1$};
+        \draw (2,-.25) node {\scriptsize $2$};
+        \draw (3,-.25) node {\scriptsize $3$};
+        \draw (4,-.25) node {\scriptsize $4$};
+
+        \draw (0,-.55) node {\scriptsize $x_0$};
+        \draw (1,-.55) node {\scriptsize $x_4$};
+        \draw (2,-.55) node {\scriptsize $x_8$};
+        \draw (3,-.55) node {\scriptsize $x_{12}$};
+        \draw (4,-.55) node {\scriptsize $x_{16}$};
+
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>
+      <xref ref="fig_rie5"/>
+      shows a number line of <m>[0,4]</m> divided,
+      or <em>partitioned</em>, into 16 equally spaced subintervals.
+      We denote <m>0</m> as <m>x_0</m>;
+      we have marked the values of <m>x_4</m>, <m>x_8</m>,
+      <m>x_{12}</m> and <m>x_{16}</m>.
+      We could mark them all, but the figure would get crowded.
+      While it is easy to figure that <m>x_{9} = 2.25</m>, in general,
+      we want a method of determining the value of <m>x_i</m> without consulting the figure.
+      Consider:
+    </p>
+
+    <image width="35%">
+      <shortdescription>A labeled equation for caclulating values at subintervals</shortdescription>
+      <description>
+        <p>
+          The equation <m>x_i = x_0 + i\Delta x</m>, with labels for each component.
+          <m>x_0</m> is labeled as the starting value.
+          <m>i</m> is labeled as the numer of subintervals between <m>x_0</m> and <m>x_i</m>.
+          <m>\Delta x</m> is labeled as the subinterval size.
+        </p>
+      </description>
+      <latex-image label="img_rie5a">
+
+      \begin{tikzpicture}
+      \draw (1.5,1) node {$\displaystyle x_i = x_0 + i\Delta x$};
+
+      \draw [firstcolor] (1,0) node [text width=32pt,align=center] (a) { \centering starting\\[-5pt] value};
+      \draw [firstcolor,-&gt;] (a) -- (.95,.75);
+
+      \draw [firstcolor] (2,2.5) node [text width=120pt,align=center] (b) { \centering number of subintervals\\[-5pt] between $x_0$ and $x_i$};
+      \draw [firstcolor,-&gt;] (b) -- (1.95,1.25);
+
+      \draw [firstcolor] (3,0) node [text width=60pt,align=center] (c) { \centering subinterval\\[-5pt] size};
+      \draw [firstcolor,-&gt;] (c) -- (2.75,.75);
+
+      \end{tikzpicture}
+
+      </latex-image>
+    </image>
+
+    <p>
+      So <m>x_{9} = x_0 + 9(4/16) = 2.25</m>.
+    </p>
+
+    <p>
+      If we had partitioned <m>[0,4]</m> into 100 equally spaced subintervals,
+      each subinterval would have length <m>\Delta x=4/100 = 0.04</m>.
+      We could compute <m>x_{31}</m> as
+      <md>
+        x_{31} = x_0 + 31(4/100) = 1.24
+      </md>.
+    </p>
+
+    <p>
+      (That was far faster than creating a sketch first.)
+    </p>
+
+    <p>
+      Given any subdivision of <m>[0,4]</m>,
+      the first subinterval is <m>[x_0,x_1]</m>;
+      the second is <m>[x_1,x_2]</m>;
+      the <m>i</m>th subinterval is <m>[x_{i-1},x_{i}]</m>.
+    </p>
+
+    <p>
+      When using the Left Hand Rule,
+      the height of the <m>i</m>th rectangle will be <m>f(x_{i-1})</m>.
+    </p>
+
+    <p>
+      When using the Right Hand Rule,
+      the height of the <m>i</m>th rectangle will be <m>f(x_{i})</m>.
+    </p>
+
+    <p>
+      When using the Midpoint Rule,
+      the height of the <m>i</m>th rectangle will be <m>\ds f\left(\frac{x_{i-1}+x_{i}}2\right)</m>.
+    </p>
+
+    <p>
+      Thus approximating <m>\int_0^4(4x-x^2)\, dx</m> with 16 equally spaced subintervals can be expressed as follows,
+      where <m>\Delta x = 4/16 = 1/4</m>:
+    </p>
+
+    <p>
+      <dl>
+        <li>
+          <title>Left Hand Rule</title>
+          <p>
+            <m>\ds \sum_{i=1}^{16} f(x_{i-1})\Delta x</m>
+          </p>
+        </li>
+
+        <li>
+          <title>Right Hand Rule</title>
+          <p>
+            <m>\ds \sum_{i=1}^{16} f(x_{i})\Delta x</m>
+          </p>
+        </li>
+
+        <li>
+          <title>Midpoint Rule</title>
+          <p>
+            <m>\ds \sum_{i=1}^{16} f\left(\frac{x_{i-1}+x_{i}}2\right)\Delta x</m>
+          </p>
+        </li>
+      </dl>
+          <idx><h>Left Hand Rule</h></idx>
+          <idx><h>Right Hand Rule</h></idx>
+          <idx><h>Midpoint Rule</h></idx>
+    </p>
+
+    <p>
+      We use these formulas in the next two examples.
+      The following example lets us practice using the Right Hand Rule and the summation formulas introduced in <xref ref="thm_summation"/>.
+    </p>
+
+    <example xml:id="ex_rie7">
+      <title>Approximating definite integrals using sums</title>
+      <statement>
+        <p>
+          Approximate <m>\int_0^4(4x-x^2)\, dx</m> using the Right Hand Rule and summation formulas with 16 and 1000 equally spaced intervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Using the formula derived before,
+          using 16 equally spaced intervals and the Right Hand Rule,
+          we can approximate the definite integral as
+          <md>
+            \sum_{i=1}^{16}f(x_{i})\Delta x
+          </md>.
+        </p>
+
+        <p>
+          We have <m>\Delta x = 4/16 = 0.25</m>.
+          Since <m>x_i = 0+i\Delta x</m>, we have
+          <md>
+            x_{i} = 0 + i\Delta x = i\Delta x
+          </md>.
+        </p>
+
+        <p>
+          Using the summation formulas, consider:
+          <md>
+            <mrow>\int_0^4 (4x-x^2)\, dx \amp \approx \sum_{i=1}^{16} f(x_{i})\Delta x</mrow>
+            <mrow>\amp = \sum_{i=1}^{16} f(i\Delta x) \Delta x</mrow>
+            <mrow>\amp = \sum_{i=1}^{16} \big(4i\Delta x - (i\Delta x)^2\big)\Delta x</mrow>
+            <mrow>\amp = \sum_{i=1}^{16} (4i\Delta x^2 - i^2\Delta x^3)</mrow>
+            <mrow number="yes" xml:id="eq_rie7">\amp = (4\Delta x^2)\sum_{i=1}^{16} i - \Delta x^3 \sum_{i=1}^{16} i^2</mrow>
+            <mrow>\amp = (4\Delta x^2)\frac{16\cdot 17}{2} - \Delta x^3 \frac{16(17)(33)}6</mrow>
+            <mrow>\amp =	4\cdot 0.25^2\cdot 136-0.25^3\cdot 1496</mrow>
+            <mrow>\amp =10.625</mrow>
+          </md>
+        </p>
+
+        <p>
+          We were able to sum up the areas of 16 rectangles with very little computation.
+          In <xref ref="fig_rie7"/>
+          the function and the 16 rectangles are graphed.
+          While some rectangles over-approximate the area,
+          other under-approximate the area
+          (by about the same amount).
+          Thus our approximate area of 10.625 is likely a fairly good approximation.
+        </p>
+
+        <p>
+          Notice <xref ref="eq_rie7">Equation</xref>;
+          by replacing 16 by 1,000
+          (and appropriately changing the value of <m>\Delta x</m>),
+          we can use that equation to sum up 1000 rectangles!
+        </p>
+
+        <figure xml:id="fig_rie7" vshift="2">
+          <caption>Approximating <m>\int_0^4(4x-x^2)\, dx</m> with the Right Hand Rule and 16 evenly spaced subintervals</caption>
+          <!-- START figures/fig_rie7.tex -->
+          <image width="47%">
+            <shortdescription>A parabola approximated using 16 equal subintervals.</shortdescription>
+            <description>
+              <p>
+                The parabola in <xref ref="fig_rie1a"/> approximated using 16 strips of equal width.
+                The height of each strips are given by the Right Hand Rule.
+                On the left side the area of the rectangles is slightly greater than the area of the parabola.
+                On the right side the area of the rectangles is slightly less than the area of the parabola.
+              </p>
+            </description>
+            <latex-image label="img_rie7">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={1,2,3,4},
+            ytick={1,2,3,4},
+            ymin=-1,ymax=5,
+            xmin=-.5,xmax=4.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=0:4] {4*x-x^2};
+            \addplot [firstcurvestyle,domain=0:4,samples=40] {4*x-x^2};
+
+            \foreach \x / \y in {0.25 / 0.9375, 0.5 / 1.75, 0.75 / 2.4375, 1. / 3., 1.25 / 3.4375,
+              1.5 / 3.75, 1.75 / 3.9375, 2. / 4., 2.25 / 3.9375, 2.5 / 3.75,
+              2.75 /3.4375, 3. / 3., 3.25 / 2.4375, 3.5 / 1.75, 3.75 / 0.9375, 4. / 0.}
+            {\addplot [thick,secondcolor] coordinates {(\x-.25,0) (\x-.25,\y) (\x,\y) (\x,0) (\x-.25,0)};
+            }
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_rie7.tex END -->
+        </figure>
+
+        <p>
+          We do so here,
+          skipping from the original summand to the equivalent of <xref ref="eq_rie7">Equation</xref> to save space.
+          Note that <m>\Delta x = 4/1000 = 0.004</m>.
+          <md>
+            <mrow>\int_0^4 (4x-x^2)\, dx \amp \approx \sum_{i=1}^{1000} f(x_{i})\Delta x</mrow>
+            <mrow>\amp = (4\Delta x^2)\sum_{i=1}^{1000} i - \Delta x^3 \sum_{i=1}^{1000} i^2</mrow>
+            <mrow>\amp = (4\Delta x^2)\frac{1000\cdot 1001}{2} - \Delta x^3 \frac{1000(1001)(2001)}6</mrow>
+            <mrow>\amp =10.666656</mrow>
+          </md>
+        </p>
+
+        <p>
+          Using many, many rectangles, we have a likely good approximation of
+          <m>\int_0^4 (4x-x^2)\dx</m>.
+          That is,
+          <md>
+            \int_0^4(4x-x^2)\, dx \approx 10.666656
+          </md>.
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="urkFFBmu9uQ" label="vid_int_rie_ex_1" component="video"/>
+      </solution>
+    </example>
+
+    <p>
+      Before the above example,
+      we stated what the summations for the Left Hand, Right Hand and Midpoint Rules looked like.
+      Each had the same basic structure, which was:
+    </p>
+
+    <p>
+      <ol>
+        <li>
+          <p>
+            each rectangle has the same width,
+            which we referred to as <m>\Delta x</m>, and
+          </p>
+        </li>
+
+        <li>
+          <p>
+            each rectangle's height is determined by evaluating <m>f</m> at a particular point in each subinterval.
+            For instance,
+            the Left Hand Rule states that each rectangle's height is determined by evaluating <m>f</m> at the left hand endpoint of the subinterval the rectangle lives on.
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      One could partition an interval <m>[a,b]</m> with subintervals that do not have the same size.
+      We refer to the length of the
+      <m>i</m>th subinterval as <m>\Delta x_i</m>.
+      Also, one could determine each rectangle's height by evaluating <m>f</m> at <em>any</em>
+      point <m>c_i</m> in the <m>i</m>th subinterval.
+      Thus the height of the <m>i</m>th subinterval would be <m>f(c_i)</m>,
+      and the area of the <m>i</m>th rectangle would be <m>f(c_i)\Delta x_i</m>.
+      These ideas are formally defined below.
+    </p>
+
+    <definition xml:id="def_partition">
+      <title>Partition</title>
+      <statement>
+        <p>
+          A <term>partition</term> <m>\Delta x</m> of a closed interval <m>[a,b]</m> is a set of numbers <m>x_0</m>,
+          <m>x_1</m>,
+          <m>\ldots</m> <m>x_{n}</m> where
+          <md>
+            a=x_0 \lt  x_1 \lt  \ldots \lt  x_{n-1} \lt  x_{n}=b
+          </md>.
+        </p>
+
+        <p>
+          The length of the <m>i</m>th subinterval,
+          <m>[x_{i-1},x_{i}]</m>, is <m>\Delta x_i = x_{i}-x_{i-1}</m>.
+          If <m>[a,b]</m> is partitioned into subintervals of equal length,
+          we let <m>\Delta x</m> represent the length of each subinterval.
+        </p>
+
+        <p>
+          The <term>size of the partition</term>,
+          denoted <m>\norm{\Delta x}</m>,
+          is the length of the largest subinterval of the partition.
+              <idx><h>partition</h></idx>
+              <idx><h>partition</h><h>size of</h></idx>
+        </p>
+      </statement>
+    </definition>
+
+    <figure xml:id="vid_int_rie_partns" component="video" vshift="4">
+      <caption>Video presentation of <xref ref="def_partition"/></caption>
+      <video youtube="2iw1Mh4iJ0I" label="vid_int_rie_partns"/>
+    </figure>
+
+
+    <p>
+      Summations of rectangles with area
+      <m>f(c_i)\Delta x_i</m> are named after mathematician Georg Friedrich Bernhard Riemann,
+      as given in the following definition.
+    </p>
+
+    <definition xml:id="def_rie_sum">
+      <title>Riemann Sum</title>
+      <statement>
+        <p>
+          Let <m>f</m> be defined on a closed interval <m>[a,b]</m>,
+          let <m>\Delta x</m> be a partition of <m>[a,b]</m>
+          as given in <xref ref="def_partition"/>,
+              <idx><h>Riemann Sum</h></idx>
+          and let <m>c_i</m> denote any value in the <m>i</m>th subinterval.
+        </p>
+
+        <p>
+          The sum
+          <md>
+            \sum_{i=1}^n f(c_i)\Delta x_i
+          </md>
+          is a <term>Riemann sum</term> of <m>f</m> on <m>[a,b]</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <figure xml:id="vid_int_rie_defn" component="video" vshift="4">
+      <caption>Video presentation of <xref ref="def_rie_sum"/></caption>
+      <video youtube="1ZxKyf4JSS4" label="vid_int_rie_defn"/>
+    </figure>
+
+
+    <p>
+      <xref ref="fig_riedef"/>
+      shows the approximating rectangles of a Riemann sum of <m>\int_0^4(4x-x^2)\, dx</m>.
+      While the rectangles in this example do not approximate well the shaded area,
+      they demonstrate that the subinterval widths may vary and the heights of the rectangles can be determined without following a particular rule.
+    </p>
+
+    <figure xml:id="fig_riedef" vshift="-1">
+      <caption>An example of a general Riemann sum to approximate <m>\int_0^4(4x-x^2)\, dx</m></caption>
+      <!-- START figures/fig_riedef.tex -->
+      <image width="47%">
+        <shortdescription>A parabola approximated by 3 rectangles of different width</shortdescription>
+        <description>
+          <p>
+            The parabola in <xref ref="fig_rie1a"/> approximated using 3 rectangles of different width.
+            The height of each rectangle is not given by any particular rule.
+            The left most strip has a width of 2, and a height of around 0.95. This height is given by a point at around <m>x=0.3</m>.
+            The center strip has a width of 2.5. It has a height of around 2.8, given by a point at around <m>x=3.2</m>.
+            The right strip has a width of 0.5. It has a height of around 0.8, given by a point around <m>x=3.8</m>.
+          </p>
+        </description>
+        <latex-image label="img_riedef">
+
+        \begin{tikzpicture}
+
+        \begin{axis}[
+        axis on top,
+        xtick={1,2,3,4},
+        ytick={1,2,3,4},
+        ymin=-1,ymax=5,
+        xmin=-.5,xmax=4.5
+        ]
+
+        \addplot [firstcurvestyle,areastyle,domain=0:4] {4*x-x^2};
+        \addplot [firstcurvestyle,domain=0:4,samples=40] {4*x-x^2};
+
+        \draw [thick,secondcolor] (axis cs:0,0) rectangle (axis cs:2,.9375);
+        \draw [thick,secondcolor] (axis cs:2,0) rectangle (axis cs:3.5,2.79);
+        \draw [thick,secondcolor] (axis cs:3.5,0) rectangle (axis cs:4,.76);
+        \draw [fill=black] (axis cs:.25,.9375) circle (1pt);
+        \draw [fill=black] (axis cs:3.1,2.79) circle (1pt);
+        \draw [fill=black] (axis cs:3.8,.76) circle (1pt);
+
+        \end{axis}
+
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+      <!-- figures/fig_riedef.tex END -->
+    </figure>
+
+    <p>
+      <q>Usually</q> Riemann sums are calculated using one of the three methods we have introduced.
+      The uniformity of construction makes computations easier.
+      Before working another example,
+      let's summarize some of what we have learned in a convenient way.
+    </p>
+
+    <insight xml:id="idea_riemann">
+      <title>Riemann Sum Concepts</title>
+      <p>
+        Consider <m>\ds \int_a^b f(x) \, dx \approx \sum_{i=1}^n f(c_i)\Delta x_i</m>.
+      </p>
+
+      <p>
+        <ol>
+          <li>
+            <p>
+              When the <m>n</m> subintervals have equal length,
+              <m>\ds \Delta x_i = \Delta x = \frac{b-a}n</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              The <m>i</m>th term of an equally spaced partition is <m>x_i = a + i\Delta x</m>.
+              (Thus <m>x_0=a</m> and <m>x_{n} = b</m>.)
+            </p>
+          </li>
+
+          <li>
+            <p>
+              The Left Hand Rule summation is:
+              <m>\ds \sum_{i=1}^n f(x_{i-1})\Delta x</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              The Right Hand Rule summation is:
+              <m>\ds \sum_{i=1}^n f(x_{i})\Delta x</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              The Midpoint Rule summation is:
+              <m>\ds \sum_{i=1}^n f\left(\frac{x_{i-1}+x_{i}}{2}\right)\Delta x</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </insight>
+
+    <p>
+      Let's do another example.
+    </p>
+
+    <example xml:id="ex_rie8">
+      <title>Approximating definite integrals with sums</title>
+      <statement>
+        <p>
+          Approximate <m>\int_{-2}^3 (5x+2)\, dx</m> using the Midpoint Rule and 10 equally spaced intervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Following <xref ref="idea_riemann"/>, we have
+          <md>
+            \Delta x = \frac{3 - (-2)}{10} = 1/2  \text{ and }   x_i = (-2) + (1/2)(i) = i/2-2
+          </md>.
+        </p>
+
+        <p>
+          As we are using the Midpoint Rule,
+          we will also need <m>x_{i-1}</m> and <m>\ds \frac{x_{i-1}+x_{i}}2</m>.
+          Since <m>x_i = i/2-2</m>,<m>x_{i-1} = (i-1)/2 - 2 = i/2 -5/2</m>.
+          This gives
+          <md>
+            \frac{x_{i-1}+x_{i}}2 = \frac{(i/2-5/2) + (i/2-2)}{2} = \frac{i-9/2}{2} = i/2 - 9/4
+          </md>.
+        </p>
+
+        <p>
+          We now construct the Riemann sum and compute its value using summation formulas.
+          <md>
+            <mrow>\int_{-2}^3 (5x+2)\, dx   \amp \approx \sum_{i=1}^{10} f\left(\frac{x_{i-1}+x_{i}}{2}\right)\Delta x</mrow>
+            <mrow>\amp =  \sum_{i=1}^{10} f(i/2 - 9/4)\Delta x</mrow>
+            <mrow>\amp =  \sum_{i=1}^{10} \big(5(i/2-9/4) + 2\big)\Delta x</mrow>
+            <mrow>\amp =  \Delta x\sum_{i=1}^{10}\left[\left(\frac{5}{2}\right)i - \frac{37}{4}\right]</mrow>
+            <mrow>\amp =  \Delta x\left(\frac{5}2\sum_{i=1}^{10} (i) - \sum_{i=1}^{10}\left(\frac{37}{4}\right)\right)</mrow>
+            <mrow>\amp = \frac12\left(\frac52\cdot\frac{10(11)}{2} - 10\cdot\frac{37}4\right)</mrow>
+            <mrow>\amp = \frac{45}2 = 22.5</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_rie8" vshift="1">
+          <caption>Approximating <m>\int_{-2}^3 (5x+2)\, dx</m> using the Midpoint Rule and 10 evenly spaced subintervals in <xref ref="ex_rie8"/></caption>
+          <!-- START figures/fig_rie8.tex -->
+          <image width="47%">
+            <shortdescription>The area under a line approximated with 10 even subintervals.</shortdescription>
+            <description>
+              <p>
+                The graph <m>5x + 2</m>, plotted from <m>x = -2</m> to <m>x = 3</m>.
+                The line begins in the third quadrant and crosses the <m>x</m>-axis at <m>x = -\frac{2}{5}</m>.
+                The line crosses the <m>y</m>-axis at <m>y=2</m>.
+                The area between the line and the <m>x</m>-axis is shaded.
+                10 rectangles of equal width are approximating the shaded area.
+                The height of each rectangle is given by the Midpoint Rule.
+              </p>
+            </description>
+            <latex-image label="img_rie8">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={-2,-1,1,2,3},
+            ytick={10,17,-8},
+            ymin=-9,ymax=19,
+            xmin=-2.5,xmax=3.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=-2:3] {5*x+2} \closedcycle;
+            \addplot [firstcurvestyle,domain=-2:3] {5*x+2};
+
+            \foreach \x / \y in {-1.75 / -6.75, -1.25 / -4.25, -0.75 / -1.75, -0.25 / 0.75,
+            0.25 /3.25, 0.75 / 5.75, 1.25 / 8.25, 1.75 / 10.75, 2.25 / 13.25,
+            2.75 /15.75}
+            {\addplot [thick,secondcolor] coordinates {(\x-.25,0) (\x-.25,\y) (\x+.25,\y) (\x+.25,0) (\x-.25,0)};
+            }
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_rie8.tex END -->
+        </figure>
+
+        <p>
+          Note the graph of <m>f(x) = 5x+2</m> in <xref ref="fig_rie8"/>.
+          The regions whose area is computed by the definite integral are triangles,
+          meaning we can find the exact answer without summation techniques.
+          We find that the exact answer is indeed 22.5.
+          One of the strengths of the Midpoint Rule is that often each rectangle includes area that should not be counted,
+          but misses other area that should.
+          When the partition size is small,
+          these two amounts are about equal and these errors almost
+          <q>cancel each other out.</q> In this example,
+          since our function is a line,
+          these errors are exactly equal and they do cancel each other out,
+          giving us the exact answer.
+        </p>
+
+        <p>
+          Note too that when the function is negative,
+          the rectangles have a <q>negative</q> height.
+          When we compute the area of the rectangle,
+          we use <m>f(c_i)\Delta x</m>;
+          when <m>f</m> is negative, the area is counted as negative.
+        </p>
+      </solution>
+      <solution component="video" vshift="0">
+        <title>Video solution</title>
+        <video width="98%" youtube="O6S1f6-D8Ls" label="vid_int_rie_ex_2" component="video"/>
+      </solution>
+    </example>
+
+    <p>
+      Notice in the previous example that while we used 10 equally spaced intervals,
+      the number <q>10</q> didn't play a big role in the calculations until the very end.
+      Mathematicians love to abstract ideas;
+      let's approximate the area of another region using <m>n</m> subintervals,
+      where we do not specify a value of <m>n</m> until the very end.
+    </p>
+
+    <example xml:id="ex_rie9">
+      <title>Approximating definite integrals with a formula, using sums</title>
+      <statement>
+        <p>
+          Revisit <m>\int_0^4(4x-x^2)\, dx</m> yet again.
+          Approximate this definite integral using the Right Hand Rule with <m>n</m> equally spaced subintervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Using <xref ref="idea_riemann"/>,
+          we know <m>\Delta x = \frac{4-0}{n} = 4/n</m>.
+          We also find <m>x_i = 0 + i\Delta x = 4i/n</m>.
+        </p>
+
+        <p>
+          We construct the Right Hand Rule Riemann sum as follows.
+          Be sure to follow each step carefully.
+          If you get stuck,
+          and do not understand how one line proceeds to the next,
+          you may skip to the result and consider how this result is used.
+          You should come back, though,
+          and work through each step for full understanding.
+          <md>
+            <mrow>\int_0^4(4x-x^2)\, dx \amp \approx \sum_{i=1}^n f(x_{i})\Delta x</mrow>
+            <mrow>\amp = \sum_{i=1}^n f\left(\frac{4i}{n}\right) \Delta x</mrow>
+            <mrow>\amp =  \sum_{i=1}^n \left[4\frac{4i}n-\left(\frac{4i}n\right)^2\right]\Delta x</mrow>
+            <mrow>\amp =  \sum_{i=1}^n \left(\frac{16\Delta x}{n}\right)i - \sum_{i=1}^n \left(\frac{16\Delta x}{n^2}\right)i^2</mrow>
+            <mrow>\amp =  \left(\frac{16\Delta x}{n}\right)\sum_{i=1}^n i - \left(\frac{16\Delta x}{n^2}\right)\sum_{i=1}^n i^2</mrow>
+            <mrow>\amp = \left(\frac{16\Delta x}{n}\right)\cdot \frac{n(n+1)}{2} - \left(\frac{16\Delta x}{n^2}\right)\frac{n(n+1)(2n+1)}{6}</mrow>
+            <mrow>\amp =\frac{32(n+1)}{n} - \frac{32(n+1)(2n+1)}{3n^2}  (\text{ recall } \Delta x = 4/n)</mrow>
+            <mrow>\amp = \frac{32}{3}\left(1-\frac{1}{n^2}\right) \text{ (after simplifying) }</mrow>
+          </md>
+        </p>
+
+        <p>
+          The result is an amazing, easy to use formula.
+          To approximate the definite integral with 10 equally spaced subintervals and the Right Hand Rule,
+          set <m>n=10</m> and compute
+          <md>
+            \int_0^4 (4x-x^2)\, dx \approx \frac{32}{3}\left(1-\frac{1}{10^2}\right) = 10.56
+          </md>.
+        </p>
+
+        <p>
+          Recall how earlier we approximated the definite integral with 4 subintervals;
+          with <m>n=4</m>, the formula gives 10, our answer as before.
+        </p>
+
+        <p>
+          It is now easy to approximate the integral with 1,000,000 subintervals!
+          Hand-held calculators will round off the answer a bit prematurely giving an answer of <m>10.66666667</m>.
+          (The actual answer is <m>10.666666666656</m>.)
+        </p>
+
+        <p>
+          We now take an important leap.
+          Up to this point,
+          our mathematics has been limited to geometry and algebra
+          (finding areas and manipulating expressions).
+          Now we apply <em>calculus</em>.
+          For any <em>finite</em> <m>n</m>, we know that
+          <md>
+            \int_0^4 (4x-x^2)\, dx \approx \frac{32}{3}\left(1-\frac{1}{n^2}\right)
+          </md>.
+        </p>
+
+        <p>
+          Both common sense and high-level mathematics tell us that as <m>n</m> gets large,
+          the approximation gets better.
+          In fact, if we take the <em>limit</em>
+          as <m>n\rightarrow \infty</m>,
+          we get the <em>exact area</em> described by <m>\int_0^4 (4x-x^2)\, dx</m>.
+          That is,
+          <md>
+            <mrow>\int_0^4 (4x-x^2)\, dx \amp = \lim_{n\rightarrow \infty} \frac{32}{3}\left(1-\frac{1}{n^2}\right)</mrow>
+            <mrow>\amp = \frac{32}{3}\left(1-0\right)</mrow>
+            <mrow>\amp = \frac{32}{3} = 10.\overline{6}</mrow>
+          </md>
+        </p>
+
+        <p>
+          This is a fantastic result.
+          By considering <m>n</m> equally-spaced subintervals,
+          we obtained a formula for an approximation of the definite integral that involved our variable <m>n</m>.
+          As <m>n</m> grows large <mdash/> without bound <mdash/> the error shrinks to zero and we obtain the exact area.
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="LjMZOVNdRxQ" label="vid_int_rie_ex_n_rect" component="video"/>
+      </solution>
+    </example>
+
+    <p>
+      This section started with a fundamental calculus technique:
+      make an approximation, refine the approximation to make it better,
+      then use limits in the refining process to get an exact answer.
+      That is precisely what we just did.
+    </p>
+
+    <p>
+      Let's practice this again.
+    </p>
+
+    <example xml:id="ex_rie10">
+      <title>Approximating definite integrals with a formula, using sums</title>
+      <statement>
+        <p>
+          Find a formula that approximates
+          <m>\int_{-1}^5 x^3\, dx</m> using the Right Hand Rule and <m>n</m> equally spaced subintervals,
+          then take the limit as <m>n\to\infty</m> to find the exact area.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Following <xref ref="idea_riemann"/>,
+          we have <m>\Delta x = \frac{5-(-1)}{n} = 6/n</m>.
+          We have <m>x_i = (-1) + i\Delta x</m>,
+          which is the right endpoint of the <m>i</m>th subinterval.
+        </p>
+
+        <p>
+          The Riemann sum corresponding to the Right Hand Rule is (followed by simplifications):
+          <md>
+            <mrow>\int_{-1}^5 x^3\, dx   \amp \approx \sum_{i=1}^n f(x_{i})\Delta x</mrow>
+            <mrow>\amp = \sum_{i=1}^n f(-1+i\Delta x)\Delta x</mrow>
+            <mrow>\amp = \sum_{i=1}^n (-1+i\Delta x)^3\Delta x</mrow>
+            <mrow>\amp = \sum_{i=1}^n \big((i\Delta x)^3 -3(i\Delta x)^2 + 3i\Delta x -1\big)\Delta x  \text{ (now distribute \(\Delta x\)) }</mrow>
+            <mrow>\amp = \sum_{i=1}^n \big(i^3\Delta x^4 - 3i^2\Delta x^3 + 3i\Delta x^2 -\Delta x\big)  \text{ (now split up summation) }</mrow>
+            <mrow>\amp = \Delta x^4 \sum_{i=1}^ni^3 -3\Delta x^3 \sum_{i=1}^n i^2+ 3\Delta x^2 \sum_{i=1}^n i - \sum_{i=1}^n \Delta x</mrow>
+            <mrow>\amp = \Delta x^4 \left(\frac{n(n+1)}{2}\right)^2 -3\Delta x^3 \frac{n(n+1)(2n+1)}{6}+ 3\Delta x^2 \frac{n(n+1)}{2} - n\Delta x</mrow>
+            <intertext>(use <m>\Delta x = 6/n</m>)</intertext>
+            <mrow>\amp = \frac{1296}{n^4}\cdot\frac{n^2(n+1)^2}{4} - 3\frac{216}{n^3}\cdot\frac{n(n+1)(2n+1)}{6} + 3\frac{36}{n^2}\frac{n(n+1)}2 -6</mrow>
+            <intertext>(now do a sizable amount of algebra to simplify)</intertext>
+            <mrow>\amp =156 + \frac{378}n + \frac{216}{n^2}</mrow>
+          </md>
+        </p>
+
+        <p>
+          Once again, we have found a compact formula for approximating the definite integral with <m>n</m> equally spaced subintervals and the Right Hand Rule.
+          Using 10 subintervals, we have an approximation of <m>195.96</m>
+          (these rectangles are shown in <xref ref="fig_rie9"/>).
+          Using <m>n=100</m> gives an approximation of <m>159.802</m>.
+        </p>
+
+        <figure xml:id="fig_rie9" vshift="0.5">
+          <caption>Approximating <m>\int_{-1}^5 x^3\, dx</m> using the Right Hand Rule and 10 evenly spaced subintervals</caption>
+          <!-- START figures/fig_rie9.tex -->
+          <image width="47%">
+            <shortdescription>A cubic graph approximated using 10 subintervals and the Right Hand Rule.</shortdescription>
+            <description>
+              <p>
+                The curve begins at <m>x=-1</m>, at which point the curve is close to the <m>x</m>-axis.
+                The curve increases to the right, ending at <m>x=5</m>, at which point the curve has a value of 125.
+                The area under the curve is approsimated by 10 rectangles of equal width.
+                The height of each rectangle is given by the Right Hand Rule.
+                The left of each rectangle includes some unshaded area, so each rectangle overestimates the area under the curve.
+              </p>
+            </description>
+            <latex-image label="img_rie9">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={-1,1,2,3,4,5},
+            ymin=-2,ymax=130,
+            xmin=-1.5,xmax=5.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=-1:5] {x^3} \closedcycle;
+            \addplot [firstcurvestyle,domain=-1:5] {x^3};
+
+            \foreach \x / \y in {-0.4 / -0.064, 0.2 / 0.008, 0.8 / 0.512, 1.4 / 2.744, 2. / 8., 2.6 /17.576, 3.2 / 32.768, 3.8 / 54.872, 4.4 / 85.184, 5. / 125.}
+            {\addplot [thick,secondcolor] coordinates {(\x-.6,0) (\x-.6,\y) (\x,\y) (\x,0) (\x-.6,0)};
+            }
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_rie9.tex END -->
+        </figure>
+
+        <p>
+          Now find the exact answer using a limit:
+          <md>
+            \int_{-1}^5 x^3\, dx = \lim_{n\to\infty} \left(156 + \frac{378}n + \frac{216}{n^2}\right) = 156
+          </md>.
+        </p>
+      </solution>
+      <solution component="video" vshift="8">
+        <title>Video solution</title>
+        <video width="98%" youtube="yvWSszI0Xvc" label="vid_int_rie_ex_lim" component="video"/>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Limits of Riemann Sums</title>
+    <p>
+      We have used limits to evaluate given definite integrals.
+      Will this always work?
+      It can be shown,
+      given not-very-restrictive conditions,
+      that yes, it will always work <mdash/> this is the content of
+      <xref ref="thm_riemann_sum"/> below.
+    </p>
+<!--ToDo: add GeoGebra applet with adjustable number of rectangles to demonstrate limit process-->
+    <p>
+      The previous two examples demonstrated how an expression such as
+      <md>
+        \sum_{i=1}^n f(x_{i})\Delta x
+      </md>
+      can be rewritten as an expression explicitly involving <m>n</m>,
+      such as <m>32/3(1-1/n^2)</m>.
+    </p>
+
+    <p>
+      Viewed in this manner,
+      we can think of the summation as a function of <m>n</m>.
+      An <m>n</m> value is given
+      (where <m>n</m> is a positive integer),
+      and the sum of areas of <m>n</m> equally spaced rectangles is returned,
+      using the Left Hand, Right Hand, or Midpoint Rules.
+    </p>
+
+    <p>
+      Given a definite integral <m>\int_a^b f(x)\, dx</m>, let:
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <p>
+            <m>\ds S_L(n) = \sum_{i=1}^n f(x_{i-1})\Delta x</m>,
+            the sum of equally spaced rectangles formed using the Left Hand Rule,
+          </p>
+        </li>
+
+        <li>
+          <p>
+            <m>\ds S_R(n) = \sum_{i=1}^n f(x_{i})\Delta x</m>,
+            the sum of equally spaced rectangles formed using the Right Hand Rule, and
+          </p>
+        </li>
+
+        <li>
+          <p>
+            <m>\ds S_M(n) = \sum_{i=1}^n f\left(\frac{x_{i-1}+x_{i}}{2}\right)\Delta x</m>,
+            the sum of equally spaced rectangles formed using the Midpoint Rule.
+          </p>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Recall the definition of a limit as <m>n\to\infty</m>:
+      <m>\lim\limits_{n\to\infty}S_L(n) = K</m> if, given any <m>\varepsilon \gt 0</m>,
+      there exists <m>N \gt 0</m> such that
+      <md>
+        \abs{S_L(n)-K} \lt  \varepsilon  \text{ when }  n\geq N
+      </md>.
+    </p>
+
+    <p>
+      The following theorem states that we can use any of our three rules to find the exact value of a definite integral <m>\int_a^b f(x)\, dx</m>.
+      It also goes two steps further.
+      The theorem states that the height of each rectangle doesn't have to be determined following a specific rule,
+      but could be <m>f(c_i)</m>,
+      where <m>c_i</m> is any point in the <m>i</m>th subinterval,
+      as discussed before Riemann Sums were defined in <xref ref="def_rie_sum"/>.
+    </p>
+
+    <p>
+      The theorem goes on to state that the rectangles do not need to be of the same width.
+      Using the notation of <xref ref="def_partition"/>,
+      let <m>\Delta x_i</m> denote the length of the
+      <m>i</m>th subinterval in a partition of <m>[a,b]</m> and let
+      <m>\norm{\Delta x}</m> represent the length of the largest subinterval in the partition:
+      that is, <m>\norm{\Delta x}</m> is the largest of all the <m>\Delta x_i</m>.
+      If <m>\norm{\Delta x}</m> is small,
+      then <m>[a,b]</m> must be partitioned into many subintervals,
+      since all subintervals must have small lengths.
+      <q>Taking the limit as <m>\norm{\Delta x}</m> goes to zero</q>
+      implies that the number <m>n</m> of subintervals in the partition is growing to infinity,
+      as the largest subinterval length is becoming arbitrarily small.
+      We then interpret the expression
+      <md>
+        \lim_{\norm{\Delta x}\to 0}\sum_{i=1}^nf(c_i)\Delta x_i
+      </md>
+      as <q>the limit of the sum of the areas of rectangles,
+      where the width of each rectangle can be different but getting small,
+      and the height of each rectangle is not necessarily determined by a particular rule.</q>
+      The theorem states that this Riemann Sum also gives the value of the definite integral of <m>f</m> over <m>[a,b]</m>.
+    </p>
+
+    <theorem xml:id="thm_riemann_sum">
+      <title>Definite Integrals and the Limit of Riemann Sums</title>
+      <statement>
+        <p>
+          Let <m>f</m> be continuous on the closed interval <m>[a,b]</m> and let <m>S_L(n)</m>,
+          <m>S_R(n)</m>,
+          <m>S_M(n)</m>, <m>\Delta x</m>,
+          <m>\Delta x_i</m> and <m>c_i</m> be defined as before.
+          Then:
+
+          <idx><h>Riemann Sum</h><h>and definite integral</h></idx>
+
+          <idx><h>integration</h><h>definite!Riemann Sums</h></idx>
+
+        </p>
+
+        <p>
+          <ol>
+            <li><m>\begin{aligned}\lim_{n\to\infty} S_L(n) \amp = \lim_{n\to\infty} S_R(n)\\
+                    \amp = \lim_{n\to\infty} S_M(n)\\
+                    \amp = \lim_{n\to\infty}\sum_{i=1}^n f(c_i)\Delta x\end{aligned}</m></li>
+
+            <li><m>\ds \lim_{n\to\infty}\sum_{i=1}^n f(c_i)\Delta x = \int_a^b f(x)\, dx</m></li>
+
+            <li><m>\lim_{\norm{\Delta x}\to 0} \sum_{i=1}^n f(c_i)\Delta x_i = \int_a^b f(x)\, dx</m></li>
+          </ol>
+        </p>
+      </statement>
+    </theorem>
+
+    <figure xml:id="vid_int_rie_lim_rie_sum_def_int" component="video" vshift="8">
+      <caption>Video presentation of <xref ref="thm_riemann_sum"/></caption>
+      <video youtube="A-WLvclVMC0" label="vid_int_rie_lim_rie_sum_def_int"/>
+    </figure>
+
+    <aside vshift="4">
+      <p>
+        One of the things <xref ref="thm_riemann_sum"/>
+        tells us is that if <m>f</m> is continuous on <m>[a,b]</m>,
+        then the definite integral <m>\int_a^b f(x)\,dx</m>
+        is guaranteed to exist.
+      </p>
+
+      <p>
+        Knowing that every continuous function can be integrated is useful,
+        since most of the functions we work with are continuous.
+        However, it turns out that a function can be integrated even if it has a finite number of discontinuities,
+        as long as these are removable or jump discontinuities.
+      </p>
+    </aside>
+
+
+    <p xml:id="riemann-summary-break">
+      We summarize what we have learned over the past few sections here.
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <p>
+            Knowing the <q>area under the curve</q> can be useful.
+            One common example: the area under a velocity curve is displacement.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            We have defined the definite integral, <m>\int_a^b f(x)\, dx</m>,
+            to be the signed area under <m>f</m> on the interval <m>[a,b]</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            While we can approximate a definite integral many ways,
+            we have focused on using rectangles whose heights can be determined using the Left Hand Rule,
+            the Right Hand Rule and the Midpoint Rule.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Sums of rectangles of this type are called Riemann sums.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            The exact value of the definite integral can be computed using the limit of a Riemann sum.
+            We generally use one of the above methods as it makes the algebra simpler.
+          </p>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      We first learned of derivatives through limits then learned rules that made the process simpler.
+      We know of a way to evaluate a definite integral using limits;
+      in the next section we will see how the Fundamental Theorem of Calculus makes the process simpler.
+      The key feature of this theorem is its connection between the indefinite integral and the definite integral.
+    </p>
+  </subsection>
+
+  <exercises>
+    <subexercises xml:id="TaC-riemann-sums">
+      <title>Terms and Concepts</title>
+
+      <exercise label="TaC-riemann-sums-1">
+        <!-- <webwork xml:id="webwork-TaC-riemann-sums-1">
+          <pg-code>
+            Context()-&gt;strings-&gt;add('limits'=&gt;{});
+            Context()-&gt;strings-&gt;add('limit'=&gt;{alias=&gt;'limits'});
+          </pg-code> -->
+          <statement>
+            <p>
+              A fundamental calculus technique is to use <fillin answer="limits" width="15"/>
+              to refine approximations to get an exact answer.
+            </p>
+          </statement>
+          <evaluation>
+            <evaluate>
+              <test correct="yes">
+                <strcmp case="insensitive">limits?</strcmp>
+              </test>
+            </evaluate>
+          </evaluation>
+        <!-- </webwork> -->
+      </exercise>
+      <!-- Exercise 2 -->
+      <exercise label="TaC-riemann-sums-2">
+        <webwork xml:id="webwork-TaC-riemann-sums-2">
+          <pg-code>
+            $lb = random(2,9,1);
+            $ub = random(12,20,1);
+            $m = random(30,60,1);
+            $b = non_zero_random(-300,300,1);
+            if($envir{problemSeed}==1){$lb=7;$ub=14;$m=48;$b=-201;};
+            Context()-&gt;variables-&gt;are(i=&gt;'Real');
+            $f = Formula("$m i + $b")-&gt;reduce;
+          </pg-code>
+          <statement>
+            <p>
+              What is the upper bound in the summation
+              <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} (<var name="$f"/>)</m>?
+            </p>
+            <p>
+              <var name="$ub" width="10"/>
+            </p>
+          </statement>
+        </webwork>
+      </exercise>
+      <!-- Exercise 3 -->
+      <exercise label="TaC-riemann-sums-3">
+        <webwork xml:id="webwork-TaC-riemann-sums-3">
+          <pg-code>
+            Context()-&gt;strings-&gt;add('rectangles'=&gt;{});
+            Context()-&gt;strings-&gt;add('rectangle'=&gt;{alias=&gt;'rectangles'});
+          </pg-code>
+          <statement>
+            <p>
+              This section approximates definite integrals using what geometric shape?
+            </p>
+            <p>
+              <var name="'rectangles'" width="10"/>
+            </p>
+          </statement>
+        </webwork>
+      </exercise>
+      <!-- Exercise 4 -->
+      <exercise label="TaC-riemann-sums-4">
+        <!-- <webwork xml:id="webwork-TaC-riemann-sums-4">
+          <pg-code>
+            $true=PopUp(['?','True','False'],1);
+            $false=PopUp(['?','True','False'],2);
+          </pg-code> -->
+          <statement correct="yes">
+            <p>
+              <!-- <var name="$true" form="popup"/> -->
+              A sum using the Right Hand Rule is an example of a Riemann Sum.
+            </p>
+          </statement>
+        <!-- </webwork> -->
+      </exercise>
+    </subexercises>
+
+    <subexercises>
+      <title>Problems</title>
+      <exercisegroup cols="2" xml:id="exset-riemann-write-sum">
+        <introduction>
+          <p>
+            Write out each term of the summation and compute the sum.
+          </p>
+        </introduction>
+        <!-- Exercise 5 -->
+        <exercise label="ex-riemann-write-sum-1">
+          <webwork xml:id="webwork-ex-riemann-write-sum-1">
+            <pg-code>
+              $lb = random(2,5,1);
+              $ub = $lb + random(2,3,1);
+              if($envir{problemSeed}==1){$lb=2;$ub=4;};
+              @i = ($lb..$ub);
+              @fi = map{$_**2}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+              Context("Form");
+              Context()-&gt;operators-&gt;set(
+                '+' =&gt; {class =&gt; 'bizarro::BOP::add', isCommand =&gt; 1},
+                '-' =&gt; {class =&gt; 'bizarro::BOP::subtract', isCommand =&gt; 1},
+              );
+              $terms = Formula("$string");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} i^2</m>
+              </p>
+              <instruction>
+                Enter the sum of terms here. For example, <c>1+2+3</c>.
+              </instruction>
+              <p>
+                <var name="$terms" width="20"/>
+              </p>
+              <instruction>
+                Enter the actual sum here.
+              </instruction>
+              <p>
+                <var name="$sum" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 6 -->
+        <exercise label="ex-riemann-write-sum-2">
+          <webwork xml:id="webwork-ex-riemann-write-sum-2">
+            <pg-code>
+              $lb = random(-3,-1,1);
+              $ub = random(1,3,1);
+              $m = random(2,5,1);
+              $b = non_zero_random(-3,3,1);
+              if($envir{problemSeed}==1){$lb=-1;$ub=3;$m=4;$b=-2;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("$m i + $b")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$m*$_ + $b}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+              Context("Form");
+              Context()-&gt;operators-&gt;set(
+                '+' =&gt; {class =&gt; 'bizarro::BOP::add', isCommand =&gt; 1},
+                '-' =&gt; {class =&gt; 'bizarro::BOP::subtract', isCommand =&gt; 1},
+              );
+              $terms = Formula("$string");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} \left(<var name="$f"/>\right)</m>
+              </p>
+              <instruction>
+                Enter the sum of terms here. For example, <c>1+2+3</c>.
+              </instruction>
+              <p>
+                <var name="$terms" width="20"/>
+              </p>
+              <instruction>
+                Enter the actual sum here.
+              </instruction>
+              <p>
+                <var name="$sum" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 7 -->
+        <exercise label="ex-riemann-write-sum-3">
+          <webwork xml:id="webwork-ex-riemann-write-sum-3">
+            <pg-code>
+              $lb = random(-3,-1,1);
+              $ub = random(1,3,1);
+              $trig = list_random('sin','cos');
+              if($envir{problemSeed}==1){$lb=-2;$ub=2;$trig='sin';};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("sin(pi i /2)")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+              Context("Form");
+              Context()-&gt;operators-&gt;set(
+                '+' =&gt; {class =&gt; 'bizarro::BOP::add', isCommand =&gt; 1},
+                '-' =&gt; {class =&gt; 'bizarro::BOP::subtract', isCommand =&gt; 1},
+              );
+              $terms = Formula("$string");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <instruction>
+                Enter the sum of terms here. For example, <c>1+2+3</c>.
+              </instruction>
+              <p>
+                <var name="$terms" width="20"/>
+              </p>
+              <instruction>
+                Enter the actual sum here.
+              </instruction>
+              <p>
+                <var name="$sum" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 8 -->
+        <exercise label="ex-riemann-write-sum-4">
+          <webwork xml:id="webwork-ex-riemann-write-sum-4">
+            <pg-code>
+              $lb = 1;
+              ($ub,$c) = random_subset(2,5..10);
+              if($envir{problemSeed}==1){$ub=10;$c=5;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("$c")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+              Context("Form");
+              Context()-&gt;operators-&gt;set(
+                '+' =&gt; {class =&gt; 'bizarro::BOP::add', isCommand =&gt; 1},
+                '-' =&gt; {class =&gt; 'bizarro::BOP::subtract', isCommand =&gt; 1},
+              );
+              $terms = Formula("$string");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <instruction>
+                Enter the sum of terms here. For example, <c>1+2+3</c>.
+              </instruction>
+              <p>
+                <var name="$terms" width="20"/>
+              </p>
+              <instruction>
+                Enter the actual sum here.
+              </instruction>
+              <p>
+                <var name="$sum" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 9 -->
+        <exercise label="ex-riemann-write-sum-5">
+          <webwork xml:id="webwork-ex-riemann-write-sum-5">
+            <pg-code>
+              $lb = 1;
+              $ub = random(4,6,1);
+              if($envir{problemSeed}==1){$ub=5;};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("1/i")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{Fraction($f-&gt;eval(i=&gt;$_))}(@i);
+              $string = join('+',@fi);
+              $sum = Fraction($string);
+              Context("Form");
+              Context()-&gt;operators-&gt;set(
+                '+' =&gt; {class =&gt; 'bizarro::BOP::add', isCommand =&gt; 1},
+                '-' =&gt; {class =&gt; 'bizarro::BOP::subtract', isCommand =&gt; 1},
+              );
+              $terms = Formula("$string");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <instruction>
+                Enter the sum of terms here. For example, <c>1+2+3</c>.
+              </instruction>
+              <p>
+                <var name="$terms" width="20"/>
+              </p>
+              <instruction>
+                Enter the actual sum here.
+              </instruction>
+              <p>
+                <var name="$sum" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 10 -->
+        <exercise label="ex-riemann-write-sum-6">
+          <webwork xml:id="webwork-ex-riemann-write-sum-6">
+            <pg-code>
+              $lb = 1;
+              $ub = random(4,8,1);
+              if($envir{problemSeed}==1){$ub=6;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("(-1)^i i")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+              Context("Form");
+              Context()-&gt;operators-&gt;set(
+                '+' =&gt; {class =&gt; 'bizarro::BOP::add', isCommand =&gt; 1},
+                '-' =&gt; {class =&gt; 'bizarro::BOP::subtract', isCommand =&gt; 1},
+              );
+              $terms = Formula("$string");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <instruction>
+                Enter the sum of terms here. For example, <c>1+2+3</c>.
+              </instruction>
+              <p>
+                <var name="$terms" width="20"/>
+              </p>
+              <instruction>
+                Enter the actual sum here.
+              </instruction>
+              <p>
+                <var name="$sum" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 11 -->
+        <exercise label="ex-riemann-write-sum-7">
+          <webwork xml:id="webwork-ex-riemann-write-sum-7">
+            <pg-code>
+              $lb = 1;
+              $ub = random(3,5,1);
+              if($envir{problemSeed}==1){$ub=4;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("1/i - 1/(i+1)")-&gt;reduce;
+              @i = ($lb..$ub);
+              Context("Fraction");
+              @fi = map{Fraction($f-&gt;eval(i=&gt;$_))}(@i);
+              $string = join('+',@fi);
+              $sum = Fraction($string);
+              Context("Form");
+              Context()-&gt;operators-&gt;set(
+                '+' =&gt; {class =&gt; 'bizarro::BOP::add', isCommand =&gt; 1},
+                '-' =&gt; {class =&gt; 'bizarro::BOP::subtract', isCommand =&gt; 1},
+              );
+              $terms = Formula("$string");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} \left(<var name="$f"/>\right)</m>
+              </p>
+              <instruction>
+                Enter the sum of terms here. For example, <c>1+2+3</c>.
+              </instruction>
+              <p>
+                <var name="$terms" width="20"/>
+              </p>
+              <instruction>
+                Enter the actual sum here.
+              </instruction>
+              <p>
+                <var name="$sum" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 12 -->
+        <exercise label="ex-riemann-write-sum-8">
+          <webwork xml:id="webwork-ex-riemann-write-sum-8">
+            <pg-code>
+              $lb = random(0,1,1);
+              $ub = random(4,6,1);
+              if($envir{problemSeed}==1){$lb=0;$ub=5;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("(-1)^i cos(pi i)")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+              Context("Form");
+              Context()-&gt;operators-&gt;set(
+                '+' =&gt; {class =&gt; 'bizarro::BOP::add', isCommand =&gt; 1},
+                '-' =&gt; {class =&gt; 'bizarro::BOP::subtract', isCommand =&gt; 1},
+              );
+              $terms = Formula("$string");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <instruction>
+                Enter the sum of terms here. For example, <c>1+2+3</c>.
+              </instruction>
+              <p>
+                <var name="$terms" width="20"/>
+              </p>
+              <instruction>
+                Enter the actual sum here.
+              </instruction>
+              <p>
+                <var name="$sum" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-riemann-summation-notation">
+        <introduction>
+          <p>
+            Write the sum in summation notation.
+          </p>
+        </introduction>
+        <!-- Exercise 13 -->
+        <exercise label="ex-riemann-summation-notation-1">
+          <webwork xml:id="webwork-ex-riemann-summation-notation-1">
+            <pg-code>
+              $lb = 1;
+              $ub = random(4,6,1);
+              $m = random(2,9,1);
+              if($envir{problemSeed}==1){$ub=5;$m=3;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("$m i")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              Context()-&gt;flags-&gt;set(reduceConstants=&gt;0);
+              $terms = Formula("$string");
+              $multians = MultiAnswer($lb, $ub, $f)-&gt;with(
+                singleResult =&gt; 1,
+                checker =&gt; sub {
+                    my ( $correct, $student, $self ) = @_;
+                    my ( $stulb, $stuub, $stuf ) = @{$student};
+                    my ( $corlb, $corub, $corf ) = @{$correct};
+                    if ($stuub - $stulb != $corub - $corlb) {Value::Error("Your sum does not have the correct number of terms");};
+                    @stui = ($stulb..$stuub);
+                    @stufi = map{$stuf-&gt;eval(i=&gt;$_)}(@stui);
+                    @cori = ($corlb..$corub);
+                    @corfi = map{$corf-&gt;eval(i=&gt;$_)}(@cori);
+                    $score = 1;
+                    for $j (0..$#corfi) {
+                      if ($stufi[$j] != $corfi[$j]) {
+                        $score = 0;
+                        last;
+                      }
+                    }
+                    return $score;
+                  }
+              );
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$terms"/></m>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the start value here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the end value here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the summand expression here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-riemann-summation-notation-2">
+          <webwork xml:id="webwork-ex-riemann-summation-notation-2">
+            <pg-code>
+              $lb = 0;
+              $ub = random(5,9,1);
+              $b = non_zero_random(-2,2,1);
+              if($envir{problemSeed}==1){$ub=8;$b=-1;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("i^2 + $b")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              Context()-&gt;flags-&gt;set(reduceConstants=&gt;0);
+              $terms = Formula("$string");
+              $multians = MultiAnswer($lb, $ub, $f)-&gt;with(
+                singleResult =&gt; 1,
+                checker =&gt; sub {
+                    my ( $correct, $student, $self ) = @_;
+                    my ( $stulb, $stuub, $stuf ) = @{$student};
+                    my ( $corlb, $corub, $corf ) = @{$correct};
+                    if ($stuub - $stulb != $corub - $corlb) {Value::Error("Your sum does not have the correct number of terms");};
+                    @stui = ($stulb..$stuub);
+                    @stufi = map{$stuf-&gt;eval(i=&gt;$_)}(@stui);
+                    @cori = ($corlb..$corub);
+                    @corfi = map{$corf-&gt;eval(i=&gt;$_)}(@cori);
+                    $score = 1;
+                    for $j (0..$#corfi) {
+                      if ($stufi[$j] != $corfi[$j]) {
+                        $score = 0;
+                        last;
+                      }
+                    }
+                    return $score;
+                  }
+              );
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$terms"/></m>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the start value here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the end value here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the summand expression here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-riemann-summation-notation-3">
+          <webwork xml:id="webwork-ex-riemann-summation-notation-3">
+            <pg-code>
+              $lb = 1;
+              $ub = random(4,6,1);
+              $b = random(1,5,1);
+              if($envir{problemSeed}==1){$ub=4;$b=1;};
+              Context("Fraction");
+              Context()-&gt;flags-&gt;set(reduceFractions=&gt;0);
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("i/(i+$b)")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{Fraction($_,$_+$b)}(@i);
+              $string = join('+',@fi);
+              Context()-&gt;flags-&gt;set(reduceConstants=&gt;0);
+              $terms = Formula("$string");
+              $multians = MultiAnswer($lb, $ub, $f)-&gt;with(
+                singleResult =&gt; 1,
+                checker =&gt; sub {
+                    my ( $correct, $student, $self ) = @_;
+                    my ( $stulb, $stuub, $stuf ) = @{$student};
+                    my ( $corlb, $corub, $corf ) = @{$correct};
+                    if ($stuub - $stulb != $corub - $corlb) {Value::Error("Your sum does not have the correct number of terms");};
+                    @stui = ($stulb..$stuub);
+                    @stufi = map{$stuf-&gt;eval(i=&gt;$_)}(@stui);
+                    @cori = ($corlb..$corub);
+                    @corfi = map{$corf-&gt;eval(i=&gt;$_)}(@cori);
+                    $score = 1;
+                    for $j (0..$#corfi) {
+                      if ($stufi[$j] != $corfi[$j]) {
+                        $score = 0;
+                        last;
+                      }
+                    }
+                    return $score;
+                  }
+              );
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$terms"/></m>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the start value here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the end value here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the summand expression here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-riemann-summation-notation-4">
+          <webwork xml:id="webwork-ex-riemann-summation-notation-4">
+            <pg-code>
+              $lb = list_random(0,1);
+              $ub = $lb + 4;
+              if($envir{problemSeed}==1){$lb=0;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = ($lb == 0) ? Formula("(-1)^i") : Formula("(-1)^(i+1)");
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_) * Formula("e^$_")}(@i);
+              $f = ($lb == 0) ? Formula("(-e)^i") : Formula("-(-e)^i");
+              $string = join('+',@fi);
+              Context()-&gt;flags-&gt;set(reduceConstants=&gt;0);
+              $terms = Formula("$string")-&gt;reduce;
+              $multians = MultiAnswer($lb, $ub, $f)-&gt;with(
+                singleResult =&gt; 1,
+                checker =&gt; sub {
+                    my ( $correct, $student, $self ) = @_;
+                    my ( $stulb, $stuub, $stuf ) = @{$student};
+                    my ( $corlb, $corub, $corf ) = @{$correct};
+                    if ($stuub - $stulb != $corub - $corlb) {Value::Error("Your sum does not have the correct number of terms");};
+                    @stui = ($stulb..$stuub);
+                    @stufi = map{$stuf-&gt;eval(i=&gt;$_)}(@stui);
+                    @cori = ($corlb..$corub);
+                    @corfi = map{$corf-&gt;eval(i=&gt;$_)}(@cori);
+                    $score = 1;
+                    for $j (0..$#corfi) {
+                      if ($stufi[$j] != $corfi[$j]) {
+                        $score = 0;
+                        last;
+                      }
+                    }
+                    return $score;
+                  }
+              );
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$terms"/></m>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the start value here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the end value here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+              <instruction>
+                If the sum were in sigma notation, <m>\sum\limits_{i=\text{start}}^{\text{end}}(\text{summand expression})</m>, enter the summand expression here.
+              </instruction>
+              <p>
+                <var name="$multians" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-riemann-evaluate-sum">
+        <introduction>
+          <p>
+            Evaluate the summation using <xref ref="thm_summation"/>.
+          </p>
+        </introduction>
+
+        <exercise label="ex-riemann-evaluate-sum-1">
+          <webwork xml:id="webwork-ex-riemann-evaluate-sum-1">
+            <pg-code>
+              $lb = 1;
+              ($ub,$c) = random_subset(2,5..10);
+              if($envir{problemSeed}==1){$ub=10;$c=5;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("$c")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 18 -->
+        <exercise label="ex-riemann-evaluate-sum-2">
+          <webwork xml:id="webwork-ex-riemann-evaluate-sum-2">
+            <pg-code>
+              $lb = 1;
+              $ub = random(20,30,1);
+              if($envir{problemSeed}==1){$ub=25;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("i")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 19 -->
+        <exercise label="ex-riemann-evaluate-sum-3">
+          <webwork xml:id="webwork-ex-riemann-evaluate-sum-3">
+            <pg-code>
+              $lb = 1;
+              $ub = random(8,12,1);
+              $a = random(2,6,1);
+              $b = non_zero_random(-4,4,1);
+              if($envir{problemSeed}==1){$ub=10;$a=3;$b=-2;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("$a i^2 + $b i")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} \left(<var name="$f"/>\right)</m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 20 -->
+        <exercise label="ex-riemann-evaluate-sum-4">
+          <webwork xml:id="webwork-ex-riemann-evaluate-sum-4">
+            <pg-code>
+              $lb = 1;
+              $ub = random(12,20,1);
+              $a = random(2,6,1);
+              $b = non_zero_random(-10,10,1);
+              if($envir{problemSeed}==1){$ub=15;$a=2;$b=-10;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("$a i^3 + $b")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} \left(<var name="$f"/>\right)</m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 21 -->
+        <exercise label="ex-riemann-evaluate-sum-5">
+          <webwork xml:id="webwork-ex-riemann-evaluate-sum-5">
+            <pg-code>
+              $lb = 1;
+              $ub = random(8,12,1);
+              ($a,$b,$c,$d) = random_subset(4,-12..-1,1..12);
+              if($envir{problemSeed}==1){$ub=10;$a=-4;$b=10;$c=-7;$d=11;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              Context()-&gt;noreduce('(-x)+y','(-x)-y');
+              $f = Formula("$a i^3 + $b i^2 + $c i + $d")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} \left(<var name="$f"/>\right)</m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 22 -->
+        <exercise label="ex-riemann-evaluate-sum-6">
+          <webwork xml:id="webwork-ex-riemann-evaluate-sum-6">
+            <pg-code>
+              $lb = 1;
+              $ub = random(8,12,1);
+              ($b,$c,$d) = random_subset(3,-9..-1,1..9);
+              if($envir{problemSeed}==1){$ub=10;$b=-3;$c=2;$d=7;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              Context()-&gt;noreduce('(-x)+y','(-x)-y');
+              $f = Formula("i^3 + $b i^2 + $c i + $d")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} \left(<var name="$f"/>\right)</m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 23 -->
+        <exercise label="ex-riemann-evaluate-sum-7">
+          <webwork xml:id="webwork-ex-riemann-evaluate-sum-7">
+            <pg-code>
+              $lb = 1;
+              $ub = random(80,120,5);
+              if($envir{problemSeed}==1){$ub=100;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("i")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+              $penultimate = $ub - 1;
+            </pg-code>
+            <statement>
+              <p>
+                <m>1+2+3+\cdots+<var name="$penultimate"/>+<var name="$ub"/></m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 24 -->
+        <exercise label="ex-riemann-evaluate-sum-8">
+          <webwork xml:id="webwork-ex-riemann-evaluate-sum-8">
+            <pg-code>
+              $lb = 1;
+              $ub = random(16,30,1);
+              if($envir{problemSeed}==1){$ub=20;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("i^2")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+              $last = $ub**2;
+              $penultimate = ($ub - 1)**2;
+            </pg-code>
+            <statement>
+              <p>
+                <m>1+4+9+\cdots+<var name="$penultimate"/>+<var name="$last"/></m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-riemann-sum-with-properties">
+        <introduction>
+          <p>
+            <xref ref="thm_summation"/> states
+            <m>\sum\limits_{i=1}^na_i = \sum\limits_{i=1}^k a_i + \sum\limits_{i=k+1}^n a_i</m>,
+            so
+            <m>\sum\limits_{i=k+1}^na_i = \sum\limits_{i=1}^n a_i - \sum\limits_{i=1}^k a_i</m>.
+            Use this fact,
+            along with other parts of <xref ref="thm_summation"/>,
+            to evaluate the summation.
+          </p>
+        </introduction>
+        <!-- Exercise 25 -->
+        <exercise label="ex-riemann-sum-with-properties-1">
+          <webwork xml:id="webwork-ex-riemann-sum-with-properties-1">
+            <pg-code>
+              $lb = random(7,13,1);
+              $ub = $lb + random(8,12,1);
+              if($envir{problemSeed}==1){$lb=11;$ub=20;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("i")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 26 -->
+        <exercise label="ex-riemann-sum-with-properties-2">
+          <webwork xml:id="webwork-ex-riemann-sum-with-properties-2">
+            <pg-code>
+              $lb = random(14,18,1);
+              $ub = $lb + random(8,12,1);
+              if($envir{problemSeed}==1){$lb=16;$ub=25;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("i**3")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 27 -->
+        <exercise label="ex-riemann-sum-with-properties-3">
+          <webwork xml:id="webwork-ex-riemann-sum-with-properties-3">
+            <pg-code>
+              $lb = random(5,8,1);
+              $ub = $lb + random(5,8,1);
+              $c = random(3,8,1);
+              if($envir{problemSeed}==1){$lb=7;$ub=12;$c=4;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("$c")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 28 -->
+        <exercise label="ex-riemann-sum-with-properties-4">
+          <webwork xml:id="webwork-ex-riemann-sum-with-properties-4">
+            <pg-code>
+              $lb = random(5,8,1);
+              $ub = $lb + random(5,8,1);
+              $c = random(3,8,1);
+              if($envir{problemSeed}==1){$lb=5;$ub=10;$c=4;};
+              Context()-&gt;variables-&gt;are(i=&gt;'Real');
+              $f = Formula("$c i**3")-&gt;reduce;
+              @i = ($lb..$ub);
+              @fi = map{$f-&gt;eval(i=&gt;$_)}(@i);
+              $string = join('+',@fi);
+              $sum = Real($string);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sum\limits_{i=<var name="$lb"/>}^{<var name="$ub"/>} <var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$sum" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-riemann-integral-approx">
+        <introduction>
+          <p>
+            A definite integral <m>\ds \int_a^b f(x) \, dx</m> is given.
+            <ol>
+              <li>
+                <p>
+                  Graph <m>f(x)</m> on <m>[a,b]</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Add to the sketch rectangles using the provided rule.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Approximate <m>\ds \int_a^b f(x) \, dx</m> by summing the areas of the rectangles.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </introduction>
+        <!-- Exercise 29 -->
+        <exercise label="ex-riemann-integral-approx-1">
+          <statement>
+            <p>
+              <m>\ds \int_{-3}^3 x^2\, dx</m>,
+              with <m>6</m> rectangles using the Left Hand Rule.
+            </p>
+          </statement>
+        </exercise>
+        <!-- Exercise 30 -->
+        <exercise label="ex-riemann-integral-approx-2">
+          <statement>
+            <p>
+              <m>\ds \int_{0}^2 (5-x^2)\, dx</m>,
+              with <m>4</m> rectangles using the Midpoint Rule.
+            </p>
+          </statement>
+        </exercise>
+        <!-- Exercise 31 -->
+        <exercise label="ex-riemann-integral-approx-3">
+          <statement>
+            <p>
+              <m>\ds \int_{0}^\pi \sin(x) \, dx</m>,
+              with <m>6</m> rectangles using the Right Hand Rule.
+            </p>
+          </statement>
+        </exercise>
+        <!-- Exercise 32 -->
+        <exercise label="ex-riemann-integral-approx-4">
+          <statement>
+            <p>
+              <m>\ds \int_{0}^3 2^x\, dx</m>,
+              with <m>5</m> rectangles using the Left Hand Rule.
+            </p>
+          </statement>
+        </exercise>
+        <!-- Exercise 33 -->
+        <exercise label="ex-riemann-integral-approx-5">
+          <statement>
+            <p>
+              <m>\ds \int_{1}^2 \ln(x) \, dx</m>,
+              with <m>3</m> rectangles using the Midpoint Rule.
+            </p>
+          </statement>
+        </exercise>
+        <!-- Exercise 34 -->
+        <exercise label="ex-riemann-integral-approx-6">
+          <statement>
+            <p>
+              <m>\ds \int_{1}^9 \frac1x\, dx</m>,
+              with <m>4</m> rectangles using the Right Hand Rule.
+            </p>
+          </statement>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-riemann-integral-limit">
+        <introduction>
+          <p>
+            A definite integral is given below.
+            As demonstrated in <xref ref="ex_rie9" text="global">Examples</xref>
+            and <xref ref="ex_rie10" text="global"/>, do the following:
+            <ol>
+              <li>
+                <p>
+                  Find a formula to approximate the definite integral
+                  using <m>n</m> subintervals and the provided rule.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Evaluate the formula using <m>n=10</m>,
+                  <m>100</m>, and <m>1000</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Find the limit of the formula, as <m>n\to \infty</m>,
+                  to find the exact value of the definite integral.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </introduction>
+        <!-- Exercise 35 -->
+        <exercise label="ex-riemann-integral-limit-1">
+          <webwork xml:id="webwork-ex-riemann-integral-limit-1">
+            <pg-code>
+              $rule = list_random('Left Hand Rule','Right Hand Rule');
+              if($envir{problemSeed}==1){$rule = 'Right Hand Rule';};
+              Context()-&gt;variables-&gt;are(n=&gt;"Real");
+              if ($rule eq 'Left Hand Rule') {
+                $sum = Formula("(n-1)^2/(4n^2)");
+              }
+              elsif ($rule eq 'Right Hand Rule') {
+                $sum = Formula("(n+1)^2/(4n^2)");
+              };
+              $sum10 = $sum-&gt;eval(n=&gt;10);
+              $sum100 = $sum-&gt;eval(n=&gt;100);
+              $sum1000 = $sum-&gt;eval(n=&gt;1000);
+              Context("Fraction");
+              $exact = Fraction(1,4);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{0}^1 x^3\, dx</m>, using the <var name="$rule"/>.
+              </p>
+              <instruction>
+                Enter the formula in terms of <m>n</m> here.
+              </instruction>
+              <p>
+                <var name="$sum" width="30"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=10</m> here.
+              </instruction>
+              <p>
+                <var name="$sum10" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=100</m> here.
+              </instruction>
+              <p>
+                <var name="$sum100" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=1000</m> here.
+              </instruction>
+              <p>
+                <var name="$sum1000" width="10"/>
+              </p>
+              <instruction>
+                Enter the limit here.
+              </instruction>
+              <p>
+                <var name="$exact" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 36 -->
+        <exercise label="ex-riemann-integral-limit-2">
+          <webwork xml:id="webwork-ex-riemann-integral-limit-2">
+            <pg-code>
+              $rule = list_random('Left Hand Rule','Right Hand Rule');
+              $lb = random(-2,-1,1);
+              $ub = random(1,2,1);
+              $c = random(2,5,1);
+              if($envir{problemSeed}==1){$rule = 'Left Hand Rule';$lb=-1;$ub=1;$c=3;};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(n=&gt;"Real");
+              $A = Fraction($c*($ub - $lb)*(6*$lb*$ub + 2*($ub - $lb)**2),6);
+              $B = Fraction($c*($ub - $lb)*(6*$lb*($ub - $lb) + 3*($ub - $lb)**2),6);
+              if ($rule eq 'Left Hand Rule') {$B = -$B;};
+              $C = Fraction($c*($ub - $lb)**3,6);
+              ($Bn,$Bd)=$B-&gt;value;
+              ($Cn,$Cd)=$C-&gt;value;
+              $sum = Formula("$A + $Bn/($Bd n) + $Cn/($Cd n^2)");
+              $sum10 = $sum-&gt;eval(n=&gt;10);
+              $sum100 = $sum-&gt;eval(n=&gt;100);
+              $sum1000 = $sum-&gt;eval(n=&gt;1000);
+              $exact = $A;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{<var name="$lb"/>}^{<var name="$ub"/>} <var name="$c"/>x^2\, dx</m>, using the <var name="$rule"/>.
+              </p>
+              <instruction>
+                Enter the formula in terms of <m>n</m> here.
+              </instruction>
+              <p>
+                <var name="$sum" width="30"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=10</m> here.
+              </instruction>
+              <p>
+                <var name="$sum10" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=100</m> here.
+              </instruction>
+              <p>
+                <var name="$sum100" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=1000</m> here.
+              </instruction>
+              <p>
+                <var name="$sum1000" width="10"/>
+              </p>
+              <instruction>
+                Enter the limit here.
+              </instruction>
+              <p>
+                <var name="$exact" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 37 -->
+        <exercise label="ex-riemann-integral-limit-3">
+          <webwork xml:id="webwork-ex-riemann-integral-limit-3">
+            <pg-code>
+              $lb = random(-2,-1,1);
+              $ub = random(1,4,1);
+              $m = random(2,5,1);
+              $b = non_zero_random(-2,2,1);
+              if($envir{problemSeed}==1){$lb=-1;$ub=3;$m=3;$b=-1;};
+              $f = Formula("$m x + $b")-&gt;reduce;
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(n=&gt;"Real");
+              $sum = Fraction(($ub-$lb)*($m*($ub+$lb)+2*$b),2);
+              $sum = Formula("$sum");
+              $sum10 = $sum-&gt;eval(n=&gt;10);
+              $sum100 = $sum-&gt;eval(n=&gt;100);
+              $sum1000 = $sum-&gt;eval(n=&gt;1000);
+              $exact = Fraction("$sum");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{<var name="$lb"/>}^{<var name="$ub"/>} \left(<var name="$f"/>\right)\, dx</m>, using the Midpoint Rule.
+              </p>
+              <instruction>
+                Enter the formula in terms of <m>n</m> here.
+              </instruction>
+              <p>
+                <var name="$sum" width="30"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=10</m> here.
+              </instruction>
+              <p>
+                <var name="$sum10" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=100</m> here.
+              </instruction>
+              <p>
+                <var name="$sum100" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=1000</m> here.
+              </instruction>
+              <p>
+                <var name="$sum1000" width="10"/>
+              </p>
+              <instruction>
+                Enter the limit here.
+              </instruction>
+              <p>
+                <var name="$exact" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 38 -->
+        <exercise label="ex-riemann-integral-limit-4">
+          <webwork xml:id="webwork-ex-riemann-integral-limit-4">
+            <pg-code>
+              $rule = list_random('Left Hand Rule','Right Hand Rule');
+              $lb = random(1,2,1);
+              $ub = $lb + random(2,4,1);
+              $m = random(2,5,1);
+              $b = non_zero_random(-4,4,1);
+              if($envir{problemSeed}==1){$rule='Left Hand Rule';$lb=1;$ub=4;$m=2;$b=-3;};
+              $f = Formula("$m x^2 + $b")-&gt;reduce;
+              Context("Fraction");
+              $A = Fraction(($ub - $lb)*($m*$ub**2 + $m*$ub*$lb + $m*$lb**2 + 3*$b),3);
+              $B = Fraction($m*($ub - $lb)**2*($ub + $lb),2);
+              if ($rule eq 'Left Hand Rule') {$B = -$B;};
+              $C = Fraction($m*($ub - $lb)**3,6);
+              ($Bn,$Bd)=$B-&gt;value;
+              ($Cn,$Cd)=$C-&gt;value;
+              Context()-&gt;variables-&gt;are(n=&gt;"Real");
+              $sum = Formula("$A + $Bn/($Bd n) + $Cn/($Cd n^2)");
+              $sum10 = $sum-&gt;eval(n=&gt;10);
+              $sum100 = $sum-&gt;eval(n=&gt;100);
+              $sum1000 = $sum-&gt;eval(n=&gt;1000);
+              $exact = $A;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{<var name="$lb"/>}^{<var name="$ub"/>} \left(<var name="$f"/>\right)\, dx</m>, using the <var name="$rule"/>.
+              </p>
+              <instruction>
+                Enter the formula in terms of <m>n</m> here.
+              </instruction>
+              <p>
+                <var name="$sum" width="30"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=10</m> here.
+              </instruction>
+              <p>
+                <var name="$sum10" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=100</m> here.
+              </instruction>
+              <p>
+                <var name="$sum100" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=1000</m> here.
+              </instruction>
+              <p>
+                <var name="$sum1000" width="10"/>
+              </p>
+              <instruction>
+                Enter the limit here.
+              </instruction>
+              <p>
+                <var name="$exact" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 39 -->
+        <exercise label="ex-riemann-integral-limit-5">
+          <webwork xml:id="webwork-ex-riemann-integral-limit-5">
+            <pg-code>
+              $rule = list_random('Left Hand Rule','Right Hand Rule');
+              $lb = random(-12,-7,1);
+              $ub = -$lb;
+              $b = non_zero_random(3,8,1);
+              if($envir{problemSeed}==1){$rule='Right Hand Rule';$lb=-10;$ub=10;$b=5;};
+              $f = Formula("$b - x")-&gt;reduce;
+              Context()-&gt;variables-&gt;are(n=&gt;"Real");
+              $sum = Formula("2*$ub*$b + (2*$ub**2)/n")-&gt;reduce;
+              if ($rule eq 'Left Hand Rule') {
+                $sum = Formula("2*$ub*$b - (2*$ub**2)/n")-&gt;reduce;
+              };
+              $sum10 = $sum-&gt;eval(n=&gt;10);
+              $sum100 = $sum-&gt;eval(n=&gt;100);
+              $sum1000 = $sum-&gt;eval(n=&gt;1000);
+              $exact = Real(2*$ub*$b);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{<var name="$lb"/>}^{<var name="$ub"/>} \left(<var name="$f"/>\right)\, dx</m>, using the <var name="$rule"/>.
+              </p>
+              <instruction>
+                Enter the formula in terms of <m>n</m> here.
+              </instruction>
+              <p>
+                <var name="$sum" width="30"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=10</m> here.
+              </instruction>
+              <p>
+                <var name="$sum10" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=100</m> here.
+              </instruction>
+              <p>
+                <var name="$sum100" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=1000</m> here.
+              </instruction>
+              <p>
+                <var name="$sum1000" width="10"/>
+              </p>
+              <instruction>
+                Enter the limit here.
+              </instruction>
+              <p>
+                <var name="$exact" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 40 -->
+        <exercise label="ex-riemann-integral-limit-6">
+          <webwork xml:id="webwork-ex-riemann-integral-limit-6">
+            <pg-code>
+              $rule = list_random('Left Hand Rule','Right Hand Rule');
+              if($envir{problemSeed}==1){$rule='Right Hand Rule';};
+              $f = Formula("x^3 - x^2")-&gt;reduce;
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(n=&gt;"Real");
+              $sum = Formula("-1/12+1/(12n^2)");
+              $sum10 = $sum-&gt;eval(n=&gt;10);
+              $sum100 = $sum-&gt;eval(n=&gt;100);
+              $sum1000 = $sum-&gt;eval(n=&gt;1000);
+              $exact = Fraction(-1,12);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds \int_{0}^{1} \left(<var name="$f"/>\right)\, dx</m>, using the <var name="$rule"/>.
+              </p>
+              <instruction>
+                Enter the formula in terms of <m>n</m> here.
+              </instruction>
+              <p>
+                <var name="$sum" width="30"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=10</m> here.
+              </instruction>
+              <p>
+                <var name="$sum10" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=100</m> here.
+              </instruction>
+              <p>
+                <var name="$sum100" width="10"/>
+              </p>
+              <instruction>
+                Evaluate the formula using <m>n=1000</m> here.
+              </instruction>
+              <p>
+                <var name="$sum1000" width="10"/>
+              </p>
+              <instruction>
+                Enter the limit here.
+              </instruction>
+              <p>
+                <var name="$exact" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+    </subexercises>
+  </exercises>
+</section>

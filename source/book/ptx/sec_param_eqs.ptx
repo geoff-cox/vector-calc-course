@@ -1,0 +1,3455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec_param_eqs" label="sec_param_eqs">
+  <title>Parametric Equations</title>
+  <introduction>
+    <figure xml:id="vid-planecurves-parameq-intro" component="video" vshift="0">
+      <caption>Video introduction to <xref ref="sec_param_eqs"/></caption>
+      <video youtube="ktYtHfYoWi4" label="vid-planecurves-parameq-intro"/>
+    </figure>
+    <p>
+      We are familiar with sketching shapes,
+      such as parabolas, by following this basic procedure:
+    </p>
+
+    <figure xml:id="fig_param_eqs_intro1">
+      <caption>Plotting a graph <m>y=f(x)</m></caption>
+      <image width="95%">
+        <shortdescription>Diagram outlining the steps involved in plotting a function.</shortdescription>
+        <description>
+          <p>
+            A diagram containing mostly text, that outlines the process for plotting a function.
+            The steps illustrated are as follows:
+            <ol>
+              <li>
+                <p>
+                  Choose <m>x</m>
+                </p>
+              </li>
+              <li>
+                <p>
+                  Use function <m>f</m> to find <m>y</m> (<m>y=f(x)</m>)
+                </p>
+              </li>
+              <li>
+                <p>
+                  Plot point <m>(x,y)</m>
+                </p>
+              </li>
+            </ol>
+          </p>
+
+          <p>
+            This is not really indicative of how a person would sketch a graph by hand
+            (better techniques for doing so were covered in <xref ref="sec_sketch"/>),
+            but it is not far off from how a computer might generate a plot,
+            or how a student who is first learning about functions might use a table of values to create a plot.
+          </p>
+        </description>
+        <latex-image label="img_param_eqs_intro1">
+
+        \begin{tikzpicture}
+
+        \draw (0,0) node (A) {Choose \(x\)}
+              (5.25,0) node (B) {Use a function \(f\) to find \(y\) \(\big(y=f(x)\big)\)}
+              (11.25,0) node (C) {Plot point \((x,y)\)};
+
+        \draw [-&gt;] (A) -- (B);
+        \draw [-&gt;] (B) -- (C);
+
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>
+      The <em>rectangular equation</em>
+      <m>y=f(x)</m> works well for some shapes like a parabola with a vertical axis of symmetry,
+      but in the previous section we encountered several shapes that could not be sketched in this manner. (To plot an ellipse using the above procedure,
+      we need to plot the <q>top</q> and <q>bottom</q>
+      separately.)<idx><h>curve</h><h>rectangular equation</h></idx>
+    </p>
+
+    <p>
+      In this section we introduce a new sketching procedure:
+    </p>
+
+    <figure xml:id="fig_param_eqs_intro2">
+      <caption>Plotting a curve <m>(x(t),y(t))</m></caption>
+      <image width="60%">
+        <shortdescription>Diagram illustrating the process for plotting a parametric curve.</shortdescription>
+        <description>
+          <p>
+            This is another text-based diagram, which illustrates the method for plotting curves that will be covered in this section.
+            In this method, the coordinates <m>x</m> and <m>y</m> are both defined as functions of a third variable, <m>t</m>.
+            Four phrases are arranged in a diamond shape, with text left, right, top, and bottom.
+          </p>
+
+          <p>
+            To the left of the diagram is the text, <q>Choose <m>t</m></q>.
+            An arrow points up and to the left from this text to the phrase <q>Use a function <m>f</m> to find <m>x</m> (<m>x=f(t)</m>)</q>,
+            which is located at the top of the diagram.
+            Another arrow points down and to the left from <q>Choose <m>t</m></q> to the phrase
+            <q>Use a function <m>g</m> to find <m>y</m> (<m>y=g(t)</m>)</q>, which is located at the bottom of the diagram.
+          </p>
+
+          <p>
+            From the phrases at the top and bottom of the diagram there are two more arrows pointing to the right,
+            to a final phrase, which states, <q>Plot point <m>(x,y)</m></q>.
+          </p>
+        </description>
+        <latex-image label="img_param_eqs_intro2">
+
+        \begin{tikzpicture}[every node/.append style={font=\large}]
+
+        \draw (0,0) node (A) {Choose \(t\)}
+              (3,1) node (B1) {Use a function \(f\) to find \(x\) \(\big(x=f(t)\big)\)}
+              (3,-1) node (B2) {Use a function \(g\) to find \(y\) \(\big(y=g(t)\big)\)}
+              (6.25,0) node (C) {Plot point \((x,y)\)};
+
+        \draw [-&gt;] (A) -- (B1);
+        \draw [-&gt;] (A) -- (B2);
+        \draw [-&gt;] (B1) -- (C);
+        \draw [-&gt;] (B2) -- (C);
+
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>
+      Here, <m>x</m> and <m>y</m> are found separately but then plotted together:
+      for each value of the input <m>t</m>, we plot the output - the point <m>(x(t),y(t))</m>.
+    </p>
+  </introduction>
+
+  <subsection xml:id="subsec-parametric-plot">
+    <title>Plotting parametric curves</title>
+    <p>
+      The procedure outlined in <xref ref="fig_param_eqs_intro2"/> leads us to a definition.
+    </p>
+
+    <definition xml:id="def_param_eq">
+      <title>Parametric Equations and Curves</title>
+      <statement>
+        <p>
+          Let <m>f</m> and <m>g</m> be continuous functions on an interval <m>I</m>.
+          The set of all points <m>\big(x,y\big) = \big(f(t),g(t)\big)</m> in the Cartesian plane,
+          as <m>t</m> varies over <m>I</m>,
+          is the <term>graph</term> of the
+          <term>parametric equations</term>
+          <m>x=f(t)</m> and <m>y=g(t)</m>,
+          where <m>t</m> is the <term>parameter</term>.
+          A <term>curve</term> is a graph along with the parametric equations that define it.
+              <idx><h>curve</h><h>parametrically defined</h></idx>
+              <idx><h>parametric equations</h><h>definition</h></idx>
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      This is a formal definition of the word <em>curve</em>.
+      When a curve lies in a plane
+      (such as the Cartesian plane),
+      it is often referred to as a <em>plane curve</em>.
+      Examples will help us understand the concepts introduced in the definition.
+    </p>
+
+    <example xml:id="ex_pareq1">
+      <title>Plotting parametric functions</title>
+      <statement>
+        <p>
+          Plot the graph of the parametric equations <m>x=t^2</m>,
+          <m>y=t+1</m> for <m>t</m> in <m>[-2,2]</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We plot the graphs of parametric equations in much the same manner as we plotted graphs of functions like <m>y=f(x)</m>:
+          we make a table of values, plot points,
+          then connect these points with a
+          <q>reasonable</q> looking curve.
+          <xref ref="fig_pareq1a"/> shows such a table of values;
+          note how we have 3 columns.
+        </p>
+
+        <p>
+          The points <m>(x,y)</m> from the table are plotted in <xref ref="fig_pareq1b"/>.
+          The points have been connected with a smooth curve.
+          Each point has been labeled with its corresponding <m>t</m>-value.
+          These values, along with the two arrows along the curve,
+          are used to indicate the <em>orientation</em> of the graph.
+          This information helps us determine the direction in which the graph is <q>moving.</q>
+        </p>
+
+        <figure xml:id="fig_pareq1">
+          <caption>A table of values of the parametric equations in <xref ref="ex_pareq1"/> along with a sketch of their graph</caption>
+          <sidebyside valign="bottom" widths="47% 47%">
+            <figure xml:id="fig_pareq1a"><caption/>
+              <tabular>
+                <row>
+                  <cell><m>t</m></cell>
+                  <cell><m>x</m></cell>
+                  <cell><m>y</m></cell>
+                </row>
+                <row bottom="minor">
+                  <cell/>
+                  <cell/>
+                  <cell/>
+                </row>
+                <row>
+                  <cell><m>-2</m></cell>
+                  <cell><m>4</m></cell>
+                  <cell><m>-1</m></cell>
+                </row>
+                <row>
+                  <cell><m>-1</m></cell>
+                  <cell><m>1</m></cell>
+                  <cell><m>0</m></cell>
+                </row>
+                <row>
+                  <cell><m>0</m></cell>
+                  <cell><m>0</m></cell>
+                  <cell><m>1</m></cell>
+                </row>
+                <row>
+                  <cell><m>1</m></cell>
+                  <cell><m>1</m></cell>
+                  <cell><m>2</m></cell>
+                </row>
+                <row>
+                  <cell><m>2</m></cell>
+                  <cell><m>4</m></cell>
+                  <cell><m>3</m></cell>
+                </row>
+              </tabular>
+            </figure>
+            <figure xml:id="fig_pareq1b">
+              <caption/>
+              <!-- START figures/fig_pareq1.tex -->
+              <image>
+                <shortdescription>Plot of a parabola with its vertex at the point (0,1), opening to the right, with several marked points.</shortdescription>
+                <description>
+                  <p>
+                    The parametric curve obtained from the table of values in <xref ref="fig_pareq1a"/> is shown.
+                    On a set of coordinate axes, the points corresponding to the values <m>t=-2,-1,0,1,2</m> are plotted.
+                    These are, respectively, <m>(4,-1), (1,0), (0,1), (1,2), (4,3)</m>.
+                  </p>
+
+                  <p>
+                    The curve joining these points is plotted; it appears to be a parabola opening to the right,
+                    with its vertex at the point <m>(0,1)</m>.
+                    Arrow heads on the curve indicate a direction of travel corresponding to an increasing value of <m>t</m>.
+                  </p>
+                </description>
+                <latex-image label="img_pareq1b">
+
+                \begin{tikzpicture}
+
+                \begin{axis}[
+                axis on top,
+                ymin=-2.2,ymax=4.2,
+                xmin=-.9,xmax=5.2
+                ]
+
+                \addplot+ [domain=-2:2,samples=60] ({x^2},{x+1});
+
+                \draw [-&gt;,&gt;=latex] (axis cs:3.9204,2.98) -- (axis cs:3.96,2.99);
+                \draw [-&gt;,&gt;=latex] (axis cs:2.25,-.5) -- (axis cs:2.22,-.49);
+
+                \filldraw (axis cs:4,-1) circle (2.4pt) node [below] { $t=-2$};
+                \filldraw (axis cs:1,0) circle (2.4pt) node [above] { $t=-1$};
+                \filldraw (axis cs:0,1) circle (2.4pt) node [left] { $t=0$};
+                \filldraw (axis cs:1,2) circle (2.4pt) node [above] { $t=1$};
+                \filldraw (axis cs:4,3) circle (2.4pt) node [above ] { $t=2$};
+
+                \end{axis}
+
+                \end{tikzpicture}
+
+                </latex-image>
+              </image>
+              <!-- figures/fig_pareq1.tex END -->
+            </figure>
+          </sidebyside>
+        </figure>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="7Ytw9RTrFtM" label="vid-planecurves-parameq-example-plot" component="video"/>
+      </solution>
+    </example>
+
+    <p>
+      We often use the letter <m>t</m> as the parameter as we often regard <m>t</m> as representing <em>time</em>.
+      Certainly there are many contexts in which the parameter is not time,
+      but it can be helpful to think in terms of time as one makes sense of parametric plots and their orientation (for instance,
+      <q>At time <m>t=0</m> the position is <m>(1,2)</m> and at time <m>t=3</m> the position is <m>(5,1)</m>.</q>).
+    </p>
+
+    <example xml:id="ex_pareq2">
+      <title>Plotting parametric functions</title>
+      <statement>
+        <p>
+          Sketch the graph of the parametric equations <m>x=\cos^2(t)</m>,
+          <m>y=\cos(t) +1</m> for <m>t</m> in <m>[0,\pi]</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We again start by making a table of values in <xref ref="fig_pareq2a"/>,
+          then plot the points <m>(x,y)</m> on the Cartesian plane in <xref ref="fig_pareq2b"/>.
+        </p>
+
+        <figure xml:id="fig_pareq2">
+          <caption>A table of values of the parametric equations in <xref ref="ex_pareq2"/> along with a sketch of their graph</caption>
+          <sidebyside valign="bottom" widths="47% 47%">
+            <figure xml:id="fig_pareq2a"><caption/>
+              <tabular>
+                <row>
+                  <cell><m>t</m></cell>
+                  <cell><m>x</m></cell>
+                  <cell><m>y</m></cell>
+                </row>
+                <row bottom="minor">
+                  <cell/>
+                  <cell/>
+                  <cell/>
+                </row>
+                <row>
+                  <cell><m>0</m></cell>
+                  <cell><m>1</m></cell>
+                  <cell><m>2</m></cell>
+                </row>
+                <row>
+                  <cell><m>\pi/4</m></cell>
+                  <cell><m>1/2</m></cell>
+                  <cell><m>1+\sqrt{2}/2</m></cell>
+                </row>
+                <row>
+                  <cell><m>\pi/2</m></cell>
+                  <cell><m>0</m></cell>
+                  <cell><m>1</m></cell>
+                </row>
+                <row>
+                  <cell><m>3\pi/4</m></cell>
+                  <cell><m>1/2</m></cell>
+                  <cell><m>1-\sqrt{2}/2</m></cell>
+                </row>
+                <row>
+                  <cell><m>\pi</m></cell>
+                  <cell><m>1</m></cell>
+                  <cell><m>0</m></cell>
+                </row>
+              </tabular>
+            </figure>
+            <figure xml:id="fig_pareq2b">
+              <caption/>
+              <!-- START figures/fig_pareq2.tex -->
+              <image>
+                <shortdescription>Plot of a parabola with its vertex at the point (0,1), opening to the right, with several marked points.</shortdescription>
+                <description>
+                  <p>
+                    The parametric curve obtained from the table of values in <xref ref="fig_pareq2a"/> is shown.
+                    The curve is very similar in appearance to the one in <xref ref="fig_pareq1b"/>;
+                    again it appears to be a parabola opening to the right, with its vertex at the point <m>(0,1)</m>.
+                  </p>
+
+                  <p>
+                    The primary difference is that the marked points now correspond to parameter values
+                    <m>t = 0, \pi/4, \pi/2, 3\pi/4, \pi</m>. The direction of travel is opposite to that in <xref ref="fig_pareq1b"/>.
+                  </p>
+                </description>
+                <latex-image label="img_pareq2b">
+
+                \begin{tikzpicture}
+
+                \begin{axis}[
+                ymin=-.1,ymax=2.1,
+                xmin=-.1,xmax=1.6
+                ]
+
+                \addplot+ [domain=0:180,samples=70] ({(cos(x))^2},{cos(x)+1});
+
+                \draw [-&gt;,&gt;=latex] (axis cs:0.998271, 0.00086485) -- (axis cs:0.999534, 0.000233112);
+                \draw [-&gt;,&gt;=latex] (axis cs:0.770151, 1.87758) -- (axis cs:0.75311, 1.86782);
+
+                \filldraw (axis cs:1,2) circle (2.4pt) node [right] { $t=0$};
+                \filldraw (axis cs:.5,1.71) circle (2.4pt) node [below right] { $t=\pi/4$};
+                \filldraw (axis cs:0,1) circle (2.4pt) node [right] { $t=\pi/2$};
+                \filldraw (axis cs:.5,.292) circle (2.4pt) node [above right] { $t=3\pi/4$};
+                \filldraw (axis cs:1,0) circle (2.4pt) node [above right] { $t=\pi$};
+
+                \end{axis}
+
+                \end{tikzpicture}
+
+                </latex-image>
+              </image>
+              <!-- figures/fig_pareq2.tex END -->
+            </figure>
+          </sidebyside>
+        </figure>
+
+        <p>
+          It is not difficult to show that the curves in <xref ref="ex_pareq1" text="global">Examples</xref>
+          and <xref ref="ex_pareq2" text="global"/>
+          are portions of the same parabola.
+          While the <em>parabola</em> is the same,
+          the <em>curves</em> are different.
+          In <xref ref="ex_pareq1"/>,
+          if we let <m>t</m> vary over all real numbers,
+          we'd obtain the entire parabola.
+          In this example,
+          letting <m>t</m> vary over all real numbers would still produce the same graph;
+          this portion of the parabola would be traced,
+          and re-traced, infinitely many times.
+          The orientation shown in <xref ref="fig_pareq2"/>
+          shows the orientation on <m>[0,\pi]</m>,
+          but this orientation is reversed on <m>[\pi,2\pi]</m>.
+        </p>
+
+        <p>
+          These examples begin to illustrate the powerful nature of parametric equations.
+          Their graphs are far more diverse than the graphs of functions produced by
+          <q><m>y=f(x)</m></q> functions.
+        </p>
+      </solution>
+    </example>
+
+    <exercise label="APEX-PROTEUS-sec-10_2-param-eqs-1-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      
+      <statement>
+        <p>
+          Two parametrizations are given:
+          <md>
+            x=\cos(t),\ y=\sin(t),\ 0\le t\le 2\pi
+          </md>
+          and
+          <md>
+            x=\cos(2t),\ y=\sin(2t),\ 0\le t\le \pi
+          </md>.
+        </p>
+
+        <p>Which statement is true?</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+           <statement><p>The second traces a larger circle.</p> </statement>
+        </choice>
+        <choice correct="no">
+           <statement><p>The second traces the same circle twice.</p> </statement>
+        </choice>
+        <choice correct="yes">
+           <statement><p>The second traces the same circle once, but at a different speed.</p> </statement>
+        </choice>
+        <choice correct="no">
+           <statement><p>The two curves are different because the parameter intervals are different.</p> </statement>
+        </choice>
+      </choices>
+      <solution>
+        <p>As <m>t</m> goes from <m>0</m> to <m>\pi</m>, the angle <m>2t</m> goes from <m>0</m> to <m>2\pi</m>. So the second parametrization traces the unit circle exactly once, but the parameter changes at a different rate.</p>
+      </solution>
+    </exercise>
+
+    <exercise label="APEX-PROTEUS-sec-10_2-param-eqs-2-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      <statement>
+        <p>Which statement best explains why two different parametric equations can describe the same geometric curve?</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+           <statement><p>Because parametric equations always produce infinitely many different curves.</p> </statement>
+        </choice>
+        <choice correct="yes">
+           <statement><p>
+            Different functions of the parameter can produce the same set of points, possibly with different speeds or directions.
+           </p> </statement>
+        </choice>
+        <choice correct="no">
+           <statement><p>Because every Cartesian equation has only one possible parametrization.</p> </statement>
+        </choice>
+        <choice correct="no">
+           <statement><p>
+            Because changing the parameter always changes the geometric shape of the curve.
+          </p> </statement>
+        </choice>
+      </choices>
+      <solution>
+        <statement>
+        <p>
+          A parametric curve is determined by the set of points traced and how they are traced. 
+          Different choices of parameter can produce the same set of points while changing orientation, 
+          speed, or how often the curve is retraced.
+        </p>
+        </statement>
+      </solution>
+    </exercise>
+
+    <p>
+      <em>Technology Note:</em> Most graphing utilities can graph functions given in parametric form.
+      Often the word <q>parametric</q>
+      is abbreviated as <q>PAR</q>
+      or <q>PARAM</q> in the options.
+      The user usually needs to determine the graphing window (i.e, the minimum and maximum <m>x</m>- and <m>y</m>-values),
+      along with the values of <m>t</m> that are to be plotted.
+      The user is often prompted to give a <m>t</m> minimum,
+      a <m>t</m> maximum,
+      and a <q><m>t</m>-step</q> or <q><m>\Delta t</m>.</q>
+      Graphing utilities effectively plot parametric functions just as we've shown here:
+      they plots lots of points.
+      A smaller <m>t</m>-step plots more points,
+      making for a smoother graph
+      (but may take longer).
+      In <xref ref="fig_pareq1"/>, the <m>t</m>-step is 1;
+      in <xref ref="fig_pareq2"/>,
+      the <m>t</m>-step is <m>\pi/4</m>.
+    </p>
+
+    <p>
+      One nice feature of parametric equations is that their graphs are easy to shift.
+      While this is not too difficult in the
+      <q><m>y=f(x)</m></q> context,
+      the resulting function can look rather messy.
+      (Plus, to shift to the right by two,
+      we replace <m>x</m> with <m>x-2</m>,
+      which is counter-intuitive.)
+      The following example demonstrates this.
+    </p>
+
+    <example xml:id="ex_pareq3">
+      <title>Shifting the graph of parametric functions</title>
+      <statement>
+        <p>
+          Sketch the graph of the parametric equations <m>x=t^2+t</m>,
+          <m>y=t^2-t</m>.
+          Find new parametric equations that shift this graph to the right 3 places and down 2.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          The graph of the parametric equations is given in <xref ref="fig_pareq3a"/>.
+          It is a parabola with a axis of symmetry along the line <m>y=x</m>;
+          the vertex is at <m>(0,0)</m>.
+        </p>
+
+        <p>
+          In order to shift the graph to the right 3 units,
+          we need to increase the <m>x</m>-value by 3 for every point.
+          The straightforward way to accomplish this is simply to add 3 to the function defining <m>x</m>:
+          <m>x = t^2+t+3</m>.
+          To shift the graph down by 2 units,
+          we wish to decrease each <m>y</m>-value by 2, so we subtract 2 from the function defining <m>y</m>:
+          <m>y = t^2-t-2</m>.
+          Thus our parametric equations for the shifted graph are <m>x=t^2+t+3</m>,
+          <m>y=t^2-t-2</m>.
+          This is graphed in <xref ref="fig_pareq3a"/>.
+          Notice how the vertex is now at <m>(3,-2)</m>.
+        </p>
+
+        <figure xml:id="fig_pareq3">
+          <caption>Illustrating how to shift graphs in <xref ref="ex_pareq3"/></caption>
+          <sidebyside widths="47% 47%" margins="0%">
+            <figure xml:id="fig_pareq3a">
+              <caption/>
+            <!-- START figures/fig_pareq3a.tex -->
+              <image>
+                <shortdescription>Plot of the "unshifted" parametric curve in this example.</shortdescription>
+                <description>
+                  <p>
+                    A plot of the curve <m>x=t^2+1, y=t^2-t</m> is shown.
+                    The shape of the curve is similar to that of a parabola, but slightly distorted.
+                  </p>
+
+                  <p>
+                    The curve begins near the point <m>(2,6)</m>, and then descends to a <m>y</m> intercept at <m>(0,2)</m>.
+                    It briefly enters the second quadrant before passing through the origin into the fourth quadrant.
+                    A small portion of the curve lies in the fourth quarant before it crosses the <m>x</m> axis at <m>(2,0)</m>;
+                    after this point, it continues into the first quadrant, exiting the image near the point <m>(10,5)</m>.
+                  </p>
+                </description>
+                <latex-image label="img_pareq3a">
+
+                \begin{tikzpicture}
+
+                \begin{axis}[
+                xtick={2,4,6,8,10},
+                ymin=-2.6,ymax=6.5,
+                xmin=-.6,xmax=10.5
+                ]
+
+                \addplot+ [domain=-3:3,samples=60] ({x^2+x},{x^2-x});
+
+                \draw [-&gt;,&gt;=latex] (axis cs:0.96, 4.16) -- (axis cs:0.9381, 4.1181);
+                \draw [-&gt;,&gt;=latex] (axis cs:6,2) -- (axis cs:6.05,2.03);
+
+                \draw (axis cs: 4,5) node [align=left] { $x=t^2+t$\\  $y=t^2-t$};
+
+                \end{axis}
+
+                \end{tikzpicture}
+
+                </latex-image>
+              </image>
+            <!-- figures/fig_pareq3a.tex END -->
+            </figure>
+
+            <figure xml:id="fig_pareq3b">
+              <caption/>
+            <!-- START figures/fig_pareq3b.tex -->
+              <image>
+                <shortdescription>The shifted version of the curve in this example.</shortdescription>
+                <description>
+                  <p>
+                    The curve in this image is identical to the one beside it in <xref ref="fig_pareq3a"/>;
+                    the only difference is that it has been shifted 3 units to the right, and 2 units down.
+                  </p>
+                </description>
+                <latex-image label="img_pareq3b">
+
+                \begin{tikzpicture}
+
+                \begin{axis}[
+                axis on top,
+                xtick={2,4,6,8,10},
+                ymin=-2.6,ymax=6.5,
+                xmin=-.6,xmax=10.5
+                ]
+
+                \addplot+ [domain=-3:3,samples=60] ({x^2+x+3},{x^2-x-2});
+
+                \draw [-&gt;,&gt;=latex] (axis cs:3.96, 2.16) -- (axis cs:3.9381, 2.1181);
+                \draw [-&gt;,&gt;=latex] (axis cs:9,0) -- (axis cs:9.05,0.03);
+
+                \draw (axis cs: 2.5,5) node [align=left] { $x=t^2+t+3$\\  $y=t^2-t-2$};
+
+                \end{axis}
+
+                \end{tikzpicture}
+
+                </latex-image>
+              </image>
+            <!-- figures/fig_pareq3b.tex END -->
+            </figure>
+          </sidebyside>
+
+        </figure>
+      </solution>
+    </example>
+
+    <p>
+      Because the <m>x</m>- and <m>y</m>-values of a graph are determined independently,
+      the graphs of parametric functions often possess features not seen on
+      <q><m>y=f(x)</m></q> type graphs.
+      The next example demonstrates how such graphs can arrive at the same point more than once.
+    </p>
+
+    <example xml:id="ex_pareq4">
+      <title>Graphs that cross themselves</title>
+      <statement>
+        <p>
+          Plot the parametric functions <m>x=t^3-5t^2+3t+11</m> and
+          <m>y=t^2-2t+3</m> and determine the <m>t</m>-values where the graph crosses itself.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Using the methods developed in this section,
+          we again plot points and graph the parametric equations as shown in <xref ref="fig_pareq4"/>.
+          It appears that the graph crosses itself at the point <m>(2,6)</m>,
+          but we'll need to analytically determine this.
+        </p>
+
+        <figure xml:id="fig_pareq4" vshift="-3">
+          <caption>A graph of the parametric equations from <xref ref="ex_pareq4"/></caption>
+          <!-- START figures/fig_pareq4.tex -->
+          <image width="47%">
+            <shortdescription>Plot of a more complicated parametric curve that has a self-intersection.</shortdescription>
+            <description>
+              <p>
+                The curve in this image could describe the path of a fly that turns sharply in a loop,
+                before heading off in another direction.
+                It begins in the second quadrant, traveling down and to the right,
+                and crossing the <m>y</m> axis at approximately <m>(0,6.5)</m>.
+              </p>
+
+              <p>
+                The curve continues in this direction until it turns sharply near the point <m>(12,2)</m>.
+                The curve then travels to the left and bends upwards, crossing itself at the point <m>(2,6)</m>.
+                After this point of self-intersection, the curve continues in the first quadrant,
+                traveling up and to the right.
+              </p>
+            </description>
+            <latex-image label="img_pareq4">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            minor x tick num=4,
+            minor y tick num=4,
+            ymin=-.9,ymax=16,
+            xmin=-6,xmax=16
+            ]
+
+            \addplot+ [domain=-2:5,samples=70] ({x^3-5*x^2+3*x+11},{x^2-2*x+3});
+
+            \draw [-&gt;,&gt;=latex] (axis cs:-4.62287, 7.5225) -- (axis cs:-4.4041, 7.4756);
+            \draw [-&gt;,&gt;=latex] (axis cs:7,11) -- (axis cs:7.1107, 11.0601);
+
+            \draw (axis cs: 7,14) node [align=left] { $x=t^3-5t^2+3t+11$\\  $y=t^2-2t+3$};
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_pareq4.tex END -->
+        </figure>
+
+        <p>
+          We are looking for two different values, say,
+          <m>s</m> and <m>t</m>, where
+          <m>x(s) = x(t)</m> and <m>y(s) = y(t)</m>.
+          That is, the <m>x</m>-values are the same precisely when the <m>y</m>-values are the same.
+          This gives us a system of 2 equations with 2 unknowns:
+          <md>
+            <mrow>s^3-5s^2+3s+11 \amp = t^3-5t^2+3t+11</mrow>
+            <mrow>s^2-2s+3 \amp = t^2-2t+3</mrow>
+          </md>
+        </p>
+
+        <p>
+          Solving this system is not trivial but involves only algebra.
+          Using the quadratic formula,
+          one can solve for <m>t</m> in the second equation and find that <m>\ds t = 1\pm \sqrt{s^2-2s+1}</m>.
+          This can be substituted into the first equation,
+          revealing that the graph crosses itself at <m>t=-1</m> and <m>t=3</m>.
+          We confirm our result by computing
+          <m>x(-1) = x(3)=2</m> and <m>y(-1) = y(3) = 6</m>.
+        </p>
+      </solution>
+    </example>
+
+    <exercise label="APEX-PROTEUS-sec-10_2-param-eqs-5-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      <statement>
+        <p>
+          Match each parametric curve with the description of its graph or motion.
+          Some responses may not match any curve.
+        </p>
+      </statement>
+      <feedback>
+        <p>
+          Eliminate the parameter to see the geometric curve, consider the range of t, 
+          and pay attention to motion direction.
+        </p>
+      </feedback>
+      <cardsort>
+        <!-- True matches -->
+        <match>
+          <premise order="1"><m>x=t^2, y=t^2</m>, <m>-2 ≤ t &lt; 2</m></premise>
+          <response>Line segment from (0,0) to (4,4), points mostly traced twice, 
+            retraces motion</response>
+        </match>
+        <match>
+          <premise order="2"><m>x=cos(t), y=sin(t)</m>, <m>0 ≤ t ≤ 2π</m></premise>
+          <response>
+            Circle of radius 1 centered at the origin, traced once counterclockwise
+          </response>
+        </match>
+        <match>
+          <premise order="3"><m>x=t, y=t^2<m>, </m>-2 ≤ t ≤ 2</m></premise>
+          <response>Parabola opening upward from (-2,2) to (2,2)</response>
+        </match>
+        <match>
+          <premise order="4"><m>x=2cos(t), y=3sin(t)</m>, <m>0 ≤ t ≤ 2π</m></premise>
+          <response>
+            Ellipse centered at the origin, semi-major axis 3 along y, 
+            semi-minor axis 2 along x
+          </response>
+        </match>
+        <match>
+          <premise order="5"><m>x=sin(2t), y=cos(2t)</m>, <m>0 ≤ t ≤ 2π</m></premise>
+          <response>Circle of radius 1 centered at the origin, 
+            traced twice counterclockwise</response>
+        </match>
+            <match>
+          <premise order="6"><m>x=3, y=t^2</m>, <m>0 ≤ t ≤ 3</m></premise>
+          <response>A vertical line segment</response>
+        </match>
+    <!-- Distractors -->
+        <match>     
+          <response>Line segment along <m>y=2x</m> from <m>(0,0)</m> to <m>(2,4)</m></response>
+        </match>
+        <match>
+          <response>Circle of radius 2 centered at the origin</response>
+        </match>
+        <match>
+          <response>An horizontal line segment</response>
+        </match>
+        <response>Downward-opening parabola from (-2,4) to (2,4)</response>
+        <response>Horizontal line y=3</response>
+        <response>Figure traced only once from t=0 to t=1</response>
+      </cardsort>
+    </exercise>
+  </subsection>
+
+  <subsection>
+    <title>Converting between rectangular and parametric equations</title>
+    <p>
+      It is sometimes useful to rewrite equations in rectangular form (<ie/>, <m>y=f(x)</m>) into parametric form,
+      and vice-versa.
+      Converting from rectangular to parametric can be very simple:
+      given <m>y=f(x)</m>, the parametric equations <m>x=t</m>,
+      <m>y=f(t)</m> produce the same graph.
+      As an example, given <m>y=x^2</m>,
+      the parametric equations <m>x=t</m>,
+      <m>y=t^2</m> produce the familiar parabola.
+      However, other parametrizations can be used.
+      The following example demonstrates one possible alternative.
+    </p>
+
+    <example xml:id="ex_pareq5">
+      <title>Converting from rectangular to parametric</title>
+      <statement>
+        <p>
+          Consider <m>y=x^2</m>.
+          Find parametric equations <m>x=f(t)</m>,
+          <m>y=g(t)</m> for the parabola where <m>t=\frac{dy}{dx}</m>.
+          That is, <m>t=a</m> corresponds to the point on the graph whose tangent line has slope <m>a</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We start by computing <m>\frac{dy}{dx}</m>: <m>\yp = 2x</m>.
+          Thus we set <m>t=2x</m>.
+          We can solve for <m>x</m> and find <m>x= t/2</m>.
+          Knowing that <m>y=x^2</m>, we have <m>y= t^2/4</m>.
+          Thus parametric equations for the parabola <m>y=x^2</m> are
+          <md>
+            x=t/2  y=t^2/4
+          </md>.
+        </p>
+
+        <p>
+          To find the point where the tangent line has a slope of <m>-2</m>,
+          we set <m>t=-2</m>.
+          This gives the point <m>(-1, 1)</m>.
+          We can verify that the slope of the line tangent to the curve at this point indeed has a slope of <m>-2</m>.
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="YsOEEcCXNb8" label="vid-planecurves-parameq-find-parametrization" component="video"/>
+      </solution>
+    </example>
+
+    <p>
+      We sometimes choose the parameter to accurately model physical behavior.
+    </p>
+
+    <example xml:id="ex_pareq6">
+      <title>Converting from rectangular to parametric</title>
+      <statement>
+        <p>
+          An object is fired from a height of 0 feet and lands 6 seconds later, 192 feet away.
+          Assuming ideal projectile motion, the height, in feet,
+          of the object can be described by <m>h(x) = -x^2/64+3x</m>,
+          where <m>x</m> is the distance in feet from the initial location. (Thus
+          <m>h(0) = h(192) = 0</m> feet.) Find parametric equations <m>x=f(t)</m>,
+          <m>y=g(t)</m> for the path of the projectile where <m>x</m> is the horizontal distance the object has traveled at time <m>t</m>
+          (in seconds)
+          and <m>y</m> is the height at time <m>t</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Physics tells us that the horizontal motion of the projectile is linear;
+          that is, the horizontal speed of the projectile is constant.
+          Since the object travels <quantity><mag>192</mag><unit base="foot"/></quantity> in <quantity><mag>6</mag><unit base="second"/></quantity>,
+          we deduce that the object is moving horizontally at a rate of <quantity><mag>32</mag><unit base="foot"/><per base="second"/></quantity>,
+          giving the equation <m>x=32t</m>.
+          As <m>y=-x^2/64+3x</m>, we find <m>y= -16t^2+96t</m>.
+          We can quickly verify that <m>\yp'=-32</m> <quantity><unit base="foot"/><per base="foot" exp="2"/></quantity>,
+          the acceleration due to gravity,
+          and that the projectile reaches its maximum at <m>t=3</m>,
+          halfway along its path.
+        </p>
+
+        <p>
+          These parametric equations make certain determinations about the object's location easy:
+          2 seconds into the flight the object is at the point <m>\big(x(2),y(2)\big) = \big(64,128\big)</m>.
+          That is, it has traveled horizontally <quantity><mag>64</mag><unit base="foot"/></quantity>
+          and is at a height of <quantity><mag>128</mag><unit base="foot"/></quantity>,
+          as shown in <xref ref="fig_pareq6"/>.
+        </p>
+
+        <figure xml:id="fig_pareq6" vshift="3">
+          <caption>Graphing projectile motion in <xref ref="ex_pareq6"/></caption>
+          <!-- START figures/fig_pareq6.tex -->
+          <image width="47%">
+            <shortdescription>A parabolic arc describing the motion of a projectile fired up and to the right from the origin.</shortdescription>
+            <description>
+              <p>
+                The curve is a parabola that opens downward from a vertex at <m>(96,144)</m>.
+                It illustrates the path of a projectile that is fired from the origin and travels up and to the right
+                before reaching its maximum height at the vertex of the parabola.
+                It then travels back down, returning to the <m>x</m> axis at the point <m>(192,0)</m>.
+              </p>
+            </description>
+            <latex-image label="img_pareq6">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            ymin=0,ymax=160,
+            xmin=0,xmax=210
+            ]
+
+            \addplot+ [domain=0:6,samples=40] ({32*x},{-16*x^2+96*x});
+
+            \draw [-&gt;,&gt;=latex] (axis cs:32,80) -- (axis cs:35.2, 86.24);
+
+            \filldraw (axis cs:64, 128) circle (2.4pt) node [above left] { $t=2$};
+
+            \draw (axis cs: 100,50) node [align=left] { $x=32t$\\  $y=-16t^2+96t$};
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_pareq6.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>
+      It is sometimes necessary to convert given parametric equations into rectangular form.
+      This can be decidedly more difficult,
+      as some <q>simple</q> looking parametric equations can have very
+      <q>complicated</q> rectangular equations.
+      This conversion is often referred to as
+      <q>eliminating the parameter,</q>
+      as we are looking for a relationship between <m>x</m> and <m>y</m> that does not involve the parameter <m>t</m>.
+    </p>
+
+    <example xml:id="ex_pareq7">
+      <title>Eliminating the parameter</title>
+      <statement>
+        <p>
+          Find a rectangular equation for the curve described by
+          <md>
+            x= \frac{1}{t^2+1} \text{ and }  y=\frac{t^2}{t^2+1}
+          </md>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          There is not a set way to eliminate a parameter.
+          One method is to solve for <m>t</m> in one equation and then substitute that value in the second.
+          We use that technique here, then show a second, simpler method.
+        </p>
+
+        <p>
+          Starting with <m>x= 1/(t^2+1)</m>, solve for <m>t</m>:
+          <m>t = \pm\sqrt{1/x-1}</m>.
+          Substitute this value for <m>t</m> in the equation for <m>y</m>:
+          <md>
+            <mrow>y \amp = \frac{t^2}{t^2 +1}</mrow>
+            <mrow>\amp = \frac{1/x-1}{1/x-1+1}</mrow>
+            <mrow>\amp = \frac{1/x - 1}{1/x}</mrow>
+            <mrow>\amp = \left(\frac1x-1\right)\cdot x</mrow>
+            <mrow>\amp = 1-x</mrow>
+          </md>.
+        </p>
+
+        <figure xml:id="fig_pareq7" vshift="0">
+          <caption>Graphing parametric and rectangular equations for a graph in <xref ref="ex_pareq7"/></caption>
+          <!-- START figures/fig_pareq7.tex -->
+          <image width="47%">
+            <shortdescription>A graph of two overlapping lines illustrating rectangular and parametric descriptions of a curve.</shortdescription>
+            <description>
+              <p>
+                Two lines are plotted. The first is the line <m>y=1-x</m>,
+                which is drawn from the point <m>(-1,2)</m> to the point <m>(2,-1)</m>.
+              </p>
+
+              <p>
+                A second, thicker line is drawn over the first line, from <m>(0,1)</m> to <m>(1,0)</m>.
+                At <m>(0,1)</m> there is a <q>hollow</q> (white-filled) dot,
+                indicating that the second line approaches, but does not reach, this point.
+                At <m>(1,0)</m> there is a solid dot, indicating the fact that the parametric version of the line
+                reaches this point, but does not go past it.
+              </p>
+            </description>
+            <latex-image label="img_pareq7">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            ymin=-1.1,ymax=2.1,
+            xmin=-2.1,xmax=2.1
+            ]
+
+            \addplot+ [semithick,domain=-2:2] ({x},{1-x});
+            \addplot [firstcurvestyle,very thick,domain=0:1] ({x},{1-x});
+
+            \draw [fill=white] (axis cs:0,1) circle (2.4pt);
+            \filldraw [fill=black] (axis cs:1,0) circle (2.4pt) node [align=left,shift={(5pt,30pt)}] { $\displaystyle x=\frac{1}{t^2+1}$\\[2pt]  $\displaystyle y=\frac{t^2}{t^2+1}$};
+
+            \draw (axis cs: -1,1.4) node { $y=1-x$};
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_pareq7.tex END -->
+        </figure>
+
+        <p>
+          Thus <m>y=1-x</m>.
+          One may have recognized this earlier by manipulating the equation for <m>y</m>:
+          <md>
+            y = \frac{t^2}{t^2+1} = 1-\frac{1}{t^2+1} = 1-x
+          </md>.
+        </p>
+
+        <p>
+          This is a shortcut that is very specific to this problem;
+          sometimes shortcuts exist and are worth looking for.
+        </p>
+
+        <p>
+          We should be careful to limit the domain of the function <m>y=1-x</m>.
+          The parametric equations limit <m>x</m> to values in <m>(0,1]</m>,
+          thus to produce the same graph we should limit the domain of <m>y=1-x</m> to the same.
+        </p>
+
+        <p>
+          The graphs of these functions is given in <xref ref="fig_pareq7"/>.
+          The portion of the graph defined by the parametric equations is given in a thick line;
+          the graph defined by <m>y=1-x</m> with unrestricted domain is given in a thin line.
+        </p>
+      </solution>
+      <solution component="video" vshift="4">
+        <title>Video solution</title>
+        <video width="98%" youtube="8Vgv74zCWFQ" label="vid-planecurves-parameq-elim-param" component="video"/>
+      </solution>
+    </example>
+
+    <example xml:id="ex_pareq8">
+      <title>Eliminating the parameter</title>
+      <statement>
+        <p>
+          Eliminate the parameter in
+          <m>x=4\cos(t) +3</m>, <m>y= 2\sin(t) +1</m>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We should not try to solve for <m>t</m> in this situation as the resulting algebra/trig would be messy.
+          Rather, we solve for <m>\cos(t)</m> and <m>\sin(t)</m> in each equation,
+          respectively.
+          This gives
+          <md>
+            \cos(t) = \frac{x-3}{4}  \text{ and }  \sin(t) =\frac{y-1}{2}
+          </md>.
+        </p>
+
+        <p>
+          The Pythagorean Theorem gives <m>\cos^2(t) +\sin^2(t) =1</m>, so:
+          <md>
+            <mrow>\cos^2(t) +\sin^2(t) \amp =1</mrow>
+            <mrow>\left(\frac{x-3}{4}\right)^2 +\left(\frac{y-1}{2}\right)^2 \amp =1</mrow>
+            <mrow>\frac{(x-3)^2}{16}+\frac{(y-1)^2}{4} \amp =1</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_pareq8" vshift="0">
+          <caption>Graphing the parametric equations <m>x=4\cos(t) +3</m>, <m>y=2\sin(t) +1</m> in <xref ref="ex_pareq8"/></caption>
+          <!-- START figures/fig_pareq8.tex -->
+          <image width="47%">
+            <shortdescription>Graph of the ellipse obtained from the parametric equations in this example.</shortdescription>
+            <description>
+              <p>
+                The plot shows an ellipse. The major axis runs from <m>(-1,1)</m> to <m>(7,1)</m>,
+                and the minor axis runs from <m>(3,-1)</m> to <m>(3,5)</m>.
+              </p>
+            </description>
+            <latex-image label="img_pareq8">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            ymin=-3.1,ymax=5.1,
+            xmin=-1.1,xmax=8.5
+            ]
+
+            \addplot+ [domain=0:360,samples=70] ({4*cos(x)+3},{2*sin(x)+1});
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_pareq8.tex END -->
+        </figure>
+
+        <p>
+          This final equation should look familiar <mdash/> it is the equation of an ellipse!
+          <xref ref="fig_pareq8"/>
+          plots the parametric equations,
+          demonstrating that the graph is indeed of an ellipse with a horizontal major axis and center at <m>(3,1)</m>.
+        </p>
+      </solution>
+      <solution component="video" vshift="8">
+        <title>Video solution</title>
+        <video width="98%" youtube="RYkPHhpgnas" label="vid-planecurves-parameq-ellipse" component="video"/>
+      </solution>
+    </example>
+
+    <exercise label="APEX-PROTEUS-sec-10_2-param-eqs-3-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      <statement>
+        <p>
+          A particle moves according to <m>x=t^2</m> and <m>y=t^2</m> for <m>-2\le t\lt 2</m>.
+          Select all true statements about the curve and the motion of the particle.
+        </p>
+      </statement>
+      <choices>
+        <choice correct="yes">
+          <statement>
+            <p>
+              Every point traced by the particle lies on the line <m>y=x</m>.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              Correct. Since <m>x=t^2</m> and <m>y=t^2</m>, we always have <m>y=x</m>.
+            </p>
+          </feedback>
+        </choice>
+
+        <choice correct="yes">
+          <statement>
+            <p>
+              The particle traces a line segment from <m>(0,0)</m> to <m>(4,4)</m>.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              Correct. Because <m>t^2</m> ranges through all values from <m>0</m> to <m>4</m>, both <m>x</m> and <m>y</m> take the same values in that interval, so the traced set is exactly the line segment on <m>y=x</m> from <m>(0,0)</m> to <m>(4,4)</m>.
+            </p>
+          </feedback>
+        </choice>
+
+        <choice correct ="no"> 
+          <statement>
+            <p>
+              The parametric equations trace an arc of the parabola <m>y=x^2</m> from <m>(0,0)</m> to <m>(4,4)</m>.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              This is false. Since <m>x=t^2</m> and <m>y=t^2</m>, eliminating the parameter gives <m>y=x</m>, not <m>y=x^2</m>. The curve is a line segment, not a parabolic arc.
+            </p>
+          </feedback>
+        </choice>
+
+        <choice correct="yes">
+          <statement>
+            <p>
+              The particle starts at <m>(4,4)</m>, moves to <m>(0,0)</m>, 
+              and then retraces the same segment back toward <m>(4,4)</m>.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              Correct. At <m>t=-2</m>, the particle is at <m>(4,4)</m>. 
+              As <m>t</m> increases to <m>0</m>, <m>t^2</m> decreases to <m>0</m>, 
+              so the particle moves to <m>(0,0)</m>. 
+              Then as <m>t</m> increases from <m>0</m> toward <m>2</m>, 
+              <m>t^2</m> increases again, so the particle retraces the same path.
+            </p>
+          </feedback>
+        </choice>
+
+        <choice correct="no">
+          <statement>
+            <p>
+              All points on the curve are traced twice.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              False. If <m>0&lt;a&lt;4</m>, then the point <m>(a,a)</m> 
+              occurs for both <m>t=\sqrt{a}</m> and <m>t=-\sqrt{a}</m>. 
+              The origin is traced only once, at <m>t=0</m>. 
+              The point <m>(4,4)</m> is approached again as <m>t\to 2^-</m>, 
+              but <m>t=2</m> is not included.
+            </p>
+          </feedback>
+        </choice>
+
+        <choice correct="yes">
+          <statement>
+            <p>
+              The particle is at the point <m>(4, 4)</m> at some moment <m>t</m> .
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              This is true. The particle is at the point <m>(4,4)</m> at time <m>t=-2</m>.
+            </p>
+          </feedback>
+        </choice>
+      </choices>
+      <hint>
+        <p>
+          Try eliminating the parameter first. Then think separately about the <em>geometric curve</em> and the <em>direction of motion</em> as <m>t</m> increases.
+        </p>
+      </hint>
+      <solution>
+        <p>
+          Since <m>x=t^2</m> and <m>y=t^2</m>, we have <m>y=x</m>. Because <m>-2\le t&lt;2</m>, the quantity <m>t^2</m> takes every value in the interval <m>[0,4]</m>. Therefore, the geometric curve is the line segment from <m>(0,0)</m> to <m>(4,4)</m>. At <m>t=-2</m>, the particle starts at <m>(4,4)</m>, moves toward <m>(0,0)</m> as <m>t</m> increases to <m>0</m>, and then retraces the segment back toward <m>(4,4)</m> as <m>t</m> increases from <m>0</m> toward <m>2</m>. Thus the true statements are that the curve lies on <m>y=x</m>, that it is the segment from <m>(0,0)</m> to <m>(4,4)</m>, that the particle retraces the segment, and that most points are traced twice.
+        </p>
+      </solution>
+    </exercise>
+
+    <exercise label="APEX-PROTEUS-sec-10_2-param-eqs-4-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      <statement>
+        <p>
+          Select all statements that are true about parametric equations.
+        </p>
+      </statement>
+
+      <choices randomize="yes">
+        <choice correct="yes">
+          <statement><p>Different parametric equations can represent the same geometric curve.</p></statement>
+          <feedback><p>Correct.</p></feedback>
+        </choice>
+        <choice correct="yes">
+          <statement><p>Two parameterizations of the same curve may trace the curve at different speeds.</p></statement>
+          <feedback><p>Correct.</p></feedback>
+        </choice>
+        <choice correct="yes">
+          <statement><p>Two parameterizations of the same curve may trace the curve in opposite directions.</p></statement>
+          <feedback><p>Correct.</p></feedback>
+        </choice>
+        <choice correct="no">
+          <statement><p>If two parameterizations are different formulas, they must represent different curves.</p></statement>
+          <feedback><p>Different formulas can still describe the same curve.</p></feedback>
+        </choice>
+        <choice correct="no">
+          <statement><p>The parameter <m>t</m> must always represent time.</p></statement>
+          <feedback><p>The parameter is often interpreted as time, but it does not have to be.</p></feedback>
+        </choice>
+      </choices>
+    </exercise>
+
+    <p>
+      The Pythagorean Theorem can also be used to identify parametric equations for hyperbolas.
+      We give the parametric equations for ellipses and hyperbolas in the following Key Idea.
+    </p>
+
+    <insight xml:id="idea_par_ellipse_hyperbola">
+      <title>Parametric Equations of Ellipses and Hyperbolas</title>
+      <p>
+        <ul>
+          <li>
+            <p>
+              The parametric equations
+              <md>
+                x=a\cos(t) +h,  y=b\sin(t) +k
+              </md>
+              define an ellipse with horizontal axis of length <m>2a</m> and vertical axis of length <m>2b</m>,
+              centered at <m>(h,k)</m>.
+              <idx><h>ellipse</h><h>parametric equations</h></idx>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              The parametric equations
+              <md>
+                x= a\tan(t) +h, y=\pm b\sec(t) +k
+              </md>
+              define a hyperbola with vertical transverse axis centered at <m>(h,k)</m>, and
+              <md>
+                x=\pm a\sec(t) +h,  y=b\tan(t) + k
+              </md>
+              defines a hyperbola with horizontal transverse axis.
+              Each has asymptotes at <m>y=\pm b/a(x-h)+k</m>.
+
+              <idx>
+                <h>hyperbola</h><h>parametric equations</h>
+              </idx>
+
+            </p>
+          </li>
+        </ul>
+      </p>
+    </insight>
+  </subsection>
+
+  <subsection>
+    <title>Special Curves</title>
+    <p>
+      <xref ref="fig_pareq_special"/>
+      gives a small gallery of <q>interesting</q> and <q>famous</q>
+      curves along with parametric equations that produce them.
+      Interested readers can begin learning more about these curves through internet searches.
+    </p>
+
+    <p>
+      One might note a feature shared by two of these graphs:
+      <q>sharp corners,</q> or <em>cusps</em>.
+      We have seen graphs with cusps before and determined that such functions are not differentiable at these points.
+      This leads us to a definition.
+    </p>
+
+    <figure xml:id="fig_pareq_special">
+      <caption>A gallery of interesting planar curves</caption>
+      <sbsgroup>
+        <sidebyside widths="47% 47%" margins="0%">
+          <figure>
+          <!-- START figures/fig_planecurve1.tex -->
+            <caption>Astroid where <m>x=\cos^3(t)</m> and <m>y=\sin^3(t)</m></caption>
+            <image>
+              <shortdescription>Plot of an astroid: a curve like a 4-pointed star.</shortdescription>
+              <description>
+                <p>
+                  A plot of the parametric curve <m>x=\cos^3(t)</m>, <m>y=\sin^3(x)</m>,
+                  known as an astroid.
+                  The curve has four cusps, at the points <m>(1,0), (0,1), (-1,0)</m>, and <m>(0,-1)</m>.
+                  The appearance is not unlike what one would get if one held these four points fixed on the unit circle,
+                  and then bent the rest of the circle so that it curves inward (toward the origin) rather than outward.
+                </p>
+              </description>
+              <latex-image label="img_planecurve1">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              ytick={-1,1},
+              ymin=-1.1,ymax=1.1,
+              xmin=-1.1,xmax=1.1
+              ]
+
+              \addplot+ [domain=0:360,samples=80] ({(cos(x))^3},{(sin(x))^3});
+
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+          <!-- figures/fig_planecurve1.tex END -->
+          </figure>
+
+          <figure>
+          <!-- START figures/fig_planecurve2.tex -->
+            <caption>Rose Curve where <m>x=\cos(t)\sin(4t)</m> and <m>y=\sin(t)\sin(4t)</m></caption>
+            <image>
+              <shortdescription>Plot of a rose curve with 8 loops.</shortdescription>
+              <description>
+                <p>
+                  The plot of the curve <m>x=\cos(t)\sin(4t), y=\sin(t)\sin(4t)</m> resembles a flower.
+                  It consists of eight loops, equal in size and shape, each passing through the origin.
+                  The shape of each loop resembles a narrow tear-drop.
+                </p>
+              </description>
+              <latex-image label="img_planecurve2">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              xtick={-1,1},
+              ytick={-1,1},
+              ymin=-1.1,ymax=1.1,
+              xmin=-1.1,xmax=1.1
+              ]
+
+              \addplot+ [domain=0:360,samples=300] ({sin(4*x)*cos(x)},{(sin(4*x)*sin(x)});
+
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+          <!-- figures/fig_planecurve2.tex END -->
+          </figure>
+        </sidebyside>
+
+        <sidebyside widths="47% 47%" margins="0%">
+          <figure>
+          <!-- START figures/fig_planecurve3.tex -->
+            <caption>Hypotrochoid where <m>x=2\cos(t)+5\cos(2t/3)</m> and <m>y=2\sin(t)-5\sin(2t/3)</m></caption>
+            <image>
+              <shortdescription>Plot of a hypotrochoid, which resembles a smooth, five-pointed star.</shortdescription>
+              <description>
+                <p>
+                  The curve <m>x=2\cos(t)+5\cos(2t/3), y=2\sin(t)-5\sin(2t/3)</m>, known as a hypotrochoid, is shown.
+                  The curve is symmetric about the <m>x</m> axis, and resembles a five-pointed star,
+                  with one point on the <m>x</m> axis at <m>(7,0)</m>.
+                </p>
+
+                <p>
+                  The points of the star are rounded, rather than sharp.
+                  The curve passes through itself several times,
+                  in a manner similar to how a pentagram is drawn.
+                </p>
+              </description>
+              <latex-image label="img_planecurve3">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              ymin=-7.1,ymax=7.1,
+              xmin=-7.1,xmax=7.5
+              ]
+
+              \addplot+[domain=0:1440,samples=120] ({2*cos(x)+5*cos(2*x/3)},{2*sin(x)-5*sin(2*x/3)});
+
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+          <!-- figures/fig_planecurve3.tex END -->
+          </figure>
+
+          <figure>
+          <!-- START figures/fig_planecurve4.tex -->
+            <caption>Epicycloid where <m>x=4\cos(t)-\cos(4t)</m> and <m>y=4\sin(t)-\sin(4t)</m></caption>
+            <image>
+              <shortdescription>Plot of an epicycloid, which looks somewhat like a puffy clover leaf.</shortdescription>
+              <description>
+                <p>
+                  The epicycloid <m>x=4\cos(t)-\cos(4t), y=4\sin(t)-\sin(4t)</m> is shown.
+                  The curve travels once around the origin, and consists of three arcs,
+                  with each pair of arcs meeting at a cusp.
+                </p>
+
+                <p>
+                  The effect is not unlike the appearance of a three-leaf clover,
+                  if the leaves were much more puffy, and further from the center.
+                </p>
+              </description>
+              <latex-image label="img_planecurve4">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              ymin=-7.1,ymax=7.1,
+              xmin=-7.1,xmax=7.5
+              ]
+
+              \addplot+ [domain=0:720,samples=240] ({4*cos(x)-cos(4*x)},{4*sin(x)-sin(4*x)});
+
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+          <!-- figures/fig_planecurve4.tex END -->
+          </figure>
+        </sidebyside>
+      </sbsgroup>
+    </figure>
+
+    <definition xml:id="def_smooth">
+      <title>Smooth</title>
+      <statement>
+        <p>
+          A curve <m>C</m> defined by <m>x=f(t)</m>,
+          <m>y=g(t)</m> is <term>smooth</term>
+          on an interval <m>I</m> if <m>\fp</m> and <m>\gp</m> are continuous on <m>I</m> and not simultaneously 0
+          (except possibly at the endpoints of <m>I</m>).
+          A curve is <term>piecewise smooth</term>
+          on <m>I</m> if <m>I</m> can be partitioned into subintervals where <m>C</m> is smooth on each subinterval.
+              <idx><h>curve</h><h>smooth</h></idx>
+              <idx><h>smooth</h><h>curve</h></idx>
+              <idx><h>cusp</h></idx>
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Consider the astroid, given by <m>x=\cos^3(t)</m>, <m>y=\sin^3(t)</m>.
+      Taking derivatives, we have:
+      <md>
+        x' = -3\cos^2(t) \sin(t) \text{ and }  \yp = 3\sin^2(t) \cos(t)
+      </md>.
+    </p>
+
+    <p>
+      It is clear that each is 0 when <m>t=0,\, \pi/2,\, \pi,\ldots</m>.
+      Thus the astroid is not smooth at these points,
+      corresponding to the cusps seen in the figure.
+    </p>
+
+    <p>
+      We demonstrate this once more.
+    </p>
+
+    <example xml:id="ex_pareq9">
+      <title>Determine where a curve is not smooth</title>
+      <statement>
+        <p>
+          Let a curve <m>C</m> be defined by the parametric equations
+          <m>x=t^3-12t+17</m> and <m>y=t^2-4t+8</m>.
+          Determine the points, if any, where it is not smooth.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We begin by taking derivatives.
+          <md>
+            x' = 3t^2-12, \yp = 2t-4
+          </md>.
+        </p>
+
+        <p>
+          We set each equal to 0:
+          <md>
+            <mrow>x' \amp = 0 \Rightarrow 3t^2-12=0 \Rightarrow t=\pm 2</mrow>
+            <mrow>\yp \amp = 0 \Rightarrow 2t-4 = 0 \Rightarrow t=2</mrow>
+          </md>
+        </p>
+
+        <p>
+          We see at <m>t=2</m> both <m>x'</m> and <m>\yp</m> are 0;
+          thus <m>C</m> is not smooth at <m>t=2</m>,
+          corresponding to the point <m>(1,4)</m>.
+          The curve is graphed in <xref ref="fig_pareq9"/>,
+          illustrating the cusp at <m>(1,4)</m>.
+        </p>
+
+        <figure xml:id="fig_pareq9" vshift="0">
+          <caption>Graphing the curve in <xref ref="ex_pareq9"/>; note it is not smooth at <m>(1,4)</m></caption>
+          <!-- START figures/fig_pareq9.tex -->
+          <image width="47%">
+            <shortdescription>Plot of a parametric curve with a sharp cusp.</shortdescription>
+            <description>
+              <p>
+                A plot of the curve <m>x=t^3-12t+17, y=t^2-4t+8</m> is shown.
+                Despite the fact that <m>x</m> and <m>y</m> are both differentiable functions of <m>t</m>,
+                there is a sharp cusp at the point corresponding to <m>t=2</m>,
+                which happens to be the point where the derivatives of <m>x</m> and <m>y</m> with respect to <m>t</m> are simultaneously zero.
+              </p>
+
+              <p>
+                The appearance of the curve is not unlike that of a set of tweezers.
+              </p>
+            </description>
+            <latex-image label="img_pareq9">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            minor x tick num=4,
+            ymin=-1,ymax=9,
+            xmin=-1,xmax=11
+            ]
+
+            \addplot+ [domain=-2:3.5] ({x^3-12*x+17},{x^2-4*x+8});
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_pareq9.tex END -->
+        </figure>
+      </solution>
+      <solution component="video" vshift="6">
+        <title>Video solution</title>
+        <video width="98%" youtube="rqhh0McArDM" label="vid-planecurves-parameq-nonsmooth" component="video"/>
+      </solution>
+    </example>
+
+    <p>
+      If a curve is not smooth at <m>t=t_0</m>,
+      it means that <m>x'(t_0)=\yp(t_0)=0</m> as defined.
+      This, in turn, means that rate of change of <m>x</m>
+      (and <m>y</m>)
+      is 0;
+      that is, at that instant, neither <m>x</m> nor <m>y</m> is changing.
+      If the parametric equations describe the path of some object,
+      this means the object is at rest at <m>t_0</m>.
+      An object at rest can make a <q>sharp</q> change in direction,
+      whereas moving objects tend to change direction in a <q>smooth</q> fashion.
+    </p>
+
+    <p>
+      One should be careful to note that a <q>sharp corner</q>
+      does not have to occur when a curve is not smooth.
+      For instance, one can verify that <m>x=t^3</m>,
+      <m>y=t^6</m> produce the familiar <m>y=x^2</m> parabola.
+      However, in this parametrization, the curve is not smooth.
+      A particle traveling along the parabola according to the given parametric equations comes to rest at <m>t=0</m>,
+      though no sharp point is created.
+    </p>
+
+    <p>
+      Our previous experience with cusps taught us that a function was not differentiable at a cusp.
+      This can lead us to wonder about derivatives in the context of parametric equations and the application of other calculus concepts.
+      Given a curve defined parametrically,
+      how do we find the slopes of tangent lines?
+      Can we determine concavity?
+      We explore these concepts and more in the next section.
+    </p>
+  </subsection>
+
+  <exercises>
+    <subexercises xml:id="TaC-parametric-equations">
+      <title>Terms and Concepts</title>
+      <exercise label="TaC-parametric-equations-1">
+        <!-- <webwork xml:id="webwork-TaC-parametric-equations-1">
+
+            <pg-code>
+              $true=PopUp(['?','True','False'],1);
+              $false=PopUp(['?','True','False'],2);
+            </pg-code> -->
+            <statement correct="yes">
+              <p>
+                When sketching the graph of parametric equations,
+                the <m>x</m> and <m>y</m> values are found separately,
+                then plotted together.
+                <!-- <var name="$true" form="popup"/> -->
+              </p>
+            </statement>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-parametric-equations-2">
+        <!-- <webwork xml:id="webwork-TaC-parametric-equations-2">
+            <pg-code>
+              Context("ArbitraryString");
+              $orientation=Compute("orientation");
+              $evaluator=$orientation-&gt;cmp(checker =&gt; sub {
+                my ($correct,$student,$ans) = @_;
+                $correct = $correct-&gt;value;
+                $student = $student-&gt;value;
+                $student =~ s/^~~W+|~~W+$//g;
+                return uc($correct) eq uc($student);
+              });
+            </pg-code> -->
+            <statement>
+              <p>
+                The direction in which a graph is <q>moving</q>
+                is called the <fillin answer="orientation" mode="string" width="20"/> of the graph.
+              </p>
+            </statement>
+            <evaluation>
+              <evaluate>
+                <test correct="yes">
+                  <strcmp use-answer="yes" case="insensitive"/>
+                </test>
+              </evaluate>
+            </evaluation>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-parametric-equations-3">
+        <!-- <webwork xml:id="webwork-TaC-parametric-equations-3">
+            <pg-code>
+              Context("ArbitraryString");
+              $rectangular=Compute("rectangular");
+              $evaluator=$rectangular-&gt;cmp(checker =&gt; sub {
+                my ($correct,$student,$ans) = @_;
+                $correct = $correct-&gt;value;
+                $student = $student-&gt;value;
+                $student =~ s/^~~W+|~~W+$//g;
+                return uc($correct) eq uc($student);
+              });
+            </pg-code> -->
+            <statement>
+              <p>
+                An equation written as <m>y=f(x)</m> is said to be written in 
+                <fillin answer="$rectangular" mode="string" width="20"/> form.
+              </p>
+            </statement>
+            <evaluation>
+              <evaluate>
+                <test correct="yes">
+                  <strcmp use-answer="yes" case="insensitive"/>
+                </test>
+              </evaluate>
+            </evaluation>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-parametric-equations-4">
+        <!-- <webwork xml:id="webwork-TaC-parametric-equations-4">
+            <pg-code>
+            </pg-code> -->
+            <statement>
+              <p>
+                Create parametric equations <m>x=f(t)</m>,
+                <m>y=g(t)</m> and sketch their graph.
+                Explain any interesting features of your graph based on the functions <m>f</m> and <m>g</m>.
+              </p>
+            </statement>
+            <response />
+            
+        <!-- </webwork> -->
+      </exercise>
+    </subexercises>
+    
+    <subexercises>
+      <title>Problems</title>
+      <exercisegroup cols="2" xml:id="exset-parametric-sketch-by-hand">
+
+        <introduction>
+          <p>
+            Sketch the graph of the given parametric equations <em>by hand</em>,
+            making a table of points to plot.
+            Be sure to indicate the orientation of the graph.
+          </p>
+        </introduction>
+
+        <exercise label="ex-parametric-sketch-by-hand-1">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-by-hand-1">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=t^2+t</m>,<m>y=1-t^2</m>,<m>-3\leq t\leq 3</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_05.tex -->
+                  <image>
+                    <shortdescription>Sketch of the parametric curve in this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        The sketch for this exercise is a curve that lies mostly in the fourth quadrant.
+                        It resembles part of a slingshot orbit for a comet passing around the sun:
+                        the curve passes through the origin from below, turns quickly in the second quadrant,
+                        crossing the <m>y</m> axis at <m>(0,1)</m>, and then the <m>x</m> axis at <m>(2,0)</m>,
+                        where it returns to the fourth quadrant.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_05X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    minor x tick num=4,
+                    minor y tick num=4,
+                    ymin=-9,ymax=2,
+                    xmin=-1,xmax=13
+                    ]
+
+                    \addplot+ [domain=-3:3,samples=40] ({x^2+x},{1-x^2});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs: 6,-3) -- (axis cs:6.05,-3.04);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_05.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-sketch-by-hand-2">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-by-hand-2">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=1</m>,<m>y=5\sin(t)</m>,<m>-\pi/2\leq t\leq \pi/2</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_06.tex -->
+                  <image>
+                    <shortdescription>The vertical line x=1.</shortdescription>
+                    <description>
+                      <p>
+                        The curve for this exercise is the vertical line <m>x=1</m>.
+                        An arrow on the line indicates that the direction of travel is up.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_06X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    axis on top,
+                    minor y tick num=4,
+                    ymin=-5.5,ymax=5.5,
+                    xmin=-.5,xmax=1.6
+                    ]
+
+                    \addplot+ [domain=-5:5] ({1},{x});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs: 1,1) -- (axis cs:1,1.1);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_06.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-sketch-by-hand-3">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-by-hand-3">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=t^2</m>,<m>y=2</m>,<m>-2\leq t\leq 2</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_07.tex -->
+                  <image>
+                    <shortdescription>The horizontal line y=2, marked with two arrows.</shortdescription>
+                    <description>
+                      <p>
+                        The horizontal line <m>y=2</m>.
+                        On the line there are two arrows pointing in opposite directions.
+                        These indicate that the direction of travel is to the left when <m>t\lt 0</m>,
+                        and to the right when <m>t\gt 0</m>.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_07X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    minor x tick num=4,
+                    minor y tick num=4,
+                    ymin=-.5,ymax=2.5,
+                    xmin=-.5,xmax=2.5
+                    ]
+
+                    \addplot+ [domain=-2:2] ({x^2},{2});
+
+                    \draw [&gt;=latex,&lt;-&gt;,thick] (axis cs: .9,2) -- (axis cs:1.5,2);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_07.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-sketch-by-hand-4">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-by-hand-4">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=t^3-t+3</m>,<m>y=t^2+1</m>,<m>-2\leq t\leq 2</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_08.tex -->
+                  <image>
+                    <shortdescription>The solution curve for this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        The curve begins to the left of the <m>y</m> axis, and crosses near <m>(0,4)</m>.
+                        It passes through the first quadrant to the point <m>(3,2)</m>;
+                        it then bends downward and makes a teardrop-shaped loop before passing through <m>(3,2)</m> a second time,
+                        and then continuing up and to the right, through the first quadrant.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_08X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    axis on top,
+                    ymin=-.5,ymax=4.5,
+                    xmin=-.5,xmax=5.5
+                    ]
+
+                    \addplot+ [domain=-2:2,samples=50] ({x^3-x+3},{x^2+1});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs: 3.897,2.69) -- (axis cs:3.938,2.7161);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_08.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-parametric-sketch-with-tech">
+
+        <introduction>
+          <p>
+            Sketch the graph of the given parametric equations;
+            using a graphing utility is advisable.
+            Be sure to indicate the orientation of the graph.
+          </p>
+        </introduction>
+
+        <exercise label="ex-parametric-sketch-with-tech-1">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-with-tech-1">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=t^3-2t^2</m>,<m>y=t^2</m>,<m>-2\leq t \leq 3</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_09.tex -->
+                  <image>
+                    <shortdescription>Computer-generated sketch of the parametric curve in this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        A curve resembling a check mark, with a cusp at the origin.
+                        Direction of travel is from the second quadrant toward the cusp,
+                        and then up from the cusp to a <m>y</m> intercept at <m>(0,4)</m>,
+                        and then into the first quadrant.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_09X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    ymin=0.1,ymax=9,
+                    xmin=-11,xmax=11
+                    ]
+
+                    \addplot+ [domain=-2:3,samples=40] ({x^3-2*x^2},{x^2});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs:-1.183,1.69)-- (axis cs:-1.18411,1.7161);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_09.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-sketch-with-tech-2">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-with-tech-2">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=1/t</m>,<m>y=\sin(t)</m>,<m>0\lt t \leq 10</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_10.tex -->
+                  <image>
+                    <shortdescription>Computer-generated sketch of the parametric curve in this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        A curve resembling a sine wave with a period that gets longer for large values of <m>x</m>.
+                        The direction of travel is that of decreasing <m>x</m> value, with the <m>y</m> value oscillating.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_10X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    ymin=-1.1,ymax=1.1,
+                    xmin=-0.5,xmax=1.5
+                    ]
+
+                    \addplot+ [domain=0.1:10,samples=101] ({1/x},{sin(deg(x))});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs:0.25,-.756802)-- (axis cs:0.249377,-.763301);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_10.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-sketch-with-tech-3">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-with-tech-3">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=3\cos(t)</m>,<m>y=5\sin(t)</m>,<m>0\leq t \leq 2\pi</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_11.tex -->
+                  <image>
+                    <shortdescription>Computer-generated sketch of the parametric curve in this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        The curve is an ellipse, centered at the origin, with counter-clockwise direction of travel.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_11X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    ymin=-5.5,ymax=5.5,
+                    xmin=-5.5,xmax=5.5
+                    ]
+
+                    \addplot+ [domain=0:360,samples=60] ({3*cos(x)},{5*sin(x)});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs:2.12,3.5355)-- (axis cs:2.1,3.5707);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_11.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-sketch-with-tech-4">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-with-tech-4">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=3\cos(t) +2</m>,<m>y=5\sin(t) +3</m>,<m>0\leq t \leq 2\pi</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_12.tex -->
+                  <image>
+                    <shortdescription>Computer-generated sketch of the parametric curve in this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        An ellipse with center <m>(2,3)</m> and counter-clockwise direction of travel.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_12X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    minor x tick num=4,
+                    minor y tick num=4,
+                    ymin=-5.5,ymax=8.5,
+                    xmin=-5.5,xmax=7.5
+                    ]
+
+                    \addplot+ [domain=0:360,samples=60] ({3*cos(x)+2},{5*sin(x)+3});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs:4.12,6.5355) -- (axis cs:4.1,6.5707);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_12.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-sketch-with-tech-5">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-with-tech-5">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=\cos(t)</m>,<m>y=\cos(2t)</m>,<m>0\leq t \leq \pi</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_13.tex -->
+                  <image>
+                    <shortdescription>Computer-generated sketch of the parametric curve in this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        The curve resembles a parabola, with vertex at <m>(0,-1)</m>.
+                        The direction of travel is from right to left.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_13X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    ymin=-1.1,ymax=1.1,
+                    xmin=-1.1,xmax=1.1
+                    ]
+
+                    \addplot+ [domain=0:180,samples=60] ({cos(x)},{cos(x*2)});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs:0.8845,0.5646) -- (axis cs:0.8798,0.548024);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_13.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-sketch-with-tech-6">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-with-tech-6">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=\cos(t)</m>,<m>y=\sin(2t)</m>,<m>0\leq t \leq 2\pi</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_14.tex -->
+                  <image>
+                    <shortdescription>Computer-generated sketch of the parametric curve in this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        A figure-eight curve, centered at the origin.
+                        The orientation is counter-clockwise in the fourth and first quadrants;
+                        once the curve passes through the origin (a point of self-intersection)
+                        this direction becomes clockwise it the second and third quadrants.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_14X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    ymin=-1.1,ymax=1.1,
+                    xmin=-1.1,xmax=1.1]
+
+                    \addplot+ [domain=0:360,samples=120] ({cos(x)},{sin(x*2)});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs:0.8845,0.82534) -- (axis cs:0.8798,0.8365);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_14.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-sketch-with-tech-7">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-with-tech-7">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=2\sec(t)</m>,<m>y=3\tan(t)</m>,<m>-\pi/2\lt t \lt \pi/2</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_15.tex -->
+                  <image>
+                    <shortdescription>Computer-generated sketch of the parametric curve in this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        The curve resembles one branch of a hyperbola, opening to the right, with a vertex at <m>(2,0)</m>.
+                        The direction of travel is that of increasing <m>y</m> value.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_15X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    minor x tick num=4,
+                    minor y tick num=4,
+                    ymin=-16.,ymax=16,
+                    xmin=-1,xmax=11
+                    ]
+
+                    \addplot+ [domain=-80:80] ({2*sec(x)},{3*tan(x)});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs:5.32,7.395) -- (axis cs:5.4549,7.61254);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_15.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+  <!--ToDo: WeBWorK code for this-->
+      <exercise label="ex-parametric-sketch-with-tech-8">
+        <statement>
+          <p>
+            <m>x=\cosh(t)</m>,<m>y=\sinh(t)</m>,<m>-2\leq t \leq 2</m>
+          </p>
+        </statement>
+        <answer>
+          <image>
+            <shortdescription>Computer-generated sketch of the parametric curve in this exercise.</shortdescription>
+            <description>
+              <p>
+                The curve resembles one branch of a hyperbola, opening to the right, with a vertex at <m>(1,0)</m>.
+                The direction of travel is that of increasing <m>y</m> value.
+              </p>
+            </description>
+            <latex-image label="img_09_02_ex_55">
+              \begin{tikzpicture}
+              \begin{axis}[
+              minor x tick num=4,
+              minor y tick num=4,
+              ymin=-4.5,
+              ymax=4.5,
+              xmin=-.1,
+              xmax=4.5
+              ]
+
+              \addplot+ [domain=-2:2,samples=60] ({cosh(x)},{sinh(x)});
+              \draw[&gt;=latex,-&gt;,thick] (axis cs:2.35241, -2.12928)-- (axis cs:2.33123, -2.10586);
+              \end{axis}
+
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </answer>
+      </exercise>
+
+
+        <exercise label="ex-parametric-sketch-with-tech-9">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-with-tech-9">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=\cos(t) +\frac14\cos(8t)</m>,<m>y=\sin(t) +\frac14\sin(8t)</m>,<m>0\leq t \leq 2\pi</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_16.tex -->
+                  <image>
+                    <shortdescription>Computer-generated sketch of the parametric curve in this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        A flower-shaped curve, with 7 <q>petals</q>.
+                        Each petal is an arc that loops around and intersects itself before continuing to the next arc.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_16X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    ymin=-1.5,ymax=1.5,
+                    xmin=-1.5,xmax=1.5
+                    ]
+
+                    \addplot+ [domain=0:360,samples=280] ({cos(x)+cos(8*x)/4},{sin(x)+sin(8*x)/4});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs:.9571,.7071) -- (axis cs:.9534,.7341);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_16.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-sketch-with-tech-10">
+          <!-- <webwork xml:id="webwork-ex-parametric-sketch-with-tech-10">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=\cos(t) +\frac14\sin(8t)</m>,<m>y=\sin(t) +\frac14\cos(8t)</m>,<m>0\leq t \leq 2\pi</m>
+                </p>
+              </statement>
+              <answer>
+              <!-- START figures/fig_09_02_ex_17.tex -->
+                  <image>
+                    <shortdescription>Computer-generated sketch of the parametric curve in this exercise.</shortdescription>
+                    <description>
+                      <p>
+                        A curve that spirals around the origin, with several self-intersecting loops.
+                        This curve has 9 arcs and 9 loops. It is similar to the curve in the previous exercise,
+                        except that this time, the arcs bend inward toward the origin, rather than outward.
+                      </p>
+                    </description>
+                    <latex-image label="img_09_02_ex_17X">
+
+                    \begin{tikzpicture}
+
+                    \begin{axis}[
+                    ymin=-1.5,ymax=1.5,
+                    xmin=-1.5,xmax=1.5
+                    ]
+
+                    \addplot+ [domain=0:360,samples=260] ({cos(x)+sin(8*x)/4},{sin(x)+cos(8*x)/4});
+
+                    \draw [&gt;=latex,-&gt;,thick] (axis cs:0.3613,.6771) -- (axis cs:.33215,.68275);
+
+                    \end{axis}
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+              <!-- figures/fig_09_02_ex_17.tex END -->
+              </answer>
+          <!-- </webwork> -->
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-parametric-equations-compare">
+
+        <introduction>
+          <p>
+            Four sets of parametric equations are given.
+            Describe how their graphs are similar and different.
+            Be sure to discuss orientation and ranges.
+          </p>
+        </introduction>
+
+        <exercise label="ex-parametric-equations-compare-1">
+          <!-- <webwork xml:id="webwork-ex-parametric-equations-compare-1">
+              <pg-code>
+              </pg-code> -->
+              <task label="ex-parametric-equations-compare-1a">
+                <statement>
+                  <p>
+                    <m>x=t</m> <m>y=t^2</m>, <m>-\infty\lt t\lt \infty</m>
+                  </p>
+                </statement>
+                <answer>
+                  <p>
+                    Traces the parabola <m>y=x^2</m>, moves from left to right.
+                  </p>
+                </answer>
+              </task>
+              <task label="ex-parametric-equations-compare-1b">
+                <statement>
+                  <p>
+                    <m>x=\sin(t)</m> <m>y=\sin^2(t)</m>,
+                    <m>-\infty\lt t\lt \infty</m>
+                  </p>
+                </statement>
+                <answer>
+                  <p>
+                    Traces the parabola <m>y=x^2</m>,
+                    but only from <m>-1\leq x\leq 1</m>;
+                    traces this portion back and forth infinitely.
+                  </p>
+                </answer>
+              </task>
+              <task label="ex-parametric-equations-compare-1c">
+                <statement>
+                  <p>
+                    <m>x=e^t</m> <m>y=e^{2t}</m>,
+                    <m>-\infty\lt t\lt \infty</m>
+                  </p>
+                </statement>
+                <answer>
+                  <p>
+                    Traces the parabola <m>y=x^2</m>,
+                    but only for <m>0\lt x</m>.
+                    Moves left to right.
+                  </p>
+                </answer>
+              </task>
+              <task label="ex-parametric-equations-compare-1d">
+                <statement>
+                  <p>
+                    <m>x=-t</m> <m>y=t^2</m>, <m>-\infty\lt t\lt \infty</m>
+                  </p>
+                </statement>
+                <answer>
+                  <p>
+                    Traces the parabola <m>y=x^2</m>, moves from right to left.
+                  </p>
+                </answer>
+              </task>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-equations-compare-2">
+          <!-- <webwork xml:id="webwork-ex-parametric-equations-compare-2">
+              <pg-code>
+              </pg-code> -->
+              <task label="ex-parametric-equations-compare-2a">
+                <statement>
+                  <p>
+                    <m>x=\cos(t)</m> <m>y=\sin(t)</m>, <m>0\leq t\leq 2\pi</m>
+                  </p>
+                </statement>
+                <answer>
+                  <p>
+                    Traces a circle of radius 1 counterclockwise once.
+                  </p>
+                </answer>
+              </task>
+              <task label="ex-parametric-equations-compare-2b">
+                <statement>
+                  <p>
+                    <m>x=\cos(t^2)</m> <m>y=\sin(t^2)</m>, <m>0\leq t\leq 2\pi</m>
+                  </p>
+                </statement>
+                <answer>
+                  <p>
+                    Traces a circle of radius 1 counterclockwise over 6 times.
+                  </p>
+                </answer>
+              </task>
+              <task label="ex-parametric-equations-compare-2c">
+                <statement>
+                  <p>
+                    <m>x=\cos(1/t)</m> <m>y=\sin(1/t)</m>, <m>0\lt t\lt 1</m>
+                  </p>
+                </statement>
+                <answer>
+                  <p>
+                    Traces a circle of radius 1 clockwise infinite times.
+                  </p>
+                </answer>
+              </task>
+              <task label="ex-parametric-equations-compare-2d">
+                <statement>
+                  <p>
+                    <m>x=\cos(\cos(t) )</m> <m>y=\sin(\cos(t) )</m>, <m>0\leq t\leq 2\pi</m>
+                  </p>
+                </statement>
+                <answer>
+                  <p>
+                    Traces an arc of a circle of radius 1, from an angle of -1 radians to 1 radian, twice.
+                  </p>
+                </answer>
+              </task>
+          <!-- </webwork> -->
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-parametric-eliminate-parameter">
+
+        <introduction>
+          <p>
+            Eliminate the parameter in the given parametric equations.
+          </p>
+        </introduction>
+
+        <exercise label="ex-parametric-eliminate-parameter-1">
+          <webwork xml:id="webwork-ex-parametric-eliminate-parameter-1">
+              <pg-code>
+                Context("ImplicitEquation");
+                $eq=ImplicitEquation("3x+2y=17",limits=&gt;[[-3,3],[6,11]]);
+              </pg-code>
+              <statement>
+                <p>
+                  <m>x=2t+5</m>, <m>y=-3t+1</m>
+                </p>
+
+                <instruction>
+                  Eliminate the parameter <m>t</m>.
+                </instruction>
+                <p>
+                  <var name="$eq" width="40"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-parametric-eliminate-parameter-2">
+          <!-- <webwork xml:id="webwork-ex-parametric-eliminate-parameter-2">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=\sec(t)</m>, <m>y=\tan(t)</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>x^2-y^2=1</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-eliminate-parameter-3">
+          <!-- <webwork xml:id="webwork-ex-parametric-eliminate-parameter-3">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=4\sin(t) +1</m>, <m>y=3\cos(t) -2</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>\frac{(x-1)^2}{16}+\frac{(y+2)^2}{9}=1</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-eliminate-parameter-4">
+          <!-- <webwork xml:id="webwork-ex-parametric-eliminate-parameter-4">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=t^2</m>, <m>y=t^3</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>y=x^{3/2}</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-eliminate-parameter-5">
+          <webwork xml:id="webwork-ex-parametric-eliminate-parameter-5">
+              <pg-code>
+                Context("ImplicitEquation");
+                $eq=ImplicitEquation("y-2x=3",limits=&gt;[[-3,3],[0,6]]);
+              </pg-code>
+              <statement>
+                <p>
+                  <m>x=\frac{1}{t+1}</m>, <m>y=\frac{3t+5}{t+1}</m>
+                </p>
+
+                <instruction>
+                  Eliminate the parameter <m>t</m>.
+                </instruction>
+                <p>
+                  <var name="$eq" width="40"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-parametric-eliminate-parameter-6">
+          <!-- <webwork xml:id="webwork-ex-parametric-eliminate-parameter-6">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>\ds x=e^t</m>, <m>\ds y=e^{3t}-3</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>y=x^3-3</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-eliminate-parameter-7">
+          <!-- <webwork xml:id="webwork-ex-parametric-eliminate-parameter-7">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>\ds x=\ln(t)</m>, <m>\ds y=t^2-1</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>y=e^{2x}-1</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-eliminate-parameter-8">
+          <!-- <webwork xml:id="webwork-ex-parametric-eliminate-parameter-8">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>\ds x=\cot(t)</m>, <m>\ds y=\csc(t)</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>y^2-x^2=1</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-eliminate-parameter-9">
+          <!-- <webwork xml:id="webwork-ex-parametric-eliminate-parameter-9">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>\ds x=\cosh(t)</m>, <m>\ds y=\sinh(t)</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>x^2-y^2=1</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-eliminate-parameter-10">
+          <webwork xml:id="webwork-ex-parametric-eliminate-parameter-10">
+              <pg-code>
+                Context("ImplicitEquation");
+                $eq=ImplicitEquation("x=1-2y^2",limits=&gt;[[-1,2],[-2,2]]);
+              </pg-code>
+              <statement>
+                <p>
+                  <m>x=\cos(2t)</m>, <m>y=\sin(t)</m>
+                </p>
+
+                <instruction>
+                  Eliminate the parameter <m>t</m>.
+                </instruction>
+                <p>
+                  <var name="$eq" width="40"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-parametric-describe-rectangular">
+
+        <introduction>
+          <p>
+            Eliminate the parameter in the given parametric equations.
+            Describe the curve defined by the parametric equations based on its rectangular form.
+          </p>
+        </introduction>
+
+        <exercise label="ex-parametric-describe-rectangular-1">
+          <!-- <webwork xml:id="webwork-ex-parametric-describe-rectangular-1">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>\ds x=at+x_0</m>, <m>\ds y=bt+y_0</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>y=\frac{b}{a}(x-x_0)+y_0</m>;
+                  line through <m>(x_0,y_0)</m> with slope <m>b/a</m>.
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-describe-rectangular-2">
+          <!-- <webwork xml:id="webwork-ex-parametric-describe-rectangular-2">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>\ds x=r\cos(t)</m>, <m>\ds y=r\sin(t)</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>x^2+y^2=r^2</m>;
+                  circle centered at <m>(0,0)</m> with radius <m>r</m>.
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-describe-rectangular-3">
+          <!-- <webwork xml:id="webwork-ex-parametric-describe-rectangular-3">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>\ds x=a\cos(t) +h</m>, <m>\ds y=b\sin(t) +k</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>\frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1</m>;
+                  ellipse centered at <m>(h,k)</m> with horizontal axis of length <m>2a</m> and vertical axis of length <m>2b</m>.
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-describe-rectangular-4">
+          <!-- <webwork xml:id="webwork-ex-parametric-describe-rectangular-4">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>\ds x=a\sec(t) +h</m>, <m>\ds y=b\tan(t) +k</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>\frac{(x-h)^2}{a^2}-\frac{(y-k)^2}{b^2}=1</m>;
+                  hyperbola centered at <m>(h,k)</m> with horizontal transverse axis and asymptotes with slope <m>b/a</m>.
+                  The parametric equations only give half of the hyperbola.
+                  When <m>a&gt;0</m>, the right half;
+                  when <m>a\lt 0</m>, the left half.
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-parametric-parametrize-slope">
+
+        <introduction>
+          <p>
+            Find parametric equations for the given rectangular equation using the parameter <m>\ds t=\frac{dy}{dx}</m>.
+            Verify that at <m>t=1</m>,
+            the point on the graph has a tangent line with slope of 1.
+          </p>
+        </introduction>
+
+        <exercise label="ex-parametric-parametrize-slope-1">
+          <webwork xml:id="webwork-ex-parametric-parametrize-slope-1">
+              <pg-code>
+                Context()-&gt;variables-&gt;are(t=&gt;'Real');
+                $x=Formula("(t+11)/6");
+                $y=Formula("(t^2-97)/12");
+                Context("Point");
+                $point=Point("(2,-8)");
+                Context("Numeric");
+                $yp=Formula("6x-11");
+                $yp1=Real("1");
+              </pg-code>
+              <statement>
+                <p>
+                  <m>y=3x^2-11x+2</m>
+                </p>
+
+                <instruction>
+                  Give the value for <m>x(t)</m>:
+                </instruction>
+
+                <p>
+                  <var name="$x" width="40"/>
+                </p>
+
+                <instruction>
+                  Give the value for <m>y(t)</m>:
+                </instruction>
+
+                <p>
+                  <var name="$y" width="40"/>
+                </p>
+
+                <instruction>
+                  Give the point on the curve when <m>t=1</m>.
+                </instruction>
+
+                <p>
+                  <var name="$point" width="5"/>
+                </p>
+
+                <instruction>
+                  Determine the formula for <m>\lz{y}{x}</m>:
+                </instruction>
+
+                <p>
+                  <var name="$yp" width="20"/>
+                </p>
+
+                <instruction>
+                  Find the value of <m>\lz{y}{x}</m> when <m>t=1</m>:
+                </instruction>
+
+                <p>
+                  <var name="$yp1" width="5"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-parametric-parametrize-slope-2">
+          <webwork xml:id="webwork-ex-parametric-parametrize-slope-2">
+              <pg-code>
+                Context()-&gt;variables-&gt;are(t=&gt;'Real');
+                Context()-&gt;variables-&gt;set(t=&gt;{limits=&gt;[0.1,10]});
+                $x=Formula("ln(t)");
+                $y=Formula("t");
+                Context("Point");
+                $point=Point("(0,1)");
+                Context("Numeric");
+                $yp=Formula("e^x");
+                $yp1=Real("1");
+              </pg-code>
+              <statement>
+                <p>
+                  <m>y=e^x</m>
+                </p>
+
+                <instruction>
+                  Give the value for <m>x(t)</m>:
+                </instruction>
+
+                <p>
+                  <var name="$x" width="40"/>
+                </p>
+
+                <instruction>
+                  Give the value for <m>y(t)</m>:
+                </instruction>
+
+                <p>
+                  <var name="$y" width="40"/>
+                </p>
+
+                <instruction>
+                  Give the point on the curve when <m>t=1</m>.
+                </instruction>
+
+                <p>
+                  <var name="$point" width="5"/>
+                </p>
+
+                <instruction>
+                  Determine the formula for <m>\lz{y}{x}</m>:
+                </instruction>
+
+                <p>
+                  <var name="$yp" width="20"/>
+                </p>
+
+                <instruction>
+                  Find the value of <m>\lz{y}{x}</m> when <m>t=1</m>:
+                </instruction>
+
+                <p>
+                  <var name="$yp1" width="5"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-parametric-parametrize-slope-3">
+          <webwork xml:id="webwork-ex-parametric-parametrize-slope-3">
+              <pg-code>
+                Context()-&gt;variables-&gt;are(t=&gt;'Real');
+                Context()-&gt;variables-&gt;set(t=&gt;{limits=&gt;[-0.9,0.9]});
+                $x=Formula("cos^-1(t)");
+                $y=Formula("sqrt(1-t^2)");
+                Context("Point");
+                $point=Point("(0,0)");
+                Context("Numeric");
+                $yp=Formula("cos(x)");
+                $yp1=Real("1");
+              </pg-code>
+              <statement>
+                <p>
+                  <m>y=\sin(x)</m>
+                </p>
+
+                <instruction>
+                  Give the value for <m>x(t)</m>:
+                </instruction>
+
+                <p>
+                  <var name="$x" width="40"/>
+                </p>
+
+                <instruction>
+                  Give the value for <m>y(t)</m>:
+                </instruction>
+
+                <p>
+                  <var name="$y" width="40"/>
+                </p>
+
+                <instruction>
+                  Give the point on the curve when <m>t=1</m>.
+                </instruction>
+
+                <p>
+                  <var name="$point" width="5"/>
+                </p>
+
+                <instruction>
+                  Determine the formula for <m>\lz{y}{x}</m>:
+                </instruction>
+
+                <p>
+                  <var name="$yp" width="20"/>
+                </p>
+
+                <instruction>
+                  Find the value of <m>\lz{y}{x}</m> when <m>t=1</m>:
+                </instruction>
+
+                <p>
+                  <var name="$yp1" width="5"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-parametric-parametrize-slope-4">
+          <!-- <webwork xml:id="webwork-ex-parametric-parametrize-slope-4">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>y=\sqrt{x}</m> on <m>[0,\infty)</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>x=1/(4t^2)</m>, <m>y=1/(2t)</m>.
+                  At <m>t=1</m>, <m>x=1/4</m>, <m>y=1/2</m>.
+                </p>
+
+                <p>
+                  <m>\yp=1/(2\sqrt{x})</m>; when <m>x=1/4</m>, <m>\yp=1</m>.
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-parametric-find-intersection">
+
+        <introduction>
+          <p>
+            Find the values of <m>t</m> where the graph of the parametric equations crosses itself.
+          </p>
+        </introduction>
+
+        <exercise label="ex-parametric-find-intersection-1">
+          <webwork xml:id="webwork-ex-parametric-find-intersection-1">
+
+              <pg-code>
+                $crossings=List("-1,1");
+                Context("Point");
+                $points=List("(3,-2)");
+              </pg-code>
+              <statement>
+                <p>
+                  <m>x=t^3-t+3</m>, <m>y=t^2-3</m>
+                </p>
+
+                <instruction>
+                  Give the value(s) of <m>t</m> where the graph crosses itself.
+                  Enter your answer as a comma-separated list of numbers.
+                </instruction>
+
+                <p>
+                  <var name="$crossings" width="10"/>
+                </p>
+
+                <instruction>
+                  Give the point(s) in the plane where the crossings happen.
+                  If there is more than one, use commas to separate them.
+                </instruction>
+
+                <p>
+                  <var name="$points" width="20"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-parametric-find-intersection-2">
+          <!-- <webwork xml:id="webwork-ex-parametric-find-intersection-2">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=t^3-4t^2+t+7</m>,<m>y=t^2-t</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>t=-1,\, 2</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-find-intersection-3">
+          <!-- <webwork xml:id="webwork-ex-parametric-find-intersection-3">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=\cos(t)</m>,<m>y=\sin(2t)</m> on <m>[0,2\pi]</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>t=\pi/2, 3\pi/2</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-find-intersection-4">
+          <!-- <webwork xml:id="webwork-ex-parametric-find-intersection-4">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=\cos(t) \cos(3t)</m>,<m>y=\sin(t) \cos(3t)</m> on <m>[0,\pi]</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>t=\pi/6, \pi/2, 5\pi/6</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-parametric-smooth">
+
+        <introduction>
+          <p>
+            Find the value(s) of <m>t</m> where the curve defined by the parametric equations is not smooth.
+          </p>
+        </introduction>
+
+        <exercise label="ex-parametric-smooth-1">
+          <!-- <webwork xml:id="webwork-ex-parametric-smooth-1">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=t^3+t^2-t</m>,<m>y=t^2+2t+3</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>t=-1</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-smooth-2">
+          <webwork xml:id="webwork-ex-parametric-smooth-2">
+
+              <pg-code>
+                $cusps=List("2");
+                Context("Point");
+                $points=List("(-4,-8)");
+              </pg-code>
+              <statement>
+                <p>
+                  <m>x=t^2-4t</m>, <m>y=t^3-2t^2-4t</m>
+                </p>
+
+                <instruction>
+                  Give the values of <m>t</m> where the curve is not smooth.
+                  (If there is more than one, use commas to separate them.)
+                </instruction>
+
+                <p>
+                  <var name="$cusps" width="10"/>
+                </p>
+
+                <instruction>
+                  Give the corresponding points in the plane where the curve is not smooth.
+                  (If there is more than one, use commas to separate them.)
+                </instruction>
+
+                <p>
+                  <var name="$points" width="20"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-parametric-smooth-3">
+          <!-- <webwork xml:id="webwork-ex-parametric-smooth-3">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  <m>x=\cos(t)</m>,<m>y=2\cos(t)</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>t=n\pi</m>, where <m>n</m> is an integer
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-smooth-4">
+          <webwork xml:id="webwork-ex-parametric-smooth-4">
+              <pg-code>
+                $cusps=List("0");
+                Context("Point");
+                $points=List("(1,0)");
+              </pg-code>
+              <statement>
+                <p>
+                  <m>x=2\cos(t)-\cos(2t)</m>,
+                  <m>y=2\sin(t)-\sin(2t)</m>
+                </p>
+
+                <instruction>
+                  Give the values of <m>t</m> where the curve is not smooth.
+                  (If there is more than one, use commas to separate them.)
+                </instruction>
+
+                <p>
+                  <var name="$cusps" width="10"/>
+                </p>
+
+                <instruction>
+                  Give the corresponding points in the plane where the curve is not smooth.
+                  (If there is more than one, use commas to separate them.)
+                </instruction>
+
+                <p>
+                  <var name="$points" width="20"/>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>t=n\pi</m>, where <m>n</m> is an even integer
+                </p>
+              </solution>
+          </webwork>
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-parametric-describe-situation">
+
+        <introduction>
+          <p>
+            Find parametric equations that describe the given situation.
+          </p>
+        </introduction>
+
+        <exercise label="ex-parametric-describe-situation-1">
+          <!-- <webwork xml:id="webwork-ex-parametric-describe-situation-1">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  A projectile is fired from a height of <quantity><mag>0</mag><unit base="foot"/></quantity>,
+                  landing <quantity><mag>16</mag><unit base="foot"/></quantity> away in <quantity><mag>4</mag><unit base="second"/></quantity>.
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>x=4t</m>, <m>y=-16t^2 + 64t</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-describe-situation-2">
+          <!-- <webwork xml:id="webwork-ex-parametric-describe-situation-2">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  A projectile is fired from a height of <quantity><mag>0</mag><unit base="foot"/></quantity>,
+                  landing <quantity><mag>200</mag><unit base="foot"/></quantity> away in <quantity><mag>4</mag><unit base="second"/></quantity>.
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>x=50t</m>, <m>y=-16t^2 + 64t</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-describe-situation-3">
+          <!-- <webwork xml:id="webwork-ex-parametric-describe-situation-3">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  A projectile is fired from a height of <quantity><mag>0</mag><unit base="foot"/></quantity>,
+                  landing <quantity><mag>200</mag><unit base="foot"/></quantity> away in <quantity><mag>20</mag><unit base="second"/></quantity>.
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>x=10t</m>, <m>y=-16t^2 + 320t</m>
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-describe-situation-4">
+          <webwork xml:id="webwork-ex-parametric-describe-situation-4">
+              <pg-code>
+                Context()-&gt;variables-&gt;are(t=&gt;'Real');
+                $x=Formula("2cos(t)");
+                $y=Formula("-2sin(t)");
+                Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.001);
+                $multians=MultiAnswer($x,$y)-&gt;with(
+                  singleResult=&gt;1,
+                  checker=&gt;sub{
+                    my ($correct,$student,$self)=@_;
+                    my ($xcor,$ycor)=@{$correct};
+                    my ($xstu,$ystu)=@{$student};
+                    my $eliminated=Formula("($xstu/2)^2 + ($ystu/2)^2");
+                    return 0 unless ($eliminated == Formula("1"));
+
+                    #normalize answers
+                    $xstu=$xstu/2;
+                    $ystu=-$ystu/2;
+                    $xcor=$xcor/2;
+                    $ycor=-$ycor/2;
+
+                    #shift student answers
+                    my $xstu0=$xstu-&gt;eval(t=&gt;0);
+                    my $ystu0=$ystu-&gt;eval(t=&gt;0);
+                    my $phi=($xstu0 &gt;= 0)?Compute("arcsin($ystu0)"):Compute("pi-arcsin($ystu0)");
+                    $xstu=$xstu-&gt;substitute(t=&gt;Formula("t-$phi"));
+                    $ystu=$ystu-&gt;substitute(t=&gt;Formula("t-$phi"));
+
+                    return ($xstu == $xcor and $ystu == $ycor);
+                  }
+                );
+              </pg-code>
+              <statement>
+                <p>
+                  Find parametric equations that describe a circle of radius <m>2</m>,
+                  centered at the origin,
+                  that is traced clockwise once at constant speed on <m>[0,2\pi]</m>.
+                </p>
+
+                <instruction>Enter the function for <m>x</m>.</instruction>
+
+                <p>
+                  <var name="$multians" width="40"/>
+                </p>
+
+                <instruction>Enter the function for <m>y</m>.</instruction>
+
+                <p>
+                  <var name="$multians" width="40"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-parametric-describe-situation-5">
+          <webwork xml:id="webwork-ex-parametric-describe-situation-5">
+              <pg-code>
+                Context()-&gt;variables-&gt;are(t=&gt;'Real');
+                $x=Formula("3cos(2 pi t)+1");
+                $y=Formula("3sin(2 pi t)+1");
+                Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.001);
+                $multians=MultiAnswer($x,$y)-&gt;with(
+                  singleResult=&gt;1,
+                  checker=&gt;sub{
+                    my ($correct,$student,$self)=@_;
+                    my ($xcor,$ycor)=@{$correct};
+                    my ($xstu,$ystu)=@{$student};
+                    my $eliminated=Formula("(($xstu-1)/3)^2 + (($ystu-1)/3)^2");
+                    return 0 unless ($eliminated == Formula("1"));
+
+                    #normalize answers
+                    $xstu=($xstu-1)/3;
+                    $ystu=($ystu-1)/3;
+                    $xcor=($xcor-1)/3;
+                    $ycor=($ycor-1)/3;
+
+                    #shift student answers
+                    my $xstu0=$xstu-&gt;eval(t=&gt;0);
+                    my $ystu0=$ystu-&gt;eval(t=&gt;0);
+                    my $phi=($xstu0 &gt;= 0)?Compute("arcsin($ystu0)"):Compute("pi-arcsin($ystu0)");
+                    $xstu=$xstu-&gt;substitute(t=&gt;Formula("t-$phi/(2pi)
+                    "));
+                    $ystu=$ystu-&gt;substitute(t=&gt;Formula("t-$phi/(2pi)"));
+
+                    return ($xstu == $xcor and $ystu == $ycor);
+                  }
+                );
+              </pg-code>
+              <statement>
+                <p>
+                  Find parametric equations that describe a circle of radius <m>3</m>,
+                  centered at <m>(1,1)</m>,
+                  that is traced once counter-clockwise at constant speed on <m>[0,1]</m>.
+                </p>
+
+                <instruction>Enter the function for <m>x</m>.</instruction>
+
+                <p>
+                  <var name="$multians" width="40"/>
+                </p>
+
+                <instruction>Enter the function for <m>y</m>.</instruction>
+
+                <p>
+                  <var name="$multians" width="40"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-parametric-describe-situation-6">
+          <webwork xml:id="webwork-ex-parametric-describe-situation-6">
+              <pg-code>
+                Context()-&gt;variables-&gt;are(t=&gt;'Real');
+                $x=Formula("3cos(2 pi t)+1");
+                $y=Formula("3sin(2 pi t)+1");
+                $multians = MultiAnswer($x, $y)-&gt;with(
+                  singleResult =&gt; 1,
+                  checker =&gt; sub {
+                    my ( $correct, $student, $self ) = @_;
+                    my ( $xstu, $ystu ) = @{$student};
+                    my $dx = $xstu-&gt;D('t');
+                    my $dy = $ystu-&gt;D('t');
+                    return 0 if ($dx == Formula("0") or $dy == Formula("0"));
+                    my $eliminated = Formula("($xstu-1)^2 + ($ystu/3 - 1)^2");
+                    return ($eliminated == Formula("1"));
+                  }
+                );
+              </pg-code>
+              <statement>
+                <p>
+                  Find parametric equations that describe an ellipse centered at <m>(1,3)</m>,
+                  with vertical major axis of length <m>6</m> and minor axis of length <m>2</m>.
+                </p>
+
+                <instruction>Enter the function for <m>x</m>.</instruction>
+
+                <p>
+                  <var name="$multians" width="40"/>
+                </p>
+
+                <instruction>Enter the function for <m>y</m>.</instruction>
+
+                <p>
+                  <var name="$multians" width="40"/>
+                </p>
+              </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-parametric-describe-situation-7">
+          <!-- <webwork xml:id="webwork-ex-parametric-describe-situation-7">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  An ellipse with foci at <m>(\pm 1,0)</m> and vertices at <m>(\pm 5,0)</m>.
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>x=5\cos(t)</m>, <m>y=\sqrt{24}\sin(t)</m>;
+                  other answers possible
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-describe-situation-8">
+          <!-- <webwork xml:id="webwork-ex-parametric-describe-situation-8">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  A hyperbola with foci at <m>(5,-3)</m> and <m>(-1,-3)</m>,
+                  and with vertices at <m>(1,-3)</m> and <m>(3,-3)</m>.
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>x=\pm\sec(t) +2</m>, <m>y=\sqrt{8}\tan(t) -3</m>;
+                  other answers possible
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-parametric-describe-situation-9">
+          <!-- <webwork xml:id="webwork-ex-parametric-describe-situation-9">
+              <pg-code>
+              </pg-code> -->
+              <statement>
+                <p>
+                  A hyperbola with vertices at
+                  <m>(0,\pm 6)</m> and asymptotes <m>y=\pm 3x</m>.
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>x=2\tan(t)</m>, <m>y=\pm 6\sec(t)</m>;
+                  other answers possible
+                </p>
+              </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+      </exercisegroup>
+    </subexercises>
+  </exercises>
+</section>

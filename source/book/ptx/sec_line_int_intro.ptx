@@ -1,0 +1,1776 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec_line_int_intro" label="sec_line_int_intro">
+  <title>Introduction to Line Integrals</title>
+  <introduction>
+    <p>
+      We first used integration to find
+      <q>area under a curve.</q> In this section,
+      we learn to do this (again), but in a different context.
+    </p>
+  </introduction>
+
+  <subsection xml:id="subsec-line-int-scalar">
+    <title>Line Integrals of Functions</title>
+    <figure xml:id="vid-veccalc-lineint-intro" component="video" vshift="0">
+      <caption>Introducing the line integral</caption>
+      <video youtube="ponQzAg7V3I" label="vid-veccalc-lineint-intro"/>
+    </figure>
+    <p>
+      Consider the surface and curve shown in <xref ref="fig_line_integral_intro1a_3D"/>.
+      The surface is given by <m>f(x,y)=1-\cos(x)\sin(y)</m>.
+      The dashed curve lies in the <m>xy</m>-plane and is the familiar <m>y=x^2</m> parabola from <m>-1\leq x\leq 1</m>;
+      we'll call this curve <m>C</m>.
+      The curve drawn with a solid line in the graph is the curve in space that lies on our surface with <m>x</m> and <m>y</m> values that lie on <m>C</m>.
+    </p>
+
+    <p>
+      The question we want to answer is this:
+      what is the area that lies below the curve drawn with the solid line?
+      In other words,
+      what is the area of the region above <m>C</m> and under the the surface <m>z=f(x,y)</m>?
+      This region is shown in <xref ref="fig_line_integral_intro1b_3D"/>.
+    </p>
+
+    <p>
+      We suspect the answer can be found using an integral,
+      but before trying to figure out what that integral is,
+      let us first try to approximate its value.
+    </p>
+
+    <figure xml:id="fig_line_integral_intro1">
+      <caption>Finding area under a curve in space</caption>
+      <sidebyside widths="31% 31% 31%" margins="0%">
+        <figure xml:id="fig_line_integral_intro1a_3D">
+          <caption/>
+          <image>
+            <shortdescription>A curve in the x,y plane, and the corresponding curve on a surface lying above it.</shortdescription>
+            <description>
+              <p>
+                A set of three-dimensional coordinate axes are drawn in space.
+                A surface lies above the <m>xy</m> plane; it is the graph <m>z=1-\cos(x)\sin(y)</m>.
+                The surface looks a little bit like a camping chair, but the precise shape is unimportant.
+              </p>
+
+              <p>
+                In the <m>xy</m> plane, the parabola <m>y=x^2</m> is plotted..
+                On the surface is the corresponding curve, given by parametric equations
+                <m>x=t</m>, <m>y=t^2</m>, <m>z = 1-\cos(t)\sin(t^2)</m>.
+                These are the points on the surface that lie directly above the parabola.
+              </p>
+            </description>
+            <asymptote label="img_line_integral_intro1a_3D">
+
+
+
+              //ASY file for fig10_01_ex_233D.asy in Chapter 10
+
+              size(198,198,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(1.17,4.69,2.35);
+              //currentprojection=orthographic(2.5,4.6,1.9);
+              defaultrender.merge=true;
+
+              // setup and draw the axes
+              real[] myxchoice={-1,1};
+              real[] myychoice={1};
+              real[] myzchoice={1,2};
+              defaultpen(0.5mm);
+              pair xbounds=(-1.5,1.5);
+              pair ybounds=(-.2,1.5);
+              pair zbounds=(-.1,1.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface z=x^2-y^2+1
+              triple f(pair t) {
+                return (t.x,t.y,-sin(t.y)*cos(t.x)+1);
+              }
+              surface s=surface(f,(-1,-.1),(1,1),16,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              );
+              pen p=apexmeshpen;
+              draw(s,surfacepen,meshpen=p);
+
+              triple g(real t) {return (t,t^2,-cos(t)*sin(t^2)+1);}
+              path3 mypath=graph(g,-1,1,operator ..);
+              draw(mypath,bluepen+linewidth(2));
+
+              triple g(real t) {return (t,t^2,0);}
+              path3 mypath=graph(g,-1,1,operator ..);
+              draw(mypath,bluepen+linewidth(2)+dashed);
+
+            </asymptote>
+          </image>
+        </figure>
+
+        <figure xml:id="fig_line_integral_intro1b_3D">
+          <caption/>
+          <image>
+            <shortdescription>A cylindrical surface in space that lies above a parabola in the plane, and below a space curve.</shortdescription>
+            <description>
+              <p>
+                This image shows the surface created by the portion of the cylinder <m>y=x^2</m> in space
+                that lies above the plane <m>z=0</m> and below the surface <m>z=1-\cos(x)\sin(y)</m>.
+              </p>
+
+              <p>
+                The surface is like a wall that is bent in the shape of a parabola.
+                The top of the wall forms a curve that is sinusoidal in shape.
+                The wall is highest where it meets the <m>z</m> axis,
+                and then it slopes gently downward toward the ends of the wall, which are of a lower height.
+              </p>
+            </description>
+            <asymptote label="img_line_integral_intro1b_3D">
+
+
+
+              //ASY file for fig10_01_ex_233D.asy in Chapter 10
+
+              size(198,198,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(1.17,4.69,2.35);
+              defaultrender.merge=true;
+
+              // setup and draw the axes
+              real[] myxchoice={-1,1};
+              real[] myychoice={1};
+              real[] myzchoice={1,2};
+              defaultpen(0.5mm);
+              pair xbounds=(-1.5,1.5);
+              pair ybounds=(-.2,1.5);
+              pair zbounds=(-.1,1.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface z=x^2-y^2+1
+              triple f(pair t) {
+                return (t.x,t.x^2,t.y*(-sin(t.x^2)*cos(t.x)+1));
+              }
+              surface s=surface(f,(-1,0),(1,1),16,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              );
+              pen p=apexmeshpen;
+              draw(s,simplesurfacepen,meshpen=p);
+
+              triple g(real t) {return (t,t^2,-cos(t)*sin(t^2)+1);}
+              path3 mypath=graph(g,-1,1,operator ..);
+              draw(mypath,bluepen+linewidth(2));
+
+              triple g(real t) {return (t,t^2,0);}
+              path3 mypath=graph(g,-1,1,operator ..);
+              draw(mypath,bluepen+linewidth(2)+dashed);
+
+            </asymptote>
+          </image>
+        </figure>
+
+        <figure xml:id="fig_line_integral_intro1c_3D">
+          <caption/>
+          <image>
+            <shortdescription>Approximating the area under a curve in space using planar rectangles.</shortdescription>
+            <description>
+              <p>
+                The same curve as in <xref ref="fig_line_integral_intro1b_3D"/> is plotted in space.
+                This time, the cylindrical surface has been removed,
+                and replaced by four rectangles used to approximate the area under the curve.
+              </p>
+
+              <p>
+                Each rectangle lies in a vertical plane.
+                The base of each rectangle lies along a secant line between two points of the parabola <m>y=x^2</m> in the <m>xy</m> plane.
+                The height of each rectangle is determined by the height of the curve in space at some point above the base.
+              </p>
+            </description>
+            <asymptote label="img_line_integral_intro1c_3D">
+
+
+
+              //ASY file for fig10_01_ex_233D.asy in Chapter 10
+
+              size(198,198,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(1.17,4.69,2.35);
+              defaultrender.merge=true;
+
+              // setup and draw the axes
+              real[] myxchoice={-1,1};
+              real[] myychoice={1};
+              real[] myzchoice={1,2};
+              defaultpen(0.5mm);
+              pair xbounds=(-1.5,1.5);
+              pair ybounds=(-.2,1.5);
+              pair zbounds=(-.1,1.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface z=x^2-y^2+1
+              triple f1(pair t) {
+                return (t.x,-.75/.5*(t.x+1)+1,t.y*(.664));
+              }
+              surface s1=surface(f1,(-1,0),(-.5,1),1,1,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              );
+              pen p=redpen+linewidth(1);
+              draw(s1,simplesurfacepen2,meshpen=p);
+
+              //Draw the surface z=x^2-y^2+1
+              triple f2(pair t) {
+                return (t.x,-.5*(t.x+.5)+.25,t.y*(.89));
+              }
+              surface s2=surface(f2,(-.5,0),(0,1),1,1,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              );
+              pen p=redpen+linewidth(1);
+              draw(s2,simplesurfacepen2,meshpen=p);
+
+              //Draw the surface z=x^2-y^2+1
+              triple f3(pair t) {
+                return (t.x,.5*(t.x-.5)+.25,t.y*(.89));
+              }
+              surface s3=surface(f3,(0,0),(.5,1),1,1,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              );
+              pen p=redpen+linewidth(1);
+              draw(s3,simplesurfacepen2,meshpen=p);
+
+              //Draw the surface z=x^2-y^2+1
+              triple f4(pair t) {
+                return (t.x,.75/.5*(t.x-1)+1,t.y*(.664));
+              }
+              surface s4=surface(f4,(.5,0),(1,1),1,1,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              );
+              pen p=redpen+linewidth(1);
+              draw(s4,simplesurfacepen2,meshpen=p);
+
+              triple g(real t) {return (t,t^2,-cos(t)*sin(t^2)+1);}
+              path3 mypath=graph(g,-1,1,operator ..);
+              draw(mypath,bluepen+linewidth(2));
+
+              triple g(real t) {return (t,t^2,0);}
+              path3 mypath=graph(g,-1,1,operator ..);
+              draw(mypath,bluepen+linewidth(2)+dashed);
+
+            </asymptote>
+          </image>
+        </figure>
+      </sidebyside>
+
+    </figure>
+
+    <p>
+      In <xref ref="fig_line_integral_intro1c_3D"/>,
+      four rectangles have been drawn over the curve <m>C</m>.
+      The bottom corners of each rectangle lie on <m>C</m>,
+      and each rectangle has a height given by the function <m>f(x,y)</m> for some <m>(x,y)</m> pair along <m>C</m> between the rectangle's bottom corners.
+    </p>
+
+    <p>
+      As we know how to find the area of each rectangle,
+      we are able to approximate the area above <m>C</m> and under <m>f</m>.
+      Clearly, our approximation will be
+      <em>an approximation</em>.
+      The heights of the rectangles do not match exactly with the surface <m>f</m>,
+      nor does the base of each rectangle follow perfectly the path of <m>C</m>.
+    </p>
+
+    <p>
+      In typical calculus fashion,
+      our approximation can be improved by using more rectangles.
+      The sum of the areas of these rectangles gives an approximate value of the true area above <m>C</m> and under <m>f</m>.
+      As the area of each rectangle is
+      <q>height <times/> width</q>, we assert that the
+      <md>
+        \text{ area above \(C\) } \approx \sum (\text{ heights } \times\text{ widths } )
+      </md>.
+    </p>
+
+    <p>
+      When first learning of the integral,
+      and approximating areas with <q>heights <times/> widths</q>,
+      the width was a small change in <m>x</m>: <m>dx</m>.
+      That will not suffice in this context.
+      Rather, each width of a rectangle is actually approximating the arc length of a small portion of <m>C</m>.
+      In <xref ref="sec_curvature"/>,
+      we used <m>s</m> to represent the arc-length parameter of a curve.
+      A small amount of arc length will thus be represented by <m>ds</m>.
+    </p>
+
+    <p>
+      The height of each rectangle will be determined in some way by the surface <m>f</m>.
+      If we parametrize <m>C</m> by <m>s</m>,
+      an <m>s</m>-value corresponds to an <m>(x,y)</m> pair that lies on the parabola <m>C</m>.
+      Since <m>f</m> is a function of <m>x</m> and <m>y</m>,
+      and <m>x</m> and <m>y</m> are functions of <m>s</m>,
+      we can say that <m>f</m> is a function of <m>s</m>.
+      Given a value <m>s</m>, we can compute <m>f(s)</m> and find a height.
+      Thus
+      <md>
+        <mrow>\text{ area under \(f\) and above \(C\) } \amp \approx \sum (\text{ heights } \times\text{ widths } );</mrow>
+        <mrow>\text{ area under \(f\) and above \(C\) }               \amp =\lim_{\norm{\Delta s}\to0}\sum f(c_i)\Delta s_i</mrow>
+        <mrow number="yes" xml:id="eq_line0">\amp =\int_Cf(s)\, ds</mrow>
+      </md>.
+    </p>
+
+    <p>
+      Here we have introduce a new notation,
+      the integral symbol with a subscript of <m>C</m>.
+      It is reminiscent of our usage of <m>\iint_R</m>.
+      Using the train of thought found in the Integration Review preceding this section,
+      we interpret <q><m>\int_C f(s)\, ds</m></q>
+      as meaning <q>sum up, along a curve <m>C</m>,
+      function values <m>f(s)\times</m>small arc lengths.</q>
+      It is understood here that <m>s</m> represents the arc-length parameter.
+    </p>
+
+    <p>
+      All this leads us to a definition.
+      The integral found in <xref ref="eq_line0" text="global">Equation</xref>
+      is called a <em>line integral</em>.
+      We formally define it below, but note that the definition is very abstract.
+      On one hand,
+      one is apt to say <q>the definition makes sense,</q> while on the other,
+      one is equally apt to say <q>but I don't know what I'm supposed to do with this definition.</q>
+      We'll address that after the definition,
+      and actually find an answer to the area problem we posed at the beginning of this section.
+    </p>
+
+    <definition xml:id="def_line_integral1">
+      <title>Line Integral Over A Scalar Field</title>
+      <statement>
+        <p>
+          Let <m>C</m> be a smooth curve parametrized by <m>s</m>,
+          the arc-length parameter,
+          and let <m>f</m> be a continuous function of <m>s</m>.
+          A <term>line integral</term> is an integral of the form
+          <md>
+            \int_C f(s)\, ds = \lim_{\norm{\Delta s}\to 0}\sum_{i=1}^n f(c_i)\Delta s_i
+          </md>,
+          where <m>s_0\lt s_1\lt \ldots\lt s_n</m> is any partition of the <m>s</m>-interval over which <m>C</m> is defined,
+          <m>c_i</m> is any value in the <m>i</m>th subinterval,
+          <m>\Delta s_i</m> is the width of the <m>i</m>th subinterval,
+          and <m>\norm{\Delta s}</m> is the length of the longest subinterval in the partition.
+              <idx><h>line integral</h><h>over scalar field</h></idx>
+        </p>
+      </statement>
+    </definition>
+
+    <aside vshift="0">
+      <p>
+        <em>Note:</em> <xref ref="def_line_integral1"/>
+        uses the term <em>scalar field</em>
+        which has not yet been defined.
+        Its meaning is discussed in the paragraph preceding <xref ref="def_line_integral2"/>
+        when it is compared to a <em>vector field</em>.
+      </p>
+    </aside>
+    <p>
+      When <m>C</m> is a <em>closed</em> curve,
+      <ie/>, a curve that ends at the same point at which it starts, we use
+      <md>
+        \oint_C f(s)\, ds  \text{ instead of }  \int_C f(s)\, ds
+      </md>.
+    </p>
+
+    <p>
+      The definition of the line integral does not specify whether <m>C</m> is a curve in the plane or space
+      (or hyperspace),
+      as the definition holds regardless.
+      For now, we'll assume <m>C</m> lies in the <m>xy</m>-plane.
+    </p>
+
+    <p>
+      This definition of the line integral doesn't really say anything new.
+      If <m>C</m> is a curve and <m>s</m> is the arc-length parameter of <m>C</m> on <m>a\leq s\leq b</m>, then
+      <md>
+        \int_Cf(s)\, ds = \int_a^bf(s)\, ds
+      </md>.
+    </p>
+
+    <p>
+      The real difference with this integral from the standard
+      <q><m>\int_a^bf(x)\, dx</m></q>
+      we used in the past is that of context.
+      Our previous integrals naturally summed up values over an interval on the <m>x</m>-axis,
+      whereas now we are summing up values over a curve.
+      <em>If</em> we can parametrize the curve with the arc-length parameter,
+      we can evaluate the line integral just as before.
+      Unfortunately,
+      parametrizing a curve in terms of the arc-length parameter is usually very difficult,
+      so we must develop a method of evaluating line integrals using a different parametrization.
+    </p>
+
+    <p>
+      Given a curve <m>C</m>, find any parametrization of <m>C</m>:
+      <m>x = g(t)</m> and <m>y=h(t)</m>,
+      for continuous functions <m>g</m> and <m>h</m>,
+      where <m>a\leq t\leq b</m>.
+      We can represent this parametrization with a vector-valued function,
+      <m>\vrt = \langle g(t),h(t)\rangle</m>.
+    </p>
+
+    <p>
+      In <xref ref="sec_curvature"/>,
+      we defined the arc-length parameter in <xref ref="eq_vvfarc" text="global">Equation</xref> as
+      <md>
+        s(t) = \int_0^t \norm{\vec r\,'(u)}\, du
+      </md>.
+    </p>
+
+    <p>
+      By the Fundamental Theorem of Calculus,
+      <m>ds = \norm{\vec r\,'(t)}\, dt</m>.
+      We can substitute the right hand side of this equation for <m>ds</m> in the line integral definition.
+    </p>
+
+    <p>
+      We can view <m>f</m> as being a function of <m>x</m> and <m>y</m> since it is a function of <m>s</m>.
+      Thus <m>f(s) =f(x,y) =f\big(g(t),h(t)\big)</m>.
+      This gives us a concrete way to evaluate a line integral:
+      <md>
+        \int_C f(s)\, ds = \int_a^bf\big(g(t),h(t)\big)\norm{\vec r\,'(t)}\, dt
+      </md>.
+    </p>
+
+    <p>
+      We restate this as a theorem,
+      along with its three-dimensional analogue,
+      followed by an example where we finally evaluate an integral and find an area.
+    </p>
+
+    <theorem xml:id="thm_line1">
+      <title>Evaluating a Line Integral Over A Scalar Field</title>
+      <statement>
+        <p>
+          <ul>
+            <li>
+              <p>
+                Let <m>C</m> be a curve parametrized by <m>\vrt =\langle g(t),
+                h(t)\rangle</m>,
+                <m>a\leq t\leq b</m>,
+                where <m>g</m> and <m>h</m> are continuously differentiable,
+                and let <m>z=f(x,y)</m>, where <m>f</m> is continuous over <m>C</m>.
+                Then<idx><h>line integral</h><h>over scalar field</h></idx>
+                <md>
+                  \int_C f(s)\, ds = \int_a^b f\big(g(t),h(t)\big)\norm{\vec r\,'(t)}\, dt
+                </md>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Let <m>C</m> be a curve parametrized by
+                <m>\vrt =\langle g(t),
+                h(t),k(t)\rangle</m>, <m>a\leq t\leq b</m>,
+                where <m>g</m>,
+                <m>h</m> and <m>k</m> are continuously differentiable,
+                and let <m>w=f(x,y,z)</m>, where <m>f</m> is continuous over <m>C</m>.
+                Then
+                <md>
+                  \int_Cf(s)\, ds = \int_a^bf\big(g(t),h(t),k(t)\big)\norm{\vec r\,'(t)}\, dt
+                </md>.
+              </p>
+            </li>
+          </ul>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      To be clear,
+      the first point of <xref ref="thm_line1"/>
+      can be used to find the area under a surface
+      <m>z=f(x,y)</m> and above a curve <m>C</m>.
+      We will later give an understanding of the line integral when <m>C</m> is a curve in space.
+    </p>
+
+    <p>
+      Let's do an example where we actually compute an area.
+    </p>
+
+    <example xml:id="ex_linescalarfield2">
+      <title>Evaluating a line integral: area under a surface over a curve</title>
+      <statement>
+        <p>
+          Find the area under the surface
+          <m>f(x,y) =\cos(x)+\sin(y)+2</m> over the curve <m>C</m>,
+          which is the segment of the line <m>y=2x+1</m> on <m>-1\leq x\leq 1</m>,
+          as shown in <xref ref="fig_linescalarfield2"/>.
+        </p>
+        <figure xml:id="fig_linescalarfield2">
+          <caption>Finding area under a curve in <xref ref="ex_linescalarfield2"/></caption>
+          <sidebyside widths="47% 47%" margins="0%">
+            <figure xml:id="fig_linescalarfield2a_3D">
+              <caption/>
+              <image>
+                <shortdescription>A curve lies along a surface in space. The curve corresponds to a line drawn in the x,y plane.</shortdescription>
+                <description>
+                  <p>
+                    The surface <m>z=\cos(x)+\sin(y)+2</m> is plotted in space against three-dimensional coordinate axes.
+                    It has the appearance of a saddle surface in the region that is plotted.
+                  </p>
+
+                  <p>
+                    A curve lies along this surface; it is the set of points on the surface
+                    that lie above the line <m>y=2x+1</m> in the <m>xy</m> plane.
+                    The line in the plane is also plotted for reference.
+                  </p>
+                </description>
+                <asymptote label="img_linescalarfield2a_3D">
+
+
+
+                  // ASY file for figlinescalarfield2_3D.asy in Chapter 10
+                  // The surface is z=cos(x)+sin(y)+2; the path is the line
+                  // y=2x+1.
+                  // This draws the path, the curve in space, and the surface.
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic(10,7.25,3.75);
+                  //(7.63,8.65,5);
+                  //currentprojection=orthographic(2.5,4.6,1.9);
+                  defaultrender.merge=true;
+
+                  // setup and draw the axes
+                  real[] myxchoice={-1,3};
+                  real[] myychoice={-1,3};
+                  real[] myzchoice={3};
+                  defaultpen(0.5mm);
+                  pair xbounds=(-1.2,3.4);
+                  pair ybounds=(-1.2,3.4);
+                  pair zbounds=(-.1,3.5);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                  //Draw the surface z=cos(x)+sin(y)=2
+                  triple f(pair t) {
+                    return (t.x,t.y,-sin(t.y)+cos(t.x)+2);
+                  }
+                  surface s=surface(f,(-1,-1),(pi,pi),16,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                  ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                  );
+                  pen p=apexmeshpen;
+                  draw(s,surfacepen,meshpen=p);
+
+                  triple g(real t) {return (t,2*t+1,-sin(2t+1)+cos(t)+2);}
+                  path3 mypath=graph(g,-1,1,operator ..);
+                  draw(mypath,bluepen+linewidth(2));
+
+                  triple g(real t) {return (t,2*t+1,0);}
+                  path3 mypath=graph(g,-1,1,operator ..);
+                  draw(mypath,bluepen+linewidth(2)+dashed);
+
+                </asymptote>
+              </image>
+            </figure>
+
+            <figure xml:id="fig_linescalarfield2b_3D">
+              <caption/>
+              <image>
+                <shortdescription>A curve in space lies above the line y=2x+1 in the x,y plane. The surface that lies between the line and curve is shown.</shortdescription>
+                <description>
+                  <p>
+                    The curve in space from <xref ref="fig_linescalarfield2a_3D"/> is plotted again with respect to three-dimensional coordinate axes.
+                    This time, the surface on which the curve lies is not shown.
+                    Instead, we again see the line <m>y=2x+1</m> in the <m>xy</m> plane.
+                  </p>
+
+                  <p>
+                    Between the curve in space and the line in the plane there is a surface, which is plotted.
+                    This surface lies in the plane defined by the equation <m>y=2x+1</m>.
+                    It is bounded below by the <m>xy</m> plane, and above by the curve in space.
+                  </p>
+
+                  <p>
+                    From the perspective of a direction normal to the plane <m>y=2x+1</m>,
+                    this is just the area under a curve.
+                  </p>
+                </description>
+                <asymptote label="img_linescalarfield2b_3D">
+
+
+
+                  // ASY file for figlinescalarfield2_3D.asy in Chapter 10
+                  // The surface is z=cos(x)+sin(y)=2; the path is the line
+                  // y=2x+1.
+                  // This draws the surface which we are finding the area of.
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic(10,7.25,3.75);
+                  //currentprojection=orthographic(2.5,4.6,1.9);
+                  defaultrender.merge=true;
+
+                  // setup and draw the axes
+                  real[] myxchoice={-1,3};
+                  real[] myychoice={-1,3};
+                  real[] myzchoice={3};
+                  defaultpen(0.5mm);
+                  pair xbounds=(-1.2,3.4);
+                  pair ybounds=(-1.2,3.4);
+                  pair zbounds=(-.1,3.5);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                  //Draw the surface z=cos(x)+sin(y)=2
+                  triple f(pair t) {
+                    return (t.x,2*t.x+1,t.y*(-sin(t.x*2+1)+cos(t.x)+2));
+                  }
+                  surface s=surface(f,(-1,0),(1,1),8,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                  ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                  );
+                  pen p=bluecurvepen;
+                  draw(s,simplesurfacepen,meshpen=p);
+
+                  triple g(real t) {return (t,2*t+1,-sin(2t+1)+cos(t)+2);}
+                  path3 mypath=graph(g,-1,1,operator ..);
+                  draw(mypath,bluepen+linewidth(2));
+
+                  triple g(real t) {return (t,2*t+1,0);}
+                  path3 mypath=graph(g,-1,1,operator ..);
+                  draw(mypath,bluepen+linewidth(2)+dashed);
+
+                </asymptote>
+              </image>
+            </figure>
+          </sidebyside>
+
+        </figure>
+      </statement>
+      <solution>
+        <p>
+          Our first step is to represent <m>C</m> with a vector-valued function.
+          Since <m>C</m> is a simple line,
+          and we have a explicit relationship between <m>y</m> and <m>x</m> (namely,
+          that <m>y</m> is <m>2x+1</m>),
+          we can let <m>x = t</m>, <m>y = 2t+1</m>,
+          and write <m>\vrt = \langle t, 2t+1\rangle</m> for <m>-1\leq t\leq 1</m>.
+        </p>
+
+        <p>
+          We find the values of <m>f</m> over <m>C</m> as <m>f(x,y) = f(t,2t+1) = \cos(t)+\sin(2t+1) + 2</m>.
+          We also need <m>\norm{\vec r\,'(t)}</m>;
+          with <m>\vrp(t) = \langle 1,2\rangle</m>,
+          we have <m>\norm{\vrp(t)} = \sqrt{5}</m>.
+          Thus <m>ds = \sqrt{5}\, dt</m>.
+        </p>
+
+        <p>
+          The area we seek is
+          <md>
+            <mrow>\int_Cf(s)\, ds \amp = \int_{-1}^1 \big(\cos(t)+\sin(2t+1) + 2\big)\sqrt{5}\, dt</mrow>
+            <mrow>\amp = \left.\sqrt{5}\big(\sin(t) - \frac12\cos(2t+1)+2t\big)\right|_{-1}^1</mrow>
+            <mrow>\amp \approx 14.418\ \text{ units } ^2</mrow>
+          </md>.
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      We will practice setting up and evaluating a line integral in another example,
+      then find the area described at the beginning of this section.
+    </p>
+
+    <example xml:id="ex_linescalarfield3">
+      <title>Evaluating a line integral: area under a surface over a curve</title>
+      <statement>
+        <p>
+          Find the area over the unit circle in the <m>xy</m>-plane and under the graph of <m>f(x,y) = x^2-y^2+3</m>,
+          shown in <xref ref="fig_linescalarfield3"/>.
+        </p>
+        <figure xml:id="fig_linescalarfield3">
+          <caption>Finding area under a curve in <xref ref="ex_linescalarfield3"/></caption>
+          <sidebyside widths="47% 47%" margins="0%">
+            <figure xml:id="fig_linescalarfield3a_3D">
+              <caption/>
+              <image>
+                <shortdescription>A curve lies on a hyperbolic paraboloid above a circle in the plane.</shortdescription>
+                <description>
+                  <p>
+                    The hyperbolic paraboloid <m>z=x^2-y^2+3</m> is plotted in space,
+                    against a set of three-dimensional coordinate axes.
+                    Below the surface, in the <m>xy</m> plane, the unit circle is plotted.
+                  </p>
+
+                  <p>
+                    The points on the surface that lie above the circle form a curve on the surface.
+                    The curve cuts out a portion of the surface that looks exactly like a <trademark>Pringles</trademark> chip.
+                  </p>
+                </description>
+                <asymptote label="img_linescalarfield3a_3D">
+
+
+
+                  // ASY file for figlinescalarfield2_3D.asy in Chapter 10
+                  // The surface is z=x^2-y^2+3; the path is the unit circle.
+                  //
+                  // This draws the path, the curve in space, and the surface.
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic(7.5,9,8);
+                  //(7.63,8.65,5);
+                  //currentprojection=orthographic(2.5,4.6,1.9);
+                  defaultrender.merge=true;
+
+                  // setup and draw the axes
+                  real[] myxchoice={-1,1};
+                  real[] myychoice={-1,1};
+                  real[] myzchoice={4};
+                  defaultpen(0.5mm);
+                  pair xbounds=(-1.2,1.2);
+                  pair ybounds=(-1.2,1.2);
+                  pair zbounds=(-.1,4.5);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                  //Draw the surface z=x^2-y^2+3
+                  triple f(pair t) {
+                    return (t.x,t.y,t.x^2-t.y^2+3);
+                  }
+                  surface s=surface(f,(-1.1,-1.1),(1.1,1.1),16,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                  ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                  );
+                  pen p=apexmeshpen;
+                  draw(s,surfacepen,meshpen=p);
+
+                  triple g(real t) {return (cos(t),sin(t),cos(t)^2-sin(t)^2+3);}
+                  path3 mypath=graph(g,0,2pi,operator ..);
+                  draw(mypath,bluepen+linewidth(2));
+
+                  triple g(real t) {return (cos(t),sin(t),0);}
+                  path3 mypath=graph(g,0,2pi,operator ..);
+                  draw(mypath,bluepen+linewidth(2)+dashed);
+
+                </asymptote>
+              </image>
+            </figure>
+
+            <figure xml:id="fig_linescalarfield3b_3D">
+              <caption/>
+              <image>
+                <shortdescription>A cylindrical surface between the x,y plane and a hyperbolic paraboloid.</shortdescription>
+                <description>
+                  <p>
+                    A plot of the portion of the cylinder <m>x^2+y^2=1</m> 
+                    that lies between the <m>xy</m> plane and the hyperbolic paraboloid <m>z=x^2-y^2+3</m>.
+                    The surface looks something like a roller coaster track, along with the scaffolding beneath it.
+                  </p>
+                </description>
+                <asymptote label="img_linescalarfield3b_3D">
+
+
+
+                  // ASY file for figlinescalarfield2_3D.asy in Chapter 10
+                  // The surface is z=x^2-y^2+3; the path is the unit circle.
+                  //
+                  // This draws the  surface of the area we seek.
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic(7.5,9,8);
+                  //(7.63,8.65,5);
+                  //currentprojection=orthographic(2.5,4.6,1.9);
+                  defaultrender.merge=true;
+
+                  // setup and draw the axes
+                  real[] myxchoice={-1,1};
+                  real[] myychoice={-1,1};
+                  real[] myzchoice={4};
+                  defaultpen(0.5mm);
+                  pair xbounds=(-1.2,1.2);
+                  pair ybounds=(-1.2,1.2);
+                  pair zbounds=(-.1,4.5);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                  //Draw the surface z=x^2-y^2+3
+                  triple f(pair t) {
+                    return (cos(t.x),sin(t.x),t.y*(cos(t.x)^2-sin(t.x)^2+3));
+                  }
+                  surface s=surface(f,(0,0),(2pi,1),16,8,Spline);
+                  pen p=apexmeshpen;
+                  draw(s,simplesurfacepen,meshpen=p);
+
+                  triple g(real t) {return (cos(t),sin(t),cos(t)^2-sin(t)^2+3);}
+                  path3 mypath=graph(g,0,2pi,operator ..);
+                  draw(mypath,bluepen+linewidth(2));
+
+                  triple g(real t) {return (cos(t),sin(t),0);}
+                  path3 mypath=graph(g,0,2pi,operator ..);
+                  draw(mypath,bluepen+linewidth(2)+dashed);
+
+                </asymptote>
+              </image>
+            </figure>
+          </sidebyside>
+
+        </figure>
+      </statement>
+      <solution>
+        <p>
+          The curve <m>C</m> is the unit circle,
+          which we will describe with the parametrization
+          <m>\vrt = \langle \cos(t), \sin(t)\rangle</m> for <m>0\leq t\leq 2\pi</m>.
+          We find <m>\norm{\vrp(t)} = 1</m>, so <m>ds = 1 dt</m>.
+        </p>
+
+        <p>
+          We find the values of <m>f</m> over <m>C</m> as <m>f(x,y) = f(\cos(t), \sin(t)) = \cos^2t-\sin^2t+3</m>.
+          Thus the area we seek is (note the use of the <m>\oint f(s) ds</m> notation):
+          <md>
+            <mrow>\oint_C f(s)\, ds \amp = \int_0^{2\pi}\big(\cos^2t-\sin^2t+3\big)\, dt</mrow>
+            <mrow>\amp = 6\pi</mrow>
+          </md>.
+        </p>
+
+        <p>
+          (Note: we may have approximated this answer from the start.
+          The unit circle has a circumference of <m>2\pi</m>,
+          and we may have guessed that due to the apparent symmetry of our surface,
+          the average height of the surface is 3.)
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      We now consider the example that introduced this section.
+    </p>
+
+    <example xml:id="ex_linescalarfield5">
+      <title>Evaluating a line integral: area under a surface over a curve</title>
+      <statement>
+        <p>
+          Find the area under <m>f(x,y) = 1-\cos(x)\sin(y)</m> and over the parabola <m>y = x^2</m>,
+          from <m>-1\leq x\leq 1</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We parametrize our curve <m>C</m> as
+          <m>\vrt = \langle t,t^2\rangle</m> for <m>-1\leq t\leq 1</m>;
+          we find <m>\norm{\vrp(t)} = \sqrt{1+4t^2}</m>,
+          so <m>ds = \sqrt{1+4t^2}\, dt</m>.
+        </p>
+
+        <p>
+          Replacing <m>x</m> and <m>y</m> with their respective functions of <m>t</m>,
+          we have <m>f(x,y) = f(t,t^2) = 1-\cos(t)\sin(t^2)</m>.
+          Thus the area under <m>f</m> and over <m>C</m> is found to be
+          <md>
+            <mrow>\int_C f(s)\, ds \amp = \int_{-1}^1 \Big(1-\cos(t)\sin\big(t^2\big)\Big)\sqrt{1+t^2}\, dt.</mrow>
+            <intertext>This integral is impossible to evaluate using the techniques developed in this text. We resort to a numerical approximation; accurate to two places after the decimal, we find the area is</intertext>
+            <mrow>\amp = 2.17</mrow>
+          </md>.
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      We give one more example of finding area.
+    </p>
+
+    <example xml:id="ex_linescalarfield4">
+      <title>Evaluating a line integral: area under a curve in space</title>
+      <statement>
+        <p>
+          Find the area above the <m>xy</m>-plane and below the helix parametrized by <m>\vrt = \langle \cos(t),2\sin(t),t/\pi\rangle</m>,
+          for <m>0\leq t\leq 2\pi</m>,
+          as shown in <xref ref="fig_linescalarfield4"/>.
+        </p>
+        <figure xml:id="fig_linescalarfield4" vshift="-1">
+          <caption>Finding area under a curve in <xref ref="ex_linescalarfield4"/></caption>
+          <image width="47%">
+            <shortdescription>A helical ramp in space.</shortdescription>
+            <description>
+              <p>
+                A cylindrical surface that lies between the <m>xy</m> plane and a circular helix.
+                The surface looks somewhat like a spiral staircase that makes one revolution.
+              </p>
+            </description>
+            <asymptote label="img_linescalarfield4_3D">
+
+
+
+              // ASY file for figlinescalarfield2_3D.asy in Chapter 10
+              // The path is an elliptical helix ⟨ cos t, 2sin t, t/pi ⟩; no specific surface.
+              //
+              // This draws the  surface of the area we seek.
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(9.8,10.4,5.5);
+              //(7.63,8.65,5);
+              //currentprojection=orthographic(2.5,4.6,1.9);
+              defaultrender.merge=true;
+
+              // setup and draw the axes
+              real[] myxchoice={-2,2};
+              real[] myychoice={-2,2};
+              real[] myzchoice={2};
+              defaultpen(0.5mm);
+              pair xbounds=(-2.2,2.2);
+              pair ybounds=(-2.2,2.2);
+              pair zbounds=(-.1,2.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface z=x^2-y^2+3
+              triple f(pair t) {
+                return (cos(t.x),2sin(t.x),t.y*(t.x/pi));
+              }
+              surface s=surface(f,(0,0),(2pi,1),16,4,Spline);
+              pen p=apexmeshpen;
+              draw(s,simplesurfacepen,meshpen=p);
+
+              triple g(real t) {return (cos(t),2sin(t),t/pi);}
+              path3 mypath=graph(g,0,2pi,operator ..);
+              draw(mypath,bluepen+linewidth(2));
+
+              triple g(real t) {return (cos(t),2sin(t),0);}
+              path3 mypath=graph(g,0,2pi,operator ..);
+              draw(mypath,bluepen+linewidth(2)+dashed);
+
+            </asymptote>
+          </image>
+        </figure>
+      </statement>
+      <solution>
+        <p>
+          Note how this is problem is different than the previous examples:
+          here, the height is not given by a surface, but by the curve itself.
+        </p>
+
+        <p>
+          We use the given vector-valued function <m>\vec r(t)</m> to determine the curve <m>C</m> in the <m>xy</m>-plane by simply using the first two components of \vec r(t):
+          <m>\vec c(t) = \langle \cos(t),2\sin(t)\rangle</m>.
+          Thus <m>ds = \norm{\vec c\,'(t)}\,dt = \sqrt{\sin^2t + 4\cos^2t}\,dt</m>.
+        </p>
+
+        <p>
+          The height is not found by evaluating a surface over <m>C</m>,
+          but rather it is given directly by the third component of \vec r(t):
+          <m>t/\pi</m>.
+          Thus
+          <md>
+            \oint_C f(s)\, ds = \int_0^{2\pi} \frac{t}{\pi}\sqrt{\sin^2t + 4\cos^2t}\,dt \approx 9.69
+          </md>,
+          where the approximation was obtained using numerical methods.
+        </p>
+      </solution>
+    </example>
+
+    <figure xml:id="vid-veccalc-line-int-scalar-example" component="video" vshift="-5">
+      <caption>Another line integral example</caption>
+      <video youtube="EN9r0JKI5uY" label="vid-veccalc-line-int-scalar-example"/>
+    </figure>
+
+    <p>
+      Note how in each of the previous examples we are effectively finding
+      <q>area under a curve</q>,
+      just as we did when first learning of integration.
+      We have used the phrase <q>area <em>over</em>
+      a curve <m>C</m> and under a surface,</q>
+      but that is because of the important role <m>C</m> plays in the integral.
+      The figures show how the curve <m>C</m> defines another curve on the surface <m>z=f(x,y)</m>,
+      and we are finding the area under that curve.
+    </p>
+  </subsection>
+
+  <subsection>
+    <title>Properties of Line Integrals</title>
+    <p>
+      Many properties of line integrals can be inferred from general integration properties.
+      For instance, if <m>k</m> is a scalar,
+      then <m>\int_C k\,f(s)ds = k\int_Cf(s)ds</m>.
+    </p>
+
+    <p>
+      One property in particular of line integrals is worth noting.
+      If <m>C</m> is a curve composed of subcurves <m>C_1</m> and <m>C_2</m>,
+      where they share only one point in common (see <xref ref="fig_line_int_propa"/>,
+      then the line integral over <m>C</m> is the sum of the line integrals over <m>C_1</m> and <m>C_2</m>:
+      <md>
+        \int_Cf(s)\, ds = \int_{C_1}f(s)\, ds+\int_{C_2}f(s)\, ds
+      </md>.
+    </p>
+
+    <figure xml:id="fig_line_int_prop">
+      <caption>Illustrating properties of line integrals</caption>
+      <sidebyside widths="25% 25%" margins="auto">
+        <figure xml:id="fig_line_int_propa">
+          <caption/>
+          <image>
+            <shortdescription>Two oriented curves in the plane that are joined at a point.</shortdescription>
+            <description>
+              <p>
+                Two oriented curves in the plane are drawn without the use of coordinate axes.
+                The first curve <m>C_1</m> goes from a point <m>A</m> to a point <m>D</m>.
+                The second curve <m>C_2</m> goes from the point <m>D</m> to a point <m>B</m>.
+              </p>
+
+              <p>
+                The two curves have the same tangent line at <m>D</m>,
+                so that the curve obtained by combining them is smooth.
+              </p>
+            </description>
+            <latex-image label="img_line_int_propa">
+
+            \begin{tikzpicture}[&gt;=stealth,scale=1.35]
+
+            \draw [thick,firstcolor] (0,1) arc [start angle=90,end angle=270,radius=1];
+            \draw [thick,firstcolor] (0,-1) parabola (1,1);
+
+            \filldraw (0,1) circle [radius=2pt] node [below] {$A$};
+            \filldraw (1,1) circle [radius=2pt] node [right] {$B$};
+            \filldraw (0,-1) circle [radius=2pt] node [above] {$D$};
+
+            \draw (-1,0) node [right] {$C_1$};
+            \draw (.5,-.5) node [right] {$C_2$};
+            \draw [thick,-&gt;,firstcolor] (-1,0) -- (-1,-.01);
+            \draw [thick,-&gt;,firstcolor] (.5,-.5) -- (.51,-.48);
+            \draw (-1,0) node {\phantom{M}};
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+
+        <figure xml:id="fig_line_int_propb">
+          <caption/>
+          <image>
+            <shortdescription>Two oriented curves in the plane that are joined at a point.</shortdescription>
+            <description>
+              <p>
+                Two oriented curves in the plane are drawn without the use of coordinate axes.
+                The first curve <m>C_1</m> goes from a point <m>A</m> to a point <m>D</m>.
+                The second curve <m>C_2</m> goes from the point <m>D</m> to a point <m>B</m>.
+              </p>
+
+              <p>
+                The curve <m>C_1</m> is circular, while <m>C_2</m> is a line segment.
+                The two curves have the different tangent lines at <m>D</m>,
+                so that the curve obtained by combining them is not smooth, but is piecewise smooth.
+              </p>
+            </description>
+            <latex-image label="img_line_int_propb">
+
+            \begin{tikzpicture}[&gt;=stealth,scale=1.35]
+
+            \draw [thick,firstcolor] (0,1) arc [start angle=90,end angle=270,radius=1];
+            \draw [thick,firstcolor] (0,-1) -- (1,1);
+
+            \filldraw (0,1) circle [radius=2pt] node [below] {$A$};
+            \filldraw (1,1) circle [radius=2pt] node [right] {$B$};
+            \filldraw (0,-1) circle [radius=2pt] node [above left] {$D$};
+
+            \draw (-1,0) node [right] {$C_1$};
+            \draw (.5,0) node [right] {$C_2$};
+            \draw [thick,-&gt;,firstcolor] (-1,0) -- (-1,-.01);
+            \draw [thick,-&gt;,firstcolor] (.5,0) -- (.51,.02);
+            \draw (-1,0) node {\phantom{M}};
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+
+    </figure>
+
+    <p>
+      This property allows us to evaluate line integrals over some curves <m>C</m> that are not smooth.
+      Note how in <xref ref="fig_line_int_propb"/> the curve is not smooth at <m>D</m>,
+      so by our definition of the line integral we cannot evaluate <m>\int_C f(s)ds</m>.
+      However, one can evaluate line integrals over <m>C_1</m> and <m>C_2</m> and their sum will be the desired quantity.
+    </p>
+
+    <p>
+      A curve <m>C</m> that is composed of two or more smooth curves is said to be
+      <em>piecewise smooth</em>.
+      In this chapter,
+      any statement that is made about smooth curves also holds for piecewise smooth curves.
+          <idx><h>smooth curve</h><h>piecewise</h></idx>
+          <idx><h>piecewise smooth curve</h></idx>
+    </p>
+
+    <p>
+      We state these properties as a theorem.
+    </p>
+
+    <theorem xml:id="thm_line_int_properties_scalar">
+      <title>Properties of Line Integrals Over Scalar Fields</title>
+      <statement>
+        <p>
+          <ol>
+            <li>
+              <p>
+                Let <m>C</m> be a smooth curve parametrized by the arc-length parameter <m>s</m>,
+                let <m>f</m> and <m>g</m> be continuous functions of <m>s</m>,
+                and let <m>k_1</m> and <m>k_2</m> be scalars.
+                Then <idx><h>line integral</h><h>properties over a scalar field</h></idx>
+                <md>
+                  \ds \int_C\big(k_1f(s)+k_2g(s)\big)\, ds = k_1\int_Cf(s)\, ds +k_2\int_Cg(s)\, ds
+                </md>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Let <m>C</m> be piecewise smooth,
+                composed of smooth components <m>C_1</m> and <m>C_2</m>.
+                Then
+                <md>
+                  \int_Cf(s)\, ds = \int_{C_1}f(s)\, ds + \int_{C_2}f(s)\, ds
+                </md>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+    </theorem>
+  </subsection>
+
+  <subsection>
+    <title>Mass and Center of Mass</title>
+    <p>
+      We first learned integration as a method to find area under a curve,
+      then later used integration to compute a variety of other quantities,
+      such as arc length, volume, force, etc.
+      In this section,
+      we also introduced line integrals as a method to find area under a curve,
+      and now we explore one more application.
+    </p>
+
+    <p>
+      Let a curve <m>C</m>
+      (either in the plane or in space)
+      represent a thin wire with variable density <m>\delta(s)</m>.
+      We can approximate the mass of the wire by dividing the wire (<ie/>, the curve) into small segments of length
+      <m>\Delta s_i</m> and assume the density is constant across these small segments.
+      The mass of each segment is density of the segment <times/> its length;
+      by summing up the approximate mass of each segment we can approximate the total mass:
+      <md>
+        \text{ Total Mass of Wire }  = \sum \delta(s_i)\Delta s_i
+      </md>.
+    </p>
+
+    <p>
+      By taking the limit as the length of the segments approaches 0, we have the definition of the line integral as seen in <xref ref="def_line_integral1"/>.
+      When learning of the line integral,
+      we let <m>f(s)</m> represent a height;
+      now we let <m>f(s) = \delta(s)</m> represent a density.
+    </p>
+
+    <p>
+      We can extend this understanding of computing mass to also compute the center of mass of a thin wire.
+      (As a reminder,
+      the center of mass can be a useful piece of information as objects rotate about that center.)
+      We give the relevant formulas in the next definition, followed by an example.
+      Note the similarities between this definition and <xref ref="def_mass_3d"/>,
+      which gives similar properties of solids in space.
+    </p>
+
+    <definition xml:id="def_mass_of_thin_wire">
+      <title>Mass, Center of Mass of Thin Wire</title>
+      <statement>
+        <p>
+          Let a thin wire lie along a smooth curve <m>C</m> with continuous density function <m>\delta(s)</m>,
+          where <m>s</m> is the arc length parameter.
+              <idx><h>mass</h><h>center of</h></idx>
+              <idx><h>mass</h></idx>
+
+          <ol>
+            <li>
+              <p>
+                The <em>mass</em> of the thin wire is <m>\ds M = \int_C \delta(s)\, ds</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                The <em>moment about the <m>yz</m>-plane</em>
+                is <m>\ds M_{yz} = \int_C x\delta(s)\, ds</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                The <em>moment about the <m>xz</m>-plane</em>
+                is <m>\ds M_{xz} = \int_C y\delta(s)\, ds</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                The <em>moment about the <m>xy</m>-plane</em>
+                is <m>\ds M_{xy} = \int_C z\delta(s)\, ds</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                The <em>center of mass</em> of the wire is
+                <md>
+                  (\overline{x},\overline{y},\overline{z}) = \left(\frac{M_{yz}}M, \frac{M_{xz}}M,\frac{M_{xy}}M\right)
+                </md>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_linescalarfield6">
+      <title>Evaluating a line integral: calculating mass</title>
+      <statement>
+        <p>
+          A thin wire follows the path
+          <m>\vrt = \langle 1+\cos(t),1+\sin(t), 1+ \sin(2t)\rangle</m>,
+          <m>0\leq t\leq 2\pi</m>.
+          The density of the wire is determined by its position in space:
+          <m>\delta(x,y,z) = y+z</m> gm/cm.
+          The wire is shown in <xref ref="fig_linescalarfield6"/>,
+          where a light color indicates low density and a dark color represents high density.
+          Find the mass and center of mass of the wire.
+        </p>
+
+        <figure xml:id="fig_linescalarfield6" vshift="0">
+          <caption>Finding the mass of a thin wire in <xref ref="ex_linescalarfield6"/></caption>
+          <image width="47%">
+            <shortdescription>A curve in space representing a wire, and a point representing its center of mass.</shortdescription>
+            <description>
+              <p>
+                A curve in space is drawn in the first octant,
+                relative to a set of three-dimensional coordinate axes.
+              </p>
+
+              <p>
+                The curve looks like it could be the intersection of a hyperbolic paraboloid with a cylinder.
+                From above, the curve appears to be circular, but from the side, 
+                we can see that the curve oscillates up and down.
+              </p>
+
+              <p>
+                The center of mass is shown as a point in space.
+                This point is not on the curve, but it is surrounded by the curve.
+              </p>
+            </description>
+            <asymptote label="img_linescalarfield6">
+
+
+              import palette;
+
+              // ASY file for figlinescalarfield2_3D.asy in Chapter 10
+              // The path is an elliptical helix ⟨ cos t, 2sin t, t/pi ⟩; no specific surface.
+              //
+              // This draws the  surface of the area we seek.
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(14.4,-6.86,4);
+              //(7.63,8.65,5);
+              //currentprojection=orthographic(2.5,4.6,1.9);
+              defaultrender.merge=true;
+
+              // setup and draw the axes
+              real[] myxchoice={2};
+              real[] myychoice={2};
+              real[] myzchoice={2};
+              defaultpen(0.5mm);
+              pair xbounds=(-.2,2.5);
+              pair ybounds=(-.2,2.5);
+              pair zbounds=(-.1,2.1);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              real r(real t) {return 3exp(-0.1*t);}
+              real x(real t) {return 1+cos(t);}
+              real y(real t) {return 1+sin(t);}
+              real z(real t) {return 1+sin(2*t);}
+
+              path3 p=graph(x,y,z,0,2*pi,50,operator ..);
+
+              tube T=tube(p,.05);
+              surface s=T.s;
+              s.colors(palette(s.map(ypart)+s.map(zpart),Gradient(palered,heavyblue)));
+              draw(s,render(merge=true));
+              //dot((1,1.25,1.2),black);
+              draw(shift(1,1.25,1.2)*scale3(.05)*unitsphere);
+              //draw(T.center,thin());
+
+            </asymptote>
+          </image>
+        </figure>
+      </statement>
+      <solution>
+        <p>
+          We compute the density of the wire as
+          <md>
+            \delta(x,y,z) = \delta\big(1+\cos(t),1+\sin(t), 1+\sin(2t)\big) = 2+\sin(t)+\sin(2t)
+          </md>.
+        </p>
+
+        <p>
+          We compute <m>ds</m> as
+          <md>
+            ds = \norm{\vrp(t)}\, dt = \sqrt{\sin^2t+\cos^2t+4\cos^2(2t)}\, dt = \sqrt{1+4\cos^2(2t)}\, dt
+          </md>.
+        </p>
+
+        <p>
+          Thus the mass is
+          <md>
+            M = \oint_C \delta(s)\, ds = \int_0^{2\pi} \big(2+\sin(t)+\sin(2t)\big)\sqrt{1+4\cos^2(2t)}\, dt \approx 21.08\text{ gm }
+          </md>.
+        </p>
+
+        <p>
+          We compute the moments about the coordinate planes:
+          <md>
+            <mrow>M_{yz} \amp = \oint_C x\delta(s)\, ds</mrow>
+            <mrow>\amp = \int_0^{2\pi}(1+\cos(t))\big(2+\sin(t)+\sin(2t)\big)\sqrt{1+4\cos^2(2t)}\, dt</mrow>
+            <mrow>\amp \approx 21.08.</mrow>
+            <mrow>M_{xz} \amp = \oint_C y\delta(s)\, ds</mrow>
+            <mrow>\amp = \int_0^{2\pi}(1+\sin(t))\big(2+\sin(t)+\sin(2t)\big)\sqrt{1+4\cos^2(2t)}\, dt</mrow>
+            <mrow>\amp \approx 26.35</mrow>
+            <mrow>M_{xy} \amp = \oint_C z\delta(s)\, ds</mrow>
+            <mrow>\amp = \int_0^{2\pi}\big(1+\sin(2 t)\big)\big(2+\sin(t)+\sin(2t)\big)\sqrt{1+4\cos^2(2t)}\, dt</mrow>
+            <mrow>\amp \approx 25.40</mrow>
+          </md>
+        </p>
+
+        <p>
+          Thus the center of mass of the wire is located at
+          <md>
+            (\overline{x},\overline{y},\overline{z}) = \left(\frac{M_{yz}}M, \frac{M_{xz}}M,\frac{M_{xy}}M\right) \approx (1,1.25,1.20)
+          </md>,
+          as indicated by the dot in <xref ref="fig_linescalarfield6"/>.
+          Note how in this example,
+          the curve <m>C</m> is <q>centered</q>
+          about the point <m>(1,1,1)</m>,
+          though the variable density of the wire pulls the center of mass out along the <m>y</m> and <m>z</m> axes.
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      We end this section with a callback to the Integration Review that preceded this section.
+      A line integral looks like: <m>\int_C f(s)\, ds</m>.
+      As stated before the definition of the line integral,
+      this means <q>sum up, along a curve <m>C</m>,
+      function values <m>f(s)</m> <times/> small arc lengths.</q>
+      When <m>f(s)</m> represents a height,
+      we have <q>height <times/> length = area.</q>
+      When <m>f(s)</m> is a density (and we use
+      <m>\delta(s)</m> by convention), we have <q>density
+      (mass per unit length)
+      <times/> length = mass.</q>
+    </p>
+
+    <p>
+      In the next section, we investigate a new mathematical object,
+      the <em>vector field</em>.
+      The remaining sections of this chapter are devoted to understanding integration in the context of vector fields.
+    </p>
+  </subsection>
+
+  <exercises>
+    <subexercises xml:id="TaC-line-int-intro">
+      <title>Terms and Concepts</title>
+      <exercise label="TaC-line-int-intro-1">
+        <statement>
+          <p>
+            Explain how a line integral can be used to find the area under a curve.
+          </p>
+        </statement>
+        <response />
+        
+        <answer>
+          <p>
+            When <m>C</m> is a curve in the plane and <m>f</m> is a function defined over <m>C</m>,
+            then <m>\int_C f(s)\, ds</m> describes the area under the spatial curve that lies on <m>f</m>,
+            over <m>C</m>.
+          </p>
+        </answer>
+      </exercise>
+
+      <exercise label="TaC-line-int-intro-2">
+        <statement>
+          <p>
+            How does the evaluation of a line integral given as
+            <m>\int_C f(s)\, ds</m> differ from a line integral given as <m>\oint_C f(s)\, ds</m>?
+          </p>
+        </statement>
+        <response />
+        
+        <answer>
+          <p>
+            The evaluation is the same.
+            The <m>\oint</m> notation signifies that the curve <m>C</m> is a closed curve,
+            though the evaluation is the same.
+          </p>
+        </answer>
+      </exercise>
+
+      <exercise label="TaC-line-int-intro-3">
+        <statement>
+          <p>
+            Why are most line integrals evaluated using <xref ref="thm_line1"/> instead of <q>directly</q>
+            as <m>\int_C f(s)\, ds</m>?
+          </p>
+        </statement>
+        <response />
+        
+        <answer>
+          <p>
+            The variable <m>s</m> denotes the arc-length parameter,
+            which is generally difficult to use.
+            <xref ref="thm_line1"/> allows one to parametrize a curve using another,
+            ideally easier-to-use, parameter.
+          </p>
+        </answer>
+      </exercise>
+
+      <exercise label="TaC-line-int-intro-4">
+        <statement>
+          <p>
+            Sketch a closed,
+            piecewise smooth curve composed of three subcurves.
+          </p>
+        </statement>
+        <!-- <response /> -->
+        
+      </exercise>
+    </subexercises>
+
+    <subexercises>
+      <title>Problems</title>
+      <exercisegroup cols="2" xml:id="exset-line-int-intro-scalar-function">
+        <introduction>
+          <p>
+            A planar curve <m>C</m> is given along with a function <m>f</m> that is defined over <m>C</m>.
+            Evaluate the line integral <m>\ds \int_Cf(s)\, ds</m>.
+          </p>
+        </introduction>
+
+        <exercise label="ex-line-int-intro-scalar-function-1">
+          <statement>
+            <p>
+              <m>C</m> is the line segment joining the points <m>(-2,-1)</m> and <m>(1,2)</m>;
+              the function is <m>f(x,y)=x^2+y^2+2</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>12\sqrt{2}</m>
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-intro-scalar-function-2">
+          <statement>
+            <p>
+              <m>C</m> is the segment of <m>y=3x+2</m> on <m>[1,2]</m>;
+              the function is <m>f(x,y)=5x+2y</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>41\sqrt{10}/2</m>
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-intro-scalar-function-3">
+          <statement>
+            <p>
+              <m>C</m> is the circle with radius 2 centered at the point <m>(4,2)</m>;
+              the function is <m>f(x,y)=3x-y</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>40\pi</m>
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-intro-scalar-function-4">
+          <statement>
+            <p>
+              <m>C</m> is the curve given by <m>\vec r(t) = \langle \cos(t)+t\sin(t), \sin(t)-t\cos(t)\rangle</m> on <m>[0,2\pi]</m>;
+              the function is <m>f(x,y)=5</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>10\pi^2</m>
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-intro-scalar-function-5">
+          <statement>
+            <p>
+              <m>C</m> is the piecewise curve composed of the line segments that connect <m>(0,1)</m> to <m>(1,1)</m>,
+              then connect <m>(1,1)</m> to <m>(1,0)</m>;
+              the function is <m>f(x,y)=x+y^2</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              Over the first subcurve of <m>C</m>,
+              the line integral has a value of <m>3/2</m>;
+              over the second subcurve, the line integral has a value of <m>4/3</m>.
+              The total value of the line integral is thus <m>17/6</m>.
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-intro-scalar-function-6">
+          <statement>
+            <p>
+              <m>C</m> is the piecewise curve composed of the line segment joining the points <m>(0,0)</m> and <m>(1,1)</m>,
+              along with the quarter-circle parametrized by <m>\langle \cos(t),-\sin(t)+1\rangle</m> on
+              <m>[0,\pi/2]</m>(which starts at the point <m>(1,1)</m> and ends at <m>(0,0)</m>;
+              the function is <m>f(x,y)=x^2+y^2</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              Over the first subcurve of <m>C</m>,
+              the line integral has a value of <m>2\sqrt{2}/3</m>;
+              over the second subcurve, the line integral has a value of <m>\pi-2</m>.
+              The total value of the line integral is thus <m>\pi+2\sqrt{2}/3-2</m>.
+            </p>
+          </answer>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-line-int-scalar-technology">
+        <introduction>
+          <p>
+            A planar curve <m>C</m> is given along with a function <m>f</m> that is defined over <m>C</m>.
+            Set up the line integral <m>\ds \int_Cf(s)\, ds</m>,
+            then approximate its value using technology.
+          </p>
+        </introduction>
+
+        <exercise label="ex-line-int-scalar-technology-1">
+          <statement>
+            <p>
+              <m>C</m> is the portion of the parabola <m>y=2x^2+x+1</m> on <m>[0,1]</m>;
+              the function is <m>f(x,y)=x^2+2y</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>\int_0^1(5t^2+_2t+2)\sqrt{(4t+1)^2+1}\, dt \approx 17.071</m>
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-scalar-technology-2">
+          <statement>
+            <p>
+              <m>C</m> is the portion of the curve <m>y=\sin(x)</m> on <m>[0,\pi]</m>;
+              the function is <m>f(x,y)=x</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>\int_0^\pi t\sqrt{1+\cos^2t}\, dt \approx 6.001</m>
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-scalar-technology-3">
+          <statement>
+            <p>
+              <m>C</m> is the ellipse given by <m>\vec r(t) = \langle 2\cos(t),\sin(t)\rangle</m> on <m>[0,2\pi]</m>;
+              the function is <m>f(x,y)=10-x^2-y^2</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>\oint_0^{2\pi} \big(10-4\cos^2t-\sin^2t\big)\sqrt{\cos^2t+4\sin^2t}\, dt \approx 74.986</m>
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-scalar-technology-4">
+          <statement>
+            <p>
+              <m>C</m> is the portion of <m>y=x^3</m> on <m>[-1,1]</m>;
+              the function is <m>f(x,y)=2x+3y+5</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>\int_{-1}^{1} \big(3t^3+2t+5\big)\sqrt{9t^4+1}\, dt \approx 15.479</m>
+            </p>
+          </answer>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-line-int-intro-area">
+        <introduction>
+          <p>
+            A parametrized curve <m>C</m> in space is given.
+            Find the area above the <m>xy</m>-plane that is under <m>C</m>.
+          </p>
+        </introduction>
+
+        <exercise label="ex-line-int-intro-area-1">
+          <statement>
+            <p>
+              <m>C</m>: <m>\vec r(t) = \langle 5t,t,t^2\rangle</m> for <m>1\leq t\leq 2</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>7\sqrt{26}/3</m>
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-intro-area-2">
+          <statement>
+            <p>
+              <m>C</m>: <m>\vec r(t) = \langle \cos(t),\sin(t), \sin(2t)+1\rangle</m> for <m>0\leq t\leq 2\pi</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>2\pi</m>
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-intro-area-3">
+          <statement>
+            <p>
+              <m>C</m>: <m>\vec r(t) = \langle 3\cos(t),3\sin(t), t^2\rangle</m> for <m>0\leq t\leq 2\pi</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>8\pi^3</m>
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-intro-area-4">
+          <statement>
+            <p>
+              <m>C</m>: <m>\vec r(t) = \langle 3t,4t,
+              t\rangle</m> for <m>0\leq t\leq 1</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>5/2</m>
+            </p>
+          </answer>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-line-int-intro-mass">
+        <introduction>
+          <p>
+            A parametrized curve <m>C</m> is given that represents a thin wire with density <m>\delta</m>.
+            Find the mass and center of mass of the thin wire.
+          </p>
+        </introduction>
+
+        <exercise label="ex-line-int-intro-mass-1">
+          <statement>
+            <p>
+              <m>C</m>: <m>\vec r(t) = \langle \cos(t),\sin(t), t\rangle</m> for <m>0\leq t\leq 4\pi</m>;
+              <m>\delta(x,y,z) = z</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>M=8\sqrt{2}\pi^2</m>; center of mass is <m>(0,-1/(2\pi), 8\pi/3)</m>.
+            </p>
+          </answer>
+        </exercise>
+
+        <exercise label="ex-line-int-intro-mass-2">
+          <statement>
+            <p>
+              <m>C</m>: <m>\vec r(t) = \langle t-t^2,t^2-t^3,t^3-t^4\rangle</m> for <m>0\leq t\leq 1</m>;
+              <m>\delta(x,y,z) = x+2y+2z</m>.
+              Use technology to approximate the value of each integral.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>M\approx 0.237</m>;
+              center of mass is approximately <m>(0.173, 0.099,0.065)</m>.
+            </p>
+          </answer>
+        </exercise>
+      </exercisegroup>
+    </subexercises>
+  </exercises>
+</section>

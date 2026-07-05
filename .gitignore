@@ -11,6 +11,8 @@ published
 
 # don't track assets generated from source
 generated-assets
+source/homepage/generated-assets
+source/book/generated-assets-standard
 .cache
 
 # don't track the executables.ptx file

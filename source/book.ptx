@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pretext xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
+  <xi:include href="./book/ptx/docinfo.ptx"/>
+
+  <book xml:id="apex-calculus" label="apex-calculus">
+    <title>APEX Calculus</title>
+    <subtitle>for University of Lethbridge</subtitle>
+    <frontmatter label="frontmatter">
+      <bibinfo>
+        <author>
+          <personname>Gregory Hartman, Ph.D.</personname>
+          <department>Department of Applied Mathematics</department>
+          <institution>Virginia Military Institute</institution>
+        </author>
+
+        <editor>
+          <personname>Sean Fitzpatrick, Ph.D.</personname>
+          <department>Department of Mathematics and Computer Science</department>
+          <institution>University of Lethbridge</institution>
+        </editor>
+
+        <editor>
+          <personname>Alex Jordan, Ph.D.</personname>
+          <department>Department of Mathematics</department>
+          <institution>Portland Community College</institution>
+        </editor>
+
+        <editor>
+          <personname>Carly Vollet, M.S.</personname>
+          <department>Department of Mathematics</department>
+          <institution>Portland Community College</institution>
+        </editor>
+
+        <date><today/></date>
+      
+        <credit>
+          <role>Contributors to the <m>4</m>th Edition</role>
+          <entity>Jennifer Bowen, Troy Siemers, Brian Heinold, Dimplekumar Chalishajar</entity>
+        </credit>
+
+        <edition>5</edition>
+
+        <website>
+          <url href="https://www.apexcalculus.com/" visual="www.apexcalculus.com">apexcalculus.com</url>
+        </website>
+
+        <copyright>
+          <year>2021</year>
+          <holder>Gregory Hartman</holder>
+          <minilicense>Creative Commons BY NC</minilicense>
+          <shortlicense>
+            Licensed to the public under Creative Commons Attribution-Noncommercial 4.0 International Public License
+          </shortlicense>
+        </copyright>
+      </bibinfo>
+      
+      <titlepage label="titlepage">
+        <titlepage-items/>
+      </titlepage>
+      <colophon label="colophon">
+        <colophon-items/>
+      </colophon>
+
+      <xi:include href="./book/ptx/acknowledgement.ptx"/>
+      <xi:include href="./book/ptx/preface.ptx"/>
+      <xi:include href="./book/ptx/preface-history.ptx"/>
+    </frontmatter>
+
+    <xi:include href="./book/ptx/chapter_limits.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_derivatives.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_graphbehavior.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_deriv_apps_UL-std.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_integration.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_anti_tech.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_app_of_int.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_differential_equations.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_planar_curves.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_sequences_series_UL.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_vectors.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_vvf.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_multi_UL3.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_multi_UL4.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_mult_int_UL.ptx"/>
+
+    <xi:include href="./book/ptx/chapter_vector_calc.ptx"/>
+
+    <backmatter label="backmatter">
+      <solutions divisional="answer" label="selected-answers">
+        <title>Answers to Selected Exercises</title>
+      </solutions>
+      <xi:include href="./book/ptx/appendix_back_reference.ptx"/>
+      <index label="terminology-index">
+        <title>Index</title>
+        <index-list/>
+      </index>
+    </backmatter>
+  </book>
+</pretext>

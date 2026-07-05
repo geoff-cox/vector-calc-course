@@ -1,0 +1,2430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec_incr_decr" label="sec_incr_decr">
+  <title>Increasing and Decreasing Functions</title>
+  <p>
+    Our study of <q>nice</q> functions <m>f</m> in this chapter has so far focused on individual points:
+    points where <m>f</m> is maximal/minimal,
+    points where <m>\fp(x) = 0</m> or <m>\fp</m> does not exist,
+    and points <m>c</m> where <m>\fp(c)</m> is the average rate of change of <m>f</m> on some interval.
+  </p>
+
+  <p>
+    In this section we begin to study how functions behave
+    <em>between</em> special points;
+    we begin studying in more detail the shape of their graphs.
+  </p>
+
+  <p>
+    We start with an intuitive concept.
+    Given the graph in <xref ref="fig_incr0"/>,
+    where would you say the function is <em>increasing</em>?
+    <em>Decreasing</em>?
+    Even though we have not defined these terms mathematically,
+    one likely answered that <m>f</m> is increasing when <m>x \gt 1</m> and decreasing when <m>x\lt 1</m>.
+    We formally define these terms here.
+  </p>
+
+  <figure xml:id="fig_incr0" vshift="2">
+    <caption>A graph of a function <m>f</m> used to illustrate the concepts of <em>increasing</em> and <em>decreasing</em></caption>
+    <!-- START figures/fig_incr0.tex -->
+    <image width="47%">
+      <shortdescription>The graph of a function with a relative minimum at x=1</shortdescription>
+      <description>
+        <p>
+          The image shows the graph of a function that has a relative minimum at <m>x=1</m>.
+          At the left edge, the graph is shown with <m>y</m> values close to <m>4</m> when <m>x\lt 0</m>.
+          The <m>y</m> values then get smaller until the minimum is reached at <m>x=1</m>.
+          Continuing to the right of <m>x=1</m>, the <m>y</m> values start to get bigger again,
+          reaching values above <m>y=4</m> when <m>x\gt 2</m>.
+        </p>
+      </description>
+      <latex-image label="img_incr0">
+        \begin{tikzpicture}
+          \begin{axis}[
+              xmin=-.9,
+              xmax=3.2,
+              ymin=-.5,
+              ymax=5.1,
+            ]
+            \addplot+[domain=-.5:2.5] {(x-1)^2+2};
+          \end{axis}
+        \end{tikzpicture}
+      </latex-image>
+    </image>
+    <!-- figures/fig_incr0.tex END -->
+  </figure>
+
+  <!--TODO: assemblage or definition? -->
+  <definition xml:id="def_incr_decr">
+    <title>Increasing and Decreasing Functions</title>
+    <statement>
+      <p>
+        Let <m>f</m> be a function defined on an interval <m>I</m>.
+            <idx><h>increasing function</h></idx>
+            <idx><h>decreasing function</h></idx>
+
+        <!-- definition of strictly increasing removed in V4 -->
+        <!-- aside that mentions this? -->
+        <ol>
+          <li>
+            <p>
+              <m>f</m> is <em>increasing</em>
+              on <m>I</m> if for every <m>a\lt b</m> in <m>I</m>, <m>f(a) \lt f(b)</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f</m> is <em>decreasing</em>
+              on <m>I</m> if for every <m>a\lt b</m> in <m>I</m>, <m>f(a) \gt f(b)</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </definition>
+
+  <aside vshift="-3">
+    <p>
+      <alert>Note:</alert> the definition we give in <xref ref="def_incr_decr"/>
+      is not the one you will find in formal mathematics textbooks.
+      Such texts define a function to be increasing on <m>I</m> if,
+      for every <m>a\lt b</m> in <m>I</m>, <m>f(a)\leq f(b)</m>.
+      (Notice how equality is allowed.)
+      The condition <m>f(a)\lt f(b)</m> is then referred to as <em>strictly increasing</em>.
+      Similar definitions are made for decreasing and strictly decreasing.
+    </p>
+
+    <p>
+      While this definition has certain technical advantages in a proof-based course,
+      it is also conceptually counterintuitive for many students.
+      For example, with this definition a constant function would be both increasing and decreasing!
+    </p>
+  </aside>
+
+  <p>
+    Informally, a function is increasing if as <m>x</m> gets larger (<ie/>, looking left to right) <m>f(x)</m> gets larger.
+  </p>
+
+  <exercise label="APEX-PROTEUS-sec-3_3-graph-incdec-1-v1" component="proteus">
+    <title>PROTEUS EXERCISE</title>
+    <statement>
+      <p>
+        The graph of a function <m>f(x)</m> is given below.
+        Sort the intervals on the left according to whether <m>f(x)</m>
+        is increasing or decreasing on that interval.
+      </p>
+
+      <p>
+        If some intervals are unused, be sure you can explain why.
+      </p>
+
+      <image width="47%">
+        <shortdescription>Graph of a polynomial function in the first quadrant.</shortdescription>
+        <latex-image label="PROTEUS-graph-inc-1">
+          \begin{tikzpicture}
+            \begin{axis}[
+              xmin=-8.5,
+              xmax=6.5,
+              ymin=-10.9,
+              ymax=6.5,
+              grid=both,
+              xtick={-7,-5,-3,-1,1,3,5},
+              minor xtick={-8,-6,-4,-2,2,4,6},
+              ytick={-10,-6,-2,2,6},
+              minor ytick={-8,-4,4}
+              ]
+              \addplot+[domain=-8:6,samples=100] {0.002*(x+2)*(x-3)*(x+4)*(x-0.5)*(x-5)*(x+7)};
+            \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </statement>
+    <cardsort>
+      <match>
+        <premise><m>(-6,-3.1)</m></premise>
+        <premise><m>(-0.75,2)</m></premise>
+        <premise><m>(4.3,\infty)</m></premise>
+        <response>Increasing</response>
+      </match>
+      <match>
+        <premise><m>(-\infty,-6)</m></premise>
+        <premise><m>(-3.1,-0.75)</m></premise>
+        <premise><m>(2,4.3)</m></premise>
+        <response>Decreasing</response>
+      </match>
+      <match>
+        <premise><m>(-5,-2)</m></premise>
+        <premise><m>(-\infty,-3.1)</m></premise>
+      </match>      
+    </cardsort>
+  </exercise>
+
+  <figure xml:id="vid_graphs_incr_decr_defn" component="video" vshift="-10">
+    <caption>Video presentation of <xref ref="def_incr_decr"/></caption>
+    <video youtube="NtV0R-JxrmM" label="vid_graphs_incr_decr_defn"/>
+  </figure>
+
+
+  <p>
+    Our interest lies in finding intervals in the domain of <m>f</m> on which <m>f</m> is either increasing or decreasing.
+    Such information should seem useful.
+    For instance, if <m>f</m> describes the speed of an object,
+    we might want to know when the speed was increasing or decreasing (<ie/>, when the object was accelerating <abbr>vs.</abbr> decelerating).
+    If <m>f</m> describes the population of a city,
+    we should be interested in when the population is growing or declining.
+  </p>
+
+  <p>
+    To find such intervals, we again consider secant lines.
+    Let <m>f</m> be an increasing,
+    differentiable function on an open interval <m>I</m>,
+    such as the one shown in <xref ref="fig_incr00"/>,
+    and let <m>a\lt b</m> be given in <m>I</m>.
+    The secant line on the graph of <m>f</m> from <m>x=a</m> to <m>x=b</m> is drawn;
+    it has a slope of <m>(f(b)-f(a))/(b-a)</m>.
+  </p>
+
+  <p>
+    But note, since <m>b \gt a</m> and <m>f</m> is increasing,
+    <m>f(b) \gt f(a)</m>.
+    And these facts imply <m>b-a \gt 0</m> and <m>f(b)-f(a) \gt 0</m>.
+    Therefore:
+  </p>
+
+  <figure xml:id="fig_incr00">
+    <caption>Examining the secant line of an increasing function</caption>
+    <sidebyside widths="47% 47%" margins="0%">
+      <p>
+        <md>
+          <mrow>\amp\frac{f(b)-f(a)}{b-a} \gt 0</mrow>
+          <mrow>\implies\amp \text{slope of the secant line} \gt 0</mrow>
+          <mrow>\implies\amp \text{Average rate of change of }f</mrow>
+          <mrow>\amp\text{ on }[a,b]\text{ is } \gt 0</mrow>
+        </md>.
+      </p>
+
+      <!-- START figures/fig_incr00.tex -->
+      <image>
+        <shortdescription>The graph of a function is shown, along with the secant line between two points on the graph.</shortdescription>
+        <description>
+          <p>
+            The graph of some function is shown, for <m>x</m> and <m>y</m> between <m>0</m> and <m>2</m>.
+            Two points <m>(a,f(a))</m> and <m>(b,f(b))</m> are marked on the graph,
+            with <m>b\gt a</m> and <m>f(b)\gt f(a)</m>.
+          </p>
+
+          <p>
+            A secant line (dashed) is drawn between these points.
+            The slope of the secant line is positive, indicating a positive average rate of change for the function on the interval <m>[a,b]</m>.
+          </p>
+        </description>
+        <latex-image label="img_incr00">
+          \begin{tikzpicture}
+            \begin{axis}[
+                xmin=-.2,
+                xmax=2.2,
+                ymin=-.5,
+                ymax=2.2,
+                extra x ticks={.218,1.67},
+                extra x tick labels={$a$,$b$}
+              ]
+              \addplot+[domain=-80:-5] ({2*cos(x)-.3},{2*sin(x)+2.3});
+              \addplot [secantlineseg] coordinates { ({2*cos(-75)-.3},{2*sin(-75)+2.3}) ({2*cos(-10)-.3},{2*sin(-10)+2.3})};
+              \addplot [soliddot] coordinates {(.218,.368)} node [below]{$(a,f(a))$};
+              \addplot [soliddot] coordinates {(1.67,1.95)} node [above left]{$(b,f(b))$};
+            \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+      <!-- figures/fig_incr00.tex END -->
+    </sidebyside>
+  </figure>
+
+  <p>
+    We have shown mathematically what may have already been obvious:
+    when <m>f</m> is increasing, its secant lines will have a positive slope.
+    Now recall that the <xref ref="thm_mvt" text="custom">Mean Value Theorem</xref>
+    guarantees that there is a number <m>c</m>,
+    where <m>a\lt c\lt b</m>, such that
+    <md>
+      \fp(c) = \frac{f(b)-f(a)}{b-a} \gt 0
+    </md>.
+  </p>
+
+  <p>
+    By considering all such secant lines in <m>I</m>,
+    we strongly imply that <m>\fp(x) \gt 0</m> on <m>I</m>.
+    A similar statement can be made for decreasing functions.
+  </p>
+
+  <p>
+    Our above logic can be summarized as
+    <q>If <m>f</m> is increasing,
+    then <m>\fp</m> is probably positive.</q>
+    <xref ref="thm_incr_decr"/>
+    below turns this around by stating
+    <q>If <m>\fp</m> is positive,
+    then <m>f</m> is increasing.</q>
+    This leads us to a method for finding when functions are increasing and decreasing.
+  </p>
+
+  <theorem xml:id="thm_incr_decr">
+    <title>Test For Increasing/Decreasing Functions</title>
+    <statement>
+      <p>
+        Let <m>f</m> be a continuous function on <m>[a,b]</m> and differentiable on <m>(a,b)</m>.
+      </p>
+
+      <p>
+        <ol>
+          <li xml:id="thm_incr">
+            <p>
+              If <m>\fp(c) \gt 0</m> for all <m>c</m> in <m>(a,b)</m>,
+              then <m>f</m> is increasing on <m>[a,b]</m>.
+            </p>
+          </li>
+          <li xml:id="thm_decr">
+            <p>
+              If <m>\fp(c) \lt 0</m> for all <m>c</m> in <m>(a,b)</m>,
+              then <m>f</m> is decreasing on <m>[a,b]</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>\fp(c) =0</m> for all <m>c</m> in <m>(a,b)</m>,
+              then <m>f</m> is constant on <m>[a,b]</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        The conclusions of <xref ref="thm_incr"/> and <xref ref="thm_decr"/> also hold if
+        <m>\fp(c) = 0</m> for a finite number of nonadjacent values of <m>c</m> in <m>I</m>.
+      </p>
+    </statement>
+  </theorem>
+
+  <figure xml:id="vid_graphs_incr_decr_role_deriv_sign" component="video" vshift="0">
+    <caption>Video presentation of <xref ref="thm_incr_decr"/></caption>
+    <video youtube="SjF3vslBqOA" label="vid_graphs_incr_decr_role_deriv_sign"/>
+  </figure>
+
+  <exercise label="APEX-PROTEUS-sec-3_3-graph-incdec-2-v1" component="proteus">
+    <title>PROTEUS EXERCISE</title>
+    <statement>
+      <p>
+        Can a function <m>f</m> that is decreasing on <m>(-\infty,\infty)</m>
+        have a critical point?
+        Either give an example of such a function that does have a critical point,
+        or explain why no such example is possible.
+      </p>
+    </statement>
+    <response/>
+  </exercise>
+
+  <p>
+    Let <m>f</m> be differentiable on an interval <m>I</m> and let <m>a</m> and <m>b</m> be in <m>I</m> where
+    <m>\fp(a) \gt 0</m> and <m>\fp(b)\lt 0</m>.
+    If <m>\fp</m> is continuous on <m>[a,b]</m>,
+    it follows from the Intermediate Value Theorem that there must be some value
+    <m>c</m> between <m>a</m> and <m>b</m> where <m>\fp(c) = 0</m>.
+    (It turns out that this is still true even if <m>\fp</m> is not continuous on <m>[a,b]</m>.)
+    This leads us to the following method for finding intervals on which a function is increasing or decreasing.
+  </p>
+
+  <insight xml:id="idea_incr_decr">
+    <title>Finding Intervals on Which <m>f</m> is Increasing or Decreasing</title>
+    <p>
+      Let <m>f</m> be a continuous function on an interval <m>I</m>.
+      To find intervals on which <m>f</m> is increasing and decreasing:
+      <idx><h>increasing function</h><h>finding intervals</h></idx>
+      <idx><h>decreasing function</h><h>finding intervals</h></idx>
+    </p>
+
+    <p>
+      <ol>
+        <li xml:id="stp_inc_dec1">
+          <p>
+            If not stated, find the domain of <m>f</m>, <m>D</m>. Begin a number line that only includes <m>D</m>.
+          </p>
+        </li>
+        <li xml:id="stp_inc_dec2">
+          <p>
+            Find the critical values of <m>f</m>.
+            That is, find all <m>c</m> in the domain of <m>f</m> where
+            <m>\fp(c) = 0</m> or <m>\fp</m> is not defined.
+            (Note: Any values of <m>c</m> <em>not</em>
+              in the domain of <m>f</m> where <m>\fp(c)</m> is undefined should already be marked on your number line from <xref ref="stp_inc_dec1" text="local">Step</xref>).
+          </p>
+        </li>
+        <li>
+          <p>
+            Use the critical values to divide <m>D</m> into subintervals.
+          </p>
+        </li>
+        <li>
+          <p>
+            Pick any point <m>p</m> in each subinterval,
+            and find the sign of <m>\fp(p)</m>.
+          </p>
+
+          <p>
+            <ol>
+              <li>
+                <p>
+                  If <m>\fp(p) \gt 0</m>, then <m>f</m> is increasing on that subinterval.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <m>\fp(p)\lt 0</m>, then <m>f</m> is decreasing on that subinterval.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      Note that although <xref ref="thm_incr_decr"/> allows us to use determine that a function is increasing or decreasing on a closed interval,
+      it is conventional to state the intervals of increase and decrease as <em>open</em> intervals.
+      We will follow this convention in the examples that follow,
+      but it is also acceptable to answer using closed intervals.
+    </p>
+
+    <p>
+      In particular, one should note the following:
+      <ul>
+        <li>
+          <p>
+            If <m>\fp(x)\gt 0</m> on <m>(a,b)</m> and on <m>(b,c)</m>, with <m>\fp(b)=0</m>,
+            then we should say that <m>f</m> is increasing on <m>(a,c)</m> (or on <m>[a,c]</m>) <mdash/>
+            the zero of the derivative should be included.
+          </p>
+        </li>
+        <li>
+          <p>
+            If <m>\fp(x)\gt 0</m> on <m>(a,b)</m> and on <m>(b,c)</m>,
+            but <m>f(b)</m> is undefined (or <m>f</m> is discontinuous at <m>b</m>),
+            then we should <em>not</em> include the point <m>b</m> in our interval.
+            Instead, we say that <m>f</m> is increasing on <m>(a,b)</m> and <m>(b,c)</m>,
+            or on <m>[a,b)</m> and <m>(b,c]</m>.
+          </p>
+        </li>
+      </ul>
+    </p>
+  </insight>
+
+  <exercise label="APEX-PROTEUS-sec-3_3-graph-incdec-3-v1" component="proteus">
+    <title>PROTEUS EXERCISE</title>
+    <statement>
+      <p>
+        Suppose a function <m>f</m> is increasing on <m>(0,1)</m>
+        and decreasingg on <m>(1,2)</m>.
+        What are two possible features that we might find on the graph of <m>f</m>
+        at <m>x=1</m>? 
+      </p>
+    </statement>
+    <response/>
+  </exercise>
+
+  <p>
+    We demonstrate using this process in the following example.
+  </p>
+
+  <example xml:id="ex_incr1">
+    <title>Finding intervals of increasing/decreasing</title>
+    <statement>
+      <p>
+        Let <m>f(x) = x^3+x^2-x+1</m>.
+        Find intervals on which <m>f</m> is increasing or decreasing.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Since an interval was not specified for us to consider, using <xref ref="idea_incr_decr"/>,
+        the domain of <m>f</m> is <m>\mathbb{R}</m> or <m>(-\infty,\infty)</m>.
+        Next, we find the critical values of <m>f</m>.
+        We have <m>\fp(x) = 3x^2+2x-1 = (3x-1)(x+1)</m>,
+        so <m>\fp(x) = 0</m> when <m>x=-1</m> and when <m>x=1/3</m>.
+        <m>\fp</m> is never undefined.
+      </p>
+
+      <p>
+        We thus break the domain
+        (in this case the <m>(-\infty, \infty)</m>)
+        into three subintervals based on the two critical values we just found:
+        <m>(-\infty,-1)</m>, <m>(-1,1/3)</m> and <m>(1/3,\infty)</m>.
+        This is shown in <xref ref="fig_incrline1"/>.
+      </p>
+
+      <figure xml:id="fig_incrline1" vshift="1">
+        <caption>Number line for <m>f</m> in <xref ref="ex_incr1"/></caption>
+
+        <image width="47%">
+          <shortdescription>Number line showing the critical points of f</shortdescription>
+          <description>
+            <p>
+              A number line is shown with two marked points.
+              The points are labeled with the values <m>-1</m> and <m>1/3</m>,
+              which are the critical points of the function <m>f(x)=x^3+x^2-x+1</m>.
+            </p>
+          </description>
+          <latex-image label="img_incrline1">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  numberline,
+                  xmin=-2,
+                  xmax=1,
+                  extra x ticks={-1, 0.3333},
+                  extra x tick labels={$-1$,$1/3$},
+                ]
+                \addplot[guideline] coordinates {(-1,0) (-1,2)};
+                \addplot[guideline] coordinates {(0.3333,0) (0.3333,2)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <p>
+        We now pick a value <m>p</m> in each subinterval and find the sign of <m>\fp(p)</m>.
+        All we care about is the sign,
+        so we do not actually have to fully compute <m>\fp(p)</m>;
+        pick <q>nice</q> values that make this simple.
+      </p>
+
+      <p>
+        <dl>
+          <li>
+            <title>Subinterval 1: <m>(-\infty,-1)</m></title>
+            <p>
+              We (arbitrarily) pick <m>p=-2</m>.
+              We can compute <m>\fp(-2)</m> directly:
+              <m>\fp(-2) = 3(-2)^2+2(-2)-1=7\gt 0</m>.
+              We conclude that <m>f</m> is increasing on <m>(-\infty,-1)</m>.
+            </p>
+
+            <p>
+              Note we can arrive at the same conclusion without computation.
+              For instance, we could choose <m>p=-100</m>.
+              The first term in <m>\fp(-100)</m>,
+              <ie/>, <m>3(-100)^2</m> is clearly positive and very large.
+              The other terms are small in comparison,
+              so we know <m>\fp(-100)\gt 0</m>.
+              All we need is the sign.
+            </p>
+          </li>
+          <li>
+            <title>Subinterval 2: <m>(-1,1/3)</m></title>
+            <p>
+              We pick <m>p=0</m> since that value seems easy to deal with.
+              <m>\fp(0) = -1\lt 0</m>.
+              We conclude <m>f</m> is decreasing on <m>(-1,1/3)</m>.
+            </p>
+          </li>
+          <li>
+            <title>Subinterval 3: <m>(1/3,\infty)</m></title>
+            <p>
+              Pick an arbitrarily large value for <m>p\gt 1/3</m> and note that <m>\fp(p) =3p^2+2p-1 \gt 0</m>.
+              We conclude that <m>f</m> is increasing on <m>(1/3,\infty)</m>.
+            </p>
+          </li>
+        </dl>
+      </p>
+
+      <p>
+        <xref ref="fig_incrline1a"/> summarizes our work.
+      </p>
+
+      <figure xml:id="fig_incrline1a" vshift="6.5">
+        <caption>Completed number line for <m>f</m> in <xref ref="ex_incr1"/></caption>
+
+        <!-- START figures/fig_incrline1.tex -->
+        <image width="47%">
+          <description>
+            <p>
+              A number line is shown with two marked points.
+              The points are labeled with the values <m>-1</m> and <m>1/3</m>,
+              which are the critical points of the function <m>f(x)=x^3+x^2-x+1</m>.
+            </p>
+
+            <p>
+              The marked points divide the number line into three intervals.
+              Above each interval, there is text indicating the sign of <m>f'</m>,
+              and whether the function <m>f</m> is increasing or decreasing.
+            </p>
+
+            <p>
+              The number line indicates the following:
+              <ul>
+                <li>
+                  <p>
+                    For <m>x\lt -1</m>, <m>\fp(x)\gt 0</m>,
+                    and <m>f</m> is increasing.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    For <m>-1\lt x\lt 1/3</m>, <m>\fp(x)\lt 0</m>,
+                    and <m>f</m> is decreasing.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    For <m>x\gt 1/3</m>, <m>\fp(x)\gt 0</m>,
+                    and <m>f</m> is increasing.
+                  </p>
+                </li>
+              </ul>
+            </p>
+          </description>
+          <latex-image label="img_incrline1a">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  numberline,
+                  xmin=-2,
+                  xmax=1,
+                  extra x ticks={-1, 0.3333},
+                  extra x tick labels={$-1$,$1/3$},
+                ]
+                \addplot[guideline] coordinates {(-1,0) (-1,2)};
+                \addplot[guideline] coordinates {(0.3333,0) (0.3333,2)};
+                \addplot[mark=none] coordinates {(-1.6666,1)} node {\parbox{3em}{\centering $\fp&gt;0$\\$f$ incr }};
+                \addplot[mark=none] coordinates {(-0.3333,1)} node {\parbox{3em}{\centering $\fp\lt0$\\$f$ decr }};
+                \addplot[mark=none] coordinates {(1,1)} node {\parbox{3em}{\centering $\fp&gt;0$\\$f$ incr }};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <!-- figures/fig_incrline1.tex END -->
+      </figure>
+
+      <p>
+        We can verify our calculations by considering <xref ref="fig_incr1"/>,
+        where <m>f</m> is graphed.
+        The graph also presents <m>\fp</m>;
+        note how <m>\fp\gt 0</m> when <m>f</m> is increasing and
+        <m>\fp\lt 0</m> when <m>f</m> is decreasing.
+      </p>
+
+      <figure xml:id="fig_incr1" vshift="2">
+        <caption>A graph of <m>f(x)</m> in <xref ref="ex_incr1"/>, showing where <m>f</m> is increasing and decreasing</caption>
+        <!-- START figures/fig_incr1.tex -->
+        <image width="47%">
+          <shortdescription>The graphs of a function and its derivative.</shortdescription>
+          <description>
+            <p>
+              In the image, we see the graph of <m>f(x)=x^3+x^2-x+1</m> (solid, in blue),
+              along with the graph of its derivative <m>f'(x)=3x^2+2x-1</m> (dash-dotted, in red).
+            </p>
+
+            <p>
+              In the regions where <m>f'(x)</m> is positive (above the <m>x</m> axis), <m>f(x)</m> is increasing.
+              Where <m>f'(x)</m> is negative (below the <m>x</m> axis), <m>f(x)</m> is decreasing.
+            </p>
+          </description>
+          <latex-image label="img_incr1">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  xmin=-2.2,
+                  xmax=2.2,
+                  ymin=-3,
+                  ymax=11,
+                  extra x ticks={.33},
+                  extra x tick labels={$1/3$},
+                ]
+                \addplot+[domain=-2:2] {x^3+x^2-x+1} node[pos=0.6, right]{$f(x)$};
+                \addplot+[domain=-1.8:1.5] {3*x^2+2*x-1} node[pos=0.1, above right] {$\fp(x)$};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <!-- figures/fig_incr1.tex END -->
+      </figure>
+    </solution>
+    <solution component="video" vshift="16">
+      <title>Video solution</title>
+      <video width="98%" youtube="DW6qcgE1TZ0" label="vid_graphs_incr_decr_ex_1" component="video"/>
+    </solution>
+  </example>
+
+  <p>
+    One is justified in wondering why so much work is done when the graph seems to make the intervals very clear.
+    We give three reasons why the above work is worthwhile.
+  </p>
+
+  <p>
+    First, the points at which <m>f</m> switches from increasing to decreasing are not precisely known given a graph.
+    The graph shows us something significant happens near <m>x=-1</m> and <m>x=0.3</m>,
+    but we cannot determine exactly where from the graph.
+  </p>
+
+  <p>
+    One could argue that just finding critical values is important;
+    once we know the significant points are <m>x=-1</m> and <m>x=1/3</m>,
+    the graph shows the increasing/decreasing traits just fine.
+    That is true.
+    However, the technique prescribed here helps reinforce the relationship between increasing/decreasing and the sign of <m>\fp</m>.
+    Once mastery of this concept
+    (and several others)
+    is obtained,
+    one finds that either (a) just the critical points are computed and the graph shows all else that is desired,
+    or (b) a graph is never produced,
+    because determining increasing/decreasing using <m>\fp</m> is straightforward and the graph is unnecessary.
+    So our second reason why the above work is worthwhile is this:
+    once mastery of a subject is gained,
+    one has <em>options</em> for finding needed information.
+    We are working to develop mastery.
+  </p>
+
+  <p>
+    Finally, our third reason:
+    many problems we face <q>in the real world</q> are very complex.
+    Solutions are tractable only through the use of computers to do many calculations for us.
+    Computers do not solve problems
+    <q>on their own,</q> however;
+    they need to be taught (<ie/>, <em>programmed</em>) to do the right things.
+    It would be beneficial to give a function to a computer and have it return maximum and minimum values,
+    intervals on which the function is increasing and decreasing,
+    the locations of relative maxima, etc.
+    The work that we are doing here is easily programmable.
+    It is hard to teach a computer to
+    <q>look at the graph and see if it is going up or down.</q>
+    It is easy to teach a computer to
+    <q>determine if a number is greater than or less than <m>0</m>.</q>
+  </p>
+
+  <p>
+    In <xref ref="sec_extreme_values"/>
+    we learned the definition of relative maxima and minima and found that they occur at critical points.
+    We are now learning that functions can switch from increasing to decreasing
+    (and vice-versa)
+    at critical points.
+    This new understanding of increasing and decreasing creates a great method of determining whether a critical point corresponds to a maximum, minimum,
+    or neither.
+    Imagine a function increasing until a critical point at <m>x=c</m>,
+    after which it decreases.
+    A quick sketch helps confirm that <m>f(c)</m> must be a relative maximum.
+    A similar statement can be made for relative minimums.
+    We formalize this concept in a theorem.
+  </p>
+
+  <theorem xml:id="thm_first_der">
+    <title>First Derivative Test</title>
+    <statement>
+      <p>
+        Let <m>f</m> be <em>continuous</em> on an interval <m>I</m>,
+        and differentiable on <m>I</m>,
+        except possibly at <m>c</m>, where <m>c</m> is a critical number in <m>I</m>.
+
+            <idx><h>First Derivative Test</h></idx>
+            <idx><h>derivative</h><h>First Deriv. Test</h></idx>
+            <idx><h>extrema</h><h>and First Deriv. Test</h></idx>
+            <idx><h>maximum</h><h>and First Deriv. Test</h></idx>
+            <idx><h>minimum</h><h>and First Deriv. Test</h></idx>
+
+        <ol>
+          <li>
+            <p>
+              If the sign of <m>\fp</m> switches from positive to negative at <m>c</m>,
+              then <m>f(c)</m> is a relative maximum of <m>f</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If the sign of <m>\fp</m> switches from negative to positive at <m>c</m>,
+              then <m>f(c)</m> is a relative minimum of <m>f</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>\fp</m> is positive (or,
+              negative) before and after <m>c</m>,
+              then <m>f(c)</m> is not a relative extrema of <m>f</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </theorem>
+
+  <figure xml:id="vid_graphs_incr_decr_first_deriv_test" component="video" vshift="5">
+    <caption>Video presentation of <xref ref="thm_first_der"/></caption>
+    <video youtube="_HjE4urOM4Y" label="vid_graphs_incr_decr_first_deriv_test"/>
+  </figure>
+
+
+  <remark>
+    <title>Importance of Continuity</title>
+    <p>
+      The continuity of <m>f</m> when using the first derivative test is very important.
+      Without continuity, almost anything can happen at a critical number.
+      For example,
+      we can construct a piecewise function where the sign of <m>\fp</m> switches to positive to negative at <m>c</m> and <m>f(c)</m> is
+      <em>not</em> a local maximum.
+      This is shown in <xref ref="fig_inc_counter"/>.
+    </p>
+
+    <figure xml:id="fig_inc_counter" vshift="1">
+      <caption>A discontinuous function where <m>\fp</m> changes sign at 1, but <m>f(1)</m> is not a local maximum</caption>
+      <image width="47%">
+        <shortdescription>The graph of a piecewise-linear function with a discontinuity at x=1.</shortdescription>
+        <description>
+          <p>
+            The image is the graph of a piecewise-linear function.
+            For <m>x\lt 1</m>, the graph is a straight line with positive slope,
+            ending at the point <m>(1,2)</m>, where there is a hollow dot, indicating that this point is not part of the graph.
+            Beginning at the point <m>(1,1)</m> (a solid dot, which is included),
+            we have another line, with negative slope, for <m>x\geq 1</m>.
+          </p>
+
+          <p>
+            The graph gives an example of a function whose derivative changes sign at <m>x=1</m>.
+            But since <m>f</m> is not continuous at <m>1</m>, there is neither a maximum nor a minimum at that point.
+            The first derivative test can only be applied to continuous functions.
+          </p>
+        </description>
+        <latex-image label="img_incr_counter">
+          \begin{tikzpicture}
+            \begin{axis}[
+                xmin=-1,
+                xmax=3,
+                ymin=-3,
+                ymax=4,
+              ]
+              \addplot+[leftarrow,domain=-.9:1] {x+1};
+              \addplot+[firstcurvestyle,rightarrow,domain=1:2.5] {-1*(x-1)+1};
+              \addplot[soliddot] coordinates{(1,1)};
+              \addplot[hollowdot] coordinates{(1,2)};
+            \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+      <!-- figures/fig_incr1.tex END -->
+    </figure>
+  </remark>
+
+  <example xml:id="ex_incr2">
+    <title>Using the First Derivative Test</title>
+    <statement>
+      <p>
+        Find the intervals on which <m>f</m> is increasing and decreasing,
+        and use the <xref ref="thm_first_der" text="custom">First Derivative Test</xref>
+        to determine the relative extrema of <m>f</m>, where
+        <md>
+          f(x) = \frac{x^2+3}{x-1}
+        </md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We start by noting the domain of <m>f</m>:
+        <m>(-\infty,1)\cup(1,\infty)</m>.
+      </p>
+
+      <p>
+        Since <m>f</m> is not defined at <m>x=1</m>
+        (it has a vertical asymptote),
+        the increasing/decreasing nature of <m>f</m> could switch at this value.
+        We know that <m>\fp(1)</m> will be undefined since <m>f</m> is discontinuous at <m>1</m>.
+        We do not formally consider <m>x=1</m> to be a critical value of <m>f</m>,
+        but we will use <m>1</m> to subdivide the real number line.
+      </p>
+
+      <p>
+        Using the <xref ref="thm_QuotientRule" text="title"/>, we find
+        <md>
+          \fp(x) = \frac{x^2-2x-3}{(x-1)^2}
+        </md>.
+      </p>
+
+      <p>
+        We need to find the critical values of <m>f</m>;
+        we want to know when <m>\fp(x)=0</m> and when <m>\fp</m> is not defined.
+        That latter is straightforward:
+        when the denominator of <m>\fp(x)</m> is <m>0</m>, <m>\fp</m> is undefined.
+        That occurs when <m>x=1</m>,
+        which we've already recognized as an important value,
+        but not a critical number.
+      </p>
+
+      <p>
+        <m>\fp(x)=0</m> when the numerator of <m>\fp(x)</m> is <m>0</m>.
+        That occurs when <m>x^2-2x-3 = (x-3)(x+1) = 0</m>;
+        <ie/>, when <m>x=-1,3</m>.
+      </p>
+
+      <p>
+        We have found that <m>f</m> has two critical numbers, <m>x=-1,3</m>,
+        and at <m>x=1</m> something important might also happen.
+        These three numbers divide the real number line into four subintervals:
+        <md>
+          (-\infty,-1),  (-1, 1),  (1,3),  \text{ and }   (3,\infty)
+        </md>.
+      </p>
+
+      <p>
+        Pick a number <m>p</m> from each subinterval and test the sign of <m>\fp</m> at <m>p</m> to determine whether <m>f</m> is increasing or decreasing on that interval.
+        Again, we do well to avoid complicated computations;
+        notice that the denominator of <m>\fp</m> is <em>always</em>
+        positive so we can ignore it during our work.
+      </p>
+
+      <p>
+        <dl>
+          <li>
+            <title>Interval 1: <m>(-\infty,-1)</m></title>
+            <p>
+              Choosing a very small number (<ie/>, a negative number with a large magnitude) <m>p</m> returns
+              <m>p^2-2p-3</m> in the numerator of <m>\fp</m>;
+              that will be positive.
+              Hence <m>f</m> is increasing on <m>(-\infty,-1)</m>.
+            </p>
+          </li>
+          <li>
+            <title>Interval 2: <m>(-1,1)</m></title>
+            <p>
+              Choosing <m>0</m> seems simple:
+              <m>\fp(0)=-3\lt 0</m>.
+              We conclude <m>f</m> is decreasing on <m>(-1,1)</m>.
+            </p>
+          </li>
+          <li>
+            <title>Interval 3: <m>(1,3)</m></title>
+            <p>
+              Choosing <m>2</m> seems simple:
+              <m>\fp(2) = -3\lt 0</m>.
+              Again, <m>f</m> is decreasing.
+            </p>
+          </li>
+          <li>
+            <title>Interval 4: <m>(3,\infty)</m></title>
+            <p>
+              Choosing an very large number <m>p</m> from this subinterval will give a positive numerator and
+              (of course)
+              a positive denominator.
+              So <m>f</m> is increasing on <m>(3,\infty)</m>.
+            </p>
+          </li>
+        </dl>
+      </p>
+
+      <p>
+        In summary, <m>f</m> is increasing on the intervals <m>(-\infty,-1)</m> and
+        <m>(3,\infty)</m> and is decreasing on the intervals <m>(-1,1)</m> and <m>(1,3)</m>.
+        Since at <m>x=-1</m>,
+        the sign of <m>\fp</m> switched from positive to negative,
+        <xref ref="thm_first_der"/>
+        states that <m>f(-1)</m> is a relative maximum of <m>f</m>.
+        At <m>x=3</m>,
+        the sign of <m>\fp</m> switched from negative to positive,
+        meaning <m>f(3)</m> is a relative minimum.
+        At <m>x=1</m>, <m>f</m> is not defined,
+        so there is no relative extremum at <m>x=1</m>.
+        As previously stated, <m>x=1</m> is a vertical asymptote of <m>f</m>.
+      </p>
+
+      <figure xml:id="fig_incrline2" vshift="6">
+        <caption>Number line for <m>f</m> in <xref ref="ex_incr2"/></caption>
+
+        <!-- START figures/fig_incrline2.tex -->
+        <image width="47%">
+          <shortdescription>Number line for this example, showing critical points of f and intervals of increase and decrease</shortdescription>
+          <description>
+            <p>
+              On a number line, three points are marked.
+              The first point is labeled below with <m>-1</m>, and above with <q>rel max</q>.
+              This indicates that <m>f</m> has a relative maximum at the critical point <m>x=-1</m>.
+            </p>
+
+            <p>
+              The next point is labeled below with <m>1</m> and above with <q>VA</q>,
+              indicating that <m>f</m> has a vertical asymptote at <m>x=1</m>.
+            </p>
+
+            <p>
+              The last point is labeled below with <m>3</m> and above with <q>rel min</q>,
+              indicating that <m>f</m> has a relative minimum at the critical point <m>x=3</m>.
+            </p>
+
+            <p>
+              In between these points there is text indicating the sign of <m>\fp(x)</m>,
+              and whether <m>f</m> is increasing or decreasing, as follows:
+              <ul>
+                <li>
+                  <p>
+                    For <m>x\lt -1</m>, <m>f'\gt 0</m> and <m>f</m> is increasing
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    For <m>-1\lt x\lt 1</m>, <m>\fp\lt 0</m> and <m>f</m> is decreasing
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    For <m>1\lt x\lt 3</m>, <m>\fp\lt 0</m> and <m>f</m> is decreasing
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    For <m>x\gt 3</m>, <m>\fp\gt 0</m> and <m>f</m> is increasing
+                  </p>
+                </li>
+              </ul>
+            </p>
+          </description>
+          <latex-image label="img_incrline2">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  numberline,
+                  xmin=-3,
+                  xmax=4.9,
+                  extra x ticks={-1, 1, 3},
+                  extra x tick labels={$-1$,$1$, $3$},
+                ]
+                \addplot[guideline] coordinates {(-1,0) (-1,2)};
+                \addplot[guideline] coordinates {(1,0) (1,2)};
+                \addplot[guideline] coordinates {(3,0) (3,2)};
+                \addplot[mark=none] coordinates {(-2,1)} node {\parbox{3em}{\centering $\fp&gt;0$\\$f$ incr }};
+                \addplot[mark=none] coordinates {(0,1)} node {\parbox{3em}{\centering $\fp\lt0$\\$f$ decr }};
+                \addplot[mark=none] coordinates {(2,1)} node {\parbox{3em}{\centering $\fp\lt0$\\$f$ decr }};
+                \addplot[mark=none] coordinates {(4,1)} node {\parbox{3em}{\centering $\fp&gt;0$\\$f$ incr }};
+                \addplot[mark=none] coordinates {(-1,2)} node[above] {\parbox{3em}{\centering  rel\\max}};
+                \addplot[mark=none] coordinates {(1,2)} node[above] {\parbox{3em}{\centering  VA}};
+                \addplot[mark=none] coordinates {(3,2)} node[above] {\parbox{3em}{\centering  rel\\min}};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <!-- figures/fig_incrline2.tex END -->
+      </figure>
+
+      <p>
+        This is summarized in the number line shown in <xref ref="fig_incrline2"/>.
+        Also, <xref ref="fig_incr2"/> shows a graph of <m>f</m>,
+        confirming our calculations.
+        This figure also shows <m>\fp</m>,
+        again demonstrating that <m>f</m> is increasing when <m>\fp\gt 0</m> and decreasing when <m>\fp\lt 0</m>.
+      </p>
+
+      <figure xml:id="fig_incr2" vshift="1">
+        <caption>A graph of <m>f(x)</m> in <xref ref="ex_incr2"/>, showing where <m>f</m> is increasing and decreasing</caption>
+        <!-- START figures/fig_incr2.tex -->
+        <image width="47%">
+          <shortdescription>The graphs of a function and its derivative for the current example.</shortdescription>
+          <description>
+            <p>
+              The graphs of <m>f(x)=x^{8/3}-4x^{2/3}</m> (solid, in blue) and its derivative (dash-dotted, in red) are shown.
+              The graph of <m>f</m> resembles a large letter W.
+              It has two relative minima, at <m>x=1</m> and <m>x=-1</m>, both with horizontal tangents,
+              and a relative maximum at <m>x=0</m>, where there is a cusp.
+            </p>
+
+            <p>
+              The graph of <m>f'(x)</m> is also shown. The <m>y</m> axis is a vertical asymptote for <m>f'(x)</m>,
+              so the graph appears as two pieces, one on either side of the axis.
+              We can see that the <m>x</m> intercepts for <m>f'(x)</m> correspond to the two relative minima of <m>f(x)</m>.
+            </p>
+          </description>
+          <latex-image label="img_incr2">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  xmin=-4.2,
+                  xmax=4.2,
+                  ymin=-21,
+                  ymax=21,
+                ]
+                \addplot[firstcurvestyle,domain=-4:.8,samples=40] {(x^2+3)/(x-1)};
+                \addplot[firstcurvestyle,domain=1.25:4] {(x^2+3)/(x-1)} node[pos=0.2,right]{$f(x)$};
+                \addplot[secondcurvestyle,domain=-4:.5,samples=40] {(x^2-2*x-3)/((x-1)^2)} node[pos=0.05,above]{$\fp(x)$};
+                \addplot[secondcurvestyle,domain=1.5:4] {(x^2-2*x-3)/((x-1)^2)} ;
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <!-- figures/fig_incr2.tex END -->
+      </figure>
+    </solution>
+    <solution component="video" vshift="15">
+      <title>Video solution</title>
+      <video width="98%" youtube="94iCiIX07R0" label="vid_graphs_incr_decr_ex_2" component="video"/>
+    </solution>
+  </example>
+
+  <p>
+    One is often tempted to think that functions always alternate
+    <q>increasing, decreasing, increasing,
+    decreasing,<ellipsis/></q> around critical values.
+    Our previous example demonstrated that this is not always the case.
+    While <m>x=1</m> was not technically a critical value,
+    it was an important value we needed to consider.
+    We found that <m>f</m> was decreasing on
+    <q>both sides of <m>x=1</m>.</q>
+  </p>
+
+  <p>
+    We examine one more example.
+  </p>
+
+  <example xml:id="ex_incr3">
+    <title>Using the First Derivative Test</title>
+    <statement>
+      <p>
+        Find the intervals on which
+        <m>f(x) = x^{8/3}-4x^{2/3}</m> is increasing and decreasing and identify the relative extrema.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        The domain of <m>f</m> is <m>\mathbb{R}</m>
+        (you can take the odd root of both positive and negative nubmers).
+        Next, we take the first derivative.
+        Since we know we want to solve <m>\fp(x) = 0</m>,
+        we will do some algebra after taking the derivative.
+        <md>
+          <mrow>f(x) \amp = x^{\frac{8}{3}}-4x^{\frac{2}{3}}</mrow>
+          <mrow>\fp(x) \amp = \frac{8}{3} x^{\frac{5}{3}} - \frac{8}{3}x^{-\frac{1}{3}}</mrow>
+          <mrow>\amp = \frac{8}{3}x^{-\frac{1}{3}}\left(x^{\frac{6}{3}}-1\right)</mrow>
+          <mrow>\amp =\frac{8}{3}x^{-\frac{1}{3}}\left(x^2-1\right)</mrow>
+          <mrow>\amp =\frac{8}{3}x^{-\frac{1}{3}}(x-1)(x+1)</mrow>
+        </md>.
+      </p>
+
+      <p>
+        This derivation of <m>\fp</m> shows that
+        <m>\fp(x) = 0</m> when <m>x=\pm 1</m> and <m>\fp</m>is not defined when <m>x=0</m>.
+        Thus we have three critical values,
+        breaking the number line into four subintervals as shown in <xref ref="fig_incrline3"/>.
+      </p>
+
+      <figure xml:id="fig_incrline3" vshift="2">
+        <caption>Number line for <m>f</m> in <xref ref="ex_incr3"/></caption>
+
+        <!-- START figures/fig_incrline3.tex -->
+        <image width="47%">
+          <shortdescription>Number line showing critical points and intervals of increase and decrease</shortdescription>
+          <description>
+            <p>
+              On a number line, three points are marked.
+              The first point is labeled below with <m>-1</m>, and above with <q>rel min</q>,
+              indicating that <m>f</m> has a relative minimum at the critical point <m>x=-1</m>.
+            </p>
+
+            <p>
+              The next point is labeled below with <m>0</m> and above with <q>rel max</q>,
+              indicating that <m>f</m> has a relative maximum at the critical point <m>x=0</m>.
+            </p>
+
+            <p>
+              The last point is labeled below with <m>1</m> and above with <q>rel min</q>,
+              indicating that <m>f</m> has a relative minimum at the critical point <m>x=1</m>.
+            </p>
+
+            <p>
+              In between these points there is text indicating the sign of <m>\fp(x)</m>,
+              and whether <m>f</m> is increasing or decreasing, as follows:
+              <ul>
+                <li>
+                  <p>
+                    For <m>x\lt -1</m>, <m>f'\tt 0</m> and <m>f</m> is decreasing
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    For <m>-1\lt x\lt 0</m>, <m>\fp\gt 0</m> and <m>f</m> is increasing
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    For <m>0\lt x\lt 1</m>, <m>\fp\lt 0</m> and <m>f</m> is decreasing
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    For <m>x\gt 1</m>, <m>\fp\gt 0</m> and <m>f</m> is increasing
+                  </p>
+                </li>
+              </ul>
+            </p>
+          </description>
+          <latex-image label="img_incrline3">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  numberline,
+                  xmin=-2,
+                  xmax=2,
+                  extra x ticks={-1, 0, 1},
+                  extra x tick labels={$-1$,$0$, $1$},
+                ]
+                \addplot[guideline] coordinates {(-1,0) (-1,2)};
+                \addplot[guideline] coordinates {(0,0) (0,2)};
+                \addplot[guideline] coordinates {(1,0) (1,2)};
+                \addplot[mark=none] coordinates {(-1.5,1)} node {\parbox{3em}{\centering $\fp\lt0$\\$f$ decr }};
+                \addplot[mark=none] coordinates {(-0.5,1)} node {\parbox{3em}{\centering $\fp&gt;0$\\$f$ incr }};
+                \addplot[mark=none] coordinates {(0.5,1)}  node {\parbox{3em}{\centering $\fp\lt0$\\$f$ decr }};
+                \addplot[mark=none] coordinates {(1.5,1)}  node {\parbox{3em}{\centering $\fp&gt;0$\\$f$ incr }};
+                \addplot[mark=none] coordinates {(-1,2)} node[above] {\parbox{3em}{\centering rel\\min}};
+                \addplot[mark=none] coordinates {(0,2)} node[above] {\parbox{3em}{\centering rel\\max}};
+                \addplot[mark=none] coordinates {(1,2)} node[above] {\parbox{3em}{\centering rel\\min}};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <!-- figures/fig_incrline3.tex END -->
+      </figure>
+
+      <p>
+        <dl>
+          <li>
+            <title>Interval 1: <m>(\infty,-1)</m></title>
+            <p>
+              We choose <m>p=-2</m>; we can easily verify that <m>\fp(-2)\lt 0</m>.
+              So <m>f</m> is decreasing on <m>(-\infty,-1)</m>.
+            </p>
+          </li>
+          <li>
+            <title>Interval 2: <m>(-1,0)</m></title>
+            <p>
+              Choose <m>p=-1/2</m>.
+              Once more we practice finding the sign of <m>\fp(p)</m> without computing an actual value.
+              We have <m>\fp(p) = (8/3)p^{-1/3}(p-1)(p+1)</m>;
+              find the sign of each of the three terms at the chosen value of <m>p</m>.
+              <md>
+                \fp(p) = \frac{8}{3} \cdot \underbrace{p^{-\frac{1}{3}}}_{\lt 0}\cdot \underbrace{(p-1)}_{\lt 0}\underbrace{(p+1)}_{\gt 0}
+              </md>.
+            </p>
+
+            <p>
+              We have a <q>negative <times/> negative <times/> positive</q>
+              giving a positive number;
+              <m>f</m> is increasing on <m>(-1,0)</m>.
+            </p>
+          </li>
+          <li>
+            <title>Interval 3: <m>(0,1)</m></title>
+            <p>
+              We do a similar sign analysis as before,
+              using <m>p</m> in <m>(0,1)</m>.
+              <md>
+                \fp(p) = \frac{8}{3} \cdot \underbrace{p^{-\frac{1}{3}}}_{\gt 0}\cdot \underbrace{(p-1)}_{\lt 0}\underbrace{(p+1)}_{\gt 0}
+              </md>.
+            </p>
+
+            <p>
+              We have two positive factors and one negative factor;
+              <m>\fp(p)\lt 0</m> and so <m>f</m> is decreasing on <m>(0,1)</m>.
+            </p>
+          </li>
+          <li>
+            <title>Interval 4: <m>(1,\infty)</m></title>
+            <p>
+              Similar work to that done for the other three intervals shows that
+              <m>\fp(x)\gt 0</m> on <m>(1,\infty)</m>,
+              so <m>f</m> is increasing on this interval.
+            </p>
+          </li>
+        </dl>
+      </p>
+
+      <p>
+        We conclude by stating that <m>f</m> is increasing on the intervals <m>(-1,0)</m> and
+        <m>(1,\infty)</m> and decreasing on the intervals <m>(-\infty,-1)</m> and <m>(0,1)</m>.
+        The sign of <m>\fp</m><nbsp/>changes from negative to positive around <m>x=-1</m> and <m>x=1</m>,
+        meaning by <xref ref="thm_first_der"/>
+        that <m>f(-1)</m> and <m>f(1)</m> are relative minima of <m>f</m>.
+        As the sign of <m>\fp</m> changes from positive to negative at <m>x=0</m>,
+        we have a relative maximum at <m>f(0)</m>.
+        <xref ref="fig_incr3"/>
+        shows a graph of <m>f</m>, confirming our result.
+        We also graph <m>\fp</m>,
+        highlighting once more that <m>f</m> is increasing when <m>\fp\gt 0</m> and is decreasing when <m>\fp\lt 0</m>.
+      </p>
+
+      <figure xml:id="fig_incr3" vshift="2">
+        <caption>A graph of <m>f(x)</m> in <xref ref="ex_incr3"/>, showing where <m>f</m> is increasing and decreasing</caption>
+        <!-- START figures/fig_incr3.tex -->
+        <image width="47%">
+          <description/>
+          <latex-image label="img_incr3">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  xmin=-3.2,
+                  xmax=3.2,
+                  ymin=-5,
+                  ymax=11,
+                ]
+                \addplot+[rightarrow,domain=0.0001:3,samples=50] {x^(8/3)-4*x^(2/3)};
+                \addplot[firstcurvestyle,leftarrow,domain=-3:-0.001,samples=50] {(-x)^(8/3)-4*(-x)^(2/3)} node[pos=0.1, above right]{$f(x)$};
+                \addplot[secondcurvestyle,domain=0.2:2,samples=50] {(8*(x^2 - 1))/(3 *x^(1/3))} node[pos=0.7,left] {$\fp(x)$};
+                \addplot[secondcurvestyle,domain=-2:-0.2,samples=50] {(8*((-x)^2 - 1))/(3 *(-x)^(1/3))};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <!-- figures/fig_incr3.tex END -->
+      </figure>
+    </solution>
+    <solution component="video" vshift="7">
+      <title>Video solution</title>
+      <video width="98%" youtube="T4RxcQnNotc" label="vid_graphs_incr_decr_ex_3" component="video"/>
+    </solution>
+  </example>
+
+  <p>
+    We have seen how the first derivative of a function helps determine when the graph of a function is going <q>up</q>
+    or <q>down.</q> In the next section,
+    we will see how the second derivative helps determine how the graph of a function curves.
+  </p>
+
+  <exercises>
+    <subexercises xml:id="TaC-graph-incr-decr">
+      <title>Terms and Concepts</title>
+
+          <exercise label="TaC-graph-incr-decr-1">
+        <!-- <webwork xml:id="webwork-TaC-graph-incr-decr-1"> -->
+          <statement>
+            <p>
+              In your own words describe what it means for a function to be increasing.
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-graph-incr-decr-2">
+        <!-- <webwork xml:id="webwork-TaC-graph-incr-decr-2"> -->
+          <statement>
+            <p>
+              What does a decreasing function <q>look like</q>?
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+          <solution>
+            <p>
+              Answers will vary, but should indicate that
+              the graph slopes downward from left to right.
+            </p>
+          </solution>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-graph-incr-decr-3">
+        <statement>
+          <p>
+            Sketch a graph of a function on <m>[0,2]</m> that is increasing,
+            where it is increasing <q>quickly</q>
+            near <m>x=0</m> and increasing <q>slowly</q> near <m>x=2</m>.
+          </p>
+        </statement>
+        <!-- <response /> -->
+        
+        <answer>
+          <p>
+            Answers will vary;
+            graphs should be steeper near <m>x=0</m> than near <m>x=2</m>.
+          </p>
+        </answer>
+      </exercise>
+
+      <exercise label="TaC-graph-incr-decr-4">
+        <!-- <webwork xml:id="webwork-TaC-graph-incr-decr-4"> -->
+          <statement>
+            <p>
+              Give an example of a function describing a situation where it is <q>bad</q>
+              to be increasing and <q>good</q> to be decreasing.
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-graph-incr-decr-5">
+        <!-- <webwork xml:id="webwork-TaC-graph-incr-decr-5">
+          <pg-code>
+            $False = DropDown(['True','False'],1,showInStatic=&gt;0);
+          </pg-code> -->
+          <statement correct="no">
+            <p>
+              <!-- <var name="$False" form="popup"/> -->
+              Functions always switch from increasing to decreasing,
+              or decreasing to increasing, at critical points.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              False; for instance,
+              <m>y=x^3</m> is always increasing though it has a critical point at <m>x=0</m>.
+            </p>
+          </solution>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-graph-incr-decr-6">
+        <!-- <webwork xml:id="webwork-TaC-graph-incr-decr-6"> -->
+          <statement>
+            <p>
+              A function <m>f</m> has derivative <m>\fp(x) = (\sin(x) +2)e^{x^2+1}</m>,
+              where <m>\fp(x) \gt 1</m> for all <m>x</m>.
+              Is <m>f</m> increasing, decreasing,
+              or can we not tell from the given information? Why or why not?
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+          <solution>
+            <p>
+              The function is increasing.
+              Since <m>\fp(x) \gt 1</m>, we know in
+              particular that <m>\fp(x) \gt 0</m>,
+              so <m>f</m> is increasing by
+              <xref ref="thm_incr_decr"/>.
+            </p>
+          </solution>
+        <!-- </webwork> -->
+      </exercise>      
+    </subexercises>
+
+    <subexercises>
+      <title>Problems</title>
+      <exercisegroup cols="2" xml:id="exset-graph-incr-decr-plot-fprime">
+        <!-- The graphing element of these problems makes them inapproprtiate for WeBWorK. -->
+        <introduction>
+          <p>
+            A function <m>f(x)</m> is given.
+            Graph <m>f</m> and <m>\fp</m> on the same axes
+            (using technology is permitted)
+            and verify <xref ref="thm_incr_decr"/>.
+          </p>
+        </introduction>
+
+        <exercise label="ex-graph-incr-decr-plot-fprime-1">
+          <statement>
+            <p>
+              <m>f(x) = 2x+3</m>
+            </p>
+          </statement>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-plot-fprime-2">
+          <statement>
+            <p>
+              <m>f(x) = x^2-3x+5</m>
+            </p>
+          </statement>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-plot-fprime-3">
+          <statement>
+            <p>
+              <m>f(x) = \cos(x)</m>
+            </p>
+          </statement>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-plot-fprime-4">
+          <statement>
+            <p>
+              <m>f(x) = \tan(x)</m>
+            </p>
+          </statement>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-plot-fprime-5">
+          <statement>
+            <p>
+              <m>f(x) = x^3-5x^2+7x-1</m>
+            </p>
+          </statement>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-plot-fprime-6">
+          <statement>
+            <p>
+              <m>f(x) = 2x^3-x^2+x-1</m>
+            </p>
+          </statement>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-plot-fprime-7">
+          <statement>
+            <p>
+              <m>f(x) = x^4-5x^2+4</m>
+            </p>
+          </statement>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-plot-fprime-8">
+          <statement>
+            <p>
+              <m>f(x) = \frac{1}{x^2+1}</m>
+            </p>
+          </statement>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-graph-incr-decr-intervals">
+        <introduction>
+          <p>
+            A function <m>f(x)</m> is given.
+            <ol marker="(a)">
+              <li>
+                <p>
+                  Give the domain of <m>f</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Find the critical numbers of <m>f</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Find the intervals on which <m>f</m> is increasing.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Find the intervals on which <m>f</m> is decreasing.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Use the First Derivative Test to determine which critical numbers are a relative maximum.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Use the First Derivative Test to determine which critical numbers are a relative minimum.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </introduction>
+
+        <exercise label="ex-graph-incr-decr-intervals-1">
+          <webwork xml:id="webwork-ex-graph-incr-decr-intervals-1">
+            <pg-code>
+              Context("Fraction");
+              ($r,$s) = random_subset(2,-9..9);
+              $m = ($r+$s)/2;
+              $crit=List("$m");
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(ignoreEndpointTypes =&gt; 1);
+              $f = Formula("x^2-($r+$s)x+$r*$s")-&gt;reduce;
+              $domain = Compute("(-inf,inf)");
+              $inc = List(Interval("[$m,inf)"));
+              $dec = List(Interval("(-inf,$m]"));
+              $max = List("none");
+              $min = List("$m");
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Give the domain of <m>f</m> using interval notation.
+                Use <c>U</c> for union if the domain consists of more than one interval.
+              </instruction>
+              <p>
+                <var name="$domain" width="30"/>
+              </p>
+              <instruction>
+                Enter the critical numbers of <m>f</m>,
+                separating with commas if needed.
+                If there are no critical numbers,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$crit" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is increasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$inc" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is decreasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$dec" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative maximum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$max" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative minimum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$min" width="30"/>
+              </p>
+            </statement>
+            <!-- A "solution" should walk through *how* to find answers, not just state answers.
+            That is what "answer" is for, which we get auotmatically from WeBWorK. -->
+            <!-- <solution>
+              <p>
+                The domain is <m><var name="$domain"/></m>.
+                The critical points are <m><var name="$crit"/></m>.
+                The function is increasing on <m><var name="$inc"/></m> and decreasing on <m><var name="$dec"/></m>.
+                There is/are relative maxima at <m><var name="$max"/></m> and relative minima at <m><var name="$min"/></m>.
+              </p>
+            </solution> -->
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-intervals-2">
+          <webwork xml:id="webwork-ex-graph-incr-decr-intervals-2">
+            <pg-code>
+              Context("Fraction");
+              ($a,$b) = random_subset(2,-9..-1,1..9);
+              $m = Fraction(-2*$a,3);
+              ($m,$n) = num_sort(0,$m);
+              $crit=List($m,$n);
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(ignoreEndpointTypes =&gt; 1);
+              $f = Formula("x^3 + $a x^2 + $b")-&gt;reduce;
+              $domain = Compute("(-inf,inf)");
+              $inc = List(Interval("(-inf,$m]"),Interval("[$n,inf)"));
+              $dec = List(Interval("[$m,$n]"));
+              $max = List("$m");
+              $min = List("$n");
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Give the domain of <m>f</m> using interval notation.
+                Use <c>U</c> for union if the domain consists of more than one interval.
+              </instruction>
+              <p>
+                <var name="$domain" width="30"/>
+              </p>
+              <instruction>
+                Enter the critical numbers of <m>f</m>,
+                separating with commas if needed.
+                If there are no critical numbers,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$crit" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is increasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$inc" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is decreasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$dec" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative maximum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$max" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative minimum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$min" width="30"/>
+              </p>
+            </statement>
+            <!-- A "solution" should walk through *how* to find answers, not just state answers.
+            That is what "answer" is for, which we get auotmatically from WeBWorK. -->
+            <!-- <solution>
+              <p>
+                The domain is <m><var name="$domain"/></m>.
+                The critical points are <m><var name="$crit"/></m>.
+                The function is increasing on <m><var name="$inc"/></m> and decreasing on <m><var name="$dec"/></m>.
+                There is/are relative maxima at <m><var name="$max"/></m> and relative minima at <m><var name="$min"/></m>.
+              </p>
+            </solution> -->
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-intervals-3">
+          <webwork xml:id="webwork-ex-graph-incr-decr-intervals-3">
+            <pg-code>
+              Context("Fraction");
+              #roots of derivative
+              do {
+                $s = Fraction(list_random(1,2,4,5,7,8)*list_random(-1,1), list_random(3,6,9)); # make b div by 3
+                ($a,$b) = $s-&gt;value;
+                if ($a % 2 == 0) {$t = Fraction(non_zero_random(-8,8,2),random(1,9,2));}
+                elsif ($b % 2 == 0) {$t = Fraction(random(-9,9,2),random(2,8,2));}
+                else {$t = Fraction(random(-9,9,2),random(1,9,2));}
+              } until ($s != $t);
+              ($c,$d) = $t-&gt;value;
+              # f'(x) = (bx - a)(dx - c) = bd x^2 - (bc+ad) x + ac
+              ($m,$n) = num_sort($s,$t);
+              $crit=List($m,$n);
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(ignoreEndpointTypes =&gt; 1);
+              $A = $b*$d/3;
+              $B = -($b*$c+$a*$d)/2;
+              $C = $a*$c;
+              $D = non_zero_random(-9,9,1);
+              $f = Formula("$A x^3 + $B x^2 + $C x + $D")-&gt;reduce;
+              $domain = Compute("(-inf,inf)");
+              $inc = $inc = List(Interval("(-inf,$m]"),Interval("[$n,inf)"));
+              $dec = List(Interval("[$m,$n]"));
+              $max = List($m);
+              $min = List($n);
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Give the domain of <m>f</m> using interval notation.
+                Use <c>U</c> for union if the domain consists of more than one interval.
+              </instruction>
+              <p>
+                <var name="$domain" width="30"/>
+              </p>
+              <instruction>
+                Enter the critical numbers of <m>f</m>,
+                separating with commas if needed.
+                If there are no critical numbers,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$crit" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is increasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$inc" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is decreasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$dec" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative maximum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$max" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative minimum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$min" width="30"/>
+              </p>
+            </statement>
+            <!-- A "solution" should walk through *how* to find answers, not just state answers.
+            That is what "answer" is for, which we get auotmatically from WeBWorK. -->
+            <!-- <solution>
+              <p>
+                The domain is <m><var name="$domain"/></m>.
+                The critical points are <m><var name="$crit"/></m>.
+                The function is increasing on <m><var name="$inc"/></m> and decreasing on <m><var name="$dec"/></m>.
+                There is/are relative maxima at <m><var name="$max"/></m> and relative minima at <m><var name="$min"/></m>.
+              </p>
+            </solution> -->
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-intervals-4">
+          <webwork xml:id="webwork-ex-graph-incr-decr-intervals-4">
+            <pg-code>
+              $r = non_zero_random(-5,5,1);
+              $crit=List($r);
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(ignoreEndpointTypes =&gt; 1);
+              $A = 1;
+              $B = -3*$r;
+              $C = 3*($r)**2;
+              $D = -($r)**3;
+              $f = Formula("$A x^3 + $B x^2 + $C x + $D")-&gt;reduce;
+              $domain = Compute("(-inf,inf)");
+              $inc = List(Interval("(-inf,inf)"));
+              $dec = List(Compute("None"));
+              $max = List(Compute("None"));
+              $min = List(Compute("None"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Give the domain of <m>f</m> using interval notation.
+                Use <c>U</c> for union if the domain consists of more than one interval.
+              </instruction>
+              <p>
+                <var name="$domain" width="30"/>
+              </p>
+              <instruction>
+                Enter the critical numbers of <m>f</m>,
+                separating with commas if needed.
+                If there are no critical numbers,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$crit" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is increasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$inc" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is decreasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$dec" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative maximum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$max" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative minimum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$min" width="30"/>
+              </p>
+            </statement>
+            <!-- A "solution" should walk through *how* to find answers, not just state answers.
+            That is what "answer" is for, which we get auotmatically from WeBWorK. -->
+            <!-- <solution>
+              <p>
+                The domain is <m><var name="$domain"/></m>.
+                The critical points are <m><var name="$crit"/></m>.
+                The function is increasing on <m><var name="$inc"/></m> and decreasing on <m><var name="$dec"/></m>.
+                There is/are relative maxima at <m><var name="$max"/></m> and relative minima at <m><var name="$min"/></m>.
+              </p>
+            </solution> -->
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-intervals-5">
+          <webwork xml:id="webwork-ex-graph-incr-decr-intervals-5">
+            <pg-code>
+              $r = non_zero_random(-5,5,1);
+              $crit=List($r);
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(ignoreEndpointTypes =&gt; 1);
+              $A = 1;
+              $B = -2*$r;
+              $C = ($r)**2+random(1,9,1);
+              $f = Formula("1/($A x^2 + $B x + $C)")-&gt;reduce;
+              $domain = Compute("(-inf,inf)");
+              $inc = List(Interval("(-inf,$r]"));
+              $dec = List(Interval("[$r,inf)"));
+              $max = List(Compute($r));
+              $min = List(Compute("None"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Give the domain of <m>f</m> using interval notation.
+                Use <c>U</c> for union if the domain consists of more than one interval.
+              </instruction>
+              <p>
+                <var name="$domain" width="30"/>
+              </p>
+              <instruction>
+                Enter the critical numbers of <m>f</m>,
+                separating with commas if needed.
+                If there are no critical numbers,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$crit" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is increasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$inc" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is decreasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$dec" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative maximum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$max" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative minimum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$min" width="30"/>
+              </p>
+            </statement>
+            <!-- A "solution" should walk through *how* to find answers, not just state answers.
+            That is what "answer" is for, which we get auotmatically from WeBWorK. -->
+            <!-- <solution>
+              <p>
+                The domain is <m><var name="$domain"/></m>.
+                The critical points are <m><var name="$crit"/></m>.
+                The function is increasing on <m><var name="$inc"/></m> and decreasing on <m><var name="$dec"/></m>.
+                There is/are relative maxima at <m><var name="$max"/></m> and relative minima at <m><var name="$min"/></m>.
+              </p>
+            </solution> -->
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-intervals-6">
+          <webwork xml:id="webwork-ex-graph-incr-decr-intervals-6">
+            <pg-code>
+              ($r,$t) = random_subset(2,1..9);
+              $R = ($r)**2;
+              $T = ($t)**2;
+              $crit=List(0);
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(ignoreEndpointTypes =&gt; 1);
+              $f = Formula("(x^2-$R)/(x^2-$T)")-&gt;reduce;
+              $domain = Compute("(-inf,-$t)U(-$t,$t)U($t,inf)");
+              $inc = List(Interval("[0,$t)"),Interval("($t,inf)"));
+              $dec = List(Interval("(-inf,-$t)"),Interval("(-$t,0]"));
+              $max = List(Compute("None"));
+              $min = List(0);
+              if ($r &lt; $t) {
+                ($inc,$dec) = ($dec,$inc);
+                ($max,$min) = ($min,$max);
+              }
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Give the domain of <m>f</m> using interval notation.
+                Use <c>U</c> for union if the domain consists of more than one interval.
+              </instruction>
+              <p>
+                <var name="$domain" width="30"/>
+              </p>
+              <instruction>
+                Enter the critical numbers of <m>f</m>,
+                separating with commas if needed.
+                If there are no critical numbers,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$crit" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is increasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$inc" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is decreasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$dec" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative maximum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$max" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative minimum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$min" width="30"/>
+              </p>
+            </statement>
+            <!-- A "solution" should walk through *how* to find answers, not just state answers.
+            That is what "answer" is for, which we get auotmatically from WeBWorK. -->
+            <!-- <solution>
+              <p>
+                The domain is <m><var name="$domain"/></m>.
+                The critical points are <m><var name="$crit"/></m>.
+                The function is increasing on <m><var name="$inc"/></m> and decreasing on <m><var name="$dec"/></m>.
+                There is/are relative maxima at <m><var name="$max"/></m> and relative minima at <m><var name="$min"/></m>.
+              </p>
+            </solution> -->
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-intervals-7">
+          <webwork xml:id="webwork-ex-graph-incr-decr-intervals-7">
+            <pg-code>
+              ($r,$s) = num_sort(random_subset(2,-9..-1,1..9));
+              $rs = $r*$s;
+              $crit = ($rs &gt; 0) ? List(Compute(-sqrt($rs)),-Compute(-sqrt($rs))) : List(Compute("None"));
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(ignoreEndpointTypes =&gt; 1);
+              $f = Formula("x/(x^2-($r+$s)x+$rs)")-&gt;reduce;
+              $domain = Compute("(-inf,$r)U($r,$s)U($s,inf)");
+              if ($r &gt; 0) {
+                $inc = List(Interval("[-sqrt($rs),$r)"),Interval("($r,sqrt($rs)]"));
+                $dec = List(Interval("(-inf,-sqrt($rs)]"),Interval("[sqrt($rs),$s)"),Interval("($s,inf)"));
+                $max = List(Compute("sqrt($rs)"));
+                $min = List(Compute("-sqrt($rs)"));
+              }
+              elsif ($s &gt; 0) {
+                $inc = List(Compute("none"));
+                $dec = List(Interval("(-inf,$r)"),Interval("($r,$s)"),Interval("($s,inf)"));
+                $max = List(Compute("none"));
+                $min = List(Compute("none"));
+              }
+              else {
+                $inc = List(Interval("[-sqrt($rs),$s)"),Interval("($s,sqrt($rs)]"));
+                $dec = List(Interval("(-inf,$r)"),Interval("($r,-sqrt($rs)]"),Interval("[sqrt($rs),inf)"));
+                $max = List(Compute("sqrt($rs)"));
+                $min = List(Compute("-sqrt($rs)"));
+              }
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Give the domain of <m>f</m> using interval notation.
+                Use <c>U</c> for union if the domain consists of more than one interval.
+              </instruction>
+              <p>
+                <var name="$domain" width="30"/>
+              </p>
+              <instruction>
+                Enter the critical numbers of <m>f</m>,
+                separating with commas if needed.
+                If there are no critical numbers,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$crit" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is increasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$inc" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is decreasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$dec" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative maximum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$max" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative minimum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$min" width="30"/>
+              </p>
+            </statement>
+            <!-- A "solution" should walk through *how* to find answers, not just state answers.
+            That is what "answer" is for, which we get auotmatically from WeBWorK. -->
+            <!-- <solution>
+              <p>
+                The domain is <m><var name="$domain"/></m>.
+                The critical points are <m><var name="$crit"/></m>.
+                The function is increasing on <m><var name="$inc"/></m> and decreasing on <m><var name="$dec"/></m>.
+                There is/are relative maxima at <m><var name="$max"/></m> and relative minima at <m><var name="$min"/></m>.
+              </p>
+            </solution> -->
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-intervals-8">
+          <webwork xml:id="webwork-ex-graph-incr-decr-intervals-8">
+            <pg-code>
+              $r = non_zero_random(-9,9,1);
+              $crit = List($r,3*$r);
+              Context("Interval")-&gt;flags-&gt;set(reduceConstants=&gt;0);
+              Context()-&gt;flags-&gt;set(ignoreEndpointTypes =&gt; 1);
+              $f = Formula("(x-$r)^(2/3)/x");
+              $domain = Compute("(-inf,0)U(0,inf)");
+              if ($r &gt; 0) {
+                $inc = List(Interval("[$r,3*$r]"));
+                $dec = List(Interval("(-inf,0)"),Interval("(0,$r]"),Interval("[3*$r,inf)"));
+                $max = List(3*$r);
+                $min = List($r);
+              } else {
+                $inc = List(Interval("[3*$r,$r]"));
+                $dec = List(Interval("(-inf,3*$r]"),Interval("[$r,0)"),Interval("(0,inf)"));
+                $max = List($r);
+                $min = List(3*$r);
+              }
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Give the domain of <m>f</m> using interval notation.
+                Use <c>U</c> for union if the domain consists of more than one interval.
+              </instruction>
+              <p>
+                <var name="$domain" width="30"/>
+              </p>
+              <instruction>
+                Enter the critical numbers of <m>f</m>,
+                separating with commas if needed.
+                If there are no critical numbers,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$crit" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is increasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$inc" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is decreasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$dec" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative maximum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$max" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative minimum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$min" width="30"/>
+              </p>
+            </statement>
+            <!-- A "solution" should walk through *how* to find answers, not just state answers.
+            That is what "answer" is for, which we get auotmatically from WeBWorK. -->
+            <!-- <solution>
+              <p>
+                The domain is <m><var name="$domain"/></m>.
+                The critical points are <m><var name="$crit"/></m>.
+                The function is increasing on <m><var name="$inc"/></m> and decreasing on <m><var name="$dec"/></m>.
+                There is/are relative maxima at <m><var name="$max"/></m> and relative minima at <m><var name="$min"/></m>.
+              </p>
+            </solution> -->
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-intervals-9">
+          <webwork xml:id="webwork-ex-graph-incr-decr-intervals-9">
+            <pg-code>
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(ignoreEndpointTypes =&gt; 1);
+              $domain = Compute("(-pi,pi)");
+              $crit = List("-3pi/4,-pi/4,pi/4,3pi/4");
+              $inc = List(Interval("(-pi,-3pi/4)"),Interval("(-pi/4,pi/4)"),Interval("(3pi/4,pi)"));
+              $dec = List(Interval("(-3pi/4,-pi/4)"),Interval("(pi/4,3pi/4)"));
+              $max = List("-3pi/4,pi/4");
+              $min = List("-pi/4,3pi/4");
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=\sin(x)\cos(x)</m> on <m>(-\pi,\pi)</m>
+              </p>
+              <instruction>
+                Give the domain of <m>f</m> using interval notation.
+                Use <c>U</c> for union if the domain consists of more than one interval.
+              </instruction>
+              <p>
+                <var name="$domain" width="30"/>
+              </p>
+              <instruction>
+                Enter the critical numbers of <m>f</m>,
+                separating with commas if needed.
+                If there are no critical numbers,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$crit" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is increasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$inc" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is decreasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$dec" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative maximum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$max" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative minimum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$min" width="30"/>
+              </p>
+            </statement>
+            <!-- A "solution" should walk through *how* to find answers, not just state answers.
+            That is what "answer" is for, which we get auotmatically from WeBWorK. -->
+            <!-- <solution>
+              <p>
+                The domain is <m><var name="$domain"/></m>.
+                The critical points are <m><var name="$crit"/></m>.
+                The function is increasing on <m><var name="$inc"/></m> and decreasing on <m><var name="$dec"/></m>.
+                There is/are relative maxima at <m><var name="$max"/></m> and relative minima at <m><var name="$min"/></m>.
+              </p>
+            </solution> -->
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-graph-incr-decr-intervals-10">
+          <webwork xml:id="webwork-ex-graph-incr-decr-intervals-10">
+            <pg-code>
+              $n = random(3,9,1);
+              if ($n == 3) {
+                $b = non_zero_random(-9,9,1);
+              }
+              elsif ($n == 4) {
+                $b = non_zero_random(-5,5,1);
+              }
+              elsif ($n == 5) {
+                $b = non_zero_random(-3,3,1);
+              }
+              elsif ($n &gt;= 6 and $n &lt;= 8) {
+                $b = non_zero_random(-2,2,1);
+              }
+              else {
+                $b = non_zero_random(-1,1,1);
+              }
+              $a = ($b)**($n-1);
+              Context("Interval")-&gt;flags-&gt;set(reduceConstants=&gt;0);
+              Context()-&gt;flags-&gt;set(ignoreEndpointTypes =&gt; 1);
+              $domain = Compute("(-inf,inf)");
+              $f = Formula("x^$n - $a*$n x")-&gt;reduce;
+              if ($n % 2 == 0) {
+                $crit = List($b);
+                $inc = List(Interval("[$b,inf)"));
+                $dec = List(Interval("(-inf,$b]"));
+                $max = List(Compute("none"));
+                $min = List($b);
+              } else {
+                $crit = List($b,-$b);
+                $inc = List(Interval("(-inf,-abs($b)]"),Interval("[abs($b),inf)"));
+                $dec = List(Interval("[-abs($b),abs($b)]"));
+                $max = List(-abs($b));
+                $min = List(abs($b));
+              }
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Give the domain of <m>f</m> using interval notation.
+                Use <c>U</c> for union if the domain consists of more than one interval.
+              </instruction>
+              <p>
+                <var name="$domain" width="30"/>
+              </p>
+              <instruction>
+                Enter the critical numbers of <m>f</m>,
+                separating with commas if needed.
+                If there are no critical numbers,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$crit" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is increasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$inc" width="30"/>
+              </p>
+              <instruction>
+                List the maximal intervals where <m>f</m> is decreasing,
+                using interval notation,
+                and separating with commas if needed.
+                If there are no such intervals,
+                enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$dec" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative maximum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$max" width="30"/>
+              </p>
+              <instruction>
+                List the critical numbers at which there is a relative minimum.
+                If there are none, enter <c>none</c>.
+              </instruction>
+              <p>
+                <var name="$min" width="30"/>
+              </p>
+            </statement>
+            <!-- A "solution" should walk through *how* to find answers, not just state answers.
+            That is what "answer" is for, which we get auotmatically from WeBWorK. -->
+            <!-- <solution>
+              <p>
+                The domain is <m><var name="$domain"/></m>.
+                The critical points are <m><var name="$crit"/></m>.
+                The function is increasing on <m><var name="$inc"/></m> and decreasing on <m><var name="$dec"/></m>.
+                There is/are relative maxima at <m><var name="$max"/></m> and relative minima at <m><var name="$min"/></m>.
+              </p>
+            </solution> -->
+          </webwork>
+        </exercise>
+      </exercisegroup>
+    </subexercises>
+    </exercises>
+</section>

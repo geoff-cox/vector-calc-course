@@ -1,0 +1,1835 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec_int_comp_tests" label="sec_int_comp_tests">
+  <title>Integral and Comparison Tests</title>
+  <introduction>
+    <p>
+      Knowing whether or not a series converges is very important,
+      especially when we discuss Power Series in <xref ref="sec_power_series"/>.
+      <xref ref="thm_geom_series" text="global">Theorems</xref>
+      and <xref ref="thm_pseries" text="global"/>
+      give criteria for when Geometric and <m>p</m>-series converge,
+      and <xref ref="thm_series_nth_term"/>
+      gives a quick test to determine if a series diverges.
+      There are many important series whose convergence cannot be determined by these theorems, though,
+      so we introduce a set of tests that allow us to handle a broad range of series.
+      We start with the Integral Test.
+    </p>
+  </introduction>
+
+  <subsection>
+    <title>Integral Test</title>
+    <p>
+      We stated in <xref ref="sec_sequences"/>
+      that a sequence <m>\{a_n\}</m> is a function <m>a(n)</m> whose domain is <m>\mathN</m>,
+      the set of natural numbers.
+      If we can extend <m>a(n)</m> to <m>\mathbb{R}</m>,
+      the real numbers,
+      and it is both positive and decreasing on <m>[1,\infty)</m>,
+      then the convergence of <m>\ds \infser a_n</m> is the same as <m>\ds\int_1^\infty a(x)\, dx</m>.
+    </p>
+
+    <theorem xml:id="thm_integral_test">
+      <title>Integral Test</title>
+      <statement>
+        <p>
+          Let a sequence <m>\{a_n\}</m> be defined by <m>a_n=a(n)</m>,
+          where <m>a(n)</m> is continuous,
+          positive and decreasing on <m>[1,\infty)</m>.
+          Then <m>\ds \infser a_n</m> converges, if,
+          and only if, <m>\ds\int_1^\infty a(x)\, dx</m> converges.
+              <idx><h>series</h><h>Integral Test</h></idx>
+              <idx><h>Integral Test</h></idx>
+              <idx><h>convergence</h><h>Integral Test</h></idx>
+              <idx><h>divergence</h><h>Integral Test</h></idx>
+        </p>
+      </statement>
+    </theorem>
+
+    <aside vshift="2">
+      <p>
+        <xref ref="thm_integral_test"/>
+        does not state that the integral and the summation have the same value.
+      </p>
+    </aside>
+
+    <figure xml:id="vid-seqseries-intcomp-integral-test" component="video" vshift="-2">
+      <caption>Video presentation of <xref ref="thm_integral_test"/></caption>
+      <video youtube="43DIt-rRclA" label="vid-seqseries-intcomp-integral-test"/>
+    </figure>
+    <p>
+      We can demonstrate the truth of the Integral Test with two simple graphs.
+      In <xref ref="fig_integral_test_a"/>,
+      the height of each rectangle is
+      <m>a(n)=a_n</m> for <m>n=1,2,\ldots</m>,
+      and clearly the rectangles enclose more area than the area under <m>y=a(x)</m>.
+      Therefore we can conclude that
+      <md number="yes" xml:id="eq_integral_testa">
+        \ds \int_1^\infty a(x)\, dx \lt  \infser a_n
+      </md>.
+    </p>
+
+    <figure xml:id="fig_integral_test">
+      <caption>Illustrating the truth of the Integral Test</caption>
+      <sidebyside widths="47% 47%" margins="0%">
+
+        <figure xml:id="fig_integral_test_a">
+          <caption/>
+          <!-- START figures/fig_integral_test_a.tex -->
+          <image>
+            <shortdescription>First of two graphs illustrating why the integral test works.</shortdescription>
+            <description>
+              <p>
+                The graph of a positive, decreasing function <m>y=a(x)</m> is shown.
+                Also shown are the first four rectangles in a Riemann sum with partition points at each integer,
+                and using left endpoints. Since <m>a(x)</m> is decreasing, this is an overestimate,
+                which is illustrated by the fact that the rectangles all reach above the graph.
+              </p>
+            </description>
+            <latex-image label="img_integral_test_a">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            xtick={1,2,3,4,5},
+            ytick={1,2},
+            ymin=-.1,ymax=2.5,
+            xmin=-.5,xmax=5.6
+            ]
+
+            \addplot+ [domain=-.5:5.6,samples=50] ({x},{2/(x+1)});
+
+            \draw [thick,secondcolor] (axis cs: 1,0) -- (axis cs:1,1) -- (axis cs: 2,1) -- (axis cs: 2,0)
+                                      (axis cs: 2,0) -- (axis cs:2,.667) -- (axis cs: 3,.667) -- (axis cs: 3,0)
+                                      (axis cs: 3,0) -- (axis cs:3,.5) -- (axis cs: 4,.5) -- (axis cs: 4,0)
+                                      (axis cs: 4,0) -- (axis cs:4,.4) -- (axis cs: 5,.4) -- (axis cs: 5,0);
+
+            \draw (axis cs: .95,1.75) node { $y=a(x)$};
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_integral_test_a.tex END -->
+        </figure>
+
+        <figure xml:id="fig_integral_test_b">
+          <caption/>
+          <!-- START figures/fig_integral_test_b.tex -->
+          <image>
+            <shortdescription>Second of two graphs illustrating why the integral test works.</shortdescription>
+            <description>
+              <p>
+                The graph of a positive, decreasing function <m>y=a(x)</m> is shown.
+                Also shown are the first four rectangles in a Riemann sum with partition points at each integer,
+                and using right endpoints. Since <m>a(x)</m> is decreasing, this is an underestimate,
+                which is illustrated by the fact that the rectangles all lie below the graph.
+              </p>
+            </description>
+            <latex-image label="img_integral_test_b">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            xtick={1,2,3,4,5},
+            ytick={1,2},
+            ymin=-.1,ymax=2.5,
+            xmin=-.5,xmax=5.6
+            ]
+
+            \addplot+ [domain=-.5:5.6,samples=50] ({x},{2/(x+1)});
+
+            \draw [thick,secondcolor] (axis cs: 1,0) -- (axis cs:1,.667) -- (axis cs: 2,.667) -- (axis cs: 2,0)
+                                      (axis cs: 2,0) -- (axis cs:2,.5) -- (axis cs: 3,.5) -- (axis cs: 3,0)
+                                      (axis cs: 3,0) -- (axis cs:3,.4) -- (axis cs: 4,.4) -- (axis cs: 4,0)
+                                      (axis cs: 4,0) -- (axis cs:4,.333) -- (axis cs: 5,.333) -- (axis cs: 5,0);
+
+            \draw (axis cs: .95,1.75) node { $y=a(x)$};
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_integral_test_b.tex END -->
+        </figure>
+      </sidebyside>
+
+    </figure>
+
+    <p>
+      In <xref ref="fig_integral_test_b"/>,
+      we draw rectangles under <m>y=a(x)</m> with the Right-Hand rule,
+      starting with <m>n=2</m>.
+      This time, the area of the rectangles is less than the area under <m>y=a(x)</m>,
+      so <m>\ds\sum_{n=2}^\infty a_n \lt  \int_1^\infty a(x)\, dx</m>.
+      Note how this summation starts with <m>n=2</m>;
+      adding <m>a_1</m> to both sides lets us rewrite the summation starting with <m>n=1</m>:
+      <md number="yes" xml:id="eq_integral_testb">
+        \infser a_n \lt  a_1 +\int_1^\infty a(x)\, dx
+      </md>.
+    </p>
+
+    <p>
+      Combining Equations <xref ref="eq_integral_testa"/> and <xref ref="eq_integral_testb"/>, we have
+      <md number="yes" xml:id="eq_integral_testc">
+        \infser a_n\lt  a_1 +\int_1^\infty a(x)\, dx \lt  a_1 + \infser a_n
+      </md>.
+    </p>
+
+    <p>
+      From <xref ref="eq_integral_testc">Equation</xref> we can make the following two statements:
+    </p>
+
+    <p>
+      <ol>
+        <li>
+          <p>
+            If <m>\ds \infser a_n</m> diverges,
+            so does <m>\ds\int_1^\infty a(x)\, dx</m> (because <m>\ds \infser a_n \lt a_1 +\int_1^\infty a(x)\, dx</m>)
+          </p>
+        </li>
+
+        <li>
+          <p>
+            If <m>\ds \infser a_n</m> converges,
+            so does <m>\ds\int_1^\infty a(x)\, dx</m> (because <m>\ds \ds \int_1^\infty a(x)\, dx \lt \infser a_n</m>.)
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      Therefore the series and integral either both converge or both diverge.
+      <xref ref="thm_series_behavior"/>
+      allows us to extend this theorem to series where <m>a(n)</m> is positive and decreasing on <m>[b,\infty)</m> for some <m>b \gt 1</m>.
+      A formal proof of the <xref ref="thm_integral_test" text="title"/> is shown below.
+    </p>
+
+    <proof>
+      <title>Proof of the Integral Test</title>
+      <p>
+        Let <m>a(x)=a_x</m> be a postive,
+        continuous, decreasing function on <m>[1,\infty)</m>.
+        We will consider how the partial sums of
+        <m>\infser a_n</m> compare to the integral <m>\int_0^\infty a(x)\, dx </m>.
+        We first consider the case where <m>\int_1^{\infty}a(x)\, dx</m> diverges.
+      </p>
+
+      <p>
+        <ol>
+          <li>
+            <p>
+              Suppose that <m>\int_1^{\infty}a(x)\, dx</m> diverges.
+              Using <xref ref="fig_integral_test_a"/>,
+              we can say that <m>S_n=\sum_{i=1}^{n}a_i\gt \int_1^{n+1}a(x)\, dx</m>.
+              If we let <m>n \to \infty</m> in this inequality,
+              we know that <m>\int_1^{n+1}a(x)\, dx</m> will get arbitrarily large as <m>n \to \infty</m> (since
+              <m>a(x) \gt 0</m> and <m>\int_1^{\infty}a(x)\, dx</m> diverges).
+              Therefore we conclude that
+              <m>S_n=\sum_{i=1}^{n}a_i</m> will also get arbitrarily large as <m>n \to \infty</m>,
+              and thus <m>\infser a_n</m> diverges.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Now suppose that <m>\int_1^{\infty}a(x)\, dx</m> converges to <m>M</m>,
+              where <m>M</m> is some positive, finite number.
+              Using <xref ref="fig_integral_test_b"/>,
+              we can say that <m>0 \lt S_n=\sum_{i=1}^{n}a_i \lt \int_1^{\infty} a(x)\, dx=M</m>.
+              Therefore our sequence of partial sums, <m>S_n</m> is bounded.
+              Furthermore,
+              <m>S_n</m> is a monotonically increasing sequence since all of the terms <m>a_n</m> are positive.
+              Since <m>S_n</m> is both bounded and monotonic,
+              <m>S_n</m> converges by <xref ref="thm_converge_bounded" text="title"/> and by <xref ref="def_series"/>,
+              the series <m>\infser a_n</m> converges as well.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </proof>
+
+    <example xml:id="ex_itest1">
+      <title>Using the Integral Test</title>
+      <statement>
+        <p>
+          Determine the convergence of
+          <m>\ds\infser \frac{\ln(n) }{n^2}</m>. (The terms of the sequence
+          <m>\{a_n\} = \{\ln(n) /n^2\}</m> and the <m>n</m>th partial sums are given in <xref ref="fig_itest1"/>.)
+        </p>
+      </statement>
+      <solution>
+        <p>
+          <xref ref="fig_itest1"/>
+          implies that <m>a(n) = (\ln(n) )/n^2</m> is positive and decreasing on <m>[2,\infty)</m>.
+          We can determine this analytically, too.
+          We know <m>a(n)</m> is positive as both <m>\ln(n)</m> and <m>n^2</m> are positive on <m>[2,\infty)</m>.
+          Treating <m>a(n)</m> as a continuous function of <m>n</m> defined on <m>[1, \infty)</m>,
+          consider <m>a'(n) = (1-2\ln(n) )/n^3</m>,
+          which is negative for <m>n\geq 2</m>.
+          Since <m>a'(n)</m> is negative,
+          <m>a(n)</m> is decreasing for <m>n\geq 2</m>.
+          We can still use the integral test since a finite number of terms will not affect convergence of the series.
+        </p>
+
+        <figure xml:id="fig_itest1" vshift="-2">
+          <caption>Plotting the sequence and series in <xref ref="ex_itest1"/></caption>
+          <!-- START figures/fig_itest1.tex -->
+          <image width="47%">
+            <shortdescription>Scatter plots of the sequence used in this example, and the corresponding sequence of partial sums.</shortdescription>
+            <description>
+              <p>
+                A scatter plot of the sequence <m>a_n=\ln(n)/n^2</m> is shown.
+                Aside from an initial point <m>(1,0)</m>, this is a decreasing sequence,
+                descending from the point <m>(2,\ln(2)/4)</m> toward the <m>n</m> axis.
+              </p>
+
+              <p>
+                The scatter plot for the sequence <m>S_n</m> of partial sums is also shown;
+                this is an increasing sequence, which appears to be bounded above by some value less than 1.
+              </p>
+            </description>
+            <latex-image label="img_itest1">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={2,4,...,20},
+            ymin=-.05,ymax=.85,
+            xmin=-1,xmax=20.9,
+            xlabel={$n$}
+            ]
+
+            \addplot [only marks,secondcolor,mark=square*,mark size={2.75pt}] coordinates {(1.,0)(2.,0.1733)(3.,0.2954)(4.,0.382)(5.,0.4464)(6.,0.4961)(7.,0.5359)(8.,0.5684)(9.,0.5955)(10.,0.6185)(11.,0.6383)(12.,0.6556)(13.,0.6708)(14.,0.6842)(15.,0.6963)(16.,0.7071)(17.,0.7169)(18.,0.7258)(19.,0.734)(20.,0.7415)};
+            \addplot [only marks,firstcolor,mark size={2.4pt}] coordinates {(1.,0)(2.,0.1733)(3.,0.1221)(4.,0.08664)(5.,0.06438)(6.,0.04977)(7.,0.03971)(8.,0.03249)(9.,0.02713)(10.,0.02303)(11.,0.01982)(12.,0.01726)(13.,0.01518)(14.,0.01346)(15.,0.01204)(16.,0.01083)(17.,0.009804)(18.,0.008921)(19.,0.008156)(20.,0.007489)};
+
+            \end{axis}
+
+            \node[shift={(0,-20pt)},draw] at (myplot.south)
+              {\begin{tikzpicture}
+
+                \fill [firstcolor] (0,0) circle (2pt) node [right,black] { $a_n$};
+                \fill [secondcolor] (1,0) circle (0.1pt) node [right, black] { $S_n$};
+                \draw [secondcolor] plot [only marks,mark=square*] coordinates {(1,0)};
+
+							\end{tikzpicture}};
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_itest1.tex END -->
+        </figure>
+
+        <p>
+          Applying the Integral Test,
+          we test the convergence of <m>\ds \int_1^\infty \frac{\ln(x) }{x^2}\, dx</m>.
+          Integrating this improper integral requires the use of Integration by Parts,
+          with <m>u = \ln(x)</m> and <m>dv = 1/x^2\, dx</m>.
+          <md>
+            <mrow>\int_1^\infty \frac{\ln(x) }{x^2}\, dx \amp = \lim_{b\to\infty} \int_1^b \frac{\ln(x) }{x^2}\, dx</mrow>
+            <mrow>\amp = \lim_{b\to\infty} -\frac1x\ln(x) \Big|_1^b + \int_1^b\frac1{x^2}\, dx</mrow>
+            <mrow>\amp = \lim_{b\to\infty} -\frac1x\ln(x) -\frac 1x\Big|_1^b</mrow>
+            <mrow>\amp = \lim_{b\to\infty}1-\frac1b-\frac{\ln(b) }{b}. \text{ Apply L'Hospital's Rule: }</mrow>
+            <mrow>\amp = 1</mrow>
+          </md>.
+        </p>
+
+        <p>
+          Since <m>\ds \int_1^\infty \frac{\ln(x) }{x^2}\, dx</m> converges,
+          so does <m>\ds \infser \frac{\ln(n) }{n^2}</m>.
+        </p>
+      </solution>
+      <solution component="video" vshift="0">
+        <title>Video solution</title>
+        <video width="98%" youtube="YuAg9zOh2Hk" label="vid-seqseries-intcomp-example1" component="video"/>
+      </solution>
+    </example>
+
+    <exercise label="APEX-PROTEUS-sec-9_3-int-comp-test-1-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      
+      <statement>
+        <p>
+          In <xref ref="idea_famous_series"/> it was stated that <m>\ds\sum_{n=1}^\infty \frac1{n^2}=\frac{\pi^2}{6}</m>.
+          While we are not in a position to prove this result,
+          we can use it to explore the justification for the integral test.
+          (If you want a proof, you'll have to stick with mathematics until you reach complex variables or Fourier series.)
+        </p>
+
+        <p>
+          Evaluate the integral <m>\int_1^\infty \frac1{x^2}\,dx</m>,
+          and confirm that <xref ref="eq_integral_testc"/> is valid for the series <m>\sum_{n=1}^\infty \frac1{n^2}</m>.
+        </p>
+
+        <p>
+          (In your response, you don't have to show the work for evaluating the integral; just state the result.)
+        </p>
+      </statement>
+      <response />
+      
+    </exercise>
+
+    <p>
+      <xref ref="thm_pseries"/>
+      was given without justification,
+      stating that the general <m>p</m>-series
+      <m>\ds \infser \frac 1{(an+b)^p}</m> converges if, and only if,
+      <m>p \gt 1</m>.
+      In the following example,
+      we prove this to be true by applying the Integral Test.
+    </p>
+
+    <example xml:id="ex_itest2">
+      <title>Using the Integral Test to establish <xref ref="thm_pseries"/></title>
+      <statement>
+        <p>
+          Let <m>a, b</m> be real numbers such that <m>a\neq 0</m> and <m>an+b\gt 0</m> for all <m>n\geq 1</m>.
+          Use the Integral Test to prove that
+          <m>\ds \infser \frac1{(an+b)^p}</m> converges if, and only if,
+          <m>p \gt 1</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Consider the integral <m>\ds\int_1^\infty \frac1{(ax+b)^p}\, dx</m>;
+          assuming <m>p\neq 1</m> and <m>a\neq 0</m>,
+          <md>
+            <mrow>\int_1^\infty \frac1{(ax+b)^p}\, dx \amp = \lim_{c\to\infty} \int_1^c \frac1{(ax+b)^p}\, dx</mrow>
+            <mrow>\amp = \lim_{c\to\infty} \frac{1}{a(1-p)}(ax+b)^{1-p}\Big|_1^c</mrow>
+            <mrow>\amp = \lim_{c\to\infty} \frac{1}{a(1-p)}\big((ac+b)^{1-p}-(a+b)^{1-p}\big)</mrow>
+          </md>.
+        </p>
+
+        <p>
+          This limit converges if,
+          and only if, <m>p \gt 1</m> so that <m>1-p \lt 0</m>.
+          It is easy to show that the integral also diverges in the case of <m>p=1</m>.
+          (This result is similar to the work preceding <xref ref="idea_impint1"/>.)
+        </p>
+
+        <p>
+          Therefore <m>\ds \infser \frac 1{(an+b)^p}</m> converges if,
+          and only if,
+          <m>p \gt 1</m>.
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="fBQkA2ntBuM" label="vid-seqseries-intcomp-ptest" component="video"/>
+      </solution>
+    </example>
+
+    <p>
+      We consider two more convergence tests in this section,
+      both <em>comparison</em> tests.
+      That is, we determine the convergence of one series by comparing it to another series with known convergence.
+    </p>
+  </subsection>
+
+  <subsection>
+    <title>Direct Comparison Test</title>
+    <theorem xml:id="thm_series_direct_compare">
+      <title>Direct Comparison Test</title>
+      <statement>
+        <p>
+          Let <m>\{a_n\}</m> and <m>\{b_n\}</m> be positive sequences where
+          <m>a_n\leq b_n</m> for all <m>n\geq N</m>, for some <m>N\geq 1</m>.
+              <idx><h>series</h><h>Direct Comparison Test</h></idx>
+              <idx><h>Direct Comparison Test</h><h>for series</h></idx>
+              <idx><h>convergence</h><h>Direct Comparison Test</h></idx>
+              <idx><h>divergence</h><h>Direct Comparison Test</h></idx>
+        </p>
+
+        <p>
+          <ol>
+            <li>
+              <p>
+                If <m>\ds \infser b_n</m> converges,
+                then <m>\ds \infser a_n</m> converges.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                If <m>\ds \infser a_n</m> diverges,
+                then <m>\ds \infser b_n</m> diverges.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Let <m>0\lt a_n\leq b_n</m> for all <m>n\geq N \geq 1</m>.
+          Note that both partial sums for both series are positive and increasing since the terms of both sequences are positive.
+        </p>
+
+        <p>
+          <ol>
+            <li>
+              <p>
+                Suppose that <m>\ds \infser b_n</m> converges,
+                so <m>\ds \infser b_n=S</m>, where <m>S</m> is a finite,
+                positive number.
+                (<m>S</m> must be positive since <m>b_n \gt 0</m>.)
+              </p>
+
+              <p>
+                Comparing the partial sums,
+                we must have <m>\ds \sum_{i=N}^n a_i \leq \sum_{i=N}^n b_i</m> since
+                <m>a_n\leq b_n</m> for all <m>n\geq N</m>.
+                Furthermore since <m>\ds \infser b_n</m> converges to <m>S</m>,
+                our partial sums for <m>a_n</m> are bounded
+                (note that the partial sums started at <m>i=N</m>,
+                but a finite number of terms will not affect the boundedness of the partial sums).
+                <md>
+                  0\lt \sum_{i=N}^n a_i \leq \sum_{i=N}^n b_i \lt S
+                </md>.
+                Since the sequence of partial sums,
+                <m>s_n=\sum_{i=1}^n a_i </m> is both monotonically increasing and bounded,
+                we can say that <m>s_n</m> converges
+                (by <xref ref="thm_converge_bounded" text="title"/>),
+                and therefore so does <m>\infser a_n </m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Suppose that <m>\ds \infser a_n</m> diverges,
+                so <m>\ds \sum_{i=1}^n a_n=\infty</m>. (We can say that the series diverges to <m>\infty</m> since the terms of the series are always positive).
+                Comparing the partial sums, we have
+                <md>
+                  \ds \sum_{i=N}^n a_i \leq \sum_{i=N}^n b_i
+                </md>
+                Then applying limits, we get
+                <md>
+                  \ds \lim\limits_{n \to \infty}\sum_{i=N}^n a_i \leq \lim\limits_{n \to \infty}\sum_{i=N}^n b_i
+                </md>.
+                Since the limit on the left side diverges to <m>\infty</m>,
+                we can say that <m>\lim\limits_{n \to \infty}\sum_{i=N}^n b_i</m> also diverges to <m>\infty</m>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </proof>
+
+    </theorem>
+
+    <aside vshift="2">
+      <p>
+        A sequence <m>\{a_n\}</m> is a <em>positive sequence</em>
+        if <m>a_n \gt 0</m> for all <m>n</m>.
+      </p>
+
+      <p>
+        Because of <xref ref="thm_series_behavior"/>,
+        any theorem that relies on a positive sequence still holds true when <m>a_n \gt 0</m> for all but a finite number of values of <m>n</m>.
+            <idx><h>sequence</h><h>positive</h></idx>
+      </p>
+    </aside>
+
+    <figure xml:id="vid-seqseries-intcomp-comp-test" component="video" vshift="10">
+      <caption>Video presentation of <xref ref="thm_series_direct_compare"/></caption>
+      <video youtube="KhPpyQVNR5Y" label="vid-seqseries-intcomp-comp-test"/>
+    </figure>
+
+    <example xml:id="ex_dct1">
+      <title>Applying the Direct Comparison Test</title>
+      <statement>
+        <p>
+          Determine the convergence of <m>\ds\infser \frac1{3^n+n^2}</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          This series is neither a geometric or <m>p</m>-series,
+          but seems related.
+          We predict it will converge,
+          so we look for a series with larger terms that converges.
+          (Note too that the Integral Test seems difficult to apply here.)
+        </p>
+
+        <p>
+          Since <m>3^n \lt 3^n+n^2</m>,
+          <m>\ds \frac1{3^n} \gt  \frac1{3^n+n^2}</m> for all <m>n\geq1</m>.
+          The series <m>\ds\infser \frac{1}{3^n}</m> is a convergent geometric series;
+          by <xref ref="thm_series_direct_compare"/>,
+          <m>\ds \infser \frac1{3^n+n^2}</m> converges.
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="DAfdDWo948U" label="vid-seqseries-intcomp-comp-example" component="video"/>
+      </solution>
+    </example>
+
+    <example xml:id="ex_dct2">
+      <title>Applying the Direct Comparison Test</title>
+      <statement>
+        <p>
+          Determine the convergence of <m>\ds\infser \frac{1}{n-\ln(n) }</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We know the Harmonic Series <m>\ds\infser \frac1n</m> diverges,
+          and it seems that the given series is closely related to it,
+          hence we predict it will diverge.
+        </p>
+
+        <p>
+          Since <m>n\geq n-\ln(n)</m> for all <m>n\geq 1</m>,
+          <m>\ds \frac1n \leq \frac1{n-\ln(n) }</m> for all <m>n\geq 1</m>.
+        </p>
+
+        <p>
+          The Harmonic Series diverges,
+          so we conclude that <m>\ds\infser \frac{1}{n-\ln(n) }</m> diverges as well.
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="G1j5JNagVmU" label="vid-seqseries-intcomp-comp-example2" component="video"/>
+      </solution>
+    </example>
+
+    <exercise label="APEX-PROTEUS-sec-9_3-int-comp-test2-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      <statement>
+        <p>
+          If direct comparison can be used to decide convergence of one of the series on the left,
+          match it to the series on the right it should be compared to.
+        </p>
+
+        <p>
+          If using direct comparison would be difficult (or impossible) for one of the series,
+          leave it unmatched.
+        </p>
+      </statement>
+      <cardsort>
+        <match>
+          <premise><m>\ds \sum_{n=1}^\infty \frac{1}{n^3+(0.5)^n}</m></premise>
+          <premise><m>\ds \sum_{n=1}^\infty \frac{1}{n^3+3n}</m></premise>
+          <response><m>\ds \sum_{n=1}^\infty \frac{1}{n^3}</m> (convergent <m>p</m>-series)</response>
+        </match>
+        <match>
+          <premise><m>\ds \sum_{n=1}^\infty \frac{1}{n+2^n}</m></premise>
+          <response><m>\ds \sum_{n=1}^\infty (0.5)^n</m> (convergent geometric series)</response>
+        </match>
+        <match>
+          <premise><m>\ds \sum_{n=1}^\infty \frac{1}{n-0.5}</m></premise>
+          <response><m>\ds \sum_{n=1}^\infty \frac{1}{n}</m> (divergent <m>p</m>-series)</response>
+        </match>
+        <match>
+          <premise><m>\ds \sum_{n=1}^\infty \frac{1}{n^2-(0.5)^n}</m></premise>
+        </match>        
+      </cardsort>
+    </exercise>
+
+    <p>
+      The concept of direct comparison is powerful and often relatively easy to apply.
+      Practice helps one develop the necessary intuition to quickly pick a proper series with which to compare.
+      However, it is easy to construct a series for which it is difficult to apply the Direct Comparison Test.
+    </p>
+
+    <p>
+      Consider <m>\ds\infser \frac1{n+\ln(n) }</m>.
+      It is very similar to the divergent series given in <xref ref="ex_dct2"/>.
+      We suspect that it also diverges,
+      as <m>\ds \frac 1n \approx \frac1{n+\ln(n) }</m> for large <m>n</m>.
+      However, the inequality that we naturally want to use
+      <q>goes the wrong way</q>:
+      since <m>n\leq n+\ln(n)</m> for all <m>n\geq 1</m>,
+      <m>\ds\frac1n \geq \frac{1}{n+\ln(n) }</m> for all <m>n\geq 1</m>.
+      The given series has terms <em>less than</em>
+      the terms of a divergent series,
+      and we cannot conclude anything from this.
+    </p>
+
+    <p>
+      Fortunately,
+      we can apply another test to the given series to determine its convergence.
+    </p>
+
+    <figure xml:id="vid-seqseries-intcomp-motivate-limit" component="video" vshift="0">
+      <caption>Motivating <xref ref="thm_series_limit_compare"/></caption>
+      <video youtube="bH7U2fgSWXs" label="vid-seqseries-intcomp-motivate-limit"/>
+    </figure>
+  </subsection>
+
+  <subsection>
+    <title>Limit Comparison Test</title>
+    <theorem xml:id="thm_series_limit_compare">
+      <title>Limit Comparison Test</title>
+      <statement>
+        <p>
+          Let <m>\{a_n\}</m> and <m>\{b_n\}</m> be positive sequences.
+              <idx><h>series</h><h>Limit Comparison Test</h></idx>
+              <idx><h>Limit Comparison Test</h><h>for series</h></idx>
+              <idx><h>convergence</h><h>Limit Comparison Test</h></idx>
+              <idx><h>divergence</h><h>Limit Comparison Test</h></idx>
+        </p>
+
+        <p>
+          <ol>
+            <li>
+              <p>
+                If <m>\lim\limits_{n\to\infty} \dfrac{a_n}{b_n} = L</m>,
+                where <m>L</m> is a positive real number,
+                then <m>\ds \infser a_n</m> and
+                <m>\ds \infser b_n</m> either both converge or both diverge.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                If <m>\lim\limits_{n\to\infty} \dfrac{a_n}{b_n} = 0</m>,
+                then if <m>\ds \infser b_n</m> converges,
+                then so does <m>\ds \infser a_n</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                If <m>\lim\limits_{n\to\infty} \dfrac{a_n}{b_n} = \infty</m>,
+                then if <m>\ds \infser b_n</m> diverges,
+                then so does <m>\ds \infser a_n</m>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      <xref ref="thm_series_limit_compare"/>
+      is most useful when the convergence of the series from <m>\{b_n\}</m> is known and we are trying to determine the convergence of the series from <m>\{a_n\}</m>.
+    </p>
+
+    <figure xml:id="vid-seqseries-intcomp-limit-compare" component="video" vshift="1">
+      <caption>Video presentation of <xref ref="thm_series_limit_compare"/></caption>
+      <video youtube="zGKEPIyXvvY" label="vid-seqseries-intcomp-limit-compare"/>
+    </figure>
+
+    <p>
+      We use the Limit Comparison Test in the next example to examine the series
+      <m>\ds\infser \frac1{n+\ln(n) }</m> which motivated this new test.
+    </p>
+
+    <example xml:id="ex_lct1">
+      <title>Applying the Limit Comparison Test</title>
+      <statement>
+        <p>
+          Determine the convergence of
+          <m>\ds\infser \frac1{n+\ln(n) }</m> using the Limit Comparison Test.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We compare the terms of <m>\ds\infser \frac1{n+\ln(n) }</m> to the terms of the Harmonic Sequence <m>\ds\infser \frac1{n}</m>:
+          <md>
+            <mrow>\lim_{n\to\infty}\frac{1/(n+\ln(n) )}{1/n} \amp = \lim_{n\to\infty} \frac{n}{n+\ln(n) }</mrow>
+            <mrow>\amp = 1 \text{ (after applying L'Hospital's Rule) } </mrow>
+          </md>.
+        </p>
+
+        <p>
+          Since the Harmonic Series diverges,
+          we conclude that <m>\ds\infser \frac1{n+\ln(n) }</m> diverges as well.
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="RBeu0Tgsj_c" label="vid-seqseries-intcomp-limit-example1" component="video"/>
+      </solution>
+    </example>
+
+    <example xml:id="ex_lct2">
+      <title>Applying the Limit Comparison Test</title>
+      <statement>
+        <p>
+          Determine the convergence of <m>\ds\infser \frac1{3^n-n^2}</m>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          This series is similar to the one in <xref ref="ex_dct1"/>,
+          but now we are considering <q><m>3^n-n^2</m></q>
+          instead of <q><m>3^n+n^2</m>.</q>
+          This difference makes applying the Direct Comparison Test difficult.
+        </p>
+
+        <p>
+          Instead, we use the Limit Comparison Test and compare with the series <m>\ds\infser \frac1{3^n}</m>:
+          <md>
+            <mrow>\lim_{n\to\infty}\frac{1/(3^n-n^2)}{1/3^n} \amp = \lim_{n\to\infty}\frac{3^n}{3^n-n^2}</mrow>
+            <mrow>\amp = 1  \text{ (after applying L'Hospital's Rule twice) } </mrow>
+          </md>.
+        </p>
+
+        <p>
+          We know <m>\ds\infser \frac1{3^n}</m> is a convergent geometric series,
+          hence <m>\ds\infser \frac1{3^n-n^2}</m> converges as well.
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="1qaiCHhP3GE" label="vid-seqseries-intcomp-limit-example2" component="video"/>
+      </solution>
+    </example>
+
+    <p>
+      As mentioned before,
+      practice helps one develop the intuition to quickly choose a series with which to compare.
+      A general rule of thumb is to pick a series based on the dominant term in the expression of <m>\{a_n\}</m>.
+      It is also helpful to note that factorials dominate exponentials,
+      which dominate algebraic functions (e.g., polynomials),
+      which dominate logarithms.
+      In the previous example,
+      the dominant term of <m>\ds\frac{1}{3^n-n^2}</m> was <m>3^n</m>,
+      so we compared the series to <m>\ds \infser \frac1{3^n}</m>.
+      It is hard to apply the Limit Comparison Test to series containing factorials, though,
+      as we have not learned how to apply L'Hospital's Rule to <m>n!</m>.
+    </p>
+
+    <exercise label="APEX-PROTEUS-sec-9_3-int-comp-test-3-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      <statement>
+        <p>
+          Match each series on the left to the best <m>p</m>-series on the right
+          to use for limit comparison.
+        </p>
+      </statement>
+      <cardsort>
+        <match>
+          <premise><m>\ds \sum_{n=2}^\infty \frac{2n+1}{n^4-3n^2+2}</m></premise>
+          <premise><m>\ds \sum_{n=1}^\infty \frac{1-n^2}{n^5+2n+17}</m></premise>
+          <response><m>\ds \sum_{n=1}^\infty\frac{1}{n^3}</m></response>
+        </match>
+        <match>
+          <premise><m>\ds \sum_{n=1}^\infty \frac{\sqrt{n}}{n^2+2n+1}</m></premise>
+          <premise><m>\ds \sum_{n=1}^\infty \frac{3n+2}{\sqrt{n^5-3n^2+5}}</m></premise>
+          <response><m>\ds\sum_{n=1}^\infty \frac{1}{n^{3/2}}</m></response>
+        </match>
+        <match>
+          <premise><m>\ds\sum_{n=1}^\infty \frac{3n^2+2}{1-5n+2n^3}</m></premise>
+          <response><m>\ds\sum_{n=1}^\infty\frac{1}{n}</m></response>
+        </match>        
+      </cardsort>
+    </exercise>
+
+    <example xml:id="ex_lct3">
+      <title>Applying the Limit Comparison Test</title>
+      <statement>
+        <p>
+          Determine the convergence of <m>\ds\infser \frac{\sqrt{n}+3}{n^2-n+1}</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We naïvely attempt to apply the rule of thumb given above and note that the dominant term in the expression of the series is <m>1/n^2</m>.
+          Knowing that <m>\ds \infser \frac1{n^2}</m> converges,
+          we attempt to apply the Limit Comparison Test:
+          <md>
+            <mrow>\lim_{n\to\infty}\frac{(\sqrt{n}+3)/(n^2-n+1)}{1/n^2} \amp = \lim_{n\to\infty}\frac{n^2(\sqrt n+3)}{n^2-n+1}</mrow>
+            <mrow>\amp = \infty  \text{ (Apply L'Hospital's Rule) } </mrow>
+          </md>.
+        </p>
+
+        <p>
+          <xref ref="thm_series_limit_compare"/>
+          part (3) only applies when <m>\ds\infser b_n</m> diverges;
+          in our case, it converges.
+          Ultimately, our test has not revealed anything about the convergence of our series.
+        </p>
+
+        <p>
+          The problem is that we chose a poor series with which to compare.
+          Since the numerator and denominator of the terms of the series are both algebraic functions,
+          we should have compared our series to the dominant term of the numerator divided by the dominant term of the denominator.
+        </p>
+
+        <p>
+          The dominant term of the numerator is <m>n^{1/2}</m> and the dominant term of the denominator is <m>n^2</m>.
+          Thus we should compare the terms of the given series to <m>n^{1/2}/n^2 = 1/n^{3/2}</m>:
+          <md>
+            <mrow>\lim_{n\to\infty}\frac{(\sqrt{n}+3)/(n^2-n+1)}{1/n^{3/2}} \amp = \lim_{n\to \infty} \frac{n^{3/2}(\sqrt n+3)}{n^2-n+1}</mrow>
+            <mrow>\amp = 1 \text{ (Apply L'Hospital's Rule) } </mrow>
+          </md>.
+        </p>
+
+        <p>
+          Since the <m>p</m>-series <m>\ds\infser \frac1{n^{3/2}}</m> converges,
+          we conclude that <m>\ds\infser \frac{\sqrt{n}+3}{n^2-n+1}</m> converges as well.
+        </p>
+      </solution>
+      <solution component="video" vshift="1">
+        <title>Video solution</title>
+        <video width="98%" youtube="D-OsPkY8khE" label="vid-seqseries-intcomp-limit-example3" component="video"/>
+      </solution>
+    </example>
+
+    <p>
+      We mentioned earlier that the Integral Test did not work well with series containing factorial terms.
+      The next section introduces the Ratio Test,
+      which does handle such series well.
+      We also introduce the Root Test,
+      which is good for series where each term is raised to a power.
+    </p>
+  </subsection>
+
+  <exercises>
+    <subexercises xml:id="TaC-int-comp-tests">
+      <title>Terms and Concepts</title>
+      <exercise label="TaC-int-comp-tests-1">
+        <!--<webwork xml:id="webwork-TaC-int-comp-tests-1">
+            <pg-code>
+            </pg-code>-->
+            <statement>
+              <p>
+                In order to apply the Integral Test to a sequence <m>\{a_n\}</m>,
+                the function <m>a(n) = a_n</m> must be
+                <fillin mode="string" answer="continuous" width="20"/>, <fillin mode="string" answer="positive" width="20"/>, 
+                and <fillin mode="string" answer="decreasing" width="20"/>.
+              </p>
+            </statement>
+
+            <evaluation>
+              <evaluate>
+                <test correct="yes">
+                  <jscmp><![CDATA[
+                    ["continuous","positive","decreasing"].includes(ans)
+                    ]]></jscmp>
+                </test>
+              </evaluate>
+              <evaluate>
+                <test correct="yes">
+                  <jscmp><![CDATA[
+                    ["continuous","positive","decreasing"].includes(ans) && !ans_array.slice(0,1).includes(ans)
+                    ]]></jscmp>
+                </test>
+                <test>
+                  <jscmp><![CDATA[
+                    ans_array.slice(0,1).includes(ans)
+                    ]]></jscmp>
+                  <feedback>You already gave that answer.</feedback>
+                </test>
+              </evaluate>
+              <evaluate>
+                <test correct="yes">
+                  <jscmp><![CDATA[
+                    ["continuous","positive","decreasing"].includes(ans) && !ans_array.slice(0,2).includes(ans)
+                    ]]></jscmp>
+                </test>
+                <test>
+                  <jscmp><![CDATA[
+                    ans_array.slice(0,2).includes(ans)
+                    ]]></jscmp>
+                  <feedback>You already gave that answer.</feedback>
+                </test>
+              </evaluate>
+            </evaluation>
+        <!--</webwork>-->
+      </exercise>
+
+      <exercise label="TaC-int-comp-tests-2">
+        <!--<webwork xml:id="webwork-TaC-int-comp-tests-2">
+            <pg-code>
+            </pg-code>-->
+            <statement correct="no">
+              <p>
+                The Integral Test can be used to determine the sum of a convergent series.
+              </p>
+            </statement>
+        <!--</webwork>-->
+      </exercise>
+
+      <exercise label="TaC-int-comp-tests-3">
+        <!--<webwork xml:id="webwork-TaC-int-comp-tests-3">
+            <pg-code>
+            </pg-code>-->
+            <statement>
+              <p>
+                What test(s) in this section do not work well with factorials?
+              </p>
+            </statement>
+            <response />
+            
+            <solution>
+              <p>
+                The Integral Test
+                (we do not have a continuous definition of <m>n!</m> yet)
+                and the Limit Comparison Test
+                (same as above, hence we cannot take its derivative).
+              </p>
+            </solution>
+        <!--</webwork>-->
+      </exercise>
+
+      <exercise label="TaC-int-comp-tests-4">
+        <!--<webwork xml:id="webwork-TaC-int-comp-tests-4">
+            <pg-code>
+            </pg-code>-->
+            <statement>
+              <p>
+                Suppose <m>\ds \infser[0] a_n</m> is convergent,
+                and there are sequences <m>\{b_n\}</m> and <m>\{c_n\}</m> such that <m>b_n \leq a_n \leq c_n</m> for all <m>n</m>.
+                What can be said about the series
+                <m>\ds \infser[0] b_n</m> and <m>\ds \infser[0] c_n</m>?
+              </p>
+            </statement>
+            <response />
+            
+            <solution>
+              <p>
+                <m>\ds \infser[0] b_n</m> converges;
+                we cannot conclude anything about <m>\ds \infser[0] c_n</m>
+              </p>
+            </solution>
+        <!--</webwork>-->
+      </exercise>
+    </subexercises>
+    
+    <subexercises>
+      <title>Problems</title>
+      <exercisegroup cols="2" xml:id="exset-integral-test">
+
+        <introduction>
+          <p>
+            Use the Integral Test to determine the convergence of the given series.
+          </p>
+        </introduction>
+
+        <exercise label="ex-integral-test-1">
+          <!--<webwork xml:id="webwork-ex-integral-test-1">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{2^n}</m>
+                </p>
+              </statement>
+              <answer>
+                <p>
+                  Converges
+                </p>
+              </answer>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-integral-test-2">
+          <!--<webwork xml:id="webwork-ex-integral-test-2">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{n^4}</m>
+                </p>
+              </statement>
+              <answer>
+                <p>
+                  Converges
+                </p>
+              </answer>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-integral-test-3">
+          <!--<webwork xml:id="webwork-ex-integral-test-3">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{n}{n^2+1}</m>
+                </p>
+              </statement>
+              <answer>
+                <p>
+                  Diverges
+                </p>
+              </answer>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-integral-test-4">
+          <!--<webwork xml:id="webwork-ex-integral-test-4">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \sum_{n=2}^\infty \frac{1}{n\ln(n) }</m>
+                </p>
+              </statement>
+              <answer>
+                <p>
+                  Diverges
+                </p>
+              </answer>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-integral-test-5">
+          <!--<webwork xml:id="webwork-ex-integral-test-5">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{n^2+1}</m>
+                </p>
+              </statement>
+              <answer>
+                <p>
+                  Converges
+                </p>
+              </answer>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-integral-test-6">
+          <!--<webwork xml:id="webwork-ex-integral-test-6">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \sum_{n=2}^\infty \frac{1}{n(\ln(n) )^2}</m>
+                </p>
+              </statement>
+              <answer>
+                <p>
+                  Converges
+                </p>
+              </answer>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-integral-test-7">
+          <!--<webwork xml:id="webwork-ex-integral-test-7">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{n}{2^n}</m>
+                </p>
+              </statement>
+              <answer>
+                <p>
+                  Converges
+                </p>
+              </answer>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-integral-test-8">
+          <!--<webwork xml:id="webwork-ex-integral-test-8">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{\ln(n) }{n^3}</m>
+                </p>
+              </statement>
+              <answer>
+                <p>
+                  Converges
+                </p>
+              </answer>
+          <!--</webwork>-->
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-direct-comparison">
+
+        <introduction>
+          <p>
+            Use the Direct Comparison Test to determine the convergence of the given series;
+            state what series is used for comparison.
+          </p>
+        </introduction>
+
+        <exercise label="ex-direct-comparison-1">
+          <!--<webwork xml:id="webwork-ex-direct-comparison-1">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{n^2+3n-5}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; compare to <m>\ds \infser \frac{1}{n^2}</m>,
+                  as <m>1/(n^2+3n-5) \leq 1/n^2</m> for all <m>n \gt 1</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-direct-comparison-2">
+          <!--<webwork xml:id="webwork-ex-direct-comparison-2">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{4^n+n^2-n}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; compare to <m>\ds \infser \frac{1}{4^n}</m>,
+                  as <m>1/(4^n+n^2-n) \leq 1/4^n</m> for all <m>n\geq 1</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-direct-comparison-3">
+          <!--<webwork xml:id="webwork-ex-direct-comparison-3">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{\ln(n) }{n}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac{1}{n}</m>,
+                  as <m>1/n \leq \ln(n) /n</m> for all <m>n\geq 3</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-direct-comparison-4">
+          <!--<webwork xml:id="webwork-ex-direct-comparison-4">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{n!+n}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; compare to <m>\ds \infser \frac{1}{n!}</m>,
+                  as <m>1/(n!+n) \leq 1/n!</m> for all <m>n\geq 1</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-direct-comparison-5">
+          <!--<webwork xml:id="webwork-ex-direct-comparison-5">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \sum_{n=2}^\infty \frac{1}{\sqrt{n^2-1}}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac{1}{n}</m>.
+                  Since <m>n=\sqrt{n^2}  \gt  \sqrt{n^2-1}</m>,
+                  <m>1/n \leq 1/\sqrt{n^2-1}</m> for all <m>n\geq 2</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-direct-comparison-6">
+          <!--<webwork xml:id="webwork-ex-direct-comparison-6">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \sum_{n=5}^\infty \frac{1}{\sqrt{n}-2}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac{1}{\sqrt n}</m>,
+                  as <m>1/\sqrt n \leq 1/(\sqrt{n}-2)</m> for all <m>n\geq 5</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-direct-comparison-7">
+          <!--<webwork xml:id="webwork-ex-direct-comparison-7">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{n^2+n+1}{n^3-5}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac{1}{n}</m>:
+                  <md>
+                    \frac 1n = \frac{n^2}{n^3} \lt  \frac{n^2+n+1}{n^3} \lt  \frac{n^2+n+1}{n^3-5}
+                  </md>,
+                  for all <m>n\geq 1</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-direct-comparison-8">
+          <!--<webwork xml:id="webwork-ex-direct-comparison-8">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{2^n}{5^n+10}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; compare to <m>\ds \infser \left(\frac{2}{5}\right)^n</m>,
+                  as <m>2^n/(5^n+10) \lt 2^n/5^n</m> for all <m>n\geq 1</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-direct-comparison-9">
+          <!--<webwork xml:id="webwork-ex-direct-comparison-9">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \sum_{n=2}^\infty \frac{n}{n^2-1}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac 1n</m>.
+                  Note that
+                  <md>
+                    \frac{n}{n^2-1} = \frac{n^2}{n^2-1}\cdot\frac1n  \gt  \frac 1n
+                  </md>,
+                  as <m>\frac{n^2}{n^2-1} \gt 1</m>, for all <m>n\geq 2</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-direct-comparison-10">
+          <!--<webwork xml:id="webwork-ex-direct-comparison-10">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \sum_{n=2}^\infty \frac{1}{n^2\ln(n) }</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; compare to <m>\ds \infser \frac 1{n^2}</m>,
+                  as <m>1/(n^2\ln(n) ) \leq 1/n^2</m> for all <m>n\geq 3</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-limit-comparison">
+
+        <introduction>
+          <p>
+            Use the Limit Comparison Test to determine the convergence of the given series;
+            state what series is used for comparison.
+          </p>
+        </introduction>
+
+        <exercise label="ex-limit-comparison-1">
+          <!--<webwork xml:id="webwork-ex-limit-comparison-1">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{n^2 -3n+5}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; compare to <m>\ds \infser \frac 1{n^2}</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-limit-comparison-2">
+          <!--<webwork xml:id="webwork-ex-limit-comparison-2">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{4^n-n^2}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; compare to <m>\ds \infser \frac 1{4^n}</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-limit-comparison-3">
+          <!--<webwork xml:id="webwork-ex-limit-comparison-3">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \sum_{n=4}^\infty \frac{\ln(n) }{n-3}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac {\ln(n) }{n}</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-limit-comparison-4">
+          <!--<webwork xml:id="webwork-ex-limit-comparison-4">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{\sqrt{n^2+n}}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac {1}{n}</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-limit-comparison-5">
+          <!--<webwork xml:id="webwork-ex-limit-comparison-5">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{n+\sqrt{n}}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac {1}{n}</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-limit-comparison-6">
+          <!--<webwork xml:id="webwork-ex-limit-comparison-6">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{n-10}{n^2+10n+10}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac {1}{n}</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-limit-comparison-7">
+          <!--<webwork xml:id="webwork-ex-limit-comparison-7">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \sin\big(1/n\big)</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac {1}{n}</m>.
+                  Just as <m>\lim\limits_{n\to0}\frac{\sin(n) }{n} = 1</m>,
+                  <m>\lim\limits_{n\to\infty}\frac{\sin(1/n)}{1/n} = 1</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-limit-comparison-8">
+          <!--<webwork xml:id="webwork-ex-limit-comparison-8">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{n+5}{n^3-5}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; compare to <m>\ds \infser \frac {1}{n^2}</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-limit-comparison-9">
+          <!--<webwork xml:id="webwork-ex-limit-comparison-9">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{\sqrt{n}+3}{n^2+17}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; compare to <m>\ds \infser \frac {1}{n^{3/2}}</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-limit-comparison-10">
+          <!--<webwork xml:id="webwork-ex-limit-comparison-10">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{\sqrt{n}+100}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; compare to <m>\ds \infser \frac {1}{n^{1/2}}</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-int-comp-choose-test">
+
+        <introduction>
+          <p>
+            Determine the convergence of the given series.
+            State the test used; more than one test may be appropriate.
+          </p>
+        </introduction>
+
+        <exercise label="ex-int-comp-choose-test-1">
+          <!--<webwork xml:id="webwork-ex-int-comp-choose-test-1">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{n^2}{2^n}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; Integral Test
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-int-comp-choose-test-2">
+          <!--<webwork xml:id="webwork-ex-int-comp-choose-test-2">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{(2n+5)^3}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; Integral Test,
+                  <m>p</m>-Series Test, Direct &amp; Limit Comparison Tests can all be used.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-int-comp-choose-test-3">
+          <!--<webwork xml:id="webwork-ex-int-comp-choose-test-3">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{n!}{10^n}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; the <m>n</m>th Term Test and Direct Comparison Test can be used.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-int-comp-choose-test-4">
+          <!--<webwork xml:id="webwork-ex-int-comp-choose-test-4">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{\ln(n) }{n!}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; the Direct Comparison Test can be used with sequence <m>1/(n-1)!</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-int-comp-choose-test-5">
+          <!--<webwork xml:id="webwork-ex-int-comp-choose-test-5">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{1}{3^n+n}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Converges; the Direct Comparison Test can be used with sequence <m>1/3^n</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-int-comp-choose-test-6">
+          <!--<webwork xml:id="webwork-ex-int-comp-choose-test-6">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{n-2}{10n+5}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; the <m>n</m>th Term Test can be used,
+                  along with the Limit Comparison Test
+                  (compare with 1/10).
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-int-comp-choose-test-7">
+          <!--<webwork xml:id="webwork-ex-int-comp-choose-test-7">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{3^n}{n^3}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; the <m>n</m>th Term Test can be used,
+                  along with the Integral Test.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+
+        <exercise label="ex-int-comp-choose-test-8">
+          <!--<webwork xml:id="webwork-ex-int-comp-choose-test-8">
+              <pg-code>
+              </pg-code>-->
+              <statement>
+                <p>
+                  <m>\ds \infser \frac{\cos(1/n)}{\sqrt{n}}</m>
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  Diverges; the Limit Comparison Test can be used with sequence <m>1/\sqrt{n}</m>.
+                </p>
+              </solution>
+          <!--</webwork>-->
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="ex-int-comp-test-multi1">
+        <introduction>
+          <p>
+            Given that <m>\ds \infser a_n</m> converges,
+            state which of the following series converges,
+            may converge, or does not converge.
+          </p>
+        </introduction>
+
+        <exercise label="ex-int-comp-test-multi1a">
+          <statement>
+            <p>
+              <m>\ds \infser \frac{a_n}n</m>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Converges; use Direct Comparison Test as <m>\frac{a_n}{n}\lt n</m>.
+            </p>
+          </solution>
+        </exercise>
+
+        <exercise xml:id="task-series-intcomp1" label="ex-int-comp-test-multi1b">
+          <statement>
+            <p>
+              <m>\ds \infser a_n a_{n+1}</m>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Converges; since original series converges,
+              we know <m>\lim_{n\to\infty}a_n = 0</m>.
+              Thus for large <m>n</m>, <m>a_na_{n+1} \lt a_n</m>.
+            </p>
+          </solution>
+        </exercise>
+
+        <exercise label="ex-int-comp-test-multi1c">
+          <statement>
+            <p>
+              <m>\ds \infser (a_n)^2</m>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Converges; similar logic to  so <m>(a_n)^2\lt a_n</m>.
+            </p>
+          </solution>
+        </exercise>
+
+        <exercise label="ex-int-comp-test-multi1d">
+          <statement>
+            <p>
+              <m>\ds \infser na_n</m>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              May converge;
+              certainly <m>na_n  \gt  a_n</m> but that does not mean it does not converge.
+            </p>
+          </solution>
+        </exercise>
+
+        <exercise label="ex-int-comp-test-multi1e">
+          <statement>
+            <p>
+              <m>\ds \infser \frac{1}{a_n}</m>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Does not converge, using logic from <xref ref="task-series-intcomp1" text="custom">part</xref> and <m>n^{th}</m> Term Test.
+            </p>
+          </solution>
+        </exercise>
+      </exercisegroup>
+
+      <exercise label="ex-int-comp-test-multi2">
+        <introduction>
+          <p>
+            In this exercise, we explore an approximation method for series to which the
+            <xref ref="thm_integral_test" text="title"/> applies.
+          </p>
+        </introduction>
+        <task label="ex-int-comp-test-multi2a">
+          <statement>
+            <p>
+              Let <m>a(x)</m> be a function to which the
+              <xref ref="thm_integral_test" text="title"/> applies,
+              and for which the series <m>\infser a_n</m> converges.
+            </p>
+            <p>
+              Let <m>R_n = \sum_{n+1}^\infty a_n</m> denote the <term>remainder</term>;
+              that is, the difference between <m>\infser a_n</m> and the <m>n</m>th partial sum.
+              (Note that <m>R_n</m> is the size of the error that results if we approximate the series by the <m>n</m>th partial sum.)
+              Explain why we must have the following inequality:
+              <md>
+                \int_n^\infty a(x)\,dx \leq R_n \leq \int_{n+1}^\infty a(x)\,dx
+              </md>
+            </p>
+          </statement>
+          <hint>
+            <p>
+              Sketch a graph to represent <m>y=a(x)</m>. What property must <m>a(x)</m> have?
+              See if you can interpret <m>R_n</m> in terms of left and right handed Riemann sums.
+            </p>
+          </hint>
+          <solution>
+            <p>
+              Since the Integral Test applies, we know that <m>a(x)</m> must be a decreasing function.
+              The sum <m>R_n = a_{n+1}+a_{n+2}+\cdots</m> can be viewed as a right-endpoint Riemann sum
+              for the integral <m>\int_n^\infty a(x)\,dx</m>, and this must be an underestimate,
+              since <m>a(x)</m> is a decreasing function.
+              But <m>R_n</m> can also be viewed as a left-endpoint Riemann sum for the integral
+              <m>\int_{n+1}^\infty a(x)\,dx</m>, and this must be an overestimate.
+            </p>
+          </solution>
+        </task>
+        <task label="ex-int-comp-test-multi2b">
+          <statement>
+            <p>
+              Estimate the error involved in using the first 12 terms to approximate the series <m>\sum_{n=1}^\infty 1/n^4</m>.
+              What is the approximate value of the series?
+            </p>
+          </statement>
+          <solution>
+            <p>
+              For the first 12 terms, we take <m>n=12</m>.
+              We find:
+              <md>
+                <mrow>\int_{12}^\infty \frac{1}{x^4}\,dx \amp = \frac{1}{5184} \approx 0.000193</mrow>
+                <mrow>\int_{13}^\infty \frac{1}{x^4}\,dx \amp = \frac{1}{6591} \approx 0.000152</mrow>
+                <mrow>\sum_{1}^{12}\frac{1}{n^4} \amp \approx 1.082153</mrow>
+              </md>.
+            </p>
+          </solution>
+        </task>
+        <task label="ex-int-comp-test-multi2c">
+          <statement>
+            <p>
+              How many terms must we take to ensure that the <m>n</m>th partial sum approximation for
+              <m>\infser 1/n^4</m> is accurate to 5 decimal places?
+            </p>
+          </statement>
+          <solution>
+            <p>
+              We have
+              <md>
+                R_n\leq \int_n^\infty \frac{1}{x^4}\,dx = \frac{1}{3n^3}
+              </md>.
+              For 5 decimal places of accuracy, we need <m>R_n\leq 0.000005</m>.
+              Setting <m>0.000005=1/(3n^3)</m> and solving for <m>n</m> gives
+              <m>n\approx 40.55</m>, so we should take 41 terms.
+            </p>
+          </solution>
+        </task>
+      </exercise>
+    </subexercises>
+  </exercises>
+</section>

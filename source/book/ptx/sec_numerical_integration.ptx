@@ -1,0 +1,3698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec_numerical_integration" label="sec_numerical_integration">
+  <title>Numerical Integration</title>
+  <introduction>
+    <p>
+      The Fundamental Theorem of Calculus gives a concrete technique for finding the exact value of a definite integral.
+      That technique is based on computing antiderivatives.
+      Despite the power of this theorem,
+      there are still situations where we must <em>approximate</em>
+      the value of the definite integral instead of finding its exact value.
+      The first situation we explore is where we <em>cannot</em>
+      compute the antiderivative of the integrand.
+      The second case is when we actually do not know the function in the integrand,
+      but only its value when evaluated at certain points.
+          <idx><h>integration</h><h>numerical</h></idx>
+          <idx><h>numerical integration</h></idx>
+    </p>
+
+    <p>
+      An <em>elementary function</em>
+          <idx><h>elementary function</h></idx>
+      is any function that is a combination of polynomial,
+      <m>n</m>th root, rational,
+      exponential, logarithmic and trigonometric functions.
+      We can compute the derivative of any elementary function,
+      but there are many elementary functions of which we cannot compute an antiderivative.
+      For example,
+      the following functions do not have antiderivatives that we can express with elementary functions:
+      <ul marker="" cols="3">
+        <li><m>e^{x^2}</m>,</li>
+        <li><m>\sin(x^3)</m>,</li>
+        <li><m>\frac{\sin(x)}{x}</m>.</li>
+      </ul>
+    </p>
+
+    <p>
+      The simplest way to refer to the antiderivatives of
+      <m>e^{-x^2}</m> is to simply write <m>\int e^{-x^2}\, dx</m>.
+    </p>
+
+    <p>
+      This section outlines three common methods of approximating the value of definite integrals.
+      We describe each as a systematic method of approximating area under a curve.
+      By approximating this area accurately,
+      we find an accurate approximation of the corresponding definite integral.
+    </p>
+
+    <p>
+      We will apply the methods we learn in this section to the following definite integrals:
+      <ul marker="" cols="3">
+        <li><m>\int_0^1 e^{-x^2} \, dx</m>,</li>
+        <li><m>\int_{-\frac{\pi}{4}}^{\frac{\pi}{2}} \sin(x^3) \, dx</m>,</li>
+        <li><m>\int_{0.5}^{4\pi} \frac{\sin(x)}{x} \, dx</m>,</li>
+      </ul>
+      as pictured in <xref ref="fig_numerical1"/>.
+    </p>
+
+    <figure xml:id="fig_numerical1">
+      <caption>Graphically representing three definite integrals that cannot be evaluated using antiderivatives</caption>
+      <sidebyside widths="31% 31% 31%" margins="0%">
+
+        <figure xml:id="fig_numerical1a">
+          <caption/>
+        <!-- START figures/fig_numerical1a.tex -->
+          <image>
+          <shortdescription>Integral of e^{-x^2} from 0 to 1</shortdescription>
+            <description>
+            <p>
+            This is a graph of <m>f(x)=e^{-x^2}</m>.starting at <m>(0, 1)</m> the line slopes down towards the <m>x</m> axis. The line goes from <m>(0, 1)</m> to close
+            to <m>(1, 0.75)</m>. We consider the area between <m>(0, 1)</m>, <m>(1, 0.75)</m>,<m>(1, 0)</m> and <m>(0, 0)</m>.
+
+            </p>
+            </description>
+            <latex-image label="img_numerical1a">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            ymin=-.2,ymax=1.2,
+            xmin=-.2,xmax=1.1
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=0:1] {e^-x^2} \closedcycle;
+            \addplot [firstcurvestyle,domain=0:1] {e^-x^2};
+
+            \draw (axis cs:.75,1) node { $y=e^{-x^2}$};
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+
+        </figure>
+        <!-- figures/fig_numerical1a.tex END -->
+        <!-- START figures/fig_numerical1b.tex -->
+        <figure xml:id="fig_numerical1b">
+          <caption/>
+
+          <image>
+          <shortdescription>Graph of the function sin(x^3)</shortdescription>
+            <description>
+            <p>
+            The graph of <m>\sin(x^3)</m>. Starting at <m>(-0.75, -0.5)</m> the graph moves upwards to the right. It merges to the <m>x</m> axis close to <m>(-0.25, 0)</m> and
+            continues along the <m>x</m> axis. It goes through and continues along the positive <m>x</m> axis for a short while then rises up until it reaches <m>(1.25, 1)</m>
+            then sharply descends back towards the <m>x</m> axis. It intersects the <m>y</m> axis close to <m>(1.5, 0)</m> and continues downwards. We consider the area above the part of the
+            curve that is in the fourth quadrant and below the negative <m>x</m> axis. Then below the curve that rises up from the positive <m>x</m> axis and comes down. And the area above the
+            part of the curve that continues downwards after intersecting the <m>x</m> axis.
+
+            </p>
+            </description>
+            <latex-image label="img_numerical1b">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            ymin=-.6,ymax=1.2,
+            xmin=-1,xmax=1.7
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=-.7854:1.5708,samples=40] {sin(deg(x^3))} \closedcycle;
+            \addplot [firstcurvestyle,domain=-.7854:1.5708,samples=80] {sin(deg(x^3))};
+
+            \draw (axis cs:.6,.9) node { $y=\sin(x^3)$};
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+
+        </figure>
+        <!-- figures/fig_numerical1b.tex END -->
+        <!-- START figures/fig_numerical1c.tex -->
+        <figure xml:id="fig_numerical1c">
+          <caption/>
+
+          <image>
+          <shortdescription>The graph of y=sin(x)/x and its integral from .5 to 4 pi</shortdescription>
+            <description>
+            <p>
+            We consider the area under the graph of <m>\sin(x)/x</m> starting close to <m>(0.5, 0.9)</m> to <m>(12.5, 0)</m>. The structure of the graph is similar to that
+            of a wave. The distance between the highest point of the graph in the positive <m>y</m> axis and the lowest point in the negative <m>y</m> axis shows a
+            decreasing trend as it continues in the positive <m>x</m> direction but the wavelength increases in the positive <m>x</m> direction.The graph starts at <m>(0.5, 0.9)</m>
+            close to the <m>x</m> axis and curves downwards. It crosses the <m>x</m> axis close to <m>(3, 0)</m> while travelling downwards. It continues downwards for
+            a short amount and the curves upwards and this time crosses the <m>x</m> axis at <m>(6.25, 0)</m>. From <m>(6.25, 0)</m> it travels another wavelength crossing
+            the <m>x</m> axis once close to <m>(10,0)</m> while traveling upwards and at <m>(12.5, 0)</m> where the graph ends. We consider the area under the graph when
+            it is above the <m>x</m> axis and above it when it is below the <m>x</m> axis.
+            </p>
+            </description>
+            <latex-image label="img_numerical1c">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={5,10,15},
+            ymin=-.3,ymax=1.1,
+            xmin=-.9,xmax=15.9
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=0.5:12.57] {sin(deg(x))/x} \closedcycle;
+            \addplot [firstcurvestyle,domain=0.5:12.57,samples=60] {sin(deg(x))/x};
+
+            \draw (axis cs:10,.7) node { $\displaystyle y=\frac{\sin(x) }{x}$};
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        <!-- figures/fig_numerical1c.tex END -->
+        </figure>
+      </sidebyside>
+    </figure>
+  </introduction>
+
+  <subsection>
+    <title>The Left and Right Hand Rule Methods</title>
+    <p>
+      In <xref ref="sec_riemann"/>
+      we addressed the problem of evaluating definite integrals by approximating the area under the curve using rectangles.
+      We revisit those ideas here before introducing other methods of approximating definite integrals.
+          <idx><h>numerical integration</h><h>Left/Right Hand Rule</h></idx>
+          <idx><h>Right Hand Rule</h></idx>
+          <idx><h>Left Hand Rule</h></idx>
+          <idx><h>integration</h><h>numerical!Left/Right Hand Rule</h></idx>
+    </p>
+
+    <p>
+      We start with a review of notation.
+      Let <m>f</m> be a continuous function on the interval <m>[a,b]</m>.
+      We wish to approximate <m>\ds \int_a^b f(x)\, dx</m>.
+      We partition <m>[a,b]</m> into <m>n</m> equally spaced subintervals,
+      each of length <m>\ds\dx = \frac{b-a}{n}</m>.
+      The endpoints of these subintervals are labeled as
+      <md>
+        x_0=a,\,x_1 = a+\dx,\,x_2 = a+ 2\dx,\,\ldots,\,x_i = a+i\dx,\,\ldots,\,x_{n} = b
+      </md>.
+    </p>
+
+    <p>
+      <xref ref="idea_riemann"/>
+      states that to use the Left Hand Rule we use the summation
+      <m>\ds \sum_{i=1}^n f(x_{i-1})\dx</m> and to use the Right Hand Rule we use <m>\ds \sum_{i=1}^n f(x_{i})\dx</m>.
+      We review the use of these rules in the context of examples.
+    </p>
+
+    <example xml:id="ex_num1">
+      <title>Approximating definite integrals with rectangles</title>
+      <statement>
+        <p>
+          Approximate <m>\ds \int_0^1e^{-x^2}\, dx</m> using the Left and Right Hand Rules with 5 equally spaced subintervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We begin by partitioning the interval <m>[0,1]</m> into 5 equally spaced intervals.
+          We have <m>\dx = \frac{1-0}5 = 1/5=0.2</m>, so
+          <md>
+            x_0 = 0,\,x_1 = 0.2,\,x_2 = 0.4,\,x_3 = 0.6,\,x_4 = 0.8,\,\text{ and } \,x_5 = 1
+          </md>.
+        </p>
+
+        <p>
+          Using the Left Hand Rule, we have:
+          <md>
+            <mrow>\sum_{i=1}^n f(x_{i-1})\dx \amp = \big(f(x_0)+f(x_1) + f(x_2) + f(x_3) + f(x_4)\big)\dx</mrow>
+            <mrow>\amp = \big(f(0) + f(0.2) + f(0.4) + f(0.6) + f(0.8)\big)\dx</mrow>
+            <mrow>\amp \approx (1+0.9608 +0.8521 + 0.6977 + 0.5273)(0.2)</mrow>
+            <mrow>\amp \approx 0.8076</mrow>
+          </md>.
+        </p>
+
+        <p>
+          Using the Right Hand Rule, we have:
+          <md>
+            <mrow>\sum_{i=1}^n f(x_{i})\dx \amp = \big(f(x_1) + f(x_2) + f(x_3) + f(x_4)+f(x_5)\big)\dx</mrow>
+            <mrow>\amp = \big(f(0.2) + f(0.4) + f(0.6) + f(0.8)+f(1)\big)\dx</mrow>
+            <mrow>\amp \approx (0.9608 +0.8521 + 0.6977 + 0.5273 + 0.3678)(0.2)</mrow>
+            <mrow>\amp \approx 0.6812</mrow>
+          </md>.
+        </p>
+
+        <figure xml:id="fig_num1">
+          <caption>Approximating <m>\int_0^1e^{-x^2}\, dx</m> in <xref ref="ex_num1"/></caption>
+          <sidebyside widths="47% 47%" margins="0%">
+
+      <!-- START figures/fig_num1b.tex -->
+          <figure xml:id="fig_num1b">
+            <caption>Using the Left Hand Rule</caption>
+            <image>
+            <shortdescription>Using the Left Hand rule</shortdescription>
+              <description>
+              <p> The graph of <m>e^{-x^2}</m> starts at <m>(0, 1)</m> and slowly slopes downwards to the right as it slowly gets closer to the positive <m>x</m> axis.
+              To use the left hand rule we divide the area between <m>[0, 1]</m> five rectangles of equal widhth and decreasing height. As the curve moves closer to the <m>x</m> axis,
+              the heights of the rectangles gets shorter even thought the widths stay the same. Because the curve is downwards sloping to the right, the top right corners
+              of the rectangles contain a little region which is above the curve. As the curve moves downwards and the height of the rectangles become shorter, the area
+              that is contained by the top right corners of the rectangles and the top of the curve gets larger. We calculate the sum of the areas of these rectangles.
+              </p></description>
+              <latex-image label="img_num1b">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              axis on top,
+              xtick={.2,.4,.6,.8,1},
+              ymin=-.2,ymax=1.2,
+              xmin=-.2,xmax=1.1
+              ]
+
+              \addplot [firstcurvestyle,areastyle,domain=0:1] {e^-x^2} \closedcycle;
+              \addplot [firstcurvestyle,domain=0:1] {e^-x^2};
+
+              \foreach \x / \y in {0 / 1, 0.2 / 0.96, 0.4 / .85, 0.6 / .7, .8 / .53}
+              {\addplot [thick,secondcolor] coordinates {(\x+.2,0) (\x+.2,\y) (\x,\y) (\x,0) (\x+.2,0)};
+              }
+
+              \draw (axis cs:.75,1) node { $y=e^{-x^2}$};
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+
+          </figure>
+          <!-- figures/fig_num1b.tex END -->
+          <!-- START figures/fig_num1a.tex -->
+          <figure xml:id="fig_num1a">
+            <caption>Using the Right Hand Rule</caption>
+            <image>
+            <shortdescription>Using the Right Hand rule</shortdescription>
+              <description>
+              <p> For this image we consider the same downwards sloping curve of <m>e^{-x^2}</m>. We divide the area between <m>[0,1]</m> into five
+              rectangles of equal width and decreasing height. For the right hand rule the rectangles are drawn in such a way that the top right corners of the rectangles
+              touch the bottom of the curve. There is a small area between the top left of the triangles and the bottom of the curve. This area gets larger as the
+              curve moves downwards and the lengths of the rectangles decrease. For the left hand rule we add up the areas of these rectangles.
+              </p></description>
+              <latex-image label="img_num1a">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              axis on top,
+              xtick={.2,.4,.6,.8,1},
+              ymin=-.2,ymax=1.2,
+              xmin=-.2,xmax=1.1
+              ]
+
+              \addplot [firstcurvestyle,areastyle,domain=0:1] {e^-x^2} \closedcycle;
+              \addplot [firstcurvestyle,domain=0:1] {e^-x^2};
+
+              \foreach \x / \y in {0.2 / 0.96, 0.4 / .85, 0.6 / .7, .8 / .53, 1/ .37}
+              {\addplot [thick,secondcolor] coordinates {(\x-.2,0) (\x-.2,\y) (\x,\y) (\x,0) (\x-.2,0)};
+	            }
+
+              \draw (axis cs:.75,1) node { $y=e^{-x^2}$};
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+          <!-- figures/fig_num1a.tex END -->
+          </figure>
+        </sidebyside>
+      </figure>
+
+        <p>
+          <xref ref="fig_num1"/>
+          shows the rectangles used in each method to approximate the definite integral.
+          These graphs show that in this particular case,
+          the Left Hand Rule is an over approximation and the Right Hand Rule is an under approximation.
+          To get a better approximation,
+          we could use more rectangles,
+          as we did in <xref ref="sec_riemann"/>.
+          We could also average the Left and Right Hand Rule results together, giving
+          <md>
+            \frac{0.8076 + 0.6812}{2} = 0.7444
+          </md>.
+        </p>
+
+        <p>
+          The actual answer, accurate to 4 places after the decimal,
+          is 0.7468, showing our average is a good approximation.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_num2">
+      <title>Approximating definite integrals with rectangles</title>
+      <statement>
+        <p>
+          Approximate <m>\ds\int_{-\frac{\pi}4}^{\frac{\pi}2} \sin(x^3)\, dx</m> using the Left and Right Hand Rules with 10 equally spaced subintervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We begin by finding <m>\dx</m>:
+          <md>
+            \frac{b-a}{n} = \frac{\pi/2 - (-\pi/4)}{10} = \frac{3\pi}{40}\approx 0.2356
+          </md>.
+        </p>
+
+        <p>
+          It is useful to write out the endpoints of the subintervals in a table;
+          in <xref ref="fig_num2a"/>,
+          we give the exact values of the endpoints,
+          their decimal approximations,
+          and decimal approximations of
+          <m>\sin(x^3)</m> evaluated at these points.
+        </p>
+
+        <figure xml:id="fig_num2a" vshift="-1">
+          <caption>Values used to approximate <m>\int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\, dx</m> in <xref ref="ex_num2"/></caption>
+          <tabular>
+            <row>
+              <cell><m>x_i</m></cell>
+              <cell>Exact</cell>
+              <cell>Approx.</cell>
+              <cell><m>\sin(x_i^3)</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell><m>x_0</m></cell>
+              <cell><m>-\pi/4</m></cell>
+              <cell><m>-0.7854</m></cell>
+              <cell><m>-0.4657</m></cell>
+            </row>
+            <row>
+              <cell><m>x_1</m></cell>
+              <cell><m>-7 \pi/40</m></cell>
+              <cell><m>-0.5498</m></cell>
+              <cell><m>-0.1654</m></cell>
+            </row>
+            <row>
+              <cell><m>x_2</m></cell>
+              <cell><m>-{\pi }/{10}</m></cell>
+              <cell><m>-0.3142</m></cell>
+              <cell><m>-0.0310</m></cell>
+            </row>
+            <row>
+              <cell><m>x_3</m></cell>
+              <cell><m>-{\pi }/{40}</m></cell>
+              <cell><m>-0.0785</m></cell>
+              <cell><m>-0.0005</m></cell>
+            </row>
+            <row>
+              <cell><m>x_4</m></cell>
+              <cell><m>{\pi }/{20}</m></cell>
+              <cell><m>0.1571</m></cell>
+              <cell><m>0.0039</m></cell>
+            </row>
+            <row>
+              <cell><m>x_5</m></cell>
+              <cell><m>{\pi }/{8}</m></cell>
+              <cell><m>0.3927</m></cell>
+              <cell><m>0.0605</m></cell>
+            </row>
+            <row>
+              <cell><m>x_6</m></cell>
+              <cell><m>{\pi }/{5}</m></cell>
+              <cell><m>0.6283</m></cell>
+              <cell><m>0.2455</m></cell>
+            </row>
+            <row>
+              <cell><m>x_7</m></cell>
+              <cell><m>{11 \pi }/{40}</m></cell>
+              <cell><m>0.8639</m></cell>
+              <cell><m>0.6011</m></cell>
+            </row>
+            <row>
+              <cell><m>x_8</m></cell>
+              <cell><m>{7 \pi }/{20}</m></cell>
+              <cell><m>1.0996</m></cell>
+              <cell><m>0.9710</m></cell>
+            </row>
+            <row>
+              <cell><m>x_{9}</m></cell>
+              <cell><m>{17 \pi }/{40}</m></cell>
+              <cell><m>1.3352</m></cell>
+              <cell><m>0.6899</m></cell>
+            </row>
+            <row>
+              <cell><m>x_{10}</m></cell>
+              <cell><m>{\pi }/{2}</m></cell>
+              <cell><m>1.5708</m></cell>
+              <cell><m>-0.6700</m></cell>
+            </row>
+          </tabular>
+        </figure>
+
+        <p>
+          Once this table is created,
+          it is straightforward to approximate the definite integral using the Left and Right Hand Rules.
+          (Note: the table itself is easy to create,
+          especially with a standard spreadsheet program on a computer.
+          The last two columns are all that are needed.)
+          The Left Hand Rule sums the first 10 values of
+          <m>\sin(x_i^3)</m> and multiplies the sum by <m>\dx</m>;
+          the Right Hand Rule sums the last 10 values of
+          <m>\sin(x_i^3)</m> and multiplies by <m>\dx</m>.
+          Therefore we have:
+        </p>
+
+        <p>
+          Left Hand Rule:
+          <m>\ds \int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\, dx \approx (1.9093)(0.2356) \approx 0.4498</m>.
+        </p>
+
+        <p>
+          Right Hand Rule:
+          <m>\ds \int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\, dx \approx (1.705)(0.2356) \approx 0.4017</m>.
+        </p>
+
+        <p>
+          Average of the Left and Right Hand Rules: 0.4258.
+        </p>
+
+        <figure xml:id="fig_num2">
+          <caption>Approximating <m>\int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\, dx</m> in <xref ref="ex_num2"/></caption>
+          <sidebyside widths="47% 47%" margins="0%">
+
+          <!-- START figures/fig_num2b.tex -->
+          <figure xml:id="fig_num2b">
+            <caption/>
+
+            <image>
+            <shortdescription>Using the Left Hand rule</shortdescription>
+              <description>
+              <p> We calculate <m>\int_{-\frac{\pi}4}^{\frac{\pi}/2}\sin(x^3)\, dx</m> using the left hand rule. The graph of <m>\sin(x^3)</m> starts at <m>(-0.75, -0.5)</m>
+              in the fourth quadrant and curves upwards to the right. It merges with the negative <m>x</m> axis close to <m>(-0.25, 0)</m> and continues along the <m>x</m> axis
+              until <m>(0.25, 0)</m> and then slopes upwards to the right. The graph continues upwards until <m>(1.25, 1)</m> in the first quadrant and then descends sharply. It
+              crosses the positive <m>x</m> axis close to <m>(1.5, 0)</m> and continues downwards. We divide the areas under the curve into boxes of equal width but varying
+              height. The far left side of the graph is divided into three boxes of decreasing length that are below the negative <m>x</m> axis. THe rectangle farthest to the
+              left is the tallest and the other two get get shorter as the graph moves upwards towards the negative <m>x</m> axis. The region roughly from <m>(-0.25, 0)</m> to
+              <m>(0.25, 0)</m> where the curve moves along the <m>x</m> axis there are no boxes since the are of that part is zero. Then the part of the graph in the first
+              quadrant is divided into five rectangles. As the graph rises up, the heights of the rectangles increase. The first one being the shortest and the fourth one
+              being the tallest. The fifth rectangle is shorter than the fourth one but taller than the first three. We add up the areas of the rectangles to approximate the
+              integral.</p>
+              </description>
+              <latex-image label="img_num2b">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              axis on top,
+              ymin=-.7,ymax=1.2,
+              xmin=-1,xmax=1.7
+              ]
+
+              \addplot [firstcurvestyle,areastyle,domain=-.7854:1.5708,samples=40] {sin(deg(x^3))} \closedcycle;
+              \addplot [firstcurvestyle,domain=-.7854:1.5708,samples=80] {sin(deg(x^3))};
+
+              \foreach \x / \y in {-0.785/ -0.466, -0.550/-0.165, -0.314/ -0.0310,
+                -0.0785/-0.000484, 0.157/ 0.00388, 0.393/ 0.0605,
+                0.628/ 0.246, 0.864/ 0.601, 1.10/ 0.971, 1.34/ 0.690}
+              {\addplot [thick,secondcolor] coordinates {(\x+.2356,0) (\x+.2356,\y) (\x,\y) (\x,0) (\x+.2356,0)};
+              }
+
+              \draw (axis cs:.6,.9) node { $y=\sin(x^3)$};
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+
+          </figure>
+          <!-- figures/fig_num2b.tex END -->
+          <!-- START figures/fig_num2a.tex -->
+          <figure xml:id="fig_num2c">
+            <caption/>
+
+            <image>
+            <shortdescription>Using the Right Hand rule</shortdescription>
+              <description>
+              <p> We calculate <m>\int_{-\frac{\pi}4}^{\frac{\pi}/2}\sin(x^3)\, dx</m> using the Right hand rule. The far left part of the graph is divided into two
+              rectangles of decreasing height. The region from <m>(-0.25, 0)</m> to <m>(0.25, 0)</m> on the <m>x</m> axis does not contribute to the area since the curve
+              here continues along the axis and therefore the area is zero. The part in the first quadrant is divided into five adjacent rectangles of increasing height.
+              The upper left side of the first four rectangles contain some area outside of the curve on the left. As the graph moves up, the heights of the rectangles increase,
+              the fourth one being the tallest. The fifth rectangle is below the graph with its upper right corner touching the inside of the graph. The sixth and the last rectangle
+              is below the positive <m>x</m> axis. It captures the area adjacent to the part of the graph that is below the positive <m>x</m> axis.</p></description>
+              <latex-image label="img_num2c">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              axis on top,
+              ymin=-.7,ymax=1.2,
+              xmin=-1,xmax=1.7
+              ]
+
+              \addplot [firstcurvestyle,areastyle,domain=-.7854:1.5708,samples=40] {sin(deg(x^3))} \closedcycle;
+              \addplot [firstcurvestyle,domain=-.7854:1.5708,samples=80] {sin(deg(x^3))};
+
+              \foreach \x / \y in {-0.550/-0.165, -0.314/ -0.0310,
+              -0.0785/-0.000484, 0.157/ 0.00388, 0.393/ 0.0605,
+              0.628/ 0.246, 0.864/ 0.601, 1.10/ 0.971, 1.34/ 0.690, 1.57/ -0.670}
+              {\addplot [thick,secondcolor] coordinates {(\x-.2356,0) (\x-.2356,\y) (\x,\y) (\x,0) (\x-.2356,0)};
+              }
+
+              \draw (axis cs:.6,1.1) node { $y=\sin(x^3)$};
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+          <!-- figures/fig_num2a.tex END -->
+          </figure>
+        </sidebyside>
+      </figure>
+
+        <p>
+          The actual answer, accurate to 4 places after the decimal,
+          is 0.4609.
+          Our approximations were once again fairly good.
+          The rectangles used in each approximation are shown in <xref ref="fig_num2b"/>.
+          It is clear from the graphs that using more rectangles
+          (and hence, narrower rectangles)
+          should result in a more accurate approximation.
+        </p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>The Trapezoidal Rule</title>
+    <p>
+      In <xref ref="ex_num1"/>
+      we approximated the value of
+      <m>\ds \int_0^1 e^{-x^2}\, dx</m> with 5 rectangles of equal width.
+      <xref ref="fig_num1"/>
+      shows the rectangles used in the Left and Right Hand Rules.
+      These graphs clearly show that rectangles do not match the shape of the graph all that well,
+      and that accurate approximations will only come by using lots of rectangles.
+          <idx><h>Trapezoidal Rule</h></idx>
+          <idx><h>numerical integration</h><h>Trapezoidal Rule</h></idx>
+          <idx><h>integration</h><h>numerical!Trapezoidal Rule</h></idx>
+    </p>
+
+    <p>
+      Instead of using rectangles to approximate the area,
+      we can instead use <em>trapezoids.</em>
+      In <xref ref="fig_num3a"/>,
+      we show the region under <m>f(x) = e^{-x^2}</m> on <m>[0,1]</m> approximated
+      with 5 trapezoids of equal width;
+      the top <q>corners</q> of each trapezoid lies on the graph of <m>f(x)</m>.
+      It is clear from this figure that these trapezoids more accurately approximate
+      the area under <m>f</m> and hence should give a better approximation of
+      <m>\int_0^1 e^{-x^2}\, dx</m>.
+      (In fact, these trapezoids seem to give a <em>great</em>
+      approximation of the area!)
+    </p>
+
+    <figure xml:id="fig_num3a" vshift="2.5">
+      <caption>Approximating <m>\int_0^1 e^{-x^2}\, dx</m> using 5 trapezoids of equal widths</caption>
+        <!-- START figures/fig_num3a.tex -->
+      <image width="47%">
+      <shortdescription>Approximating the integral of e to the power of negative x squared from 0 to 1 using five trapezoids</shortdescription>
+        <description>
+        <p> The graph of <m>e^{-x^2}</m> starts from <m>(0,1)</m> and slopes downwards to the right in the positive x direction. We consider the are under the curve from
+        <m>(0,1)</m> to <m>(1, 0.25)</m> in the first quadrant. The area is approximated with five adjacent trapezoids of equal width but decreasing heights. The upper arms
+        of the trapezoids are downwar sloping and they follow the graph of <m>e^{-x^2}</m> very closely which allows for more precise approximation. Both of the upper corners
+        of the trapezoids lie on the curve. The first trapezoid is the tallest one and the fifth one is the shortest.
+        </p>
+        </description>
+        <latex-image label="img_num3a">
+
+        \begin{tikzpicture}
+
+        \begin{axis}[
+        axis on top,
+			  xtick={.2,.4,.6,.8,1},
+			  ymin=-.2,ymax=1.2,
+			  xmin=-.2,xmax=1.1
+        ]
+
+        \addplot [firstcurvestyle,areastyle,domain=0:1] {e^-x^2} \closedcycle;
+        \addplot [firstcurvestyle,domain=0:1] {e^-x^2};
+
+        \foreach \x / \y / \z in {0/1 /0.96 , 0.2/0.96 / .85, 0.4 /.85 / .7, .6 / .7/ .53, .8 / .53 / .37}
+        {\addplot [thick,secondcolor] coordinates {(\x,0) (\x,\y) (\x+.2,\z) (\x+.2,0) (\x,0)};
+        }
+
+        \draw (axis cs:.75,1) node { $y=e^{-x^2}$};
+        \end{axis}
+
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+        <!-- figures/fig_num3a.tex END -->
+    </figure>
+
+    <p>
+      The formula for the area of a trapezoid is given in <xref ref="fig_trapezoid"/>.
+      We approximate <m>\int_0^1 e^{-x^2}\, dx</m> with these trapezoids in the following example.
+    </p>
+
+    <figure xml:id="fig_trapezoid" vshift="-2">
+      <caption>The area of a trapezoid</caption>
+        <!-- START figures/fig_trapezoid.tex -->
+      <image width="47%">
+      <shortdescription>The area of a trapezoid.</shortdescription>
+        <description>
+        <p> This is a picture of a trapezoid. The height is <m>h</m>. The left arm of the trapezoid is shorter than the right arm. The arm connecting the left and the right
+        arm is thus upward sloping. The left arm is named <m>a</m> and the right arm is named <m>b</m>.
+        </p></description>
+        <latex-image label="img_trapezoid">
+
+        \begin{tikzpicture}[scale=1.3]
+
+        \draw (0,0) -- node [pos=.5,left] {\small $a$} (0,1) -- (1,1.5) -- node [pos=.5,right] {\small $b$} (1,0) -- node [pos=.5,below] {\small $h$} (0,0);
+
+        \draw (0,.1) -- (.1,.1) -- (.1,0);
+        \draw (.9,0) -- (.9,.1) -- (1,.1);
+
+        \draw (3,.75) node {Area = $\frac{a+b}2h$};
+
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+          <!-- figures/fig_trapezoid.tex END -->
+    </figure>
+
+    <example xml:id="ex_num3">
+      <title>Approximating definite integrals using trapezoids</title>
+      <statement>
+        <p>
+          Use 5 trapezoids of equal width to approximate <m>\ds \int_0^1e^{-x^2}\, dx</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          To compute the areas of the 5 trapezoids in <xref ref="fig_num3a"/>,
+          it will again be useful to create a table of values as shown in <xref ref="fig_num3b"/>.
+        </p>
+
+        <figure xml:id="fig_num3b" vshift="-4">
+          <caption>A table of values of <m>e^{-x^2}</m></caption>
+          <tabular>
+            <row>
+              <cell><m>x_i</m></cell>
+              <cell><m>e^{-x_i^2}</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell><m>0</m></cell>
+              <cell><m>1</m></cell>
+            </row>
+            <row>
+              <cell><m>0.2</m></cell>
+              <cell><m>0.9608</m></cell>
+            </row>
+            <row>
+              <cell><m>0.4</m></cell>
+              <cell><m>0.8521</m></cell>
+            </row>
+            <row>
+              <cell><m>0.6</m></cell>
+              <cell><m>0.6977</m></cell>
+            </row>
+            <row>
+              <cell><m>0.8</m></cell>
+              <cell><m>0.5273</m></cell>
+            </row>
+            <row>
+              <cell><m>1</m></cell>
+              <cell><m>0.3679</m></cell>
+            </row>
+          </tabular>
+        </figure>
+
+        <p>
+          The leftmost trapezoid has legs of length <m>1</m> and <m>0.9607</m> and a height of 0.2.
+          Thus, by our formula, the area of the leftmost trapezoid is:
+          <md>
+            \frac{1+0.9608}{2}(0.2) = 0.1961
+          </md>.
+        </p>
+
+        <p>
+          Moving right,
+          the next trapezoid has legs of length <m>0.9607</m> and <m>0.8521</m> and a height of 0.2.
+          Thus its area is:
+          <md>
+            \frac{0.9608+0.8521}2(0.2) = 0.1813
+          </md>.
+        </p>
+
+        <p>
+          The sum of the areas of all 5 trapezoids is:
+          <md>
+            <mrow>\frac{1+0.9608}{2}(0.2) + \frac{0.9608+0.8521}2(0.2)+\frac{0.8521+0.6977}2(0.2)\amp +</mrow>
+            <mrow>\frac{0.6977+0.5273}2(0.2)+\frac{0.5273+0.3679}2(0.2)\amp = 0.7444</mrow>
+          </md>.
+        </p>
+
+        <p>
+          We approximate <m>\int_0^1 e^{-x^2}\, dx \approx 0.7444</m>.
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      There are many things to observe in this example.
+      Note how each term in the final summation was multiplied by both 1/2 and by <m>\dx = 0.2</m>.
+      We can factor these coefficients out,
+      leaving a more concise summation as:
+      <md>
+        <mrow>\frac12(0.2)\amp\Big[(1+0.9608) + (0.9608+0.8521) + (0.8521+0.6977)</mrow>
+        <mrow>\amp\quad + ( 0.6977+ 0.5273) +(0.5273 + 0.3679)\Big]</mrow>
+      </md>.
+    </p>
+
+    <p>
+      Now notice that all numbers except for the first and the last are added twice.
+      Therefore we can write the summation even more concisely as
+      <md>
+        \frac{0.2}{2}\Big[1 + 2(0.9608+0.8521+0.6977+0.5273) + 0.3679\Big]
+      </md>.
+    </p>
+
+    <p>
+      This is the heart of the <em>Trapezoidal Rule</em>,
+      wherein a definite integral
+      <m>\int_a^b f(x) \, dx</m> is approximated by using trapezoids of equal widths
+      to approximate the corresponding area under <m>f</m>.
+      Using <m>n</m> equally spaced subintervals with endpoints <m>x_0</m>,
+      <m>x_1</m>,
+      <m>\ldots</m>, <m>x_{n}</m>,
+      we again have <m>\ds \dx = \frac{b-a}n</m>.
+      Thus:
+      <md>
+        <mrow>\int_a^b f(x)\, dx \amp  \approx \sum_{i=1}^n \frac{f(x_{i-1})+f(x_{i})}2\dx</mrow>
+        <mrow>\amp  = \frac{\dx}2 \sum_{i=1}^n \big(f(x_{i-1})+f(x_{i})\big)</mrow>
+        <mrow>\amp  = \frac{\dx}2\Big[f(x_0)+ \left(2\sum_{i=1}^{n-1} f(x_i)\right)
+        + f(x_{n})\Big]</mrow>
+      </md>.
+    </p>
+
+    <example xml:id="ex_num4">
+      <title>Using the Trapezoidal Rule</title>
+      <statement>
+        <p>
+          Revisit <xref ref="ex_num2"/>
+          and approximate <m>\ds\int_{-\frac{\pi}{4}}^{\frac{\pi}{2}} \sin(x^3)\, dx</m> using the Trapezoidal Rule and 10 equally spaced subintervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We refer back to <xref ref="fig_num2a"/>
+          for the table of values of <m>\sin(x^3)</m>.
+          Recall that <m>\dx = 3\pi/40 \approx 0.236</m>.
+          Thus we have:
+          <md>
+            <mrow>\amp \int_{-\frac{\pi}4}^{\frac{\pi}2} \sin(x^3)\, dx</mrow>
+            <mrow>\amp \approx \frac{0.236}{2}\Big[-0.4657 + 2\Big(-0.1654+(-0.031)+\ldots+
+            0.68999\Big)+(-0.67)\Big]</mrow>
+            <mrow>\amp = 0.4258</mrow>
+          </md>.
+          The actual answer, accurate to 4 decimal places is <m>0.4609</m>.
+          So the Trapezoidal Rule with 10 subintervals is an under-approximation
+          by about <m>0.0351</m>.
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      Notice how <q>quickly</q> the Trapezoidal Rule can be implemented once the
+      table of values is created.
+      This is true for all the methods explored in this section;
+      the real work is creating a table of <m>x_i</m> and <m>f(x_i)</m> values.
+      Once this is completed,
+      approximating the definite integral is not difficult.
+      Again, using technology is wise.
+      Spreadsheets can make quick work of these computations and make
+      using lots of subintervals easy.
+    </p>
+
+    <p>
+      Also notice the approximations the Trapezoidal Rule gives.
+      It is the average of the approximations given by the Left and Right Hand Rules!
+      This effectively renders the Left and Right Hand Rules obsolete.
+      They are useful when first learning about definite integrals,
+      but if a real approximation is needed,
+      one is generally better off using the Trapezoidal Rule instead of either
+      the Left or Right Hand Rule.
+      However, there are two other methods that are also generally more accurate
+      than the Left or Right Hand Rule.
+    </p>
+  </subsection>
+
+  <subsection>
+    <title>The Midpoint Rule</title>
+    <p>
+      Another method that can be more accurate than the Trapezoidal Rule is the Midpoint Rule:
+      <md>
+        <mrow>S_M(n)\amp =\sum_{i=1}^n f\left(\frac{x_{i-1}+x_{i}}{2}\right)\Delta x</mrow>
+        <mrow>\amp = \sum_{i=1}^n f\left(\overline{x_i}\right)\Delta x</mrow>
+        <mrow>\amp \text{ where } \overline{x_i} \text{ is the midpoint of each subinterval,}</mrow>
+        <mrow>\amp \overline{x_i}=a+\dx\left(i-\frac12\right)</mrow>
+      </md>
+    </p>
+
+    <example xml:id="ex_num3_2">
+      <title>Using the Midpoint Rule</title>
+      <statement>
+        <p>
+          Use the Midpoint Rule with <m>n=5</m> to approximate <m>\ds \int_0^1e^{-x^2}\, dx</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We cannot use the table in <xref ref="fig_num3b"/>
+          that we used for the Trapezoidal, Right and Left Hand Rules when using the Midpoint Rule.
+          The Trapezoidal rule averages the <em>outputs</em>
+          of the function to obtain a more accurate estimate of the definite integral.
+          The Midpoint Rule averages the <em>inputs</em>
+          of each subinterval to create a rectangle with height <m>f\left(\frac{x_{i-1}+x_{i}}{2}\right)</m>.
+          Generally <m>f\left(\frac{x_{i-1}+x_{i}}{2}\right)\neq \frac{f(x_{i-1})+f(x_{i})}{2}</m>.
+        </p>
+
+        <p>
+          So we will create a new table of values as shown in <xref ref="fig_num3_2b"/>.
+          We have <m>\dx=(1-0)/5=0.2</m>.
+          The midpoint of the first subinteval is at
+          <m>0+0.2(1/2)=0.1</m> and each successive midpoint is <m>0.2</m> from the last.
+        </p>
+
+        <figure xml:id="fig_num3_2b" vshift="-1">
+          <caption>A table of values of <m>e^{-x^2}</m></caption>
+          <tabular>
+            <row>
+              <cell><m>x_i</m></cell>
+              <cell><m>e^{-x_i^2}</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell><m>0.1</m></cell>
+              <cell><m>0.9900</m></cell>
+            </row>
+            <row>
+              <cell><m>0.3</m></cell>
+              <cell><m>0.9139</m></cell>
+            </row>
+            <row>
+              <cell><m>0.5</m></cell>
+              <cell><m>0.7788</m></cell>
+            </row>
+            <row>
+              <cell><m>0.7</m></cell>
+              <cell><m>0.6126</m></cell>
+            </row>
+            <row>
+              <cell><m>0.9</m></cell>
+              <cell><m>0.4449</m></cell>
+            </row>
+          </tabular>
+        </figure>
+
+        <p>
+          So we have
+          <md>
+            <mrow>\int_0^1 e^{-x^2}\, dx \amp \approx 0.2(0.99+0.9139+0.7788+0.6126+0.4449)</mrow>
+            <mrow>\amp \approx 0.7480</mrow>
+          </md>
+        </p>
+
+        <p>
+          We approximate <m>\ds \int_0^1 e^{-x^2}\, dx \approx 0.7480</m>.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_num4_2">
+      <title>Using the Midpoint Rule</title>
+      <statement>
+        <p>
+          Revisit <xref ref="ex_num4"/>
+          and approximate <m>\ds\int_{-\frac{\pi}{4}}^{\frac{\pi}{2}} \sin(x^3)\, dx</m> using the Midpoint Rule and 10 equally spaced subintervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Again, a table will be useful.
+          Recall that <m>\dx = 3\pi/40 \approx 0.2356</m>.
+          The midpoint of the first subinterval is <m>\overline{x_1}=a+\dx/2=-\pi/4+3\pi/40(1/2)=-17\pi/80</m>
+          (notice that <m>\overline{x_1}</m> is half of a subinterval width to the right of <m>a</m>).
+          Each successive midpoint is
+          <m>\dx=3 \pi/40=6\pi/80</m> to the right of the last.
+          So we have:
+        </p>
+
+        <figure xml:id="fig_num4_2" vshift="-1">
+          <caption>Values used to approximate <m>\int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\, dx</m> in <xref ref="ex_num4_2 "/></caption>
+          <tabular>
+            <row>
+              <cell><m>\overline{x_i}</m></cell>
+              <cell>Exact</cell>
+              <cell>Approx.</cell>
+              <cell><m>\sin(x_i^3)</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell><m>\overline{x_1}</m></cell>
+              <cell><m>-\frac{17\pi}{80}</m></cell>
+              <cell><m>-0.6676</m></cell>
+              <cell><m>-0.2932</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_2}</m></cell>
+              <cell><m>-\frac{11 \pi}{80}</m></cell>
+              <cell><m>-0.4320</m></cell>
+              <cell><m>-0.0805</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_3}</m></cell>
+              <cell><m>-\frac{5\pi }{80}</m></cell>
+              <cell><m>-0.1963</m></cell>
+              <cell><m>-0.0076</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_4}</m></cell>
+              <cell><m>\frac{\pi }{80}</m></cell>
+              <cell><m>-0.0393</m></cell>
+              <cell><m>0.0001</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_5}</m></cell>
+              <cell><m>\frac{7\pi }{80}</m></cell>
+              <cell><m>0.2749</m></cell>
+              <cell><m>0.0208</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_6}</m></cell>
+              <cell><m>\frac{13\pi }{80}</m></cell>
+              <cell><m>0.5105</m></cell>
+              <cell><m>0.1327</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_7}</m></cell>
+              <cell><m>\frac{19\pi}{80}</m></cell>
+              <cell><m>0.7461</m></cell>
+              <cell><m>0.4035</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_8}</m></cell>
+              <cell><m>\frac{25 \pi}{80}</m></cell>
+              <cell><m>0.9817</m></cell>
+              <cell><m>0.8112</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_9}</m></cell>
+              <cell><m>\frac{31 \pi}{80}</m></cell>
+              <cell><m>1.2174</m></cell>
+              <cell><m>0.9729</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_{10}}</m></cell>
+              <cell><m>\frac{37 \pi}{80}</m></cell>
+              <cell><m>1.4530</m></cell>
+              <cell><m>0.0740</m></cell>
+            </row>
+            <row>
+              <cell/>
+            </row>
+          </tabular>
+
+        </figure>
+
+        <p>
+          Thus we have:
+          <md>
+            <mrow>\amp \int_{-\frac{\pi}4}^{\frac{\pi}2} \sin(x^3)\, dx</mrow>
+            <mrow>\amp \approx 0.2356\Big[-0.2932+(-0.0805)+(-0.0076)+\dots+0.9729+0.0740\Big]</mrow>
+            <mrow>\amp=0.2356\cdot 2.0339</mrow>
+            <mrow>\amp \approx 0.4792</mrow>
+          </md>.
+          The actual answer, accurate to 4 decimal places is <m>0.4609</m>.
+          So the Midpoint Rule with 10 subintervals is an overrapproximation by about <m>0.0183 </m>.
+          Notice that this error is about half of the error in using the Trapezoidal Rule.
+        </p>
+      </solution>
+    </example>
+
+
+    <p>
+      In many cases,
+      the Midpoint Rule will more accurate than the Trapezoidal Rule.
+      You may wonder though,
+      how can we improve on the Trapezoidal and Midpoint Rules,
+      apart from using more and more subintervals?
+      The answer is clear once we look back and consider what we have
+      <em>really</em> done so far.
+      The Left Hand Rule, Right Hand Rule and Midpoint Rules are not <em>really</em>
+      about using rectangles to approximate area.
+      Instead, they approximate a function <m>f</m> with constant functions on small
+      subintervals and then compute the definite integral of these constant functions.
+      The Trapezoidal Rule is really approximating a function <m>f</m> with a linear
+      function on a small subinterval,
+      then computing the definite integral of this linear function.
+      In all of these cases the definite integrals are easy to compute in geometric terms.
+    </p>
+
+    <p>
+      So we have a progression:
+      we start by approximating <m>f</m> with a constant function and then with a linear function.
+      What is next?
+      A quadratic function.
+      By approximating the curve of a function with lots of parabolas,
+      we generally get an even better approximation of the definite integral.
+      We call this process <em>Simpson's Rule</em>,
+      named after Thomas Simpson (1710-1761),
+      even though others had used this rule as much as 100 years prior.
+    </p>
+  </subsection>
+
+  <subsection>
+    <title>Simpson's Rule</title>
+    <p>
+      Given one point,
+      we can create a constant function that goes through that point.
+      Given two points,
+      we can create a linear function that goes through those points.
+      Given three points,
+      we can create a quadratic function that goes through those three points
+      (given that no two have the same <m>x</m>-value).
+          <idx><h>Simpson's Rule</h></idx>
+          <idx><h>numerical integration</h><h>Simpson's Rule</h></idx>
+          <idx><h>integration</h><h>numerical!Simpson's Rule</h></idx>
+    </p>
+
+    <p>
+      Consider three points <m>(x_0,y_0)</m>,
+      <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m> whose <m>x</m>-values are equally spaced and <m>x_0\lt x_1\lt x_2</m>.
+      Let <m>f</m> be the quadratic function that goes through these three points.
+      It is not hard to show that
+      <md number="yes" xml:id="eq_simpsons">
+        \int_{x_0}^{x_2} f(x)\, dx = \frac{x_2-x_0}{6}\big(y_0+4y_1+y_2\big)
+      </md>.
+    </p>
+
+    <!-- ToDo: Fix the aside to include this video (either embedded or as a link) -->
+    <!-- Embedded doesn't really fit in an aside. Use a link.-->
+    <aside vshift="1">
+      <p>
+        While it's not <em>hard</em> to show the results of <xref ref="eq_simpsons" text="global">Equation</xref>,
+        it's also not exactly easy.
+        This video might help:
+        <!-- <figure xml:id="video-simpsons-rule" component="video"> -->
+          <!-- <caption/> -->
+          <!-- <video youtube="uc4xJsi99bk"/> -->
+        <!-- </figure> -->
+        <url href="https://www.youtube.com/embed/uc4xJsi99bk" visual="youtu.be/uc4xJsi99bk"/>
+      </p>
+    </aside>
+    <!--<video youtube="uc4xJsi99bk"/>-->
+    <p>
+      Consider <xref ref="fig_numsimpsons"/>.
+      A function <m>f</m> goes through the 3 points shown and the parabola <m>g</m> that also goes through those points is graphed with a dashed line.
+      Using our equation from above, we know exactly that
+      <md>
+        \int_1^3 g(x) \, dx = \frac{3-1}{6}\big(3+4(1)+2\big)= 3
+      </md>.
+    </p>
+
+    <p>
+      Since <m>g</m> is a good approximation for <m>f</m> on <m>[1,3]</m>,
+      we can state that
+      <md>
+        \int_1^3 f(x)\, dx \approx 3
+      </md>.
+    </p>
+
+    <figure xml:id="fig_numsimpsons" vshift="0">
+      <caption>A graph of a function <m>f</m> and a parabola that approximates it well on <m>[1,3]</m></caption>
+      <!-- START figures/fig_numsimpsons.tex -->
+      <image width="47%">
+      <shortdescription>A parabola approximating the function f on [1, 3].</shortdescription>
+        <description>
+        <p> The graph of the function <m>f</m> starts close to <m>(1, 4)</m> in the first quadrant and then slopes downwards to the right towards the <m>x</m> axis. Once
+        it reaches the point <m>(2, 1)</m>, the graph starts sloping upwards to the right and continues upwards. It ends close to <m>(3, 2)</m>. The shape of the graph
+        resembles the shape of a parabola. We approximate the graph of <m>f</m> using a parabola whose path follows <m>f</m> very closely. The parabola intersects <m>f</m>
+        three times, once at <m>(1, 3)</m> then at <m>(2, 1)</m> and at <m>(3, 2)</m>.
+        </p></description>
+        <latex-image label="img_numsimpsons">
+
+        \begin{tikzpicture}
+
+        \begin{axis}[
+        axis on top,
+        xtick={1,2,3},
+        ytick={1,2,3},
+        ymin=-.2,ymax=4,
+        xmin=.5,xmax=3.5
+        ]
+
+        \addplot+ [domain=.9:3.1,samples=30] {11-12*x+4.5*x^2-.5*x^3};
+        \addplot+ [domain=.9:3.1] {8-6.5*x+1.5*x^2};
+
+        \filldraw (axis cs:1,3) circle (1pt);
+        \filldraw (axis cs:2,1) circle (1pt);
+        \filldraw (axis cs:3,2) circle (1pt);
+
+        \end{axis}
+
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+      <!-- figures/fig_numsimpsons.tex END -->
+    </figure>
+
+    <p>
+      Notice how the interval <m>[1,3]</m> was split into two subintervals as we needed 3 points.
+      Because of this, whenever we use Simpson's Rule,
+      we need to break the interval into an even number of subintervals.
+    </p>
+
+    <p>
+      In general, to approximate
+      <m>\ds \int_a^b f(x)\, dx</m> using Simpson's Rule,
+      subdivide <m>[a,b]</m> into <m>n</m> subintervals,
+      where <m>n</m> is even and each subinterval has width <m>\dx = (b-a)/n</m>.
+      We approximate <m>f</m> with <m>n/2</m> parabolic curves,
+      using <xref ref="eq_simpsons">Equation</xref> to compute the area under these parabolas.
+      Adding up these areas gives the formula:
+      <md>
+        \int_a^b f(x) \, dx \approx \frac{\dx}3\Big[f(x_0)+4f(x_1)+2f(x_2)+4f(x_3)+\ldots+2f(x_{n-2})+4f(x_{n-1})+f(x_{n})\Big]
+      </md>.
+    </p>
+
+    <p>
+      Note how the coefficients of the terms in the summation have the pattern 1, 4, 2, 4, 2, 4, <m>\ldots</m>, 2, 4, 1.
+    </p>
+
+    <p>
+      <xref ref="fig_simpsons2"/>
+      illustrates how the area calculated by Simpson's Rule approximates
+      <m>\int_0^5 f(x)\, dx</m> for the function <m>f(x)=\sin(\pi x)</m>.
+      In this case, <m>8</m> subintervals were used,
+      resulting in <m>4</m> quadratic curves
+      (dashed lines)
+      being fitted to each pair of subintervals.
+      The actual answer
+      (accurate to <m>4</m> decimal places)
+      is about <m>10.6366</m>, while Simpson's rule gives <m>10.7294</m>.
+      Of course more subintervals would result in better accuracy.
+      However <m>8</m> intervals were chosen specifically so that you could see how the parabolas compare to the original function.
+      With larger values of <m>n</m>,
+      it becomes difficult to distinguish the function and its quadratic approximations on each subinterval.
+    </p>
+
+    <figure xml:id="fig_simpsons2" vshift="0">
+      <caption>An illustration of Simpson's rule on <m>f(x)=\sin(\pi x)+2</m> over <m>[0,5]</m> using <m>8</m> subintervals, resulting in <m>4</m> quadratic approximations</caption>
+      <image width="47%">
+      <shortdescription>Approximating f(x)=sin(pi x)+2 using simpson's rule.</shortdescription>
+        <description>
+        <p> The graph of <m>f(x)=\sin(\pi x)+2</m> is shaped like wave that oscillates between <m>y=3</m> and <m>y=1</m> as it moves in the positive x direction. We consider
+        the area under the curve from <m>x=0</m> to <m>x=5</m>. THe area is subdivided into eight intervals and each interval is approximated by quadratic curves. The first
+        quadratic curve is a downward parabola with its vertex at <m>(3,0.5)</m> which approximates the first two subintervals. The second quadratic curve is also a parabola
+        whose vertex is located at <m>(1.5,1)</m>. This parabola approximates the second two subintervals between <m>x=1.25</m> and <m>x=2.5</m>. The next two subintervals are
+        are approximated by the left half of a parabola whose vertex is at <m>(3.75,1.25)</m>. The area under the last two subintervals are approximated by a downwards parabola
+        whose vertex is at <m>(3,4.5)</m>.
+        </p></description>
+        <latex-image label="img_simpsons2">
+
+        \begin{tikzpicture}
+
+        \begin{axis}[
+        axis on top,
+        ymin=-.2,ymax=3.3,
+        xmin=-1,xmax=5.8,
+        ]
+
+        \addplot [firstcurvestyle,name path=F,domain={-0.9:5.2},samples=120] {sin(deg(3.14159*x))+2} node [pos=.87, above] { $y=\sin(\pi x)+2$};
+        \addplot [name path=G,domain={0:5}]{0};
+        \addplot [color=firstcolor!50] fill between [of=F and G, soft clip={domain=0:5}];
+
+        \addplot [secondcurvestyle,name path=H,domain=0:1.25] {-3.27*x^2+3.52*x+2};
+        \addplot [color=gray!30] fill between [of=H and G, soft clip={domain=0:1.25}];
+
+        \addplot [secondcurvestyle,name path=I,domain=1.25:2.5] {1.35*x^2-3.71*x+3.82};
+        \addplot [color=gray!30] fill between [of=I and G, soft clip={domain=1.25:2.5}];
+
+        \addplot [secondcurvestyle,name path=J,domain=2.5:3.75] {1.35*x^2-9.83*x+19.11};
+        \addplot [color=gray!30] fill between [of=J and G, soft clip={domain=2.5:3.75}];
+
+        \addplot [secondcurvestyle,name path=K,domain=3.75:5] {-3.27*x^2+29.18*x-62.145};
+        \addplot [color=gray!30] fill between [of=K and G, soft clip={domain=3.75:5}];
+
+        \addplot [-,color=gray!70,dashed,thin,domain=0:2.924] ({.625},{x});
+        \addplot [-,color=gray,dashed,thin,domain=0:1.293] ({1.25},{x});
+        \addplot [-,color=gray!70,dashed,thin,domain=0:1.617] ({1.875},{x});
+        \addplot [-,color=gray,dashed,thin,domain=0:3] ({2.5},{x});
+        \addplot [-,color=gray!70,dashed,thin,domain=0:1.617] ({3.125},{x});
+        \addplot [-,color=gray,dashed,thin,domain=0:1.293] ({3.75},{x});
+        \addplot [-,color=gray!70,dashed,thin,domain=0:2.924] ({4.375},{x});
+        \addplot [-,color=gray,dashed,thin,domain=0:3] ({5},{x});
+
+        \end{axis}
+
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+
+    </figure>
+
+    <p>
+      Let's demonstrate Simpson's Rule with a concrete example.
+    </p>
+
+    <example xml:id="ex_num5">
+      <title>Using Simpson's Rule</title>
+      <statement>
+        <p>
+          Approximate <m>\ds\int_0^1 e^{-x^2}\, dx</m> using Simpson's Rule and 4 equally spaced subintervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We begin by making a table of values as we have in the past,
+          as shown in <xref ref="fig_num5a"/>.
+        </p>
+
+        <figure xml:id="fig_num5">
+          <caption>A table of values to approximate <m>\int_0^1e^{-x^2}\, dx</m>, along with a graph of the function</caption>
+          <sidebyside widths="40% 54%">
+
+          <figure xml:id="fig_num5a"><caption/>
+            <tabular>
+              <row>
+                <cell><m>x_i</m></cell>
+                <cell><m>e^{-x_i^2}</m></cell>
+              </row>
+              <row bottom="minor">
+                <cell/>
+                <cell/>
+              </row>
+              <row>
+                <cell><m>0</m></cell>
+                <cell><m>1</m></cell>
+              </row>
+              <row>
+                <cell><m>0.25</m></cell>
+                <cell><m>0.939</m></cell>
+              </row>
+              <row>
+                <cell><m>0.5</m></cell>
+                <cell><m>0.779</m></cell>
+              </row>
+              <row>
+                <cell><m>0.75</m></cell>
+                <cell><m>0.570</m></cell>
+              </row>
+              <row>
+                <cell><m>1</m></cell>
+                <cell><m>0.368</m></cell>
+              </row>
+              <row>
+                <cell/>
+              </row>
+            </tabular>
+          </figure>
+
+          <figure xml:id="fig_num5b">
+          <!-- START figures/fig_num5b.tex -->
+            <caption/>
+
+            <image>
+            <shortdescription>Approximating the integral of e^{-x^2} using Simpson's rule</shortdescription>
+              <description>
+              <p> The graph of <m>e^{-x^2}</m> starts from <m>(0, 1)</m> and slopes downwards to the right in the positive <m>x</m> direction. We consider the are under the curve from
+              <m>(0, 1)</m> to <m>(1, 0.25)</m> in the first quadrant. The area is subdivided into four equally spaced intervals. The top of the intervals are parts of parabolas that
+              track the curve of <m>e^{-x^2}</m>. These approximating curves are almost identical to the parts of the graph they are tracking thus resulting in a much more accurate
+              approximation.
+              </p></description>
+              <latex-image label="img_num5b">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              axis on top,
+              xtick={.25,.5,.75,1},
+              ymin=-.2,ymax=1.2,
+              xmin=-.2,xmax=1.1
+              ]
+
+              \addplot [firstcurvestyle,areastyle,domain=0:1] {e^-x^2} \closedcycle;
+              \addplot [firstcurvestyle,domain=0:1] {e^-x^2};
+
+              \addplot [thick,secondcolor,domain=0:.5] {1-0.042*x-0.8*x^2};
+              \addplot [thick,secondcolor,domain=.5:1] {1.218-0.907*x+0.0569*x^2};
+              \addplot [thick,secondcolor] coordinates {(0,1) (0,0) (.5,0) (.5,.779)};
+              \addplot [thick,secondcolor] coordinates {(.5,0) (1,0) (1,.368)};
+
+              \draw (axis cs:.75,1) node { $y=e^{-x^2}$};
+
+              \filldraw (axis cs:0,1) circle (1pt)
+              (axis cs:.25,.939) circle (1pt)
+              (axis cs:.5,.779) circle (1pt)
+              (axis cs:.75,.57) circle (1pt)
+              (axis cs:1,.368) circle (1pt);
+
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+            <!-- figures/fig_num5b.tex END -->
+          </figure>
+        </sidebyside>
+      </figure>
+
+        <p>
+          Simpson's Rule states that
+          <md>
+            \int_0^1e^{-x^2}\, dx \approx \frac{0.25}{3}\Big[1+4(0.939)+2(0.779)+4(0.570) + 0.368\Big] = 0.7468\overline{3}
+          </md>.
+        </p>
+
+        <p>
+          Recall in <xref ref="ex_num1"/>
+          we stated that the correct answer,
+          accurate to 4 places after the decimal, was 0.7468.
+          Our approximation with Simpson's Rule, with 4 subintervals,
+          is better than our approximation with the Trapezoidal Rule using 5!
+        </p>
+
+        <p>
+          <xref ref="fig_num5b"/>
+          shows <m>f(x) = e^{-x^2}</m> along with its approximating parabolas,
+          demonstrating how good our approximation is.
+          The approximating curves are nearly indistinguishable from the actual function.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_num6">
+      <title>Using Simpson's Rule</title>
+      <statement>
+        <p>
+          Approximate <m>\ds\int_{-\frac{\pi}4}^{\frac{\pi}2} \sin(x^3)\, dx</m> using Simpson's Rule and 10 equally spaced intervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          <xref ref="fig_num6a"/>
+          shows the table of values that we used in the past for this problem,
+          shown here again for convenience.
+          Again, <m>\dx = (\pi/2+\pi/4)/10 \approx 0.236</m>.
+        </p>
+
+        <figure xml:id="fig_num6a" vshift="-2">
+          <caption>Values used to approximate <m>\int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\, dx</m> in <xref ref="ex_num6"/></caption>
+          <tabular>
+            <row bottom="minor">
+              <cell><m>x_i</m></cell>
+              <cell><m>\sin(x_i^3)</m></cell>
+            </row>
+            <row>
+              <cell><m>-0.7854</m></cell>
+              <cell><m>-0.4657</m></cell>
+            </row>
+            <row>
+              <cell><m>-0.5498</m></cell>
+              <cell><m>-0.1654</m></cell>
+            </row>
+            <row>
+              <cell><m>-0.3142</m></cell>
+              <cell><m>-0.0310</m></cell>
+            </row>
+            <row>
+              <cell><m>-0.0785</m></cell>
+              <cell><m>-0.0005</m></cell>
+            </row>
+            <row>
+              <cell><m>0.1571</m></cell>
+              <cell><m>0.0039</m></cell>
+            </row>
+            <row>
+              <cell><m>0.3927</m></cell>
+              <cell><m>0.0605</m></cell>
+            </row>
+            <row>
+              <cell><m>0.6283</m></cell>
+              <cell><m>0.2455</m></cell>
+            </row>
+            <row>
+              <cell><m>0.8639</m></cell>
+              <cell><m>0.6011</m></cell>
+            </row>
+            <row>
+              <cell><m>1.0996</m></cell>
+              <cell><m>0.9710</m></cell>
+            </row>
+            <row>
+              <cell><m>1.3352</m></cell>
+              <cell><m>0.6899</m></cell>
+            </row>
+            <row>
+              <cell><m>1.5708</m></cell>
+              <cell><m>-0.6700</m></cell>
+            </row>
+          </tabular>
+        </figure>
+
+        <p>
+          Simpson's Rule states that
+          <md>
+            <mrow>\int_{-\frac{\pi}4}^{\frac{\pi}2} \sin(x^3)\, dx \amp \approx \frac{0.2356}3\Big[(-0.4657)+4(-0.1654)+2(-0.0310) + \ldots</mrow>
+            <mrow>\amp  \ldots + 2(0.9710) + 4(0.6899) + (-0.6700)\big]</mrow>
+            <mrow>\amp \approx 0.4701</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_num6b" vshift="-6">
+          <caption>Approximating <m>\int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\, dx</m> in <xref ref="ex_num6"/> with Simpson's Rule and 10 equally spaced intervals</caption>
+          <!-- START figures/fig_num6b.tex -->
+          <image width="47%">
+          <shortdescription>Approximating the integral of sin(x^3) using Simpson's rule</shortdescription>
+            <description>
+            <p> The area under the graph of <m>\sin(x^3)</m> is subdivided into ten equally spaced subintervals. The leftmost part of the graph that is below the negative
+            <m>x</m> axis is approximated by a straight line and the upper left part of a downward parabola on its right. The part of the graph on the first quadrant is
+            subdivided into six subintervals. These are approximated by parabolas that are almost identical to the parts of the graphs they are approximating. The last part
+            of the graph that is below the positive <m>x</m> axis, is approximated with the descending part of a downward parabola and a straight line.
+            </p></description>
+            <latex-image label="img_num6b">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            ymin=-.7,ymax=1.2,
+            xmin=-1,xmax=1.7
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=-.7854:1.5708,samples=40] {sin(deg(x^3))} \closedcycle;
+            \addplot [firstcurvestyle,domain=-.7854:1.5708,samples=80] {sin(deg(x^3))};
+
+            \addplot [thick,secondcolor,domain=-.785:-.314] {-.11-.721*x-1.49*x^2};
+            \addplot [thick,secondcolor] coordinates {(-.785,-.466) (-.785,0) (-.314,0) (-.314,-.03)};
+
+            \addplot [thick,secondcolor,domain=-.314:.157] {.004+.037*x-.236*x^2};
+            \addplot [thick,secondcolor] coordinates {(-.314,0) (.157,0) (.157,.004)};
+
+            \addplot [thick,secondcolor,domain=.157:.628] {.037-.395*x+1.156*x^2};
+            \addplot [thick,secondcolor] coordinates {(.157,0) (.628,0) (.628,.246)};
+
+            \addplot [thick,secondcolor,domain=.628:1.1] {-.632+1.32*x+.13*x^2};
+            \addplot [thick,secondcolor] coordinates {(.628,0) (1.1,0) (1.1,.971)};
+
+            \addplot [thick,secondcolor,domain=1.1:1.57] {-11.98+22.46*x-9.72*x^2};
+            \addplot [thick,secondcolor] coordinates {(1.1,0) (1.57,0) (1.57,-.67)};
+
+            \filldraw (axis cs:-.785,-.466 ) circle (1pt)
+            (axis cs:-.55,-.165 ) circle (1pt)
+            (axis cs:-.314,-.031 ) circle (1pt)
+            (axis cs:-.0785,0 ) circle (1pt)
+            (axis cs:.157,.004 ) circle (1pt)
+            (axis cs:.393,.061 ) circle (1pt)
+            (axis cs:.628,.246 ) circle (1pt)
+            (axis cs:.864,.601 ) circle (1pt)
+            (axis cs:1.1,.971 ) circle (1pt)
+            (axis cs:1.34,.69 ) circle (1pt)
+            (axis cs:1.57,-.67 ) circle (1pt);
+
+            \draw (axis cs:.6,.9) node { $y=\sin(x^3)$};
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_num6b.tex END -->
+        </figure>
+
+        <p>
+          Recall that the actual value,
+          accurate to 3 decimal places, is 0.4609.
+          Our approximation is within one <m>1/100</m>th of the correct value.
+          The graph in <xref ref="fig_num6b"/>
+          shows how closely the parabolas match the shape of the graph.
+        </p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Summary and Error Analysis</title>
+    <p>
+      We summarize the key concepts of this section thus far in the following Key Idea.
+    </p>
+
+    <insight xml:id="idea_numerical">
+      <title>Numerical Integration</title>
+      <p>
+        Let <m>f</m> be a continuous function on <m>[a,b]</m>,
+        let <m>n</m> be a positive integer,
+        and let <m>\ds\dx = \frac{b-a}{n}</m>.
+            <idx><h>integration</h><h>numerical!Left/Right Hand Rule</h></idx>
+            <idx><h>integration</h><h>numerical!Trapezoidal Rule</h></idx>
+            <idx><h>integration</h><h>numerical!Simpson's Rule</h></idx>
+            <idx><h>Left/Right Hand Rule</h></idx>
+            <idx><h>Trapezoidal Rule</h></idx>
+            <idx><h>Simpson's Rule</h></idx>
+            <idx><h>numerical integration</h><h>Left/Right Hand Rule</h></idx>
+            <idx><h>numerical integration</h><h>Trapezoidal Rule</h></idx>
+            <idx><h>numerical integration</h><h>Simpson's Rule</h></idx>
+      </p>
+
+      <p>
+        Set <m>x_0=a</m>, <m>x_1 = a+\dx</m>,
+        <m>\ldots</m>, <m>x_i = a+i\dx</m>, <m>x_{n}=b</m>.
+      </p>
+
+      <p>
+        Consider <m>\ds\int_a^b f(x)\, dx</m>.
+      </p>
+
+      <p>
+        Left Hand Rule:
+        <m>\ds\int_a^b f(x)\, dx \approx \dx\big[f(x_0) + f(x_1) + \ldots + f(x_{n-1})\big]</m>.
+      </p>
+
+      <p>
+        Right Hand Rule:
+        <m>\ds\int_a^b f(x)\, dx \approx \dx\big[f(x_1) + f(x_2) + \ldots + f(x_{n})\big]</m>.
+      </p>
+
+      <p>
+        Trapezoidal Rule:
+        <m>\ds\int_a^b f(x)\, dx \approx \frac{\dx}2\big[f(x_0) + 2f(x_1) + 2f(x_2) +\ldots + 2f(x_{n-1})+ f(x_{n})\big]</m>.
+      </p>
+
+      <p>
+        Midpoint Rule:
+        <m>\ds \int_a^b f(x)\, dx \approx \sum_{i=1}^n f\left(\frac{x_{i-1}+x_{i}}{2}\right)\Delta x</m>.
+      </p>
+
+      <p>
+        Simpson's Rule:
+        <m>\ds\int_a^b f(x)\, dx \approx \frac{\dx}3\big[f(x_0) + 4f(x_1) + 2f(x_2) +\ldots + 4f(x_{n-1})+ f(x_{n})\big] \text{ for } n \text{ even}</m>.
+      </p>
+    </insight>
+
+    <p>
+      In our examples,
+      we approximated the value of a definite integral using a given method then compared it to the <q>right</q> answer.
+      This should have raised several questions in the reader's mind, such as:
+    </p>
+
+    <p>
+      <ol>
+        <li>
+          <p>
+            How was the <q>right</q> answer computed?
+          </p>
+        </li>
+
+        <li>
+          <p>
+            If the right answer can be found,
+            what is the point of approximating?
+          </p>
+        </li>
+
+        <li>
+          <p>
+            If there is value to approximating,
+            how are we supposed to know if the approximation is any good?
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      These are good questions, and their answers are educational.
+      In the examples, <em>the</em> right answer was never computed.
+      Rather, an approximation accurate to a certain number of places after the decimal was given.
+      In <xref ref="ex_num1"/>,
+      we do not know the <em>exact</em> answer,
+      but we know it starts with <m>0.7468</m>.
+      These more accurate approximations were computed using numerical integration but with more precision (<ie/>, more subintervals and the help of a computer).
+    </p>
+
+    <p>
+      Since the exact answer cannot be found,
+      approximation still has its place.
+      How are we to tell if the approximation is any good?
+    </p>
+
+    <p>
+      <q>Trial and error</q> provides one way.
+      Using technology, make an approximation with,
+      say, 10, 100, and 200 subintervals.
+      This likely will not take much time at all,
+      and a trend should emerge.
+      If a trend does not emerge, try using yet more subintervals.
+      Keep in mind that trial and error is never foolproof;
+      you might stumble upon a problem in which a trend will not emerge.
+    </p>
+
+    <p>
+      A second method is to use Error Analysis.
+      While the details are beyond the scope of this text,
+      there are some formulas that give <em>bounds</em>
+      for how good your approximation will be.
+      For instance,
+      the formula might state that the approximation is within 0.1 of the correct answer.
+      If the approximation is 1.58,
+      then one knows that the correct answer is between 1.48 and 1.68.
+      By using lots of subintervals,
+      one can get an approximation as accurate as one likes.
+      <xref ref="thm_numerical_error"/> states what these bounds are.
+    </p>
+
+    <theorem xml:id="thm_numerical_error">
+      <title>Error Bounds in the Trapezoidal Rule and Simpson's Rule</title>
+      <statement>
+        <p>
+          <idx><h>integration</h><h>numerical!Trapezoidal Rule</h></idx>
+          <idx><h>integration</h><h>numerical!Simpson's Rule</h></idx>
+          <idx><h>Trapezoidal Rule</h><h>error bounds</h></idx>
+          <idx><h>Simpson's Rule</h><h>error bounds</h></idx>
+          <idx><h>numerical integration</h><h>Trapezoidal Rule!error bounds</h></idx>
+          <idx><h>numerical integration</h><h>Simpson's Rule!error bounds</h></idx>
+          <ol>
+            <li>
+              <p>
+                Let <m>E_T</m> and <m>E_M</m>be the error in approximating
+                <m>\ds \int_a^b f(x)\, dx</m> using the Trapezoidal and Midpoint Rules respectively, with <m>n</m> subintervals.
+
+                If <m>f</m> has a continuous second derivative on <m>[a,b]</m> and <m>K</m> is any upper bound of
+                <m>\abs{\fpp(x)}</m> on <m>[a,b]</m>, then
+                <md>
+                  \ds E_T \leq \frac{(b-a)^3}{12n^2}K
+                </md>.
+                and
+                <md>
+                  \ds E_M \leq \frac{(b-a)^3}{24n^2}K
+                </md>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Let <m>E_S</m> be the error in approximating
+                <m>\ds \int_a^b f(x)\, dx</m> using Simpson's Rule with <m>n</m> subintervals..
+
+                If <m>f</m> has a continuous <m>4</m>th derivative on <m>[a,b]</m> and <m>K</m> is any upper bound of
+                <m>\abs{f^{(4)}(x)}</m> on <m>[a,b]</m>, then
+                <md>
+                  E_S \leq \frac{(b-a)^5}{180n^4}K
+                </md>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      There are some key things to note about this theorem.
+
+      <ol>
+        <li>
+          <p>
+            The larger the interval, the larger the error.
+            This should make sense intuitively.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            The error shrinks as more subintervals are used (<ie/>, as <m>n</m> gets larger).
+          </p>
+        </li>
+
+        <li>
+          <p>
+            The maximum error in the Midpoint Rule is half of the maximum error in the Trapezoidal Rule.
+            (<em>Usually</em> the errors in these two rules have opposite signs as well,
+            that is one will be an under approximation and the other will be an over approximation).
+          </p>
+        </li>
+
+        <li>
+          <p>
+            The error in Simpson's Rule has a term relating to the <m>4</m>th derivative of <m>f</m>.
+            Consider a cubic polynomial:
+            its <m>4</m>th derivative is 0.
+            Therefore, the error in approximating the definite integral of a cubic polynomial with Simpson's Rule is <m>0</m> <mdash/> Simpson's Rule computes the exact answer!
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      We revisit <xref ref="ex_num3" text="global">Examples</xref>
+      and <xref ref="ex_num5" text="global"/>
+      and compute the error bounds using <xref ref="thm_numerical_error"/> in the following example.
+    </p>
+
+    <example xml:id="ex_num7">
+      <title>Computing error bounds</title>
+      <statement>
+        <p>
+          Find the error bounds when approximating
+          <m>\ds \int_0^1 e^{-x^2}\, dx</m> using the Trapezoidal and Midpoint Rules and 5 subintervals,
+          and using Simpson's Rule with 4 subintervals.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          <em>Trapezoidal and Midpoints Rules with <m>n=5</m>:</em>
+        </p>
+
+        <p>
+          We start by computing the <m>2</m>nd derivative of <m>f(x) = e^{-x^2}</m>:
+          <md>
+            \fpp(x) = e^{-x^2}(4x^2-2)
+          </md>.
+        </p>
+
+        <p>
+          <xref ref="fig_num7a"/>
+          shows a graph of <m>\fpp(x)</m> on <m>[0,1]</m>.
+          It is clear that the largest value of <m>\fpp</m>, in absolute value, is 2.
+        </p>
+
+        <figure xml:id="fig_num7a" vshift="-2">
+          <caption>Graphing <m>\fpp(x)</m> in <xref ref="ex_num7"/> to help establish error bounds</caption>
+          <!-- START figures/fig_num7a.tex -->
+          <image width="47%">
+          <shortdescription>Shows the double derivative of f.</shortdescription>
+            <description>
+            <p> The graph of <m>\fpp(x)</m> starts at <m>(0, -2)</m> and curves upwards to the left towards the positive <m>x</m> axis. It intersects the <m>x</m> axis at
+            <m>(0.7, 0)</m>. Then it moves futher to the right in the positive <m>x</m> direction while moving upwards and ends at <m>(1, 0.5)</m>.
+            </p></description>
+            <latex-image label="img_num7a">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            ymin=-2.1,ymax=.7,
+            xmin=-.1,xmax=1.1
+            ]
+
+            \addplot+ [domain=0:1,samples=30] {(e^-x^2)*(4*x^2-2)};
+
+            \draw (axis cs:.8,-1.5) node { $y=e^{-x^2}(4x^2-2)$};
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        <!-- figures/fig_num7a.tex END -->
+        </figure>
+
+        <p>
+          Thus we let <m>K=2</m> and apply the error formula from <xref ref="thm_numerical_error"/>.
+          <md>
+            E_T \leq \frac{(1-0)^3}{12\cdot 5^2}\cdot 2 = 0.00\overline{6}
+          </md>.
+          Since the maximum error in the Midpoint rule is half the error in the Trapezoidal Rule,
+          we can say:
+          <m>E_M \leq 0.00\overline{3}</m>
+        </p>
+
+        <!-- ToDo: Update everything to 4 decimal places. -->
+
+        <p>
+          Our error estimation formula states that our approximation of 0.7444 found in
+          <xref ref="ex_num3"/> is within 0.0067 of the correct answer.
+          Hence we know that the actual value is within
+          <m>[0.7444-0.0067, 0.7444+0.0067]=[0.7377,0.7511].</m> So:
+          <md>
+            0.7377 \leq \int_0^1e^{-x^2}\, dx \leq 0.7511
+          </md>
+          But we can do better than this with the Midpoint Rule since its error is at most half of the error of the Trapezoidal Rule.
+          Our error estimate formula state that our approximate of <m>0.7480</m> found in <xref ref="ex_num3_2"/>
+          is within <m>0.0034</m> of the correct answer.
+          Hence Hence we know that the actual value is within <m>[0.7480-0.0034, 0.7480+0.0033]=[0.7447,0.7513]</m>.
+        </p>
+
+        <p>
+          We had earlier stated the actual answer,
+          correct to 4 decimal places, to be 0.7468,
+          affirming the validity of <xref ref="thm_numerical_error"/>.
+        </p>
+
+        <p>
+          <em>Simpson's Rule with <m>n=4</m>:</em>
+        </p>
+
+        <p>
+          We start by computing the <m>4</m>th derivative of <m>f(x) = e^{-x^2}</m>:
+          <md>
+            f^{(4)}(x) = e^{-x^2}(16x^4-48x^2+12)
+          </md>.
+        </p>
+
+        <p>
+          <xref ref="fig_num7b"/>
+          shows a graph of <m>f^{(4)}(x)</m> on <m>[0,1]</m>.
+          It is clear that the largest value of <m>f^{(4)}</m>, in absolute value, is 12.
+          Thus we let <m>K=12</m> and apply the error formula from <xref ref="thm_numerical_error"/>.
+          <md>
+            E_s =\leq \frac{(1-0)^5}{180\cdot 4^4}\cdot 12 = 0.00026
+          </md>.
+        </p>
+
+        <figure xml:id="fig_num7b" vshift="2">
+          <caption>Graphing <m>f^{(4)}(x)</m> in <xref ref="ex_num7"/> to help establish error bounds</caption>
+          <!-- START figures/fig_num7b.tex -->
+          <image width="47%">
+          <shortdescription>Graphing the fourth derivative of f to help establish error bounds.</shortdescription>
+            <description>
+            <p> The graph of <m>f^{(4)}(x)</m> starts from <m>(12,0)</m> in the positive <m>y</m>-axis and curves downwards to the right towards the positive <m>x</m> axis.
+            It intersects the <m>x</m> axis close to <m>x=0.5</m> and continues moving downwards while also moving to the right in the positive x direction. It stops at the point
+            <m>(1, -8)</m>.
+            </p></description>
+            <latex-image label="img_num7b">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            minor y tick num=4,
+            ymin=-8,ymax=13.5,
+            xmin=-.1,xmax=1.1
+            ]
+
+            \addplot+ [domain=0:1,samples=30] {(e^-x^2)*(16*x^4-48*x^2+12)};
+
+            \draw (axis cs:.7,11) node { $y=e^{-x^2}(16x^4-48x^2+12)$};
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+          <!-- figures/fig_num7b.tex END -->
+        </figure>
+
+        <p>
+          Our error estimation formula states that our approximation of
+          <m>0.7468\overline{3}</m> found in <xref ref="ex_num5"/>
+          is within <m>0.00026</m> of the correct answer,
+          hence we know that the correct answer is in the interval <m>[0.74683-0.00026 , 0.74683 + 0.00026]=[0.74657,0.74709].</m> So:
+          <md>
+            0.74657 \leq \int_0^1e^{-x^2}\, dx \leq 0.74709
+          </md>.
+        </p>
+
+        <p>
+          Once again we affirm the validity of <xref ref="thm_numerical_error"/>
+          since the answer to 4 decimal places is actually <m>0.7468</m>.
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      At the beginning of this section we mentioned two main situations where numerical integration was desirable.
+      We have considered the case where an antiderivative of the integrand cannot be computed.
+      We now investigate the situation where the integrand is not known.
+      This is, in fact,
+      the most widely used application of Numerical Integration methods.
+      <q>Most of the time</q> we observe behavior but do not know <q>the</q>
+      function that describes it.
+      We instead collect data about the behavior and make approximations based on this data.
+      We demonstrate this in an example.
+    </p>
+
+    <example xml:id="ex_num8">
+      <title>Approximating distance traveled</title>
+      <statement>
+        <p>
+          One of the authors drove his daughter home from school while she recorded their speed every 30 seconds.
+          The data is given in <xref ref="fig_num8"/>.
+          Approximate the distance they traveled.
+        </p>
+        <figure xml:id="fig_num8" vshift="-5">
+          <caption>Speed data collected at 30 second intervals for <xref ref="ex_num8"/></caption>
+          <tabular>
+            <row>
+              <cell>Time</cell><cell>Speed</cell>
+            </row>
+            <row bottom="minor">
+              <cell>(min)</cell><cell>(<quantity><unit base="mileperhour"/></quantity>)</cell>
+            </row>
+            <row>
+              <cell><m>0</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+            <row>
+              <cell><m>1</m></cell>
+              <cell><m>25</m></cell>
+            </row>
+            <row>
+              <cell><m>2</m></cell>
+              <cell><m>22</m></cell>
+            </row>
+            <row>
+              <cell><m>3</m></cell>
+              <cell><m>19</m></cell>
+            </row>
+            <row>
+              <cell><m>4</m></cell>
+              <cell><m>39</m></cell>
+            </row>
+            <row>
+              <cell><m>5</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+            <row>
+              <cell><m>6</m></cell>
+              <cell><m>43</m></cell>
+            </row>
+            <row>
+              <cell><m>7</m></cell>
+              <cell><m>59</m></cell>
+            </row>
+            <row>
+              <cell><m>8</m></cell>
+              <cell><m>54</m></cell>
+            </row>
+            <row>
+              <cell><m>9</m></cell>
+              <cell><m>51</m></cell>
+            </row>
+            <row>
+              <cell><m>10</m></cell>
+              <cell><m>43</m></cell>
+            </row>
+            <row>
+              <cell><m>11</m></cell>
+              <cell><m>35</m></cell>
+            </row>
+            <row>
+              <cell><m>12</m></cell>
+              <cell><m>40</m></cell>
+            </row>
+            <row>
+              <cell><m>13</m></cell>
+              <cell><m>43</m></cell>
+            </row>
+            <row>
+              <cell><m>14</m></cell>
+              <cell><m>30</m></cell>
+            </row>
+            <row>
+              <cell><m>15</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+            <row>
+              <cell><m>16</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+            <row>
+              <cell><m>17</m></cell>
+              <cell><m>28</m></cell>
+            </row>
+            <row>
+              <cell><m>18</m></cell>
+              <cell><m>40</m></cell>
+            </row>
+            <row>
+              <cell><m>19</m></cell>
+              <cell><m>42</m></cell>
+            </row>
+            <row>
+              <cell><m>20</m></cell>
+              <cell><m>40</m></cell>
+            </row>
+            <row>
+              <cell><m>21</m></cell>
+              <cell><m>39</m></cell>
+            </row>
+            <row>
+              <cell><m>22</m></cell>
+              <cell><m>40</m></cell>
+            </row>
+            <row>
+              <cell><m>23</m></cell>
+              <cell><m>23</m></cell>
+            </row>
+            <row>
+              <cell><m>24</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+          </tabular>
+        </figure>
+      </statement>
+      <solution>
+        <p>
+          Recall that by integrating a speed function we get distance traveled.
+          We have information about <m>v(t)</m>;
+          we will use Simpson's Rule to approximate <m>\ds \int_a^b v(t)\, dt</m>.
+        </p>
+
+        <p>
+          The most difficult aspect of this problem is converting the given data into the form we need it to be in.
+          The speed is measured in miles per hour,
+          whereas the time is measured in minutes.
+        </p>
+
+        <p>
+          We need to compute <m>\dx = (b-a)/n</m>.
+          With 25 data points collected,
+          there are <m>n=24</m> subintervals.
+          What are <m>a</m> and <m>b</m>?
+          Since we start at time <m>t=0</m>, we have <m>a=0</m>.
+          The final recorded time was <m>t=12</m> minutes, which is 1/5 of an hour.
+          Thus we have
+          <md>
+            \dx = \frac{b-a}{n} = \frac{1/5-0}{24} = \frac1{120};  \frac{\dx}{3} = \frac{1}{360}
+          </md>.
+        </p>
+
+        <p>
+          Thus the distance traveled is approximately:
+          <md>
+            <mrow>\int_0^{0.2}v(t)\, dt \amp \approx \frac{1}{360}\Big[f(x_0)+4f(x_1) + 2f(x_2) + \cdots + 4f(x_{n-1})+f(x_{n})\Big]</mrow>
+            <mrow>\amp = \frac{1}{360}\Big[0+4\cdot25+2\cdot 22 + \cdots + 2\cdot40+4\cdot 23 + 0\Big]</mrow>
+            <mrow>\amp \approx 6.2167 \,\text{ miles. }</mrow>
+          </md>
+        </p>
+
+        <p>
+          We approximate the author drove 6.2 miles.
+          (Because we are sure the reader wants to know,
+          the author's odometer recorded the distance as about 6.05 miles.)
+        </p>
+      </solution>
+    </example>
+
+  </subsection>
+
+  <exercises>
+    <subexercises xml:id="TaC-numerical-integration">
+      <title>Terms and Concepts</title>
+
+      <exercise label="TaC-numerical-integration-1">
+        <!-- <webwork xml:id="webwork-TaC-numerical-integration-1">
+            <pg-code>
+              $true=PopUp(['?','True','False'],1);
+              $false=PopUp(['?','True','False'],2);
+            </pg-code> -->
+
+            <statement correct="no">
+              <p>
+                Simpson's Rule is a method of approximating antiderivatives.
+                <!-- <var name="$false" form="popup"/> -->
+              </p>
+            </statement>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-numerical-integration-2">
+        <!-- <webwork xml:id="webwork-TaC-numerical-integration-2">
+            <pg-code>
+            </pg-code> -->
+
+            <statement>
+              <p>
+                What are the two basic situations where approximating the value of a definite integral is necessary?
+              </p>
+
+              <!-- <p>
+                <var form="essay"/>
+              </p> -->
+            </statement>
+            <response />
+            
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-numerical-integration-3">
+        <!-- <webwork xml:id="webwork-TaC-numerical-integration-3">
+            <pg-code>
+            </pg-code> -->
+
+            <statement>
+              <p>
+                Why are the Left and Right Hand Rules rarely used?
+              </p>
+            </statement>
+            <response />
+            
+            <solution>
+              <p>
+                They are superseded by the Trapezoidal Rule;
+                it takes an equal amount of work and is generally more accurate.
+              </p>
+            </solution>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-numerical-integration-4">
+        <statement>
+          <p>
+            Simpson's Rule is based on approximating portions of a function with what type of function?
+          </p>
+          <p>
+            <fillin answer="quadratic" width="20"/>
+          </p>
+        </statement>
+        <evaluation>
+          <evaluate>
+            <test correct="yes">
+              <strcmp case="insensitive">quadratic|quadratic function|parabola|parabolic</strcmp>
+            </test>
+          </evaluate>
+        </evaluation>
+      </exercise>
+    </subexercises>
+    <subexercises>
+      <title>Problems</title>
+      <exercisegroup cols="2" xml:id="exset-numerical-integration-approx-exact">
+
+        <introduction>
+          <p>
+            Approximate the definite integral with the Trapezoidal Rule and Simpson's Rule,
+            with <m>n=4</m>. Then find the exact value.
+          </p>
+        </introduction>
+  <!-- Exercise 4       -->
+        <exercise label="ex-numerical-integration-approx-exact-1">
+          <webwork xml:id="webwork-ex-numerical-integration-approx-exact-1">
+            <pg-code>
+              $a = -1;
+              $b = 1;
+              $n = 4;
+              $f = Formula("x^2");
+              $F = Formula("x^3/3");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;    <!--Gotta be a better way to do this, but enh -->
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+              $exact = $F-&gt;eval(x=&gt;$b) - $F-&gt;eval(x=&gt;$a);
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{-1}^1 x^2\, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-approx-exact-1a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule.
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/><!-- 3/4 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-1b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/><!-- 2/3 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-1c">
+              <statement>
+                <p>
+                  Find the exact value.
+                </p>
+
+                <p>
+                  <var name="$exact" width="20"/><!-- 2/3 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 5 -->
+        <exercise label="ex-numerical-integration-approx-exact-2">
+          <webwork xml:id="webwork-ex-numerical-integration-approx-exact-2">
+            <pg-code>
+              $a = 0;
+              $b = 10;
+              $n = 4;
+              $f = Formula("5*x");
+              $F = Formula("5*x^2/2");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+              $exact = $F-&gt;eval(x=&gt;$b) - $F-&gt;eval(x=&gt;$a);
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{10} 5x\, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-approx-exact-2a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/> <!-- 250 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-2b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule. 
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/> <!-- 250 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-2c">
+              <statement>
+                <p>
+                  Find the exact value. 
+                </p>
+
+                <p>
+                  <var name="$exact" width="20"/> <!-- 250 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 6 -->
+        <exercise label="ex-numerical-integration-approx-exact-3">
+          <webwork xml:id="webwork-ex-numerical-integration-approx-exact-3">
+            <pg-code>
+              $a = 0;
+              $b = pi;
+              $n = 4;
+              $f = Formula("sin(x)");
+              $F = Formula("-cos(x)");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+              $exact = $F-&gt;eval(x=&gt;$b) - $F-&gt;eval(x=&gt;$a);
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{\pi} \sin(x) \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-approx-exact-3a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/> <!-- 1/4*(1+sqrt(2))*pi -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-3b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule. 
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/>  <!-- 1/6*(1+2*sqrt(2))*pi -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-3c">
+              <statement>
+                <p>
+                  Find the exact value.
+                </p>
+
+                <p>
+                  <var name="$exact" width="20"/> <!-- 2 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 7 -->
+        <exercise label="ex-numerical-integration-approx-exact-4">
+          <webwork xml:id="webwork-ex-numerical-integration-approx-exact-4">
+            <pg-code>
+              $a = 0;
+              $b = 4;
+              $n = 4;
+              $f = Formula("sqrt(x)");
+              $F = Formula("2/3*x^(3/2)");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+              $exact = $F-&gt;eval(x=&gt;$b) - $F-&gt;eval(x=&gt;$a);
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{4} \sqrt x\, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-approx-exact-4a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/> <!-- 2+sqrt(2)+sqrt(3) -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-4b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule. 
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/> <!-- 2/3*(3+sqrt(2)+2*sqrt(3)) -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-4c">
+              <statement>
+                <p>
+                  Find the exact value.
+                </p>
+
+                <p>
+                  <var name="$exact" width="20"/> <!-- 16/3 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 8 -->
+        <exercise label="ex-numerical-integration-approx-exact-5">
+          <webwork xml:id="webwork-ex-numerical-integration-approx-exact-5">
+            <pg-code>
+              $a = 0;
+              $b = 3;
+              $n = 4;
+              $f = Formula("x^3+2x^2-5x+7");
+              $F = Formula("x^4/4+2x^3/3-5x^2/2+7x");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+              $exact = $F-&gt;eval(x=&gt;$b) - $F-&gt;eval(x=&gt;$a);
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{3} (x^3+2x^2-5x+7)\, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-approx-exact-5a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/> <!-- 38.5781 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-5b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule. 
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/> <!-- 147/4 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-5c">
+              <statement>
+                <p>
+                  Find the exact value.
+                </p>
+
+                <p>
+                  <var name="$exact" width="20"/> <!-- 147/4 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 9 -->
+        <exercise label="ex-numerical-integration-approx-exact-6">
+          <webwork xml:id="webwork-ex-numerical-integration-approx-exact-6">
+            <pg-code>
+              $a = 0;
+              $b = 1;
+              $n = 4;
+              $f = Formula("x^4");
+              $F = Formula("x^5/5");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+              $exact = $F-&gt;eval(x=&gt;$b) - $F-&gt;eval(x=&gt;$a);
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{1} x^4\, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-approx-exact-6a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/> <!-- 0.2207 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-6b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule. 
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/> <!-- 0.2005 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-6c">
+              <statement>
+                <p>
+                  Find the exact value.
+                </p>
+
+                <p>
+                  <var name="$exact" width="20"/>  <!-- 1/5 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 10 -->
+        <exercise label="ex-numerical-integration-approx-exact-7">
+          <webwork xml:id="webwork-ex-numerical-integration-approx-exact-7">
+            <pg-code>
+              $a = 0;
+              $b = 2*pi;
+              $n = 4;
+              $f = Formula("cos(x)");
+              $F = Formula("sin(x)");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+              $exact = $F-&gt;eval(x=&gt;$b) - $F-&gt;eval(x=&gt;$a);
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{2\pi} \cos(x) \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-approx-exact-7a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/> <!-- 0 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-7b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule. 
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/> <!-- 0 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-7c">
+              <statement>
+                <p>
+                  Find the exact value. 
+                </p>
+
+                <p>
+                  <var name="$exact" width="20"/> <!-- 0 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 11 -->
+        <exercise label="ex-numerical-integration-approx-exact-8">
+          <webwork xml:id="webwork-ex-numerical-integration-approx-exact-8">
+            <pg-code>
+              $a = -3;
+              $b = 3;
+              $n = 4;
+              $f = Formula("sqrt(9-x^2)");
+              $F = Formula("1/2*(sqrt(9-x^2)*x + 9 *asin(x/3))");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+              $exact = $F-&gt;eval(x=&gt;$b) - $F-&gt;eval(x=&gt;$a);
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{-3}^{3} \sqrt{9-x^2} \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-approx-exact-8a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/>  <!-- 9/2*(1+sqrt(3)), 12.294 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-8b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/>  <!-- 3+6*sqrt(3), 13.392 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-approx-exact-8c">
+              <statement>
+                <p>
+                  Find the exact value.
+                </p>
+
+                <p>
+                  <var name="$exact" width="20"/>  <!-- 9*pi/2, 14.137 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-numerical-integration-n6-approx">
+
+        <introduction>
+          <p>
+            Approximate the definite integral with the Trapezoidal Rule and Simpson's Rule,
+            with <m>n=6</m>.
+          </p>
+        </introduction>
+  <!-- Exercise 12 -->
+        <exercise label="ex-numerical-integration-n6-approx-1">
+          <webwork xml:id="webwork-ex-numerical-integration-n6-approx-1">
+            <pg-code>
+              $a = 0;
+              $b = 1;
+              $n = 6;
+              $f = Formula("cos(x^2)");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{1} \cos\big(x^2\big) \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-n6-approx-1a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule.
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/>  <!-- 0.9006 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-n6-approx-1b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule. 
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/>  <!-- 0.90452 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 13 -->
+        <exercise label="ex-numerical-integration-n6-approx-2">
+          <webwork xml:id="webwork-ex-numerical-integration-n6-approx-2">
+            <pg-code>
+              $a = -1;
+              $b = 1;
+              $n = 6;
+              $f = Formula("e^(x^2)");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{-1}^{1} e^{x^2} \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-n6-approx-2a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/>  <!-- 3.0241 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-n6-approx-2b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/>  <!-- 2.9315 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 14 -->
+        <exercise label="ex-numerical-integration-n6-approx-3">
+          <webwork xml:id="webwork-ex-numerical-integration-n6-approx-3">
+            <pg-code>
+              $a = 0;
+              $b = 5;
+              $n = 6;
+              $f = Formula("sqrt(x^2+1)");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{5} \sqrt{x^2+1} \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-n6-approx-3a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/>  <!-- 13.9604 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-n6-approx-3b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/>  <!-- 13.9066 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 15 -->
+        <exercise label="ex-numerical-integration-n6-approx-4">
+          <webwork xml:id="webwork-ex-numerical-integration-n6-approx-4">
+            <pg-code>
+              $a = 0;
+              $b = pi;
+              $n = 6;
+              $f = Formula("x*sin(x)");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{\pi} x\sin(x) \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-n6-approx-4a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule.
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/>  <!-- 3.0695 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-n6-approx-4b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/>  <!-- 3.14295 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 16 -->
+        <exercise label="ex-numerical-integration-n6-approx-5">
+          <webwork xml:id="webwork-ex-numerical-integration-n6-approx-5">
+            <pg-code>
+              $a = 0;
+              $b = pi/2;
+              $n = 6;
+              $f = Formula("sqrt(cos(x))");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{\pi/2} \sqrt{\cos(x) } \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-n6-approx-5a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/>  <!-- 1.1703 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-n6-approx-5b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule. 
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/>  <!-- 1.1873 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 17 -->
+        <exercise label="ex-numerical-integration-n6-approx-6">
+          <webwork xml:id="webwork-ex-numerical-integration-n6-approx-6">
+            <pg-code>
+              $a = 1;
+              $b = 4;
+              $n = 6;
+              $f = Formula("ln(x)");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{1}^{4} \ln(x) \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-n6-approx-6a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule.
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/>  <!-- 2.52971 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-n6-approx-6b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/>  <!-- 2.5447 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 18 -->
+        <exercise label="ex-numerical-integration-n6-approx-7">
+          <webwork xml:id="webwork-ex-numerical-integration-n6-approx-7">
+            <pg-code>
+              $a = -1;
+              $b = 1;
+              $n = 6;
+              $f = Formula("1/(sin(x)+2)");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{-1}^{1} \frac{1}{\sin(x) +2} \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-n6-approx-7a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/>  <!-- 1.0803 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-n6-approx-7b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule. 
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/>  <!-- 1.077 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 19 -->
+        <exercise label="ex-numerical-integration-n6-approx-8">
+          <webwork xml:id="webwork-ex-numerical-integration-n6-approx-8">
+            <pg-code>
+              $a = 0;
+              $b = 6;
+              $n = 6;
+              $f = Formula("1/(sin(x)+2)");
+              $delta_x = ($b - $a)/$n;
+              @l = ();
+              $trap = 0;
+              $simp = 0;
+              foreach $i (0..$n-1) {
+                push @l, $i*$delta_x + $a;
+              }
+              $flip = 1;
+              foreach $i (@l) {
+                $trap += $f-&gt;eval(x=&gt;$i) + $f-&gt;eval(x=&gt;($i + $delta_x));
+                if ($flip == 1) {
+                  $simp += $f-&gt;eval(x=&gt;$i) + 4*$f-&gt;eval(x=&gt;($i + $delta_x)) + $f-&gt;eval(x=&gt;($i+2*$delta_x));
+                  $flip = 0;
+                } else {
+                  $flip = 1;
+                }
+              }
+              $trap = $trap*$delta_x/2;
+              $simp = $simp*$delta_x/3;
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{6} \frac{1}{\sin(x) +2} \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-n6-approx-8a">
+              <statement>
+                <p>
+                  Approximate using the trapezoidal rule. 
+                </p>
+
+                <p>
+                  <var name="$trap" width="20"/>  <!-- 3.4682 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-n6-approx-8b">
+              <statement>
+                <p>
+                  Approximate using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$simp" width="20"/>  <!-- 3.4985 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-numerical-integration-bound-error">
+
+        <introduction>
+          <p>
+            Find <m>n</m> such that the error in approximating the given definite integral is less than <m>0.0001</m>
+            when using the Trapezoidal Rule and Simpson's Rule.
+          </p>
+        </introduction>
+  <!-- Exercise 20 -->
+        <exercise label="ex-numerical-integration-bound-error-1">
+          <webwork xml:id="webwork-ex-numerical-integration-bound-error-1">
+            <pg-code>
+              $a = 0;
+              $b = pi;
+              $err = 0.0001;
+              $Mt = 1;
+              $Ms = 1;
+              $nt = sqrt(($b-$a)**3*$Mt/(12*$err));
+              $nt = int($nt + 0.5);
+              $ns = (($b-$a)**5*$Ms/(180*$err))**(1./4);
+              $ns = int($ns + .99999);
+              if ($ns%2==1) {     <!--Force even result -->
+                $ns++;
+              }
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{\pi} \sin(x) \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-bound-error-1a">
+              <statement>
+                <p>
+                  Using the trapezoid rule.
+                </p>
+
+                <p>
+                  <var name="$nt" width="20"/> <!-- 161 -->
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>n=161</m> (using <m>\max\big(\fpp(x)\big)=1</m>)
+                </p>
+              </solution>
+            </task>
+
+            <task label="ex-numerical-integration-bound-error-1b">
+              <statement>
+                <p>
+                  Using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$ns" width="20"/> <!-- 12 -->
+                </p>
+              </statement>
+              <solution>
+                <p>
+                  <m>n=12</m>	(using <m>\max\big(f^{(4)}(x)\big)=1</m>)
+                </p>
+              </solution>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 21 -->
+        <exercise label="ex-numerical-integration-bound-error-2">
+          <webwork xml:id="webwork-ex-numerical-integration-bound-error-2">
+            <pg-code>
+              $a = 1;
+              $b = 4;
+              $err = 0.0001;
+              $Mt = 0.75;
+              $Ms = 105/16;
+              $nt = sqrt(($b-$a)**3*$Mt/(12*$err));
+              $nt = int($nt + 0.99999);
+              $ns = (($b-$a)**5*$Ms/(180*$err))**(1./4);
+              $ns = int($ns + .99999);
+              if ($ns%2==1) {     <!--Force even result -->
+                $ns++;
+              }
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{1}^{4} \frac{1}{\sqrt x} \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-bound-error-2a">
+              <statement>
+                <p>
+                  Using the trapezoid rule.
+                </p>
+
+                <p>
+                  <var name="$nt" width="20"/>  <!-- 130 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-bound-error-2b">
+              <statement>
+                <p>
+                  Using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$ns" width="20"/> <!-- 18 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 22 -->
+        <exercise label="ex-numerical-integration-bound-error-3">
+          <webwork xml:id="webwork-ex-numerical-integration-bound-error-3">
+            <pg-code>
+              $a = 0;
+              $b = pi;
+              $err = 0.0001;
+              $Mt = 38.1865;
+              $Ms = 804.2;
+              $nt = sqrt(($b-$a)**3*$Mt/(12*$err));
+              $nt = int($nt + 0.99999);
+              $ns = (($b-$a)**5*$Ms/(180*$err))**(1./4);
+              $ns = int($ns + .99999);
+              if ($ns%2==1) {     <!--Force even result -->
+                $ns++;
+              }
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{\pi} \cos\big(x^2\big) \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-bound-error-3a">
+              <statement>
+                <p>
+                  Using the trapezoid rule.
+                </p>
+
+                <p>
+                  <var name="$nt" width="20"/>  <!-- 994 but orig sol'n said 1004 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-bound-error-3b">
+              <statement>
+                <p>
+                  Using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$ns" width="20"/> <!-- 62 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+  <!-- Exercise 23 -->
+        <exercise label="ex-numerical-integration-bound-error-4">
+          <webwork xml:id="webwork-ex-numerical-integration-bound-error-4">
+            <pg-code>
+              $a = 0;
+              $b = 5;
+              $err = 0.0001;
+              $Mt = 300;
+              $Ms = 24;
+              $nt = sqrt(($b-$a)**3*$Mt/(12*$err));
+              $nt = int($nt + 0.99999);
+              $ns = (($b-$a)**5*$Ms/(180*$err))**(1./4);
+              $ns = int($ns + .99999);
+              if ($ns%2==1) {     <!--Force even result -->
+                $ns++;
+              }
+            </pg-code>
+
+            <introduction>
+              <p>
+                For the integral <m>\int_{0}^{5} x^4 \, dx</m>:
+              </p>
+            </introduction>
+
+            <task label="ex-numerical-integration-bound-error-4a">
+              <statement>
+                <p>
+                  Using the trapezoid rule.
+                </p>
+
+                <p>
+                  <var name="$nt" width="20"/>  <!-- 5591 -->
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-numerical-integration-bound-error-4b">
+              <statement>
+                <p>
+                  Using Simpson's rule.
+                </p>
+
+                <p>
+                  <var name="$ns" width="20"/> <!-- 46 -->
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+
+      </exercisegroup>
+      <exercisegroup cols="2" xml:id="exset-numerical-integration-area">
+
+        <introduction>
+          <p>
+            A region is given.
+            Find the area of the region using Simpson's Rule:
+          </p>
+
+          <p>
+            <ol>
+              <li>
+                <p>
+                  where the measurements are in centimeters,
+                  taken in 1 cm increments, and
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  where the measurements are in hundreds of feet,
+                  taken in 100 ft increments.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </introduction>
+  <!-- Exercise 24 -->
+        <exercise label="ex-numerical-integration-area-1">
+          <webwork xml:id="webwork-ex-numerical-integration-area-1">
+              <pg-code>
+                $a = 0;
+                $b = 6;
+                $n = 6;
+                $delta_x = ($b - $a)/$n;
+                @y = (0, 4.7, 6.3, 6.9, 6.6, 5.1, 0);
+                @coeffs = (1, 4, 2, 4, 2, 4, 1);
+                $area = 0;
+                $size = scalar @y;
+                foreach $i (0..$size) {
+                    $area += $coeffs[$i] * $y[$i];
+                }
+                $area = $area*$delta_x/3;
+                $area_ft = $area * 100 * 100;
+                $area = NumberWithUnits("$area cm^2");
+                $area_ft = NumberWithUnits("$area_ft ft^2");
+              </pg-code>
+
+              <statement>
+                <!-- START figures/fig_05_05_ex_01.tex -->
+                  <image>
+                  <shortdescription>Finding area using Simpson's rule.</shortdescription>
+                    <description>
+                    <p> We have an area subdivided into six subintervals. The heights of the subintervals are <m>4.7</m>,<m>6.3</m>,<m>6.9</m>,<m>6.6</m> and <m>5.1</m>.
+                    </p></description>
+                    <latex-image label="img_05_05_ex_01">
+
+                    \begin{tikzpicture}[xscale=1.19,yscale=.7]
+
+                    \draw [firstcolor,thick,fill=firstcolor!30,smooth] plot coordinates {
+                    (0,2.)(0.06639,2.527)(0.2407,2.839)(0.4857,3.009)(0.7641,3.112)(1.039,
+                    3.221)(1.294,3.367)(1.532,3.53)(1.759,3.689)(1.98,3.823)(2.2,3.915)(2.
+                    42,3.967)(2.64,3.992)(2.86,4.)(3.08,4.)(3.305,3.987)(3.543,3.93)(3.
+                    808,3.797)(4.107,3.558)(4.45,3.185)(4.815,2.703)(5.17,2.152)(5.483,1.
+                    577)(5.723,1.018)(5.872,0.5022)(5.938,0.02083)(5.93,-0.4363)(5.861,-0.
+                    88)(5.741,-1.319)(5.58,-1.742)(5.389,-2.128)(5.179,-2.456)(4.96,-2.
+                    705)(4.737,-2.865)(4.502,-2.953)(4.243,-2.991)(3.95,-3.)(3.614,-2.999)
+                    (3.244,-2.984)(2.86,-2.935)(2.484,-2.829)(2.137,-2.646)(1.832,-2.378)(
+                    1.558,-2.06)(1.299,-1.734)(1.039,-1.443)(0.7641,-1.222)(0.4857,-0.
+                    9779)(0.2407,-0.5015)(0.06639,0.4201)(0,2.)};
+
+                    \draw (1,3.22) -- (1,-1.443) node [shift={(-3pt,0pt)},rotate=90,pos=.5] { 4.7};
+
+                    \draw (2,3.823) -- (2,-2.5) node [shift={(-3pt,0pt)},rotate=90,pos=.5] { 6.3};
+
+                    \draw (3,4) -- (3,-2.95) node [shift={(-3pt,0pt)},rotate=90,pos=.5] { 6.9};
+
+                    \draw (4,3.62) -- (4,-3) node [shift={(-3pt,0pt)},rotate=90,pos=.5] { 6.6};
+
+                    \draw (5,2.4) -- (5,-2.7) node [shift={(-3pt,0pt)},rotate=90,pos=.5] { 5.1};
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+                <!-- figures/fig_05_05_ex_01.tex END -->
+                <instruction>
+                  Enter your answer using the metric measurements.
+                </instruction>
+                <p>
+                  <var name="$area" width="20"/>
+                </p>
+                <!-- 30.8667 cm^2 -->
+                <instruction>
+                  Enter your answer using the imperial measurements.
+                </instruction>
+                <p>
+                  <var name="$area_ft" width="20"/>
+                </p>
+                <!-- 308667 ft^2 -->
+              </statement>
+          </webwork>
+        </exercise>
+  <!-- Exercise 25 -->
+        <exercise label="ex-numerical-integration-area-2">
+          <webwork xml:id="webwork-ex-numerical-integration-area-2">
+              <pg-code>
+                $a = 0;
+                $b = 6;
+                $n = 6;
+                $delta_x = ($b - $a)/$n;
+                @y = (0, 3.6, 3.6, 4.5, 6.6, 5.6, 0);
+                @coeffs = (1, 4, 2, 4, 2, 4, 1);
+                $area = 0;
+                $size = scalar @y;
+                foreach $i (0..$size) {
+                    $area += $coeffs[$i] * $y[$i];
+                }
+                $area = $area*$delta_x/3;
+                $area_ft = $area * 100 * 100;
+                $area = NumberWithUnits("$area cm^2");
+                $area_ft = NumberWithUnits("$area_ft ft^2");
+              </pg-code>
+
+              <statement>
+                <!-- START figures/fig_05_05_ex_02.tex -->
+                  <image>
+                  <shortdescription>Finding area using Simpson's rule.</shortdescription>
+                    <description>
+                    <p> We have an area subdivided into six subintervals. The heights of the subintervals are <m>3.6</m>,<m>3.6</m>,<m>4.5</m>,<m>6.6</m> and <m>5.6</m>.
+                    </p></description>
+                    <latex-image label="img_05_05_ex_02">
+
+                    \begin{tikzpicture}[xscale=1.19,yscale=.7]
+
+                    \draw [firstcolor,thick,fill=firstcolor!30,smooth] plot coordinates {
+                    (0,1.)(0.05533,1.541)(0.2027,1.965)(0.414,2.278)(0.6613,2.483)(0.9167,
+                    2.583)(1.157,2.588)(1.382,2.521)(1.595,2.409)(1.799,2.282)(2.,2.167)(
+                    2.2,2.089)(2.4,2.068)(2.6,2.119)(2.8,2.257)(3.,2.5)(3.201,2.847)(3.
+                    411,3.233)(3.636,3.58)(3.885,3.807)(4.167,3.833)(4.483,3.604)(4.815,3.
+                    159)(5.139,2.561)(5.431,1.876)(5.667,1.167)(5.828,0.488)(5.917,-0.
+                    1427)(5.943,-0.7173)(5.912,-1.228)(5.833,-1.667)(5.715,-2.028)(5.564,-
+                    2.317)(5.389,-2.543)(5.199,-2.712)(5.,-2.833)(4.799,-2.912)(4.589,-2.
+                    943)(4.364,-2.917)(4.115,-2.828)(3.833,-2.667)(3.513,-2.432)(3.153,-2.
+                    149)(2.753,-1.851)(2.313,-1.568)(1.833,-1.333)(1.323,-1.155)(0.828,-0.
+                    944)(0.4053,-0.5893)(0.1107,0.02133)(0,1)};
+
+                    \draw (1,2.6) -- (1,-1.) node [shift={(-3pt,0pt)},rotate=90,pos=.5] { 3.6};
+
+                    \draw (2,2.167) -- (2,-1.43) node [shift={(-3pt,0pt)},rotate=90,pos=.5] { 3.6};
+
+                    \draw (3,2.5) -- (3,-2) node [shift={(-3pt,0pt)},rotate=90,pos=.5] { 4.5};
+
+                    \draw (4,3.8) -- (4,-2.75) node [shift={(-3pt,0pt)},rotate=90,pos=.5] { 6.6};
+
+                    \draw (5,2.8) -- (5,-2.83) node [shift={(-3pt,0pt)},rotate=90,pos=.5] { 5.6};
+
+                    \end{tikzpicture}
+
+                    </latex-image>
+                  </image>
+                <!-- figures/fig_05_05_ex_02.tex END -->
+                <instruction>
+                  Enter your answer using the metric measurements.
+                </instruction>
+                <p>
+                  <var name="$area" width="20"/>
+                </p>
+                <!-- 25.0667 cm^2 -->
+                <instruction>
+                  Enter your answer using the imperial measurements.
+                </instruction>
+                <p>
+                  <var name="$area_ft" width="20"/>
+                </p>
+                <!-- 250667 ft^2 -->
+              </statement>
+          </webwork>
+        </exercise>
+
+      </exercisegroup>
+    </subexercises>
+  </exercises>
+</section>

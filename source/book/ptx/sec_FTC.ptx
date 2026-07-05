@@ -1,0 +1,3288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec_FTC" label="sec_FTC">
+  <title>The Fundamental Theorem of Calculus</title>
+  <introduction>
+
+    <figure xml:id="vid_int_FTC_intro" component="video" vshift="0.5">
+      <caption>Video introduction to <xref ref="sec_FTC"/></caption>
+      <video youtube="8d3R9MSwKuk" label="vid_int_FTC_intro"/>
+    </figure>
+
+    <p>
+      Let <m>f(t)</m> be a continuous function defined on <m>[a,b]</m>.
+      The definite integral <m>\int_a^b f(x)\, dx</m> is the
+      <q>area under <m>f</m></q> on <m>[a,b]</m>.
+      We can turn this concept into a function by letting the upper
+      (or lower)
+      bound vary.
+    </p>
+
+    <p>
+      Let <m>F(x) = \int_a^x f(t)\, dt</m>.
+      It computes the area under <m>f</m> on <m>[a,x]</m> as illustrated in <xref ref="fig_ftc0"/>.
+      We can study this function using our knowledge of the definite integral.
+      For instance, <m>F(a)=0</m> since <m>\int_a^af(t)\, dt=0</m>.
+    </p>
+
+    <figure xml:id="fig_ftc0">
+      <caption>The area of the shaded region is <m>F(x) = \int_a^x f(t)\, dt</m></caption>
+      <image width="47%">
+        <shortdescription>
+          A concave-down graph in the first quadrant, with the area underneath shaded from a to x.
+        </shortdescription>
+        <description>
+          <p>
+            The <m>t</m> and the <m>y</m> axes are uncalibrated.
+            There are three distinct positions on the <m>t</m> axis,
+            <m>a</m>, <m>x</m> and <m>b</m> in the order from left to right.
+            The function <m>f(t)</m> is a curve facing downward,
+            the areas under the curve between <m>a</m> and <m>x</m>
+            are shaded. <m>b</m> lies to the right of <m>x</m>
+            outside of the shaded portion.
+          </p>
+        </description>
+        <latex-image label="img_ftc0">
+
+        \begin{tikzpicture}
+
+        \begin{axis}[
+        axis on top,
+        xtick=\empty,
+        extra x ticks={1,2.5,3},
+        extra x tick labels={$a$,$x$,$b$},
+        ytick=\empty,
+        xlabel=$t$,
+        ymin=-.5,ymax=2,
+        xmin=-.5,xmax=3.5
+        ]
+
+        \addplot [firstcurvestyle,areastyle,domain=1:2.5] {.5*sin(deg(x))+1} \closedcycle;
+        \addplot [firstcurvestyle,domain=0:3.25,samples=30] {.5*sin(deg(x))+1};
+
+        \end{axis}
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+    </figure>
+
+    <example xml:id="ex_ftc1">
+      <title>Exploring the <q>Area so far</q> function</title>
+      <statement>
+        <p>
+          Consider <m>f(t)=2t</m> pictured in Figure <xref ref="fig_ftc1"/>
+          and its associated <q>area so far</q> function,
+          <m>F(x)=\int_1^x 2t\, dt</m>.
+          Using the graph of <m>f</m> and geometry,
+          find an explicit formula for <m>F</m>.
+        </p>
+
+        <figure xml:id="fig_ftc1" vshift="3">
+          <caption>The area of the shaded region is <m>F(x) = \int_1^x 2t\, dt</m></caption>
+          <image width="47%">
+            <shortdescription>
+              The graph y=2t, and below it, the trapezoidal region from t=1 to t=x is shaded.
+            </shortdescription>
+            <description>
+              <p>
+                The <m>y</m> axis is drawn from <m>-2</m> to <m>8</m> while the
+                <m>t</m> axis is drawn without calibration but it has
+                two distinct points <m>1</m> and <m>x</m>.
+                The graph is a straight line passing through the origin and
+                has a positive slope. The shaded portion is drawn under the
+                graph between <m>1</m> and <m>x</m>.
+              </p>
+            </description>
+            <latex-image label="img_ftc1">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick=\empty,
+            extra x ticks={1,2.5},
+            extra x tick labels={$1$,$x$},
+            %ytick=\empty,
+            xlabel=$t$,
+            ymin=-2,ymax=8,
+            xmin=-1,xmax=3.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=1:2.5] {2*x} \closedcycle;
+            \addplot [firstcurvestyle,domain=-1:3.25] {2*x};
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+      <solution>
+        <p>
+          We can see from <xref ref="fig_ftc1b"/> that for <m>x \geq 1</m>,
+          the area under the curve can be found by subtracting the area of two triangles.
+          The larger triangle will have a base of <m>x</m> and a height of <m>f(x)=2x</m>,
+          while the smaller triangle will have a base of <m>1</m> and a height of <m>2</m>.
+          Therefore, the area under the curve for
+          <m>x \geq 1</m> is given by <m>A(x)=\frac12 (x)(2x)-\frac12 (1)(2)=x^2-1</m>.
+        </p>
+
+        <figure xml:id="fig_ftc1b" vshift="-2">
+          <caption>The area of the shaded region is <m>F(x) = \int_1^x 2t\, dt</m></caption>
+          <image width="47%">
+            <shortdescription>
+              The previous trapezoidal region, with heights 2 and 2x shown.
+            </shortdescription>
+            <description>
+              <p>
+                Graph of function same as the one used for the previous example.
+              </p>
+              <p>
+                The <m>y</m> axis is drawn from <m>-2</m> to <m>8</m> while the
+                <m>t</m> axis is drawn without calibration but it has two
+                distinct positions <m>1</m> and <m>x</m>. The graph is a straight
+                line passing through the origin and has a positive slope.
+                The shaded portion is drawn under the graph between <m>1</m> and <m>x</m>.
+              </p>
+              <p>
+                The distance from the origin to point <m>x</m> on the <m>t</m>
+                axis is marked <m>x</m>. The distance from origin to <m>1</m>
+                is labeled <m>1</m>. The left boundary of the shaded region the
+                <m>y</m> value is labeled <m>2</m> and on the right boundaries
+                the <m>y</m> value is labeled <m>2x</m>.
+              </p>
+            </description>
+            <latex-image label="img_ftc1b">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick=\empty,
+            extra x ticks={1,2.5},
+            extra x tick labels={$1$,$x$},
+            xlabel=$t$,
+            ymin=-2,ymax=8,
+            xmin=-1,xmax=3.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=1:2.5] {2*x} \closedcycle;
+            \addplot [firstcurvestyle,domain=-1:3.25] {2*x};
+
+            \addplot [lineseg,domain=0:2]({1},{x}) node [pos=0.5, right] {$2$};
+            \addplot [lineseg,domain=0:1]({x},{0}) node [pos=0.5, above] {$1$};
+            \addplot [lineseg,&lt;-&gt;, domain=0:2.5] ({x},{-1}) node [pos=0.5, below] {$x$};
+            \addplot [lineseg,domain=0:5]({2.5},{x}) node [pos=0.5, right] {$2x$};
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>
+          Note that this same formula holds for <m>x\lt 1</m>.
+          If <m>x \lt 1</m>,
+          then <m>F(x) = \int_1^x 2t\, dt=-\int_x^1 2t\, dt</m>.
+          The areas to the left of <m>x=1</m> will have opposite signs
+          (since they areas are accumulated
+          <em>before</em> <m>x=1</m>).
+          For example, when <m>x=0</m>,
+          <m>F(0) = -\int_0^1 2t\, dt=-\frac12 (1)(2)=-1</m>.
+          This is the same value we get from evaluating <m>x^2-1</m> for <m>x=0</m>.
+          Also notice that <m>F(-1)=\int_1^{-1} 2t \, dt=-\int_{-1}^1 2t\, dt</m>.
+          This integral is clearly <m>0</m> since the areas over <m>[-1,0]</m> and <m>[0,1]</m> will sum to zero.
+          Again, this is the same answer obtained by evaluating <m>x^2-1</m> for <m>x=-1</m>.
+        </p>
+
+        <p>
+          Therefore, we can reasonably say that <m>F(x)=x^2-1</m>.
+          A plot of both <m>f(x)=2x</m> and
+          <m>F(x)=x^2-1</m> are given in Figure <xref ref="fig_ftc1c"/>.
+          You should notice a familiar relationship between these two functions.
+          This relationship is formally stated in <xref ref="thm_FTC1"/>.
+        </p>
+
+        <figure xml:id="fig_ftc1c">
+          <caption>Graphs of <m>f(x)=2x</m> and <m>F(x)=x^2-1</m></caption>
+          <image width="47%">
+            <shortdescription>
+              Graph of f(x) = 2*x and F(x)= x^2-1.
+            </shortdescription>
+            <description>
+              <p>
+                The <m>y</m> axis is drawn from <m>-2</m> to <m>8</m> and
+                the <m>x</m> axis is drawn from <m>-1</m> to <m>3</m>.
+                The graphs of two functions are shown.
+                The first is a line through the origin with slope 2,
+                and the second is a parabola that opens upward, with its vertex at <m>(0,-1)</m>.
+                Both functions intersect at approximately <m>x=-0.4</m>
+                and <m>x=2.4</m>, it is also between these points that
+                the line is above the curve beyond which the curve is
+                above the line.
+              </p>
+              <p>
+                The straight line that passes through the origin and has
+                a positive slope. It lies in the first and the third
+                quadrant.
+              </p>
+              <p>
+                The curve appears to start from <m>x</m> intercept
+                <m>1</m>. It has a <m>y</m> intercept at <m>-1</m> and
+                the second <m>x</m> intercept at <m>1</m>.
+              </p>
+            </description>
+            <latex-image label="img_ftc1c">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            ymin=-2,ymax=8,
+            xmin=-1,xmax=3.5
+            ]
+
+            \addplot+ [domain=-1:3.25] {2*x};
+            \addplot+ [domain=-1:3.25] {x^2-1};
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+      </solution>
+      <solution component="video" vshift="2">
+        <title>Video solution</title>
+        <video width="98%" youtube="zVyMghQRLcI" label="vid_int_FTC_ex_1" component="video"/>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Fundamental Theorem of Calculus, Parts 1 and 2</title>
+    <p>
+      As <xref ref="ex_ftc1"/> hinted,
+      we can apply calculus ideas to <m>F(x)</m>;
+      in particular, we can compute its derivative.
+      In <xref ref="ex_ftc1"/>,
+      <m>F(x)=x^2-1</m>, so <m>F'(x)=2x=f(x)</m>.
+      While this may seem like an innocuous thing to do,
+      it has far-reaching implications,
+      as demonstrated by the fact that the result is given as an important theorem.
+    </p>
+
+    <theorem xml:id="thm_FTC1">
+      <title>The Fundamental Theorem of Calculus, Part 1</title>
+      <statement>
+        <p>
+          Let <m>f</m> be continuous on <m>[a,b]</m> and let <m>F(x) = \int_a^x f(t)\, dt</m>.
+          Then <m>F</m> is continuous on <m>[a,b]</m>, differentiable on <m>(a,b)</m>, and
+
+          <idx><h>Fundamental Theorem of Calculus</h></idx>
+
+          <idx><h>integration</h><h>Fun. Thm. of Calc.</h></idx>
+
+          <md>
+            \Fp(x)=f(x)
+          </md>.
+          In other words:
+          <md>
+            \lzoo{x}{\int_a^x f(t)\, dt}=f(x)
+          </md>.
+        </p>
+      </statement>
+    </theorem>
+
+    <figure xml:id="vid_int_FTC_part_I" component="video" vshift="1">
+      <caption>Video presentation of <xref ref="thm_FTC1"/></caption>
+      <video youtube="TE3kZRIso-Q" label="vid_int_FTC_part_I"/>
+    </figure>
+
+
+    <p>
+      Initially this seems simple, as demonstrated in the following example.
+    </p>
+
+    <example xml:id="ex_ftc2">
+      <title>Using the Fundamental Theorem of Calculus, Part 1</title>
+      <statement>
+        <p>
+          Let <m>\ds F(x) = \int_{-5}^x (t^2+\sin(t) )\, dt</m>.
+          What is <m>\Fp(x)</m>?
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Using the Fundamental Theorem of Calculus,
+          we have <m>\Fp(x) = x^2+\sin(x)</m>.
+          That is, the derivative of the <q>area so far</q> function,
+          is simply the integrand replacing <m>x</m> with <m>t</m>.
+        </p>
+
+        <p>
+          This simple example reveals something incredible:
+          <m>F(x)</m> is an antiderivative of <m>x^2+\sin(x)</m>!
+          Therefore, <m>F(x) = \frac13x^3-\cos(x) +C</m> for some value of <m>C</m>. (We can find <m>C</m>,
+          but generally we do not care.
+          We know that <m>F(-5)=0</m>, which allows us to compute <m>C</m>.
+          In this case, <m>C=\cos(-5)+\frac{125}3</m>.)
+        </p>
+      </solution>
+      <solution component="video" vshift="0">
+        <title>Video solution</title>
+        <video width="98%" youtube="7tHmgPcUZG4" label="vid_int_FTC_ex_2" component="video"/>
+      </solution>
+    </example>
+
+    <exercise label="APEX-PROTEUS-sec-5_4-FTC-1-v1" xml:id="APEX_FTC_1_v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>      
+      
+      <introduction>
+        <p>
+          Let <m>F(x)=\int_0^x f(t)\,dt</m>, for <m>0\leq x\leq 4</m>,
+          where <m>f(x)</m> is the function whose graph is the upper semicircle of radius 1, with center at <m>(1,0)</m>,
+          followed by a line segment connecting the point <m>(2,0)</m> with the point <m>(4,1)</m>,
+          as shown in <xref ref="fig-PROTEUS-FTC-1"/>.
+        </p>
+
+        <figure xml:id="fig-PROTEUS-FTC-1">
+          <caption>The function <m>f(x)</m> used to define <m>F(x)</m> in <xref ref="APEX_FTC_1_v1"/></caption>
+          <image width="47%">
+            <shortdescription>A graph consisting of a semicircle from (0,0) to (2,0) and a line segment from (2,0) to (4,1)</shortdescription>
+            <latex-image label="img_PROTEUS-FTC-1">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            ymin=-0.5,ymax=1.5,
+            xmin=-0.3,xmax=4.3,
+            axis equal
+            ]
+
+            \addplot+ [domain=0:2,samples=100] {sqrt(2*x-x^2)};
+            \addplot [firstcurvestyle,domain=2:4] {0.5*(x-2)};
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+
+      </introduction>
+
+      <task label="APEX-PROTEUS-sec-5_4-FTC-1A-v2">
+        <statement>
+          <p>
+            Explain how to find the value of <m>F(4)</m>, without evaluating an integral.
+          </p>
+        </statement>
+        <response/>
+      </task>
+
+      <task label="APEX-PROTEUS-sec-5_4-FTC-1B-v1">
+        <statement>
+          <p>
+            Explain how you would find the values <m>F(0)</m>, <m>F(1)</m>, <m>F'(1)</m>, and <m>F''(1)</m>
+          </p>
+        </statement>
+        <response/>
+      </task>
+
+      <task label="APEX-PROTEUS-sec-5_4-FTC-1C-v1">
+        <statement>
+          <p>
+            Is <m>F</m> differentiable on the interval <m>(0,4)</m>?
+            Is <m>F</m> twice differentiable on the interval <m>(0,4)</m>?
+            Explain your answers.
+          </p>
+        </statement>
+        <response/>
+      </task>
+    </exercise>
+
+    <exercise label="APEX-PROTEUS-sec-5_4-FTC-2-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      <statement>
+        <p>
+          <xref ref="thm_FTC1"/> states that if we have a continuous function <m>f</m>
+          defined on the interval <m>[a,b]</m>, then we can create a new function <m>g(x) = \int_a^x f(t)\,dt</m>.
+          In your own words, explain what <m>x</m> represents in this expression.
+          Illustrate your explanation with an example, and different values of <m>x</m>.
+        </p>
+      </statement>
+      <response/>
+    </exercise>
+
+
+    <exercise label="APEX-PROTEUS-sec-5_4-FTC-4-v2" component="proteus">
+      <title>PROTEUS EXERCISE: What is so important about area under a curve?</title>
+      <introduction>
+        <p>
+          Area is a visual representation of the product of two quantities. 
+          When one quantity varies, the area becomes a sum of products (Riemann sums). 
+          Thus, the meaning of area depends on the units of the things you are multiplying.
+        </p>
+
+        <p>
+          Imagine a scenario where you move files on your computer from one folder to another, 
+          with the progress shown in the figures below. 
+        </p>
+
+        <sidebyside widths="47% 47%">
+          <figure xml:id="fig-PROTEUS-data-1">
+            <caption>Constant transfer rate</caption>
+            <image source="images/data-transfer-constant.png">
+              <shortdescription>Screenshot from a computer utility showing a constant rate of data transfer</shortdescription>
+              <description>
+                <p>
+                  The image is a screenshot from a computer utility, showing the rate at which data from a set of files is being transferred.
+                  At the top, we see that the transfer is 80% complete.
+                  Just below this, we see that we are copying item 4,450 from one folder to another.
+                  Below this is a graph. The vertical axis is labeled <q>Speed MB/s</q>.
+                  The horizontal axis is time, and it shows <q>elapsed time: 50s</q>.
+                </p>
+
+                <p>
+                  The graph consists of a rectangle, shaded dark green, indicating that the speed has remained constant at a rate labeled as 9.5 MB/s.
+                </p>
+              </description>
+              
+            </image>
+          </figure>
+          <figure xml:id="fig-PROTEUS-data-2">
+            <caption>Variable transfer rate</caption>
+            <image source="images/data-transfer-variable.png">
+              <shortdescription>Screenshot from a computer utility showing a variable rate of data transfer</shortdescription>
+              <description>
+                <p>
+                  The image is a screenshot from a computer utility, showing the rate at which data from a set of files is being transferred.
+                  At the top, we see that the transfer is 80% complete.
+                  Just below this, we see that we are copying item 4,450 from one folder to another.
+                  Below this is a graph. The vertical axis is labeled <q>Speed MB/s</q>.
+                  The horizontal axis is time, and it shows <q>elapsed time: 50s</q>.
+                </p>
+
+                <p>
+                  The graph consists of a region, shaded dark green, whose height varies over time,
+                  indicating a variable rate of data transfer.
+                </p>
+              </description>
+              
+            </image>
+          </figure>
+        </sidebyside>
+      </introduction>
+      
+      <task label="APEX-PROTEUS-sec-5_4-FTC-4A-v2">
+        <statement>
+          <p>
+            In <xref ref="fig-PROTEUS-data-1"/>, the dark green region forms a rectangle.
+            What are the units of the area of this rectangle, and what is the meaning of the area in this context?
+          </p>
+
+          <p>
+            Be specific, and refer to the elapsed time. Do not use an integral.
+          </p>
+        </statement>
+        <response/>
+      </task>
+      <task label="APEX-PROTEUS-sec-5_4-FTC-4B-v2">
+        <statement>
+          <p>
+            Let <m>r(t)</m> be the transfer rate (in MB/s) over time <m>t</m> (in seconds),
+            and let <m>D(t)</m> be the total data (in MB) transferred after <m>t</m> seconds.
+          </p>
+
+          <p>
+            Use the <xref ref="thm_FTC1"/> to express how <m>D(t)</m> and <m>r(t)</m> are related.
+            Use any known values from <xref ref="fig-PROTEUS-data-2"/> that are relevant.
+          </p>
+        </statement>
+        <response/>
+      </task>
+    </exercise>
+
+    <p>
+      What we have done in <xref ref="ex_ftc2"/>
+      was more than finding a complicated way of computing an antiderivative.
+      Consider a function <m>f</m> defined on an open interval containing <m>a</m>,
+      <m>b</m> and <m>c</m>.
+      Suppose we want to compute <m>\int_a^b f(t)\, dt</m>.
+      First, let
+      <md number="yes" xml:id="eq_ftc_c">
+        F(x) = \int_c^x f(t)\, dt
+      </md>.
+      Using the properties of the definite integral found in <xref ref="thm_defintprop"/>, we know
+      <md>
+        <mrow>\int_a^b f(t)\, dt \amp = \int_a^c f(t)\, dt + \int_c^b f(t)\, dt</mrow>
+        <mrow>\amp = -\int_c^a f(t)\, dt + \int_c^b f(t)\, dt</mrow>
+      </md>
+      Using <xref ref="eq_ftc_c">Equation</xref>,
+      let <m>x=a</m> in the first integral and <m>x=b</m> in the second integral so that
+      <m>\int_c^a f(t)\, dt =F(a)</m> and <m>\int_c^b f(t)\, dt =F(b)</m>.
+      Therefore:
+      <md>
+        <mrow>\int_a^b f(t)\, dt \amp =-F(a) + F(b)</mrow>
+        <mrow>\amp = F(b) - F(a)</mrow>
+      </md>.
+    </p>
+
+    <p>
+      We now see how indefinite integrals and definite integrals are related:
+      we can evaluate a definite integral using antiderivatives!
+      In fact, this is exactly what we noticed in <xref ref="ex_ftc1"/>.
+      The <q>area so far</q> function was indeed an anti-derivative of the integrand.
+      This is the second part of the Fundamental Theorem of Calculus.
+    </p>
+
+    <theorem xml:id="thm_FTC2">
+      <title>Fundamental Theorem of Calculus, Part 2</title>
+      <statement>
+        <p>
+          Let <m>f</m> be continuous on <m>[a,b]</m> and let <m>F</m> be <em>any</em>
+          antiderivative of <m>f</m>.
+          Then
+
+          <idx><h>Fundamental Theorem of Calculus</h></idx>
+
+          <idx><h>integration</h><h>Fun. Thm. of Calc.</h></idx>
+
+          <md>
+            \int_a^b f(x)\, dx = F(b) - F(a)
+          </md>.
+        </p>
+      </statement>
+    </theorem>
+
+    <figure xml:id="vid_int_FTC_part_II" component="video" vshift="2">
+      <caption>Video presentation of <xref ref="thm_FTC2"/></caption>
+      <video youtube="jU_WUPjamFQ" label="vid_int_FTC_part_II"/>
+    </figure>
+
+    <p xml:id="vidint_int_FTC_proof" component="video">
+      As its name suggests, the Fundamental Theorem of Calculus is an important result.
+      In fact, it's sufficiently important that it's worth taking a moment to understand why it's true.
+      A proof is given in <xref ref="vid_int_FTC_proof"/>.
+    </p>
+
+    <figure xml:id="vid_int_FTC_proof" component="video" vshift="-3">
+      <caption>Proving the Fundamental Theorem of Calculus</caption>
+      <video youtube="8doi_Al_lmg" label="vid_int_FTC_proof"/>
+    </figure>
+
+
+    <example xml:id="ex_ftc3">
+      <title>Using the Fundamental Theorem of Calculus, Part 2</title>
+      <statement>
+        <p>
+          We spent a great deal of time in the previous section studying <m>\int_0^4(4x-x^2)\, dx</m>.
+          Using the Fundamental Theorem of Calculus,
+          evaluate this definite integral.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We need an antiderivative of <m>f(x)=4x-x^2</m>.
+          All antiderivatives of <m>f</m> have the form <m>F(x) = 2x^2-\frac13x^3+C</m>;
+          for simplicity, choose <m>C=0</m>.
+        </p>
+
+        <p>
+          The Fundamental Theorem of Calculus states
+          <md>
+            <mrow>\int_0^4(4x-x^2)\, dx \amp= F(4)-F(0)</mrow>
+            <mrow>\amp = \big(2(4)^2-\frac134^3\big)-\big(0-0\big)</mrow>
+            <mrow>\amp = 32-\frac{64}3 = 32/3</mrow>
+          </md>.
+        </p>
+
+        <p>
+          This is the same answer we obtained using limits in the previous section,
+          just with much less work.
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      <em>Notation:</em>
+
+      <idx><h>integration</h><h>notation</h></idx>
+
+      A special notation is often used in the process of evaluating definite integrals using the Fundamental Theorem of Calculus.
+      Instead of explicitly writing <m>F(b)-F(a)</m>,
+      the notation <m>F(x)\Big|_a^b</m> is used.
+      Thus the solution to <xref ref="ex_ftc3"/> would be written as:
+      <md>
+        <mrow>\int_0^4(4x-x^2)\, dx \amp = \left.\left(2x^2-\frac13x^3\right)\right|_0^4</mrow>
+        <mrow>\amp = \big(2(4)^2-\frac134^3\big)-\big(0-0\big) =  32/3</mrow>
+      </md>.
+    </p>
+
+    <p>
+      <em>The Constant <m>C</m>:</em> <em>Any</em>
+      antiderivative <m>F(x)</m> can be chosen when using the Fundamental Theorem of Calculus to evaluate a definite integral,
+      meaning any value of <m>C</m> can be picked.
+      The constant <em>always</em> cancels out of the expression when evaluating <m>F(b)-F(a)</m>,
+      so it does not matter what value is picked.
+      This being the case, we might as well let <m>C=0</m>.
+    </p>
+
+    <example xml:id="ex_ftc4">
+      <title>Using the Fundamental Theorem of Calculus, Part 2</title>
+      <statement>
+        <p>
+          Evaluate the following definite integrals.
+
+          <ol cols="3">
+            <li><m>\int_{-2}^2 x^3\, dx</m></li>
+
+            <li><m>\int_0^\pi \sin(x) \, dx</m></li>
+
+            <li><m> \int_0^5 e^t\, dt</m></li>
+
+            <li><m> \int_4^9 \sqrt{u}\, du</m></li>
+
+            <li><m>\int_1^5 2\, dx</m></li>
+          </ol>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          <ol>
+            <li>
+              <p>
+                <md>
+                  <mrow>\int_{-2}^2 x^3\, dx \amp = \left.\frac14x^4\right|_{-2}^2 \amp</mrow>
+                  <mrow>\amp = \left(\frac142^4\right) - \left(\frac14(-2)^4\right)</mrow>
+                  <mrow>\amp = 0</mrow>
+                </md>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                <md>
+                  <mrow>\int_0^\pi \sin(x) \, dx \amp = -\cos(x) \Big|_0^\pi</mrow>
+                  <mrow>\amp = -\cos(\pi) - \big(-\cos(0) \big)</mrow>
+                  <mrow>\amp = 1+1=2</mrow>
+                </md>.
+                (This is interesting; it says that the area under one
+                <q>hump</q> of a sine curve is 2.)
+              </p>
+            </li>
+
+            <li>
+              <p>
+                <md>
+                  <mrow>\int_0^5e^t\, dt \amp = e^t\Big|_0^5</mrow>
+                  <mrow>\amp = e^5 - e^0</mrow>
+                  <mrow>\amp= e^5-1 \approx 147.41</mrow>
+                </md>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                <md>
+                  <mrow>\int_4^9 \sqrt{u}\, du \amp= \int_4^9 u^\frac12\, du</mrow>
+                  <mrow>\amp = \frac23u^\frac32\Big|_4^9</mrow>
+                  <mrow>\amp = \frac23\left(9^\frac32-4^\frac32\right)</mrow>
+                  <mrow>\amp = \frac23\big(27-8\big) =\frac{38}3</mrow>
+                </md>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                <md>
+                  <mrow>\int_1^5 2\, dx \amp = 2x\Big|_1^5</mrow>
+                  <mrow>\amp = 2(5)-2</mrow>
+                  <mrow>\amp =2(5-1)=8</mrow>
+                </md>.
+                This integral is interesting;
+                the integrand is a constant function,
+                hence we are finding the area of a rectangle with width <m>(5-1)=4</m> and height 2.
+                Notice how the evaluation of the definite integral led to <m>2(4)=8</m>.
+
+                In general, if <m>c</m> is a constant,
+                then <m>\int_a^b c\, dx = c(b-a)</m>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="YxQyFln5UIQ" label="vid_int_FTC_ex_3" component="video"/>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Understanding Motion with the Fundamental Theorem of Calculus</title>
+    <p>
+      We established,
+      starting with <xref ref="idea_motion"/>,
+      that the derivative of a position function is a velocity function,
+      and the derivative of a velocity function is an acceleration function.
+      Now consider definite integrals of velocity and acceleration functions.
+      Specifically, if <m>v(t)</m> is a velocity function,
+      what does <m>\ds \int_a^b v(t)\, dt</m> mean?
+
+      <idx><h>integration</h><h>displacement</h></idx>
+
+      <idx><h>displacement</h></idx>
+
+    </p>
+
+    <p>
+      The Fundamental Theorem of Calculus states that
+      <md>
+        \int_a^b v(t)\, dt = V(b) - V(a)
+      </md>,
+      where <m>V(t)</m> is any antiderivative of <m>v(t)</m>.
+      Since <m>v(t)</m> is a velocity function,
+      <m>V(t)</m> must be a position function,
+      and <m>V(b) - V(a)</m> measures a change in position, or <em>displacement</em>.
+    </p>
+
+    <example xml:id="ex_ftcmotion1">
+      <title>Finding displacement and distance</title>
+      <statement>
+        <p>
+          A ball is thrown straight up with velocity given by
+          <m>v(t) = -32t+20</m>ft/s, where <m>t</m> is measured in seconds.
+          Find, and interpret,
+          <m>\int_0^1 v(t)\, dt</m> and <m>\int_0^1 \abs{v(t)}\, dt</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Using the Fundamental Theorem of Calculus, we have
+          <md>
+            <mrow>\int_0^1 v(t)\, dt \amp = \int_0^1 (-32t+20)\, dt</mrow>
+            <mrow>\amp = \left(-16t^2 + 20t\right)\Big|_0^1</mrow>
+            <mrow>\amp = 4</mrow>
+          </md>.
+        </p>
+
+        <p>
+          Thus if a ball is thrown straight up into the air with velocity <m>v(t) = -32t+20</m>,
+          the height of the ball, 1 second later,
+          will be 4 feet above the initial height.
+        </p>
+
+        <p>
+          Note that the ball has <em>traveled</em> much farther.
+          It has gone up to its peak and is falling down,
+          but the difference between its height at <m>t=0</m> and <m>t=1</m> is 4ft.
+        </p>
+
+        <p>
+          If we wish to find the total distance traveled,
+          we must evaluate <m>\int_0^1 \abs{v(t)}\, dt</m>
+          (noting that negative velocities will reduce the diplacement,
+          but we want <em>distance</em>, not displacement).
+          In this case,
+          we know that the velocity changes sign once when <m>v(t)=0</m>,so <m>t=20/32=5/8</m> seconds.
+          The velocity is positive over <m>[0,5/8]</m> and negative over <m>[5/8,1]</m>.
+          Therefore
+          <md>
+            <mrow>\int_0^1 \abs{v(t)}\, dt \amp = \int_0^{5/8}v(t)\,dt + \int_{5/8}^1 -v(t)\,dt</mrow>
+            <mrow>\amp =\int_0^{5/8}(-32t+20)\, dt-\int_{5/8}^1 (-32t+20)\, dt</mrow>
+            <mrow>\amp =\left(-16t^2 + 20t\right)\Big|_0^{5/8}-\left(-16t^2 + 20t\right)\Big|_0^1</mrow>
+            <mrow>\amp = \frac{25}4-\left(-\frac94\right)=9</mrow>
+          </md>.
+          So the total distance traveled over <m>[0,1]</m> is <m>\int_0^1 \abs{-32t+20}\, dt=9 \text{ feet }</m>.
+        </p>
+
+        <p>
+          As we can see in <xref ref="fig_ftcmotion1a"/>,
+          the positive area between <m>v(t)</m> and the <m>t</m>-axis,
+          <m>A_1=25/4</m>, while the negative area, <m>A_2=-9/4</m>.
+          When we add these two areas, we get the displacement of <m>4</m> ft.
+          But when we add the absolute value of both of these areas
+          (as in <xref ref="fig_ftcmotion1b"/>),
+          we get the total distance of <m>9</m> ft.
+        </p>
+
+        <sidebyside widths="47% 47%" valign="bottom" margins="0%">
+          <figure xml:id="fig_ftcmotion1a">
+            <caption>The area between <m>v(t)</m> and the <m>t</m>-axis can be used to represent displacement</caption>
+            <image>
+              <shortdescription>
+                Graph showing area between v(t) and the t axis can be used to represent displacement.
+              </shortdescription>
+              <description>
+                <p>
+                  The <m>y</m> axis is drawn from <m>-10</m> to <m>20</m>
+                  and the <m>t</m> axis is drawn from <m>0</m> to <m>1</m>.
+                  The function is a straight line with a negative slope.
+                  The function has an <m>y</m> intercept of <m>20</m> and
+                  an <m>t</m> intercept of <m>5/8</m>.
+                </p>
+                <p>
+                  The line forms two shaded regions with the <m>t</m> axis.
+                  Between <m>0</m> to <m>5/8</m> on the <m>t</m> axis the region
+                  under the graph is shaded and labeled <m>A1</m>.
+                  The second area is between <m>5/8</m> and <m>1</m> that lies
+                  in the fourth quadrant and the area is labeled <m>A2</m>.
+                </p>
+              </description>
+              <latex-image label="img_ftcmotion1a">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              axis on top,
+              xtick=\empty,
+              extra x ticks={0.625,1},
+              extra x tick labels={$5/8$,$1$},
+              xlabel=$t$,
+              ymin=-15,ymax=25,
+              xmin=-1,xmax=1.5
+              ]
+
+              \addplot [firstcurvestyle,areastyle,domain=0:1] {-32*x+20} \closedcycle;
+              \addplot [firstcurvestyle,domain=-.5:1.5] {-32*x+20};
+
+              \node at (axis cs:.3125,5) { $A_1$};
+              \node at (axis cs:.8125,-3) { $A_2$};
+
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+          </figure>
+
+          <figure xml:id="fig_ftcmotion1b">
+            <caption>The area between <m>\abs{v(t)}</m> and the <m>t</m>-axis can be used to represent distance</caption>
+            <image>
+              <shortdescription>
+                Graph showing area between absolute value of v(t) and the t axis can be used to represent displacement.
+              </shortdescription>
+              <description>
+                <p>
+                  The <m>y</m> axis is drawn from <m>-10</m> to <m>20</m> and the
+                  <m>t</m> axis is drawn from <m>0</m> to <m>1</m>.
+                  The function is a straight line with a negative slope.
+                  The function has an <m>y</m> intercept of <m>20 </m>and an
+                  <m>t</m> intercept of <m>5/8</m>.
+                </p>
+                <p>
+                  The  line forms two shaded regions with the <m>t</m> axis.
+                  Between <m>0</m> to <m>5/8</m> on the <m>t</m> axis the region
+                  under the graph is shaded and labeled <m>A1</m>.
+                  Between <m>5/8</m> and <m>1</m> lies the second shaded region
+                  labeled <m>A3</m>.
+                </p>
+              </description>
+              <latex-image label="img_ftcmotion1b">
+
+              \begin{tikzpicture}
+
+              \begin{axis}[
+              axis on top,
+              xtick=\empty,
+              extra x ticks={0.625,1},
+              extra x tick labels={$5/8$,$1$},
+              xlabel=$t$,
+              ymin=-15,ymax=25,
+              xmin=-1,xmax=1.5
+              ]
+
+              \addplot [firstcurvestyle,areastyle,domain=0:5/8] {-32*x+20} \closedcycle;
+              \addplot [firstcurvestyle,areastyle,domain=5/8:1] {32*x-20} \closedcycle;
+
+              \addplot [firstcurvestyle,domain=-.5:5/8] {-32*x+20};
+              \addplot [firstcurvestyle,domain=5/8:1.5] {32*x-20};
+
+              \node at (axis cs:.3125,5) { $A_1$};
+              \node at (axis cs:.8125,3) { $A_3$};
+
+              \end{axis}
+
+              \end{tikzpicture}
+
+              </latex-image>
+            </image>
+          </figure>
+        </sidebyside>
+      </solution>
+    </example>
+
+    <p>
+      Integrating a rate of change function gives total change.
+      Velocity is the rate of position change;
+      integrating velocity gives the total change of position,
+      <ie/>, displacement.
+    </p>
+
+    <p>
+      Integrating a speed function gives a similar, though different, result.
+      Speed is also the rate of position change,
+      but does not account for direction.
+      That is, the speed an object is the absolute value of its velocity.
+      This is what we saw in <xref ref="ex_ftcmotion1"/>
+      when we evaluated <m>\int_0^1 \abs{v(t)}\, dt</m>.
+      So integrating a speed function gives total change of position,
+      without the possibility of <q>negative position change.</q>
+      Hence the integral of a speed function gives
+      <em>distance traveled.</em>
+    </p>
+
+    <p>
+      As acceleration is the rate of velocity change,
+      integrating an acceleration function gives total change in velocity.
+      We do not have a simple term for this analogous to displacement.
+      If <m>a(t) = 5</m>miles/h<m>^2</m> and <m>t</m> is measured in hours, then
+      <md>
+        \int_0^3 a(t)\, dt = 15
+      </md>
+      means the velocity has increased by 15m/h from <m>t=0</m> to <m>t=3</m>.
+    </p>
+  </subsection>
+
+  <subsection xml:id="sec-FTC-chain">
+    <title>The Fundamental Theorem of Calculus and the Chain Rule</title>
+    <p>
+      Part 1 of the Fundamental Theorem of Calculus (FTC) states that given
+      <md>
+        F(x) = \int_a^x f(t)\, dt
+      </md>,
+      we have <m>\Fp(x) = f(x)</m>. Using other notation,
+      <md>
+        \lzoo{x}{F(x)}=\lzoo{x}{\int_a^x f(t)\, dt} = f(x)
+      </md>.
+      While we have just practiced evaluating definite integrals,
+      sometimes finding antiderivatives is impossible and we need to rely on other techniques to approximate the value of a definite integral.
+      Functions written as <m>F(x) = \int_a^x f(t)\, dt</m> are useful in such situations.
+    </p>
+
+    <p>
+      It may be of further use to compose such a function with another.
+      As an example, we may compose <m>F(x)</m> with <m>g(x)</m> to get
+      <md>
+        F\big(g(x)\big) = \int_a^{g(x)} f(t)\, dt
+      </md>.
+    </p>
+
+    <p>
+      What is the derivative of such a function?
+          <idx><h>Fundamental Theorem of Calculus</h><h>and Chain Rule</h></idx>
+      The Chain Rule can be employed to state
+      <md>
+        \frac{d}{dx}\Big(F\big(g(x)\big)\Big) = \Fp\big(g(x)\big)\gp(x) = f\big(g(x)\big)\gp(x)
+      </md>.
+    </p>
+
+    <figure xml:id="vid_int_FTC_chain_rule_FTC" component="video" vshift="0">
+      <caption>Video presentation of <xref ref="sec-FTC-chain"/> and <xref ref="ex_ftc11"/></caption>
+      <video youtube="fywjn8-evpE" label="vid_int_FTC_chain_rule_FTC"/>
+    </figure>
+
+    <p>
+      An example will help us understand this.
+    </p>
+
+    <example xml:id="ex_ftc11">
+      <title>The FTC, Part 1, and the Chain Rule</title>
+      <statement>
+        <p>
+          Find the derivative of <m>\ds F(x) = \int_2^{x^2} \ln(t) \, dt</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We can view <m>F(x)</m> as being the function
+          <m>G(x) = \int_2^x \ln(t) \, dt</m> composed with <m>g(x) = x^2</m>;
+          that is, <m>F(x) = G\big(g(x)\big)</m>.
+          The Fundamental Theorem of Calculus states that <m>G'(x) = \ln(x)</m>.
+          The Chain Rule gives us
+          <md>
+            <mrow>F'(x) \amp = G'\big(g(x)\big) \gp(x)</mrow>
+            <mrow>\amp = \ln(g(x)) \gp(x)</mrow>
+            <mrow>\amp = \ln(x^2) 2x</mrow>
+            <mrow>\amp =2x\ln(x^2)</mrow>
+          </md>
+        </p>
+
+        <p>
+          Normally, the steps defining <m>G(x)</m> and <m>g(x)</m> are skipped.
+        </p>
+      </solution>
+    </example>
+
+    <exercise label="APEX-PROTEUS-sec-5_4-FTC-3-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      <statement>
+        <p>
+          Let <m>F(x) = \int_0^x \cos(t^2)\,dt</m>, and let <m>G(x) = \int_0^{x^2}\cos(t)\,dt</m>.
+          Compute <m>F'(x)</m> and <m>G'(x)</m> using the Fundamental Theorem of Calculus.
+          Is the chain rule required for either derivative?
+          If so, which one, and why?
+        </p>
+      </statement>
+      <response/>
+    </exercise>
+
+    <p>
+      Let's practice this once more.
+    </p>
+
+    <enlarge-page skipsize="2"/>
+
+    <example xml:id="ex_ftc12">
+      <title>The FTC, Part 1, and the Chain Rule</title>
+      <statement>
+        <p>
+          Find the derivative of <m>\ds F(x) = \int_{\cos(x) }^5 t^3\, dt</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Note that <m>\ds F(x) = -\int_5^{\cos(x) } t^3\, dt</m>.
+          Viewed this way, the derivative of <m>F</m> is straightforward:
+          <md>
+            <mrow>F'(x) \amp= -\cos^3(x)\left(-\sin(x)\right)</mrow>
+            <mrow>\amp= \cos^3(x)\sin(x)</mrow>
+          </md>.
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="nGS4ENM8arI" label="vid_int_FTC_examples_2" component="video"/>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection xml:id="sec-FTC-ABC">
+    <title>Area Between Curves</title>
+    <figure xml:id="vid_int_FTC_area_between_curves" component="video" vshift="-3">
+      <caption>Video introduction to <xref ref="sec-FTC-ABC"/></caption>
+      <video youtube="UufnFHBnv88" label="vid_int_FTC_area_between_curves"/>
+    </figure>
+
+    <p>
+      Consider continuous functions <m>f(x)</m> and <m>g(x)</m> defined on <m>[a,b]</m>,
+      where <m>f(x) \geq g(x)</m> for all <m>x</m> in <m>[a,b]</m>,
+      as demonstrated in <xref ref="fig_ftc5"/>.
+      What is the area of the shaded region bounded by the two curves over <m>[a,b]</m>?
+          <idx><h>integration</h><h>area between curves</h></idx>
+    </p>
+
+    <figure xml:id="fig_ftc5">
+    <caption>Finding the area bounded by two functions on an interval by subtracting the area under <m>g</m> from the area under <m>f</m></caption>
+      <sidebyside widths="47% 47%" margins="0%">
+        <figure xml:id="fig_ftc5a">
+          <caption/>
+          <image>
+            <shortdescription>
+              Graph showing area bounded by two functions f(x) and g(x) between x=a and x=b.
+            </shortdescription>
+            <description>
+              <p>
+                The <m>x</m> and the <m>y</m> axes are uncalibrated but there
+                are two positions <m>a</m> and <m>b</m> marked on the <m>x</m> axis.
+                There are two functions <m>f(x)</m> and <m>g(x)</m> graphed.
+                The graph shows the area that <m>f(x)</m> forms on <m>g(x)</m>
+                between positions <m>a</m> and <m>b</m>.
+                The two functions intersect at one point.
+              </p>
+              <p>
+                The function <m>f(x)</m> is above <m>g(x)</m>,
+                it first curves up and reaches a maxima after which it dips
+                down for a minima and then continues to increase.
+                The function <m>g(x)</m> has a dip between <m>a</m> and
+                <m>b</m> then it increases.
+              </p>
+            </description>
+            <latex-image label="img_ftc5a">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick=\empty,
+            extra x ticks={.5,3},
+            extra x tick labels={$a$,$b$},
+            ytick=\empty,
+            ymin=-.5,ymax=2,
+            xmin=-.5,xmax=3.5
+            ]
+
+            \addplot [name path=A,firstcurvestyle,domain=-.25:3.25,samples=40] {.25*sin(deg(2*x))+1.25} node [shift={(5pt,7pt)},black] { $f(x)$};
+            \addplot [name path=B,firstcurvestyle,domain=-.25:3.25] {.25*(x-2)^2+.2} node [shift={(5pt,7pt)},black] { $g(x)$};
+
+            \addplot [firstcurvestyle,areastyle] fill between [of=A and B,soft clip={domain=.5:3}];
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+
+        <figure xml:id="fig_ftc5b">
+          <caption/>
+          <image>
+            <shortdescription>
+              Graph showing area bounded by two functions f(x) and g(x) between x=a and x=b.
+            </shortdescription>
+            <description>
+              <p>
+                Graph same as previous with additional details.
+                The <m>x</m> and the <m>y</m> axes are uncalibrated but there
+                are two positions <m>a</m> and <m>b</m> marked on the <m>x</m> axis.
+                There are two functions <m>f(x)</m> and <m>g(x)</m> graphed.
+                The graph shows the area that <m>f(x)</m> forms on <m>g(x)</m>
+                between positions <m>a</m> and <m>b</m>.
+                The two functions intersect at one point.
+              </p>
+              <p>
+                The function <m>f(x)</m> is above <m>g(x)</m>, it first curves
+                up and reaches a maxima after which it dips down for a minima
+                and then continues to increase.The function <m>g(x)</m> has a
+                dip between <m>a</m> and <m>b</m> then it increases.
+                The graph shows areas under both curves as different shaded regions.
+              </p>
+            </description>
+            <latex-image label="img_ftc5b">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick=\empty,
+            extra x ticks={.5,3},
+            extra x tick labels={$a$,$b$},
+            ytick=\empty,
+            ymin=-.5,ymax=2,
+            xmin=-.5,xmax=3.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,area style,domain=.5:3] {.25*sin(deg(2*x))+1.25} \closedcycle;
+            \addplot [secondcurvestyle,areastyle,domain=.5:3] {.25*(x-2)^2+.2} \closedcycle;
+
+            \addplot [firstcurvestyle,domain=-.25:3.25,samples=40] {.25*sin(deg(2*x))+1.25} node [shift={(5pt,7pt)},black] { $f(x)$};
+            \addplot [secondcurvestyle,domain=-.25:3.25] {.25*(x-2)^2+.2}node [shift={(5pt,7pt)},black] { $g(x)$};
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <p>
+      The area can be found by recognizing that this area is
+      <q>the area under <m>f</m> <m>-</m> the area under <m>g</m>.</q>
+      Using mathematical notation, the area is
+      <md>
+        \int_a^b f(x)\, dx - \int_a^b g(x)\, dx
+      </md>.
+    </p>
+
+    <p>
+      Properties of the definite integral allow us to simplify this expression to
+      <md>
+        \int_a^b\big(f(x) - g(x)\big)\, dx
+      </md>.
+    </p>
+
+    <theorem xml:id="thm_areabtwncurves">
+      <title>Area Between Curves</title>
+      <statement>
+        <p>
+          Let <m>f(x)</m> and <m>g(x)</m> be continuous functions defined on <m>[a,b]</m> where
+          <m>f(x)\geq g(x)</m> for all <m>x</m> in <m>[a,b]</m>.
+          The area of the region bounded by the curves <m>y=f(x)</m>,
+          <m>y=g(x)</m> and the lines <m>x=a</m> and <m>x=b</m> is
+          <md>
+            \int_a^b \big(f(x)-g(x)\big)\, dx
+          </md>.
+        </p>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_ftc6">
+      <title>Finding area between curves</title>
+      <statement>
+        <p>
+          Find the area of the region enclosed by <m>y=x^2+x-5</m> and <m>y=3x-2</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          It will help to sketch these two functions,
+          as done in <xref ref="fig_ftc6"/>.
+        </p>
+
+        <figure xml:id="fig_ftc6" vshift="0">
+          <caption>Sketching the region enclosed by <m>y=x^2+x-5</m> and <m>y=3x-2</m> in <xref ref="ex_ftc6"/></caption>
+          <image width="47%">
+            <shortdescription>
+              Graph of region enclosed by y=x^2+x-5 and y=3*x-2.
+            </shortdescription>
+            <description>
+              <p>
+                The <m>y</m> axis is drawn from <m>-5</m> to <m>15</m> and
+                the <m>x</m> axis is drawn from <m>-2</m> to <m>4</m>.
+                The first function <m>x^2 +x-5</m>is a curve that has a
+                <m>y</m> intercept at <m>-5</m> and the <m>x</m> intercept
+                near <m>1.8</m>. The second function <m>3*x-2</m> is a
+                straight line. The two lines intersect at points <m>(-1,-5)</m>
+                and <m>(3,7)</m>. The area bounded by the two functions is shaded.
+              </p>
+            </description>
+            <latex-image label="img_ftc6">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={-2,-1,1,2,3,4},
+            ytick={5,10,15},
+            ymin=-10,ymax=16,
+            xmin=-2.5,xmax=4.5
+            ]
+
+            \addplot+ [name path=F,domain={-2:4},samples=40] {x^2+x-5} node [pos=1, left] { $y=x^2+x-5$};
+            \addplot+ [name path=G,domain={-2:4}] {3*x-2} node [pos=0.7, above left] { $y=3x-2$};
+            \addplot [gray!50] fill between [of=F and G, soft clip={domain=-1:3}];
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>
+          The region whose area we seek is completely bounded by these two functions;
+          they seem to intersect at <m>x=-1</m> and <m>x=3</m>.
+          To check, set <m>x^2+x-5=3x-2</m> and solve for <m>x</m>:
+          <md>
+            <mrow>x^2+x-5 \amp = 3x-2</mrow>
+            <mrow>(x^2+x-5) - (3x-2) \amp = 0</mrow>
+            <mrow>x^2-2x-3 \amp = 0</mrow>
+            <mrow>(x-3)(x+1) \amp = 0</mrow>
+            <mrow>x\amp =-1,\,3</mrow>
+          </md>.
+        </p>
+
+        <p>
+          Following <xref ref="thm_areabtwncurves"/>,
+          the area is
+          <md>
+            <mrow>\int_{-1}^3\big(3x-2 -(x^2+x-5)\big)\, dx \amp = \int_{-1}^3 (-x^2+2x+3)\, dx</mrow>
+            <mrow>\amp =\left.\left(-\frac13x^3+x^2+3x\right)\right|_{-1}^3</mrow>
+            <mrow>\amp =-\frac13(27)+9+9-\left(\frac13+1-3\right)</mrow>
+            <mrow>\amp = 10\frac23 = 10.\overline{6}</mrow>
+          </md>
+        </p>
+      </solution>
+      <solution component="video" vshift="5">
+        <title>Video solution</title>
+        <video width="98%" youtube="su2CXdpYPdo" label="vid_int_FTC_ex_4" component="video"/>
+      </solution>
+    </example>
+
+    <p xml:id="vidint_int_FTC_ex_5" component="video">
+      One of the things we have to be careful about when finding the area between curves is that the curves might cross,
+      so that the distinction between <q>upper curve</q> and <q>lower curve</q> can change.
+      The video example in <xref ref="vid_int_FTC_ex_5"/> illustrates this phenomenon.
+    </p>
+
+    <figure xml:id="vid_int_FTC_ex_5" component="video" vshift="2">
+      <caption>Finding the area between curves that intersect multiple times</caption>
+      <video youtube="Bgji1b7Wdr4" label="vid_int_FTC_ex_5"/>
+    </figure>
+
+  </subsection>
+
+  <subsection>
+    <title>The Mean Value Theorem and Average Value</title>
+    <figure xml:id="fig_ftc7a" vshift="-2">
+      <caption>A graph of a function <m>f</m> to introduce the Mean Value Theorem</caption>
+      <image width="47%">
+        <shortdescription>
+          A graph of a function to introduce the Mean Value Theorem.
+        </shortdescription>
+        <description>
+          <p>
+            The <m>y</m> axis is uncalibrated and the <m>x</m> axis is
+            drawn from <m>0</m> to <m>4</m>.
+            The curve first decreases from <m>0</m> to <m>3</m> then
+            it increases until <m>x=4</m>.
+          </p>
+        </description>
+        <latex-image label="img_ftc7a">
+
+        \begin{tikzpicture}
+
+        \begin{axis}[
+        axis on top,
+        xtick={1,2,3,4},
+        ytick=\empty,
+        ymin=-.5,ymax=1.75,
+        xmin=-.5,xmax=4.5
+        ]
+
+        \addplot+ [domain=-.5:4.5,samples=40] {.3*cos(deg(x))+1};
+
+        \end{axis}
+
+        \end{tikzpicture}
+
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>
+      Consider the graph of a function <m>f</m> in <xref ref="fig_ftc7a"/>
+      and the area defined by <m>\int_1^4 f(x)\, dx</m>.
+      Three rectangles are drawn in <xref ref="fig_ftc7b"/>;
+      in <xref ref="fig_ftc7b2"/>,
+      the height of the rectangle is greater than <m>f</m> on <m>[1,4]</m>,
+      hence the area of this rectangle is is greater than <m>\int_1^4 f(x)\, dx</m>.
+    </p>
+
+    <p>
+      In <xref ref="fig_ftc7b1"/>,
+      the height of the rectangle is smaller than <m>f</m> on <m>[1,4]</m>,
+      hence the area of this rectangle is less than <m>\int_1^4 f(x)\, dx</m>.
+    </p>
+
+    <p>
+      Finally, in <xref ref="fig_ftc7b3"/>
+      the height of the rectangle is such that the area of the rectangle is <em>exactly</em>
+      that of <m>\int_1^4 f(x)\, dx</m>.
+      Since rectangles that are <q>too big</q>,
+      as in (a), and rectangles that are
+      <q>too little,</q> as in (b),
+      give areas greater/lesser than <m>\int_1^4 f(x)\, dx</m>,
+      it makes sense that there is a rectangle,
+      whose top intersects <m>f(x)</m> somewhere on <m>[1,4]</m>,
+      whose area is <em>exactly</em> that of the definite integral.
+    </p>
+
+    <figure xml:id="fig_ftc7b">
+    <caption>Differently sized rectangles give upper and lower bounds on <m>\int_1^4 f(x)\, dx</m>; the last rectangle matches the area exactly</caption>
+      <sidebyside widths="31% 31% 31%" margins="0%">
+        <figure xml:id="fig_ftc7b2">
+          <caption/>
+          <image>
+            <shortdescription>
+              Graph of function with rectangle to show upper bound on function.
+            </shortdescription>
+            <description>
+              <p>
+                The <m>y</m> axis is uncalibrated and the <m>x</m> axis is drawn
+                from <m>0</m> to <m>4</m>. The curve first decreases from <m>0</m>
+                to <m>3</m> then it increases until <m>x=4</m>.
+                The area under the curve between <m>x=1</m> to <m>x=4</m> is shaded.
+                A rectangular boundary is drawn on the <m>x</m> axis with height
+                above the curve.
+              </p>
+            </description>
+            <latex-image label="img_ftc7b2">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={1,2,3,4},
+            ytick=\empty,
+            ymin=-.5,ymax=1.75,
+            xmin=-.5,xmax=4.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=1:4] {.3*cos(deg(x))+1} \closedcycle;
+            \addplot [firstcurvestyle,domain=-.5:4.5,samples=40] {.3*cos(deg(x))+1};
+
+            \draw [thick,secondcolor] (axis cs: 1,0) rectangle (axis cs:4,1.35);
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+
+        <figure xml:id="fig_ftc7b1">
+          <caption/>
+          <image>
+            <shortdescription>
+              Graph of function with rectangle to show lower bound on function.
+            </shortdescription>
+            <description>
+              <p>
+                The <m>y</m> axis is uncalibrated and the <m>x</m> axis is drawn
+                from <m>0</m> to <m>4</m>. The curve first decreases from <m>0</m>
+                to <m>3</m> then it increases until <m>x=4</m>.
+                The area under the curve between <m>x=1</m> to <m>x=4</m> is shaded.
+                A rectangular boundary is drawn on the <m>x</m> axis with height
+                a little below the curve.
+              </p>
+            </description>
+            <latex-image label="img_ftc7b1">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={1,2,3,4},
+            ytick=\empty,
+            ymin=-.5,ymax=1.75,
+            xmin=-.5,xmax=4.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=1:4] {.3*cos(deg(x))+1} \closedcycle;
+            \addplot [firstcurvestyle,domain=-.5:4.5,samples=40] {.3*cos(deg(x))+1};
+
+            \draw [thick,secondcolor] (axis cs: 1,0) rectangle (axis cs:4,.65);
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+
+        <figure xml:id="fig_ftc7b3">
+          <caption/>
+          <image>
+            <shortdescription>
+              Graph of function with rectangle that matches area of function exactly.
+            </shortdescription>
+            <description>
+              <p>
+                The <m>y</m> axis is uncalibrated and the <m>x</m> axis is drawn from
+                <m>0</m> to <m>4</m>. The curve first decreases from <m>0</m> to <m>3</m>
+                then it increases until <m>x=4</m>.
+                The area under the curve between <m>x=1</m> to <m>x=4</m> is shaded.
+                A rectangular boundary is drawn on the <m>x</m> axis such that from
+                <m>1</m> to <m>2</m> the curve is above the rectangle and from <m>2</m>
+                to <m>4</m> the curve is below the rectangle.
+              </p>
+            </description>
+            <latex-image label="img_ftc7b3">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={1,2,3,4},
+            ytick=\empty,
+            ymin=-.5,ymax=1.75,
+            xmin=-.5,xmax=4.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=1:4] {.3*cos(deg(x))+1} \closedcycle;
+            \addplot [firstcurvestyle,domain=-.5:4.5,samples=50] {.3*cos(deg(x))+1};
+
+            \draw [thick,secondcolor] (axis cs: 1,0) rectangle (axis cs:4,.84);
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <p>
+      We state this idea formally in a theorem.
+    </p>
+
+    <theorem xml:id="thm_mvt2">
+      <title>The Mean Value Theorem of Integration</title>
+      <statement>
+        <p>
+          Let <m>f</m> be continuous on <m>[a,b]</m>.
+              <idx><h>Mean Value Theorem</h><h>of integration</h></idx>
+              <idx><h>integration</h><h>Mean Value Theorem</h></idx>
+          There exists a value <m>c</m> in <m>[a,b]</m> such that
+          <md>
+            \int_a^bf(x)\, dx = f(c)(b-a)
+          </md>.
+        </p>
+      </statement>
+    </theorem>
+
+    <figure xml:id="vid_int_FTC_MVT_int" component="video" vshift="5">
+      <caption>Video presentation of <xref ref="thm_mvt2"/></caption>
+      <video youtube="KD90CwK0PJk" label="vid_int_FTC_MVT_int"/>
+    </figure>
+
+
+    <p>
+      This is an <em>existential</em> statement;
+      <m>c</m> exists, but we do not provide a method of finding it.
+      <xref ref="thm_mvt2"/>
+      is directly connected to the Mean Value Theorem of Differentiation, given
+      as <xref ref="thm_mvt"/>;
+      we leave it to the reader to see how.
+    </p>
+
+    <aside vshift="1">
+      <p>
+        <xref ref="thm_mvt2"/>
+        simply says that there is a rectangle with height <m>f(c)</m> and width <m>b-a</m>,
+        the area of which is the same as the area between <m>f</m> and the <m>x</m>-axis over<m>[a,b]</m>.
+        Furthermore,
+        we know that <m>c</m> will be in the interval <m>[a,b]</m>.
+      </p>
+    </aside>
+
+    <p>
+      We demonstrate the principles involved in this version of the Mean Value Theorem in the following example.
+    </p>
+
+    <example xml:id="ex_ftc8">
+      <title>Using the Mean Value Theorem</title>
+      <statement>
+        <p>
+          Consider <m>\int_0^\pi \sin(x) \, dx</m>.
+          Find a value <m>c</m> guaranteed by the Mean Value Theorem.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We first need to evaluate <m>\int_0^\pi \sin(x) \, dx</m>.
+          (This was previously done in <xref ref="ex_ftc4"/>.)
+          <md>
+            \int_0^\pi\sin(x) \, dx =	-\cos(x) \Big|_0^\pi = 2
+          </md>.
+        </p>
+
+        <p>
+          Thus we seek a value <m>c</m> in <m>[0,\pi]</m> such that <m>\pi\sin(c) =2</m>.
+          <md>
+            \pi\sin(c) = 2\,\,\Rightarrow\,\,\sin(c) = 2/\pi\,\,\Rightarrow\,\,c = \arcsin(2/\pi) \approx 0.69
+          </md>.
+        </p>
+
+        <figure xml:id="fig_ftc8" vshift="0">
+          <caption>A graph of <m>y=\sin(x)</m> on <m>[0,\pi]</m> and the rectangle guaranteed by the Mean Value Theorem</caption>
+          <image width="47%">
+            <shortdescription>
+              Graph of function y=sin(x) and the rectangle guaranteed by the Mean Value Theorem.
+            </shortdescription>
+            <description>
+              <p>
+                The <m>y</m> axis has two positions marked <m>sin(0.69)</m> and
+                <m>1</m>, the <m>x</m> axis has <m>c</m>, <m>1</m>, <m>2</m> and
+                <m>\pi</m> marked in order. The function is an inverted parabola
+                of height <m>1</m> and has <m>x</m> intercepts at <m>x=0</m> and
+                <m>x=\pi</m>. The area under the parabola until the <m>x</m> axis
+                is shaded.
+                A rectangular boundary is  drawn with height <m>sin(0.69)</m> and
+                width <m>\pi</m>
+              </p>
+            </description>
+            <latex-image label="img_ftc8">
+
+            \begin{tikzpicture}
+
+            \begin{axis}[
+            axis on top,
+            xtick={1,2},
+            extra x ticks={.69,3.14},
+            extra x tick labels={$c$,$\pi$},
+            ytick={1},
+            extra y ticks={.637},
+            extra y tick labels={$\sin(0.69) $},
+            ymin=-.25,ymax=1.25,
+            xmin=-.5,xmax=3.5
+            ]
+
+            \addplot [firstcurvestyle,areastyle,domain=0:3.14] {sin(deg(x))};
+            \addplot [firstcurvestyle,domain=-.5:3.5,samples=40] {sin(deg(x))};
+
+            \draw [thick,secondcolor] (axis cs: 0,0) rectangle (axis cs:3.14,.637);
+
+            \end{axis}
+
+            \end{tikzpicture}
+
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>
+          In <xref ref="fig_ftc8"/>
+          <m>\sin(x)</m> is sketched along with a rectangle with height <m>\sin(0.69)</m>.
+          The area of the rectangle is the same as the area under <m>\sin(x)</m> on <m>[0,\pi]</m>.
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      We now turn our attention to a related topic <mdash/>average value.
+      Let <m>f</m> be a function on <m>[a,b]</m> with <m>c</m> such that <m>f(c)(b-a) = \int_a^bf(x)\, dx</m>.
+      Consider <m>\int_a^b\big(f(x)-f(c)\big)\, dx</m>:
+      <md>
+        <mrow>\int_a^b\big(f(x)-f(c)\big)\, dx \amp =  \int_a^b f(x) - \int_a^b f(c)\, dx</mrow>
+        <mrow>\amp = f(c)(b-a) - f(c)(b-a)</mrow>
+        <mrow>\amp = 0</mrow>
+      </md>.
+    </p>
+
+    <p>
+      When <m>f(x)</m> is shifted by <m>-f(c)</m>,
+      the amount of area under <m>f</m> above the <m>x</m>-axis on <m>[a,b]</m> is the same as the amount of area below the <m>x</m>-axis above <m>f</m>;
+      see <xref ref="fig_ftc9"/> for an illustration of this.
+      In this sense,
+      we can say that <m>f(c)</m> is the <em>average value</em>
+      of <m>f</m> on <m>[a,b]</m>.
+    </p>
+
+    <!--ToDo: in APEX V4, 'On the left/right' changed to 'In (a)/(b)'. Captions were added. Are they now automatic?-->
+    <figure xml:id="fig_ftc9">
+      <caption>On the left, a graph of <m>y=f(x)</m> and the rectangle guaranteed by the Mean Value Theorem. On the right, <m>y=f(x)</m> is shifted down by <m>f(c)</m>; the resulting <q>area under the curve</q> is 0</caption>
+      <sidebyside widths="47% 47%" margins="0%">
+        <image>
+          <shortdescription>
+            A graph of y = f(x) and the rectangle guaranteed by the Mean Value Theorem.
+          </shortdescription>
+          <description>
+            <p>
+              The <m>x</m> and the <m>y</m> axes are uncalibrated.
+              The <m>y</m> axis is labeled as <m>f(x)</m>.
+              The <m>x</m> axis has three distinct positions marked <m>a</m>,
+              <m>c</m> and <m>b</m> in the order.
+            </p>
+            <p>
+              The function represents a parabola and the graph shows
+              the area under the parabola. <m>a</m> and <m>b</m> are the
+              two ends for the area. <m>c</m> is to the left of the vertex
+              of the parabola almost at half the distance from <m>a</m>.
+            </p>
+            <p>
+              The rectangle guaranteed by the Mean Value Theorem lies above
+              the vertex of the parabola.
+            </p>
+          </description>
+          <latex-image label="img_ftc9a">
+
+          \begin{tikzpicture}
+
+          \begin{axis}[
+          axis on top,
+          xtick=\empty,
+          extra x ticks={1,4,1.63},
+          extra x tick labels={$a$,$b$,$c$},
+          ytick=\empty,
+          extra y ticks={1.75},
+          extra y tick labels={$f(c)$},
+          ymin=-1,ymax=3.5,
+          xmin=-.5,xmax=4.25
+          ]
+
+          \addplot [firstcurvestyle,areastyle,domain=1:4] {(x-2.5)^2+1} \closedcycle;
+          \addplot [firstcurvestyle,domain=-.5:4.25,samples=40] {(x-2.5)^2+1};
+
+          \draw [thick,secondcolor] (axis cs: 1,0) rectangle (axis cs:4,1.75);
+          \draw (axis cs:3.35,3) node { $y=f(x)$};
+          \end{axis}
+
+          \end{tikzpicture}
+
+          </latex-image>
+        </image>
+
+        <image>
+          <shortdescription>
+            Graph of f(x) is shifted down by f(c), the resulting “area under the curve” is 0.
+          </shortdescription>
+          <description>
+            <p>
+              The <m>x</m> and the <m>y</m> axes are uncalibrated.
+              The <m>y</m> axis is labeled as <m>f(x)</m>.
+              The <m>x</m> axis has three distinct positions marked
+              <m>a</m>, <m>c</m> and <m>b</m> in the order.
+            </p>
+            <p>
+              The function represents a parabola and the graph shows
+              the area under the parabola. <m>a</m> and <m>b</m> are the
+              two ends for the area. <m>c</m> is to the left of the
+              vertex of the parabola almost at half the distance from
+              <m>a</m>.
+            </p>
+            <p>
+              Sine the function is shifted by <m>f(c)</m>, there are three
+              parts to the area, two are positive and are above the
+              <m>x</m> axis, from <m>a</m> to <m>c</m> and from a little
+              before <m>b</m> to <m>b</m>. From a little before <m>b</m>
+              to <m>b</m> the area is drawn in the fourth quadrant from
+              above the parabola on the <m>x</m> axis.
+            </p>
+          </description>
+          <latex-image label="img_ftc9b">
+
+          \begin{tikzpicture}
+
+          \begin{axis}[
+          axis on top,
+          xtick=\empty,
+          extra x ticks={1,4,1.63},
+          extra x tick labels={$a$,$b$,$c$},
+          ytick=\empty,
+          extra y ticks={1.75},
+          extra y tick labels={$f(c)$},
+          ymin=-1,ymax=3.5,
+          xmin=-.5,xmax=4.25
+          ]
+
+          \addplot [firstcurvestyle,areastyle,domain=1:4] {(x-2.5)^2-.75} \closedcycle;
+          \addplot [firstcurvestyle,domain=.75:4.25,samples=40] {(x-2.5)^2-.75};
+
+          \draw (axis cs:3.2,2.5) node { $y=f(x)-f(c)$};
+          \end{axis}
+
+          \end{tikzpicture}
+
+          </latex-image>
+        </image>
+      </sidebyside>
+    </figure>
+
+    <p>
+      The value <m>f(c)</m> is the average value in another sense.
+      First, recognize that the Mean Value Theorem can be rewritten as
+      <md>
+        f(c) = \frac{1}{b-a}\int_a^b f(x)\, dx
+      </md>,
+      for some value of <m>c</m> in <m>[a,b]</m>.
+
+<!--ToDo: have Greg review the change here. This was made during the previous conversion.-->
+      Replacing the integral with the limit of a Riemann sum (as in <xref ref="thm_riemann_sum"/>):
+      <md>
+        <mrow>f(c) \amp = \frac{1}{b-a}\int_a^b f(x)\, dx \amp</mrow>
+        <mrow>\amp = \frac{1}{b-a} \lim\limits_{n \to \infty}\sum_{i=1}^n f(c_i)\,\Delta x \amp \text{Using } <xref ref="thm_riemann_sum"/></mrow>
+        <mrow>\amp =\frac{1}{b-a} \lim\limits_{n \to \infty}\sum_{i=1}^n f(c_i)\,\frac{b-a}{n}\amp \Delta x =\frac{b-a}{n}</mrow>
+        <mrow>\amp =\lim\limits_{n \to \infty}\sum_{i=1}^n f(c_i)\frac{1}{n} \amp \text{Cancelling the common factor of } b-a</mrow>
+      </md>.
+    </p>
+
+    <p>
+      Examining this last line closely,
+      the expression <m>\sum_{i=1}^n f(c_i)\frac{1}{n}</m> represents adding up <m>n</m> sample values of <m>f(x)</m>and then dividing by <m>n</m>.
+      This is <em>exactly</em> what we do when we calculate the average of a set of <m>n</m> numbers.
+      Now when we consider taking the limit as <m>n</m> goes to <m>\infty</m>,
+      <m>\lim\limits_{n \to \infty}\sum_{i=1}^n f(c_i)\frac{1}{n}</m>,
+      we are adding up <em>all</em> of the function's output values over <m>[a,b]</m> and dividing by the
+      <q>number of numbers</q>.
+      In a sense, we are adding up an infinite number of output values and then dividing by the number of terms we summed
+      (which is again infinite).
+    </p>
+      <!--Next, partition the interval <m>[a,b]</m> into <m>n</m> equally spaced subintervals, <m>a=x_1 \lt  x_2 \lt  \ldots \lt  x_{n+1}=b</m> and choose any <m>c_i</m> in <m>[x_i,x_{i+1}]</m>. The average of the numbers <m>f(c_1)</m>, <m>f(c_2)</m>, <ellipsis />, <m>f(c_n)</m> is:
+      <md>
+        \frac1n\Big(f(c_1) + f(c_2) + \ldots + f(c_n)\Big) = \frac1n\sum_{i=1}^n f(c_i).
+      </md>
+    </p>
+
+    <p>Multiply this last expression by 1 in the form of <m>\frac{(b-a)}{(b-a)}</m>:
+      <md>
+        <mrow>\frac1n\sum_{i=1}^n f(c_i) \amp = \sum_{i=1}^n f(c_i)\frac1n</mrow>
+        <mrow>\amp = \sum_{i=1}^n f(c_i)\frac1n \frac{(b-a)}{(b-a)}</mrow>
+        <mrow>\amp = \frac{1}{b-a} \sum_{i=1}^n f(c_i)\frac{b-a}n</mrow>
+        <mrow>\amp =\frac{1}{b-a} \sum_{i=1}^n f(c_i)\Delta x \text{  (where \(\Delta x = (b-a)/n\)) }</mrow>
+      </md>
+    </p>
+
+    <p>Now take the limit as <m>n\to\infty</m>:
+      <md>
+        \lim_{n\to\infty} \frac{1}{b-a} \sum_{i=1}^n f(c_i)\Delta x  =  \frac{1}{b-a} \int_a^b f(x)\, dx =   f(c).
+      </md>
+    </p>
+
+    <p>This tells us this: when we evaluate <m>f</m> at <m>n</m> (somewhat) equally spaced points in <m>[a,b]</m>, the average value of these samples is <m>f(c)</m> as <m>n\to\infty</m>.</p>-->
+    <p>
+      This leads us to a definition.
+    </p>
+
+    <definition xml:id="def_av_val">
+      <title>The Average Value of <m>f</m> on <m>[a,b]</m></title>
+      <statement>
+        <p>
+          Let <m>f</m> be continuous on <m>[a,b]</m>.
+          The <term>average value</term> of <m>f</m> on <m>[a,b]</m> is <m>f(c)</m>,
+          where <m>c</m> is a value in <m>[a,b]</m> guaranteed by the Mean Value Theorem.
+              <idx><h>integration</h><h>average value</h></idx>
+              <idx><h>average value of function</h></idx>
+          <ie/>,
+          <md>
+            \text{ Average Value of \(f\) on \([a,b]\) }  = \frac{1}{b-a}\int_a^b f(x)\, dx
+          </md>.
+        </p>
+      </statement>
+    </definition>
+
+    <figure xml:id="vid_int_FTC_avg_val" component="video" vshift="2">
+      <caption>Video presentation of <xref ref="def_av_val"/></caption>
+      <video youtube="Gz9r9zF5asU" label="vid_int_FTC_avg_val"/>
+    </figure>
+
+    <p>
+      An application of this definition is given in the following example.
+    </p>
+
+    <example xml:id="ex_ftc10">
+      <title>Finding the average value of a function</title>
+      <statement>
+        <p>
+          An object moves back and forth along a straight line with a velocity given by <m>v(t) = (t-1)^2</m> on <m>[0,3]</m>,
+          where <m>t</m> is measured in seconds and <m>v(t)</m> is measured in ft/s.
+        </p>
+
+        <p>
+          What is the average velocity of the object?
+        </p>
+      </statement>
+      <solution>
+        <p>
+          By our definition, the average velocity is:
+          <md>
+            <mrow>\frac{1}{3-0}\int_0^3 (t-1)^2\, dt \amp =\frac13 \int_0^3 \big(t^2-2t+1\big)\, dt</mrow>
+            <mrow>\amp = \left.\frac13\left(\frac13t^3-t^2+t\right)\right|_0^3</mrow>
+            <mrow>\amp =\frac13\left[\left(\frac13(3)^3-(3)^2+(3)\right)-\left(\frac13(0)^3-(0)^2+(0)\right)\right]</mrow>
+            <mrow>\amp = 1\text{ ft/s }</mrow>
+          </md>.
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      We can understand the above example through a simpler situation.
+      Suppose you drove 100 miles in 2 hours.
+      What was your average speed?
+      The answer is simple: displacement/time = 100 miles/2 hours = 50 mph.
+    </p>
+
+    <p>
+      What was the displacement of the object in <xref ref="ex_ftc10"/>?
+      We calculate this by integrating its velocity function:
+      <m>\int_0^3 (t-1)^2\, dt = 3</m> ft.
+      Its final position was 3 feet from its initial position after 3 seconds:
+      its average velocity was 1 ft/s.
+    </p>
+
+    <p>
+      This section has laid the groundwork for a lot of great mathematics to follow.
+      The most important lesson is this:
+      definite integrals can be evaluated using antiderivatives.
+      Since <xref ref="sec_riemann"/>
+      established that definite integrals are the limit of Riemann sums,
+      we can later create Riemann sums to approximate values other than
+      <q>area under the curve,</q>
+      convert the sums to definite integrals,
+      then evaluate these using the <xref ref="thm_FTC2"/>.
+      This will allow us to compute the work done by a variable force,
+      the volume of certain solids,
+      the arc length of curves, and more.
+    </p>
+
+    <p>
+      The downside is this: generally speaking,
+      computing antiderivatives is much more difficult than computing derivatives.
+      <xref ref="chapter_anti_tech"/>
+      is devoted to techniques of finding antiderivatives so that a wide variety of definite integrals can be evaluated.
+      Before that,
+      <xref ref="sec_numerical_integration"/>
+      explores techniques of approximating the value of definite integrals beyond using the Left Hand, Right Hand and Midpoint Rules.
+      These techniques are invaluable when antiderivatives cannot be computed,
+      or when the actual function <m>f</m> is unknown and all we know is the value of <m>f</m> at certain <m>x</m>-values.
+    </p>
+  </subsection>
+
+  <exercises>
+    <subexercises xml:id="TaC-FTC">
+      <title>Terms and Concepts</title>
+      
+      <exercise label="TaC-FTC-1">
+        <!-- <webwork xml:id="webwork-TaC-FTC-1"> -->
+          <statement>
+            <p>
+              How are definite and indefinite integrals related?
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+        <!-- </webwork> -->
+      </exercise>
+      <!-- Exercise 2 -->
+      <exercise label="TaC-FTC-2">
+        <webwork xml:id="webwork-TaC-FTC-2">
+          <statement>
+            <p>
+              What constant of integration is most commonly used when evaluating definite integrals?
+            </p>
+            <p>
+              <var name="'0'" width="10"/>
+            </p>
+          </statement>
+        </webwork>
+      </exercise>
+      <!-- Exercise 3 -->
+      <exercise label="TaC-FTC-3">
+        <!-- <webwork xml:id="webwork-TaC-FTC-3">
+          <pg-macros>
+            <macro-file>parserPopUp.pl</macro-file>
+          </pg-macros>
+          <pg-code>
+            $true=DropDown(['True','False'],0,showInStatic=&gt;0);
+          </pg-code> -->
+          <statement correct="yes">
+            <p>
+              <!-- <var name="$true" form="popup"/> -->
+              If <m>f</m> is a continuous function,
+              then <m>\ds F(x) = \int_a^x f(t)\, dt</m> is also a continuous function.
+            </p>
+          </statement>
+        <!-- </webwork> -->
+      </exercise>
+      <!-- Exercise 4 -->
+      <exercise label="TaC-FTC-4">
+        <!-- <webwork xml:id="webwork-TaC-FTC-4"> -->
+          <statement>
+            <p>
+              The definite integral can be used to find
+              <q>the area under a curve.</q>
+              Give two other uses for definite integrals.
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+        <!-- </webwork> -->
+      </exercise>
+    </subexercises>
+
+    <subexercises>
+      <title>Problems</title>
+      <exercisegroup cols="2" xml:id="exset-FTC-defint-evaluate">
+        <introduction>
+          <p>
+            Evaluate the definite integral.
+          </p>
+        </introduction>
+        <!-- Exercise 5 -->
+        <exercise label="ex-FTC-defint-evaluate-1">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-1">
+            <pg-code>
+              $b = list_random(-1,1);
+              $c = non_zero_random(-9,9,1);
+              $low = random(1,2,1);
+              $high = $low + random(1,3,1);
+              if($envir{problemSeed}==1){$b=-1;$c=1;$low=1;$high=3};
+              Context()-&gt;noreduce('(-x)-y','(-x)+y');
+              $F = Formula("x^3 + $b x^2 + $c x")-&gt;reduce;
+              $f = $F-&gt;D('x')-&gt;reduce;
+              $r = $F-&gt;eval(x=&gt;$high) - $F-&gt;eval(x=&gt;$low);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} \left(<var name="$f"/>\right)\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 6 -->
+        <exercise label="ex-FTC-defint-evaluate-2">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-2">
+            <pg-code>
+              $c = non_zero_random(-9,9,1);
+              $low = 0;
+              $high = random(2,6,1);
+              if($envir{problemSeed}==1){$c=-1;$high=4;};
+              Context("Fraction");
+              Context()-&gt;noreduce('(-x)-y','(-x)+y');
+              $F = Formula("1/3(x + $c)^3")-&gt;reduce;
+              $f = Formula("(x + $c)^2")-&gt;reduce;
+              $r = Fraction($F-&gt;eval(x=&gt;$high) - $F-&gt;eval(x=&gt;$low));
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 7 -->
+        <exercise label="ex-FTC-defint-evaluate-3">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-3">
+            <pg-code>
+              $b = list_random(-1,1);
+              $low = random(-4,-1,1);
+              ($m,$n) = random_subset(2,3,5,7);
+              if($envir{problemSeed}==1){$b=-1;$low=-1;};
+              $high = -$low;
+              Context("Fraction");
+              Context()-&gt;noreduce('(-x)-y','(-x)+y');
+              $F = Formula("x^($m+1)/($m+1) + $b x^($n+1)/($n+1)")-&gt;reduce;
+              $f = Formula("x^($m) + $b x^($n)")-&gt;reduce;
+              $r = $F-&gt;eval(x=&gt;$high) - $F-&gt;eval(x=&gt;$low);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} \left(<var name="$f"/>\right)\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 8 -->
+        <exercise label="ex-FTC-defint-evaluate-4">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-4">
+            <pg-code>
+              $trig = list_random('sin','cos');
+              $lh = list_random(['0','pi/2'],['0','pi'],['pi/2','pi']);
+              if($envir{problemSeed}==1){$trig='cos';$lh=['pi/2','pi'];};
+              $low = Formula($lh-&gt;[0]);
+              $high = Formula($lh-&gt;[1]);
+              $f = Formula("$trig(x)");
+              $F = -$f-&gt;D('x')-&gt;reduce;
+              $r = $F-&gt;eval(x=&gt;Real("$high")) - $F-&gt;eval(x=&gt;Real("$low"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 9 -->
+        <exercise label="ex-FTC-defint-evaluate-5">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-5">
+            <pg-code>
+              $trig = list_random('tan','sec');
+              $lh = list_random(['0','pi/4'],['0','pi/3'],['pi/4','pi/3']);
+              if($envir{problemSeed}==1){$trig='tan';$lh=['0','pi/4'];};
+              $low = Formula($lh-&gt;[0]);
+              $high = Formula($lh-&gt;[1]);
+              $F = Formula("$trig(x)");
+              $f = $F-&gt;D('x')-&gt;reduce;
+              $r = $F-&gt;eval(x=&gt;Real("$high")) - $F-&gt;eval(x=&gt;Real("$low"));
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              if ($r == 1) {$r = 1;}
+              elsif ($r == sqrt(3)) {$r = Formula("sqrt(3)");}
+              elsif ($r == sqrt(3) - 1) {$r = Formula("sqrt(3) - 1");}
+              elsif ($r == sqrt(2) - 1) {$r = Formula("sqrt(2) - 1");}
+              elsif ($r == 2 - sqrt(2)) {$r = Formula("2 - sqrt(2)");};
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 10 -->
+        <exercise label="ex-FTC-defint-evaluate-6">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-6">
+            <pg-code>
+              $n = random(1,9,1);
+              if($envir{problemSeed}==1){$n=1;};
+              $low = 1;
+              $high = Formula("e^$n")-&gt;reduce;
+              $F = Formula("ln(x)")-&gt;reduce;
+              $f = Formula("1/x")-&gt;reduce;
+              $r = $n;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 11 -->
+        <exercise label="ex-FTC-defint-evaluate-7">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-7">
+            <pg-code>
+              $b = random(2,9,1);
+              $low = random(-3,-1,1);
+              $high = random(1,3,1);
+              if($envir{problemSeed}==1){$b=5;$low=-1;$high=1;};
+              $f = Formula("$b^x")-&gt;reduce;
+              Context("Fraction");
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $r = Formula("($b**$high - 1/$b**(-$low))/ln($b)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 12 -->
+        <exercise label="ex-FTC-defint-evaluate-8">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-8">
+            <pg-code>
+              ($low,$high) = num_sort(random_subset(2,-4..-1));
+              ($a,$b) = random_subset(2,-9..-1,1..9);
+              $m = random(2,5,1);
+              if($envir{problemSeed}==1){$low=-2;$high=-1;$a=4,$b=-2;$m=3;};
+              $f = Formula("$a + $b x^$m")-&gt;reduce;
+              Context("Fraction");
+              $r = Fraction(($a*$high + $b/($m+1)*$high**($m+1)) - ($a*$low + $b/($m+1)*$low**($m+1)));
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} \left(<var name="$f"/>\right)\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 13 -->
+        <exercise label="ex-FTC-defint-evaluate-9">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-9">
+            <pg-code>
+              ($a,$b) = random_subset(2,-9..-1,1..9);
+              if($envir{problemSeed}==1){$a=2;$b=-2;};
+              $f = Formula("$a cos(x) + $b sin(x)")-&gt;reduce;
+              $r = 2*$b;
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{0}^{\pi} \left(<var name="$f"/>\right)\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 14 -->
+        <exercise label="ex-FTC-defint-evaluate-10">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-10">
+            <pg-code>
+              ($low,$high) = num_sort(random_subset(2,1..4));
+              if($envir{problemSeed}==1){$low=1;$high=4;};
+              $f = Formula("e^x")-&gt;reduce;
+              $r = Formula("e^$high - e^$low");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 15 -->
+        <exercise label="ex-FTC-defint-evaluate-11">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-11">
+            <pg-code>
+              ($low,$high) = num_sort(random_subset(2,0,1,4,9,16,25));
+              if($envir{problemSeed}==1){$low=0;$high=4;};
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = Formula("sqrt(t)")-&gt;reduce;
+              Context("Fraction");
+              $r = Fraction(2/3 * ($high**(3/2) - $low**(3/2)));
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dt</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 16 -->
+        <exercise label="ex-FTC-defint-evaluate-12">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-12">
+            <pg-code>
+              ($low,$high) = num_sort(random_subset(2,1,4,9,16,25));
+              if($envir{problemSeed}==1){$low=9;$high=25;};
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = Formula("1/sqrt(t)")-&gt;reduce;
+              Context("Fraction");
+              $r = Fraction(2 * ($high**(1/2) - $low**(1/2)));
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dt</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 17 -->
+        <exercise label="ex-FTC-defint-evaluate-13">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-13">
+            <pg-code>
+              $n = random(3,5,1);
+              ($low,$high) = num_sort(random_subset(2,0**$n,1**$n,2**$n,3**$n,4**$n));
+              if($envir{problemSeed}==1){$n=3;$low=1;$high=8;};
+              parser::Root-&gt;Enable;
+              $f = Formula("root($n,x)")-&gt;reduce;
+              Context("Fraction");
+              $r = Fraction($high**(1/$n + 1)/(1/$n + 1) - $low**(1/$n + 1)/(1/$n + 1));
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 18 -->
+        <exercise label="ex-FTC-defint-evaluate-14">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-14">
+            <pg-code>
+              $low = 1;
+              $high = random(2,9,1);
+              if($envir{problemSeed}==1){$high=2;};
+              $f = Formula("1/x")-&gt;reduce;
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              $r = Formula("ln($high)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 19 -->
+        <exercise label="ex-FTC-defint-evaluate-15">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-15">
+            <pg-code>
+              $low = 1;
+              $high = random(2,9,1);
+              if($envir{problemSeed}==1){$high=2;};
+              $f = Formula("1/x^2")-&gt;reduce;
+              Context("Fraction");
+              $r = Fraction(1/$low - 1/$high);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 20 -->
+        <exercise label="ex-FTC-defint-evaluate-16">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-16">
+            <pg-code>
+              $n = random(3,6,1);
+              $low = 1;
+              $high = random(2,9,1);
+              if($envir{problemSeed}==1){$n=3;$high=2;};
+              $f = Formula("1/x^$n")-&gt;reduce;
+              Context("Fraction");
+              $r = Fraction($high**(-$n+1)/(-$n+1) - $low**(-$n+1)/(-$n+1));
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 21 -->
+        <exercise label="ex-FTC-defint-evaluate-17">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-17">
+            <pg-code>
+              $low = 0;
+              $high = 1;
+              $f = Formula("x")-&gt;reduce;
+              Context("Fraction");
+              $r = Fraction(1/2);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 22 -->
+        <exercise label="ex-FTC-defint-evaluate-18">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-18">
+            <pg-code>
+              $low = 0;
+              $high = 1;
+              $f = Formula("x^2")-&gt;reduce;
+              Context("Fraction");
+              $r = Fraction(1/3);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 23 -->
+        <exercise label="ex-FTC-defint-evaluate-19">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-19">
+            <pg-code>
+              $low = 0;
+              $high = 1;
+              $f = Formula("x^3")-&gt;reduce;
+              Context("Fraction");
+              $r = Fraction(1/4);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 24 -->
+        <exercise label="ex-FTC-defint-evaluate-20">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-20">
+            <pg-code>
+              $n = random(80,120,1);
+              if($envir{problemSeed}==1){$n=100;};
+              $low = 0;
+              $high = 1;
+              $f = Formula("x^$n")-&gt;reduce;
+              Context("Fraction");
+              $r = Fraction(1/($n+1));
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 25 -->
+        <exercise label="ex-FTC-defint-evaluate-21">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-21">
+            <pg-code>
+              $low = random(-9,-2,1);
+              if($envir{problemSeed}==1){$low=-4;};
+              $high = -$low;
+              $r = Real(2*$high);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 26 -->
+        <exercise label="ex-FTC-defint-evaluate-22">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-22">
+            <pg-code>
+              ($low,$high) = num_sort(random_subset(2,-9..-1));
+              $c = random(2,9,1);
+              if($envir{problemSeed}==1){$low=-10;$high=-5;$c=3;};
+              $f = Formula("$c")-&gt;reduce;
+              $r = Real($c*($high - $low));
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 27 -->
+        <exercise label="ex-FTC-defint-evaluate-23">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-23">
+            <pg-code>
+              $low = random(-9,-2,1);
+              if($envir{problemSeed}==1){$low=-2;};
+              $high = -$low;
+              $f = Formula("0")-&gt;reduce;
+              $r = Real(0);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 28 -->
+        <exercise label="ex-FTC-defint-evaluate-24">
+          <webwork xml:id="webwork-ex-FTC-defint-evaluate-24">
+            <pg-code>
+              $trig = list_random('-cot','-csc');
+              $lh = list_random(['pi/6','pi/4'],['pi/6','pi/3'],['pi/6','pi/2'],['pi/4','pi/3'],['pi/4','pi/2'],['pi/3','pi/2']);
+              if($envir{problemSeed}==1){$trig='-csc';$lh=['pi/6','pi/3'];};
+              $low = Formula($lh-&gt;[0]);
+              $high = Formula($lh-&gt;[1]);
+              $F = Formula("$trig(x)");
+              $f = $F-&gt;D('x')-&gt;reduce;
+              $r = $F-&gt;eval(x=&gt;Real("$high")) - $F-&gt;eval(x=&gt;Real("$low"));
+              Context()-&gt;flags-&gt;set(reduceConstantFunctions=&gt;0);
+              if ($r == 1) {$r = 1;}
+              elsif ($r == sqrt(3) - 1) {$r = Formula("sqrt(3) - 1");}
+              elsif ($r == sqrt(3) - 1/sqrt(3)) {$r = Formula("sqrt(3) - 1/sqrt(3)");}
+              elsif ($r == sqrt(3)) {$r = Formula("sqrt(3)");}
+              elsif ($r == 1 - 1/sqrt(3)) {$r = Formula("1 - 1/sqrt(3)");}
+              elsif ($r == 1/sqrt(3)) {$r = Formula("1/sqrt(3)");}
+              elsif ($r == 2 - sqrt(2)) {$r = Formula("2 - sqrt(2)");}
+              elsif ($r == 2 - 2/sqrt(3)) {$r = Formula("2 - 2/sqrt(3)");}
+              elsif ($r == sqrt(2) - 2/sqrt(3)) {$r = Formula("sqrt(2) - 2/sqrt(3)");}
+              elsif ($r == sqrt(2) - 1) {$r = Formula("sqrt(2) - 1");}
+              elsif ($r == 2/sqrt(3) - 1) {$r = Formula("2/sqrt(3) - 1");}
+            </pg-code>
+            <statement>
+              <p>
+                <m>\ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dx</m>
+              </p>
+              <p>
+                <var name="$r" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <!-- Exercise 29 -->
+      <exercise label="ex-FTC-even-odd-explain">
+        <!-- <webwork xml:id="webwork-ex-FTC-even-odd-explain"> -->
+          <task label="ex-FTC-even-odd-explain-a">
+            <statement>
+              <p>
+                Explain why <m>\ds\int_{-1}^1 x^n\, dx=0</m>
+                when <m>n</m> is a positive, odd integer.
+              </p>
+
+              <!-- <p>
+                <var form="essay"/>
+              </p> -->
+
+            </statement>
+            <response />
+            
+          </task>
+
+          <task label="ex-FTC-even-odd-explain-b">
+            <statement>
+              <p>
+                Explain why <m>\ds\int_{-1}^1 x^n\, dx = 2\int_{0}^1 x^n\, dx</m> when <m>n</m> is a positive,
+                even integer.
+              </p>
+
+              <!-- <p>
+                <var form="essay"/>
+              </p> -->
+            </statement>
+            <response />
+            
+          </task>
+        <!-- </webwork> -->
+      </exercise>
+      <!-- Exercise 30 -->
+      <exercise label="ex-FTC-sin-period-explain">
+        <!-- <webwork xml:id="webwork-ex-FTC-sin-period-explain"> -->
+          <statement>
+            <p>
+              Explain why <m>\ds\int_{a}^{a+2\pi} \sin(t)\, dt = 0</m> for all values of <m>a</m>.
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercisegroup cols="2" xml:id="exset-FTC-MVT">
+        <introduction>
+          <p>
+            Find all values <m>c</m> such that <m>\int_a^b f(x)\, dx = f(c)(b-a)</m>,
+            as guaranteed by the <xref ref="thm_mvt2"/>.
+          </p>
+        </introduction>
+        <!-- Exercise 31 -->
+        <exercise label="ex-FTC-MVT-1">
+          <webwork xml:id="webwork-ex-FTC-MVT-1">
+            <pg-code>
+              $low = 0;
+              $high = random(2,4,1);
+              if($envir{problemSeed}==1){$high=2;};
+              $f = Formula("x^2");
+              $D = $high - $low;
+              $F = Formula("x^3/3");
+              $f_inv = Formula("sqrt(x)");
+              $f_c = ($F-&gt;eval(x=&gt;$high) - $F-&gt;eval(x=&gt;$low))/$D;
+              $c = List($f_inv-&gt;eval(x=&gt;$f_c));
+            </pg-code>
+            <statement>
+              <p>
+                <m>\int_{<var name="$a"/>}^{<var name="$b"/>}<var name="$f"/> \, dx</m>
+              </p>
+              <p>
+                <var name="$c" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 32 -->
+        <exercise label="ex-FTC-MVT-2">
+          <webwork xml:id="webwork-ex-FTC-MVT-2">
+            <pg-code>
+              $low = random(-9,-1,1);
+              if($envir{problemSeed}==1){$low=-2;};
+              $high = -$low;
+              $f = Formula("x^2");
+              $D = $high - $low;
+              $F = Formula("x^3/3");
+              $f_inv = Formula("sqrt(x)");
+              $f_c = ($F-&gt;eval(x=&gt;$high) - $F-&gt;eval(x=&gt;$low))/$D;
+              $c = $f_inv-&gt;eval(x=&gt;$f_c);
+              $c = List(-$c,$c);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\int_{<var name="$a"/>}^{<var name="$b"/>}<var name="$f"/> \, dx</m>
+              </p>
+              <p>
+                <var name="$c" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 33 -->
+        <exercise label="ex-FTC-MVT-3">
+          <webwork xml:id="webwork-ex-FTC-MVT-3">
+            <pg-code>
+              $low = 0;
+              $high = 1;
+              $f = Formula("e^x");
+              $D = $high - $low;
+              $F = Formula("e^x");
+              $f_inv = Formula("ln(x)");
+              $f_c = ($F-&gt;eval(x=&gt;$high) - $F-&gt;eval(x=&gt;$low))/$D;
+              $c = $f_inv-&gt;eval(x=&gt;$f_c);
+              $c = List($c);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\int_{<var name="$a"/>}^{<var name="$b"/>}<var name="$f"/> \, dx</m>
+              </p>
+              <p>
+                <var name="$c" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 34 -->
+        <exercise label="ex-FTC-MVT-4">
+          <webwork xml:id="webwork-ex-FTC-MVT-4">
+            <pg-code>
+              $low = 0;
+              $high = list_random(1,4,9,16,25,36,49);
+              if($envir{problemSeed}==1){$high=16;};
+              $f = Formula("sqrt(x)");
+              $D = $high - $low;
+              $F = Formula("2/3 x^(3/2)");
+              $f_inv = Formula("x^2");
+              $f_c = ($F-&gt;eval(x=&gt;$high) - $F-&gt;eval(x=&gt;$low))/$D;
+              $c = $f_inv-&gt;eval(x=&gt;$f_c);
+              $c = List($c);
+            </pg-code>
+            <statement>
+              <p>
+                <m>\int_{<var name="$a"/>}^{<var name="$b"/>}<var name="$f"/> \, dx</m>
+              </p>
+              <p>
+                <var name="$c" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-FTC-average">
+        <introduction>
+          <p>
+            Find the average value of the function on the given interval.
+          </p>
+        </introduction>
+        <!-- Exercise 35 -->
+        <exercise label="ex-FTC-average-1">
+          <webwork xml:id="webwork-ex-FTC-average-1">
+            <pg-code>
+              $trig = list_random('sin','cos');
+              $lh = list_random(['0','pi/2'],['0','pi'],['pi/2','pi']);
+              if($envir{problemSeed}==1){$trig='sin';$lh=['0','pi/2'];};
+              $low = Formula($lh-&gt;[0]);
+              $high = Formula($lh-&gt;[1]);
+              $D = $high - $low;
+              $f = Formula("$trig(x)");
+              $F = -$f-&gt;D('x')-&gt;reduce;
+              $A = ($F-&gt;eval(x=&gt;Real("$high")) - $F-&gt;eval(x=&gt;Real("$low")))/$D;
+              $num = Real($A*pi);
+              $A = Formula("$num/pi");
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m> on <m>\left[<var name="$low"/>,<var name="$high"/>\right]</m>
+              </p>
+              <p>
+                <var name="$A" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 36 -->
+        <exercise label="ex-FTC-average-2">
+          <webwork xml:id="webwork-ex-FTC-average-2">
+            <pg-code>
+              $trig = list_random('sin','cos');
+              $lh = list_random(['0','pi/2'],['0','pi'],['pi/2','pi']);
+              if($envir{problemSeed}==1){$trig='sin';$lh=['0','pi'];};
+              $low = Formula($lh-&gt;[0]);
+              $high = Formula($lh-&gt;[1]);
+              $D = $high - $low;
+              $f = Formula("$trig(x)");
+              $F = -$f-&gt;D('x')-&gt;reduce;
+              $A = ($F-&gt;eval(x=&gt;Real("$high")) - $F-&gt;eval(x=&gt;Real("$low")))/$D;
+              $num = Real($A*pi);
+              $A = Formula("$num/pi");
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$A" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 37 -->
+        <exercise label="ex-FTC-average-3">
+          <webwork xml:id="webwork-ex-FTC-average-3">
+            <pg-code>
+              $low = 0;
+              $high = random(1,9,1);
+              if($envir{problemSeed}==1){$high=4;};
+              $D = $high - $low;
+              $f = Formula("x");
+              $F = Formula("x^2/2");
+              Context("Fraction");
+              $A = Fraction(($F-&gt;eval(x=&gt;Real($high)) - $F-&gt;eval(x=&gt;Real($low)))/$D);
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$A" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 38 -->
+        <exercise label="ex-FTC-average-4">
+          <webwork xml:id="webwork-ex-FTC-average-4">
+            <pg-code>
+              $low = 0;
+              $high = random(1,9,1);
+              if($envir{problemSeed}==1){$high=4;};
+              $D = $high - $low;
+              $f = Formula("x^2");
+              $F = Formula("x^3/3");
+              Context("Fraction");
+              $A = Fraction(($F-&gt;eval(x=&gt;Real($high)) - $F-&gt;eval(x=&gt;Real($low)))/$D);
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$A" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 39 -->
+        <exercise label="ex-FTC-average-5">
+          <webwork xml:id="webwork-ex-FTC-average-5">
+            <pg-code>
+              $low = 0;
+              $high = random(1,9,1);
+              if($envir{problemSeed}==1){$high=4;};
+              $D = $high - $low;
+              $f = Formula("x^3");
+              $F = Formula("x^4/4");
+              Context("Fraction");
+              $A = Fraction(($F-&gt;eval(x=&gt;Real($high)) - $F-&gt;eval(x=&gt;Real($low)))/$D);
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$A" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 40 -->
+        <exercise label="ex-FTC-average-6">
+          <webwork xml:id="webwork-ex-FTC-average-6">
+            <pg-code>
+              $low = 1;
+              $m = random(1,9,1);
+              if($envir{problemSeed}==1){$m=1;};
+              $high = Formula("e^$m")-&gt;reduce;
+              $D = $high - $low;
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = Formula("1/t");
+              $F = Formula("ln(t)");
+              $A = Formula("$m/(e^$m - 1)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=\ds<var name="$f"/></m> on <m>\left[<var name="$low"/>,<var name="$high"/>\right]</m>
+              </p>
+              <p>
+                <var name="$A" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-FTC-displacement">
+        <introduction>
+          <p>
+            A velocity function is given for an object moving along a straight line.
+            Find the displacement of the object over the given time interval.
+          </p>
+        </introduction>
+        <!-- Exercise 41 -->
+        <exercise label="ex-FTC-displacement-1">
+          <webwork xml:id="webwork-ex-FTC-displacement-1">
+            <pg-code>
+              $low = 0;
+              $high = random(4,8,1);
+              $v0 = random(10,30,2);
+              if($envir{problemSeed}==1){$high=5;$v0=20};
+              $a = -32;
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = FormulaWithUnits("$a t + $v0 ft/s");
+              $F = Formula("$a/2 t^2 + $v0 t");
+              $D = FormulaWithUnits(Fraction($F-&gt;eval(t=&gt;Real($high)) - $F-&gt;eval(t=&gt;Real($low))), 'ft');
+            </pg-code>
+            <statement>
+              <p>
+                <m>v(t)=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$D" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 42 -->
+        <exercise label="ex-FTC-displacement-2">
+          <webwork xml:id="webwork-ex-FTC-displacement-2">
+            <pg-code>
+              $low = 0;
+              $high = random(7,15,1);
+              $v0 = random(100,300,20);
+              if($envir{problemSeed}==1){$high=10;$v0=200};
+              $a = -32;
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = FormulaWithUnits("$a t + $v0 ft/s");
+              $F = Formula("$a/2 t^2 + $v0 t");
+              $D = FormulaWithUnits(Fraction($F-&gt;eval(t=&gt;Real($high)) - $F-&gt;eval(t=&gt;Real($low))), 'ft');
+            </pg-code>
+            <statement>
+              <p>
+                <m>v(t)=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$D" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 43 -->
+        <exercise label="ex-FTC-displacement-3">
+          <webwork xml:id="webwork-ex-FTC-displacement-3">
+            <pg-code>
+              $low = 0;
+              $high = random(2,9,1);
+              $v0 = random(5,20,1);
+              if($envir{problemSeed}==1){$high=3;$v0=10};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = FormulaWithUnits("$v0 ft/s");
+              $F = Formula("$v0 t");
+              $D = FormulaWithUnits(Fraction($F-&gt;eval(t=&gt;Real($high)) - $F-&gt;eval(t=&gt;Real($low))), 'ft');
+            </pg-code>
+            <statement>
+              <p>
+                <m>v(t)=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$D" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 44 -->
+        <exercise label="ex-FTC-displacement-4">
+          <webwork xml:id="webwork-ex-FTC-displacement-4">
+            <pg-code>
+              $low = random(-3,-1,1);
+              $high = random(1,3,1);
+              $b = random(2,9,1);
+              if($envir{problemSeed}==1){$low=-1;$high=1;$b=2;};
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = FormulaWithUnits("$b^t mph");
+              $F = Formula("$b^t/ln($b)");
+              $D = FormulaWithUnits($F-&gt;eval(t=&gt;Real($high)) - $F-&gt;eval(t=&gt;Real($low)), 'mi');
+            </pg-code>
+            <statement>
+              <p>
+                <m>v(t)=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$D" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 45 -->
+        <exercise label="ex-FTC-displacement-5">
+          <webwork xml:id="webwork-ex-FTC-displacement-5">
+            <pg-code>
+              $trig = list_random('sin','cos');
+              $lh = list_random(['0','pi/2'],['0','pi'],['0','3*pi/2'],['pi/2','pi'],['pi/2','3*pi/2'],['pi','3*pi/2']);
+              if($envir{problemSeed}==1){$trig='cos';$lh=['0','3*pi/2'];};
+              $low = Formula($lh-&gt;[0]);
+              $high = Formula($lh-&gt;[1]);
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = FormulaWithUnits("$trig(t) ft/s");
+              $F = Formula("-$trig(t)")-&gt;D('t')-&gt;reduce;
+              $D = FormulaWithUnits($F-&gt;eval(t=&gt;Real("$high")) - $F-&gt;eval(t=&gt;Real("$low")), 'ft');
+            </pg-code>
+            <statement>
+              <p>
+                <m>v(t)=<var name="$f"/></m> on <m>\left[<var name="$low"/>,<var name="$high"/>\right]</m>
+              </p>
+              <p>
+                <var name="$D" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 46 -->
+        <exercise label="ex-FTC-displacement-6">
+          <webwork xml:id="webwork-ex-FTC-displacement-6">
+            <pg-code>
+              $low = 0;
+              $n = random(3,5,1);
+              $high = list_random(2**$n,3**$n,4**$n);
+              if($envir{problemSeed}==1){$high=1;$n=4;$high=16;};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              parser::Root-&gt;Enable;
+              $f = FormulaWithUnits("root($n,t) ft/s");
+              $F = Formula("t^(1/$n+1)/(1/$n+1)");
+              $D = FormulaWithUnits(Fraction($F-&gt;eval(t=&gt;Real($high)) - $F-&gt;eval(t=&gt;Real($low))), 'ft');
+            </pg-code>
+            <statement>
+              <p>
+                <m>v(t)=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$D" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-FTC-velocity">
+        <introduction>
+          <p>
+            An acceleration function of an object moving along a straight line is given.
+            Find the change of the object's velocity over the given time interval.
+          </p>
+        </introduction>
+        <!-- Exercise 47 -->
+        <exercise label="ex-FTC-velocity-1">
+          <webwork xml:id="webwork-ex-FTC-velocity-1">
+            <pg-code>
+              $low = 0;
+              $high = random(1,9,1);
+              if($envir{problemSeed}==1){$high=2;};
+              $a = -32;
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = FormulaWithUnits("$a ft/s^2");
+              $F = Formula("$a t");
+              $D = FormulaWithUnits(Fraction($F-&gt;eval(t=&gt;Real($high)) - $F-&gt;eval(t=&gt;Real($low))), 'ft/s');
+            </pg-code>
+            <statement>
+              <p>
+                <m>a(t)=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$D" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 48 -->
+        <exercise label="ex-FTC-velocity-2">
+          <webwork xml:id="webwork-ex-FTC-velocity-2">
+            <pg-code>
+              $low = 0;
+              $high = random(1,9,1);
+              $a = random(5,20,1);
+              if($envir{problemSeed}==1){$high=5;$a=10;};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = FormulaWithUnits("$a ft/s^2");
+              $F = Formula("$a t");
+              $D = FormulaWithUnits(Fraction($F-&gt;eval(t=&gt;Real($high)) - $F-&gt;eval(t=&gt;Real($low))), 'ft/s');
+            </pg-code>
+            <statement>
+              <p>
+                <m>a(t)=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$D" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 49 -->
+        <exercise label="ex-FTC-velocity-3">
+          <webwork xml:id="webwork-ex-FTC-velocity-3">
+            <pg-code>
+              $low = 0;
+              $high = random(1,9,1);
+              if($envir{problemSeed}==1){$high=2;};
+              Context("Fraction");
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = FormulaWithUnits("t ft/s^2");
+              $F = Formula("t^2/2");
+              $D = FormulaWithUnits(Fraction($F-&gt;eval(t=&gt;Real($high)) - $F-&gt;eval(t=&gt;Real($low))), 'ft/s');
+            </pg-code>
+            <statement>
+              <p>
+                <m>a(t)=<var name="$f"/></m> on <m>[<var name="$low"/>,<var name="$high"/>]</m>
+              </p>
+              <p>
+                <var name="$D" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 50 -->
+        <exercise label="ex-FTC-velocity-4">
+          <webwork xml:id="webwork-ex-FTC-velocity-4">
+            <pg-code>
+              $trig = list_random('sin','cos');
+              $lh = list_random(['0','pi/2'],['0','pi'],['0','3*pi/2'],['pi/2','pi'],['pi/2','3*pi/2'],['pi','3*pi/2']);
+              if($envir{problemSeed}==1){$trig='cos';$lh=['0','pi/2'];};
+              $low = Formula($lh-&gt;[0]);
+              $high = Formula($lh-&gt;[1]);
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f = FormulaWithUnits("$trig(t) ft/s^2");
+              $F = Formula("-$trig(t)")-&gt;D('t')-&gt;reduce;
+              $D = FormulaWithUnits($F-&gt;eval(t=&gt;Real("$high")) - $F-&gt;eval(t=&gt;Real("$low")), 'ft/s');
+            </pg-code>
+            <statement>
+              <p>
+                <m>a(t)=<var name="$f"/></m> on <m>\left[<var name="$low"/>,<var name="$high"/>\right]</m>
+              </p>
+              <p>
+                <var name="$D" width="10"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-FTC-area">
+        <introduction>
+          <p>
+            Sketch the given relations and find the area of the enclosed region.
+          </p>
+        </introduction>
+        <!-- Exercise 51 -->
+        <exercise label="ex-FTC-area-1">
+          <statement>
+            <p>
+              <m>y=2x</m>, <m>y=5x</m>, and <m>x= 3</m>
+            </p>
+          </statement>
+        </exercise>
+        <!-- Exercise 52 -->
+        <exercise label="ex-FTC-area-2">
+          <statement>
+            <p>
+              <m>y=-x+1</m>, <m>y=3x+6</m>,
+              <m>x=2</m> and <m>x= -1</m>
+            </p>
+          </statement>
+        </exercise>
+        <!-- Exercise 53 -->
+        <exercise label="ex-FTC-area-3">
+          <statement>
+            <p>
+              <m>y=x^2-2x+5</m>, <m>y=5x-5</m>
+            </p>
+          </statement>
+        </exercise>
+        <!-- Exercise 54 -->
+        <exercise label="ex-FTC-area-4">
+          <statement>
+            <p>
+              <m>y=2x^2+2x-5</m>, <m>y=x^2+3x+7</m>,
+            </p>
+          </statement>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-FTC-part1">
+        <introduction>
+          <p>
+            Find <m>F'(x)</m>.
+          </p>
+        </introduction>
+        <!-- Exercise 55 -->
+        <exercise label="ex-FTC-part1-1">
+          <webwork xml:id="webwork-ex-FTC-part1-1">
+            <pg-code>
+              $m = random(3,5,1);
+              $b = non_zero_random(-9,9,1);
+              $low = random(1,9,1);
+              if($envir{problemSeed}==1){$m=3;$b=1;$low=2;};
+              Context()-&gt;variables-&gt;add(t=&gt;'Real');
+              $high = Formula("x^$m + $b x")-&gt;reduce;
+              $f = Formula("1/t");
+              $D = $high-&gt;D('x')-&gt;reduce / $high;
+            </pg-code>
+            <statement>
+              <p>
+                <m>F(x) = \ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dt</m>
+              </p>
+              <p>
+                <var name="$D" width="30"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 56 -->
+        <exercise label="ex-FTC-part1-2">
+          <webwork xml:id="webwork-ex-FTC-part1-2">
+            <pg-code>
+              $m = random(2,5,1);
+              $high = random(-9,9,1);
+              if($envir{problemSeed}==1){$m=3;$high=0;};
+              Context()-&gt;variables-&gt;add(t=&gt;'Real');
+              $low = Formula("x^$m");
+              $f = Formula("t^$m");
+              $D = Formula("-$m x^($m**2+$m-1)")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>F(x) = \ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dt</m>
+              </p>
+              <p>
+                <var name="$D" width="30"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 57 -->
+        <exercise label="ex-FTC-part1-3">
+          <webwork xml:id="webwork-ex-FTC-part1-3">
+            <pg-code>
+              $b = non_zero_random(-9,9,1);
+              $m = random(2,4,1);
+              if($envir{problemSeed}==1){$b=1;$m=2};
+              Context()-&gt;variables-&gt;add(t=&gt;'Real');
+              $low = Formula("x");
+              $high = Formula("x^$m");
+              $f = Formula("t+$b")-&gt;reduce;
+              $D = Formula("$m x^($m-1)(x^$m+$b) - (x+$b)")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>F(x) = \ds\int_{<var name="$low"/>}^{<var name="$high"/>} (<var name="$f"/>)\, dt</m>
+              </p>
+              <p>
+                <var name="$D" width="30"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- Exercise 58 -->
+        <exercise label="ex-FTC-part1-4">
+          <webwork xml:id="webwork-ex-FTC-part1-4">
+            <pg-code>
+              ($low,$high,$f) = random_subset(3,'e^','ln','sin','cos','sqrt');
+              if($envir{problemSeed}==1){$low='ln';$high='e^';$f='sin';};
+              Context()-&gt;variables-&gt;add(t=&gt;'Real');
+              # interval where all these functions have positive output
+              Context()-&gt;variables-&gt;set(x=&gt;{limits=&gt;[1,pi/2]});
+              $low = Formula("$low(x)");
+              $high = Formula("$high(x)");
+              $f = Formula("$f(t)");
+              $D = $high-&gt;D('x') * $f-&gt;substitute(t=&gt;$high) - $low-&gt;D('x') * $f-&gt;substitute(t=&gt;$low);
+              $D = $D-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>F(x) = \ds\int_{<var name="$low"/>}^{<var name="$high"/>} <var name="$f"/>\, dt</m>
+              </p>
+              <p>
+                <var name="$D" width="30"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="ex-FTC-part1-5">
+          <webwork xml:id="webwork-ex-FTC-part1-5">
+            <pg-code>
+              $b = non_zero_random(-9,9,1);
+              $m = random(2,4,1);
+              Context()-&gt;variables-&gt;add(t=&gt;'Real');
+              $low = random(1,9,1);
+              $high = Formula("x^$m");
+              $f = Formula("sin($b t^2)")-&gt;reduce;
+              $D = Formula("$m x^($m-1)sin($b x^(2*$m))")-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>F(x) = \ds\int_{<var name="$low"/>}^{<var name="$high"/>} (<var name="$f"/>)\, dt</m>
+              </p>
+              <p>
+                <var name="$D" width="30"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="ex-FTC-part1-6">
+          <webwork xml:id="webwork-ex-FTC-part1-6">
+            <pg-code>
+              $b = non_zero_random(-9,9,1);
+              ($low,$high) = random_subset(2,'e^','ln','sin','cos','sqrt');
+              Context()-&gt;variables-&gt;add(t=&gt;'Real');
+              $low = Formula("$low(x)");
+              $high = Formula("$high(x)");
+              $f = Formula("sqrt(t^4+$b t^2)")-&gt;reduce;
+              $D = $high-&gt;D('x') * $f-&gt;substitute(t=&gt;$high) - $low-&gt;D('x') * $f-&gt;substitute(t=&gt;$low);
+              $D = $D-&gt;reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>F(x) = \ds\int_{<var name="$low"/>}^{<var name="$high"/>} (<var name="$f"/>)\, dt</m>
+              </p>
+              <p>
+                <var name="$D" width="30"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+    </subexercises>
+  </exercises>
+</section>

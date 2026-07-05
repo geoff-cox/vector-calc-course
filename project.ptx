@@ -44,5 +44,12 @@
     >
       <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
     </target>
+    <target
+      name="book"
+      format="html"
+      source="book.ptx"
+      publication="publication-standard-web.ptx">
+        <stringparams html.annotation="hypothesis"/>
+    </target>
   </targets>
 </project>

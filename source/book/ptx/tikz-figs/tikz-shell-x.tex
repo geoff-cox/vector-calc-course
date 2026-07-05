@@ -1,0 +1,226 @@
+% ====================================================================
+%  WASHER METHOD  —  TikZ / PGFPlots Template
+%  Axis of rotation:  y = c  (horizontal line)
+%
+%  The figure shows:
+%    • Both bounding curves  f(x)  and  g(x)
+%    • The shaded region between them on [a, b]
+%    • The axis of rotation  y = c
+%    • Vertical boundary lines at  x = a  and  x = b
+%    • One representative washer at  x = x₀  with radii R and r
+%
+%  ASSUMPTION:  f(x) ≥ g(x) ≥ c  on [a, b]   (region above axis).
+%  If the region is BELOW the axis (c ≥ f(x) ≥ g(x)) swap the sign
+%  convention in the Rout/Rin lines inside 'declare function'
+%  (see the note in Section 3).
+%
+%  Requirements:  pgfplots ≥ 1.11,  pgfplotscompat = 1.18
+%  Uses: 
+%     \usepgfplotslibrary{fillbetween}   % needed for shaded region
+%     \usetikzlibrary{arrows.meta}       % needed for Stealth arrow tips
+% ====================================================================
+
+\begin{tikzpicture}[scale=0.6]
+  
+% ====================================================================
+%  SECTION 1 — REQUIRED USER INPUTS
+%  Set all five items before compiling.  No other edits are needed
+%  for a basic figure.
+% ====================================================================
+
+\def\AxisC{0}     % (1) Axis of rotation:  y = c   (numeric value, e.g. 0, -1, 2)
+\def\IntA{0}      % (2) Left  endpoint of interval:  a
+\def\IntB{1}      % (3) Right endpoint of interval:  b
+
+% (4) & (5)  f(x) and g(x) are set inside the axis environment in
+%     Section 3 — search for the two lines labelled  %%USER%%
+
+% ====================================================================
+%  SECTION 2 — OPTIONAL STYLE PARAMETERS
+%  Every parameter has a working default.  Adjust as needed.
+% ====================================================================
+
+% ---- Plot domain ---------------------------------------------------
+\def\fXMin{-0.15}   % Left  edge of visible window  (add white space as needed)
+\def\fXMax{ 1.15}   % Right edge of visible window
+\def\gXMin{-0.15}   % Bottom edge of visible window
+\def\gXMax{ 1.15}   % Top    edge of visible window
+
+% ---- Display window ---------------------------------------------------
+\def\XMin{-1.15}   % Left  edge of visible window  (add white space as needed)
+\def\XMax{ 2.50}   % Right edge of visible window
+\def\YMin{-1.25}   % Bottom edge of visible window
+\def\YMax{ 2.25}   % Top    edge of visible window
+
+% ---- Figure dimensions --------------------------------------------
+\def\FigW{9.5cm}   % Width  of the pgfplots axis frame
+\def\FigH{8.5cm}   % Height of the pgfplots axis frame
+
+% ---- Colours -------------------------------------------------------
+\colorlet{ColF}       {blue!80!black}     % f(x) curve
+\colorlet{ColG}       {red!80!black}      % g(x) curve
+\colorlet{ColRegion}  {green!40!blue}  % shaded region fill
+\colorlet{ColAx}      {black!65}          % rotation-axis line
+\colorlet{ColWasher}  {cyan!70!blue}      % washer rectangle fill
+\colorlet{ColRbig}    {violet}            % outer-radius R annotation
+\colorlet{ColRsmall}  {teal!80!black}     % inner-radius r annotation
+\colorlet{ColBound}   {gray!70}           % dashed boundary lines at a, b
+
+% ---- Curve appearance ----------------------------------------------
+\def\LWf{1.8pt}    % Line width for  f(x)
+\def\LWg{1.8pt}    % Line width for  g(x)
+\def\LWax{1.0pt}   % Line width for rotation axis
+\def\NSamp{250}    % Curve sampling density (higher → smoother arcs)
+
+% ---- Shaded region -------------------------------------------------
+\def\RegAlpha{0.35}     % Region fill opacity  [0 = clear … 1 = solid]
+
+% ---- Rotation-axis line style  -------------------------------------
+% Choose: dashed | dotted | loosely dashed | densely dashed | solid
+\def\AxStyle{dashed}
+
+% ---- Representative washer at  x = WashX --------------------------
+\def\WashX{0.60}        % x-position of washer  (must lie in the open interval (a, b))
+\def\WashDX{0.055}      % Half-thickness  Δx  of the washer rectangle
+\def\WashAlpha{0.45}    % Washer fill opacity  [0 = clear … 1 = solid]
+
+% ---- Arrow style for R and r annotations --------------------------
+% Offset (in units of WashDX) to the right of the washer rectangle
+\def\OffsetR{2.2}       % Offset multiplier for outer-radius arrow
+\def\OffsetSmallR{4.2}  % Offset multiplier for inner-radius arrow
+% (increase these if labels collide with the washer or each other)
+
+% ---- Show / hide toggles  (1 = show,  0 = hide) -------------------
+\def\ShowWasher{0}           % Representative washer rectangle + hole
+\def\ShowRlabels{0}          % R and r double-headed arrows
+\def\ShowBoundLines{0}       % Dashed verticals at  x = a  and  x = b
+\def\ShowAxisOfRotation{0}   % Dashed horizontal at  y = c
+
+% ---- Text labels ---------------------------------------------------
+\def\LbF   {$y=1$}          % Label appended to the right end of f(x)
+\def\LbG   {$y=x^2$}          % Label appended to the right end of g(x)
+\def\LbAx  {$y = c$}         % Label appended to the rotation axis
+\def\LbA   {$a$}             % x-axis tick label at  a
+\def\LbB   {$1$}             % x-axis tick label at  b
+\def\LbC   {$c$}             % y-axis tick label at  c
+\def\LbR   {$R$}             % Outer-radius label
+\def\Lbr   {$r$}             % Inner-radius label
+
+% ====================================================================
+%  SECTION 3 — FIGURE CODE
+%  You only need to edit the two lines labelled  %%USER%%
+%  Everything else is driven by the parameters set above.
+% ====================================================================
+
+  \begin{axis}[
+    % ------------------------------------------------------------------
+    %  Function definitions — EDIT ONLY THESE TWO LINES               --
+    % ------------------------------------------------------------------
+    declare function={
+      f(\x) = 1;        %%USER%% replace body with your f(x) expression
+      g(\x) = \x*\x;     %%USER%% replace body with your g(x) expression
+      %
+      % Radii — correct for region ABOVE axis  (f(x) >= g(x) >= c):
+      Rout(\x) = f(\x) - \AxisC;   % outer radius  R(x) = f(x) - c
+      Rin(\x)  = g(\x) - \AxisC;   % inner radius  r(x) = g(x) - c
+      %
+      % NOTE: if the region is BELOW the axis  (c >= f(x) >= g(x))
+      % swap to:
+      %   Rout(\x) = \AxisC - g(\x);
+      %   Rin(\x)  = \AxisC - f(\x);
+    },
+    % ------------------------------------------------------------------
+    width  = \FigW,
+    height = \FigH,
+    xmin   = \XMin,  xmax = \XMax,
+    ymin   = \YMin,  ymax = \YMax,
+    axis lines = center,
+    xlabel = {$x$},
+    ylabel = {$y$},
+    xlabel style = {anchor = north east},
+    ylabel style = {anchor = south east},
+    xtick        = {-1, 1, 2},
+    xticklabels  = {-1, 1, 2},
+    ytick        = {-1, 1, 2},
+    yticklabels  = {-1, 1, 2},
+    tick style   = {thick, black},
+    clip         = false,
+  ]
+
+    % === (a) Named curve paths (required for fill-between) ============
+    \addplot[ColF, line width=\LWf,
+            domain=\fXMin:\fXMax, samples=\NSamp,
+            name path=pathF]
+      {f(x)} node[pos=1, right] {\LbF};
+
+    \addplot[ColG, line width=\LWg,
+            domain=\gXMin:\gXMax, samples=\NSamp,
+            name path=pathG]
+      {g(x)} node[pos=1, right] {\LbG};
+
+    % === (b) Shaded region between f and g on [a, b] ==================
+    \addplot[ColRegion, fill=ColRegion, opacity=\RegAlpha]
+      fill between[of=pathF and pathG,
+                  soft clip={domain=\IntA:\IntB}];
+
+    % === (c) Axis of rotation: y = c ==================================
+    \ifnum\ShowAxisOfRotation=1
+      \addplot[ColAx, \AxStyle, line width=\LWax,
+              domain=\XMin:\XMax, samples=2]
+        {\AxisC} node[pos=1, right] {\LbAx};
+    \fi
+
+    % === (d) Vertical boundary lines at x = a and x = b ==============
+    \ifnum\ShowBoundLines=1
+      \pgfmathsetmacro{\fAtA}{f(\IntA)}
+      \pgfmathsetmacro{\fAtB}{f(\IntB)}
+      \draw[dashed, ColBound, thin]
+        (axis cs:\IntA,\AxisC) -- (axis cs:\IntA,\fAtA);
+      \draw[dashed, ColBound, thin]
+        (axis cs:\IntB,\AxisC) -- (axis cs:\IntB,\fAtB);
+    \fi
+
+    % === (e) Representative washer at x = WashX =======================
+    \ifnum\ShowWasher=1
+
+      % Evaluate f, g, and geometry at the washer's x-position
+      \pgfmathsetmacro{\wFval}{f(\WashX)}   % y-value of f at x₀
+      \pgfmathsetmacro{\wGval}{g(\WashX)}   % y-value of g at x₀
+      \pgfmathsetmacro{\wC}   {\AxisC}      % axis y-value (convenience alias)
+
+      % Outer rectangle from  y = c  to  y = f(x₀)  — the washer body
+      \fill[ColWasher, opacity=\WashAlpha]
+        (axis cs:{\WashX-\WashDX},\wC) rectangle
+        (axis cs:{\WashX+\WashDX},\wFval);
+      \draw[ColWasher!55!black, thick]
+        (axis cs:{\WashX-\WashDX},\wC) rectangle
+        (axis cs:{\WashX+\WashDX},\wFval);
+
+      % Inner rectangle from  y = c  to  y = g(x₀)  — the hole (white mask)
+      \fill[white, opacity=0.88]
+        (axis cs:{\WashX-\WashDX},\wC) rectangle
+        (axis cs:{\WashX+\WashDX},\wGval);
+      \draw[ColWasher!55!black, thick]
+        (axis cs:{\WashX-\WashDX},\wC) rectangle
+        (axis cs:{\WashX+\WashDX},\wGval);
+
+      % === (f) R and r annotations ====================================
+      \ifnum\ShowRlabels=1
+
+        % Outer radius  R:  double arrow from  y = c  to  y = f(x₀)
+        \pgfmathsetmacro{\arrowXR} {\WashX + \OffsetR*\WashDX}
+        \draw[ColRbig, <->, >=Stealth, thick]
+          (axis cs:\arrowXR,\wC) -- (axis cs:\arrowXR,\wFval)
+          node[midway, right, ColRbig, font=\small\bfseries] {\LbR};
+
+        % Inner radius  r:  double arrow from  y = c  to  y = g(x₀)
+        \pgfmathsetmacro{\arrowXr} {\WashX + \OffsetSmallR*\WashDX}
+        \draw[ColRsmall, <->, >=Stealth, thick]
+          (axis cs:\arrowXr,\wC) -- (axis cs:\arrowXr,\wGval)
+          node[midway, right, ColRsmall, font=\small\bfseries] {\Lbr};
+
+      \fi  % ShowRlabels
+    \fi    % ShowWasher
+
+  \end{axis}
+\end{tikzpicture}

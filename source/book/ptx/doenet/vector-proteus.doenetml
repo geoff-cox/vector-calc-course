@@ -1,0 +1,57 @@
+<title>Exploring vector properties</title>
+<setup>
+  <selectFromSequence name="vx" from="-9" to="9" step="1"/>
+  <selectFromSequence name="vy" from="-9" to="9" step="1"/>
+</setup>
+
+<p>
+  Let <m>\vec{v}=</m><vector name="v" displayWithAngleBrackets>($vx,$vy)</vector>.
+</p>
+
+<p>
+  Enter a vector that has a different magnitude from <m>\vec{v}</m> but the same direction.
+</p>
+
+<p>
+  <answer>
+    <mathInput name="vec"><label>Use the syntax <m>(a,b)</m> to enter your vector.</label></mathInput>
+    <award>
+      <when>$vy*$vvec.x-$vx*$vvec.y=0 and $vvec.magnitude != $v.magnitude and $vx*$vvec.x+$vy*$vvec.y>0</when>
+    </award>
+  </answer>
+  
+  <vector name="vvec" displayWithAngleBrackets hide="true">$vec</vector>.
+</p>
+
+<p>
+  Enter a vector that has a different direction from <m>\vec{v}</m> but the same magnitude.
+</p>
+
+<p>
+  <answer>
+    <mathInput name="vec2"><label>Use the syntax <m>(a,b)</m> to enter your vector.</label></mathInput>
+    <award>
+      <when>$vvec2.magnitude = $v.magnitude and $vy*$vvec2.x-$vx*$vvec2.y !=0</when>
+    </award>
+  </answer>
+
+  <vector name="vvec2" displayWithAngleBrackets hide="true">$vec2</vector>.
+</p>
+
+<aside>
+  <title>Optional graph of your responses</title>
+  <p>
+    The original vector <m>\vec{v}</m> and your responses are shown below.
+  </p>
+  <graph>
+    <shortDescription>A plot of the original vector and the two input vectors</shortDescription>
+    <vector styleNumber="1">$v</vector>
+    <vector styleNumber="2">$vec</vector>
+    <vector styleNumber="3">$vec2</vector>
+    <legend>
+      <label>Original vector</label>
+      <label>Same direction as original</label>
+      <label>Same magnitude as original</label>
+    </legend>
+  </graph>
+</aside>

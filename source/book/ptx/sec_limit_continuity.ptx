@@ -1,0 +1,3608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec_continuity" label="sec_continuity">
+  <title>Continuity</title>
+
+  <p>
+    As we have studied limits,
+    we have gained the intuition that limits measure
+    <q>where a function is heading.</q> That is,
+    if <m>\lim\limits_{x\to 1} f(x) = 3</m>,
+    then as <m>x</m> is close to <m>1</m>,
+    <m>f(x)</m> is close to <m>3</m>.
+    We have seen, though,
+    that this is not necessarily a good indicator of what <m>f(1)</m> actually is.
+    This can be problematic;
+    functions can tend to one value but attain another.
+    This section focuses on functions that
+    <em>do not</em> exhibit such behavior.
+  </p>
+
+  <definition xml:id="def_continuous">
+    <title>Continuous Function</title>
+    <statement>
+      <p>
+        Let <m>f</m> be a function whose domain contains an open interval <m>I</m>.
+
+        <idx><h>continuous function</h></idx>
+        <idx><h>function</h><h>continuous</h></idx>
+
+        <ol>
+          <li>
+            <p>
+              <m>f</m> is <term>continuous at a point</term> <m>c</m> in <m>I</m>
+              if <m>\lim\limits_{x\to c}f(x) = f(c)</m>.
+
+              <idx><h>continuous</h><h>at a point</h></idx>
+
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f</m> is <term>continuous on the open interval</term> <m>I</m>
+              if <m>f</m> is continuous at <m>c</m> for all values of
+              <m>c</m> in <m>I</m>.
+
+              <idx><h>continuous</h><h>on an interval</h></idx>
+
+              If <m>f</m> is continuous on <m>(-\infty,\infty)</m>,
+              we say <m>f</m> is <term>continuous everywhere</term>
+              (or <term>everywhere continuous</term>).
+
+              <idx><h>continuous</h><h>everywhere</h></idx>
+              <idx><h>everywhere continuous</h></idx>
+
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    Note that in <xref ref="def_continuous"/>,
+    a function <m>f</m> can only be continuous at a point <m>c</m> if <m>c</m> is in the domain of <m>f</m>.
+  </p>
+
+  <figure xml:id="vid_limit_con_defn" component="video" vshift="3">
+    <caption>Video presentation of <xref ref="def_continuous"/></caption>
+    <video youtube="bKi6ReLchfw" label="vid_limit_con_defn"/>
+  </figure>
+
+  <p>
+    A useful way to establish whether or not a function <m>f</m>
+    is continuous at <m>c</m> is to verify the following three things:
+
+    <ol>
+      <li>
+        <p>
+          <m>\lim\limits_{x\to c} f(x)</m> exists,
+        </p>
+      </li>
+      <li>
+        <p>
+          <m>f(c)</m> is defined, and
+        </p>
+      </li>
+      <li>
+        <p>
+          <m>\lim\limits_{x\to c} f(x) = f(c)</m>.
+        </p>
+      </li>
+    </ol>
+  </p>
+
+  <exercise label="APEX-PROTEUS-sec-1_5-limit-continuous-1-v1" component="proteus">
+    <title>PROTEUS EXERCISE</title>
+    <statement>
+      <p>
+        Describe the features you would expect to see in the graph of a continous function.
+        (You may find it easier to describe the features you would <em>not</em> expect to see.)
+      </p>
+    </statement>
+    <response />
+    
+  </exercise>
+
+  <example xml:id="ex_contint1">
+    <title>Finding intervals of continuity</title>
+    <statement>
+      <p>
+        Let <m>f</m> be defined as shown in <xref ref="fig_continuous1"/>.
+        Give the interval(s) on which <m>f</m> is continuous.
+      </p>
+
+      <figure xml:id="fig_continuous1" vshift="2.5">
+        <caption>A graph of <m>f</m> in <xref ref="ex_contint1"/></caption>
+        <!-- START figures/fig_continuous1.tex -->
+        <image width="47%">
+          <description>
+            <p>
+              The graph of a piecewise-defined function is shown, for <m>x</m> from <m>0</m> to <m>3</m>. 
+              For <m>0 \leq x \lt 1</m>
+              the graph looks like a parabola opening downward.
+              This part of the graph approaches, but does not reach, the point <m>(1,1)</m>.
+              There is a hollow dot at <m>(1,1)</m>, indicating that <m>f(1)</m> is undefined.
+              For <m>1 \lt x \leq 2</m> the graph
+              is a horizontal line segment, with <m>y=1</m>.
+              For <m>2 \leq x \leq 3</m> the graph again has the appearance of a downward-facing parabola
+              that begins at <m>(2,1)</m> and ends at <m>(3,1)</m>.
+            </p>
+          </description>
+          <shortdescription>
+            Graph of a function with a discontinuity when x=1. Although the limit at 1 exists, f(1) is undefined.
+          </shortdescription>
+          <latex-image label="img_continuous1">
+            \begin{tikzpicture}[declare function = {func(\x) = (\x &gt;= 0)*(\x &lt;= 1)*(-(\x-1/4)^2+1/16+1.5) + (\x &gt; 1)*(\x &lt;= 2) + (\x &gt; 2)*(\x &lt;= 3)*((2-\x)*(\x-3)+1);}]
+              \begin{axis}[
+                  xmin=-.4,
+                  xmax=3.4,
+                  ymin=-.4,
+                  ymax=1.7
+                ]
+                \addplot+[domain=0:3,samples=48] {func(x)};
+                \addplot[soliddot] coordinates {(0,1.5) (2,1) (3,1)};
+                \addplot[hollowdot] coordinates {(1,1)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <!-- figures/fig_continuous1.tex END -->
+      </figure>
+    </statement>
+    <solution>
+      <p>
+        We proceed by examining the three criteria for continuity.
+        <ol>
+          <li>
+            <p>
+              The limits <m>\lim\limits_{x\to c} f(x)</m> exists for all
+              <m>c</m> between <m>0</m> and <m>3</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(c)</m> is defined for all <m>c</m> between <m>0</m> and <m>3</m>,
+              <em>except for</em> <m>c=1</m>.
+              We know immediately that <m>f</m> cannot be continuous at <m>x=1</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The limit <m>\lim\limits_{x\to c} f(x) = f(c)</m> for all
+              <m>c</m> between <m>0</m> and <m>3</m>,
+              except, of course, for <m>c=1</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        We conclude that <m>f</m> is continuous at every point of the interval
+        <m>(0,3)</m> except at <m>x=1</m>.
+        Therefore <m>f</m> is continuous on <m>(0,1)</m> and <m>(1,3)</m>.
+      </p>
+      <aside xml:id="aside-limit-continuous-intervals" vshift="3">
+        <p>
+          Our definition of continuity (currently) only applies to open intervals.
+          After <xref ref="def_closed_continuity"/>,
+          we'll be able to say that <m>f</m> is continuous on <m>[0,1)</m> and
+          <m>(1,3]</m>.
+        </p>
+      </aside>
+    </solution>
+  </example>
+
+  <example xml:id="ex_contint2">
+    <title>Finding intervals of continuity</title>
+    <statement>
+      <p>
+        The <em>floor function</em>,
+
+            <idx><h>floor function</h></idx>
+            <idx><h>function</h><h>floor</h></idx>
+
+        <m>f(x) = \lfloor x \rfloor</m>,
+        returns the largest integer smaller than, or equal to,
+        the input <m>x</m>. (For example,
+        <m>f(\pi) = \lfloor \pi \rfloor = 3</m>.) The graph of <m>f</m> in
+        <xref ref="fig_continuous2"/>
+        demonstrates why this is often called a <q>step function.</q>
+      </p>
+
+      <p>
+        Give the intervals on which <m>f</m> is continuous.
+      </p>
+
+      <figure xml:id="fig_continuous2" vshift="1.5">
+        <caption>A graph of the step function in <xref ref="ex_contint2"/></caption>
+        <!-- START figures/fig_continuous2.tex -->
+        <image width="47%">
+          <description>
+            <p>
+              Shows the graph of the greatest integer function, for <m>x</m> from <m>-2</m> to <m>3</m>. There are five
+              horizontal line segments in a <q>staircase</q> configuration, ascending from left to right. Each segment is
+              one unit in length and includes its left endpoint, but the right endpoint of each segment is not included.
+              The first segment is from <m>(-2, -2)</m> to <m>(-1, -2)</m>,
+              the second from <m>(-1, -1)</m> to <m>(0, -1)</m>, the third from <m>(0, 0)</m> to <m>(1, 0)</m>,
+              the fourth from <m>(1, 1)</m> to <m>(2, 1)</m>, and the fifth from <m>(2, 2)</m> to <m>(3, 2)</m>.
+            </p>
+          </description>
+          <shortdescription>
+            Graph of a step function whose value at x is the greatest integer less than or equal to x.
+          </shortdescription>
+          <latex-image label="img_continuous2">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  xmin=-2.4,
+                  xmax=3.4,
+                  ymin=-2.4,
+                  ymax=2.4
+                ]
+                \addplot[firstcurvestyle,-] coordinates {(-2,-2) (-1,-2)};
+                \addplot[firstcurvestyle,-] coordinates {(-1,-1) (0,-1)};
+                \addplot[firstcurvestyle,-] coordinates {(0,0) (1,0)};
+                \addplot[firstcurvestyle,-] coordinates {(1,1) (2,1)};
+                \addplot[firstcurvestyle,-] coordinates {(2,2) (3,2)};
+                \addplot[soliddot] coordinates {(-2,-2) (-1,-1) (0,0) (1,1) (2,2)};
+                \addplot[hollowdot] coordinates {(-1,-2) (0,-1) (1,0) (2,1) (3,2)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <!-- figures/fig_continuous2.tex END -->
+      </figure>
+    </statement>
+    <solution>
+      <p>
+        We examine the three criteria for continuity.
+        <ol>
+          <li>
+            <p>
+              The limits <m>\lim\limits_{x\to c} f(x)</m>
+              do not exist at the jumps from one <q>step</q> to the next,
+              which occur at all integer values of <m>c</m>.
+              Therefore the limits exist for all <m>c</m> except when
+              <m>c</m> is an integer.
+            </p>
+          </li>
+          <li>
+            <p>
+              The function is defined for all values of <m>c</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The limit <m>\lim\limits_{x\to c} f(x) = f(c)</m> for all values of
+              <m>c</m> where the limit exist,
+              since each step consists of just a line.
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        We conclude that <m>f</m> is continuous everywhere except at integer values of <m>c</m>.
+        So the intervals on which <m>f</m> is continuous are
+        <md>
+          \ldots, (-2,-1), (-1,0), (0,1), (1,2), \ldots
+        </md>.
+        We could also say that <m>f</m> is continuous on all intervals of the form
+        <m>(n,n+1)</m> where <m>n</m> is an integer.
+      </p>
+    </solution>
+  </example>
+
+  <exercise label="APEX-PROTEUS-sec-1_5-limit-continuous-2-v1" component="proteus">
+    <title>PROTEUS EXERCISE</title>
+    <introduction>
+      <p>
+        The graph of a function <m>f(x)</m> is given below.
+        <image width="47%">
+          <shortdescription>Graph of a piecewise-defined function. It appears to be linear to the left of 2, and quadratic to the right of 2.</shortdescription>
+          <description>
+            <p>
+              The graph of a function <m>f(x)</m> is plotted against a set of <m>x</m> and <m>y</m> coordinate axes.
+            </p>
+            <p>
+              For <m>x\lt 2</m>, the graph is a line with positive slope. It intersects the <m>x</m> axis at <m>x=1</m>,
+              and ends at a hollow dot at the point <m>(2,1)</m>, indicating that the graph approaches this point, but does not reach it.
+            </p>
+            <p>
+              For <m>x\gt 2</m>, the graph appears to be a parabola.
+              Its vertex is at the point <m>(2,2)</m>. A solid dot indicates that this point is included in the graph.
+              The graph opens upward as <m>x</m> increases to the right of <m>2</m>.
+            </p>
+          </description>
+          <latex-image label="img-PROTEUS-piecewise-continuous">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  xmin=-1.4,
+                  xmax=3.4,
+                  ymin=-2.4,
+                  ymax=3.4
+                ]
+                \addplot[firstcurvestyle,-] coordinates {(-1,-2) (2,1)};
+                \addplot[firstcurvestyle,-,domain=2:3] {(x-2)^2+2};
+                \addplot[soliddot] coordinates {(2,2)};
+                \addplot[hollowdot] coordinates {(2,1)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </p>
+    </introduction>
+    <task label="APEX-PROTEUS-sec-1_5-limit-continuous-2A-v1">
+      <statement>
+        <p>
+          Is the function <m>f(x)</m> continuous at <m>x=2</m>?
+          Why or why not?
+        </p>
+      </statement>
+      <response />
+      
+    </task>
+    <task label="APEX-PROTEUS-sec-1_5-limit-continuous-2B-v2">
+      <statement>
+        <p>
+          Is the function <m>g(x)=(x-2)f(x)</m> continuous at <m>x=2</m>?
+          Why or why not?
+        </p>
+      </statement>
+      <response />
+      
+    </task>
+  </exercise>
+
+  <p>
+    Our definition of continuity on an interval specifies the interval is an open interval.
+    We can extend the definition of continuity to closed intervals of the form <m>[a,b]</m>
+    by considering the appropriate one-sided limits at the endpoints.
+  </p>
+
+  <aside vshift="-2">
+    <p>
+      In this text, when we use the term <q>closed interval</q>,
+      we mean an interval of the form <m>[a,b]</m>,
+      where <m>a</m> and <m>b</m> are real numbers.
+      One may be surprised to learn that intervals of the form <m>[a,\infty)</m>,
+      <m>(-\infty, b]</m> and even <m>(-\infty,\infty)</m> are all also considered closed in advanced calculus.
+      While the mathematics supported by this definition of closed is
+      fascinating and important, it is beyond the scope of our purposes here.
+    </p>
+
+    <p>
+      Some results, such as <xref ref="thm_extreme_val" text="title"/>,
+      are valid for intervals of the form <m>[a,b]</m>,
+      but not for intervals such as <m>[a,\infty)</m>.
+      The latter interval is closed, but not <term>bounded</term>.
+
+      <idx><h>bounded</h><h>interval</h></idx>
+    </p>
+
+    <p>
+      A set of real numbers is bounded if there is a number that is greater than every element in the set
+      (an upper bound), and a number that is less than every element in the set (a lower bound).
+      When we do calculus in higher dimensions, we can no longer talk about intervals,
+      but we can still talk about sets being closed and bounded.
+      See <xref ref="sec_multi_extreme_values"/> for details.
+    </p>
+  </aside>
+
+  <definition xml:id="def_closed_continuity">
+    <title>Continuity on Closed Intervals</title>
+    <statement>
+      <p>
+        Let <m>f</m> be defined on the closed interval
+        <m>[a,b]</m> for some real numbers <m>a\lt b</m>.
+      </p>
+
+      <p>
+        We say <m>f</m> is <term>continuous on the closed interval</term>
+        <m>[a,b]</m> if:
+        <ol>
+          <li>
+            <p>
+              <m>f</m> is continuous on <m>(a,b)</m>,
+            </p>
+          </li>
+          <li xml:id="def_right_continuity">
+            <p>
+              <m>\lim\limits_{x\to a^+} f(x) = f(a)</m> and
+            </p>
+          </li>
+          <li xml:id="def_left_continuity">
+            <p>
+              <m>\lim\limits_{x\to b^-} f(x) = f(b)</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    We can make the appropriate adjustments to talk about continuity on half-open intervals such as
+    <m>[a,b)</m> or <m>(a,b]</m> if necessary.
+  </p>
+
+  <p>
+    If the domain of <m>f</m> includes values less than <m>a</m>,
+    we say that <xref ref="def_right_continuity" text="local">Item</xref> in <xref ref="def_closed_continuity"/>
+    indicates that <m>f</m> is <term>continuous from the right</term> at <m>a</m>.
+    But if <m>f</m> is undefined for <m>x\lt a</m>,
+    we can say that <m>f</m> is continuous at <m>a</m> without ambiguity.
+  </p>
+
+  <p>
+    Similarly, <xref ref="def_left_continuity" text="local">Item</xref> indcates that <m>f</m>
+    is <term>continuous from the left</term> at <m>b</m>,
+    and if <m>f</m> is not defined for <m>x\gt b</m>,
+    we can simply say that <m>f</m> is continuous at <m>b</m>.
+  </p>
+
+  <p>
+    For example, it makes sense to say that the function <m>f(x)=\sqrt{1-x^2}</m>
+    is continuous at <m>1</m> and <m>-1</m>,
+    while the floor function in <xref ref="ex_contint2"/> is continuous from the left at <m>1</m> and <m>-1</m>,
+    but is not continuous at these points.
+  </p>
+
+  <p>
+    Using this new definition,
+    we can adjust our answer in <xref ref="ex_contint1"/>
+    by stating that <m>f</m> is continuous on <m>[0,1)</m> and <m>(1,3]</m>,
+    as mentioned in that example.
+    We can also revisit <xref ref="ex_contint2"/>
+    and state that the floor function is continuous on the following half-open intervals
+    <md>
+      \ldots, [-2,-1), [-1,0), [0,1), [1,2), \ldots
+    </md>.
+  </p>
+
+  <figure xml:id="vid_limit_con_basic_ex" component="video" vshift="0">
+    <caption>Two continuity examples</caption>
+    <video youtube="8z07z3yeChY" label="vid_limit_con_basic_ex"/>
+  </figure>
+
+  <p>
+    This can tempt us to conclude that <m>f</m> is continuous everywhere;
+    after all, if <m>f</m> is continuous on <m>[0,1)</m> and <m>[1,2)</m>,
+    isn't <m>f</m> also continuous on <m>[0,2)</m>?
+    Of course, the answer is <em>no</em>,
+    and the graph of the floor function immediately confirms this.
+  </p>
+  <p>
+    Continuous functions are important as they behave in a predictable fashion:
+    functions attain the value they approach.
+    Because continuity is so important,
+    most of the functions you have likely seen in the past are continuous on their domains.
+    This is demonstrated in the following example where we examine the intervals of continuity of a variety of common functions.
+  </p>
+
+  <example xml:id="ex_cont_funct1">
+    <title>Determining intervals on which a function is continuous</title>
+    <statement>
+      <p>
+        For each of the following functions,
+        give the domain of the function and the interval(s) on which it is continuous.
+        <ol cols="2">
+          <li>
+            <p>
+              <m>f(x) = 1/x</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \sin(x)</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \sqrt{x}</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \sqrt{1-x^2}</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \abs{x}</m>
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We examine each in turn.
+        <ol>
+          <li>
+            <p>
+              The domain of <m>f(x) = 1/x</m> is <m>(-\infty,0) \cup (0,\infty)</m>.
+              As it is a rational function,
+              we apply <xref ref="thm_poly_rat"/>
+              to recognize that <m>f</m> is continuous on all of its domain.
+            </p>
+          </li>
+          <li>
+            <p>
+              The domain of <m>f(x) = \sin(x)</m> is all real numbers,
+              or <m>(-\infty,\infty)</m>.
+              Applying <xref ref="thm_lim_continuous"/>
+              shows that <m>\sin(x)</m> is continuous everywhere.
+            </p>
+          </li>
+          <li>
+            <p>
+              The domain of <m>f(x) = \sqrt{x}</m> is <m>[0,\infty)</m>.
+              Applying <xref ref="thm_lim_continuous"/>
+              shows that <m>f(x) = \sqrt{x}</m> is continuous on its domain of
+              <m>[0,\infty)</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The domain of <m>f(x) = \sqrt{1-x^2}</m> is <m>[-1,1]</m>.
+              Applying <xref ref="thm_limit_algebra" text="global">Theorems</xref>
+              and <xref ref="thm_lim_continuous" text="global"/>
+              shows that <m>f</m> is continuous on all of its domain,
+              <m>[-1,1]</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The domain of <m>f(x) = \abs{x}</m> is <m>(-\infty,\infty)</m>.
+              We can define the absolute value function as
+              <md>
+                f(x) = \begin{cases}-x \amp x\lt 0 \\ x \amp x\geq 0\end{cases}
+              </md>.
+              Each <q>piece</q> of this piecewise defined function is continuous on all of its domain,
+              giving that <m>f</m> is continuous on
+              <m>(-\infty,0)</m> and <m>[0,\infty)</m>.
+              We cannot assume this implies that <m>f</m> is continuous on <m>(-\infty,\infty)</m>;
+              we need to check that <m>\lim\limits_{x\to 0}f(x) = f(0)</m>,
+              as <m>x=0</m> is the point where <m>f</m> transitions from one <q>piece</q>
+              of its definition to the other.
+              It is easy to verify that this is indeed true,
+              hence we conclude that <m>f(x) = \abs{x}</m> is continuous everywhere.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </solution>
+    <solution component="video" vshift="3">
+      <title>Video solution</title>
+      <video width="98%" youtube="by3ioPN6KRM" label="vid_limit_con_invertals_con" component="video"/>
+    </solution>
+  </example>
+
+  <p>
+    Continuity is inherently tied to the properties of limits.
+    Because of this,
+    the properties of limits found in <xref ref="thm_limit_algebra" text="global">Theorems</xref>
+    and <xref ref="thm_poly_rat" text="global"/> apply to continuity as well.
+    Further, now knowing the definition of continuity we can re-read
+    <xref ref="thm_lim_continuous"/>
+    as giving a list of functions that are continuous on their domains.
+    The following theorem states how continuous functions can be combined to form other continuous functions,
+    followed by a theorem which formally lists functions that we know are continuous on their domains.
+  </p>
+
+  <theorem xml:id="thm_continuity_algebra">
+    <title>Properties of Continuous Functions</title>
+    <statement>
+      <p>
+        Let <m>f</m> and <m>g</m> be continuous functions on an interval <m>I</m>,
+        let <m>c</m> be a real number and let <m>n</m> be a positive integer.
+        The following functions are continuous on <m>I</m>.
+        <dl>
+          <li>
+            <title>Sums/Difference</title>
+            <p>
+              <m>f\pm g</m>
+            </p>
+          </li>
+          <li>
+            <title>Constant Multiple</title>
+            <p>
+              <m>c\cdot f</m>
+            </p>
+          </li>
+          <li>
+            <title>Product</title>
+            <p>
+              <m>f\cdot g</m>
+            </p>
+          </li>
+          <li>
+            <title>Quotient</title>
+            <p>
+              <m>f/g</m> (as long as <m>g\neq 0</m> on <m>I</m>)
+            </p>
+          </li>
+          <li>
+            <title>Power</title>
+            <p>
+              <m>f^n</m>
+            </p>
+          </li>
+          <li>
+            <title>Root</title>
+            <p>
+              <m>\sqrt[n]{f}</m> (If <m>n</m> is even then require <m>f(x)\geq 0</m> on <m>I</m>.)
+            </p>
+          </li>
+          <li>
+            <title>Compositions</title>
+            <p>
+              Adjust the definitions of <m>f</m> and <m>g</m> to: Let <m>f</m> be continuous on <m>I</m>,
+              where the range of <m>f</m> on <m>I</m> is <m>J</m>,
+              and let <m>g</m> be continuous on <m>J</m>.
+              Then <m>g\circ f</m>, <ie/>, <m>g(f(x))</m>,
+              is continuous on <m>I</m>.
+            </p>
+          </li>
+        </dl>
+      </p>
+    </statement>
+  </theorem>
+
+  <!--TODO: Is there a better way to phrase this last part? -->
+
+  <figure xml:id="vid_limit_con_prop" component="video" vshift="-2.5">
+    <caption>Video presentation of <xref ref="thm_continuity_algebra"/></caption>
+    <video youtube="GTiNiZT5ukg" label="vid_limit_con_prop"/>
+  </figure>
+
+  <aside xml:id="aside-limit-continuity-collection-intervals" vshift="4">
+    <p>
+      We have defined what it means for a function to be continuous on an interval,
+      but many functions, such as <m>f(x)=\tan(x)</m>,
+      have domains that are the union of more than one interval.
+    </p>
+
+    <p>
+      If the domain of a function is a union of intervals, saying that a function is continuous on its domain
+      means that the function is continuous on each of those intervals.
+      But be careful to note that the converse is not true.
+      As we learned in <xref ref="ex_contint2"/>,
+      a function can be continuous on a collection of intervals, but not on their union.
+    </p>
+  </aside>
+
+  <theorem xml:id="thm_continuous_functions">
+    <title>Continuous Functions</title>
+    <statement>
+      <p>
+        Let <m>n</m> be a positive integer.
+        The following functions are continuous on their domains.
+
+            <idx><h>continuous function</h><h>properties</h></idx>
+
+        <ol cols="2">
+          <li>
+            <p>
+              <m>f(x) = \sin(x)</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \tan(x)</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \sec(x)</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \ln(x)</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = a^x</m> (<m>a\gt 0</m>)
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \cos(x)</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \cot(x)</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \csc(x)</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \sqrt[n]{x}</m>, where <m>n</m> is a positive integer.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    Note also that we can interpret <xref ref="thm_poly_rat"/> as telling us that polynomial
+    and rational functions are also continuous on their domains.
+  </p>
+
+  <exercise label="APEX-PROTEUS-sec-1_5-limit-continuous-3-v1" component="proteus">
+    <title>PROTEUS EXERCISE</title>
+    <statement>
+      <p>
+        Let <m>f(x) = \begin{cases}2x-3,\amp x\lt 2\\x^2-3,\amp x\geq 2\end{cases}</m>.
+        Explain how the procedure for demonstrating that <m>f</m> is continuous at <m>x=2</m>
+        differs from the procedure for demonstrating that <m>f</m> is continuous at <m>x=3</m>.
+      </p>
+    </statement>
+    <response />
+    <hint>
+      <p>
+        Can you use a theorem to do answer the second case without computing a limit?
+      </p>
+    </hint>
+  </exercise>
+
+    <example xml:id="ex_contpoint">
+    <title>Checking continuity at a given point</title>
+    <statement>
+      <p>
+        Let <m>f(x) = \begin{cases}x^2+2x+1,\amp \text{ if } x\lt 0\\2, \amp \text{ if } x=0\\5x+\cos(x^3), \amp \text{ if } x\gt 0\end{cases}</m>.
+        For each point below, determine whether or not <m>f</m> is continuous at that point, and explain why.
+        <ol marker="(a)">
+          <li><m>x=0</m></li>
+          <li><m>x=-2</m></li>
+          <li><m>x=2</m></li>
+        </ol>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <ol marker="(a)">
+          <li>
+            <p>
+              At <m>x=0</m>, we must rely on <xref ref="def_continuous"/>.
+              If <m>x\lt 0</m>, then <m>f(x) = x^2+2x+1</m>; therefore,
+              <md>
+                \lim_{x\to 0^-}f(x) = \lim_{x\to 0^-}(x^2+2x+1)=1
+              </md>.
+              Similarly, for <m>x\gt 0</m>, <m>f(x)=5x+\cos(x^3)</m>, so
+              <md>
+                \lim_{x\to 0^+}f(x) = \lim_{x\to 0^+}(5x+\cos(x^3)) = 0+\cos(0)=1
+              </md>.
+              Therefore, <m>\lim_{x\to 1}f(x)=1</m> exists.
+            </p>
+
+            <p>
+              However, <m>f</m> is not continuous at <m>0</m>, since
+              <md>
+                f(0)=2 \neq 1 = \lim_{x\to 0}f(x)
+              </md>.              
+            </p>
+          </li>
+
+          <li>
+            <p>
+              If <m>x</m> is near <m>-2</m>, then we can assume that <m>x\lt 0</m>,
+              and therefore <m>f(x)=x^2+2x+1</m>.
+              This is a polynomial function, and by <xref ref="thm_poly_rat"/>,
+              every polynomial function is continuous on its domain.
+              Therefore, <m>f</m> is continuous at <m>-2</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              If <m>x</m> is near <m>2</m>, then we can assume <m>x\gt 0</m>.
+              Since <m>2x</m> and <m>x^3</m> are polynomial,
+              we know that these functions are continuous, by <xref ref="thm_poly_rat"/>.
+              We know that <m>\cos(x)</m> is continuous by <xref ref="thm_continuous_functions"/>,
+              and by <xref ref="thm_continuity_algebra"/>, the composition of continuous functions is continuous,
+              so <m>\cos(x^3)</m> is continuous.
+              Also by <xref ref="thm_continuity_algebra"/>, the sum of continuous functions is continuous.
+              Therefore, for any <m>x\gt 0</m>, <m>f(x)=2x+\cos(x^3)</m> is continuous, and in particular, 
+              <m>f</m> is continuous at <m>x=2</m>. 
+            </p>
+          </li>
+        </ol>
+      </p>
+    </solution>
+  </example>
+
+  <p xml:id="vidint_limit_con_using_prop" component="video">
+    As the video example in <xref ref="vid_limit_con_using_prop"/> illustrates,
+    the above theorems allow us to quickly construct new continuous functions from old ones.
+  </p>
+
+  <figure xml:id="vid_limit_con_using_prop" component="video" vshift="0">
+    <caption>Continuity of compositions</caption>
+    <video youtube="ewUiuE9bQlo" label="vid_limit_con_using_prop"/>
+  </figure>
+
+
+  <p>
+    We apply these theorems in the following Example.
+  </p>
+
+  <example xml:id="ex_cont_funct">
+    <title>Determining intervals on which a function is continuous</title>
+    <statement>
+      <p>
+        State the interval(s) on which each of the following functions is continuous.
+        <ol cols="2">
+          <li xml:id="it_cont_funct_sqrt">
+            <p>
+              <m>f(x) = \sqrt{x-1} + \sqrt{5-x}</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = x\sin(x)</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \tan(x)</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f(x) = \sqrt{\ln(x)}</m>
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We examine each in turn,
+        applying <xref ref="thm_continuity_algebra" text="global">Theorems</xref>
+        and <xref ref="thm_continuous_functions" text="global"/> as appropriate.
+      </p>
+
+      <figure xml:id="fig_continuous3" vshift="0.5">
+        <caption>A graph of <m>f(x)=\sqrt{x-1}+\sqrt{5-x}</m></caption>
+        <!-- START figures/fig_continuous3.tex -->
+        <image width="47%">
+          <description>
+            <p>
+              Shows the graph of <m>f(x)=\sqrt{x-1}+\sqrt{5-x}</m> on its domain <m>[1,5]</m>.
+              The graph looks somewhat like the top of a slice of bread,
+              rising from the point <m>(1,2)</m> to it highest point near <m>x=3</m>,
+              and then falling to the point <m>(5,2)</m>.
+            </p>
+          </description>
+          <shortdescription>
+            Graph of function that is the sum of two square root functions.
+          </shortdescription>
+          <latex-image label="img_continuous3">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  xmin=-.4,
+                  xmax=5.4,
+                  ymin=-.4,
+                  ymax=3.2,
+                ]
+                \addplot+[domain=0:180] ({3+2*cos(x)},{sqrt(2+2*cos(x))+sqrt(2-2*cos(x))});
+                \addplot[soliddot] coordinates {(1,2) (5,2)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <!-- figures/fig_continuous3.tex END -->
+      </figure>
+
+      <p>
+        <ol>
+          <li>
+            <p>
+              The square root terms are continuous on the intervals
+              <m>[1,\infty)</m> and <m>(-\infty,5]</m>, respectively.
+              As <m>f</m> is continuous only where each term is continuous,
+              <m>f</m> is continuous on <m>[1,5]</m>,
+              the intersection of these two intervals.
+              A graph of <m>f</m> is given in
+              <xref ref="fig_continuous3"/>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The functions <m>y=x</m> and
+              <m>y=\sin(x)</m> are each continuous everywhere,
+              hence their product is, too.
+            </p>
+          </li>
+          <li>
+            <p>
+              <xref ref="thm_continuous_functions"/>
+              states that <m>f(x) = \tan(x)</m> is continuous <em>on its domain</em>.
+              Its domain includes all real numbers except odd multiples of <m>\pi/2</m>.
+              Thus the intervals on which <m>f(x) = \tan(x)</m> is continuous are
+              <md>
+                \ldots \left(-\frac{3\pi}{2},-\frac{\pi}2\right),\ \left(-\frac{\pi}2,\frac{\pi}2\right),\ \left(\frac{\pi}2,\frac{3\pi}2\right),\ldots,
+              </md>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Here, <m>f(x)</m> is the composition <m>g(h(x))</m>, where
+              <m>g(x) = \sqrt{x}</m> and <m>h(x)=\ln(x)</m>.
+              The domain of <m>g</m> is <m>[0,\infty)</m>, while
+              the range of <m>h</m> is <m>(-\infty,\infty)</m>.
+              If we restrict the domain to
+              <m>[1,\infty)</m>, then the output from <m>h(x)=\ln(x)</m> is restricted to
+              <m>[0,\infty)</m>, on which <m>g(x) = \sqrt{x}</m> is defined.
+              Thus the domain of <m>f(x) = \sqrt{\ln(x)}</m> is <m>[1,\infty)</m>.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </solution>
+    <solution component="video" vshift="3">
+      <title>Video solution</title>
+      <video width="98%" youtube="6Lm-0eBi-5E" label="vid_limit_con_intervals_again" component="video"/>
+    </solution>
+  </example>
+
+
+  <paragraphs>
+    <title>Classification of discontinuities</title>
+    <p>
+      We now know what it means for a function to be continuous,
+      so of course we can easily say what it means for a function to be <em>discontinuous</em>;
+      namely, not continuous.
+      However, to better understand continuity,
+      it is worth our time to discuss the different ways in which a function can fail to be discontinuous.
+      By definition, a function <m>f</m> is continuous at a point
+      <m>a</m> in its domain if <m>\lim\limits_{x\to a}f(x) = f(a)</m>.
+      If this equality fails to hold, then <m>f</m> is not continuous.
+      We note, however, that there are a number of different things that can go wrong with this equality.
+    </p>
+
+    <figure xml:id="vid_limit_con_types_discon" component="video" vshift="0">
+      <caption>Discussing classification of discontinuities</caption>
+      <video youtube="TevrD3qci0Q" label="vid_limit_con_types_discon"/>
+    </figure>
+
+    <p>
+      <ol>
+        <li>
+          <p>
+            <m>\lim\limits_{x\to a}f(x)=L</m> exists,
+            but <m>L\neq f(a)</m>, or <m>f(a)</m> is undefined.
+            Such a discontinuity is called a
+            <term>removable discontinuity</term>
+            <idx><h>discontinuity</h><h>removable</h></idx>.
+          </p>
+
+          <p>
+            A removable discontinuity can be pictured as a
+            <q>hole</q> in the graph of <m>f</m>.
+            The term <q>removable</q> refers to the fact that
+            by simply redefining <m>f(a)</m> to equal <m>L</m>
+            (that is, changing the value of <m>f</m> at a single
+            point), we can create a new function that is
+            continuous at <m>x=a</m>, and agrees with <m>f</m>
+            at all <m>x\neq a</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            <m>\lim\limits_{x\to a^+}f(x) = L</m> and
+            <m>\lim\limits_{x\to a^-}f(x)=M</m> exist,
+            but <m>L\neq M</m>.
+            In this case the left and right hand limits both exist,
+            but since they are not equal, the limit of <m>f</m> as
+            <m>x\to a</m> does not exist.
+            Such a discontinuity is called a
+            <term>jump discontinuity</term>.
+            <idx><h>discontinuity</h><h>jump</h></idx>
+          </p>
+
+          <p>
+            The phrase <q>jump discontinuity</q> is meant to
+            represent the fact that visually,
+            the graph of <m>f</m> <q>jumps</q> from one value
+            to another as we cross the value <m>x=a</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            The function <m>f</m> is <em>unbounded</em>
+            near <m>x=a</m>. This means that the value of
+            <m>f</m> becomes arbitrarily large (or large and
+            negative) as <m>x</m> approaches <m>a</m>.
+            Such a discontinuity is called an
+            <term>infinite discontinuity</term>.
+            <idx><h>discontinuity</h><h>infinite</h></idx>
+          </p>
+
+          <p>
+            Infinite discontinuities are most easily understood
+            in terms of <em>infinite limits</em>, which are
+            discussed in <xref ref="sec_limits_infty"/>.
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <figure xml:id="fig_discontinuities">
+      <caption>Illustrating three common types of discontinuity</caption>
+      <sidebyside widths="31% 31% 31%" margins="0%">
+        <figure xml:id="fig_removable_disc">
+          <caption>The graph of a function with a removable discontinuity at <m>x=2</m></caption>
+          <image>
+            <description>
+              <p>
+                A portion of the graph of a function is shown, for <m>x</m> from <m>0</m> to <m>4</m>.
+                The graph has the shape of a parabola opening downward,
+                but at <m>x=2</m> there is a hole in the graph,
+                and instead the point <m>(2,1)</m> (which is not on the graph) is plotted.
+                The graph of this function illustrates a removable discontinuity because
+                <m>\lim_{x\to 2}f(x)</m> exists, but does not equal <m>f(2)</m>.
+              </p>
+            </description>
+            <shortdescription>
+              Graph showing a removable discontinuity: a hole in the graph when x=2 shows that the limit and function values disagree.
+            </shortdescription>
+            <latex-image label="img_discontinuity_rem">
+              \begin{tikzpicture}
+                \begin{axis}[
+                    ymin=-.1,
+                    ymax=3.5,
+                    xmin=-0.1,
+                    xmax=4.3,
+                    axis equal
+                  ]
+                  \addplot+[leftarrow,domain=0:1.98]{-0.35*x^2+x+2};
+                  \addplot [firstcurvestyle,rightarrow,domain=2.02:4]{-0.35*x^2+x+2};
+                  \addplot[soliddot] coordinates{(2,1)};
+                  \addplot[hollowdot] coordinates{(2,2.6)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <figure xml:id="fig_jump_disc">
+          <caption>The graph of a function with a jump discontinuity at <m>x=2</m></caption>
+          <image>
+            <description>
+              <p>
+                The graph of a function is shown for <m>x</m> from <m>0</m> to <m>4</m>.
+                As <m>x</m> approaches <m>2</m> from the left,
+                the graph of <m>f</m> approaches a point that is not part of the graph,
+                as indicated by a hollow dot.
+                As <m>x</m> approaches <m>2</m> from the right,
+                the graph of <m>f</m> approaches a point that is part of the graph,
+                as indicated by a solid dot.
+                The point marked by the solid dot lies below the point marked by the hollow dot,
+                illustrating that the left and right hand limits are different as <m>x\to 2</m>.
+              </p>
+
+              <p>
+                On the interval <m>0 \lt x \leq 2</m> the graph is curved downward and on the
+                interval <m>2 \leq x \leq 4</m> the graph is a straight line with a
+                positive slope.
+              </p>
+            </description>
+            <shortdescription>
+              Graph of a function with a jump discontinuity at x = 2.
+            </shortdescription>
+            <latex-image label="img_discontinuity_jump">
+              \begin{tikzpicture}
+                \begin{axis}[
+                    ymin=-.1,
+                    ymax=3.5,
+                    xmin=-0.1,
+                    xmax=4.3,
+                    axis equal
+                  ]
+                  \addplot+[leftarrow,domain=0:1.98]{-0.35*x^2+x+2};
+                  \addplot [firstcurvestyle,rightarrow,domain=2.02:4]{x-1};
+                  \addplot[soliddot] coordinates{(2,1)};
+                  \addplot[hollowdot] coordinates{(2,2.6)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <figure xml:id="fig_inf_disc">
+          <caption>The graph of a function with an infinite discontinuity at <m>x=2</m></caption>
+          <image>
+            <description>
+              <p>
+                The graph of a function is shown for <m>x</m> from <m>0</m> to <m>4</m>.
+                There is a
+                vertical dotted line at <m>x = 2</m> illustrating a vertical asymptote.
+                As <m>x</m> approaches <m>2</m> from either side,
+                the graph of <m>f</m> extends upward along the asymptote,
+                indicating that the value of <m>f(x)</m> is increasing without bound.
+              </p>
+            </description>
+            <shortdescription>
+              Graph of a function with an infinite discontinuity at x = 2,
+              illustrated by a vertical asymtote.
+            </shortdescription>
+            <latex-image label="img_discontinuity_inf">
+              \begin{tikzpicture}
+                \begin{axis}[
+                    xmin=-.1,
+                    xmax=4.3,
+                    ymin=-1,
+                    ymax=110,
+                  ]
+                  \addplot[firstcurvestyle,domain=0:1.9] {1/(x-2)^2};
+                  \addplot[firstcurvestyle,domain=2.1:4] {1/(x-2)^2};
+                  \addplot[asymptote,rightarrow] coordinates {(2,1) (2,100)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <exercise label="APEX-PROTEUS-limit-continuity-4-v1" component="proteus">
+      <title>PROTEUS EXERCISE</title>
+      <statement>
+        <p>
+          Match each function below to the type of discontinuity it exhibits.
+        </p>
+      </statement>
+      <cardsort>
+        <match>
+          <premise order="3"><m>f(x) = \dfrac{1}{e^x-1}</m></premise>
+          <premise order="6"><m>f(x) = \dfrac{x}{x^2-1}</m></premise>
+          <response>Infinite</response>
+        </match>
+        <match>
+          <premise order="1"><m>f(x) = \dfrac{x-1}{\abs{x-1}}</m></premise>
+          <premise order="5"><m>f(x) = \lfloor 2x\rfloor</m></premise>
+          <response>Jump</response>
+        </match>
+        <match>
+          <premise order="4"><m>f(x) = \dfrac{\sin(x)}{x}</m></premise>
+          <premise order="8"><m>f(x) = \dfrac{x^2-1}{x+1}</m></premise>
+          <response>Removable</response>
+        </match>
+        <match>
+          <premise order="2"><m>f(x) = \dfrac{1}{e^x+1}</m></premise>
+          <premise order="7"><m>f(x) = \dfrac{1}{x^2+4}</m></premise>
+        </match>        
+      </cardsort>
+    </exercise>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Consequences of continuity</title>
+    <p>
+      A common way of thinking of a continuous function is that
+      <q>its graph can be sketched without lifting your pencil.</q> That is,
+      its graph forms a <q>continuous</q> curve,
+      without holes, breaks or jumps.
+      This pseudo-definition glosses over some of the finer points of continuity.
+      There are some very strange continuous functions that one would be hard pressed to actually sketch by hand.
+    </p>
+
+    <p>
+      However, this intuitive notion of continuity does help us understand another important concept as follows.
+      Suppose <m>f</m> is defined on <m>[1,2]</m>, and <m>f(1) = -10</m> and <m>f(2) = 5</m>.
+      If <m>f</m> is continuous on <m>[1,2]</m> (<ie/>, its graph can be sketched as a continuous curve
+      from <m>(1,-10)</m> to <m>(2,5)</m>) then we know intuitively that somewhere on the interval <m>[1,2]</m>
+      <m>f</m> must be equal to <m>-9</m>, and <m>-8</m>, and <m>-7,-6,\ldots,0,1/2</m>, etc.
+      In short, <m>f</m> takes on all <em>intermediate</em>
+      values between <m>-10</m> and <m>5</m>.
+      It may take on more values;
+      <m>f</m> may actually equal <m>6</m> at some time, for instance,
+      but we are guaranteed all values between <m>-10</m> and <m>5</m>. This concept is illustrated in <xref ref="fig_intermediate_value"/>.
+    </p>
+
+    <figure xml:id="fig_intermediate_value" vshift="0">
+      <caption>Illustration of the Intermediate Value Theorem: the output <m>3</m> is in between <m>-10</m> and <m>5</m>,
+      and therefore any continuous function on <m>[1,2]</m> with <m>f(1) = -10</m> and <m>f(2) = 5</m>
+      will achieve the output <m>3</m> somewhere in <m>[1,2]</m></caption>
+      <image width="47%">
+        <description>
+          <p>
+            The image shows the graph of three functions
+            defined on the interval <m>1  \leq x \leq 2</m>.
+            One function is plotted in blue, using a solid line style.
+            Two other functions are plotted in red, with a dash-dot line style.
+            All three functions are continuous, and satisfy <m>f(1)=-10</m>, and <m>f(2)=5</m>.
+          </p>
+
+          <p>
+            There are other lines marking certain values on the graphs.
+            A horizontal line at <m>y=-10</m> indicates that all graphs start at the point <m>(1,-10)</m>.
+            Another horizontal line at <m>y=5</m> indicates that all graphs end at the point <m>(2,5)</m>.
+            A third horizontal line indicates the value <m>y=3</m>, which is a value between <m>-10</m> and <m>5</m>.
+            There are also three shorter vertical lines, marking an <m>x</m> value on each of the three graphs where <m>f(x)=3</m>.
+          </p>
+        </description>
+        <shortdescription>
+          Graph illustrating the Intermediate Value Theorem.
+        </shortdescription>
+        <latex-image label="img_intermediate_value">
+          \begin{tikzpicture}
+            \begin{axis}[
+                xmin=0.5,
+                xmax=2.5,
+                ymin=-15,
+                ymax=10,
+                minor ytick={-15,-14,...,10}
+              ]
+              \addplot+[smooth] coordinates {(1,-10) (1.5,-7) (1.8,3) (2,5)};
+              \addplot+[smooth] coordinates {(1,-10) (1.2,6) (1.5,3) (2,5)};
+              \addplot+[smooth] coordinates {(1,-10) (1.1,-12) (1.2,-5) (1.3,-7) (1.4,0) (1.5,-3) (1.6,3) (1.7,0) (1.8,5) (1.9,3) (2,5)};
+              \addplot[soliddot] coordinates {(1,-10) (2,5)};
+              \addplot[guideline] coordinates {(1,-10) (0.5,-10)};
+              \addplot[guideline] coordinates {(2,5) (0.5,5)};
+              \addplot[guideline] coordinates {(1.8,0) (1.8,3) (0.5,3)};
+              \addplot[guideline] coordinates {(1.5,0) (1.5,3) (0.5,3)};
+              \addplot[guideline] coordinates {(1.6,0) (1.6,3) (0.5,3)};
+            \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>
+      While this notion seems intuitive,
+      it is not trivial to prove and its importance is profound.
+      Therefore the concept is stated in the form of a theorem.
+    </p>
+
+    <theorem xml:id="thm_IVT">
+      <title>Intermediate Value Theorem</title>
+      <statement>
+        <p>
+          Let <m>f</m> be a continuous function on <m>[a,b]</m> and,
+          without loss of generality, let <m>f(a) \lt f(b)</m>.
+          Then for every value <m>y</m>,
+          where <m>f(a) \lt y \lt f(b)</m>,
+          there is at least one value <m>c</m> in <m>(a,b)</m> such that <m>f(c) = y</m>.
+
+              <idx><h>Intermediate Value Theorem</h></idx>
+              <idx><h>theorem</h><h>Intermediate Value</h></idx>
+
+        </p>
+      </statement>
+    </theorem>
+
+    <figure xml:id="vid_limit_con_IVT_stmnt" component="video" vshift="-4">
+      <caption>Video presentation of <xref ref="thm_IVT"/></caption>
+      <video youtube="Fx7Qu9tZlN4" label="vid_limit_con_IVT_stmnt"/>
+    </figure>
+
+
+    <p>
+      One important application of the <xref ref="thm_IVT" text="title"/> is root finding.
+      Given a function <m>f</m>,
+      we are often interested in finding values of <m>x</m> where <m>f(x) = 0</m>.
+      These roots may be very difficult to find exactly.
+      Good approximations can be found through successive applications of this theorem.
+      Suppose through direct computation we find that
+      <m>f(a) \lt 0</m> and <m>f(b)\gt 0</m>, where <m>a\lt b</m>.
+      The <xref ref="thm_IVT" text="title"/> states that there is at least one <m>c</m> in <m>(a,b)</m> such that <m>f(c) = 0</m>.
+      The theorem does not give us any clue as to where to find such a value in the interval <m>(a,b)</m>,
+      just that at least one such value exists.
+    </p>
+
+    <p>
+      There is a technique that produces a good approximation of <m>c</m>.
+      Let <m>d</m> be the midpoint of the interval <m>[a,b]</m>,
+      with <m>f(a) \lt 0</m> and
+      <m>f(b) \gt 0</m> and consider <m>f(d)</m>.
+      There are three possibilities:
+      <ol>
+        <li>
+          <p>
+            <m>f(d) = 0</m>: We got lucky and stumbled on the actual value.
+            We stop as we found a root.
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>f(d) \lt 0</m>: Then we know there is a root of <m>f</m> on the interval <m>[d,b]</m> <mdash/> we have halved the size of our interval,
+            hence are closer to a good approximation of the root.
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>f(d) \gt 0</m>: Then we know there is a root of <m>f</m> on the interval <m>[a,d]</m> <mdash/> again,we have halved the size of our interval,
+            hence are closer to a good approximation of the root.
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      Successively applying this technique is called the
+      <term>Bisection Method</term>
+
+          <idx><h>Bisection Method</h></idx>
+
+      of root finding.
+      We continue until the interval is sufficiently small.
+      We demonstrate this in the following example.
+    </p>
+
+    <example xml:id="ex_bisect_method">
+      <title>Using the Bisection Method</title>
+      <statement>
+        <p>
+          Approximate the root of <m>f(x) = x-\cos(x)</m>,
+          accurate to three places after the decimal.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Consider the graph of <m>f(x) = x-\cos(x)</m>,
+          shown in <xref ref="fig_xminuscosx"/>.
+          It is clear that the graph crosses the <m>x</m>-axis somewhere near <m>x=0.8</m>.
+          To start the Bisection Method,
+          pick an interval that contains <m>0.8</m>.
+          We choose <m>[0.7,0.9]</m>.
+          Note that all we care about are signs of <m>f(x)</m>,
+          not their actual value, so this is all we display.
+        </p>
+
+        <p>
+          <dl>
+            <li>
+              <title>Iteration 1:</title>
+              <p>
+                <m>f(0.7) \lt 0</m>, <m>f(0.9) \gt 0</m>, and <m>f(0.8) \gt 0</m>.
+                So replace <m>0.9</m> with <m>0.8</m> and repeat.
+              </p>
+            </li>
+            <li>
+              <title>Iteration 2:</title>
+              <p>
+                <m>f(0.7)\lt 0</m>, <m>f(0.8) \gt 0</m>,
+                and at the midpoint, <m>0.75</m>,
+                we have <m>f(0.75) \gt 0</m>.
+                So replace <m>0.8</m> with <m>0.75</m> and repeat.
+                Note that we don't need to continue to check the endpoints,
+                just the midpoint.
+                Thus we put the rest of the iterations in <xref ref="table_rootfinding"/>.
+              </p>
+            </li>
+          </dl>
+        </p>
+
+        <figure xml:id="fig_xminuscosx" vshift="0">
+          <caption>Graphing a root of <m>f(x) = x-\cos(x)</m></caption>
+          <!-- START figures/fig_xminuscosx.tex -->
+          <image width="47%">
+            <description>
+              <p>
+                Graph of the function <m>f(x)=x-\cos(x)</m> on <m>[0,1]</m>.
+                The graph has an upward curve and intersects the <m>x</m> axis around
+                <m>x = 0.8</m>. There are two vertical guide lines, one at
+                <m>x = 0.7</m>, the other at <m>x = 0.9</m>. The guide lines
+                mark the interval in which the intercept occurs.
+              </p>
+            </description>
+            <shortdescription>
+              Graph of f(x) = x - cos(x), showing the x intercept between
+              values x = 0.7 and x = 0.9.
+            </shortdescription>
+            <latex-image label="img_xminuscosx">
+              \begin{tikzpicture}
+                \begin{axis}[
+                    minor xtick={0,0.1,...,1},
+                    xmin=-.05,
+                    xmax=1.07,
+                    ymin=-1.1,
+                    ymax=.7
+                  ]
+                  \addplot+[domain=0:1] {x - cos(deg(x))};
+                  \addplot[guideline] coordinates {(0.7,0) (0.7,-0.0648)};
+                  \addplot[guideline] coordinates {(0.9,0) (0.9,0.278)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+          <!-- figures/fig_xminuscosx.tex END -->
+        </figure>
+
+        <table xml:id="table_rootfinding">
+          <title>Iterations of the Bisection Method of Root Finding</title>
+          <tabular>
+            <row>
+              <cell>Iteration #</cell>
+              <cell>Interval</cell>
+              <cell>Midpoint Sign</cell>
+            </row>
+            <row bottom="minor">
+              <cell/>
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell><m>1</m></cell>
+              <cell><m>[\highlight{0.7},0.9]</m></cell>
+              <cell><m>f(0.8) \gt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>2</m></cell>
+              <cell><m>[\highlight{0.7},0.8]</m></cell>
+              <cell><m>f(0.75) \gt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>3</m></cell>
+              <cell><m>[\highlight{0.7},\highlight{0.75}]</m></cell>
+              <cell><m>f(0.725)\lt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>4</m></cell>
+              <cell><m>[0.725,\highlight{0.75}]</m></cell>
+              <cell><m>f(0.7375)\lt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>5</m></cell>
+              <cell><m>[\highlight{0.7375},\highlight{0.75}]</m></cell>
+              <cell><m>f(0.7438)\gt </m></cell>
+            </row>
+            <row>
+              <cell><m>6</m></cell>
+              <cell><m>[\highlight{0.7375},0.7438]</m></cell>
+              <cell><m>f(0.7407)\gt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>7</m></cell>
+              <cell><m>[\highlight{0.7375},0.7407]</m></cell>
+              <cell><m>f(0.7391)\gt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>8</m></cell>
+              <cell><m>[\highlight{0.7375},\highlight{0.7391}]</m></cell>
+              <cell><m>f(0.7383)\lt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>9</m></cell>
+              <cell><m>[0.7383,\highlight{0.7391}]</m></cell>
+              <cell><m>f(0.7387)\lt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>10</m></cell>
+              <cell><m>[0.7387,\highlight{0.7391}]</m></cell>
+              <cell><m>f(0.7389)\lt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>11</m></cell>
+              <cell><m>[0.7389,\highlight{0.7391}]</m></cell>
+              <cell><m>f(0.7390)\lt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>12</m></cell>
+              <cell><m>[0.7390,\highlight{0.7391}]</m></cell>
+              <cell/>
+            </row>
+            <row>
+              <cell/>
+            </row>
+          </tabular>
+
+        </table>
+
+        <p>
+          Notice that in the 12th iteration we have the endpoints of the interval each starting with <m>0.739</m>.
+          Thus we have narrowed the zero down to an accuracy of the first three places after the decimal.
+          Using a computer, we have
+          <md>
+            f(0.7390) = -0.00014, f(0.7391) = 0.000024
+          </md>.
+        </p>
+
+        <p>
+          Either endpoint of the interval gives a good approximation of where <m>f</m> is <m>0</m>.
+          The <xref ref="thm_IVT"/> states that the actual zero is still within this interval.
+          While we do not know its exact value,
+          we know it starts with <m>0.739</m>.
+        </p>
+
+        <p>
+          This type of exercise is rarely done by hand.
+          Rather, it is simple to program a computer to run such an algorithm and stop when the endpoints differ by a preset small amount.
+          One of the authors did write such a program and found the zero of <m>f</m> to be
+          <m>0.7390851332</m>, accurate to <m>10</m> places after the decimal.
+          While it took a few minutes to write the program,
+          it took less than a thousandth of a second for the program to run the necessary <m>35</m> iterations.
+          In less than <m>8</m> hundredths of a second,
+          the zero was calculated to <m>100</m> decimal places
+          (with less than <m>200</m> iterations).
+        </p>
+      </solution>
+      <solution component="video" vshift="3">
+        <title>Video solution</title>
+        <video width="98%" youtube="BH6kUpIgcfg" label="vid_limit_con_IVT_bisec" component="video"/>
+      </solution>
+    </example>
+
+    <!--TODO: Is the above a place to demonstrate an algorithm like this in Sage? -->
+
+    <p>
+      It is a simple matter to extend the Bisection Method to solve problems similar to <q>Find <m>x</m>,
+      where <m>f(x) = 0</m>.</q> For instance,
+      we can find <m>x</m>, where <m>f(x) = 1</m>.
+      It actually works very well to define a new function <m>g</m> where <m>g(x) = f(x) - 1</m>.
+      Then use the Bisection Method to solve <m>g(x)=0</m>.
+    </p>
+
+    <p>
+      Similarly, given two functions <m>f</m> and <m>g</m>,
+      we can use the Bisection Method to solve <m>f(x) = g(x)</m>.
+      Once again, create a new function <m>h</m> where
+      <m>h(x) = f(x)-g(x)</m> and solve <m>h(x) = 0</m>.
+    </p>
+
+    <p>
+      In <xref ref="sec_newton"/>
+      another equation solving method will be introduced, called Newton's Method.
+      In many cases, Newton's Method is much faster.
+      It relies on more advanced mathematics, though,
+      so we will wait before introducing it.
+    </p>
+
+    <p>
+      This section formally defined what it means to be a continuous function.
+      <q>Most</q> functions that we deal with are continuous,
+      so often it feels odd to have to formally define this concept.
+      Regardless, it is important, and forms the basis of the next chapter.
+    </p>
+  </paragraphs>
+  <!--<p>In the next section we examine one more aspect of limits: limits that involve infinity.  </p>-->
+
+  <reading-questions component="peer">
+    <exercise label="peer-limit-continuity-1">
+      <statement>
+        <p>
+          Which of the following quantities is best modelled by a continuous function of time?
+        </p>
+      </statement>
+      <choices>
+        <choice>
+          <statement>
+            <p>
+              The enrollment in this course.
+            </p>
+          </statement>
+        </choice>
+        <choice correct="yes">
+          <statement>
+            <p>
+              The outdoor temperature
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              The outdoor temperature, rounded to the nearest degree
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              The balance in your bank account
+            </p>
+          </statement>
+        </choice>
+      </choices>
+    </exercise>
+    <exercise label="peer-limit-continuity-2">
+      <statement>
+        <p>
+          The graph of a function is shown below.
+          At what points is it not continuous?
+        </p>
+
+        <image width="47%">
+          <shortdescription>A graph of a piecewise-defined function with many different features and points of discontinuity.</shortdescription>
+          <latex-image label="peer-continuity-img1">
+            \begin{tikzpicture}
+              \begin{axis}[
+                  xmin=-4.5,
+                  xmax=6.5,
+                  ymin=-1.5,
+                  ymax=6.5
+                ]
+                \addplot[firstcurvestyle,domain=-4:-2.05] {0.5*(x+1)^2+0.5};
+                \addplot[firstcurvestyle,samples=50,domain=-1.95:-0.05] {(x+3)*cos(180*x)+1};
+                \addplot[firstcurvestyle,domain=0.05:1.9] {1/(x-2)+4.5};
+                \addplot[firstcurvestyle,domain=2.1:2.98] {(x+5)/(2*x-4)};
+                \addplot[firstcurvestyle,domain=3.02:6] {(x+5)/(2*x-4)};
+                \addplot[hollowdot] coordinates {(-2,2)};
+                \addplot[hollowdot] coordinates {(3,4)};
+                \addplot[soliddot] coordinates {(-2,1)};
+                \addplot[soliddot] coordinates {(-4,5)};
+                \addplot[soliddot] coordinates {(0,4)};
+                \addplot[soliddot] coordinates {(3,2)};
+                \addplot[soliddot] coordinates {(6,1.375)};
+                \addplot[asymptote] coordinates {(2,-1.5) (2,6.5)};
+              \end{axis}
+            \end{tikzpicture}
+           </latex-image>
+        </image>
+      </statement>
+      <choices>
+        <choice>
+          <statement>
+            <p>
+              At <m>x=-2</m> only
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              At <m>x=-2</m> and <m>x=2</m>
+            </p>
+          </statement>
+        </choice>
+        <choice correct="yes">
+          <statement>
+            <p>
+              At <m>x=-2</m>, <m>x=2</m>, and <m>x=3</m>
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              At <m>x=-2</m>, <m>x=0</m>, <m>x=2</m>, and <m>x=3</m>
+            </p>
+          </statement>
+        </choice>
+      </choices>
+    </exercise>
+
+    <exercise label="peer-limit-continuity-3">
+      <statement>
+        <p>
+          Let <m>f(x) = \begin{cases}2x+x^2, \amp x\lt 1\\ 4-x, \amp x\geq 1\end{cases}</m>
+        </p>
+        <p>
+          Which of the following is true?
+        </p>
+      </statement>
+      <choices>
+        <choice>
+          <statement>
+            <p>
+              <m>f</m> is continuous at <m>0</m> and <m>1</m>
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              <m>f</m> is continuous at <m>0</m>, but not at <m>1</m>
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              <m>f</m> is continuous at <m>1</m>, but not at <m>0</m>
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              <m>f</m> is not continuous at either <m>0</m> or <m>1</m>
+            </p>
+          </statement>
+        </choice>
+      </choices>
+    </exercise>
+
+    <exercise label="peer-limit-continuity-4">
+      <statement>
+        <p>
+          <m>f</m> is not continuous at either <m>0</m> or <m>1</m>
+        </p>
+
+        <p>
+          For what value of <m>c</m> is <m>f</m> continuous at <m>2</m>?
+        </p>
+      </statement>
+      <choices>
+        <choice>
+          <statement>
+            <p>
+              <m>5/2</m>
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              <m>8/3</m>
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              <m>\sqrt{2}</m>
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              Not possible to solve for <m>c</m>
+            </p>
+          </statement>
+        </choice>
+      </choices>
+    </exercise>
+    
+    <exercise label="peer-limit-continuity-5a">
+      <statement>
+        <p>
+          Determine the type of discontinity the function has at the given point:
+        </p>
+        <p>
+          <m>f(x) = \dfrac{\abs{x}}{x}</m>, at <m>x=0</m>
+        </p>
+      </statement>
+      <choices>
+        <choice>
+          <statement>
+            <p>
+              Removable
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              Jump
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              Infinite
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              No discontinuity
+            </p>
+          </statement>
+        </choice>
+      </choices>
+    </exercise>
+    <exercise label="peer-limit-continuity-5b">
+      <statement>
+        <p>
+          Determine the type of discontinity the function has at the given point:
+        </p>
+        <p>
+          <m>f(x) = \dfrac{\sin(x)}{x}</m>, at <m>x=0</m>
+        </p>
+      </statement>
+      <choices>
+        <choice>
+          <statement>
+            <p>
+              Removable
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              Jump
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              Infinite
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              No discontinuity
+            </p>
+          </statement>
+        </choice>
+      </choices>
+    </exercise>
+    <exercise label="peer-limit-continuity-5c">
+      <statement>
+        <p>
+          Determine the type of discontinity the function has at the given point:
+        </p>
+        <p>
+          <m>f(x) = \dfrac1x</m>, at <m>x=0</m>
+        </p>
+      </statement>
+      <choices>
+        <choice>
+          <statement>
+            <p>
+              Removable
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              Jump
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              Infinite
+            </p>
+          </statement>
+        </choice>
+        <choice>
+          <statement>
+            <p>
+              No discontinuity
+            </p>
+          </statement>
+        </choice>
+      </choices>
+    </exercise>
+  </reading-questions>
+
+  <exercises>
+    <subexercises xml:id="TaC-limit-continuity">
+      <title>Terms and Concepts</title>
+
+      <exercise label="TaC-limit-continuity-1">
+        <!-- <webwork xml:id="webwork-TaC-limit-continuity-1"> -->
+          <statement>
+            <p>
+              In your own words, describe what it means for a function to be continuous.
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />        
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-limit-continuity-2">
+        <!-- <webwork xml:id="webwork-TaC-limit-continuity-2"> -->
+          <statement>
+            <p>
+              In your own words, describe what the Intermediate Value Theorem states.
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />        
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-limit-continuity-3">
+        <!-- <webwork xml:id="webwork-TaC-limit-continuity-3"> -->
+          <statement>
+            <p>
+              What is a <q>root</q> of a function?
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+          <solution>
+            <p>
+              A root of a function <m>f</m> is a value <m>c</m> such that <m>f(c)=0</m>.
+            </p>
+          </solution>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-limit-continuity-4">
+        <!-- <webwork xml:id="webwork-TaC-limit-continuity-4"> -->
+          <statement>
+            <p>
+              Given functions <m>f</m> and <m>g</m> on an interval <m>I</m>,
+              how can the Bisection Method be used to find a value <m>c</m> where <m>f(c) = g(c)</m>?
+            </p>
+            <!-- <p>
+              <var form="essay"/>
+            </p> -->
+          </statement>
+          <response />
+          
+          <solution>
+            <p>
+              Consider the function <m>h(x) = g(x) - f(x)</m>,
+              and use the Bisection Method to find a root of <m>h</m>.
+            </p>
+          </solution>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-limit-continuity-5">
+        <!-- <webwork xml:id="webwork-TaC-limit-continuity-5"> -->
+          <!-- <pg-code>
+            $TF=PopUp(['?','True','False'],2);
+          </pg-code> -->
+          <statement correct="no">
+            <p>
+              <!-- <var name="$TF" form="popup"/> -->
+              If <m>f</m> is defined on an open interval containing <m>c</m>,
+              and <m>\lim\limits_{x\to c}f(x)</m> exists,
+              then <m>f</m> is continuous at <m>c</m>.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              There is more to the definition of continuity than existence of the limit!
+              What else needs to be true?
+            </p>
+          </feedback>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-limit-continuity-6">
+        <!-- <webwork xml:id="webwork-TaC-limit-continuity-6"> -->
+          <!-- <pg-code>
+            $TF=PopUp(['?','True','False'],1);
+          </pg-code> -->
+          <statement correct="yes">
+            <p>
+              <!-- <var name="$TF" form="popup"/> -->
+              If <m>f</m> is defined on an open interval containing <m>c</m>, and
+              <m>f</m> is continuous at <m>c</m>,
+              then <m>\lim\limits_{x\to c}f(x)</m> exists.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              The definition of continuity requires that <m>\lim_{x\to c}f(x)=f(c)</m>.
+              This is not possible if the limit does not exist!
+            </p>
+          </feedback>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-limit-continuity-7">
+        <!-- <webwork xml:id="webwork-TaC-limit-continuity-7"> -->
+          <!-- <pg-code>
+            $TF=PopUp(['?','True','False'],1);
+          </pg-code> -->
+          <statement correct="yes">
+            <p>
+              <!-- <var name="$TF" form="popup"/> -->
+              If <m>f</m> is defined on an open interval containing <m>c</m>,
+              and <m>f</m> is continuous at <m>c</m>,
+              then <m>\lim\limits_{x\to c^+}f(x) = f(c)</m>.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              If <m>f</m> is continuous at <m>c</m>,
+              then the limit of <m>f</m> at <m>c</m> must exist.
+              If the limit exists, then both one-sided limits must also exist.
+            </p>
+          </feedback>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-limit-continuity-8">
+        <!-- <webwork xml:id="webwork-TaC-limit-continuity-8"> -->
+          <!-- <pg-code>
+            $TF=PopUp(['?','True','False'],2);
+          </pg-code> -->
+          <statement correct="no">
+            <p>
+              <!-- <var name="$TF" form="popup"/> -->
+              If <m>f</m> is continuous on <m>[a,b]</m>,
+              then <m>\lim\limits_{x\to a^-}f(x) = f(a)</m>.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              The left-hand limit at <m>a</m> involves points outside the interval <m>[a,b]</m>,
+              and continuity on <m>[a,b]</m> only tells us about points <em>inside</em> <m>[a,b]</m>.
+              In particular, it is the <em>right-hand</em> limit at <m>a</m> that must equal <m>f(a)</m>.
+            </p>
+          </feedback>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-limit-continuity-9">
+        <!-- <webwork xml:id="webwork-TaC-limit-continuity-9"> -->
+          <!-- <pg-code>
+            $TF=PopUp(['?','True','False'],2);
+          </pg-code> -->
+          <statement correct="no">
+            <p>
+              <!-- <var name="$TF" form="popup"/> -->
+              If <m>f</m> is continuous on <m>[0,1)</m> and <m>[1,2)</m>,
+              then <m>f</m> is continuous on <m>[0,2)</m>.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              Review the discussion following <xref ref="ex_contint2"/>.
+            </p>
+          </feedback>
+        <!-- </webwork> -->
+      </exercise>
+
+      <exercise label="TaC-limit-continuity-10">
+        <!-- <webwork xml:id="webwork-TaC-limit-continuity-10"> -->
+          <!-- <pg-code>
+            $TF=PopUp(['?','True','False'],1);
+          </pg-code> -->
+          <statement correct="yes">
+            <p>
+              <!-- <var name="$TF" form="popup"/> -->
+              The sum of continuous functions is also continuous.
+            </p>
+          </statement>
+          <feedback>
+            <p>
+              See <xref ref="thm_continuity_algebra"/>.
+            </p>
+          </feedback>
+        <!-- </webwork> -->
+      </exercise>      
+    </subexercises>
+
+    <subexercises>
+      <title>Problems</title>
+
+      <exercisegroup cols="2" xml:id="exset-limit-continuity-use-graph">
+        <introduction>
+          <p>
+            Use the graph to determine if the function is continuous at the given point.
+          </p>
+        </introduction>
+        <exercise label="ex-limit-continuity-use-graph-1">
+          <webwork xml:id="webwork-ex-limit-continuity-use-graph-1">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              $a=1;
+              @b=(1,2,1,2,0.5,0);
+              $left=Formula("(($b[1]-$b[0])/(1-0))*(x-0)+$b[0]");
+              $right=Formula("(x-1)*(x-1.5)*$b[5]/((2-1)*(2-1.5))+(x-1)*(x-2)*$b[4]/((1.5-1)*(1.5-2))+(x-1.5)*(x-2)*$b[3]/((1-1.5)*(1-2))");
+              $answer=DropDown(['Yes.','No.'],1,showInStatic=&gt;0);
+              $showwork = '[@ explanation_box(message =&gt; "If not, state why it is not.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                Is <m>f</m> in the graph below continuous at <m><var name="$a"/></m>?
+              </p>
+              <image>
+                <description>
+                  <p>
+                    The graph of a piecewise-defined function defined on <m>[0,2]</m>, consisting of two parts.
+                    The first part is a straight line with intercept <m>(0,1)</m> and a positive
+                    slope. It ends at <m>(1,2)</m>, but this point is not part of the graph.
+                    The second part begins at <m>(1,2)</m>, but does not include this point, and curves downward, ending at <m>(2,0)</m>.
+                    There is also a solid dot at <m>(1,1)</m>, indicating that <m>f(1)=1</m>.
+                  </p>
+                </description>
+                <shortdescription>
+                  The graph used for the current exercise.
+                </shortdescription>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                      xmin=-0.5,
+                      xmax=2.5,
+                      ymin=-0.5,
+                      ymax=2.5
+                    ]
+                      \addplot[firstcurvestyle, domain=0:1] {$left};
+                      \addplot[firstcurvestyle, domain=1:2] {$right};
+                      \addplot[soliddot] coordinates {(0,$b[0]) (1, $b[2]) (2,$b[5])};
+                      \addplot[hollowdot] coordinates {(1,$b[1]) (1,$b[3])};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
+              <p>
+                <var name="$answer" form="popup"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-use-graph-2">
+          <webwork xml:id="webwork-ex-limit-continuity-use-graph-2">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              $a=1;
+              @b=(0,1,2,2,1,0);
+              $left=Formula("(($b[1]-$b[0])/(1-0))*(x-0)+$b[0]");
+              $right=Formula("(($b[5]-$b[3])/(2-1))*(x-1)+$b[3]");
+              $answer=DropDown(['Yes.','No.'],1,showInStatic=&gt;0);
+              $showwork = '[@ explanation_box(message =&gt; "If not, state why it is not.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                Is <m>f</m> in the graph below continuous at <m><var name="$a"/></m>?
+              </p>
+              <image>
+                <description>
+                  <p>
+                    Graph of a piecewise-defined function with the domain <m>[0,2]</m>. The graph has
+                    two straight lines, the first is defined by the solid point <m>(0 ,0)</m>
+                    and the hollo point <m>(1, 1)</m>, and has a positive slope.
+                    The second line is defined by the solid points <m>(1, 2)</m>
+                    and <m>(2, 2)</m>, and has a negative slope.
+                  </p>
+                </description>
+                <shortdescription>
+                  The graph used for the current exercise.
+                </shortdescription>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                      xmin=-0.5,
+                      xmax=2.5,
+                      ymin=-0.5,
+                      ymax=2.5
+                    ]
+                      \addplot[firstcurvestyle, domain=0:1] {$left};
+                      \addplot[firstcurvestyle, domain=1:2] {$right};
+                      \addplot[hollowdot] coordinates {(1,$b[1]) (1,$b[3])};
+                      \addplot[soliddot] coordinates {(0,$b[0]) (1, $b[2]) (2,$b[5])};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
+              <p>
+                <var name="$answer" form="popup"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-use-graph-3">
+          <webwork xml:id="webwork-ex-limit-continuity-use-graph-3">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              $a=1;
+              @b=(0,Compute("INF"),Compute("DNE"),Compute("INF"),1,0);
+              $left=Formula("sec(x*90)-1");
+              $right=Formula("-sec(x*90)-1");
+              $lowmidx = acos(1/3.5)*2/pi;
+              $highmidx = 2 - acos(1/3.5)*2/pi;
+              $answer=DropDown(['Yes.','No.'],1,showInStatic=&gt;0);
+              $showwork = '[@ explanation_box(message =&gt; "If not, state why it is not.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                Is <m>f</m> in the graph below continuous at <m><var name="$a"/></m>?
+              </p>
+              <image>
+                <description>
+                  <p>
+                    The image shows the graph of a function that is defined on the interval <m>[0,2]</m>,
+                    except at <m>x=<var name="$a"/></m>, where it has a vertical asymptote.
+                    On either side of the vertical asymptote, as <m>x</m> gets close to <m><var name="$a"/></m>,
+                    the <m>y</m> value increases without bound.
+                  </p>
+
+                </description>
+                <shortdescription>
+                  The graph used for the current exercise.
+                </shortdescription>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                      xmin=-0.5,
+                      xmax=2.5,
+                      ymin=-0.5,
+                      ymax=2.5
+                    ]
+                      \addplot[firstcurvestyle, infiniteright, domain=0:$lowmidx] {$left};
+                      \addplot[firstcurvestyle, infiniteleft, domain=$highmidx:2] {$right};
+                      \addplot[asymptote, -] coordinates {(1,-0.5) (1,2.5)};
+                      \addplot[soliddot] coordinates {(0,$b[0]) (2,$b[5])};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
+              <p>
+                <var name="$answer" form="popup"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-use-graph-4">
+          <webwork xml:id="webwork-ex-limit-continuity-use-graph-4">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              $a=0;
+              ($b[1],$b[2],$b[3],$b[4]) = random_subset(4,0,0.5,1,1.5,2);
+              for my $i(0,5) {$b[$i]=random(0,2,0.5)};
+              $left=Formula("(($b[1]-$b[0])/(1-0))*(x-0)+$b[0]");
+              $right=Formula("(x-1)*(x-1.5)*$b[5]/((2-1)*(2-1.5))+(x-1)*(x-2)*$b[4]/((1.5-1)*(1.5-2))+(x-1.5)*(x-2)*$b[3]/((1-1.5)*(1-2))");
+              $answer=DropDown(['Yes.','No.'],0,showInStatic=&gt;0);
+              $showwork = '[@ explanation_box(message =&gt; "If not, state why it is not.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                Is <m>f</m> in the graph below continuous at <m><var name="$a"/></m>?
+              </p>
+              <image>
+                <description>
+                  <p>
+                    Graph of a piecewise-defined function with domain <m>[0,2]</m>. The graph has
+                    two lines; the first is straight and defined by the solid
+                    point <m>(0, </m><var name="$b[0]"/><m>)</m> and hollow point
+                    <m>(1, </m><var name="$b[1]"/><m>)</m>. The second line
+                    is defined by the hollow point <m>(1,
+                      <var name="$b[3]"/>)</m> and solid point
+                      <m>(2, <var name="$b[5]"/>)</m>. When
+                      <m>x = 1 f(x) = <var name="$b[2]"/></m>
+                    </p>
+                  </description>
+                  <shortdescription>
+                    The graph used for the current exercise.
+                  </shortdescription>
+                  <latex-image>
+                    \begin{tikzpicture}
+                      \begin{axis}[
+                        xmin=-0.5,
+                        xmax=2.5,
+                        ymin=-0.5,
+                        ymax=2.5
+                      ]
+                        \addplot[firstcurvestyle, domain=0:1] {$left};
+                        \addplot[firstcurvestyle, domain=1:2] {$right};
+                        \addplot[hollowdot] coordinates {(1,$b[1]) (1,$b[3])};
+                        \addplot[soliddot] coordinates {(0,$b[0]) (1,$b[2]) (2,$b[5])};
+                      \end{axis}
+                    \end{tikzpicture}
+                  </latex-image>
+              </image>
+              <p>
+                <var name="$answer" form="popup"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-use-graph-5">
+          <webwork xml:id="webwork-ex-limit-continuity-use-graph-5">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              $a=1;
+              for my$i(0..5){$b[$i]=random(0,2,0.5)};
+              $b[2] = $b[1];
+              $b[3] = $b[1];
+              $right=Formula("(($b[1]-$b[0])/(1-2))*(x-2)+$b[0]");
+              $left=Formula("(x-0.5)*(x-1)*$b[5]/((0-0.5)*(0-1))+(x-0)*(x-1)*$b[4]/((0.5-0)*(0.5-1))+(x-0)*(x-0.5)*$b[3]/((1-0)*(1-0.5))");
+              $answer=DropDown(['Yes.','No.'],0,showInStatic=&gt;0);
+              $showwork = '[@ explanation_box(message =&gt; "If not, state why it is not.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                Is <m>f</m> in the graph below continuous at <m><var name="$a"/></m>?
+              </p>
+              <image>
+                <description>
+                  <p>
+                    The graph
+                    changes at <m>x = 1</m> and is defined by the solid dots
+                    <m>(0, <var name="$b[5]"/>)</m> and
+                    <m>(2, <var name="$b[0]"/> )</m>.
+                    At the interval <m>0 \leq x \lt 1</m> the graph is curved
+                    and on the interval <m>1 \lt x \leq 2</m> the line is straight.
+                  </p>
+                </description>
+                <shortdescription>
+                  The graph used for the current exercise.
+                </shortdescription>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                      xmin=-0.5,
+                      xmax=2.5,
+                      ymin=-0.5,
+                      ymax=2.5
+                    ]
+                      \addplot[firstcurvestyle, domain=0:1] {$left};
+                      \addplot[firstcurvestyle, domain=1:2] {$right};
+                      \addplot[soliddot] coordinates {(0,$b[5]) (2,$b[0])};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
+              <p>
+                <var name="$answer" form="popup"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-use-graph-6">
+          <webwork xml:id="webwork-ex-limit-continuity-use-graph-6">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              $a=4;
+              ($b[1],$b[3]) = random_subset(2,-4..4);
+              for my $i (0,4) {$b[$i]=random(-4,4,1)};
+              $answer=DropDown(['Yes.','No.'],0,showInStatic=&gt;0);
+              $ymin=min($b[0],$b[1]-$b[0],$b[3],$b[4]-$b[3])-1;
+              $ymax=max($b[0],$b[1]-$b[0],$b[3],$b[4]-$b[3])+1;
+              $showwork = '[@ explanation_box(message =&gt; "If not, state why it is not.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                Is <m>f</m> in the graph below continuous at <m><var name="$a"/></m>?
+              </p>
+              <image>
+                <description>
+                  <p>
+                    The graph is made up of two curves. The first is defined
+                    by the solid points  <m>(-4, <var name="$b[0]"/>)</m> and
+                    <m>(0, <var name="$b[1]"/>)</m>.
+                    The second is defined by the hollow point
+                    <m>(0, <var name="$b[3]"/>)</m> and
+                    solid point <m>(4, <var name="$b[4]"/>)</m>.
+                  </p>
+                </description>
+                <shortdescription>
+                  The graph used for the current exercise.
+                </shortdescription>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                      xmin=-5,
+                      xmax=5,
+                      ymin=$ymin,
+                      ymax=$ymax
+                    ]
+                      \addplot[firstcurvestyle, domain=-4:0] {($b[0] + $b[1] + sin((x+2)*45) * ($b[1]-$b[0]))/2};
+                      \addplot[firstcurvestyle, domain=0:4] {($b[3] + $b[4] - sin((x+2)*45) * ($b[4]-$b[3]))/2};
+                      \addplot[hollowdot] coordinates {(0,$b[3])};
+                      \addplot[soliddot] coordinates {(-4,$b[0]) (0,$b[1]) (4,$b[4])};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
+              <p>
+                <var name="$answer" form="popup"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+           </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-use-graph-7">
+          <webwork xml:id="webwork-ex-limit-continuity-use-graph-7">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              @b=(0,2,0,2,0,0,0,2,Compute("DNE"),2,0);
+              for my$i(0..3){$f[$i]=Formula("($b[3*$i+1]-$b[3*$i])/2*(x-(2*$i-4))+$b[3*$i]");}
+              @choices=('Yes.','No.');
+              for my$i(0..2){if($b[3*$i+2]==Compute("DNE")){$correct[$i]=1;}
+                elsif($f[$i]->eval(x=>(2*$i-2))!=$f[$i+1]->eval(x=>(2*$i-2))){$correct[$i]=1;}
+                elsif($f[$i]->eval(x=>(2*$i-2))!=$b[3*$i+2]){$correct[$i]=1;}
+                else{$correct[$i]=0;};
+                $answer[$i]=DropDown(~~@choices,$correct[$i],showInStatic=&gt;0);
+              };
+              $showwork = '[@ explanation_box(message => "If not, state why it is not.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                Is <m>f</m> in the graph below continuous at <m>-2</m>,
+                <m>0</m>, and <m>2</m>?
+              </p>
+              <image>
+                <description>
+                  <p>
+                    There are four lines that make up this graph. The first
+                    going from left to right is defined by the solid point
+                    <m>(-4, 0)</m> and hollow point <m>(-2. 2)</m>, and has
+                    a positive slope. The second line is defined by the points
+                    <m>(-2, 2)</m>, <m>0, 0</m> with a negative slope. The
+                    third line by <m>(0, 0)</m>, <m>2, 2</m> with a positive slope.
+                    And the last line is defined by the hollow point <m>(2, 2)</m>
+                    and solid point <m>(4, 0)</m>, with a negative slope.
+                  </p>
+                  <p>
+                    For <m>x = -2, f(x) = 0</m>, so there is a solid point at
+                    <m>(-2, 0)</m>.
+                  </p>
+                </description>
+                <shortdescription>
+                  The graph used for the current exercise.
+                </shortdescription>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                      xmin = -5,
+                      xmax = 5,
+                      ymin = -4,
+                      ymax = 4,
+                    ]
+                      \addplot[firstcurvestyle, domain=-4:-2] {x+4};
+                      \addplot[firstcurvestyle, domain=-2:0] {-x};
+                      \addplot[firstcurvestyle, domain=0:2] {x};
+                      \addplot[firstcurvestyle, domain=2:4] {4-x};
+                      \addplot[soliddot] coordinates {(-4,0) (-2,0) (4,0)};
+                      \addplot[hollowdot] coordinates {(-2,2) (2,2)};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
+              <p>
+                At <m>-2</m>: <var name="$answer[0]" form="popup"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+              <p>
+                At <m>0</m>: <var name="$answer[1]" form="popup"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+              <p>
+                At <m>2</m>: <var name="$answer[2]" form="popup"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-use-graph-8">
+          <webwork xml:id="webwork-ex-limit-continuity-use-graph-8">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context()-&gt;flags-&gt;set(reduceConstants=&gt;0);
+              $a=Formula("3pi/2");
+              $g=Formula("1+sin(x*180/pi)");
+              $answer=DropDown(['Yes.','No.'],0,showInStatic=&gt;0);
+              $showwork = '[@ explanation_box(message =&gt; "If not, state why it is not.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                Is <m>f</m> in the graph below continuous at <m><var name="$a"/></m>?
+              </p>
+              <image>
+                <description>
+                  <p>
+                    The graph has a downward curve on the
+                    interval <m>0 \leq x \leq \pi</m> and an upward curve on
+                    the interval <m>\pi \leq x \leq 2\pi</m>. The peak of the
+                    graph is at <m>x = \frac{\pi}{2}</m> and the lowest point
+                    is at <m>x = \frac{3\pi}{2}</m>. There are also
+                    no breaks in the graph.
+                  </p>
+                </description>
+                <shortdescription>
+                  The graph used for the current exercise.
+                </shortdescription>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                      xmin = -pi/2,
+                      xmax = 2.5*pi,
+                      ymin = -0.5,
+                      ymax = 2.5,
+                      xtick={
+                        -2*pi, -(3*pi)/2, -pi, -pi/2,
+                        pi/2, pi, (3*pi)/2, 2*pi
+                      },
+                      xticklabels={
+                        \(-2\pi\), \(-\frac{3\pi}{2}\), \(-\pi\), \(-\frac{\pi}{2}\),
+                        \(\frac{\pi}{2}\), \(\pi\), \(\frac{3\pi}{2}\), \(2\pi\)
+                      }
+                    ]
+                      \addplot[firstcurvestyle, domain=0:2*pi, smooth] {$g};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
+              <p>
+                <var name="$answer" form="popup"/>
+              </p>
+              <p>
+                <var name="$showwork" data="pgml"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-limit-continuity-point">
+        <introduction>
+          <p>
+            Determine if <m>f</m> is continuous at the indicated values.
+          </p>
+        </introduction>
+
+        <exercise label="ex-limit-continuity-point-1">
+          <webwork xml:id="webwork-ex-limit-continuity-point-1">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("PiecewiseFunction");
+              @choices=('Yes.',
+                'No.'
+              );
+              @answer=(DropDown(~~@choices,0,showInStatic=&gt;0),DropDown(~~@choices,0,showInStatic=&gt;0));
+              $showwork = '[@ explanation_box(message => "If not, explain why not.") @]*';
+            </pg-code>
+            <introduction>
+              <p>
+                <m>f(x)=\begin{cases}1\amp x=0\\\frac{\sin(x)}{x}\amp x\neq0\end{cases}</m>
+              </p>
+            </introduction>
+
+            <task label="ex-limit-continuity-point-1a">
+              <statement>
+                <p>
+                  Is <m>f</m> is continuous at <m>0</m>?
+                </p>
+                <p>
+                  <var name="$answer[0]" form="popup"/>
+                </p>
+                <p>
+                  <var name="$showwork" data="pgml"/>
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-limit-continuity-point-1b">
+              <statement>
+                <p>
+                  Is <m>f</m> is continuous at <m>\pi</m>?
+                </p>
+                <p>
+                  <var name="$answer[1]" form="popup"/>
+                </p>
+                <p>
+                  <var name="$showwork" data="pgml"/>
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-point-2">
+          <webwork xml:id="webwork-ex-limit-continuity-point-2">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("PiecewiseFunction");
+              #for my$i(0..3){$a[$i]=non_zero_random(-2,2,1)};
+              #if($envir{problemSeed}==1){@a=(1,-1,1,-2)};
+              @a=(1,-1,1,-2);
+              $left=Formula("$a[0]x^3+$a[1]x^2")->reduce;
+              $right=Formula("$a[2]x+$a[3]")->reduce;
+              $f=PiecewiseFunction("x&lt;1" => "$left","x>=1"=>"$right");
+              @choices=('Yes.',
+                'No.'
+              );
+              $correct[1]=($left->eval(x=>1)==$right->eval(x=>1))?0:1;
+              @answer=(DropDown(~~@choices,0,showInStatic=&gt;0),DropDown(~~@choices,$correct[1],showInStatic=&gt;0));
+              $showwork = '[@ explanation_box(message => "If not, explain why not.") @]*';
+            </pg-code>
+            <introduction>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+            </introduction>
+
+            <task label="ex-limit-continuity-point-2a">
+              <statement>
+                <p>
+                  Is <m>f</m> is continuous at <m>0</m>?
+                </p>
+                <p>
+                  <var name="$answer[0]" form="popup"/>
+                </p>
+                <p>
+                  <var name="$showwork" data="pgml"/>
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-limit-continuity-point-2b">
+              <statement>
+                <p>
+                  Is <m>f</m> is continuous at <m>1</m>?
+                </p>
+                <p>
+                  <var name="$answer[1]" form="popup"/>
+                </p>
+                <p>
+                  <var name="$showwork" data="pgml"/>
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-point-3">
+          <webwork xml:id="webwork-ex-limit-continuity-point-3">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("PiecewiseFunction");
+              #if($envir{problemSeed}==1){@a=(-1,-4,-2,10)};
+              @a=(-1,-4,-2,10);
+              $f=PiecewiseFunction("x!=$a[0]" => Formula("(x^2-($a[0]+$a[1])x+($a[0]*$a[1]))/(x^2-($a[0]+$a[2])x+($a[0]*$a[2]))")->reduce,"x=$a[0]"=>Real(($a[0]-$a[1])/($a[0]-$a[2])));
+              @choices=('Yes.',
+                'No.'
+              );
+              @answer=(DropDown(~~@choices,0,showInStatic=&gt;0),DropDown(~~@choices,0,showInStatic=&gt;0));
+              $showwork = '[@ explanation_box(message => "If not, explain why not.") @]*';
+            </pg-code>
+            <introduction>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+            </introduction>
+
+            <task label="ex-limit-continuity-point-3a">
+              <statement>
+                <p>
+                  Is <m>f</m> is continuous at <m><var name="$a[0]"/></m>?
+                </p>
+                <p>
+                  <var name="$answer[0]" form="popup"/>
+                </p>
+                <p>
+                  <var name="$showwork" data="pgml"/>
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-limit-continuity-point-3b">
+              <statement>
+                <p>
+                  Is <m>f</m> is continuous at <m><var name="$a[3]"/></m>?
+                </p>
+                <p>
+                  <var name="$answer[1]" form="popup"/>
+                </p>
+                <p>
+                  <var name="$showwork" data="pgml"/>
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-point-4">
+          <webwork xml:id="webwork-ex-limit-continuity-point-4">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("PiecewiseFunction");
+              #if($envir{problemSeed}==1){@a=(0,8,-8,3,5,0)};
+              @a=(0,8,-8,3,5,0);
+              $f=PiecewiseFunction("x!=$a[1]" => Formula("(x^2-($a[1]+$a[2])x+($a[1]*$a[2]))/(x^2-($a[1]+$a[3])x+($a[1]*$a[3]))")->reduce,"x=$a[1]"=>$a[4]);
+              @choices=('Yes.',
+                'No.'
+              );
+              $correct[1]=($a[4]==($a[1]-$a[2])/($a[1]-$a[3]))?0:1;
+              @answer=(DropDown(~~@choices,0,showInStatic=&gt;0),DropDown(~~@choices,$correct[1],showInStatic=&gt;0));
+              $showwork = '[@ explanation_box(message => "If not, explain why not.") @]*';
+            </pg-code>
+            <introduction>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+            </introduction>
+
+            <task label="ex-limit-continuity-point-4a">
+              <statement>
+                <p>
+                  Is <m>f</m> is continuous at <m><var name="$a[0]"/></m>?
+                </p>
+                <p>
+                  <var name="$answer[0]" form="popup"/>
+                </p>
+                <p>
+                  <var name="$showwork" data="pgml"/>
+                </p>
+              </statement>
+            </task>
+
+            <task label="ex-limit-continuity-point-4b">
+              <statement>
+                <p>
+                  Is <m>f</m> is continuous at <m><var name="$a[1]"/></m>?
+                </p>
+                <p>
+                  <var name="$answer[1]" form="popup"/>
+                </p>
+                <p>
+                  <var name="$showwork" data="pgml"/>
+                </p>
+              </statement>
+            </task>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2" xml:id="exset-limit-continuity-interval">
+        <introduction>
+          <p>
+            Give the intervals on which the function is continuous.
+          </p>
+        </introduction>
+
+        <exercise label="ex-limit-continuity-interval-1">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-1">
+            <pg-code>
+              Context("Interval");
+              $a=random(-9,9,1);
+              $b=non_zero_random(-9,9,1);
+              if($envir{problemSeed}==1){$a=-3;$b=9;};
+              $f=Formula("x^2+$a x+$b")-&gt;reduce;
+              $interval=List(Interval("(-inf,inf)"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Since <m>f</m> is a polynomial function,
+                it is continuous on <m>(-\infty,\infty)</m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-2">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-2">
+            <pg-code>
+              Context("Interval");
+              $a=random(1,5,1);
+              if($envir{problemSeed}==1){$a=2;};
+              $f=Formula("sqrt(x^2-$a**2)")-&gt;reduce;
+              $interval=List("(-inf,-$a], [$a,inf)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                The domain of <m>f</m> is <m><var name="$interval"/></m>,
+                and since <m>f</m> is a composition of continuous functions on that domain,
+                it is continuous on <m><var name="$interval"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-3">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-3">
+            <pg-code>
+              Context("Interval");
+              $a=random(1,5,1);
+              if($envir{problemSeed}==1){$a=2;};
+              $f=Formula("sqrt($a**2-x^2)")-&gt;reduce;
+              $interval=List("[-$a,$a]");
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                The domain of <m>f</m> is <m><var name="$interval"/></m>,
+                and since <m>f</m> is a composition of continuous functions on that domain,
+                it is continuous on <m><var name="$interval"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-4">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-4">
+            <pg-code>
+              Context("Interval");
+              $a=random(1,5,1);
+              $b=random(1,5,1);
+              if($envir{problemSeed}==1){$a=1;$b=1};
+              $f1=Formula("sqrt($a-x)");
+              $f2=Formula("sqrt(x+$b)");
+              $f=$f1+$f2;
+              $interval=List(Interval("[-$b,$a]"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f1"/>+<var name="$f2"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                The domain of <m><var name="$f1"/></m> is <m>(-\infty,<var name="$a"/>]</m>,
+                and the domain of <m><var name="$f2"/></m> is <m>[-<var name="$b"/>,\infty)</m>.
+                So the domain of <m>f</m> is <m><var name="$interval"/></m>.
+                And since <m>f</m> is the sum of two compositions of continuous functions,
+                it is continuous on <m><var name="$interval"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-5">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-5">
+            <pg-code>
+              Context("Interval");
+              $a=random(2,5,1);
+              $b=random(2,9,1);
+              if($envir{problemSeed}==1){$a=5;$b=6};
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f=Formula("sqrt($a t^2-$a*$b)")-&gt;reduce;
+              $interval=List("(-inf,-sqrt($b)], [sqrt($b),inf)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(t)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-6">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-6">
+            <pg-code>
+              Context("Interval");
+              $a=random(1,9,1);
+              if($envir{problemSeed}==1){$a=1};
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f=Formula("1/sqrt($a**2-t^2)")-&gt;reduce;
+              $interval=List(Interval("(-$a,$a)"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>g(t)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-7">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-7">
+            <pg-code>
+              Context("Interval");
+              $a=random(1,9,1);
+              $b=random(1,9,1);
+              if($envir{problemSeed}==1){$a=1;$b=1;};
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f=Formula("1/($a+$b*t^2)")-&gt;reduce;
+              $interval=Compute("(-inf,inf)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>g(t)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-8">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-8">
+            <pg-code>
+              Context("Interval");
+              $b=list_random(2..9,Formula("e"),Formula("pi"));
+              if($envir{problemSeed}==1){$b=Formula("e");};
+              $f=Formula("$b^x")-&gt;reduce;
+              $interval=List(Interval("(-inf,inf)"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-9">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-9">
+            <pg-code>
+              Context("Interval");
+              Context()-&gt;variables-&gt;are(s=&gt;'Real');
+              $b=list_random(2..9,Formula("e"),Formula("pi"));
+              if($envir{problemSeed}==1){$b=Formula("e");};
+              $f=($b==Formula("e"))?'\ln(s)':"\log_{$b}(s)";
+              $interval=List(Interval("(0,inf)"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>g(s)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-10">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-10">
+            <pg-code>
+              Context("Interval");
+              Context()-&gt;variables-&gt;are(t=&gt;'Real');
+              $f=list_random(Formula("cos(t)"),Formula("sin(t)"));
+              if($envir{problemSeed}==1){$f=Formula("cos(t)");};
+              $interval=List(Interval("(-inf,inf)"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>h(t)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-11">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-11">
+            <pg-code>
+              Context("Interval");
+              $a=random(1,9,1);
+              if($envir{problemSeed}==1){$a=1};
+              Context()-&gt;variables-&gt;are(k=&gt;'Real');
+              $f=Formula("sqrt($a-e^k)");
+              $interval=($a==1)?List(Interval("(-inf,0]")):List(Interval("(-inf,ln($a)]"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(k)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-interval-12">
+          <webwork xml:id="webwork-ex-limit-continuity-interval-12">
+            <pg-code>
+              Context("Interval");
+              $a=list_random('sin','cos');
+              $b=list_random(2,3,'e');
+              $n=random(2,5,1);
+              if($envir{problemSeed}==1){$a='sin';$b='e';$n=2;};
+              $f=Formula("$a($b^x+x^($n))");
+              $interval=List(Interval("(-inf,inf)"));
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m>
+              </p>
+              <instruction>
+                Use interval notation. If the answer is a list of more than one interval, use commas to separate them.
+              </instruction>
+              <p>
+                <var name="$interval" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup xml:id="exset-limit-continuity-ivt">
+        <introduction>
+          <p>
+            Test your understanding of the Intermediate Value Theorem.
+          </p>
+        </introduction>
+
+        <exercise label="ex-limit-continuity-ivt-1">
+          <!-- <webwork xml:id="webwork-ex-limit-continuity-ivt-1"> -->
+            <statement>
+              <p>
+                Let <m>f</m> be continuous on <m>[1,5]</m> where
+                <m>f(1) = -2</m> and <m>f(5) = -10</m>.
+                Does a value <m>1\lt c\lt 5</m> exist such that <m>f(c) = -9</m>?
+                Why/why not?
+              </p>
+              <!-- <p>
+                <var form="essay"/>
+              </p> -->
+            </statement>
+            <response />
+            
+            <solution>
+              <p>
+                Yes, by the Intermediate Value Theorem.
+              </p>
+            </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-limit-continuity-ivt-2">
+          <!-- <webwork xml:id="webwork-ex-limit-continuity-ivt-2"> -->
+            <statement>
+              <p>
+                Let <m>g</m> be continuous on <m>[-3,7]</m> where
+                <m>g(0) = 0</m> and <m>g(2) = 25</m>.
+                Does a value <m>-3\lt c\lt 7</m> exist such that <m>g(c) = 15</m>?
+                Why/why not?
+              </p>
+              <!-- <p>
+                <var form="essay"/>
+              </p> -->
+            </statement>
+            <response />
+            
+            <solution>
+              <p>
+                Yes, by the Intermediate Value Theorem.
+                In fact, we can be more specific and state such a value <m>c</m>
+                exists in <m>(0,2)</m>, not just in <m>(-3,7)</m>.
+              </p>
+            </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-limit-continuity-ivt-3">
+          <!-- <webwork xml:id="webwork-ex-limit-continuity-ivt-3"> -->
+            <statement>
+              <p>
+                Let <m>f</m> be continuous on <m>[-1,1]</m> where
+                <m>f(-1) = -10</m> and <m>f(1) = 10</m>.
+                Does a value <m>-1\lt c\lt 1</m> exist such that <m>f(c) = 11</m>?
+                Why/why not?
+              </p>
+              <!-- <p>
+                <var form="essay"/>
+              </p> -->
+            </statement>
+            <response />
+            
+            <solution>
+              <p>
+                We cannot say;
+                the Intermediate Value Theorem only applies to function values between <m>-10</m> and 10;
+                as 11 is outside this range, we do not know.
+              </p>
+            </solution>
+          <!-- </webwork> -->
+        </exercise>
+
+        <exercise label="ex-limit-continuity-ivt-4">
+          <!-- <webwork xml:id="webwork-ex-limit-continuity-ivt-4"> -->
+            <statement>
+              <p>
+                Let <m>h</m> be a function on <m>[-1,1]</m> where
+                <m>h(-1) = -10</m> and <m>h(1) = 10</m>.
+                Does a value <m>-1\lt c\lt 1</m> exist such that <m>h(c) = 0</m>?
+                Why/why not?
+              </p>
+              <!-- <p>
+                <var form="essay"/>
+              </p> -->
+            </statement>
+            <response />
+            
+            <solution>
+              <p>
+                We cannot say;
+                the Intermediate Value Theorem only applies to continuous functions.
+                As we do know know if <m>h</m> is continuous, we cannot say.
+              </p>
+            </solution>
+          <!-- </webwork> -->
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup xml:id="exset-limit-continuity-bisection">
+        <introduction>
+          <p>
+            Use the Bisection Method to approximate,
+            accurate to two decimal places,
+            the value of the root of the given function in the given interval.
+          </p>
+        </introduction>
+
+        <exercise label="ex-limit-continuity-bisection-1">
+          <webwork xml:id="webwork-ex-limit-continuity-bisection-1">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.00000005);
+              #do{$b=non_zero_random(-9,9,1);$c=non_zero_random(-9,9,1);}until($b**2&gt;4*$c and int(sqrt(abs($b**2-4*$c)))!=sqrt(abs($b**2-4*$c)));
+              #if($envir{problemSeed}==1){$b=2;$c=-4;};
+              $b=2;$c=-4;
+              $f=Formula("x^2+$b x+$c")-&gt;reduce;
+              $left=floor((-$b+sqrt($b**2-4*$c))/2);
+              $right=$left+1;
+              $mid=($left+$right)/2;
+              ($l[0],$r[0])=($f-&gt;eval(x=&gt;$mid)&gt;0)?($left,$mid):($mid,$right);
+              $in[0]=Compute("[$l[0],$r[0]]");
+              for my$i(1..7){$m[$i-1]=($l[$i-1]+$r[$i-1])/2;
+                ($l[$i],$r[$i])=($f-&gt;eval(x=&gt;$m[$i-1])&gt;0)?($l[$i-1],$m[$i-1]):($m[$i-1],$r[$i-1]);
+                $popup[$i-1]=($f-&gt;eval(x=&gt;$m[$i-1])&gt;0)?DropDown(['+','-'],'0',showInStatic=&gt;0):DropDown(['+','-'],'1',showInStatic=&gt;0);
+                $in[$i]=Compute("[$l[$i],$r[$i]]");
+              };
+              $z=Real(($l[7]+$r[7])/2)-&gt;with(tolType=&gt;'absolute',tolerance=&gt;0.01);
+              #$showwork = '[@ explanation_box(message =&gt; "Show the steps you used applying the Bisection Method.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m> on the interval <m><var name="$in[0]"/></m>
+              </p>
+
+              <instruction>If <m>f(m)\gt 0</m> at the midpoint <m>m</m>, put <m>+</m> for the midpoint sign. If <m>f(m)\lt 0</m>, put <m>-</m> for the midpoint sign.</instruction>
+              
+              <tabular component="web">
+                <row bottom="medium">
+                  <cell>Iteration</cell>
+                  <cell>Interval</cell>
+                  <cell>Midpoint Sign</cell>
+                </row>
+                <row>
+                  <cell>1</cell>
+                  <cell><m><var name="$in[0]"/></m></cell>
+                  <cell><var name="$popup[0]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>2</cell>
+                  <cell><var name="$in[1]" width="20"/></cell>
+                  <cell><var name="$popup[1]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>3</cell>
+                  <cell><var name="$in[2]" width="20"/></cell>
+                  <cell><var name="$popup[2]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>4</cell>
+                  <cell><var name="$in[3]" width="20"/></cell>
+                  <cell><var name="$popup[3]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>5</cell>
+                  <cell><var name="$in[4]" width="20"/></cell>
+                  <cell><var name="$popup[4]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>6</cell>
+                  <cell><var name="$in[5]" width="20"/></cell>
+                  <cell><var name="$popup[5]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>7</cell>
+                  <cell><var name="$in[6]" width="20"/></cell>
+                  <cell><var name="$popup[6]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>8</cell>
+                  <cell><var name="$in[7]" width="20"/></cell>
+                  <cell></cell>
+                </row>
+              </tabular>
+
+              <instruction>Enter the solution to <m>f(x)=0</m>, accurate to two decimal places.</instruction>
+              
+              <p>
+                <var name="$z" width="10"/>
+              </p>
+              <!-- <p>
+                <var name="$showwork" data="pgml"/>
+              </p> -->
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-bisection-2">
+          <webwork xml:id="webwork-ex-limit-continuity-bisection-2">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.00000005,reduceConstants=&gt;0);
+              #$b=random(2,6,1);
+              #if($envir{problemSeed}==1){$b=2;};
+              $b=2;
+              $f=Compute("sin(x)-1/$b");
+              $root=asin(1/$b);
+              ($l[0],$r[0])=(floor(20*$root)/20,floor(20*$root)/20+0.05);
+              $in[0]=Compute("[$l[0],$r[0]]");
+              for my$i(1..7){$m[$i-1]=($l[$i-1]+$r[$i-1])/2;
+                ($l[$i],$r[$i])=($f-&gt;eval(x=&gt;$m[$i-1])&gt;0)?($l[$i-1],$m[$i-1]):($m[$i-1],$r[$i-1]);
+                $popup[$i-1]=($f-&gt;eval(x=&gt;$m[$i-1])&gt;0)?DropDown(['+','-'],'0',showInStatic=&gt;0):DropDown(['+','-'],'1',showInStatic=&gt;0);
+                $in[$i]=Compute("[$l[$i],$r[$i]]");
+              };
+              $z=Real(($l[7]+$r[7])/2)-&gt;with(tolType=&gt;'absolute',tolerance=&gt;0.01);
+              #$showwork = '[@ explanation_box(message =&gt; "Show the steps you used applying the Bisection Method.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m> on the interval <m><var name="$in[0]"/></m>
+              </p>
+
+              <instruction>If <m>f(m)\gt 0</m> at the midpoint <m>m</m>, put <m>+</m> for the midpoint sign. If <m>f(m)\lt 0</m>, put <m>-</m> for the midpoint sign.</instruction>
+              
+              <tabular component="web">
+                <row bottom="medium">
+                  <cell>Iteration</cell>
+                  <cell>Interval</cell>
+                  <cell>Midpoint Sign</cell>
+                </row>
+                <row>
+                  <cell>1</cell>
+                  <cell><m><var name="$in[0]"/></m></cell>
+                  <cell><var name="$popup[0]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>2</cell>
+                  <cell><var name="$in[1]" width="20"/></cell>
+                  <cell><var name="$popup[1]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>3</cell>
+                  <cell><var name="$in[2]" width="20"/></cell>
+                  <cell><var name="$popup[2]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>4</cell>
+                  <cell><var name="$in[3]" width="20"/></cell>
+                  <cell><var name="$popup[3]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>5</cell>
+                  <cell><var name="$in[4]" width="20"/></cell>
+                  <cell><var name="$popup[4]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>6</cell>
+                  <cell><var name="$in[5]" width="20"/></cell>
+                  <cell><var name="$popup[5]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>7</cell>
+                  <cell><var name="$in[6]" width="20"/></cell>
+                  <cell><var name="$popup[6]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>8</cell>
+                  <cell><var name="$in[7]" width="20"/></cell>
+                  <cell></cell>
+                </row>
+              </tabular>
+
+              <instruction>Enter the solution to <m>f(x)=0</m>, accurate to two decimal places.</instruction>
+              
+              <p>
+                <var name="$z" width="10"/>
+              </p>
+              <!-- <p>
+                <var name="$showwork" data="pgml"/>
+              </p> -->
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-bisection-3">
+          <webwork xml:id="webwork-ex-limit-continuity-bisection-3">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.00000005);
+              #$b=random(1.5,3,0.1);
+              #if($envir{problemSeed}==1){$b=2;};
+              $b=2;
+              $f=Compute("e^x-$b");
+              $root=ln($b);
+              ($l[0],$r[0])=(floor(20*$root)/20,floor(20*$root)/20+0.05);
+              $in[0]=Compute("[$l[0],$r[0]]");
+              for my$i(1..7){$m[$i-1]=($l[$i-1]+$r[$i-1])/2;
+                ($l[$i],$r[$i])=($f-&gt;eval(x=&gt;$m[$i-1])&gt;0)?($l[$i-1],$m[$i-1]):($m[$i-1],$r[$i-1]);
+                $popup[$i-1]=($f-&gt;eval(x=&gt;$m[$i-1])&gt;0)?DropDown(['+','-'],'0',showInStatic=&gt;0):DropDown(['+','-'],'1',showInStatic=&gt;0);
+                $in[$i]=Compute("[$l[$i],$r[$i]]");
+              };
+              $z=Real(($l[7]+$r[7])/2)-&gt;with(tolType=&gt;'absolute',tolerance=&gt;0.01);
+              #$showwork = '[@ explanation_box(message =&gt; "Show the steps you used applying the Bisection Method.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m> on the interval <m><var name="$in[0]"/></m>
+              </p>
+
+              <instruction>If <m>f(m)\gt 0</m> at the midpoint <m>m</m>, put <m>+</m> for the midpoint sign. If <m>f(m)\lt 0</m>, put <m>-</m> for the midpoint sign.</instruction>
+              
+              <tabular component="web">
+                <row bottom="medium">
+                  <cell>Iteration</cell>
+                  <cell>Interval</cell>
+                  <cell>Midpoint Sign</cell>
+                </row>
+                <row>
+                  <cell>1</cell>
+                  <cell><m><var name="$in[0]"/></m></cell>
+                  <cell><var name="$popup[0]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>2</cell>
+                  <cell><var name="$in[1]" width="20"/></cell>
+                  <cell><var name="$popup[1]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>3</cell>
+                  <cell><var name="$in[2]" width="20"/></cell>
+                  <cell><var name="$popup[2]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>4</cell>
+                  <cell><var name="$in[3]" width="20"/></cell>
+                  <cell><var name="$popup[3]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>5</cell>
+                  <cell><var name="$in[4]" width="20"/></cell>
+                  <cell><var name="$popup[4]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>6</cell>
+                  <cell><var name="$in[5]" width="20"/></cell>
+                  <cell><var name="$popup[5]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>7</cell>
+                  <cell><var name="$in[6]" width="20"/></cell>
+                  <cell><var name="$popup[6]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>8</cell>
+                  <cell><var name="$in[7]" width="20"/></cell>
+                  <cell></cell>
+                </row>
+              </tabular>
+
+              <instruction>Enter the solution to <m>f(x)=0</m>, accurate to two decimal places.</instruction>
+
+              <p>
+                <var name="$z" width="10"/>
+              </p>
+              <!-- <p>
+                <var name="$showwork" data="pgml"/>
+              </p> -->
+            </statement>
+          </webwork>
+        </exercise>
+
+        <exercise label="ex-limit-continuity-bisection-4">
+          <webwork xml:id="webwork-ex-limit-continuity-bisection-4">
+            <pg-macros>
+              <macro-file>parserPopUp.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("Interval");
+              Context()-&gt;flags-&gt;set(tolType=&gt;'absolute',tolerance=&gt;0.00000005);
+              #$b=random(1.5,3,0.1);
+              #if($envir{problemSeed}==1){$b=2;};
+              $b=2;
+              $f=Compute("cos(x)-sin(x)");
+              $root=pi/4;
+              ($l[0],$r[0])=(floor(10*$root)/10,floor(10*$root)/10+0.1);
+              $in[0]=Compute("[$l[0],$r[0]]");
+              for my$i(1..7){$m[$i-1]=($l[$i-1]+$r[$i-1])/2;
+                ($l[$i],$r[$i])=($f-&gt;eval(x=&gt;$m[$i-1])&lt;0)?($l[$i-1],$m[$i-1]):($m[$i-1],$r[$i-1]);
+                $popup[$i-1]=($f-&gt;eval(x=&gt;$m[$i-1])&gt;0)?DropDown(['+','-'],'0',showInStatic=&gt;0):DropDown(['+','-'],'1',showInStatic=&gt;0);
+                $in[$i]=Compute("[$l[$i],$r[$i]]");
+              };
+              $z=Real(($l[7]+$r[7])/2)-&gt;with(tolType=&gt;'absolute',tolerance=&gt;0.01);
+              #$showwork = '[@ explanation_box(message =&gt; "Show the steps you used applying the Bisection Method.") @]*';
+            </pg-code>
+            <statement>
+              <p>
+                <m>f(x)=<var name="$f"/></m> on the interval <m><var name="$in[0]"/></m>
+              </p>
+
+              <instruction>If <m>f(m)\gt 0</m> at the midpoint <m>m</m>, put <m>+</m> for the midpoint sign. If <m>f(m)\lt 0</m>, put <m>-</m> for the midpoint sign.</instruction>
+              
+              <tabular component="web">
+                <row bottom="medium">
+                  <cell>Iteration</cell>
+                  <cell>Interval</cell>
+                  <cell>Midpoint Sign</cell>
+                </row>
+                <row>
+                  <cell>1</cell>
+                  <cell><m><var name="$in[0]"/></m></cell>
+                  <cell><var name="$popup[0]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>2</cell>
+                  <cell><var name="$in[1]" width="20"/></cell>
+                  <cell><var name="$popup[1]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>3</cell>
+                  <cell><var name="$in[2]" width="20"/></cell>
+                  <cell><var name="$popup[2]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>4</cell>
+                  <cell><var name="$in[3]" width="20"/></cell>
+                  <cell><var name="$popup[3]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>5</cell>
+                  <cell><var name="$in[4]" width="20"/></cell>
+                  <cell><var name="$popup[4]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>6</cell>
+                  <cell><var name="$in[5]" width="20"/></cell>
+                  <cell><var name="$popup[5]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>7</cell>
+                  <cell><var name="$in[6]" width="20"/></cell>
+                  <cell><var name="$popup[6]" form="popup"/></cell>
+                </row>
+                <row>
+                  <cell>8</cell>
+                  <cell><var name="$in[7]" width="20"/></cell>
+                  <cell></cell>
+                </row>
+              </tabular>
+
+              <instruction>Enter the solution to <m>f(x)=0</m>, accurate to two decimal places.</instruction>
+              
+              <p>
+                <var name="$z" width="10"/>
+              </p>
+              <!-- <p>
+                <var name="$showwork" data="pgml"/>
+              </p> -->
+            </statement>
+          </webwork>
+        </exercise>
+      </exercisegroup>
+    </subexercises>
+  </exercises>
+</section>
