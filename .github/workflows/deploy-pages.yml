@@ -1,0 +1,94 @@
+# .github/workflows/deploy-pages.yml   (v2)
+#
+# Builds the PreTeXt site and publishes it to GitHub Pages so the
+# instructor can review rendered HTML from a phone.
+#
+# v2 change: instead of a hardcoded TARGETS list, this uses the PreTeXt
+# CLI's own deploy machinery — `pretext build --deploys` builds every
+# target marked for deployment in project.ptx, and
+# `pretext deploy --stage-only` assembles the site in output/stage
+# exactly as the project defines it. No target-name drift possible;
+# Task E1 is now just "confirm the deploy targets in project.ptx".
+#
+# Triggers:
+#   * push to main         -> deploys the merged state (the "real" site)
+#   * PR labeled `preview` -> deploys THAT BRANCH's build (one Pages site
+#                             per repo, so a preview temporarily replaces
+#                             the main deployment; restored on merge or by
+#                             re-running on main; fine for a solo repo)
+#   * workflow_dispatch    -> manual run on any branch
+#
+# One-time setup: Settings -> Pages -> Source: "GitHub Actions".
+# NOTE: this replaces BOTH auto-generated PreTeXt workflows
+# (pretext-deploy.yml pushed a gh-pages branch — a different Pages source
+# mode — and pretext-cli.yml duplicated the build). Delete those two.
+
+name: Deploy PreTeXt site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [labeled, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: >-
+      github.event_name != 'pull_request' ||
+      contains(github.event.pull_request.labels.*.name, 'preview')
+    runs-on: ubuntu-latest
+    # Full PreTeXt image: includes TeX, so <latex-image> assets and any
+    # print/PDF deploy targets build without extra setup.
+    container: oscarlevin/pretext-full
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install PreTeXt CLI (respect repo pin if present)
+        run: |
+          git config --global --add safe.directory "$(pwd)"
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt --break-system-packages
+          else
+            pip install pretext --break-system-packages
+          fi
+          pretext --version
+
+      - name: Build deploy targets
+        run: pretext build --deploys 2>&1 | grep -v 'asset directories' || true
+
+      - name: Stage site
+        run: |
+          pretext deploy --stage-only
+          test -d output/stage || { echo "::error::pretext deploy produced no output/stage — check the deploy config in project.ptx"; exit 1; }
+          # Stamp the build so previews are unambiguous when reviewing.
+          echo "Built from ${GITHUB_REF_NAME} @ ${GITHUB_SHA} on $(date -u '+%Y-%m-%d %H:%M UTC')" > output/stage/build-info.txt
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output/stage
+
+  deploy:
+    needs: build
+    if: >-
+      github.event_name != 'pull_request' ||
+      contains(github.event.pull_request.labels.*.name, 'preview')
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

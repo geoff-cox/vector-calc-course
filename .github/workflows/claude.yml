@@ -1,0 +1,71 @@
+# .github/workflows/claude.yml
+#
+# Runs Claude Code whenever a comment, issue, PR body, or review contains
+# "@claude".  This is the mobile entry point: open the GitHub app on your
+# phone, create an issue (or comment on a PR), mention @claude, and name a
+# Task ID from checklists/mobile-build-checklist.md.
+#
+# Prerequisites (one-time, already done if this repo previously ran the
+# action):
+#   1. Claude GitHub App installed on the repo: https://github.com/apps/claude
+#      (Contents, Issues, Pull requests - read & write)
+#   2. Repository secret ANTHROPIC_API_KEY
+#   3. Actions enabled (Settings -> Actions -> General)
+#
+# Action reference: https://code.claude.com/docs/en/github-actions
+# (uses the GA `@v1` tag; the old `@beta` syntax is deprecated)
+
+name: Claude Code
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+  issues:
+    types: [opened, assigned]
+
+jobs:
+  claude:
+    # Only fire when the triggering text actually mentions @claude,
+    # and only for the repo owner (don't let drive-by commenters spend tokens).
+    if: |
+      (
+        (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+        (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+        (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+        (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so Claude can branch and diff cleanly
+
+      # PreTeXt is needed so Claude can run its mandatory verification
+      # builds before opening a PR (see CLAUDE.md "Verification gates").
+      - name: Install PreTeXt CLI
+        run: pip install pretext
+
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Conventions and the Task catalog live in CLAUDE.md and
+          # checklists/mobile-build-checklist*.md, which the action reads
+          # from the repo checkout.
+          claude_args: |
+            --max-turns 60
+          # For heavier drafting sessions (Task C worksheets), you can add
+          # a model override line above, e.g.:
+          #   --model claude-opus-4-8
