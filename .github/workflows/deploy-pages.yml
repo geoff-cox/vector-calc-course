@@ -11,11 +11,12 @@
 # Task E1 is now just "confirm the deploy targets in project.ptx".
 #
 # Triggers:
-#   * push to main         -> builds + deploys the merged state
-#   * PR labeled `preview` -> build only (verifies the site builds; actual
-#                             deployment is skipped because the github-pages
-#                             environment protection rule blocks PR branches)
-#   * workflow_dispatch    -> builds + deploys on whatever branch you choose
+#   * push to main         -> deploys the merged state (the "real" site)
+#   * PR labeled `preview` -> deploys THAT BRANCH's build (one Pages site
+#                             per repo, so a preview temporarily replaces
+#                             the main deployment; restored on merge or by
+#                             re-running on main; fine for a solo repo)
+#   * workflow_dispatch    -> manual run on any branch
 #
 # One-time setup: Settings -> Pages -> Source: "GitHub Actions".
 # NOTE: this replaces BOTH auto-generated PreTeXt workflows
@@ -80,11 +81,9 @@ jobs:
 
   deploy:
     needs: build
-    # The github-pages environment only allows deployments from the default
-    # branch; pull_request events (even preview-labeled ones) are blocked by
-    # the environment protection rule and will fail instantly.  The build job
-    # above already verifies the site on PRs — deployment waits for merge.
-    if: github.event_name != 'pull_request'
+    if: >-
+      github.event_name != 'pull_request' ||
+      contains(github.event.pull_request.labels.*.name, 'preview')
     runs-on: ubuntu-latest
     environment:
       name: github-pages
