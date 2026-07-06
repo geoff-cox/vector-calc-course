@@ -70,10 +70,14 @@ Three mechanisms; they are NOT interchangeable:
 1. `<fillin characters="N"/>` — an in-prose blank in BOTH builds.
    **Gotcha:** any text inside the tag is silently discarded. The answer
    never lives inside `<fillin>`.
-2. `<commentary>` — block-level, instructor-only. Visibility comes from
-   the `commentary` stringparam set per-target in `project.ptx`
-   (`"yes"` on instructor targets only). Place it after the prose that
-   contains the blanks, never inline.
+2. `<commentary component="instructor">` — block-level, instructor-only.
+   Visibility comes from version support: the `instructor` component is
+   listed in `<version include="...">` in the instructor publication
+   file (`publication/publication-key.ptx`) only, never the student one.
+   (The historical `commentary` stringparam is deprecated and
+   NON-FUNCTIONAL in PreTeXt >= 2.43 — do not use it. A `<commentary>`
+   without `@component` is a fatal build error.) Place it after the
+   prose that contains the blanks, never inline.
 3. `<exercise>` with `<statement>` + `<solution>` — multi-step worked
    computations. Visibility controlled by
    `<exercise-worksheet statement="yes" solution="no|yes"/>` in the
