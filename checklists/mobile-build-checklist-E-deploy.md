@@ -16,8 +16,8 @@ single-instructor repo, and restored on merge).
    target worth publishing (homepage, book, notes student + instructor)
    and that a landing page ties them together. If a needed target is
    missing (e.g., no web notes target), add it, following the existing
-   publication-file/stringparam pattern (`commentary` stringparam on
-   instructor targets only) and mark it for deploy.
+   publication-file pattern (`stu` in the student `<version include>`
+   list, `key` in the instructor one) and mark it for deploy.
 3. Confirm one-time settings in the PR body as reviewer to-dos:
    Settings → Pages → Source = "GitHub Actions"; create the `preview`
    label if it doesn't exist.

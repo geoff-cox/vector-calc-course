@@ -65,45 +65,41 @@ target names — read them.
 
 ## 3. The guided-notes conventions (Task C core)
 
-Three mechanisms; they are NOT interchangeable:
+The worksheet-authoring conventions are **universal** across this repo
+and `geoff-cox/diff-eqs-course`; they live in
+**`checklists/worksheet-conventions.md`**, which is kept byte-identical
+in both repos. Follow that file exactly; never change it in one repo
+without PR'ing the same change to the other.
 
-1. `<fillin characters="N"/>` — an in-prose blank in BOTH builds.
-   **Gotcha:** any text inside the tag is silently discarded. The answer
-   never lives inside `<fillin>`.
-2. `<commentary component="instructor">` — block-level, instructor-only.
-   Visibility comes from version support: the `instructor` component is
-   listed in `<version include="...">` in the instructor publication
-   file (`publication/publication-key.ptx`) only, never the student one.
-   (The historical `commentary` stringparam is deprecated and
-   NON-FUNCTIONAL in PreTeXt >= 2.43 — do not use it. A `<commentary>`
-   without `@component` is a fatal build error.) Place it after the
-   prose that contains the blanks, never inline.
-3. `<exercise>` with `<statement>` + `<solution>` — multi-step worked
-   computations. Visibility controlled by
-   `<exercise-worksheet statement="yes" solution="no|yes"/>` in the
-   publication files.
+Course parameters for THIS repo (plug into the shared conventions):
 
-**Gotcha:** PreTeXt `<example>` renders its solution in BOTH builds.
-Anything whose answer must hide on the student copy uses `<exercise>`.
-Reserve `<example>` for read-along illustrations with NO hidden content.
+- GLN track: **C**. Worksheets live in `source/notes/` and are
+  `<xi:include>`d by `source/notes.ptx`.
+- Targets (read `project.ptx`): `web-stu` / `web-key` (HTML) and
+  `pdf-key` (print instructor copy).
+- Publication files: `publication/publication-stu.ptx`
+  (`<version include="web readings emoji example-solution stu"/>`) and
+  `publication/publication-key.ptx`
+  (`<version include="web readings emoji example-solution instructor key"/>`).
+  The extra components (`web`, `readings`, `emoji`, `example-solution`)
+  are course-specific — keep them.
+- The coursebook is IN-REPO (`source/book/`, the APEX adaptation);
+  worksheet example equations must never be copied from it.
 
-**Commentary pattern:** group the blanks for one idea into a single
-paragraph/list, then place ONE `<commentary>` block immediately after it
-listing the answers *in order*. Do not scatter one commentary per blank.
-
-Quick selection table:
-
-| Situation                                 | Use                         |
-|-------------------------------------------|-----------------------------|
-| One/two-word blank inside a sentence      | `<fillin>` + `<commentary>` |
-| Definition or theorem with a blank in it  | `<fillin>` + `<commentary>` |
-| Multi-step worked computation             | `<exercise>` + `<solution>` |
-| "Your turn" practice problem              | `<exercise>` + `<solution>` |
-| Read-along illustration, no hidden answer | `<example>` (no solution)   |
-
-Model worksheets: `source/notes/ws-function-notation.ptx` and
-`source/notes/ws-vectors.ptx`. Match their structure, comment headers,
-`<objectives>`, `<page>` division, and macro usage.
+**Legacy worksheets.** The existing worksheets
+(`ws-function-notation.ptx`, `ws-vectors.ptx`, `ws-dot-product.ptx`,
+`ws-cross-product.ptx`) predate the shared conventions: their
+answer-key `<commentary>` blocks are COMMENTED OUT in the source (they
+were disabled when the old `commentary` stringparam stopped working),
+so today only their `<solution>`s split between the builds and the
+reading-check answer keys are missing from the instructor copy. Do NOT
+copy their patterns into new worksheets, and do not write new
+`<commentary>` elements. Migrate legacy worksheets to the shared
+conventions (Task M6) — the commented-out blocks hold the answer text
+to recover into `<p component="key">` paragraphs. Until one is
+migrated, the model worksheet is MA 311's
+`source/notes/ws-what-is-a-de.ptx` in `geoff-cox/diff-eqs-course`
+(same conventions).
 
 ## 4. Verification gates (mandatory before every PR)
 
@@ -116,7 +112,8 @@ Model worksheets: `source/notes/ws-function-notation.ptx` and
 3. **Xref integrity** (Task B especially) — the build log must contain
    zero unresolved cross-reference warnings.
 4. **Visibility split** (worksheets) — pick a sentinel phrase that exists
-   only in solution/commentary text, then:
+   only in `<solution>` or `component="key"` prose (legacy worksheets:
+   `component="instructor"` commentary), then:
    `grep -c "SENTINEL" output/<student-target>/<file>.html`  -> must be 0
    `grep -c "SENTINEL" output/<instructor-target>/<file>.html` -> must be >= 1
    Structural tags are unreliable sentinels; use answer-specific prose.
@@ -160,7 +157,10 @@ from it is prohibited.
   text from the coursebook front matter. The adaptation must stay
   properly attributed.
 - Putting answers inside `<fillin>`; using `<example>` where the answer
-  must hide; inline `<commentary>`.
+  must hide; writing new `<commentary>` elements (legacy-only, pending
+  Task M6 migration); a `component="stu"` element without its mirrored
+  `component="key"` partner (or vice versa); `<title>` on `<page>`;
+  `<me>`/`<men>` in new worksheets.
 - Defining LaTeX macros anywhere except `source/bookends/docinfo.ptx`
   (see Task D).
 - Merging your own PRs, force-pushing, or rewriting history on `main`.

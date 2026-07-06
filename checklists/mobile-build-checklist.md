@@ -16,7 +16,7 @@ automatically; the per-track files below hold the step-by-step details.
 | C | `mobile-build-checklist-C-guided-notes.md` | Guided Lecture Notes worksheets |
 | D | `mobile-build-checklist-D-macros.md` | LaTeX macro management |
 | E | `mobile-build-checklist-E-deploy.md` | GitHub Pages deployment |
-| M | `mobile-build-checklist-M-maintenance.md` | Ad hoc: commentary keys, figures, QA, build fixes, visibility |
+| M | `mobile-build-checklist-M-maintenance.md` | Ad hoc: answer keys, figures, QA, build fixes, visibility, legacy migration |
 
 ## Recommended work order
 

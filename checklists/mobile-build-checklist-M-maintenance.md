@@ -7,14 +7,20 @@ updated for this repo (macros live in `source/bookends/docinfo.ptx`, not
 The verification gates (`CLAUDE.md` §4) and PR workflow (§5) apply to
 every task and are not repeated below.
 
-## Task M1 — Revise or extend commentary answer keys
+## Task M1 — Revise or extend answer keys
 
 **You provide:** which worksheet; which blanks/answers to add, fix, or reword.
 
-1. Locate the paragraph(s) and their trailing `<commentary>` block(s).
-2. Edit or split commentary so each cluster of blanks has exactly one
-   ordered answer list immediately after it (§3 pattern).
-3. New `<fillin>`s get a sensible `@characters` width.
+1. New-style worksheets (shared conventions): locate the paired
+   `<p component="stu">` / `<p component="key">` paragraphs and edit
+   both halves together so they stay mirrored — `stu` carries the
+   `<fillin>`s, `key` the same sentence with answers as
+   `\underline{\textbf{...}}` math.
+   Legacy worksheets (pre-migration): locate the paragraph(s) and their
+   trailing `<commentary component="instructor">` block(s); keep one
+   ordered answer list per cluster of blanks. Consider doing Task M6
+   first instead of extending legacy commentary.
+2. New `<fillin>`s get a sensible `@characters` width.
 
 **Accept:** sentinel grep passes (0 student / >=1 instructor); answer
 order matches blank order; no "(Fill in: .)" debris — that's the symptom
@@ -62,11 +68,33 @@ an image that wasn't supplied or drawn.
 **You provide:** which element/worksheet; desired student-vs-instructor
 behavior.
 
-1. Choose the correct mechanism (`CLAUDE.md` §3). The most common fix is
-   converting an `<example>` that must hide its answer into an
-   `<exercise>`.
-2. For global toggles, edit the publication files or the `commentary`
-   stringparam in `project.ptx` — never per-element hacks.
+1. Choose the correct mechanism (`checklists/worksheet-conventions.md`).
+   The most common fix is converting an `<example>` that must hide its
+   answer into an `<exercise>`.
+2. For global toggles, edit the publication files (`<version include>`
+   lists, `<exercise-worksheet>` switches) — never per-element hacks.
 
 **Accept:** the targeted content shows/hides exactly as requested,
 proven by grep counts in both builds; nothing else changed visibility.
+
+## Task M6 — Migrate a legacy worksheet to the shared conventions
+
+**You provide:** which worksheet (one per PR).
+
+1. Convert per `checklists/worksheet-conventions.md`:
+   - each `<fillin>` cluster + trailing `<commentary>` block (currently
+     COMMENTED OUT in the legacy source — recover the answer text from
+     it) → paired `<p component="stu">` (blanks) / `<p component="key">`
+     (answers as `\underline{\textbf{...}}` math); delete the commentary;
+   - each worked `<exercise>` → the paired
+     `<exercise component="stu" workspace="Xin">` /
+     `<exercise component="key">` form (size `workspace` conservatively);
+   - `<title>` on `<page>` → `<p><term>...</term></p>` heading; drop
+     exercise titles unless essential; `<me>`/`<men>` → `<md>`.
+2. Structures must mirror: every `stu` element has its `key` partner.
+3. When the LAST legacy worksheet is migrated, remove `instructor` from
+   `publication-key.ptx`'s `<version include>` list and note it in the PR.
+
+**Accept:** all four gates pass; sentinel counts 0 / >=1; no
+`<commentary>` remains in the migrated worksheet; student and
+instructor copies mirror each other.
