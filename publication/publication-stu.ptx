@@ -3,17 +3,21 @@
 	publication-stu.ptx
 	Student handout: blanks visible, but solutions and answers suppressed.
 
-	Same source tree as the instructor key (publication-key.ptx); the only
-	difference is that here <task-default>, <solutions-divisional>, and
-	<solutions-worksheet> emit only the <statement/>, and the <exercise-*>
-	visibility flags set solution="no" / answer="no", so the <solution>
-	bodies are dropped from this build.  The <fillin/> blanks still render
-	(students write in them during class).
+	Same source tree as the instructor key (publication-key.ptx); the
+	differences are that here <task-default>, <solutions-divisional>, and
+	<solutions-worksheet> emit only the <statement/>, the <exercise-*>
+	visibility flags set solution="no" / answer="no" (so <solution> bodies
+	are dropped), and <version include> below lists the "stu" component
+	but not "key" or "instructor" — per the shared worksheet conventions
+	(checklists/worksheet-conventions.md), component="stu" elements
+	(fillin paragraphs, statement-only exercises with workspace) appear in
+	this build only.  The <fillin/> blanks still render (students write in
+	them during class).
 -->
 <publication>
 	<source>
 		<directories external="../assets" generated="../generated-assets" />
-		<version include="web readings emoji example-solution" />
+		<version include="web readings emoji example-solution stu" />
 	</source>
 
 	<common>

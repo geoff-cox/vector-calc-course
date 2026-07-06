@@ -9,13 +9,15 @@
   @output-dir and @stage below must stay the CLI defaults.
   The root landing page is the static `site/` directory, copied over
   the stage last; it must link every deployed target.
-  Instructor-only <commentary> visibility: the historical `commentary`
-  stringparam is deprecated and NON-FUNCTIONAL in PreTeXt 2.43.1
-  (deprecation 2024-02-16), so it is deliberately NOT set here.
-  Instead, commentary elements carry component="instructor" and the
-  instructor publication files (publication-key.ptx) list that
-  component in <version include="..."/>; the student publication file
-  (publication-stu.ptx) omits it.
+  Student/instructor visibility: paired component="stu" / component="key"
+  elements per the shared worksheet conventions
+  (checklists/worksheet-conventions.md), selected by the publication
+  files' <version include="..."/> lists — publication-stu.ptx includes
+  "stu", publication-key.ptx includes "key" (plus "instructor" for any
+  legacy component="instructor" content, pending Task M6 migration of
+  the legacy worksheets).  The historical `commentary` stringparam is
+  deprecated and NON-FUNCTIONAL in PreTeXt 2.43.1 (deprecation
+  2024-02-16), so it is deliberately NOT set here.
 -->
 <project
   ptx-version="2"

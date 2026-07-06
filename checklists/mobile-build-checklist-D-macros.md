@@ -20,7 +20,7 @@ Whenever a document authored in Tracks A–C uses a LaTeX macro:
 3. Old Beamer decks use header macros like `\D` (displaystyle), `\B`
    (reveal box), `\ON`, `\OBUL`, `\WORK`. Do **not** port
    presentation-mechanic macros (`\B`, `\ON`, `\OBUL`) — they are the
-   reveal system, replaced by fillin/commentary. Port genuinely
+   reveal system, replaced by the stu/key component pairs. Port genuinely
    semantic ones (e.g., a `\WORK`-style line-integral shorthand) only
    if used in 3+ places; otherwise inline the LaTeX.
 
