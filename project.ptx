@@ -63,13 +63,18 @@
     >
       <stringparams author.deprecations.all="yes" author.tools="yes" />
     </target>
+    <!-- Not yet marked for deploy: the coursebook is the full APEX
+         source until Task B2 prunes it to the MA 301 chapter subset.
+         Building it in CI on every push is minutes of wasted work for
+         content that is not course-ready.  After B2, add
+         deploy-dir="book" here and re-enable the Coursebook card in
+         site/index.html. -->
     <target
       name="book"
       format="html"
       source="book.ptx"
       publication="publication-standard-web.ptx"
       output-dir="book"
-      deploy-dir="book"
       >
         <stringparams html.annotation="hypothesis"/>
     </target>
