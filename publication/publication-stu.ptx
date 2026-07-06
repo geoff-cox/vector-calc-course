@@ -4,10 +4,10 @@
 	Student handout: blanks visible, but solutions and answers suppressed.
 
 	Same source tree as the instructor key (publication-key.ptx); the
-	differences are that here <task-default>, <solutions-divisional>, and
-	<solutions-worksheet> emit only the <statement/>, the <exercise-*>
-	visibility flags set solution="no" / answer="no" (so <solution> bodies
-	are dropped), and <version include> below lists the "stu" component
+	differences are that here <task-default> emits only <statement/> and <hint/>,
+	<solutions-divisional> and <solutions-worksheet> emit only the <statement/>,
+	the <exercise-*> visibility flags set solution="no" / answer="no" (so
+	<solution> bodies are dropped), and <version include> below lists the "stu" component
 	but not "key" or "instructor" — per the shared worksheet conventions
 	(checklists/worksheet-conventions.md), component="stu" elements
 	(fillin paragraphs, statement-only exercises with workspace) appear in
