@@ -128,17 +128,17 @@
 </main>
 
 <footer>
-  <div id="build-info"><a href="build-info.txt">build-info.txt</a></div>
+  <div id="build-info"><a href="build-info.txt">build-info.txt</a><span id="build-stamp"></span></div>
 </footer>
 
 <script>
-  /* Show the deploy stamp inline; the plain link above is the fallback. */
-  fetch('build-info.txt')
+  /* Show the deploy stamp inline next to the link, which stays clickable. */
+  fetch('build-info.txt', { cache: 'no-store' })
     .then(function (r) { return r.ok ? r.text() : ''; })
     .then(function (t) {
-      if (t) { document.getElementById('build-info').textContent = t.trim(); }
+      if (t) { document.getElementById('build-stamp').textContent = ' — ' + t.trim(); }
     })
-    .catch(function () { /* keep fallback link */ });
+    .catch(function () { /* stamp stays blank; the link still works */ });
 </script>
 </body>
 </html>
