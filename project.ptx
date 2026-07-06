@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- This file, the project manifest, provides the overall configuration for your PreTeXt project. To edit the content of your document, open `source/main.ptx`. See https://pretextbook.org/doc/guide/html/processing-CLI.html#cli-project-manifest. -->
-<project 
+<!--
+  Deployment (Task E1): .github/workflows/deploy-pages.yml runs
+  `pretext build` with the deploys flag, then stages via `pretext
+  deploy` in stage-only mode, so a target is published iff it carries
+  a `deploy-dir` attribute here.
+  The workflow stamps and uploads `output/stage`, which is why
+  @output-dir and @stage below must stay the CLI defaults.
+  The root landing page is the static `site/` directory, copied over
+  the stage last; it must link every deployed target.
+  Instructor-only <commentary> visibility: the historical `commentary`
+  stringparam is deprecated and NON-FUNCTIONAL in PreTeXt 2.43.1
+  (deprecation 2024-02-16), so it is deliberately NOT set here.
+  Instead, commentary elements carry component="instructor" and the
+  instructor publication files (publication-key.ptx) list that
+  component in <version include="..."/>; the student publication file
+  (publication-stu.ptx) omits it.
+-->
+<project
   ptx-version="2"
-  output-dir="pretext-output"
-  stage="pretext-output/deployed"
+  output-dir="output"
+  stage="output/stage"
   >
   <targets>
-    <target 
-      name="homepage" 
-      format="html" 
+    <target
+      name="homepage"
+      format="html"
       source="homepage.ptx"
       publication="homepage-pub.ptx"
       output-dir="homepage"
@@ -16,25 +33,27 @@
       >
         <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
     </target>
-    <target	
+    <target
       name="web-stu"
       source="notes.ptx"
       format="html"
       publication="publication-stu.ptx"
       output-dir="web-stu"
+      deploy-dir="notes-student"
     >
       <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
     </target>
-    <target	
+    <target
       name="web-key"
       source="notes.ptx"
       format="html"
       publication="publication-key.ptx"
       output-dir="web-key"
+      deploy-dir="notes-instructor"
     >
       <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
     </target>
-    <target	
+    <target
       name="pdf-key"
       source="notes.ptx"
       format="pdf"
@@ -42,13 +61,16 @@
       output-dir="pdf-key"
       output-filename="ma301-notes-key.pdf"
     >
-      <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+      <stringparams author.deprecations.all="yes" author.tools="yes" />
     </target>
     <target
       name="book"
       format="html"
       source="book.ptx"
-      publication="publication-standard-web.ptx">
+      publication="publication-standard-web.ptx"
+      output-dir="book"
+      deploy-dir="book"
+      >
         <stringparams html.annotation="hypothesis"/>
     </target>
   </targets>

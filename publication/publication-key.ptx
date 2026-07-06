@@ -3,14 +3,19 @@
 	publication-instructor.ptx
 	Instructor key: blanks visible AND solutions/answers shown inline.
 
-	Same source tree as the student build; the only difference is that
-	<task-default>, <solutions-divisional>, and <solutions-worksheet>
-	here list every part of an exercise, so the <solution> bodies appear.
+	Same source tree as the student build; the differences are that
+	(1) <task-default>, <solutions-divisional>, and <solutions-worksheet>
+	here list every part of an exercise, so the <solution> bodies appear,
+	and (2) <version include> below adds the "instructor" component, so
+	elements marked component="instructor" (the answer-key <commentary>
+	blocks in the worksheets) are included in this build only.  The old
+	`commentary` stringparam is deprecated and non-functional in PreTeXt
+	2.43.1; component + version support is the working mechanism.
 -->
 <publication>
 	<source>
 		<directories external="../assets" generated="../generated-assets" />
-		<version include="web readings emoji example-solution" />
+		<version include="web readings emoji example-solution instructor" />
 	</source>
 
 	<common>
