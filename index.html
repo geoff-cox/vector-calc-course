@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+  site/index.html  (Task E1)
+
+  Root landing page for the GitHub Pages deployment. Because this
+  directory exists (with no site.ptx/site.json), the PreTeXt CLI uses
+  its "static" deploy strategy: every deploy target in project.ptx is
+  staged into its deploy-dir, then the contents of site/ are copied
+  over the top of the stage. That makes this file the index at
+  https://<user>.github.io/<repo>/.
+
+  Keep the links below in sync with the deploy-dir attributes in
+  project.ptx. The build stamp is written by deploy-pages.yml to
+  build-info.txt next to this file at deploy time.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>MA 301 — Advanced Mathematics for Scientists and Engineers</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --fg: #1a1a1a;
+    --bg: #ffffff;
+    --muted: #5a5f66;
+    --card: #f4f5f7;
+    --accent: #8a1e1e;
+    --border: #d9dce1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fg: #e8e8e8;
+      --bg: #16181c;
+      --muted: #9aa1ab;
+      --card: #21252c;
+      --accent: #e0a0a0;
+      --border: #3a4048;
+    }
+  }
+  body {
+    margin: 0 auto;
+    max-width: 42rem;
+    padding: 2rem 1.25rem 3rem;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--fg);
+    background: var(--bg);
+    line-height: 1.5;
+  }
+  header h1 {
+    font-size: 1.6rem;
+    margin: 0 0 .25rem;
+  }
+  header p.sub {
+    margin: 0 0 2rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+  ul.targets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: .75rem;
+  }
+  ul.targets a {
+    display: block;
+    padding: 1rem 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: .5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  ul.targets a:hover,
+  ul.targets a:focus-visible {
+    border-color: var(--accent);
+  }
+  ul.targets .name {
+    font-weight: bold;
+    color: var(--accent);
+  }
+  ul.targets .desc {
+    display: block;
+    font-size: .9rem;
+    color: var(--muted);
+  }
+  footer {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: .8rem;
+    color: var(--muted);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>MA 301 — Advanced Mathematics for Scientists&nbsp;and&nbsp;Engineers</h1>
+  <p class="sub">Multivariable and vector calculus &mdash; course site build index</p>
+</header>
+
+<main>
+  <ul class="targets">
+    <li><a href="homepage/">
+      <span class="name">Course Homepage &amp; Syllabus</span>
+      <span class="desc">Schedule, policies, and the MA&nbsp;301 syllabus</span>
+    </a></li>
+    <!-- Coursebook card disabled until Task B2 prunes the APEX source
+         to the MA 301 chapter subset; the book target is not marked
+         for deploy in project.ptx until then.  Re-enable both together.
+    <li><a href="book/">
+      <span class="name">Coursebook</span>
+      <span class="desc">Adapted from <em>APEX Calculus</em> (CC&nbsp;BY-NC&nbsp;4.0)</span>
+    </a></li>
+    -->
+    <li><a href="notes-student/">
+      <span class="name">Guided Lecture Notes — Student</span>
+      <span class="desc">In-class worksheets with blanks to fill in</span>
+    </a></li>
+    <li><a href="notes-instructor/">
+      <span class="name">Guided Lecture Notes — Instructor Key</span>
+      <span class="desc">Same worksheets with answers and commentary revealed</span>
+    </a></li>
+  </ul>
+</main>
+
+<footer>
+  <div id="build-info"><a href="build-info.txt">build-info.txt</a><span id="build-stamp"></span></div>
+</footer>
+
+<script>
+  /* Show the deploy stamp inline next to the link, which stays clickable. */
+  fetch('build-info.txt', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.text() : ''; })
+    .then(function (t) {
+      if (t) { document.getElementById('build-stamp').textContent = ' — ' + t.trim(); }
+    })
+    .catch(function () { /* stamp stays blank; the link still works */ });
+</script>
+</body>
+</html>
