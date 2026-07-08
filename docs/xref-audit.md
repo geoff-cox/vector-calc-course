@@ -26,9 +26,9 @@ A "chapter" = its `chapter_*.ptx` file **plus** every `sec_*.ptx` /
 
 | Metric | Value |
 |---|---|
-| Files to delete in B2 (10 chapters + exclusive sections) | **72** (10 chapter + 62 section files) |
+| Files to delete in B2 (10 chapters + exclusive sections) | **72** (10 chapter files + 62 section files) |
 | Section files shared between a kept and a deleted chapter | **0** (deletion is clean) |
-| Distinct ids defined in deleted chapters (`OUT`) | 6,600 (lxml) / 7,317 (regex superset) |
+| Distinct (parser-visible) ids defined in deleted chapters (`OUT`) | **6,600** |
 | Distinct ids in kept chapters + frontmatter + appendix (`IN`) | 3,153 |
 | **Cross-boundary xref occurrences (keep/appendix → deleted)** | **69** |
 | → classified `IMPORT` | 30 occurrences / **23 unique items** |
@@ -174,12 +174,14 @@ repair on account of cross-boundary references.
   (in `sec_taylor_poly.ptx`). These already violate id-uniqueness but sit
   entirely inside deleted content, so B2 removes the problem. No action
   needed; noted for completeness.
-- The `OUT` id count differs by tool (6,600 lxml vs 7,317 regex) purely
-  because the regex superset also counts 719 ids inside XML comments and
-  246 duplicate id attributes. None of these extra ids are referenced
-  from kept content, so the disposition tables are unaffected (verified
-  by re-running the xref scan against the full regex superset — identical
-  69/46 result).
+- The `OUT` set is **6,600 distinct parser-visible ids** (lxml). A raw
+  text scan that also matches `xml:id`/`label` attributes *inside*
+  commented-out blocks finds 7,317 distinct id strings; the entire
+  717-id difference is ids that appear **only inside XML comments**
+  (comment-stripped regex and the parser agree exactly at 6,600). None of
+  those commented ids are referenced from kept content, so the
+  disposition tables are unaffected — re-running the xref scan against
+  the full 7,317-string superset yields the identical 69/46 result.
 
 ## Proposed B2 / B3 execution plan
 
