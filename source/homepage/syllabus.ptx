@@ -4,7 +4,7 @@
 	<introduction>
 		<p>
 			Carefully review every item of this syllabus. By taking this course, you are agreeing
-			to the polices laid out in this document. Let me know if you have any questions.
+			to the policies laid out in this document. Let me know if you have any questions.
 		</p>
 	</introduction>
 
@@ -195,7 +195,7 @@
 				<!-- TODO(geoff): set the current MA 301 WeBWorK URL. The 2015 syllabus used https://euler.vmi.edu/webwork2 with section "MA_301_S15" (both dead); the MA 311 template host is vmi-math.com/webwork2. -->
 				The link below will take you to the WeBWorK page for this course.
 				<dl><li><title>URL</title><p>URL TBD</p></li></dl>
-				Your username and temporary password is the part of your VMI email address before the <c>@</c> symbol. For example, if your email is <c>smith66@vmi.edu</c>, you would log in with:
+				Your username and temporary password are both the part of your VMI email address before the <c>@</c> symbol. For example, if your email is <c>smith66@vmi.edu</c>, you would log in with:
 				<aside>
 					<title>Forgot Password?</title>
 					<p>
@@ -206,7 +206,7 @@
 					<li><title>Username:</title>smith66</li>
 					<li><title>Password:</title>smith66</li>
 				</dl>
-				After you log in for the first time change your password in "Account Settings."
+				After you log in for the first time, change your password in <c>Account Settings</c>.
 			</p>
 		</subsubsection>
 
