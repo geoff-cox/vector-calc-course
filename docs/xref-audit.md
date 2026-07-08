@@ -112,7 +112,10 @@ recovery is cheap.
 ### GENERIC — replace the xref with neutral prose
 
 Each targets a whole section/chapter; B3 rewrites the sentence to drop
-the link. Suggested prose is a starting point — reword to fit the
+the link. Per the resolved editorial decision (see
+[Editorial decisions](#editorial-decisions-resolved-with-instructor)),
+the canonical replacement term is **"single-variable calculus"** applied
+uniformly; the column below is a starting point — reword to fit the
 sentence, with no dangling "see …".
 
 | # | xref ref | target type | title | referenced from (file:line) | suggested replacement prose |
@@ -123,14 +126,14 @@ sentence, with no dangling "see …".
 | 4 | `sec_param_eqs` | section | Parametric Equations | sec_vvf_calc:851<br>sec_lagrange:24 | "from single-variable calculus" |
 | 5 | `sec_par_calc` | section | Calculus and Parametric Equations | sec_vvf_calc:1398 | "from single-variable calculus" |
 | 6 | `sec_FTC` | section | The Fundamental Theorem of Calculus | sec_vvf_motion:1199 | "from single-variable calculus" |
-| 7 | `chapter_integration` | chapter | Integration | sec_vvf_motion:1219<br>chapter_mult_int_UL:13<br>sec_stokes_divergence:1163 | "as covered in a first-year calculus course" |
+| 7 | `chapter_integration` | chapter | Integration | sec_vvf_motion:1219<br>chapter_mult_int_UL:13<br>sec_stokes_divergence:1163 | "as developed in single-variable calculus" |
 | 8 | `sec_limit_analytically` | section | Finding Limits Analytically | sec_multi_limit:575 | "from single-variable calculus" |
 | 9 | `sec_differentials` | section | Differentials | sec_total_differential:7<br>sec_total_differential:465<br>sec_transformations:612 | "from single-variable calculus" |
-| 10 | `chapter_derivatives` | chapter | Derivatives | sec_total_differential:463<br>sec_multi_derivative_matrix:35<br>sec_multi_derivative_matrix:80 | "as covered in a first-year calculus course" |
+| 10 | `chapter_derivatives` | chapter | Derivatives | sec_total_differential:463<br>sec_multi_derivative_matrix:35<br>sec_multi_derivative_matrix:80 | "as developed in single-variable calculus" |
 | 11 | `sec_chainrule` | section | The Chain Rule | sec_multi_chain:144 | "from single-variable calculus" |
 | 12 | `sec_imp_deriv` | section | Implicit Differentiation | sec_multi_chain:552<br>sec_multi_chain:619<br>sec_multi_chain:629 | "from single-variable calculus" |
 | 13 | `sec_extreme_values` | section | Extreme Values | sec_multi_extreme_values:69<br>sec_lagrange:58<br>sec_lagrange:580<br>sec_hessian:8 | "from single-variable calculus" |
-| 14 | `chapter_deriv_apps` | chapter | Applications of the Derivative | sec_lagrange:555 | "as covered in a first-year calculus course" |
+| 14 | `chapter_deriv_apps` | chapter | Applications of the Derivative | sec_lagrange:555 | "as developed in single-variable calculus" |
 | 15 | `sec_optimization` | section | Optimization | sec_lagrange:557<br>sec_lagrange:569<br>sec_lagrange:578<br>sec_lagrange:604 | "from single-variable calculus" |
 | 16 | `sec_ABC` | section | Area Between Curves | sec_iterated_integrals:220 | "from single-variable calculus" |
 | 17 | `sec_disk` | section | Volume by Cross-Sectional Area; Disk and Washer Methods | sec_double_int_volume:443 | "from single-variable calculus" |
@@ -183,6 +186,21 @@ repair on account of cross-boundary references.
   disposition tables are unaffected — re-running the xref scan against
   the full 7,317-string superset yields the identical 69/46 result.
 
+## Editorial decisions (resolved with instructor)
+
+Both B3 editorial questions raised by this audit are settled:
+
+1. **GENERIC prose voice — uniform "single-variable calculus".** All 39
+   GENERIC references are reworded with the single canonical term
+   *single-variable calculus* (no VMI course numbers, keeping the
+   CC-BY-NC book portable). The suggested-prose column and B3 plan above
+   reflect this.
+2. **Recap vs. generic — depend-on rule.** A GENERIC reference gets a
+   1–3 sentence self-contained recap **only where the following math
+   depends** on the deleted technique; motivational/"compare to"
+   mentions get the generic phrase. Every recap is itemized in the B3 PR
+   for review (estimated ~5–8; candidates listed in B3 step 3).
+
 ## Proposed B2 / B3 execution plan
 
 **B2 — prune (own PR):**
@@ -209,7 +227,18 @@ repair on account of cross-boundary references.
    ("From differential calculus:" / "From integral calculus:"), assign
    `imported-<old-id>`, and reroute all 30 references.
 3. For the **23 GENERIC** targets (39 references): reword each sentence
-   with neutral prose per the table; verify no dangling "see".
+   using the canonical term **"single-variable calculus"** (uniform);
+   verify no dangling "see". Where the surrounding math actually
+   *depends* on the deleted technique, write a **1–3 sentence
+   self-contained recap** instead of a bare generic phrase, and itemize
+   every recap in the B3 PR's Improvements. Likely recap candidates
+   (~5–8): the multivariable chain-rule / implicit-differentiation
+   passages (`sec_multi_chain` → `sec_chainrule`, `sec_imp_deriv`),
+   Lagrange multipliers leaning on single-variable optimization /
+   extreme values (`sec_lagrange`, `sec_multi_extreme_values`), and
+   change-of-variables invoking substitution (`sec_transformations` →
+   `sec_substitution`). Passing "compare to" mentions get the generic
+   phrase only.
 4. Rebuild; the gate is **zero** unresolved xref warnings.
    `grep -c 'imported-' appendix_back_reference.ptx` should be ≥ 23.
 
