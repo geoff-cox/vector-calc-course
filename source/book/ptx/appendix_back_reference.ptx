@@ -1796,7 +1796,7 @@
       <definition xml:id="imported-def-linearization">
           <statement>
             <p>
-              Let <m>f</m> be differentiable on an open inverval <m>I</m> containing <m>c</m>.
+              Let <m>f</m> be differentiable on an open interval <m>I</m> containing <m>c</m>.
               The function <m>\ell(x) = \fp(c)(x-c)+f(c)</m> is called the <term>linearization</term>,
               or <term>linear approximation</term> of <m>f</m> at <m>c</m>.
 
