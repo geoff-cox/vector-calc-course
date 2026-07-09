@@ -609,7 +609,7 @@
 
 		<p>
 			The transformation affects the size of the subintervals in the partition:
-			from single-variable calculus, we know that <m>\Delta x_i \approx T\primeskip' (u_i)\Delta x_i</m>.
+			from single-variable calculus, we know that <m>\Delta x_i \approx T\primeskip' (u_i)\Delta u_i</m>.
 			Thus, the derivative tells us how the size of each subinterval changes under the transformation.
 		</p>
 

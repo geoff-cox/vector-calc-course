@@ -1794,6 +1794,7 @@
 
 
       <definition xml:id="imported-def-linearization">
+          <title>Linearization</title>
           <statement>
             <p>
               Let <m>f</m> be differentiable on an open interval <m>I</m> containing <m>c</m>.
@@ -1968,7 +1969,7 @@
 
 
 
-      <theorem xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="imported-thm_volume_by_cross_section">
+      <theorem xml:id="imported-thm_volume_by_cross_section">
           <title>Volume By Cross-Sectional Area</title>
           <statement>
             <p>
