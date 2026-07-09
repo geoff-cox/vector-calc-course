@@ -4,35 +4,21 @@
 <paragraphs xml:id="pars-using-text">
 	<title>A Note on Using this Text</title>
 		<p>
-			Thank you for reading this short preface.
-			Allow us to share a few key points about the text so that you may better understand what you will find beyond this page.
+			This coursebook is an adaptation of <pubtitle>APEX Calculus</pubtitle> by Gregory Hartman (Virginia Military Institute),
+			used under a Creative Commons Attribution<mdash/>Noncommercial 4.0 International license.
+			It has been pruned for <term>MA 301 <ndash/> Advanced Mathematics for Scientists and Engineers</term>,
+			retaining the multivariable and vector<mdash/>analysis chapters<mdash/>vectors, vector<mdash/>valued functions,
+			functions of several variables, multiple integration, and vector calculus<mdash/>and omitting the
+			single<mdash/>variable calculus chapters (limits, derivatives, integration and its techniques and applications,
+			differential equations, parametric and polar curves, and sequences and series) that MA 301 treats as prerequisite.
 		</p>
 
 		<p>
-			This text comprises a three<mdash/>volume series on Calculus.
-			The first part covers material taught in many <q>Calc 1</q> courses:
-			limits, derivatives, and the basics of integration, found in Chapters 1 through 6.1.
-			The second text covers material often taught in <q>Calc 2:</q> integration and its applications,
-			including an introduction to differential equations,
-			along with an introduction to sequences, series and Taylor Polynomials,
-			found in Chapters 5 through 8.
-			The third text covers topics common in <q>Calc 3</q> or <q>multivariable calc:</q>
-			parametric equations, polar coordinates, vector-valued functions, and functions of more than one variable,
-			found in Chapters 10 through 15.
-			All three are available separately for free at <url href="https://apexcalculus.com" visual="apexcalculus.com">apexcalculus.com</url>,
-			and HTML versions of the book can be found at <url href="https://opentext.uleth.ca/calculus.html" visual="opentext.uleth.ca/calculus.html">opentext.uleth.ca</url>.
-		</p>
-
-		<p>
-			These three texts are intended to work together and make one cohesive text,
-			<pubtitle>APEX Calculus</pubtitle>, which can also be downloaded from the website.
-		</p>
-
-		<p>
-			Printing the entire text as one volume makes for a large, heavy, cumbersome book.
-			One can certainly only print the pages they currently need, but some prefer to have a nice,
-			bound copy of the text. Therefore this text has been split into these three manageable parts,
-			each of which can be purchased for about $15 at <url href="https://amazon.com" visual="amazon.com">Amazon.com</url>.
+			The complete, unabridged three<mdash/>volume <pubtitle>APEX Calculus</pubtitle> remains freely available at
+			<url href="https://apexcalculus.com" visual="apexcalculus.com">apexcalculus.com</url>,
+			with HTML versions at <url href="https://opentext.uleth.ca/calculus.html" visual="opentext.uleth.ca/calculus.html">opentext.uleth.ca</url>.
+			The notes that follow<mdash/>on how to read the text, its interactive 3D graphics, and the APEX project<mdash/>are
+			retained from the original work.
 		</p>
 	</paragraphs>
 

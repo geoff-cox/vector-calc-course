@@ -5,7 +5,7 @@
 
   <book xml:id="apex-calculus" label="apex-calculus">
     <title>APEX Calculus</title>
-    <subtitle>for University of Lethbridge</subtitle>
+    <subtitle>adapted for MA 301 — Advanced Mathematics for Scientists and Engineers</subtitle>
     <frontmatter label="frontmatter">
       <bibinfo>
         <author>
@@ -66,26 +66,6 @@
       <xi:include href="./book/ptx/preface.ptx"/>
       <xi:include href="./book/ptx/preface-history.ptx"/>
     </frontmatter>
-
-    <xi:include href="./book/ptx/chapter_limits.ptx"/>
-
-    <xi:include href="./book/ptx/chapter_derivatives.ptx"/>
-
-    <xi:include href="./book/ptx/chapter_graphbehavior.ptx"/>
-
-    <xi:include href="./book/ptx/chapter_deriv_apps_UL-std.ptx"/>
-
-    <xi:include href="./book/ptx/chapter_integration.ptx"/>
-
-    <xi:include href="./book/ptx/chapter_anti_tech.ptx"/>
-
-    <xi:include href="./book/ptx/chapter_app_of_int.ptx"/>
-
-    <xi:include href="./book/ptx/chapter_differential_equations.ptx"/>
-
-    <xi:include href="./book/ptx/chapter_planar_curves.ptx"/>
-
-    <xi:include href="./book/ptx/chapter_sequences_series_UL.ptx"/>
 
     <xi:include href="./book/ptx/chapter_vectors.ptx"/>
 
