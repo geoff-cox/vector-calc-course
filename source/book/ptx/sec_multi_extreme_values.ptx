@@ -66,7 +66,7 @@
     <p>
       If <m>f</m> has a relative or absolute maximum at <m>(x_0,y_0)</m>,
       it means every curve on the graph of <m>f</m> through <m>(x_0,y_0,f(x_0,y_0))</m> will also have a relative or absolute maximum at <m>P</m>.
-      Recalling what we learned in <xref ref="sec_extreme_values"/>,
+      Recalling what we learned about extreme values in single-variable calculus,
       the slopes of the tangent lines to these curves at <m>P</m> must be 0 or undefined.
       Since directional derivatives are computed using <m>f_x</m> and <m>f_y</m>,
       we are led to the following definition and theorem.
@@ -793,7 +793,7 @@
     <title>Constrained Optimization</title>
     <p>
       When optimizing functions of one variable such as <m>y=f(x)</m>,
-      we made use of <xref ref="thm_extreme_val"/>,
+      we made use of <xref ref="imported-thm_extreme_val"/>,
       the Extreme Value Theorem, that said that over a closed interval <m>I=[a,b]</m>,
       a continuous function has both a maximum and minimum value.
       To find these maximum and minimum values,

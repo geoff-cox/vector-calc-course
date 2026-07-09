@@ -10,8 +10,7 @@
 
     <p>
       In this chapter we apply techniques of integral calculus to multivariable functions.
-      In <xref ref="chapter_integration"/>
-      we learned how the definite integral of a single variable function gave us
+      In single-variable calculus we learned how the definite integral of a single variable function gave us
       <q>area under the curve.</q>
       In this chapter we will see that integration applied to a multivariable function gives us
       <q>volume under a surface.</q>

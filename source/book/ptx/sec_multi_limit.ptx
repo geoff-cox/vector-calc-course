@@ -570,9 +570,8 @@
 
     <p>
       This theorem,
-      combined with <xref ref="thm_poly_rat" text="global">Theorems</xref>
-      and <xref ref="thm_lim_continuous" text="global"/>
-      of <xref ref="sec_limit_analytically"/>,
+      combined with <xref ref="imported-thm_poly_rat" text="global">Theorems</xref>
+      and <xref ref="imported-thm_lim_continuous" text="global"/>,
       allows us to evaluate many limits.
     </p>
 
@@ -793,7 +792,7 @@
   <subsection>
     <title>Continuity</title>
     <p>
-      <xref ref="def_continuous"/>
+      <xref ref="imported-def_continuous"/>
       defines what it means for a function of one variable to be continuous.
       In brief, it meant that the graph of the function did not have breaks, holes,
       jumps, etc.
@@ -872,7 +871,7 @@
 
         <p>
           The second limit does not contain <m>y</m>.
-          By <xref ref="thm_special_limits"/> we can say
+          By <xref ref="imported-thm_special_limits"/> we can say
           <md>
             \lim_{(x,y)\to (0,0)} \frac{\sin(x) }{x} = \lim_{x\to 0} \frac{\sin(x) }{x} = 1
           </md>.
@@ -970,7 +969,7 @@
     </example>
 
     <p>
-      The following theorem is very similar to <xref ref="thm_continuity_algebra"/>,
+      The following theorem is very similar to <xref ref="imported-thm_continuity_algebra"/>,
       giving us ways to combine continuous functions to create other continuous functions.
     </p>
 
@@ -1047,12 +1046,12 @@
       </statement>
       <solution>
         <p>
-          We will apply both <xref ref="thm_continuity_algebra" text="global">Theorems</xref>
+          We will apply both <xref ref="imported-thm_continuity_algebra" text="global">Theorems</xref>
           and <xref ref="thm_multi_continuous_prop" text="global"/>.
           Let <m>f_1(x,y) = x^2</m>.
           Since <m>y</m> is not actually used in the function,
           and polynomials are continuous
-          (by <xref ref="thm_continuity_algebra"/>),
+          (by <xref ref="imported-thm_continuity_algebra"/>),
           we conclude <m>f_1</m> is continuous everywhere.
           A similar statement can be made about <m>f_2(x,y) = \cos(y)</m>.
           Part 3 of <xref ref="thm_multi_continuous_prop"/>

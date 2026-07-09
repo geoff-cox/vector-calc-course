@@ -142,7 +142,7 @@
     </figure>
 
     <p>
-      We use the identity <m>z=z</m> along with the identities found in <xref ref="idea_polarconvert"/>
+      We use the identity <m>z=z</m> along with the identities found in <xref ref="imported-idea_polarconvert"/>
       to convert between the rectangular coordinate <m>(x,y,z)</m> and the cylindrical coordinate <m>(r,\theta,z)</m>, namely:
       <md>
         \begin{array}{l} \text{ From rectangular to cylindrical: }  r=\sqrt{x^2+y^2}, \tan(\theta) = y/x \text{ and }  z=z;\\
