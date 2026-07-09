@@ -4,8 +4,8 @@
   <introduction>
     <p>
       In <xref ref="sec_multi_extreme_values"/>,
-      we saw that, just as for functions of a single variable
-      (recall <xref ref="sec_extreme_values"/>), local extreme values occur at critical points.
+      we saw that, just as for functions of a single variable,
+      local extreme values occur at critical points.
       <xref ref="def_multi_critical_point"/>
       defined a critical point <m>(a,b)</m> of a function <m>f(x,y)</m>  to be one where the gradient vanishes:
       <md>

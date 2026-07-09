@@ -15,7 +15,7 @@
     <title>Limits of Vector-Valued Functions</title>
     <p>
       The initial definition of the limit of a vector-valued function is a bit intimidating,
-      as was the definition of the limit in <xref ref="def_limit"/>.
+      as was the definition of the limit in <xref ref="imported-def_limit"/>.
       The theorem following the definition shows that in practice,
       taking limits of vector-valued functions is no more difficult than taking limits of real-valued functions.
     </p>
@@ -847,8 +847,7 @@
       The graph in <xref ref="fig_vvfderiv3"/>
       shows that there is a cusp at this point.
       This leads us to another definition of <em>smooth</em>,
-      previously defined by <xref ref="def_smooth"/>
-      in <xref ref="sec_param_eqs"/>.
+      previously defined by <xref ref="imported-def_smooth"/>.
     </p>
 
     <definition xml:id="def_vector_smooth">
@@ -1169,11 +1168,11 @@
     </p>
 
     <p>
-      We can define antiderivatives and the indefinite integral of vector-valued functions in the same manner we defined indefinite integrals in <xref ref="def_antider"/>.
-      However, we cannot define the definite integral of a vector-valued function as we did in <xref ref="def_def_int"/>.
+      We can define antiderivatives and the indefinite integral of vector-valued functions in the same manner we defined indefinite integrals in <xref ref="imported-def_antider"/>.
+      However, we cannot define the definite integral of a vector-valued function as we did in <xref ref="imported-def_def_int"/>.
       That definition was based on the signed area between a function <m>y=f(x)</m> and the <m>x</m>-axis.
       An area-based definition will not be useful in the context of vector-valued functions.
-      Instead, we define the definite integral of a vector-valued function in a manner similar to that of <xref ref="thm_riemann_sum"/>,
+      Instead, we define the definite integral of a vector-valued function in a manner similar to that of <xref ref="imported-thm_riemann_sum"/>,
       utilizing Riemann sums.
     </p>
 
@@ -1394,8 +1393,7 @@
       <md>
         \text{ Arc Length }  = \int_a^b\sqrt{\fp(t)^2+\gp(t)^2}\, dt
       </md>,
-      as stated in <xref ref="thm_arc_length_parametric"/>
-      in <xref ref="sec_par_calc"/>.
+      as stated in <xref ref="imported-thm_arc_length_parametric"/>.
       If <m>\vrt = \la f(t), g(t)\ra</m>,
       note that <m>\sqrt{\fp(t)^2+\gp(t)^2} = \norm{\vrp(t)}</m>.
       Therefore we can express the arc length of the graph of a vector-valued function as an integral of the magnitude of its derivative.

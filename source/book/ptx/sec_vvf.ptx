@@ -858,9 +858,7 @@
     </example>
 
     <p>
-      We considered average rates of change in <xref ref="sec_limit_intro" text="global">Sections</xref>
-      and <xref ref="sec_derivative" text="global"/>
-      as we studied limits and derivatives.
+      We considered average rates of change in single-variable calculus as we studied limits and derivatives.
       The same is true here;
       in the following section we apply calculus concepts to vector-valued functions as we find limits,
       derivatives, and integrals.

@@ -141,8 +141,7 @@
     </theorem>
 
     <p>
-      The Chain Rule of <xref ref="sec_chainrule"/>
-      states that
+      The Chain Rule from single-variable calculus states that
       <md>
         \frac{d}{dx}\Big(f\big(g(x)\big)\Big) = \fp\big(g(x)\big)\gp(x)
       </md>.
@@ -549,7 +548,7 @@
   <subsection xml:id="subsec-implicit-diff">
     <title>Implicit Differentiation</title>
     <p>
-      We studied finding <m>\frac{dy}{dx}</m> when <m>y</m> is given as an implicit function of <m>x</m> in detail in <xref ref="sec_imp_deriv"/>.
+      We studied finding <m>\frac{dy}{dx}</m> when <m>y</m> is given as an implicit function of <m>x</m> in detail in single-variable calculus.
       We find here that the Multivariable Chain Rule gives a simpler method of finding <m>\frac{dy}{dx}</m>.
     </p>
 
@@ -616,7 +615,7 @@
 
     <p>
       We practice using <xref ref="thm_implicit_deriv_chain"/>
-      by applying it to a problem from <xref ref="sec_imp_deriv"/>.
+      by applying it to a problem previously solved with single-variable implicit differentiation.
     </p>
 
     <example xml:id="ex_mchain5">
@@ -625,9 +624,7 @@
         <p>
           Given the implicitly defined function <m>\sin(x^2y^2)+y^3=x+y</m>,
           find <m>\yp</m>.
-          Note: this is the same problem as given in <xref ref="ex_implicit5"/>
-          of <xref ref="sec_imp_deriv"/>,
-          where the solution took about a full page to find.
+          Note: this is the same problem solved earlier using single-variable implicit differentiation, where the solution took about a full page to find.
         </p>
       </statement>
       <solution>
@@ -644,7 +641,7 @@
           <md>
             \frac{dy}{dx} = -\frac{2xy^2\cos(x^2y^2)-1}{2x^2y\cos(x^2y^2)+3y^2-1}
           </md>,
-          which matches our solution from <xref ref="ex_implicit5"/>.
+          which matches the solution found earlier by single-variable implicit differentiation.
         </p>
       </solution>
     </example>

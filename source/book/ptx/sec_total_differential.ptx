@@ -3,9 +3,7 @@
   <title>Differentiability and the Total Differential</title>
   <introduction>
     <p>
-      We studied <em>differentials</em>
-      in <xref ref="sec_differentials"/>,
-      where <xref ref="def_differential"/>
+      We studied <em>differentials</em> in single-variable calculus, where <xref ref="imported-def_differential"/>
       states that if <m>y=f(x)</m> and <m>f</m> is differentiable,
       then <m>dy=\fp(x)dx</m>.
       One important use of this differential is in Integration by Substitution.
@@ -460,10 +458,7 @@
   <subsection xml:id="subsec-tangent-plane-approximation">
     <title>Tangent Plane Approximation</title>
     <p>
-      Recall from <xref ref="chapter_derivatives"/> that in one variable,
-      the essence of differentiability is the tangent line approximation.
-      This idea is emphasized in <xref ref="sec_differentials"/>,
-      where we first introduced the differential.
+      Recall from single-variable calculus that in one variable, the essence of differentiability is the tangent line approximation. This idea is emphasized by the differential, which we introduced there.
     </p>
 
     <p>
@@ -473,7 +468,7 @@
     </p>
 
     <p>
-      Recall from <xref ref="def-linearization"/> that for a function <m>f(x)</m>,
+      Recall from <xref ref="imported-def-linearization"/> that for a function <m>f(x)</m>,
       when <m>x</m> is near <m>c</m> we have the linear approximation <m>f(x)\approx \ell(x)</m>,
       where
       <md>

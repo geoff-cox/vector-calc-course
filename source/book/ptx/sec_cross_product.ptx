@@ -913,8 +913,7 @@
         </statement>
         <solution>
           <p>
-            We found the area of this triangle in <xref ref="ex_abc4"/>
-            to be <m>1.5</m> using integration.
+            We found the area of this triangle to be <m>1.5</m> using single-variable integration.
             There we discussed the fact that finding the area of a triangle can be inconvenient using the
             <q><m>\frac12bh</m></q>
             formula as one has to compute the height,
