@@ -1195,8 +1195,7 @@
               </figure>
 
               <p>
-                We should also consider <xref ref="def_av_val"/>
-                of <xref ref="sec_FTC"/>,
+                We should also consider <xref ref="imported-def_av_val"/>,
                 which says that the average value of a function <m>f</m> on <m>[a,b]</m> is <m>\frac{1}{b-a}\int_a^b f(x)\, dx</m>.
                 In our context, the average value of the speed is
                 <md>
@@ -1215,9 +1214,7 @@
     </example>
 
     <p>
-      In <xref ref="def_av_val"/>
-      of <xref ref="chapter_integration"/>
-      we defined the average value of a function <m>f(x)</m> on <m>[a,b]</m> to be
+      In <xref ref="imported-def_av_val"/> we defined the average value of a function <m>f(x)</m> on <m>[a,b]</m> to be
       <md>
         \frac{1}{b-a}\int_a^bf(x)\, dx
       </md>.

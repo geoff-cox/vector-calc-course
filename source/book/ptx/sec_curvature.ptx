@@ -284,7 +284,7 @@
     <p>
       First, take the derivative of <m>s</m> with respect to <m>t</m>.
       The Fundamental Theorem of Calculus
-      (see <xref ref="thm_FTC1"/>)
+      (see <xref ref="imported-thm_FTC1"/>)
       states that
       <md number="yes" xml:id="eq_vvfarc3">
         \frac{ds}{dt}=s\primeskip'(t) = \norm{\vrp(t)}

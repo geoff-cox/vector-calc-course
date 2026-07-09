@@ -1791,9 +1791,7 @@
 
     <p>
       This particular method of creating surfaces of revolution is limited.
-      For instance, in <xref ref="ex_shell4"/>
-      of <xref ref="sec_shell_method"/>
-      we found the volume of the solid formed by revolving
+      For instance, using the shell method from single-variable calculus one finds the volume of the solid formed by revolving
       <m>y=\sin(x)</m> about the <m>y</m>-axis.
       Our current method of forming surfaces can only rotate
       <m>y=\sin(x)</m> about the <m>x</m>-axis.

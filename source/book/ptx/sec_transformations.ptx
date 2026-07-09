@@ -64,7 +64,7 @@
 		<title>Review of substitution techniques</title>
 		<p>
 			One of the situations that should be covered by our general change of variables formula is that of substitution for a definite integral in one variable,
-			as encountered in <xref ref="sec_substitution"/>, way back in Calculus I.
+			as encountered in single-variable calculus, way back in Calculus I.
 			Of course, for a definite integral in one variable,
 			there is only one type of region of integration: a closed interval <m>[a,b]</m>.
 			For single integrals, our only consideration when making a change of variables is the function being integrated.
@@ -99,7 +99,7 @@
 		  <p>
 		    For double and triple integrals, it will be important to understand how both the function <em>and</em>
 				the region of integration are transformed. For single integrals,
-				the Fundamental Theorem of Calculus (<xref ref="thm_FTC2"/>)
+				the Fundamental Theorem of Calculus (<xref ref="imported-thm_FTC2"/>)
 				lets us gloss over some of the details we'll now need to consider.
 				In particular, we don't really need to pay any attention to the interval over which we integrate in a single integral,
 				as long as we can come up with an antiderivative.
@@ -145,7 +145,7 @@
 				However, the polar coordinate transformation is a bit unusual,
 				in that it violates some of the principles we will require below for a general transformation.
 				For example, the transformation is not one-to-one, and since we often allow <m>r\lt 0</m>
-				(recall <xref ref="sec_polar"/>),
+				(recall polar coordinates from single-variable calculus),
 				the inverse transformation (from polar to rectangular) technically isn't even a function!
 				However, we're willing to overlook these defects due to the ubiquity and usefulness of the polar coordinate system.
 		  </p>
@@ -333,7 +333,7 @@
 			<p>
 			  Note however that the choice of domain is part of the definition of a function,
 				and it can significantly affect important properties of that function,
-				such as being one-to-one: recall the definition of the inverse trigonometric functions in <xref ref="sec_deriv_inverse_function"/>.
+				such as being one-to-one: recall the definition of the inverse trigonometric functions from single-variable calculus.
 			</p>
 		</aside>
 
@@ -609,7 +609,7 @@
 
 		<p>
 			The transformation affects the size of the subintervals in the partition:
-			from <xref ref="sec_differentials"/>, we know that <m>\Delta x_i \approx T\primeskip' (u_i)\Delta x_i</m>.
+			from single-variable calculus, we know that <m>\Delta x_i \approx T\primeskip' (u_i)\Delta x_i</m>.
 			Thus, the derivative tells us how the size of each subinterval changes under the transformation.
 		</p>
 

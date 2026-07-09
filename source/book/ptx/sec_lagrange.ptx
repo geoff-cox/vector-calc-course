@@ -21,7 +21,7 @@
 
 	<p>
 		In many cases, this approach is best accomplished by parametrizing the boundary.
-		We learned how to define parametric curves in the plane in <xref ref="sec_param_eqs"/>.
+		We learned how to define parametric curves in the plane in single-variable calculus.
 	</p>
 
 
@@ -54,8 +54,7 @@
 			</p>
 
 			<p>
-				We learned how to find the extreme values of such a function back in our first course in calculus:
-				see <xref ref="sec_extreme_values"/>. We have <m>h(0)=h(2\pi)=-12</m>, and
+				We learned how to find the extreme values of such a function back in our first course in calculus. We have <m>h(0)=h(2\pi)=-12</m>, and
 				<md>
 				  h'(t) = -8\cos(t)\sin(t)+16\sin(t)-24\sin(t)\cos(t) = 16\sin(t) (1-2\cos(t))
 				</md>.
@@ -551,10 +550,9 @@
 		One reason is that it can be used to establish useful theoretical results.
 		But more practically, the method of Lagrange multipliers is useful because it is easy to program into a computer:
 		we simply provide the function and the constraint(s), and the computer solves the resulting equations.
-		There is no need for the same degree of problem-solving employed when we first tackled optimization problems in one variable,
-		back in <xref ref="chapter_deriv_apps"/>.
+		There is no need for the same degree of problem-solving employed when we first tackled optimization problems in one variable, back in single-variable calculus.
 		To emphasize this, we consider one more example:
-		a reprise of one of the optimization problems from <xref ref="sec_optimization"/>.
+		a reprise of one of the single-variable optimization problems.
 	</p>
 
 	<example xml:id="ex_lagrange4">
@@ -566,7 +564,7 @@
 	  </statement>
 	  <solution>
 			<p>
-				This was one of the exercises at the end of <xref ref="sec_optimization"/>.
+				This is a single-variable optimization problem of the kind studied in first-year calculus.
 				The surface area of a cylinder of radius <m>r</m> and height <m>h</m> is given by
 				<md>
 				  s(r,h) = 2r^2+2\pi rh
@@ -575,9 +573,8 @@
 			</p>
 
 			<p>
-				In <xref ref="sec_optimization"/>,
-				our next step would have been to solve the constraint equation for one of the two variables (likely <m>h</m> ) in terms of the other,
-				so we could rewrite <m>s(r,h)</m> as a function of one variable and apply the techniques of <xref ref="sec_extreme_values"/>.
+				In single-variable calculus, our next step would have been to solve the constraint equation for one of the two variables (likely <m>h</m> ) in terms of the other,
+				so we could rewrite <m>s(r,h)</m> as a function of one variable and apply the single-variable techniques for finding extreme values.
 			</p>
 
 			<p>
@@ -601,7 +598,7 @@
 				  \pi r^2 h = 2r^2 = 206
 				</md>,
 				so <m>r=\sqrt[3]{103}\approx 4.688</m>, and <m>h=2\sqrt[3]{103}/\pi  \approx 2.984</m>.
-				This is, of course, the same result you would have found if you did this exercise back in <xref ref="sec_optimization"/>.
+				This is, of course, the same result you would have found by solving this as a single-variable optimization problem.
 			</p>
 		</solution>
 	</example>
