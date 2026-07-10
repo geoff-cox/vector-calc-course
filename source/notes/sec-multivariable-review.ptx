@@ -4,9 +4,9 @@
 	Section 0: Multivariable Calculus Review (prerequisite).
 
 	Short review worksheets for the prerequisite multivariable topics
-	MA 301's vector analysis leans on most (functions of several
-	variables, partial derivatives, double/triple integration). One
-	<worksheet> per file, pulled in with <xi:include/>. See
+	that MA 301's vector analysis most depends on: functions of several
+	variables, partial derivatives, and double and triple integration.
+	One <worksheet> per file, pulled in with <xi:include/>. See
 	docs/gln-roadmap.md, Section 0.
 -->
 <section xml:id="sec-multivariable-review"

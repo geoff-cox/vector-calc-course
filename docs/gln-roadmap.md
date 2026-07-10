@@ -60,10 +60,10 @@ refreshers, not full guided-notes meetings.
 ## Section 0 — Multivariable Calculus Review (Prerequisite)
 
 Container: `source/notes/sec-multivariable-review.ptx` (exists). Short
-*review* worksheets for the prerequisite multivariable topics MA 301's
-vector analysis leans on most — the geometry of functions of several
-variables (graphs and level sets), partial derivatives, and double/triple
-integration. No decks; sourced from the coursebook. (Multivariable chain
+*review* worksheets for the prerequisite multivariable topics that
+MA 301's vector analysis most depends on — the geometry of functions of
+several variables (graphs and level sets), partial derivatives, and
+double/triple integration. No decks; sourced from the coursebook. (Multivariable chain
 rule, extreme values, Lagrange multipliers, and change of variables are
 intentionally **not** included as standalone reviews — they are less
 central to vector analysis; see open questions if you want any added. A

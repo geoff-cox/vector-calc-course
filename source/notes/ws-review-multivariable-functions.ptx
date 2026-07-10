@@ -15,9 +15,9 @@
 	    <exercise component="key"> (statement + <solution> with the answer
 	    figure);
 	  * a quick True/False -> one <exercise> + <solution component="key">.
-	Figures are pre-rendered SVGs in assets/figures/ (the LaTeX/Asymptote
-	toolchain is not required to build them). Book concepts are tracked but
-	example equations are NOT reused.
+	Figures are native TikZ/pgfplots <latex-image> (the notes
+	<latex-image-preamble> in source/bookends/docinfo.ptx loads tikz +
+	pgfplots). Book concepts are tracked but example equations are NOT reused.
 -->
 <worksheet xml:id="ws-review-multivariable-functions">
 	<title>Review: Graphs and Level Sets</title>
@@ -64,9 +64,10 @@
 		<p>
 			Surfaces are hard to draw freehand, so we usually understand
 			<m>z=f(x,y)</m> through two-dimensional slices instead. Slicing by
-			the horizontal planes <m>z=c</m> gives <em>level curves</em> (this
-			worksheet); slicing by the vertical planes <m>x=a</m> or <m>y=b</m>
-			gives <em>traces</em>.
+			the horizontal planes <m>z=c</m> and projecting each intersection
+			straight down onto the <m>xy</m>-plane gives <em>level curves</em>
+			(this worksheet); slicing by the vertical planes <m>x=a</m> or
+			<m>y=b</m> gives <em>traces</em>.
 		</p>
 	</page>
 
@@ -109,8 +110,14 @@
 					<m>c = 0,\ 4,\ 16</m> on the axes below, and describe the
 					family in words.
 				</p>
-				<image source="figures/r1-blank-axes.svg" width="52%">
-					<shortdescription>A blank set of coordinate axes with a light grid, for sketching level curves.</shortdescription>
+				<image width="52%">
+					<shortdescription>A blank set of coordinate axes with a light grid, for sketching.</shortdescription>
+					<latex-image>
+	\begin{tikzpicture}
+	\begin{axis}[axis lines=middle, xmin=-5, xmax=5, ymin=-5, ymax=5, grid=both, grid style={gray!25}, width=7.5cm, height=7.5cm, xtick={-4,-2,2,4}, ytick={-4,-2,2,4}, xlabel=$x$, ylabel=$y$, tick label style={font=\footnotesize}]
+	\end{axis}
+	\end{tikzpicture}
+					</latex-image>
 				</image>
 			</statement>
 		</exercise>
@@ -135,12 +142,23 @@
 					</ul>
 					The level curves are concentric ellipses, twice as tall as
 					they are wide, growing outward as <m>c</m> increases. The
-					surface is an elliptic paraboloid opening upward, and the
-					ellipses spreading apart show the bowl getting shallower as we
-					climb.
+					surface is an elliptic paraboloid opening upward; it steepens as
+					we climb, so evenly-spaced heights would give ellipses that
+					crowd closer together — the contour-spacing idea we return to
+					below.
 				</p>
-				<image source="figures/r1-answer-ellipses.svg" width="52%">
-					<shortdescription>Concentric ellipses centered at the origin, twice as tall as wide, the level curves of 4x squared plus y squared for c equals 4 and 16, with the origin marked for c equals 0.</shortdescription>
+				<image width="52%">
+					<shortdescription>Concentric ellipses centered at the origin, twice as tall as wide (the level curves of 4x^2+y^2 for c=4 and c=16), with the origin marked for c=0.</shortdescription>
+					<latex-image>
+	\begin{tikzpicture}
+	\begin{axis}[axis lines=middle, xmin=-5, xmax=5, ymin=-5, ymax=5, grid=both, grid style={gray!25}, width=7.5cm, height=7.5cm, xtick={-4,-2,2,4}, ytick={-4,-2,2,4}, xlabel=$x$, ylabel=$y$, tick label style={font=\footnotesize}, legend style={font=\footnotesize}]
+	\addplot[domain=0:360, samples=120, thick, blue]  ({cos(x)},   {2*sin(x)});
+	\addplot[domain=0:360, samples=120, thick, red]   ({2*cos(x)}, {4*sin(x)});
+	\addplot[only marks, mark=*, black, mark size=1pt] coordinates {(0,0)};
+	\legend{$c=4$,$c=16$,$c=0$}
+	\end{axis}
+	\end{tikzpicture}
+					</latex-image>
 				</image>
 			</solution>
 		</exercise>
@@ -155,8 +173,14 @@
 					<m>c = -4,\ 0,\ 4</m> on the axes below, say what kind of curve
 					each one is, and note what happens exactly at <m>c=0</m>.
 				</p>
-				<image source="figures/r1-blank-axes.svg" width="52%">
-					<shortdescription>A blank set of coordinate axes with a light grid, for sketching level curves.</shortdescription>
+				<image width="52%">
+					<shortdescription>A blank set of coordinate axes with a light grid, for sketching.</shortdescription>
+					<latex-image>
+	\begin{tikzpicture}
+	\begin{axis}[axis lines=middle, xmin=-5, xmax=5, ymin=-5, ymax=5, grid=both, grid style={gray!25}, width=7.5cm, height=7.5cm, xtick={-4,-2,2,4}, ytick={-4,-2,2,4}, xlabel=$x$, ylabel=$y$, tick label style={font=\footnotesize}]
+	\end{axis}
+	\end{tikzpicture}
+					</latex-image>
 				</image>
 			</statement>
 		</exercise>
@@ -177,14 +201,27 @@
 						<li><m>c=-4</m>: <m>y^2-x^2=4</m>, a hyperbola opening
 							up/down through <m>(0,\pm 2)</m>.</li>
 						<li><m>c=0</m>: <m>x^2=y^2</m>, i.e. the pair of lines
-							<m>y=x</m> and <m>y=-x</m> — the curve degenerates and
-							the two branches cross.</li>
+							<m>y=x</m> and <m>y=-x</m> — the level set degenerates to
+							two lines that intersect at the origin.</li>
 					</ul>
 					The surface is a saddle; the crossing lines at <m>c=0</m> pass
 					through the saddle point at the origin.
 				</p>
-				<image source="figures/r1-answer-hyperbolas.svg" width="52%">
-					<shortdescription>Hyperbolas opening left-right for c equals 4 and up-down for c equals negative 4, with the dashed lines y equals plus or minus x for c equals 0 crossing at the origin.</shortdescription>
+				<image width="52%">
+					<shortdescription>Hyperbolas opening left-right for c=4 and up-down for c=-4, with the dashed lines y=+/-x for c=0 crossing at the origin.</shortdescription>
+					<latex-image>
+	\begin{tikzpicture}
+	\begin{axis}[axis lines=middle, xmin=-5, xmax=5, ymin=-5, ymax=5, grid=both, grid style={gray!25}, width=7.5cm, height=7.5cm, xtick={-4,-2,2,4}, ytick={-4,-2,2,4}, xlabel=$x$, ylabel=$y$, tick label style={font=\footnotesize}, legend style={font=\footnotesize}]
+	\addplot[domain=-1.5:1.5, samples=60, thick, blue] ({exp(x)+exp(-x)},   {exp(x)-exp(-x)});
+	\addplot[domain=-1.5:1.5, samples=60, thick, blue] ({-(exp(x)+exp(-x))},{exp(x)-exp(-x)});
+	\addplot[domain=-1.5:1.5, samples=60, thick, red]  ({exp(x)-exp(-x)},   {exp(x)+exp(-x)});
+	\addplot[domain=-1.5:1.5, samples=60, thick, red]  ({exp(x)-exp(-x)},   {-(exp(x)+exp(-x))});
+	\addplot[domain=-5:5, samples=2, dashed, green!50!black] {x};
+	\addplot[domain=-5:5, samples=2, dashed, green!50!black] {-x};
+	\legend{$c=4$,,$c=-4$,,$c=0$}
+	\end{axis}
+	\end{tikzpicture}
+					</latex-image>
 				</image>
 			</solution>
 		</exercise>
@@ -232,8 +269,15 @@
 					for <m>c = 0,\ 1,\ 9</m>, sketching them on the axes below. What
 					goes wrong if you ask for the level surface at <m>c = -1</m>?
 				</p>
-				<image source="figures/r1-blank-axes-3d.svg" width="55%">
+				<image width="50%">
 					<shortdescription>A blank set of three-dimensional coordinate axes, for sketching level surfaces.</shortdescription>
+					<latex-image>
+	\begin{tikzpicture}[scale=0.85]
+	\draw[->] (0,0,0) -- (4,0,0) node[anchor=north east] {$x$};
+	\draw[->] (0,0,0) -- (0,4,0) node[anchor=north west] {$y$};
+	\draw[->] (0,0,0) -- (0,0,4) node[anchor=south] {$z$};
+	\end{tikzpicture}
+					</latex-image>
 				</image>
 			</statement>
 		</exercise>
@@ -258,8 +302,20 @@
 					no points at all: a sum of three squares can never be negative,
 					so that level surface is empty.
 				</p>
-				<image source="figures/r1-answer-spheres.svg" width="55%">
-					<shortdescription>Two nested wireframe spheres centered at the origin, of radius 1 and radius 3.</shortdescription>
+				<image width="50%">
+					<shortdescription>Two nested spheres centered at the origin, of radius 1 and radius 3, drawn as circles with dashed equator ellipses.</shortdescription>
+					<latex-image>
+	\begin{tikzpicture}[scale=0.9]
+	\draw[->] (-3.5,0) -- (3.5,0) node[right] {$y$};
+	\draw[->] (0,-3.5) -- (0,3.5) node[above] {$z$};
+	\draw[thick, blue] (0,0) circle (1);
+	\draw[thick, blue, dashed] (0,0) ellipse (1 and 0.34);
+	\draw[thick, red] (0,0) circle (3);
+	\draw[thick, red, dashed] (0,0) ellipse (3 and 1.02);
+	\node[blue] at (1.1,1.0) {$c=1$};
+	\node[red] at (2.4,2.2) {$c=9$};
+	\end{tikzpicture}
+					</latex-image>
 				</image>
 			</solution>
 		</exercise>
@@ -313,8 +369,14 @@
 					the isoquant say to use more <m>L</m> or more <m>K</m> to hit
 					<m>P=6</m>?
 				</p>
-				<image source="figures/r1-blank-axes.svg" width="52%">
-					<shortdescription>A blank set of coordinate axes with a light grid, for sketching an isoquant.</shortdescription>
+				<image width="52%">
+					<shortdescription>A blank set of coordinate axes with a light grid, for sketching.</shortdescription>
+					<latex-image>
+	\begin{tikzpicture}
+	\begin{axis}[axis lines=middle, xmin=-5, xmax=5, ymin=-5, ymax=5, grid=both, grid style={gray!25}, width=7.5cm, height=7.5cm, xtick={-4,-2,2,4}, ytick={-4,-2,2,4}, xlabel=$x$, ylabel=$y$, tick label style={font=\footnotesize}]
+	\end{axis}
+	\end{tikzpicture}
+					</latex-image>
 				</image>
 			</statement>
 		</exercise>
@@ -338,8 +400,18 @@
 					the low-<m>K</m>, high-<m>L</m> end of the curve: use more
 					<m>L</m>.
 				</p>
-				<image source="figures/r1-answer-isoquants.svg" width="55%">
-					<shortdescription>Three falling isoquant curves K equals c squared over L in the first quadrant, for output levels P equals 2, 4, and 6.</shortdescription>
+				<image width="52%">
+					<shortdescription>Three falling isoquant curves K=c^2/L in the first quadrant, for output levels P=2, 4, and 6.</shortdescription>
+					<latex-image>
+	\begin{tikzpicture}
+	\begin{axis}[axis lines=left, xmin=0, xmax=12, ymin=0, ymax=12, grid=both, grid style={gray!25}, width=7.5cm, height=7cm, xlabel={$L$ (labor)}, ylabel={$K$ (capital)}, tick label style={font=\footnotesize}, legend style={font=\footnotesize}]
+	\addplot[domain=0.34:12, samples=100, thick, blue]        {4/x};
+	\addplot[domain=1.34:12, samples=100, thick, green!50!black] {16/x};
+	\addplot[domain=3:12,    samples=100, thick, red]         {36/x};
+	\legend{$P=2$,$P=4$,$P=6$}
+	\end{axis}
+	\end{tikzpicture}
+					</latex-image>
 				</image>
 			</solution>
 		</exercise>
