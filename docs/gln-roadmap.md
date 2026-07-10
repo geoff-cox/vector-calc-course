@@ -133,10 +133,13 @@ the decks plus new material (flag figure/exercise sourcing in each C2).
 
 ## Coverage check
 
-- **Every 2015 syllabus topic is covered.** Prerequisite multivariable
-  calculus → Section 0 (review); Vector Analysis → Sections 1–3; Fourier
-  series / complex variables / PDEs → Section 4 (PDEs enter through
-  `ws-fourier-des` / `ws-forced-oscillations`).
+- **Every 2015 syllabus topic is covered.** Vector Analysis → Sections
+  1–3; Fourier series / complex variables / PDEs → Section 4 (PDEs enter
+  through `ws-fourier-des` / `ws-forced-oscillations`).
+- **Added prerequisite support (not a 2015 syllabus topic).** Section 0
+  reviews the multivariable calculus MA 301 builds on — `ma301-syllabus-2015.md`
+  lists this as prerequisite (MA 215), so it sits outside the syllabus
+  topic list and is included only as a refresher.
 - **Every Beamer deck in `source/notes/latex/` maps to a row** (the
   `05_00` summary folds into `ws-fourier-series`; the two `1-x-notes-*`
   drafts fold into the corresponding Section 1 rows).
