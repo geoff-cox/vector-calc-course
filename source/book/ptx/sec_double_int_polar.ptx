@@ -258,7 +258,7 @@
         The bounds of the integral are determined solely by the region <m>R</m> over which we are integrating.
         In this case, it is a disk with boundary <m>x^2+y^2=1</m>.
         We need to find polar bounds for this region.
-        It may help to review <xref ref="sec_polar"/>;
+        It may help to review polar coordinates;
         bounds for this disk are <m>0\leq r\leq 1</m> and <m>0\leq \theta\leq 2\pi</m>.
       </p>
 

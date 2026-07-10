@@ -1480,4 +1480,577 @@
       </tabular>
     </table>
   </section>
+  <section xml:id="reference-imported" label="reference-imported">
+    <title>Results Referenced from Earlier Calculus</title>
+    <introduction>
+      <p>
+        The multivariable material in this book occasionally refers back to results from
+        single-variable calculus. For convenience, the specific definitions and theorems referenced
+        are collected here, reproduced from the full <pubtitle>APEX Calculus</pubtitle>.
+      </p>
+    </introduction>
+
+    <subsection xml:id="reference-imported-limits">
+      <title>From Limits and Continuity</title>
+      <p>These underpin the definitions of limits and continuity for functions of several variables.</p>
+
+      <definition xml:id="imported-def_limit">
+          <title>The Limit of a Function <m>f</m> at a point</title>
+          <statement>
+            <p>
+              Let <m>I</m> be an open interval containing <m>c</m>,
+              and let <m>f</m> be a function defined on <m>I</m>,
+              except possibly at <m>c</m>.
+              The statement that <q>the <term>limit</term> of <m>f(x)</m>,
+              as <m>x</m> approaches <m>c</m>,
+              is <m>L</m></q> is denoted by
+              <md>
+                \lim_{x\to c} f(x) = L
+              </md>,
+              and means that given any <m>\varepsilon  \gt  0</m>,
+              there exists <m>\delta  \gt  0</m> such that for all <m>x</m> in <m>I</m>,
+              where <m>x \neq c</m>,
+              if <m>\abs{x - c} \lt  \delta</m>,
+              then <m>\abs{f(x) - L} \lt  \varepsilon</m>.
+
+                    <idx><h>limit</h><h>definition</h></idx>
+
+            </p>
+          </statement>
+        </definition>
+
+
+
+      <theorem xml:id="imported-thm_poly_rat">
+          <title>Limits of Polynomial and Rational Functions</title>
+          <statement>
+            <p>
+              Let <m>p(x)</m> and <m>q(x)</m> be polynomials and <m>c</m> a real number.
+              Then:
+
+                  <idx><h>limit</h><h>of polynomial functions</h></idx>
+                  <idx><h>limit</h><h>of rational functions</h></idx>
+                  <idx><h>continuity</h><h>of polynomial functions</h></idx>
+                  <idx><h>continuity</h><h>of rational functions</h></idx>
+                  <idx><h>polynomial function</h><h>continuity of</h></idx>
+                  <idx><h>rational function</h><h>continuity of</h></idx>
+
+              <ol>
+                <li>
+                  <p>
+                    <m>\lim\limits_{x\to c} p(x) = p(c)</m>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>\lim\limits_{x\to c} \frac{p(x)}{q(x)} = \frac{p(c)}{q(c)}</m>,
+                    when <m>q(c) \neq 0</m>.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+        </theorem>
+
+
+
+      <theorem xml:id="imported-thm_special_limits">
+          <title>Special Limits</title>
+          <statement>
+            <p>
+              <ol cols="2">
+                <li><m>\lim\limits_{x\to 0} \dfrac{\sin(x)}{x} = 1</m></li>
+
+                <li><m>\lim\limits_{x\to 0} \dfrac{\cos(x)-1}{x} = 0</m></li>
+
+                <li><m>\lim\limits_{x\to 0} (1+x)^{1/x} = e</m></li>
+
+                <li><m>\lim\limits_{x\to 0} \dfrac{e^x-1}{x} = 1</m></li>
+              </ol>
+            </p>
+          </statement>
+        </theorem>
+
+
+
+      <theorem xml:id="imported-thm_lim_continuous">
+          <title>Limits of Common Functions</title>
+          <statement>
+            <p>
+              Let <m>c</m> be a real number in the domain of the given function and let
+              <m>n</m> be a positive integer.
+              The following limits hold:
+
+                  <idx><h>limit</h><h>of trigonometric functions</h></idx>
+                  <idx><h>limit</h><h>of exponential functions</h></idx>
+                  <idx><h>limit</h><h>of logarithmic functions</h></idx>
+                  <idx><h>continuity</h><h>of trigonometric functions</h></idx>
+                  <idx><h>continuity</h><h>of exponential functions</h></idx>
+                  <idx><h>continuity</h><h>of logarithmic functions</h></idx>
+                  <idx><h>trigonometric function</h><h>continuity of</h></idx>
+                  <idx><h>exponential function</h><h>continuity of</h></idx>
+                  <idx><h>logarithmic function</h><h>continuity of</h></idx>
+
+              <ol cols="2">
+                <li xml:id="item_sin_continuous"><m>\lim\limits_{x\to c}\sin(x) = \sin(c)</m></li>
+
+                <li><m>\lim_{x\to c}\cos(x) = \cos(c)</m></li>
+
+                <li><m>\lim_{x\to c}\tan(x)= \tan(c)</m></li>
+
+                <li><m>\lim_{x\to c}\csc(x) = \csc(c)</m></li>
+
+                <li><m>\lim_{x\to c}\sec(x) = \sec(c)</m></li>
+
+                <li><m>\lim_{x\to c}\cot(x) = \cot(c)</m></li>
+
+                <li><m>\lim_{x\to c}a^x = a^c</m>, if <m>a \gt 0</m></li>
+
+                <li><m>\lim_{x\to c}\ln(x) = \ln(c)</m></li>
+
+                <li xml:id="li_root_limit"><m>\lim_{x\to c}\sqrt[n]{x} = \sqrt[n]{c}</m></li>
+              </ol>
+            </p>
+          </statement>
+        </theorem>
+
+
+
+      <definition xml:id="imported-def_continuous">
+          <title>Continuous Function</title>
+          <statement>
+            <p>
+              Let <m>f</m> be a function whose domain contains an open interval <m>I</m>.
+
+              <idx><h>continuous function</h></idx>
+              <idx><h>function</h><h>continuous</h></idx>
+
+              <ol>
+                <li>
+                  <p>
+                    <m>f</m> is <term>continuous at a point</term> <m>c</m> in <m>I</m>
+                    if <m>\lim\limits_{x\to c}f(x) = f(c)</m>.
+
+                    <idx><h>continuous</h><h>at a point</h></idx>
+
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>f</m> is <term>continuous on the open interval</term> <m>I</m>
+                    if <m>f</m> is continuous at <m>c</m> for all values of
+                    <m>c</m> in <m>I</m>.
+
+                    <idx><h>continuous</h><h>on an interval</h></idx>
+
+                    If <m>f</m> is continuous on <m>(-\infty,\infty)</m>,
+                    we say <m>f</m> is <term>continuous everywhere</term>
+                    (or <term>everywhere continuous</term>).
+
+                    <idx><h>continuous</h><h>everywhere</h></idx>
+                    <idx><h>everywhere continuous</h></idx>
+
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+        </definition>
+
+
+
+      <theorem xml:id="imported-thm_continuity_algebra">
+          <title>Properties of Continuous Functions</title>
+          <statement>
+            <p>
+              Let <m>f</m> and <m>g</m> be continuous functions on an interval <m>I</m>,
+              let <m>c</m> be a real number and let <m>n</m> be a positive integer.
+              The following functions are continuous on <m>I</m>.
+              <dl>
+                <li>
+                  <title>Sums/Difference</title>
+                  <p>
+                    <m>f\pm g</m>
+                  </p>
+                </li>
+                <li>
+                  <title>Constant Multiple</title>
+                  <p>
+                    <m>c\cdot f</m>
+                  </p>
+                </li>
+                <li>
+                  <title>Product</title>
+                  <p>
+                    <m>f\cdot g</m>
+                  </p>
+                </li>
+                <li>
+                  <title>Quotient</title>
+                  <p>
+                    <m>f/g</m> (as long as <m>g\neq 0</m> on <m>I</m>)
+                  </p>
+                </li>
+                <li>
+                  <title>Power</title>
+                  <p>
+                    <m>f^n</m>
+                  </p>
+                </li>
+                <li>
+                  <title>Root</title>
+                  <p>
+                    <m>\sqrt[n]{f}</m> (If <m>n</m> is even then require <m>f(x)\geq 0</m> on <m>I</m>.)
+                  </p>
+                </li>
+                <li>
+                  <title>Compositions</title>
+                  <p>
+                    Adjust the definitions of <m>f</m> and <m>g</m> to: Let <m>f</m> be continuous on <m>I</m>,
+                    where the range of <m>f</m> on <m>I</m> is <m>J</m>,
+                    and let <m>g</m> be continuous on <m>J</m>.
+                    Then <m>g\circ f</m>, <ie/>, <m>g(f(x))</m>,
+                    is continuous on <m>I</m>.
+                  </p>
+                </li>
+              </dl>
+            </p>
+          </statement>
+        </theorem>
+
+
+
+    </subsection>
+
+    <subsection xml:id="reference-imported-diff">
+      <title>From Differential Calculus</title>
+      <p>These single-variable results are extended to the multivariable setting.</p>
+
+      <definition xml:id="imported-def_derivative_at_a_point">
+            <title>Derivative at a Point</title>
+            <statement>
+              <p>
+                Let <m>f</m> be a continuous function on an open interval <m>I</m> and let <m>c</m> be
+                in <m>I</m>.
+
+                      <idx><h>derivative</h><h>at a point</h></idx>
+
+                The <term>derivative</term> of <m>f</m> at <m>c</m>, denoted <m>\fp(c)</m>, is
+                <md>
+                  \lim_{h\to 0}\frac{f(c+h)-f(c)}{h}
+                </md>,
+                provided the limit exists.
+                If the limit exists, we say that
+                <m>f</m> is <term>differentiable</term> at <m>c</m>;
+                if the limit does not exist,
+                then <m>f</m> is not differentiable at <m>c</m>.
+                If <m>f</m> is differentiable at every point in <m>I</m>,
+                then <m>f</m> is differentiable on <m>I</m>.
+
+                      <idx><h>differentiable</h></idx>
+
+              </p>
+            </statement>
+          </definition>
+
+
+
+      <theorem xml:id="imported-thm_extreme_val">
+          <title>The Extreme Value Theorem</title>
+          <statement>
+            <p>
+              Let <m>f</m> be a continuous function defined on a closed interval <m>I=[a,b]</m>.
+              Then <m>f</m> has both a maximum and minimum value on <m>I</m>.
+
+                    <idx><h>Extreme Value Theorem</h></idx>
+
+            </p>
+          </statement>
+        </theorem>
+
+
+
+      <definition xml:id="imported-def_differential">
+          <title>Differentials of <m>x</m> and <m>y</m></title>
+          <statement>
+            <p>
+              Let <m>y=f(x)</m> be differentiable.
+              The <term>differential</term> of <m>x</m>,
+              denoted <m>dx</m>, is any nonzero real number
+              (usually taken to be a small number).
+
+              <idx><h>differential</h></idx>
+
+              <idx><h>derivative</h><h>differential</h></idx>
+
+              The <term>differential</term> of <m>y</m>, denoted <m>dy</m>, is
+              <md>
+                dy = \fp(x)dx
+              </md>.
+            </p>
+          </statement>
+        </definition>
+
+
+
+      <definition xml:id="imported-def-linearization">
+          <title>Linearization</title>
+          <statement>
+            <p>
+              Let <m>f</m> be differentiable on an open interval <m>I</m> containing <m>c</m>.
+              The function <m>\ell(x) = \fp(c)(x-c)+f(c)</m> is called the <term>linearization</term>,
+              or <term>linear approximation</term> of <m>f</m> at <m>c</m>.
+
+              <idx><h>linearization</h></idx>
+              <idx><h>approximation</h><h>tangent line</h></idx>
+              <idx><h>approximation</h><h>linear</h></idx>
+            </p>
+          </statement>
+        </definition>
+
+
+
+    </subsection>
+
+    <subsection xml:id="reference-imported-int">
+      <title>From Integral Calculus</title>
+      <p>These definitions and theorems of the single-variable integral are used when building multiple integration.</p>
+
+      <definition xml:id="imported-def_antider">
+            <title>Antiderivatives and Indefinite Integrals</title>
+            <statement>
+              <p>
+                Let a function <m>f(x)</m> be given.
+                An <term>antiderivative</term> of <m>f(x)</m> is a function <m>F(x)</m>
+                such that <m>\Fp(x) = f(x)</m>.
+                    <idx><h>antiderivative</h></idx>
+                    <idx><h>indefinite integral</h></idx>
+                    <idx><h>integration</h><h>indefinite</h></idx>
+              </p>
+              <p>
+                The set of all antiderivatives of <m>f(x)</m> is the
+                <term>indefinite integral of</term> <m>f</m>, denoted by
+                <md>
+                  \int f(x) \,dx
+                </md>.
+              </p>
+            </statement>
+          </definition>
+
+
+
+      <definition xml:id="imported-def_def_int">
+          <title>The Definite Integral, Total Signed Area</title>
+          <statement>
+            <p>
+              Let <m>y=f(x)</m> be defined on a closed interval <m>[a,b]</m>.
+              The <term>total signed area</term> from <m>x=a</m> to <m>x=b</m> under
+              <m>f</m> is:
+                  <idx><h>integration</h><h>definite</h></idx>
+                  <idx><h>definite integral</h></idx>
+                  <idx><h>signed area</h></idx>
+                  <idx><h>total signed area</h></idx>
+                  <idx><h>integration</h><h>notation</h></idx>
+                  <idx><h>integration</h><h>area</h></idx>
+            </p>
+
+            <p>
+              (area under <m>y=f(x)</m> and above the <m>x</m>-axis on <m>[a,b]</m>) <m>-</m>
+              (area above <m>y=f(x)</m> and under the <m>x</m>-axis on <m>[a,b]</m>).
+            </p>
+
+            <p>
+              The <term>definite integral</term> of <m>f</m> on <m>[a,b]</m>
+              is the total signed area of <m>f</m> on <m>[a,b]</m>, denoted
+              <md>
+                \int_a^b f(x)\, dx
+              </md>,
+              where <m>a</m> and <m>b</m> are the
+              <term>bounds of integration</term>.
+            </p>
+          </statement>
+        </definition>
+
+
+
+      <theorem xml:id="imported-thm_riemann_sum">
+            <title>Definite Integrals and the Limit of Riemann Sums</title>
+            <statement>
+              <p>
+                Let <m>f</m> be continuous on the closed interval <m>[a,b]</m> and let <m>S_L(n)</m>,
+                <m>S_R(n)</m>,
+                <m>S_M(n)</m>, <m>\Delta x</m>,
+                <m>\Delta x_i</m> and <m>c_i</m> be defined as before.
+                Then:
+
+                <idx><h>Riemann Sum</h><h>and definite integral</h></idx>
+
+                <idx><h>integration</h><h>definite!Riemann Sums</h></idx>
+
+              </p>
+
+              <p>
+                <ol>
+                  <li><m>\begin{aligned}\lim_{n\to\infty} S_L(n) \amp = \lim_{n\to\infty} S_R(n)\\
+                          \amp = \lim_{n\to\infty} S_M(n)\\
+                          \amp = \lim_{n\to\infty}\sum_{i=1}^n f(c_i)\Delta x\end{aligned}</m></li>
+
+                  <li><m>\ds \lim_{n\to\infty}\sum_{i=1}^n f(c_i)\Delta x = \int_a^b f(x)\, dx</m></li>
+
+                  <li><m>\lim_{\norm{\Delta x}\to 0} \sum_{i=1}^n f(c_i)\Delta x_i = \int_a^b f(x)\, dx</m></li>
+                </ol>
+              </p>
+            </statement>
+          </theorem>
+
+
+
+      <theorem xml:id="imported-thm_FTC1">
+            <title>The Fundamental Theorem of Calculus, Part 1</title>
+            <statement>
+              <p>
+                Let <m>f</m> be continuous on <m>[a,b]</m> and let <m>F(x) = \int_a^x f(t)\, dt</m>.
+                Then <m>F</m> is continuous on <m>[a,b]</m>, differentiable on <m>(a,b)</m>, and
+
+                <idx><h>Fundamental Theorem of Calculus</h></idx>
+
+                <idx><h>integration</h><h>Fun. Thm. of Calc.</h></idx>
+
+                <md>
+                  \Fp(x)=f(x)
+                </md>.
+                In other words:
+                <md>
+                  \lzoo{x}{\int_a^x f(t)\, dt}=f(x)
+                </md>.
+              </p>
+            </statement>
+          </theorem>
+
+
+
+      <theorem xml:id="imported-thm_FTC2">
+            <title>Fundamental Theorem of Calculus, Part 2</title>
+            <statement>
+              <p>
+                Let <m>f</m> be continuous on <m>[a,b]</m> and let <m>F</m> be <em>any</em>
+                antiderivative of <m>f</m>.
+                Then
+
+                <idx><h>Fundamental Theorem of Calculus</h></idx>
+
+                <idx><h>integration</h><h>Fun. Thm. of Calc.</h></idx>
+
+                <md>
+                  \int_a^b f(x)\, dx = F(b) - F(a)
+                </md>.
+              </p>
+            </statement>
+          </theorem>
+
+
+
+      <definition xml:id="imported-def_av_val">
+            <title>The Average Value of <m>f</m> on <m>[a,b]</m></title>
+            <statement>
+              <p>
+                Let <m>f</m> be continuous on <m>[a,b]</m>.
+                The <term>average value</term> of <m>f</m> on <m>[a,b]</m> is <m>f(c)</m>,
+                where <m>c</m> is a value in <m>[a,b]</m> guaranteed by the Mean Value Theorem.
+                    <idx><h>integration</h><h>average value</h></idx>
+                    <idx><h>average value of function</h></idx>
+                <ie/>,
+                <md>
+                  \text{ Average Value of \(f\) on \([a,b]\) }  = \frac{1}{b-a}\int_a^b f(x)\, dx
+                </md>.
+              </p>
+            </statement>
+          </definition>
+
+
+
+      <theorem xml:id="imported-thm_volume_by_cross_section">
+          <title>Volume By Cross-Sectional Area</title>
+          <statement>
+            <p>
+              The volume <m>V</m> of a solid,
+              oriented along the <m>x</m>-axis with cross-sectional area <m>A(x)</m> from <m>x=a</m> to <m>x=b</m>, is
+              <idx><h>integration</h><h>volume!cross-sectional area</h></idx>
+              <md>
+                V = \int_a^b A(x)\, dx
+              </md>.
+            </p>
+          </statement>
+        </theorem>
+
+
+
+    </subsection>
+
+    <subsection xml:id="reference-imported-parampolar">
+      <title>From Parametric Equations and Polar Coordinates</title>
+      <p>These support the calculus of vector-valued functions and integration in polar-based coordinates.</p>
+
+      <definition xml:id="imported-def_smooth">
+            <title>Smooth</title>
+            <statement>
+              <p>
+                A curve <m>C</m> defined by <m>x=f(t)</m>,
+                <m>y=g(t)</m> is <term>smooth</term>
+                on an interval <m>I</m> if <m>\fp</m> and <m>\gp</m> are continuous on <m>I</m> and not simultaneously 0
+                (except possibly at the endpoints of <m>I</m>).
+                A curve is <term>piecewise smooth</term>
+                on <m>I</m> if <m>I</m> can be partitioned into subintervals where <m>C</m> is smooth on each subinterval.
+                    <idx><h>curve</h><h>smooth</h></idx>
+                    <idx><h>smooth</h><h>curve</h></idx>
+                    <idx><h>cusp</h></idx>
+              </p>
+            </statement>
+          </definition>
+
+
+
+      <theorem xml:id="imported-thm_arc_length_parametric">
+            <title>Arc Length of Parametric Curves</title>
+            <statement>
+              <p>
+                Let <m>x=f(t)</m> and <m>y=g(t)</m> be parametric equations with <m>\fp</m> and <m>\gp</m> continuous on <m>[t_1,t_2]</m>,
+                on which the graph traces itself only once.
+                The arc length of the graph, from <m>t=t_1</m> to <m>t=t_2</m>,
+                is
+                <idx><h>parametric equations</h><h>arc length</h></idx>
+                <idx><h>arc length</h></idx>
+                <md>
+                  L = \int_{t_1}^{t_2} \sqrt{\fp(t)^2+\gp(t)^2}\, dt
+                </md>.
+              </p>
+            </statement>
+          </theorem>
+
+
+
+      <insight xml:id="imported-idea_polarconvert">
+            <title>Converting Between Rectangular and Polar Coordinates</title>
+            <p>
+              Given the polar point <m>P(r,\theta)</m>,
+              the rectangular coordinates are determined by
+              <md>
+                x=r\cos(\theta) \qquad y=r\sin(\theta)
+              </md>.
+            </p>
+
+            <p>
+              Given the rectangular coordinates <m>(x,y)</m>,
+              the polar coordinates are determined by
+              <md>
+                r^2=x^2+y^2\qquad \tan(\theta) = \frac yx
+              </md>.
+            </p>
+          </insight>
+
+
+
+    </subsection>
+
+  </section>
 </appendix>

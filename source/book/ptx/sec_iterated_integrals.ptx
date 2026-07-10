@@ -217,8 +217,7 @@
       Consider the plane region <m>R</m> bounded by
       <m>a\leq x\leq b</m> and <m>g_1(x)\leq y\leq g_2(x)</m>,
       shown in <xref ref="fig_iterated_intro"/>.
-      We learned in <xref ref="sec_ABC"/>
-      that the area of <m>R</m> is given by
+      We learned in single-variable calculus that the area of <m>R</m> is given by
           <idx><h>integration</h><h>area</h></idx>
       <md>
         \int_a^b \big(g_2(x)-g_1(x)\big)\, dx
