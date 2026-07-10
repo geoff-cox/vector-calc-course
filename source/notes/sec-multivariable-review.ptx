@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	sec-multivariable-review.ptx
+	Section 0: Multivariable Calculus Review (prerequisite).
+
+	Short review worksheets for the prerequisite multivariable topics
+	MA 301's vector analysis leans on most (functions of several
+	variables, partial derivatives, double/triple integration). One
+	<worksheet> per file, pulled in with <xi:include/>. See
+	docs/gln-roadmap.md, Section 0.
+-->
+<section xml:id="sec-multivariable-review"
+		 xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<title>Multivariable Calculus Review</title>
+
+	<introduction>
+		<p>
+			MA 301 builds directly on the multivariable calculus you met in
+			your prerequisite courses. This short review section refreshes the
+			pieces we use most: how to picture a function of several variables,
+			partial derivatives, and double and triple integration. If this
+			material is fresh, treat these worksheets as a fast warm-up; if it
+			is rusty, they are the place to shake off the dust before the vector
+			analysis begins.
+		</p>
+	</introduction>
+
+	<!-- Review worksheet R1: functions of several variables -->
+	<xi:include href="./ws-review-multivariable-functions.ptx"/>
+
+	<!-- Future review worksheets (uncomment as they are written): -->
+	<!-- <xi:include href="./ws-review-partial-derivatives.ptx"/>  -->
+	<!-- <xi:include href="./ws-review-double-integrals.ptx"/>	 -->
+	<!-- <xi:include href="./ws-review-triple-integrals.ptx"/>	 -->
+
+</section>

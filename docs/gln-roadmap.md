@@ -70,7 +70,7 @@ open questions if you want any added.)
 
 | # | worksheet slug | title | old deck(s) | book section(s) | status |
 |---|---|---|---|---|---|
-| R1 | `ws-review-multivariable-functions` | Functions of Several Variables (Review) | — (from coursebook) | `sec_multi_intro`, `sec_multi_limit` | todo |
+| R1 | `ws-review-multivariable-functions` | Functions of Several Variables (Review) | — (from coursebook) | `sec_multi_intro`, `sec_multi_limit` | in-review |
 | R2 | `ws-review-partial-derivatives` | Partial Derivatives (Review) | — (from coursebook) | `sec_partial_derivatives`, `sec_total_differential` | todo |
 | R3 | `ws-review-double-integrals` | Double Integrals (Review) | — (from coursebook) | `sec_iterated_integrals`, `sec_double_int_volume`, `sec_double_int_polar` | todo |
 | R4 | `ws-review-triple-integrals` | Triple Integrals in Cylindrical & Spherical Coordinates (Review) | — (from coursebook) | `sec_triple_int`, `sec_cylindrical_spherical` | todo |

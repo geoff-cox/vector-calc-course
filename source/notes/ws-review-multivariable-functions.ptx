@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-review-multivariable-functions.ptx
+	Section 0 (Multivariable Calculus Review), worksheet R1:
+	Functions of Several Variables — graphs, level curves, level surfaces.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md), NOT the legacy commentary
+	pattern:
+	  * reading-check blanks  -> paired <p component="stu"> (with <fillin>)
+	    and <p component="key"> (answers as \underline{\textbf{...}});
+	  * worked/practice problems -> paired <exercise component="stu"
+	    workspace="Xin"> (statement only) and <exercise component="key">
+	    (statement + <solution>);
+	  * a quick True/False -> one <exercise> + <solution component="key">.
+	Book concepts are tracked but example equations are NOT reused.
+-->
+<worksheet xml:id="ws-review-multivariable-functions">
+	<title>Review: Functions of Several Variables</title>
+
+	<objectives>
+		<ul>
+			<li>Interpret the graph of a function of two variables as a surface in space.</li>
+			<li>Sketch and interpret the <term>level curves</term> of a function of two variables.</li>
+			<li>Describe the <term>level surfaces</term> of a function of three variables.</li>
+			<li>Read a contour map to estimate function values and where a function changes fastest.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: Graphs of functions of two variables
+		 ============================================================ -->
+	<page>
+		<p><alert>I. The graph of a function of two variables.</alert></p>
+
+		<p>
+			A scalar function <m>f(x,y)</m> takes a point <m>(x,y)</m> in its
+			domain <m>D \subseteq \R^2</m> and returns a single real number.
+			Its <term>graph</term> is the set of points
+			<m>\big(x,y,f(x,y)\big)</m> in <m>\R^3</m>; as <m>(x,y)</m> ranges
+			over <m>D</m> these points trace out a <term>surface</term> sitting
+			above (and below) the <m>xy</m>-plane.
+		</p>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			The graph of <m>y=g(x)</m> from Calculus 1 is a <fillin characters="6"/>
+			<nbsp/>in the plane; the graph of <m>z=f(x,y)</m> is a
+			<fillin characters="8"/> <nbsp/>in space. To plot the single point
+			above <m>(x,y)=(a,b)</m> we move to height <m>z=</m>
+			<fillin characters="8"/>.
+		</p>
+		<p component="key">
+			The graph of <m>y=g(x)</m> is a <m>\underline{\textbf{curve}}</m>
+			in the plane; the graph of <m>z=f(x,y)</m> is a
+			<m>\underline{\textbf{surface}}</m> in space. The point above
+			<m>(a,b)</m> sits at height <m>z=\underline{\textbf{f(a,b)}}</m>.
+		</p>
+
+		<p>
+			Surfaces are hard to draw freehand, so we usually understand
+			<m>z=f(x,y)</m> through two-dimensional slices instead. Slicing by
+			the horizontal planes <m>z=c</m> gives <em>level curves</em> (this
+			worksheet); slicing by the vertical planes <m>x=a</m> or <m>y=b</m>
+			gives <em>traces</em>.
+		</p>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: Level curves
+		 ============================================================ -->
+	<page>
+		<p><alert>II. Level curves.</alert></p>
+
+		<p>
+			The <term>level curve</term> of <m>f</m> at value <m>c</m> is the
+			set of domain points where <m>f</m> equals <m>c</m>:
+			<md>
+				\{(x,y) \in D : f(x,y) = c\}.
+			</md>
+			It is a curve drawn in the <m>xy</m>-plane, one for each chosen
+			<m>c</m>. A collection of them is a <term>contour map</term>, the
+			same idea as the contour lines on a topographic map.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			A level curve lives in the <fillin characters="10"/>
+			<nbsp/>-plane, not on the surface. Two different level curves of the
+			same function can <fillin characters="6"/> <nbsp/>cross, because a
+			point cannot have <fillin characters="4"/> <nbsp/>different outputs.
+		</p>
+		<p component="key">
+			A level curve lives in the <m>\underline{\textbf{xy}}</m>-plane, not
+			on the surface. Two different level curves of the same function can
+			<m>\underline{\textbf{never}}</m> cross, because a point cannot have
+			<m>\underline{\textbf{two}}</m> different outputs.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Let <m>g(x,y) = 4x^2 + y^2</m>. Sketch the level curves for
+					<m>c = 0,\ 4,\ 16</m> on one set of axes, and describe the
+					family in words.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>g(x,y) = 4x^2 + y^2</m>. Sketch the level curves for
+					<m>c = 0,\ 4,\ 16</m> on one set of axes, and describe the
+					family in words.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Setting <m>4x^2+y^2=c</m>:
+					<ul>
+						<li><m>c=0</m>: only the single point
+							<m>(0,0)</m> (a degenerate curve).</li>
+						<li><m>c=4</m>: <m>\frac{x^2}{1}+\frac{y^2}{4}=1</m>, an
+							ellipse through <m>(\pm 1,0)</m> and <m>(0,\pm 2)</m>.</li>
+						<li><m>c=16</m>: <m>\frac{x^2}{4}+\frac{y^2}{16}=1</m>, a
+							larger ellipse through <m>(\pm 2,0)</m> and
+							<m>(0,\pm 4)</m>.</li>
+					</ul>
+					The level curves are concentric ellipses, twice as tall as
+					they are wide, growing outward as <m>c</m> increases. The
+					surface is an elliptic paraboloid opening upward, and the
+					ellipses spreading apart show the bowl getting shallower as we
+					climb.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><alert>Your turn.</alert> Work with a neighbor.</p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="3in">
+			<statement>
+				<p>
+					Let <m>f(x,y) = x^2 - y^2</m>. Sketch the level curves for
+					<m>c = -4,\ 0,\ 4</m>, and say what kind of curve each one is.
+					What happens to the level curve exactly at <m>c=0</m>?
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>f(x,y) = x^2 - y^2</m>. Sketch the level curves for
+					<m>c = -4,\ 0,\ 4</m>, and say what kind of curve each one is.
+					What happens to the level curve exactly at <m>c=0</m>?
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<m>x^2-y^2=c</m> is a hyperbola for <m>c \ne 0</m>:
+					<ul>
+						<li><m>c=4</m>: <m>x^2-y^2=4</m>, a hyperbola opening
+							left/right through <m>(\pm 2,0)</m>.</li>
+						<li><m>c=-4</m>: <m>y^2-x^2=4</m>, a hyperbola opening
+							up/down through <m>(0,\pm 2)</m>.</li>
+						<li><m>c=0</m>: <m>x^2=y^2</m>, i.e. the pair of lines
+							<m>y=x</m> and <m>y=-x</m> — the curve degenerates and
+							the two branches cross.</li>
+					</ul>
+					The surface is a saddle; the crossing lines at <m>c=0</m> pass
+					through the saddle point at the origin.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: Level surfaces
+		 ============================================================ -->
+	<page>
+		<p><alert>III. Level surfaces.</alert></p>
+
+		<p>
+			We cannot graph a function <m>F(x,y,z)</m> of three variables — that
+			would need four dimensions. The substitute for the graph is the
+			<term>level surface</term> at value <m>c</m>,
+			<md>
+				\{(x,y,z) : F(x,y,z) = c\},
+			</md>
+			the three-variable analogue of a level curve: a surface in space on
+			which <m>F</m> is constant.
+		</p>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			A function of two variables is pictured by <fillin characters="6"/>
+			<nbsp/>curves in a plane; a function of three variables is pictured by
+			level <fillin characters="9"/> <nbsp/>in space. In both cases we drop
+			the output dimension and record only where the output is
+			<fillin characters="9"/>.
+		</p>
+		<p component="key">
+			A function of two variables is pictured by
+			<m>\underline{\textbf{level}}</m> curves in a plane; a function of
+			three variables is pictured by level
+			<m>\underline{\textbf{surfaces}}</m> in space. In both cases we drop
+			the output dimension and record only where the output is
+			<m>\underline{\textbf{constant}}</m>.
+		</p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Describe the level surfaces of <m>F(x,y,z) = x^2 + y^2 + z^2</m>
+					for <m>c = 0,\ 1,\ 9</m>. What goes wrong if you ask for the
+					level surface at <m>c = -1</m>?
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Describe the level surfaces of <m>F(x,y,z) = x^2 + y^2 + z^2</m>
+					for <m>c = 0,\ 1,\ 9</m>. What goes wrong if you ask for the
+					level surface at <m>c = -1</m>?
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<m>x^2+y^2+z^2=c</m> is a sphere of radius <m>\sqrt{c}</m>
+					centered at the origin:
+					<ul>
+						<li><m>c=1</m>: the unit sphere;</li>
+						<li><m>c=9</m>: a sphere of radius <m>3</m>;</li>
+						<li><m>c=0</m>: just the origin (a degenerate sphere).</li>
+					</ul>
+					The level surfaces are nested spheres. For <m>c=-1</m> there are
+					no points at all: a sum of three squares can never be negative,
+					so that level surface is empty.
+				</p>
+			</solution>
+		</exercise>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-r1-tf-levelcurve">
+			<statement>
+				<p>
+					<alert>True or False.</alert> The level curve <m>f(x,y)=c</m> is
+					a curve lying <em>on</em> the surface <m>z=f(x,y)</m> in space.
+					Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False.</term> The level curve lives in the
+					<m>xy</m>-plane (the domain). The set of points at height
+					<m>c</m> <em>on</em> the surface is a curve in space; its
+					<em>shadow</em> straight down onto the <m>xy</m>-plane is the
+					level curve. Level curve = the projection, not the curve on the
+					surface itself.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: Reading a contour map (application) + looking ahead
+		 ============================================================ -->
+	<page>
+		<p><alert>IV. Application: reading a contour map.</alert></p>
+
+		<p>
+			Contour maps are everywhere outside class: elevation on a hiking map,
+			pressure on a weather chart, or output in economics. A
+			<term>Cobb&#8211;Douglas</term> production model
+			<m>P(L,K) = L^{1/2}K^{1/2}</m> gives output <m>P</m> from labor
+			<m>L</m> and capital <m>K</m>; its level curves <m>P=c</m> are called
+			<term>isoquants</term> — input combinations that produce the same
+			output.
+		</p>
+
+		<!-- worked application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					For <m>P(L,K)=L^{1/2}K^{1/2}</m> (with <m>L,K &gt; 0</m>), write
+					the isoquant <m>P=6</m> as a formula <m>K=\,?</m> in terms of
+					<m>L</m>, and describe its shape. Reading the map: if labor
+					<m>L</m> is cheap and capital <m>K</m> is expensive, does the
+					isoquant say to use more <m>L</m> or more <m>K</m> to hit
+					<m>P=6</m>?
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					For <m>P(L,K)=L^{1/2}K^{1/2}</m> (with <m>L,K &gt; 0</m>), write
+					the isoquant <m>P=6</m> as a formula <m>K=\,?</m> in terms of
+					<m>L</m>, and describe its shape. Reading the map: if labor
+					<m>L</m> is cheap and capital <m>K</m> is expensive, does the
+					isoquant say to use more <m>L</m> or more <m>K</m> to hit
+					<m>P=6</m>?
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<m>L^{1/2}K^{1/2}=6 \Rightarrow LK = 36 \Rightarrow
+					K = \dfrac{36}{L}</m>. The isoquant is a hyperbola-shaped
+					curve falling as <m>L</m> grows (for <m>L,K&gt;0</m>). Because
+					you can slide along the isoquant to trade capital for labor at
+					fixed output, cheap labor / expensive capital pushes you toward
+					the low-<m>K</m>, high-<m>L</m> end of the curve: use more
+					<m>L</m>.
+				</p>
+			</solution>
+		</exercise>
+
+		<p>
+			<alert>Reading fastest change.</alert> Where contour lines are packed
+			<em>close together</em>, the function is climbing steeply (small step
+			in the plane, big change in output); where they are far apart it is
+			nearly flat. We will make this precise soon with the
+			<term>gradient</term>, which points in the direction of fastest
+			increase — always perpendicular to the level curve.
+		</p>
+	</page>
+
+	<conclusion>
+		<p>
+			<alert>Looking ahead.</alert> Level curves and level surfaces let us
+			"see" a function without a fourth dimension, and the spacing of the
+			contours already hints at how fast the function changes. Next we make
+			the picture quantitative: <term>limits and continuity</term> pin down
+			what it means for a multivariable function to have no breaks, and then
+			<term>partial derivatives</term> and the <term>gradient</term> measure
+			its rates of change directly.
+		</p>
+	</conclusion>
+
+</worksheet>
