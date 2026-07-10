@@ -17,7 +17,7 @@ the authoritative work-list for Track C; **each C2 PR flips its row's
   meeting. Only **Section 1** exists today
   (`source/notes/sec-functions-vectors.ptx`, included via
   `href="./notes/sec-functions-vectors.ptx"`); the container files for
-  Sections 2–4 are created in the first C2 PR that targets them (the
+  Sections 0 and 2–4 are created in the first C2 PR that targets them (the
   `sec-*` container is added together with its first worksheet so the
   build never carries an empty division). `source/notes.ptx` currently
   holds two **outdated commented-out stubs** (`./ch-line-integrals.ptx`,
@@ -48,11 +48,32 @@ partial differential equations). The old Beamer decks in
 `source/notes/latex/` follow that same arc, so the worksheet sequence
 mirrors the decks, sourced additionally from the kept coursebook
 chapters where they overlap. Foundational multivariable calculus
-(partial derivatives, multiple integrals, Lagrange multipliers) sits in
-the coursebook as prerequisite support and has **no** deck; whether the
-GLN should add units for it is the open A2 question (see bottom).
+(functions of several variables, partial derivatives, multiple
+integrals) sits in the coursebook as prerequisite support and has **no**
+deck; per the instructor's decision, the GLN opens with a short
+**Section 0** of *review* worksheets for the prerequisite topics MA 301
+most directly builds on, sourced from the coursebook. These are lighter
+refreshers, not full guided-notes meetings.
 
 ---
+
+## Section 0 — Multivariable Calculus Review (Prerequisite)
+
+Container: `source/notes/sec-multivariable-review.ptx` (create with first
+C2). Short *review* worksheets for the prerequisite multivariable topics
+MA 301's vector analysis leans on most — functions of several variables,
+partial derivatives, and double/triple integration. No decks; sourced
+from the coursebook. (Multivariable chain rule, extreme values, Lagrange
+multipliers, and change of variables are intentionally **not** included
+as standalone reviews — they are less central to vector analysis; see
+open questions if you want any added.)
+
+| # | worksheet slug | title | old deck(s) | book section(s) | status |
+|---|---|---|---|---|---|
+| R1 | `ws-review-multivariable-functions` | Functions of Several Variables (Review) | — (from coursebook) | `sec_multi_intro`, `sec_multi_limit` | todo |
+| R2 | `ws-review-partial-derivatives` | Partial Derivatives (Review) | — (from coursebook) | `sec_partial_derivatives`, `sec_total_differential` | todo |
+| R3 | `ws-review-double-integrals` | Double Integrals (Review) | — (from coursebook) | `sec_iterated_integrals`, `sec_double_int_volume`, `sec_double_int_polar` | todo |
+| R4 | `ws-review-triple-integrals` | Triple Integrals in Cylindrical & Spherical Coordinates (Review) | — (from coursebook) | `sec_triple_int`, `sec_cylindrical_spherical` | todo |
 
 ## Section 1 — Functions, Vectors, and Vector Fields
 
@@ -113,8 +134,12 @@ the decks plus new material (flag figure/exercise sourcing in each C2).
 ## Coverage check
 
 - **Every 2015 syllabus topic is covered.** Vector Analysis → Sections
-  1–3; Fourier series / complex variables / PDEs → Section 4
-  (PDEs enter through `ws-fourier-des` / `ws-forced-oscillations`).
+  1–3; Fourier series / complex variables / PDEs → Section 4 (PDEs enter
+  through `ws-fourier-des` / `ws-forced-oscillations`).
+- **Added prerequisite support (not a 2015 syllabus topic).** Section 0
+  reviews the multivariable calculus MA 301 builds on — `ma301-syllabus-2015.md`
+  lists this as prerequisite (MA 215), so it sits outside the syllabus
+  topic list and is included only as a refresher.
 - **Every Beamer deck in `source/notes/latex/` maps to a row** (the
   `05_00` summary folds into `ws-fourier-series`; the two `1-x-notes-*`
   drafts fold into the corresponding Section 1 rows).
@@ -123,16 +148,15 @@ the decks plus new material (flag figure/exercise sourcing in each C2).
 
 ## Open questions for the instructor
 
-1. **Foundational multivariable units?** The 2015 syllabus treats partial
-   derivatives, multiple integrals, and Lagrange multipliers as
-   prerequisite (MA 215), so no decks or GLN rows exist for them, even
-   though the coursebook keeps those chapters. This is the same call
-   raised in the A2 syllabus PR. If you want GLN worksheets for that
-   material, I'll add a Section 0 (or fold rows into Sections 1–2) —
-   candidate book sections: `sec_partial_derivatives`, `sec_multi_chain`,
-   `sec_directional_derivative`, `sec_multi_extreme_values`,
-   `sec_lagrange`, `sec_iterated_integrals`, `sec_double_int_volume`,
-   `sec_triple_int`, `sec_transformations`.
+1. **Foundational multivariable units — RESOLVED.** Per the instructor,
+   the GLN includes **review** worksheets for the important prerequisite
+   topics; these are now **Section 0** (R1–R4: functions of several
+   variables, partial derivatives, double integrals, triple integrals).
+   Deliberately excluded as standalone reviews (less central to vector
+   analysis): the multivariable chain rule (`sec_multi_chain`), extreme
+   values (`sec_multi_extreme_values`), Lagrange multipliers
+   (`sec_lagrange`), and change of variables (`sec_transformations`). Say
+   the word if you'd like any of these added as a Section 0 row.
 2. **Deck-to-meeting granularity.** A few decks may each want two class
    meetings (e.g. `05_04_Fourier_Series_Diff_Eqns`); per the C2
    acceptance criteria I'll propose any such split in that worksheet's PR
