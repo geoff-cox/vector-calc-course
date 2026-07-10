@@ -128,6 +128,14 @@ section. A PR without evidence is incomplete.
 - Keep PRs reviewable from a phone: prefer several small PRs over one
   large one. Task B in particular is staged (B1 report -> B2 prune ->
   B3 reroute -> B4 appendix) — do not combine stages.
+- Merge staged PRs parent-before-child, and target each stage's PR at
+  `main`. Do NOT open a later stage against the previous stage's branch
+  (a stacked base): if the parent merges first, GitHub may merge the
+  child into the now-stale intermediate branch instead of `main`, landing
+  the parent's changes without the child's fix and leaving `main` broken
+  (e.g. B2's deletions on `main` without B3's xref reroutes). If a stage
+  must be built on an unmerged parent, wait for the parent to reach
+  `main`, then branch the next stage from an up-to-date `main`.
 - Add the `preview` label to the PR so `deploy-pages.yml` publishes the
   branch's rendered HTML to GitHub Pages; link the Actions run in the PR.
 - Respond to review comments on the same branch; re-run all gates after
