@@ -10,15 +10,21 @@ the authoritative work-list for Track C; **each C2 PR flips its row's
 
 - **Entry point / targets** (`project.ptx`): `web-stu` and `web-key`
   (HTML student/instructor) and `pdf-key` (print instructor), all built
-  from **`source/notes.ptx`** — an `<article>` titled "MA 301 — Guided
-  Lecture Notes".
+  from **`source/notes.ptx`** — an `<article>` with `<title>MA 301</title>`
+  and `<subtitle>Guided Lecture Notes</subtitle>`.
 - **Structure:** the article holds one `<section>` per course unit; each
   section container `<xi:include>`s one `<worksheet>` file per class
   meeting. Only **Section 1** exists today
-  (`source/notes/sec-functions-vectors.ptx`); the container files for
+  (`source/notes/sec-functions-vectors.ptx`, included via
+  `href="./notes/sec-functions-vectors.ptx"`); the container files for
   Sections 2–4 are created in the first C2 PR that targets them (the
   `sec-*` container is added together with its first worksheet so the
-  build never carries an empty division).
+  build never carries an empty division). `source/notes.ptx` currently
+  holds two **outdated commented-out stubs** (`./ch-line-integrals.ptx`,
+  `./ch-surface-integrals.ptx`); the first C2 for each section replaces
+  its stub with a proper `./notes/sec-<slug>.ptx` include matching
+  Section 1's naming and path (the `ch-*`, source-root paths are not
+  used).
 - **Authoring conventions:** `checklists/worksheet-conventions.md`
   (shared byte-identical with `diff-eqs-course`). The four existing
   worksheets predate those conventions and are pending Task **M6**
@@ -54,13 +60,16 @@ Container: `source/notes/sec-functions-vectors.ptx` (exists).
 
 | # | worksheet slug | title | old deck(s) | book section(s) | status |
 |---|---|---|---|---|---|
-| 1 | `ws-function-notation` | Review of Multivariable Function Notation | `00_01_Intro`, `1-0-notes-intro` | `sec_multi_intro`, `sec_vvf` | done (legacy → M6) |
-| 2 | `ws-vectors` | Vectors | `01_01_Vectors`, `1-1-notes-vectors` | `sec_space_coord`, `sec_vector_intro` | done (legacy → M6) |
-| 3 | `ws-dot-product` | The Dot Product | `01_02_Dot_Product` | `sec_dot_product` | done (legacy → M6) |
-| 4 | `ws-cross-product` | The Cross Product | `01_03_Cross_Product` | `sec_cross_product` | done (legacy → M6) |
+| 1 | `ws-function-notation` | Review of Multivariable Function Notation | `00_01_Intro`, `1-0-notes-intro` | `sec_multi_intro`, `sec_vvf` | done |
+| 2 | `ws-vectors` | Vectors | `01_01_Vectors`, `1-1-notes-vectors` | `sec_space_coord`, `sec_vector_intro` | done |
+| 3 | `ws-dot-product` | The Dot Product | `01_02_Dot_Product` | `sec_dot_product` | done |
+| 4 | `ws-cross-product` | The Cross Product | `01_03_Cross_Product` | `sec_cross_product` | done |
 | 5 | `ws-curves` | Curves and Vector-Valued Functions | `01_04_Curves` | `sec_vvf`, `sec_vvf_calc`, `sec_tan_norm`, `sec_curvature` | todo |
 | 6 | `ws-gradient` | The Gradient and Directional Derivatives | `01_05_Gradient` | `sec_partial_derivatives`, `sec_directional_derivative` | todo |
 | 7 | `ws-vector-fields` | Vector Fields | *(from coursebook; deck material in `01_05_Gradient`)* | `sec_vector_fields` | todo |
+
+Rows 1–4 are `done` but **legacy** — they build today yet predate the
+shared conventions and await Task M6 migration (see the status legend).
 
 ## Section 2 — Line Integrals and Green's Theorem
 
