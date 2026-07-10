@@ -2,7 +2,8 @@
 <!--
 	ws-review-multivariable-functions.ptx
 	Section 0 (Multivariable Calculus Review), worksheet R1:
-	Functions of Several Variables — graphs, level curves, level surfaces.
+	Graphs and Level Sets — graphs as surfaces, level curves, level
+	surfaces, and contour maps.
 
 	Authored to the SHARED worksheet conventions
 	(checklists/worksheet-conventions.md), NOT the legacy commentary
@@ -10,13 +11,16 @@
 	  * reading-check blanks  -> paired <p component="stu"> (with <fillin>)
 	    and <p component="key"> (answers as \underline{\textbf{...}});
 	  * worked/practice problems -> paired <exercise component="stu"
-	    workspace="Xin"> (statement only) and <exercise component="key">
-	    (statement + <solution>);
+	    workspace="Xin"> (statement + blank axes to sketch on) and
+	    <exercise component="key"> (statement + <solution> with the answer
+	    figure);
 	  * a quick True/False -> one <exercise> + <solution component="key">.
-	Book concepts are tracked but example equations are NOT reused.
+	Figures are pre-rendered SVGs in assets/figures/ (the LaTeX/Asymptote
+	toolchain is not required to build them). Book concepts are tracked but
+	example equations are NOT reused.
 -->
 <worksheet xml:id="ws-review-multivariable-functions">
-	<title>Review: Functions of Several Variables</title>
+	<title>Review: Graphs and Level Sets</title>
 
 	<objectives>
 		<ul>
@@ -98,21 +102,23 @@
 		</p>
 
 		<!-- worked problem (paired) -->
-		<exercise component="stu" workspace="2.5in">
+		<exercise component="stu" workspace="1in">
 			<statement>
 				<p>
 					Let <m>g(x,y) = 4x^2 + y^2</m>. Sketch the level curves for
-					<m>c = 0,\ 4,\ 16</m> on one set of axes, and describe the
+					<m>c = 0,\ 4,\ 16</m> on the axes below, and describe the
 					family in words.
 				</p>
+				<image source="figures/r1-blank-axes.svg" width="52%">
+					<shortdescription>A blank set of coordinate axes with a light grid, for sketching level curves.</shortdescription>
+				</image>
 			</statement>
 		</exercise>
 		<exercise component="key">
 			<statement>
 				<p>
 					Let <m>g(x,y) = 4x^2 + y^2</m>. Sketch the level curves for
-					<m>c = 0,\ 4,\ 16</m> on one set of axes, and describe the
-					family in words.
+					<m>c = 0,\ 4,\ 16</m>, and describe the family in words.
 				</p>
 			</statement>
 			<solution>
@@ -133,27 +139,33 @@
 					ellipses spreading apart show the bowl getting shallower as we
 					climb.
 				</p>
+				<image source="figures/r1-answer-ellipses.svg" width="52%">
+					<shortdescription>Concentric ellipses centered at the origin, twice as tall as wide, the level curves of 4x squared plus y squared for c equals 4 and 16, with the origin marked for c equals 0.</shortdescription>
+				</image>
 			</solution>
 		</exercise>
 
 		<p><alert>Your turn.</alert> Work with a neighbor.</p>
 
 		<!-- practice problem (paired) -->
-		<exercise component="stu" workspace="3in">
+		<exercise component="stu" workspace="1in">
 			<statement>
 				<p>
 					Let <m>f(x,y) = x^2 - y^2</m>. Sketch the level curves for
-					<m>c = -4,\ 0,\ 4</m>, and say what kind of curve each one is.
-					What happens to the level curve exactly at <m>c=0</m>?
+					<m>c = -4,\ 0,\ 4</m> on the axes below, say what kind of curve
+					each one is, and note what happens exactly at <m>c=0</m>.
 				</p>
+				<image source="figures/r1-blank-axes.svg" width="52%">
+					<shortdescription>A blank set of coordinate axes with a light grid, for sketching level curves.</shortdescription>
+				</image>
 			</statement>
 		</exercise>
 		<exercise component="key">
 			<statement>
 				<p>
 					Let <m>f(x,y) = x^2 - y^2</m>. Sketch the level curves for
-					<m>c = -4,\ 0,\ 4</m>, and say what kind of curve each one is.
-					What happens to the level curve exactly at <m>c=0</m>?
+					<m>c = -4,\ 0,\ 4</m>, say what kind of curve each one is, and
+					note what happens exactly at <m>c=0</m>.
 				</p>
 			</statement>
 			<solution>
@@ -171,6 +183,9 @@
 					The surface is a saddle; the crossing lines at <m>c=0</m> pass
 					through the saddle point at the origin.
 				</p>
+				<image source="figures/r1-answer-hyperbolas.svg" width="52%">
+					<shortdescription>Hyperbolas opening left-right for c equals 4 and up-down for c equals negative 4, with the dashed lines y equals plus or minus x for c equals 0 crossing at the origin.</shortdescription>
+				</image>
 			</solution>
 		</exercise>
 	</page>
@@ -210,13 +225,16 @@
 		</p>
 
 		<!-- practice problem (paired) -->
-		<exercise component="stu" workspace="2.5in">
+		<exercise component="stu" workspace="1in">
 			<statement>
 				<p>
 					Describe the level surfaces of <m>F(x,y,z) = x^2 + y^2 + z^2</m>
-					for <m>c = 0,\ 1,\ 9</m>. What goes wrong if you ask for the
-					level surface at <m>c = -1</m>?
+					for <m>c = 0,\ 1,\ 9</m>, sketching them on the axes below. What
+					goes wrong if you ask for the level surface at <m>c = -1</m>?
 				</p>
+				<image source="figures/r1-blank-axes-3d.svg" width="55%">
+					<shortdescription>A blank set of three-dimensional coordinate axes, for sketching level surfaces.</shortdescription>
+				</image>
 			</statement>
 		</exercise>
 		<exercise component="key">
@@ -240,6 +258,9 @@
 					no points at all: a sum of three squares can never be negative,
 					so that level surface is empty.
 				</p>
+				<image source="figures/r1-answer-spheres.svg" width="55%">
+					<shortdescription>Two nested wireframe spheres centered at the origin, of radius 1 and radius 3.</shortdescription>
+				</image>
 			</solution>
 		</exercise>
 
@@ -282,16 +303,19 @@
 		</p>
 
 		<!-- worked application (paired) -->
-		<exercise component="stu" workspace="2.5in">
+		<exercise component="stu" workspace="1in">
 			<statement>
 				<p>
 					For <m>P(L,K)=L^{1/2}K^{1/2}</m> (with <m>L,K &gt; 0</m>), write
 					the isoquant <m>P=6</m> as a formula <m>K=\,?</m> in terms of
-					<m>L</m>, and describe its shape. Reading the map: if labor
-					<m>L</m> is cheap and capital <m>K</m> is expensive, does the
-					isoquant say to use more <m>L</m> or more <m>K</m> to hit
+					<m>L</m>, and sketch it on the axes below. Reading the map: if
+					labor <m>L</m> is cheap and capital <m>K</m> is expensive, does
+					the isoquant say to use more <m>L</m> or more <m>K</m> to hit
 					<m>P=6</m>?
 				</p>
+				<image source="figures/r1-blank-axes.svg" width="52%">
+					<shortdescription>A blank set of coordinate axes with a light grid, for sketching an isoquant.</shortdescription>
+				</image>
 			</statement>
 		</exercise>
 		<exercise component="key">
@@ -299,10 +323,9 @@
 				<p>
 					For <m>P(L,K)=L^{1/2}K^{1/2}</m> (with <m>L,K &gt; 0</m>), write
 					the isoquant <m>P=6</m> as a formula <m>K=\,?</m> in terms of
-					<m>L</m>, and describe its shape. Reading the map: if labor
-					<m>L</m> is cheap and capital <m>K</m> is expensive, does the
-					isoquant say to use more <m>L</m> or more <m>K</m> to hit
-					<m>P=6</m>?
+					<m>L</m>, and sketch it. Reading the map: if labor <m>L</m> is
+					cheap and capital <m>K</m> is expensive, does the isoquant say
+					to use more <m>L</m> or more <m>K</m> to hit <m>P=6</m>?
 				</p>
 			</statement>
 			<solution>
@@ -315,6 +338,9 @@
 					the low-<m>K</m>, high-<m>L</m> end of the curve: use more
 					<m>L</m>.
 				</p>
+				<image source="figures/r1-answer-isoquants.svg" width="55%">
+					<shortdescription>Three falling isoquant curves K equals c squared over L in the first quadrant, for output levels P equals 2, 4, and 6.</shortdescription>
+				</image>
 			</solution>
 		</exercise>
 
@@ -332,11 +358,12 @@
 		<p>
 			<alert>Looking ahead.</alert> Level curves and level surfaces let us
 			"see" a function without a fourth dimension, and the spacing of the
-			contours already hints at how fast the function changes. Next we make
-			the picture quantitative: <term>limits and continuity</term> pin down
-			what it means for a multivariable function to have no breaks, and then
-			<term>partial derivatives</term> and the <term>gradient</term> measure
-			its rates of change directly.
+			contours already hints at how fast the function changes. Our next
+			review makes that rate of change precise: <term>partial
+			derivatives</term> measure how <m>f</m> changes as we move parallel to
+			each axis, and assembling them into the <term>gradient</term> recovers
+			exactly the "steepest, perpendicular to the contours" direction we
+			just eyeballed.
 		</p>
 	</conclusion>
 
