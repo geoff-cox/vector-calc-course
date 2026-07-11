@@ -26,11 +26,13 @@
 		</p>
 	</introduction>
 
-	<!-- Review worksheet R1: functions of several variables -->
+	<!-- Review worksheet R1: graphs and level sets -->
 	<xi:include href="./ws-review-multivariable-functions.ptx"/>
 
+	<!-- Review worksheet R2: partial derivatives -->
+	<xi:include href="./ws-review-partial-derivatives.ptx"/>
+
 	<!-- Future review worksheets (uncomment as they are written): -->
-	<!-- <xi:include href="./ws-review-partial-derivatives.ptx"/>  -->
 	<!-- <xi:include href="./ws-review-double-integrals.ptx"/>	 -->
 	<!-- <xi:include href="./ws-review-triple-integrals.ptx"/>	 -->
 
