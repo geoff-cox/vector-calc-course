@@ -27,6 +27,9 @@
 
     <xi:include href="./bookends/frontmatter.ptx" />
 
+		<!-- Section 0: Multivariable Calculus Review (prerequisite) -->
+		<xi:include href="./notes/sec-multivariable-review.ptx"/>
+
 		<!-- Chapter 1 -->
 		<xi:include href="./notes/sec-functions-vectors.ptx"/>
 

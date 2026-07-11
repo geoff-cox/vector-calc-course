@@ -59,18 +59,20 @@ refreshers, not full guided-notes meetings.
 
 ## Section 0 — Multivariable Calculus Review (Prerequisite)
 
-Container: `source/notes/sec-multivariable-review.ptx` (create with first
-C2). Short *review* worksheets for the prerequisite multivariable topics
-MA 301's vector analysis leans on most — functions of several variables,
-partial derivatives, and double/triple integration. No decks; sourced
-from the coursebook. (Multivariable chain rule, extreme values, Lagrange
-multipliers, and change of variables are intentionally **not** included
-as standalone reviews — they are less central to vector analysis; see
-open questions if you want any added.)
+Container: `source/notes/sec-multivariable-review.ptx` (exists). Short
+*review* worksheets for the prerequisite multivariable topics that
+MA 301's vector analysis most depends on — the geometry of functions of
+several variables (graphs and level sets), partial derivatives, and
+double/triple integration. No decks; sourced from the coursebook. (Multivariable chain
+rule, extreme values, Lagrange multipliers, and change of variables are
+intentionally **not** included as standalone reviews — they are less
+central to vector analysis; see open questions if you want any added. A
+limits/continuity review is **shelved** pending the instructor's decision
+on an epsilon–delta treatment.)
 
 | # | worksheet slug | title | old deck(s) | book section(s) | status |
 |---|---|---|---|---|---|
-| R1 | `ws-review-multivariable-functions` | Functions of Several Variables (Review) | — (from coursebook) | `sec_multi_intro`, `sec_multi_limit` | todo |
+| R1 | `ws-review-multivariable-functions` | Graphs and Level Sets (Review) | — (from coursebook) | `sec_multi_intro` | in-review |
 | R2 | `ws-review-partial-derivatives` | Partial Derivatives (Review) | — (from coursebook) | `sec_partial_derivatives`, `sec_total_differential` | todo |
 | R3 | `ws-review-double-integrals` | Double Integrals (Review) | — (from coursebook) | `sec_iterated_integrals`, `sec_double_int_volume`, `sec_double_int_polar` | todo |
 | R4 | `ws-review-triple-integrals` | Triple Integrals in Cylindrical & Spherical Coordinates (Review) | — (from coursebook) | `sec_triple_int`, `sec_cylindrical_spherical` | todo |
@@ -150,18 +152,26 @@ the decks plus new material (flag figure/exercise sourcing in each C2).
 
 1. **Foundational multivariable units — RESOLVED.** Per the instructor,
    the GLN includes **review** worksheets for the important prerequisite
-   topics; these are now **Section 0** (R1–R4: functions of several
-   variables, partial derivatives, double integrals, triple integrals).
+   topics; these are now **Section 0** (R1 graphs and level sets, R2
+   partial derivatives, R3 double integrals, R4 triple integrals).
    Deliberately excluded as standalone reviews (less central to vector
    analysis): the multivariable chain rule (`sec_multi_chain`), extreme
    values (`sec_multi_extreme_values`), Lagrange multipliers
    (`sec_lagrange`), and change of variables (`sec_transformations`). Say
    the word if you'd like any of these added as a Section 0 row.
-2. **Deck-to-meeting granularity.** A few decks may each want two class
+2. **Limits/continuity review — SHELVED.** Per the instructor, held
+   pending a decision on whether MA 301 gives an epsilon–delta treatment
+   of multivariable limits. `sec_multi_limit` is therefore not mapped to
+   any Section 0 row for now; R1 covers the visualization side of
+   `sec_multi_intro` only. (The existing `ws-function-notation` remains
+   the single function-notation review; R1 is retitled "Graphs and Level
+   Sets" so it is a distinct geometry topic, not a second functions
+   review.)
+3. **Deck-to-meeting granularity.** A few decks may each want two class
    meetings (e.g. `05_04_Fourier_Series_Diff_Eqns`); per the C2
    acceptance criteria I'll propose any such split in that worksheet's PR
    rather than pre-committing here.
-3. **`ws-vector-fields` sourcing.** Row 7 has no dedicated deck (vector
+4. **`ws-vector-fields` sourcing.** Row 7 has no dedicated deck (vector
    fields appear inside the gradient and line-integral decks). I'll draft
    it from the coursebook `sec_vector_fields` unless you'd rather fold it
    into `ws-gradient` or `ws-line-integrals`.
