@@ -172,7 +172,7 @@
 			<caption>Fixing <m>x=a</m> gives the trace <m>z=f(a,y)</m>;
 				<m>f_y(a,b)</m> is its slope at <m>y=b</m>.</caption>
 			<image width="60%">
-				<shortdescription>A trace curve z equals f of a comma y plotted against y, with a straight tangent line drawn at the point where y equals b; the tangent's slope is labeled f sub y of a comma b.</shortdescription>
+				<shortdescription>A curve rising and leveling off, the trace of the surface in the plane where x is held fixed. A straight line touches the curve at one point; its slope is the partial derivative with respect to y at that point.</shortdescription>
 				<latex-image>
 	\begin{tikzpicture}
 	\begin{axis}[axis lines=middle, xmin=-0.5, xmax=4.5, ymin=-0.5, ymax=5,
@@ -226,14 +226,19 @@
 		<p component="stu">
 			The mixed partial <m>f_{xy}</m> means: differentiate first with
 			respect to <fillin characters="3"/>, then with respect to
-			<fillin characters="3"/>. For every function we meet in this course,
-			<m>f_{xy}</m> and <m>f_{yx}</m> come out <fillin characters="6"/>.
+			<fillin characters="3"/>. By <term>Clairaut's Theorem</term>, when
+			<m>f_{xy}</m> and <m>f_{yx}</m> are <fillin characters="11"/> — as
+			they are for the smooth functions in this course — the order of
+			differentiation does not matter and the two are
+			<fillin characters="6"/>.
 		</p>
 		<p component="key">
 			The mixed partial <m>f_{xy}</m> means: differentiate first with
 			respect to <m>\underline{\textbf{x}}</m>, then with respect to
-			<m>\underline{\textbf{y}}</m>. For every function we meet in this
-			course, <m>f_{xy}</m> and <m>f_{yx}</m> come out
+			<m>\underline{\textbf{y}}</m>. By <term>Clairaut's Theorem</term>, when
+			<m>f_{xy}</m> and <m>f_{yx}</m> are <m>\underline{\textbf{continuous}}</m>
+			— as they are for the smooth functions in this course — the order of
+			differentiation does not matter and the two are
 			<m>\underline{\textbf{equal}}</m>.
 		</p>
 
@@ -269,8 +274,9 @@
 						f_{xy} = (f_x)_y = 3x^2 - 4y, \qquad
 						f_{yx} = (f_y)_x = 3x^2 - 4y.
 					</md>
-					The mixed partials agree: <m>f_{xy} = f_{yx} = 3x^2 - 4y</m>,
-					as the equality of mixed partials promises.
+					The mixed partials agree: <m>f_{xy} = f_{yx} = 3x^2 - 4y</m>.
+					This is a polynomial, so its partials are continuous everywhere
+					and Clairaut's Theorem guarantees the agreement in advance.
 				</p>
 			</solution>
 		</exercise>
