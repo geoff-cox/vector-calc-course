@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-review-double-integrals.ptx
+	Section 0 (Multivariable Calculus Review), worksheet R3:
+	Double Integrals — iterated integrals over rectangles, general
+	(Type I/II) regions and order of integration, the double integral as
+	signed volume, and polar coordinates.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md): paired component="stu"/"key"
+	reading checks and exercises; one True/False misconception check; two
+	TikZ <latex-image> figures on the general-region exercise (a blank
+	grid for the student to sketch on, and the shaded region on the
+	instructor key). Standard notation; no new macros. Book concepts are
+	tracked but example equations are NOT reused.
+-->
+<worksheet xml:id="ws-review-double-integrals">
+	<title>Review: Double Integrals</title>
+
+	<objectives>
+		<ul>
+			<li>Evaluate an iterated integral over a rectangle, in either order.</li>
+			<li>Set up a double integral over a general (Type I or II) region by sketching the region first.</li>
+			<li>Interpret a double integral as signed volume or total accumulation.</li>
+			<li>Convert a double integral to polar coordinates, keeping the <m>r</m> in <m>dA = r\,dr\,d\theta</m>.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: Iterated integrals
+		 ============================================================ -->
+	<page>
+		<p><alert>I. One integral at a time.</alert></p>
+
+		<p>
+			A double integral <m>\iint_R f(x,y)\,dA</m> is evaluated as an
+			<term>iterated integral</term>: integrate with respect to one
+			variable, holding the other fixed, then integrate the result with
+			respect to the second. It is single-variable integration done twice,
+			from the inside out.
+		</p>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			The inner integral is taken with respect to one variable while the
+			other is held <fillin characters="9"/>; it produces a function of the
+			remaining variable, which the <fillin characters="5"/> <nbsp/>integral
+			then integrates. <term>Fubini's Theorem</term> guarantees that, for
+			the functions we integrate, the two orders of integration give the
+			<fillin characters="5"/> <nbsp/>value.
+		</p>
+		<p component="key">
+			The inner integral is taken with respect to one variable while the
+			other is held <m>\underline{\textbf{constant}}</m>; it produces a
+			function of the remaining variable, which the
+			<m>\underline{\textbf{outer}}</m> integral then integrates.
+			<term>Fubini's Theorem</term> guarantees that, for the functions we
+			integrate, the two orders of integration give the
+			<m>\underline{\textbf{same}}</m> value.
+		</p>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: Iterated integrals over a rectangle
+		 ============================================================ -->
+	<page>
+		<p><alert>II. Over a rectangle.</alert></p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Evaluate <m>\displaystyle\int_0^2 \int_0^3 x y^2 \, dy \, dx</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Evaluate <m>\displaystyle\int_0^2 \int_0^3 x y^2 \, dy \, dx</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Inner integral (treat <m>x</m> as constant):
+					<md>
+						\int_0^3 x y^2 \, dy = x\left[\frac{y^3}{3}\right]_0^3
+						= x\cdot 9 = 9x.
+					</md>
+					Outer integral:
+					<md>
+						\int_0^2 9x \, dx = 9\left[\frac{x^2}{2}\right]_0^2
+						= 9\cdot 2 = 18.
+					</md>
+				</p>
+			</solution>
+		</exercise>
+
+		<p><alert>Your turn.</alert> Part (b) is the same integrand as (a) in the opposite order — Fubini says the answers must match.</p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					<ol>
+						<li>Evaluate <m>\displaystyle\int_0^1 \int_0^2 (x + 2y) \, dx \, dy</m>.</li>
+						<li>Evaluate <m>\displaystyle\int_0^2 \int_0^1 (x + 2y) \, dy \, dx</m> and confirm it equals your answer to (a).</li>
+					</ol>
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					<ol>
+						<li>Evaluate <m>\displaystyle\int_0^1 \int_0^2 (x + 2y) \, dx \, dy</m>.</li>
+						<li>Evaluate <m>\displaystyle\int_0^2 \int_0^1 (x + 2y) \, dy \, dx</m> and confirm it equals your answer to (a).</li>
+					</ol>
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<ol>
+						<li>
+							Inner: <m>\displaystyle\int_0^2 (x+2y)\,dx
+							= \left[\frac{x^2}{2} + 2yx\right]_0^2 = 2 + 4y</m>.
+							Outer: <m>\displaystyle\int_0^1 (2 + 4y)\,dy
+							= \left[2y + 2y^2\right]_0^1 = 4</m>.
+						</li>
+						<li>
+							Inner: <m>\displaystyle\int_0^1 (x+2y)\,dy
+							= \left[xy + y^2\right]_0^1 = x + 1</m>.
+							Outer: <m>\displaystyle\int_0^2 (x+1)\,dx
+							= \left[\frac{x^2}{2} + x\right]_0^2 = 4</m>.
+							The two orders agree, exactly as Fubini's Theorem promises.
+						</li>
+					</ol>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: General regions and order of integration
+		 ============================================================ -->
+	<page>
+		<p><alert>III. Over a general region.</alert></p>
+
+		<p>
+			Over a non-rectangular region the inner limits become
+			<em>functions</em>, not constants. For a <term>Type I</term> region,
+			<m>x</m> runs over a fixed interval <m>a \le x \le b</m> while
+			<m>y</m> runs between two curves <m>g_1(x) \le y \le g_2(x)</m>; we
+			integrate in <m>y</m> first. (A <term>Type II</term> region swaps the
+			roles.) The one indispensable step is to <em>sketch the region</em>
+			before writing any limits.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			For a Type I region the <em>outer</em> limits are always
+			<fillin characters="9"/>, while the <em>inner</em> limits may be
+			<fillin characters="9"/> <nbsp/>of the outer variable. Getting the
+			inner limits right is exactly what the <fillin characters="6"/>
+			<nbsp/>of the region shows you.
+		</p>
+		<p component="key">
+			For a Type I region the <em>outer</em> limits are always
+			<m>\underline{\textbf{constants}}</m>, while the <em>inner</em> limits
+			may be <m>\underline{\textbf{functions}}</m> of the outer variable.
+			Getting the inner limits right is exactly what the
+			<m>\underline{\textbf{sketch}}</m> of the region shows you.
+		</p>
+
+		<!-- worked/practice problem (paired) with figures -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Let <m>R</m> be the region bounded by <m>y = x</m> and
+					<m>y = x^2</m>. Sketch <m>R</m> on the grid below, set up
+					<m>\displaystyle\iint_R (x + y)\, dA</m> as an iterated integral
+					in the order <m>dy\,dx</m>, and evaluate it.
+				</p>
+				<image width="45%">
+					<shortdescription>A blank first-quadrant grid for sketching the region of integration.</shortdescription>
+					<latex-image>
+	\begin{tikzpicture}
+	\begin{axis}[axis lines=left, xmin=0, xmax=1.5, ymin=0, ymax=1.5,
+		grid=both, grid style={gray!25}, width=6cm, height=6cm,
+		xtick={0.5,1,1.5}, ytick={0.5,1,1.5}, xlabel=$x$, ylabel=$y$,
+		tick label style={font=\footnotesize}]
+	\end{axis}
+	\end{tikzpicture}
+					</latex-image>
+				</image>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>R</m> be the region bounded by <m>y = x</m> and
+					<m>y = x^2</m>. Set up <m>\displaystyle\iint_R (x + y)\, dA</m>
+					as an iterated integral in the order <m>dy\,dx</m>, and evaluate
+					it.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The curves meet where <m>x = x^2</m>, i.e. at <m>x=0</m> and
+					<m>x=1</m>. On <m>(0,1)</m> we have <m>x^2 &lt; x</m>, so the
+					region is <m>0 \le x \le 1</m>, <m>x^2 \le y \le x</m>:
+					<md>
+						\iint_R (x+y)\, dA
+						= \int_0^1 \int_{x^2}^{x} (x + y)\, dy\, dx.
+					</md>
+					Inner integral:
+					<md>
+						\int_{x^2}^{x} (x+y)\, dy
+						= \left[xy + \frac{y^2}{2}\right]_{x^2}^{x}
+						= \left(x^2 + \frac{x^2}{2}\right)
+						- \left(x^3 + \frac{x^4}{2}\right)
+						= \frac{3x^2}{2} - x^3 - \frac{x^4}{2}.
+					</md>
+					Outer integral:
+					<md>
+						\int_0^1 \left(\frac{3x^2}{2} - x^3 - \frac{x^4}{2}\right) dx
+						= \frac{1}{2} - \frac{1}{4} - \frac{1}{10}
+						= \frac{3}{20}.
+					</md>
+				</p>
+				<image width="45%">
+					<shortdescription>The region between the line y equals x above and the parabola y equals x squared below, shaded, from x equals 0 to x equals 1.</shortdescription>
+					<latex-image>
+	\begin{tikzpicture}[scale=2.6]
+	\draw[->] (-0.12,0) -- (1.35,0) node[right] {$x$};
+	\draw[->] (0,-0.12) -- (0,1.3) node[above] {$y$};
+	\fill[blue!12] plot[domain=0:1,samples=50] (\x,{\x*\x})
+		-- plot[domain=1:0,samples=50] (\x,\x) -- cycle;
+	\draw[thick,blue] plot[domain=0:1.12,samples=50] (\x,{\x*\x})
+		node[right,font=\footnotesize] {$y=x^2$};
+	\draw[thick,red] plot[domain=0:1.12] (\x,\x)
+		node[right,font=\footnotesize] {$y=x$};
+	\node at (0.55,0.42) {$R$};
+	\draw (1,0.02) -- (1,-0.02) node[below,font=\footnotesize] {$1$};
+	\end{tikzpicture}
+					</latex-image>
+				</image>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: Polar coordinates
+		 ============================================================ -->
+	<page>
+		<p><alert>IV. Polar coordinates.</alert></p>
+
+		<p>
+			When the region is a disk or sector, or the integrand depends on
+			<m>x^2 + y^2</m>, polar coordinates <m>x = r\cos\theta</m>,
+			<m>y = r\sin\theta</m> usually simplify everything. The one thing you
+			must not drop is the area element:
+			<md>
+				dA = r\, dr\, d\theta.
+			</md>
+			The extra factor of <m>r</m> accounts for the way polar "rectangles"
+			fan out as <m>r</m> grows.
+		</p>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			In polar coordinates the area element is <m>dA = </m>
+			<fillin characters="12"/>, <nbsp/>not simply <m>dr\,d\theta</m>. The
+			quantity <m>x^2 + y^2</m> becomes <fillin characters="4"/> <nbsp/>and a
+			disk of radius <m>R</m> centered at the origin is described by
+			<m>0 \le r \le R</m> and <m>0 \le \theta \le</m>
+			<fillin characters="6"/>.
+		</p>
+		<p component="key">
+			In polar coordinates the area element is
+			<m>dA = \underline{\textbf{r\,dr\,d\theta}}</m>, not simply
+			<m>dr\,d\theta</m>. The quantity <m>x^2 + y^2</m> becomes
+			<m>\underline{\textbf{r^2}}</m> and a disk of radius <m>R</m> centered
+			at the origin is described by <m>0 \le r \le R</m> and
+			<m>0 \le \theta \le \underline{\textbf{2\pi}}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Evaluate <m>\displaystyle\iint_D (x^2 + y^2)\, dA</m>, where
+					<m>D</m> is the unit disk <m>x^2 + y^2 \le 1</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Evaluate <m>\displaystyle\iint_D (x^2 + y^2)\, dA</m>, where
+					<m>D</m> is the unit disk <m>x^2 + y^2 \le 1</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					In polar, <m>x^2+y^2 = r^2</m> and <m>dA = r\,dr\,d\theta</m>,
+					with <m>D</m> given by <m>0\le r\le 1</m>,
+					<m>0\le\theta\le 2\pi</m>:
+					<md>
+						\iint_D (x^2+y^2)\, dA
+						= \int_0^{2\pi}\!\!\int_0^1 r^2\cdot r\, dr\, d\theta
+						= \int_0^{2\pi}\!\left[\frac{r^4}{4}\right]_0^1 d\theta
+						= \int_0^{2\pi} \frac{1}{4}\, d\theta = \frac{\pi}{2}.
+					</md>
+					In rectangular coordinates this same integral is a genuinely
+					unpleasant computation; the factor of <m>r</m> is precisely what
+					collapses it here.
+				</p>
+			</solution>
+		</exercise>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-r3-tf-polar">
+			<statement>
+				<p>
+					<alert>True or False.</alert> To convert
+					<m>\iint_D f\, dA</m> to polar coordinates, replace <m>dA</m> by
+					<m>dr\, d\theta</m>. Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False.</term> The correct area element is
+					<m>dA = r\, dr\, d\theta</m> — the factor of <m>r</m> is
+					essential. Dropping it is the single most common polar-integral
+					error; geometrically, it is the Jacobian of the polar change of
+					variables, measuring how a small polar rectangle grows with
+					<m>r</m>.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 5: A volume application + looking ahead
+		 ============================================================ -->
+	<page>
+		<p><alert>V. A volume, start to finish.</alert></p>
+
+		<p>
+			A double integral of a positive function is the volume of the solid
+			lying between the surface and the <m>xy</m>-plane, above the region of
+			integration. (When the integrand changes sign, the same integral
+			gives a <em>signed</em> volume, counting anything below the plane as
+			negative.) Here the integrand <m>4 - x^2 - y^2</m> stays positive on
+			the unit disk, the surface is a downward paraboloid, and the region is
+			a disk, so polar coordinates finish the job cleanly.
+		</p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Find the volume of the solid under the surface
+					<m>z = 4 - x^2 - y^2</m> and above the disk
+					<m>x^2 + y^2 \le 1</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the volume of the solid under the surface
+					<m>z = 4 - x^2 - y^2</m> and above the disk
+					<m>x^2 + y^2 \le 1</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The volume is <m>\displaystyle V = \iint_D (4 - x^2 - y^2)\, dA</m>
+					over the unit disk <m>D</m>. In polar,
+					<m>4 - x^2 - y^2 = 4 - r^2</m> and <m>dA = r\,dr\,d\theta</m>:
+					<md>
+						V = \int_0^{2\pi}\!\!\int_0^1 (4 - r^2)\, r\, dr\, d\theta
+						= \int_0^{2\pi}\!\left[2r^2 - \frac{r^4}{4}\right]_0^1 d\theta
+						= \int_0^{2\pi} \frac{7}{4}\, d\theta = \frac{7\pi}{2}.
+					</md>
+					So the solid has volume <m>\dfrac{7\pi}{2} \approx 11.0</m>
+					cubic units.
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> A double integral sweeps a
+				two-dimensional region; adding one more nested integral sweeps a
+				<em>three</em>-dimensional solid. Next we review <term>triple
+				integrals</term> and their cylindrical and spherical forms —
+				where the area element <m>r\,dr\,d\theta</m> grows into the volume
+				elements <m>r\,dz\,dr\,d\theta</m> and
+				<m>\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta</m>, the same
+				"remember the extra factor" idea one dimension up.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>
