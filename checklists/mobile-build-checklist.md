@@ -43,7 +43,7 @@ lives in `docs/gln-roadmap.md`.
 
 | Task | State | Landed |
 |---|---|---|
-| E1 — verify deploy-target config | not started | — |
+| E1 — verify deploy-target config | todo | — |
 | A1, A2 — MA 301 syllabus | ✅ done | #5 |
 | B1 — cross-boundary xref audit | ✅ done | #6 |
 | B2 — prune to the 6-chapter subset | ✅ done | #7 |
@@ -54,11 +54,16 @@ lives in `docs/gln-roadmap.md`.
 | C2 §0 — prerequisite review R1–R4 | ✅ done | #14–#17 |
 | C2 §1–§4 — vector analysis + Fourier | todo | — |
 | D1 — new-macro rule | standing (enforced per PR) | — |
-| D2 — macro audit | not run | — |
+| D2 — macro audit | todo | — |
 | M1–M6 — maintenance | as needed | — |
 
+Labels: **todo** = not yet started; **🔜 planned** = documented and next
+up (see Task B5); **standing** = an always-on rule; **as needed** = run on
+demand.
+
 Track B pruning is complete and the coursebook is internally consistent;
-**B5** (below) is the one open coursebook item. GLN Section 0 (the
+**B5** (Task B5 in the Track B coursebook checklist) is the one open
+coursebook item. GLN Section 0 (the
 prerequisite review) is complete; Track C resumes at Section 1
 (`ws-curves`, the first worksheet translated from a Beamer deck).
 

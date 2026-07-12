@@ -171,7 +171,11 @@ exercises (`r\,dz\,dr\,d\theta` is unchanged) are left fully intact.
   `fig_sphericalwedge`, and any example figure that draws the angle).
 - `sec_transformations.ptx`: the spherical-**Jacobian** derivation
   (~lines 1192–1260) that lands on `\rho^2\cos\varphi`, plus its prose,
-  its `<xref>` to `thm_triple_int_spherical`, and its video.
+  its `<xref>` to `thm_triple_int_spherical`, and its video. **Note a
+  pre-existing typo:** the final line of that derivation (~line 1248)
+  currently reads `\rho^2\cos\theta` where the algebra gives
+  `\rho^2\cos\varphi` — B5b re-derives this block for `\sin\varphi`
+  anyway and should correct the stray `\theta` in passing.
 - GLN `source/notes/ws-review-triple-integrals.ptx` (**R4**): flip to the
   standard convention (the "read carefully" callout, the conversions, the
   dV, the limits, and the spherical diagram).
