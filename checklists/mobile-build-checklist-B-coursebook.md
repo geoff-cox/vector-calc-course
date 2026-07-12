@@ -134,6 +134,80 @@ preview.
 **Verification:** gates 1–3; the Pages preview appendix contains no
 orphaned headings.
 
+## Task B5 — Align the spherical-coordinate convention with the standard
+
+Independent of the B1–B4 prune pipeline; a coursebook enhancement.
+
+**Why.** `source/book/ptx/sec_cylindrical_spherical.ptx` measures the
+spherical angle `\varphi` **up from the `xy`-plane**
+(`-\pi/2 \le \varphi \le \pi/2`), so its volume element is
+`dV = \rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi`. Almost every other
+textbook, WeBWorK problem, CAS, and downstream course measures `\varphi`
+**from the `+z`-axis** (`0 \le \varphi \le \pi`) with
+`dV = \rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta`. The instructor has
+decided to switch to the standard convention so the book, the notes, the
+tests, and outside resources all agree.
+
+**Standard convention to install.**
+`x=\rho\sin\varphi\cos\theta`, `y=\rho\sin\varphi\sin\theta`,
+`z=\rho\cos\varphi`; `0 \le \varphi \le \pi`;
+`dV = \rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta`.
+
+**Refined scope (decided — "Option 2").** Update all student-facing
+**exposition** to the standard convention, but do **not** re-derive the
+section's exercises (they will not be used in class). For each **affected
+(spherical)** exercise, keep the **statement** and **remove its
+`<answer>`/`<solution>`** (its worked value is tied to the old
+convention); leave a one-line `<!-- TODO(geoff): answer pending
+re-derivation under the standard convention -->`. Cylindrical-only
+exercises (`r\,dz\,dr\,d\theta` is unchanged) are left fully intact.
+
+**Downstream footprint (from the audit).**
+- `sec_cylindrical_spherical.ptx` (core): the Key Idea conversions; the
+  theorem `thm_triple_int_spherical` (dV, `\varphi` range, integration
+  order); the remark that *justifies* the old convention (rewrite or
+  drop); the **4 worked examples** `ex_spherical1`–`ex_spherical4`; and
+  the defining **Asymptote figures** (`fig_sphericalintro`,
+  `fig_sphericalwedge`, and any example figure that draws the angle).
+- `sec_transformations.ptx`: the spherical-**Jacobian** derivation
+  (~lines 1192–1260) that lands on `\rho^2\cos\varphi`, plus its prose,
+  its `<xref>` to `thm_triple_int_spherical`, and its video. **Note a
+  pre-existing typo:** the final line of that derivation (~line 1248)
+  currently reads `\rho^2\cos\theta` where the algebra gives
+  `\rho^2\cos\varphi` — B5b re-derives this block for `\sin\varphi`
+  anyway and should correct the stray `\theta` in passing.
+- GLN `source/notes/ws-review-triple-integrals.ptx` (**R4**): flip to the
+  standard convention (the "read carefully" callout, the conversions, the
+  dV, the limits, and the spherical diagram).
+- **Leave untouched:** generic `\rho`/`\varphi` in `sec_vector_intro` and
+  `sec_parametric_surfaces` (generic angles / a generic sphere
+  parametrization, not the integration convention); the orphaned
+  `*_old.ptx` copies (not in the build).
+
+**Staging (consecutive PRs, each targeting `main`, parent-before-child
+per `CLAUDE.md` §5).**
+- **B5a** — definitional core: Key Idea + `thm_triple_int_spherical` + the
+  two defining figures + the convention remark; **flip the R4 GLN
+  worksheet** (and its diagram) in the same PR so notes and book stay in
+  agreement. Small and reviewable — renders the new convention before the
+  heavier work.
+- **B5b** — re-derive the 4 worked examples and the `sec_transformations`
+  Jacobian (verify **every** integral by hand); strip
+  `<answer>`/`<solution>` from the affected spherical exercises
+  (statements stay).
+
+**Verification.** Gates 1–3 on the `book` target (the coursebook is not a
+deploy target — building it in CI is optional per the note in
+`project.ptx`). Sanity-check each re-derived spherical integral by hand
+(e.g. a ball of radius `r` must give `\tfrac43\pi r^3`); grep that no
+`\cos\varphi` volume element or `-\pi/2` bound survives in exposition; and
+confirm each stripped exercise keeps its statement and carries no orphaned
+answer/solution. Because the book warns this area is "a source of many
+common sign errors," treat unverified arithmetic as a blocker, not a
+detail. If a redrawn Asymptote figure can't be regenerated without the
+toolchain, mark it and flag under Open questions rather than shipping a
+stale picture.
+
 ---
 
 **Out of scope for Track B:** fine-grained pruning of sections *within*
