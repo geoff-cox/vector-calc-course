@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-review-triple-integrals.ptx
+	Section 0 (Multivariable Calculus Review), worksheet R4:
+	Triple Integrals — over a box, cylindrical coordinates, and spherical
+	coordinates.
+
+	CONVENTION: this worksheet follows the COURSEBOOK's spherical
+	convention (sec_cylindrical_spherical): varphi is measured up from the
+	xy-plane, -pi/2 <= varphi <= pi/2, so dV = rho^2 cos(varphi) drho dtheta
+	dvarphi (NOT the sin(varphi)/z-axis convention of most other books).
+	The book wins per checklists/worksheet-conventions.md; the difference
+	is flagged in-worksheet for students and in the PR for the instructor.
+
+	Authored to the SHARED worksheet conventions: paired
+	component="stu"/"key" reading checks and exercises; one True/False
+	misconception check; one read-along TikZ spherical-coordinates diagram.
+	Standard notation; no new macros. Book concepts tracked, example
+	equations NOT reused.
+-->
+<worksheet xml:id="ws-review-triple-integrals">
+	<title>Review: Triple Integrals</title>
+
+	<objectives>
+		<ul>
+			<li>Evaluate a triple integral over a rectangular box.</li>
+			<li>Set up a triple integral over a solid by integrating in <m>z</m> first, then over its shadow in the <m>xy</m>-plane.</li>
+			<li>Convert to cylindrical coordinates, with <m>dV = r\,dz\,dr\,d\theta</m>.</li>
+			<li>Convert to spherical coordinates in this course's convention, with <m>dV = \rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi</m>.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: Triple integrals over a box
+		 ============================================================ -->
+	<page>
+		<p><alert>I. One more dimension.</alert></p>
+
+		<p>
+			A triple integral <m>\iiint_D f(x,y,z)\,dV</m> accumulates a
+			density over a solid region <m>D</m>, just as a double integral
+			accumulates over a plane region. Over a rectangular box it is three
+			nested single-variable integrals, evaluated from the inside out.
+		</p>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			A triple integral over a box is evaluated as <fillin characters="6"/>
+			<nbsp/>nested integrals; the innermost is taken while the other two
+			variables are held <fillin characters="9"/>. Over a rectangular box,
+			all six possible orders of integration give the
+			<fillin characters="5"/> <nbsp/>value.
+		</p>
+		<p component="key">
+			A triple integral over a box is evaluated as
+			<m>\underline{\textbf{three}}</m> nested integrals; the innermost is
+			taken while the other two variables are held
+			<m>\underline{\textbf{constant}}</m>. Over a rectangular box, all six
+			possible orders of integration give the
+			<m>\underline{\textbf{same}}</m> value.
+		</p>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: Over a box
+		 ============================================================ -->
+	<page>
+		<p><alert>II. Over a box.</alert></p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.25in">
+			<statement>
+				<p>
+					Evaluate
+					<m>\displaystyle\int_0^1\!\int_0^2\!\int_0^3 xyz \, dz \, dy \, dx</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Evaluate
+					<m>\displaystyle\int_0^1\!\int_0^2\!\int_0^3 xyz \, dz \, dy \, dx</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Integrate outward, one variable at a time:
+					<md>
+						\int_0^3 xyz\,dz = xy\left[\frac{z^2}{2}\right]_0^3
+						= \frac{9}{2}xy,
+					</md>
+					<md>
+						\int_0^2 \frac{9}{2}xy\,dy
+						= \frac{9}{2}x\left[\frac{y^2}{2}\right]_0^2 = 9x,
+						\qquad
+						\int_0^1 9x\,dx = \frac{9}{2}.
+					</md>
+					(Because the integrand factors as <m>x\cdot y\cdot z</m> over a
+					box, this also equals
+					<m>\left(\int_0^1 x\,dx\right)\!\left(\int_0^2 y\,dy\right)\!\left(\int_0^3 z\,dz\right)</m>.)
+				</p>
+			</solution>
+		</exercise>
+
+		<p><alert>Your turn.</alert></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					<ol>
+						<li>Evaluate <m>\displaystyle\iiint_B (x + y + z)\, dV</m>, where <m>B = [0,1]\times[0,1]\times[0,2]</m>.</li>
+						<li>In one sentence, what does <m>\displaystyle\iiint_D 1\, dV</m> compute for a solid <m>D</m>?</li>
+					</ol>
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					<ol>
+						<li>Evaluate <m>\displaystyle\iiint_B (x + y + z)\, dV</m>, where <m>B = [0,1]\times[0,1]\times[0,2]</m>.</li>
+						<li>In one sentence, what does <m>\displaystyle\iiint_D 1\, dV</m> compute for a solid <m>D</m>?</li>
+					</ol>
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<ol>
+						<li>
+							<md>
+								\int_0^2\!\int_0^1\!\int_0^1 (x+y+z)\,dx\,dy\,dz
+								= \int_0^2\!\int_0^1 \left(\tfrac12 + y + z\right) dy\,dz
+							</md>
+							<md>
+								= \int_0^2 \left(1 + z\right) dz
+								= \left[z + \tfrac{z^2}{2}\right]_0^2 = 4.
+							</md>
+						</li>
+						<li>
+							<m>\displaystyle\iiint_D 1\, dV</m> is the
+							<term>volume</term> of the solid <m>D</m>.
+						</li>
+					</ol>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: Cylindrical coordinates
+		 ============================================================ -->
+	<page>
+		<p><alert>III. Cylindrical coordinates.</alert></p>
+
+		<p>
+			Cylindrical coordinates are just polar coordinates in the
+			<m>xy</m>-plane, carrying <m>z</m> along unchanged:
+			<m>x = r\cos\theta</m>, <m>y = r\sin\theta</m>, <m>z = z</m>. The
+			volume element is the polar area element times <m>dz</m>,
+			<md>
+				dV = r\,dz\,dr\,d\theta,
+			</md>
+			so the same <m>r</m> we could not drop in polar carries over. Reach
+			for cylindrical when the solid has an axis of symmetry along the
+			<m>z</m>-axis.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			In cylindrical coordinates <m>x^2+y^2</m> becomes
+			<fillin characters="4"/> <nbsp/>and the volume element is
+			<m>dV = </m> <fillin characters="12"/>. These coordinates are the
+			natural choice when the solid is symmetric about the
+			<fillin characters="6"/>-axis.
+		</p>
+		<p component="key">
+			In cylindrical coordinates <m>x^2+y^2</m> becomes
+			<m>\underline{\textbf{r^2}}</m> and the volume element is
+			<m>dV = \underline{\textbf{r\,dz\,dr\,d\theta}}</m>. These coordinates
+			are the natural choice when the solid is symmetric about the
+			<m>\underline{\textbf{z}}</m>-axis.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Find the volume of the solid bounded below by the plane
+					<m>z = 0</m> and above by the paraboloid <m>z = 4 - x^2 - y^2</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the volume of the solid bounded below by the plane
+					<m>z = 0</m> and above by the paraboloid <m>z = 4 - x^2 - y^2</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The paraboloid meets <m>z=0</m> where <m>x^2+y^2 = 4</m>, a disk
+					of radius <m>2</m>; in cylindrical the cap is
+					<m>z = 4 - r^2</m>. So
+					<md>
+						V = \int_0^{2\pi}\!\int_0^2\!\int_0^{4-r^2} r\,dz\,dr\,d\theta
+						= \int_0^{2\pi}\!\int_0^2 (4-r^2)\,r\,dr\,d\theta
+					</md>
+					<md>
+						= \int_0^{2\pi}\left[2r^2 - \frac{r^4}{4}\right]_0^2 d\theta
+						= \int_0^{2\pi} 4\,d\theta = 8\pi.
+					</md>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: Spherical coordinates
+		 ============================================================ -->
+	<page>
+		<p><alert>IV. Spherical coordinates.</alert></p>
+
+		<p>
+			Spherical coordinates locate a point by its distance
+			<m>\rho \ge 0</m> from the origin and two angles.
+		</p>
+
+		<p>
+			<alert>Convention (read carefully).</alert> This course measures the
+			angle <m>\varphi</m> <em>up from the <m>xy</m>-plane</em> (like
+			latitude), so <m>-\pi/2 \le \varphi \le \pi/2</m>, and <m>\theta</m>
+			is the usual angle in the <m>xy</m>-plane. With that choice,
+			<md>
+				x = \rho\cos\varphi\cos\theta,\quad
+				y = \rho\cos\varphi\sin\theta,\quad
+				z = \rho\sin\varphi,
+			</md>
+			<md>
+				dV = \rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi.
+			</md>
+			Many other textbooks measure <m>\varphi</m> <em>down from the
+			<m>z</m>-axis</em> (so <m>0 \le \varphi \le \pi</m>) and write
+			<m>\sin\varphi</m> in place of <m>\cos\varphi</m>. When you consult
+			outside resources, check which convention they use.
+		</p>
+
+		<figure xml:id="ws-r4-fig-spherical">
+			<caption>Spherical coordinates in this course: <m>\rho</m> is the
+				distance to <m>P</m>, <m>\theta</m> is measured in the
+				<m>xy</m>-plane, and <m>\varphi</m> is measured up from the
+				<m>xy</m>-plane.</caption>
+			<image width="52%">
+				<shortdescription>A point P in space with its position vector from the origin. The angle theta is shown in the horizontal plane between the x-axis and the shadow of the vector; the angle phi is shown between the horizontal plane and the vector; rho labels the length of the vector.</shortdescription>
+				<latex-image>
+	\begin{tikzpicture}[scale=1.5,>=stealth]
+	\coordinate (O) at (0,0,0);
+	\coordinate (P) at (2.1,1.3,1.7);
+	\coordinate (Pxy) at (2.1,1.3,0);
+	% axes
+	\draw[->] (0,0,0) -- (3,0,0) node[anchor=north east] {$x$};
+	\draw[->] (0,0,0) -- (0,3,0) node[anchor=north west] {$y$};
+	\draw[->] (0,0,0) -- (0,0,2.6) node[anchor=south] {$z$};
+	% projection and vertical drop
+	\draw[dashed, gray] (O) -- (Pxy);
+	\draw[dashed, gray] (Pxy) -- (P);
+	% position vector
+	\draw[very thick, blue, ->] (O) -- (P);
+	\node[blue, anchor=south west] at (P) {$P$};
+	\node[blue] at (1.2,0.75,1.15) {$\rho$};
+	% theta arc in xy-plane
+	\draw[red, ->] (0.7,0,0) arc[start angle=0, end angle=31.7, radius=0.7];
+	\node[red] at (0.95,0.28,0) {$\theta$};
+	% phi arc from xy-plane up to vector
+	\draw[teal, ->] (1.05,0.65,0) arc[start angle=0, end angle=30, radius=0.55];
+	\node[teal] at (1.55,0.7,0.35) {$\varphi$};
+	\node[anchor=north] at (Pxy) {\footnotesize shadow of $P$};
+	\end{tikzpicture}
+				</latex-image>
+			</image>
+		</figure>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			In this course <m>\varphi</m> is measured from the
+			<fillin characters="4"/>-plane, so it ranges from
+			<fillin characters="6"/> <nbsp/>to <m>\pi/2</m>, and the spherical
+			volume element is <m>dV = </m> <fillin characters="22"/>.
+		</p>
+		<p component="key">
+			In this course <m>\varphi</m> is measured from the
+			<m>\underline{\textbf{xy}}</m>-plane, so it ranges from
+			<m>\underline{\textbf{-\pi/2}}</m> to <m>\pi/2</m>, and the spherical
+			volume element is
+			<m>dV = \underline{\textbf{\rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi}}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Use spherical coordinates to find the volume of a ball of
+					radius <m>2</m> centered at the origin.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Use spherical coordinates to find the volume of a ball of
+					radius <m>2</m> centered at the origin.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The ball is <m>0 \le \rho \le 2</m>, <m>0 \le \theta \le 2\pi</m>,
+					<m>-\pi/2 \le \varphi \le \pi/2</m>. The integral separates:
+					<md>
+						V = \int_{-\pi/2}^{\pi/2}\!\int_0^{2\pi}\!\int_0^2
+						\rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi
+						= \left(\int_0^2\!\rho^2 d\rho\right)
+						  \left(\int_0^{2\pi}\!d\theta\right)
+						  \left(\int_{-\pi/2}^{\pi/2}\!\cos\varphi\,d\varphi\right).
+					</md>
+					These are <m>\dfrac{8}{3}</m>, <m>2\pi</m>, and
+					<m>\big[\sin\varphi\big]_{-\pi/2}^{\pi/2} = 2</m>, so
+					<md>
+						V = \frac{8}{3}\cdot 2\pi \cdot 2 = \frac{32\pi}{3},
+					</md>
+					exactly the classic <m>\frac{4}{3}\pi r^3</m> with <m>r=2</m>.
+				</p>
+			</solution>
+		</exercise>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-r4-tf-spherical">
+			<statement>
+				<p>
+					<alert>True or False.</alert> In spherical coordinates,
+					<m>dV = \rho^2\,d\rho\,d\theta\,d\varphi</m>. Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False.</term> An angular factor is missing. In this
+					course's convention (<m>\varphi</m> from the <m>xy</m>-plane),
+					<m>dV = \rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi</m>; in the
+					more common convention (<m>\varphi</m> from the <m>z</m>-axis) it
+					is <m>\rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi</m>. Either way
+					the lone <m>\rho^2</m> is not enough — dropping the trig factor
+					is the classic spherical-integral mistake.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 5: A mass application + looking ahead
+		 ============================================================ -->
+	<page>
+		<p><alert>V. Mass of a solid.</alert></p>
+
+		<p>
+			Replacing the integrand <m>1</m> (which gives volume) by a
+			<term>density</term> <m>\delta(x,y,z)</m> turns a triple integral
+			into a <term>mass</term>: <m>M = \iiint_D \delta\, dV</m>. When the
+			density depends only on distance from the origin, spherical
+			coordinates are ideal.
+		</p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					A solid ball of radius <m>1</m> has density equal to the
+					distance from its center, <m>\delta = \rho</m>. Find its total
+					mass.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					A solid ball of radius <m>1</m> has density equal to the
+					distance from its center, <m>\delta = \rho</m>. Find its total
+					mass.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					With <m>\delta = \rho</m> and
+					<m>dV = \rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi</m>, the
+					integrand is <m>\rho\cdot\rho^2\cos\varphi = \rho^3\cos\varphi</m>:
+					<md>
+						M = \int_{-\pi/2}^{\pi/2}\!\int_0^{2\pi}\!\int_0^1
+						\rho^3\cos\varphi\,d\rho\,d\theta\,d\varphi
+						= \frac{1}{4}\cdot 2\pi \cdot 2 = \pi.
+					</md>
+					The mass is <m>\pi</m>. Because the density grows with
+					<m>\rho</m>, most of the mass sits in the outer shells rather
+					than near the center.
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> That completes the review of the
+				multivariable calculus MA 301 builds on — functions and their
+				graphs, partial derivatives, and now single, double, and triple
+				integrals. From here the course turns to its real subject,
+				<term>vector analysis</term>: vector fields, line and surface
+				integrals, and the theorems of Green, Stokes, and Gauss that tie
+				derivatives and integrals together in higher dimensions.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>
