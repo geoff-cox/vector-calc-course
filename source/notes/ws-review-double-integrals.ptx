@@ -348,10 +348,13 @@
 		<p><alert>V. A volume, start to finish.</alert></p>
 
 		<p>
-			A double integral of a positive function is the signed volume of the
-			solid between the surface and the region in the <m>xy</m>-plane. Here
-			the surface is a downward paraboloid and the region is a disk, so
-			polar coordinates finish the job cleanly.
+			A double integral of a positive function is the volume of the solid
+			lying between the surface and the <m>xy</m>-plane, above the region of
+			integration. (When the integrand changes sign, the same integral
+			gives a <em>signed</em> volume, counting anything below the plane as
+			negative.) Here the integrand <m>4 - x^2 - y^2</m> stays positive on
+			the unit disk, the surface is a downward paraboloid, and the region is
+			a disk, so polar coordinates finish the job cleanly.
 		</p>
 
 		<!-- application (paired) -->
