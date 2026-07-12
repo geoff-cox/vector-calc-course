@@ -28,11 +28,39 @@ The tasks are scaffolded — later tracks depend on earlier ones:
 2. **A1 → A2** (syllabus) — small, and it fixes the authoritative topic
    list that Track B and C decisions hang on.
 3. **B1 → B2 → B3 → B4** (coursebook) — strictly in order; B1 is a
-   read-only audit whose report drives B2–B4.
+   read-only audit whose report drives B2–B4. **B5** (spherical-convention
+   alignment) is an independent coursebook enhancement, done when
+   scheduled.
 4. **C1**, then **C2 repeated per section** (worksheets) — the long tail;
    one worksheet per PR, ordered by the course schedule.
 5. **D1/D2** — D1 is a standing rule enforced inside every task; D2 is an
    occasional audit.
+
+## Current status
+
+Snapshot of where the build stands; per-worksheet detail for Track C
+lives in `docs/gln-roadmap.md`.
+
+| Task | State | Landed |
+|---|---|---|
+| E1 — verify deploy-target config | not started | — |
+| A1, A2 — MA 301 syllabus | ✅ done | #5 |
+| B1 — cross-boundary xref audit | ✅ done | #6 |
+| B2 — prune to the 6-chapter subset | ✅ done | #7 |
+| B3 — reroute broken xrefs | ✅ done | #9 |
+| B4 — prune the appendix | ✅ done | #11 |
+| **B5 — spherical-convention alignment** | 🔜 planned | — |
+| C1 — GLN roadmap (+ Section 0 review plan) | ✅ done | #12, #13 |
+| C2 §0 — prerequisite review R1–R4 | ✅ done | #14–#17 |
+| C2 §1–§4 — vector analysis + Fourier | todo | — |
+| D1 — new-macro rule | standing (enforced per PR) | — |
+| D2 — macro audit | not run | — |
+| M1–M6 — maintenance | as needed | — |
+
+Track B pruning is complete and the coursebook is internally consistent;
+**B5** (below) is the one open coursebook item. GLN Section 0 (the
+prerequisite review) is complete; Track C resumes at Section 1
+(`ws-curves`, the first worksheet translated from a Beamer deck).
 
 ## Global rules (apply to every task)
 
@@ -63,3 +91,4 @@ Copy-paste starters for the phone:
 - `@claude Do Task C2 for the section "The Dot Product". Old deck: source/notes/latex/01--functions-vectors/01_02_Dot_Product.tex.`
 - `@claude Address my review comments on PR #12 and re-run all verification gates.`
 - `@claude Run Task D2 and report, but only open a PR if fixes are needed.`
+- `@claude Do Task B5a (spherical-convention definitional core).`
