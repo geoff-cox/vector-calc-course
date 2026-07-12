@@ -32,8 +32,10 @@
 	<!-- Review worksheet R2: partial derivatives -->
 	<xi:include href="./ws-review-partial-derivatives.ptx"/>
 
+	<!-- Review worksheet R3: double integrals -->
+	<xi:include href="./ws-review-double-integrals.ptx"/>
+
 	<!-- Future review worksheets (uncomment as they are written): -->
-	<!-- <xi:include href="./ws-review-double-integrals.ptx"/>	 -->
 	<!-- <xi:include href="./ws-review-triple-integrals.ptx"/>	 -->
 
 </section>

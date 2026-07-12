@@ -73,8 +73,8 @@ on an epsilon–delta treatment.)
 | # | worksheet slug | title | old deck(s) | book section(s) | status |
 |---|---|---|---|---|---|
 | R1 | `ws-review-multivariable-functions` | Graphs and Level Sets (Review) | — (from coursebook) | `sec_multi_intro` | done |
-| R2 | `ws-review-partial-derivatives` | Partial Derivatives (Review) | — (from coursebook) | `sec_partial_derivatives`, `sec_total_differential` | in-review |
-| R3 | `ws-review-double-integrals` | Double Integrals (Review) | — (from coursebook) | `sec_iterated_integrals`, `sec_double_int_volume`, `sec_double_int_polar` | todo |
+| R2 | `ws-review-partial-derivatives` | Partial Derivatives (Review) | — (from coursebook) | `sec_partial_derivatives`, `sec_total_differential` | done |
+| R3 | `ws-review-double-integrals` | Double Integrals (Review) | — (from coursebook) | `sec_iterated_integrals`, `sec_double_int_volume`, `sec_double_int_polar` | in-review |
 | R4 | `ws-review-triple-integrals` | Triple Integrals in Cylindrical & Spherical Coordinates (Review) | — (from coursebook) | `sec_triple_int`, `sec_cylindrical_spherical` | todo |
 
 ## Section 1 — Functions, Vectors, and Vector Fields
