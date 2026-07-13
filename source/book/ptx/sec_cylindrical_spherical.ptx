@@ -756,10 +756,11 @@
             <p>
               To keep a <term>right-handed</term> coordinate system <ndash/> one whose
               orientation matches that of our usual <m>(x,y,z)</m> coordinates, where the
-              <q>right-hand rule</q> applies <ndash/> the coordinates are ordered
+              <q>right-hand rule</q> applies <ndash/> the coordinates must be ordered
               <m>(\rho,\varphi,\theta)</m>. We nonetheless continue to list a
               spherical point as <m>(\rho,\theta,\varphi)</m> to keep <m>\theta</m>
-              in the same slot it occupies for cylindrical coordinates.
+              in the same slot it occupies for cylindrical coordinates; this listing
+              order is <term>left-handed</term>.
             </p>
           </li>
           <li>

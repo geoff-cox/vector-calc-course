@@ -1225,7 +1225,7 @@
 								the process is exactly the same. We form the derivative of the transformation,
 								given by the matrix of partial derivatives, and compute its determinant. We find:
 								<md>
-									<mrow>J_T(r,\theta,\varphi) \amp= \det\begin{bmatrix}
+									<mrow>J_T(\rho,\theta,\varphi) \amp= \det\begin{bmatrix}
 												x_\rho(\rho,\theta,\varphi) \amp x_\theta(\rho,\theta,\varphi) \amp x_\varphi(\rho,\theta,\varphi)\\
 												y_\rho(\rho,\theta,\varphi) \amp y_\theta(\rho,\theta,\varphi) \amp y_\varphi(\rho,\theta,\varphi)\\
 												z_\rho(\rho,\theta,\varphi) \amp z_\theta(\rho,\theta,\varphi) \amp z_\varphi(\rho,\theta,\varphi)
