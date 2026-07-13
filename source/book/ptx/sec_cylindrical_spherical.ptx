@@ -1821,6 +1821,9 @@
                 <m>(2\sqrt 2,\pi/4,1)</m> and <m>(2,5\pi/6,0)</m>
               </p>
               <!-- TODO(geoff): spherical answer pending re-derivation under the standard convention (B5b deferred exercise). -->
+              <p>
+                Spherical: <em>pending re-derivation under the standard convention.</em>
+              </p>
             </solution>
           </task>
           <task label="ex-cylindrical-spherical-convert-1b">
@@ -1836,6 +1839,9 @@
                 <m>(\sqrt 2,\sqrt 2,2)</m> and <m>(0,-3,-4)</m>
               </p>
               <!-- TODO(geoff): spherical answer pending re-derivation under the standard convention (B5b deferred exercise). -->
+              <p>
+                Spherical: <em>pending re-derivation under the standard convention.</em>
+              </p>
             </solution>
           </task>
           <task label="ex-cylindrical-spherical-convert-1c">
@@ -1862,6 +1868,9 @@
                 Cylindrical: <m>(1,\pi/2,1)</m> and <m>(1,\pi,1)</m>
               </p>
               <!-- TODO(geoff): spherical answer pending re-derivation under the standard convention (B5b deferred exercise). -->
+              <p>
+                Spherical: <em>pending re-derivation under the standard convention.</em>
+              </p>
             </solution>
           </task>
 
@@ -1878,6 +1887,9 @@
                 <m>(0,0,1)</m> and <m>(-1,-\sqrt 3,0)</m>
               </p>
               <!-- TODO(geoff): spherical answer pending re-derivation under the standard convention (B5b deferred exercise). -->
+              <p>
+                Spherical: <em>pending re-derivation under the standard convention.</em>
+              </p>
             </solution>
           </task>
           <task label="ex-cylindrical-spherical-convert-2c">
@@ -2878,6 +2890,9 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
             </p>
 
             <!-- TODO(geoff): spherical set-up pending re-derivation under the standard convention (B5b deferred exercise). -->
+            <p>
+              Spherical: <em>set-up pending re-derivation under the standard convention.</em>
+            </p>
 
             <p>
               Spherical appears simplest,
@@ -2906,6 +2921,9 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
             </p>
 
             <!-- TODO(geoff): spherical set-up pending re-derivation under the standard convention (B5b deferred exercise). -->
+            <p>
+              Spherical: <em>set-up pending re-derivation under the standard convention.</em>
+            </p>
 
             <p>
               Cylindrical appears simplest,
@@ -2934,6 +2952,9 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
             </p>
 
             <!-- TODO(geoff): spherical set-up pending re-derivation under the standard convention (B5b deferred exercise). -->
+            <p>
+              Spherical: <em>set-up pending re-derivation under the standard convention.</em>
+            </p>
 
             <p>
               Cylindrical appears simplest,
@@ -2966,6 +2987,9 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
             </p>
 
             <!-- TODO(geoff): spherical set-up pending re-derivation under the standard convention (B5b deferred exercise). -->
+            <p>
+              Spherical: <em>set-up pending re-derivation under the standard convention.</em>
+            </p>
 
             <p>
               Rectangular is clearly the simplest.
