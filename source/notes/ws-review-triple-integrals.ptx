@@ -5,12 +5,12 @@
 	Triple Integrals — over a box, cylindrical coordinates, and spherical
 	coordinates.
 
-	CONVENTION: this worksheet follows the COURSEBOOK's spherical
-	convention (sec_cylindrical_spherical): varphi is measured up from the
-	xy-plane, -pi/2 <= varphi <= pi/2, so dV = rho^2 cos(varphi) drho dtheta
-	dvarphi (NOT the sin(varphi)/z-axis convention of most other books).
-	The book wins per checklists/worksheet-conventions.md; the difference
-	is flagged in-worksheet for students and in the PR for the instructor.
+	CONVENTION: this worksheet follows the STANDARD spherical convention
+	(sec_cylindrical_spherical, as of Task B5a): varphi is the polar angle,
+	measured down from the +z-axis, 0 <= varphi <= pi, so
+	dV = rho^2 sin(varphi) drho dtheta dvarphi. This matches most other
+	textbooks, CAS, and online homework systems. The book and the notes
+	agree per checklists/worksheet-conventions.md.
 
 	Authored to the SHARED worksheet conventions: paired
 	component="stu"/"key" reading checks and exercises; one True/False
@@ -26,7 +26,7 @@
 			<li>Evaluate a triple integral over a rectangular box.</li>
 			<li>Set up a triple integral over a solid by integrating in <m>z</m> first, then over its shadow in the <m>xy</m>-plane.</li>
 			<li>Convert to cylindrical coordinates, with <m>dV = r\,dz\,dr\,d\theta</m>.</li>
-			<li>Convert to spherical coordinates in this course's convention, with <m>dV = \rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi</m>.</li>
+			<li>Convert to spherical coordinates, with <m>dV = \rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi</m>.</li>
 		</ul>
 	</objectives>
 
@@ -229,53 +229,55 @@
 		</p>
 
 		<p>
-			<alert>Convention (read carefully).</alert> This course measures the
-			angle <m>\varphi</m> <em>up from the <m>xy</m>-plane</em> (like
-			latitude), so <m>-\pi/2 \le \varphi \le \pi/2</m>, and <m>\theta</m>
-			is the usual angle in the <m>xy</m>-plane. With that choice,
+			<alert>Convention (read carefully).</alert> We measure the angle
+			<m>\varphi</m> <em>down from the <m>z</m>-axis</em> (the
+			<term>polar angle</term>, like the angle from the north pole), so
+			<m>0 \le \varphi \le \pi</m>, and <m>\theta</m> is the usual angle in
+			the <m>xy</m>-plane. With that choice,
 			<md>
-				x = \rho\cos\varphi\cos\theta,\quad
-				y = \rho\cos\varphi\sin\theta,\quad
-				z = \rho\sin\varphi,
+				x = \rho\sin\varphi\cos\theta,\quad
+				y = \rho\sin\varphi\sin\theta,\quad
+				z = \rho\cos\varphi,
 			</md>
 			<md>
-				dV = \rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi.
+				dV = \rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi.
 			</md>
-			Many other textbooks measure <m>\varphi</m> <em>down from the
-			<m>z</m>-axis</em> (so <m>0 \le \varphi \le \pi</m>) and write
-			<m>\sin\varphi</m> in place of <m>\cos\varphi</m>. When you consult
-			outside resources, check which convention they use.
+			This is the convention used by most textbooks, computer algebra
+			systems, and online homework systems. (A caution for physics: there
+			the letters <m>\theta</m> and <m>\varphi</m> are usually swapped, so
+			check which angle is which before applying a formula.)
 		</p>
 
 		<figure xml:id="ws-r4-fig-spherical">
-			<caption>Spherical coordinates in this course: <m>\rho</m> is the
+			<caption>Spherical coordinates: <m>\rho</m> is the
 				distance to <m>P</m>, <m>\theta</m> is measured in the
-				<m>xy</m>-plane, and <m>\varphi</m> is measured up from the
-				<m>xy</m>-plane.</caption>
+				<m>xy</m>-plane, and <m>\varphi</m> is measured down from the
+				<m>z</m>-axis.</caption>
 			<image width="52%">
-				<shortdescription>A point P in space with its position vector from the origin. The angle theta is shown in the horizontal plane between the x-axis and the shadow of the vector; the angle phi is shown between the horizontal plane and the vector; rho labels the length of the vector.</shortdescription>
+				<shortdescription>A point P in space with its position vector from the origin. The angle theta is shown in the horizontal plane between the x-axis and the shadow of the vector; the angle phi is shown between the positive z-axis and the vector; rho labels the length of the vector.</shortdescription>
 				<latex-image>
-	\begin{tikzpicture}[scale=1.5,>=stealth]
+	\begin{tikzpicture}[scale=1.6,>=stealth,
+		x={(-0.72cm,-0.42cm)}, y={(1cm,-0.28cm)}, z={(0cm,1cm)}]
 	\coordinate (O) at (0,0,0);
-	\coordinate (P) at (2.1,1.3,1.7);
-	\coordinate (Pxy) at (2.1,1.3,0);
-	% axes
-	\draw[->] (0,0,0) -- (3,0,0) node[anchor=north east] {$x$};
-	\draw[->] (0,0,0) -- (0,3,0) node[anchor=north west] {$y$};
-	\draw[->] (0,0,0) -- (0,0,2.6) node[anchor=south] {$z$};
+	\coordinate (P) at (1.075,1.281,1.992);
+	\coordinate (Pxy) at (1.075,1.281,0);
+	% axes (z drawn vertical so phi reads as the angle down from the z-axis)
+	\draw[->] (0,0,0) -- (2,0,0) node[anchor=east] {$x$};
+	\draw[->] (0,0,0) -- (0,2.4,0) node[anchor=west] {$y$};
+	\draw[->] (0,0,0) -- (0,0,2.5) node[anchor=south] {$z$};
 	% projection and vertical drop
 	\draw[dashed, gray] (O) -- (Pxy);
 	\draw[dashed, gray] (Pxy) -- (P);
 	% position vector
 	\draw[very thick, blue, ->] (O) -- (P);
 	\node[blue, anchor=south west] at (P) {$P$};
-	\node[blue] at (1.2,0.75,1.15) {$\rho$};
-	% theta arc in xy-plane
-	\draw[red, ->] (0.7,0,0) arc[start angle=0, end angle=31.7, radius=0.7];
-	\node[red] at (0.95,0.28,0) {$\theta$};
-	% phi arc from xy-plane up to vector
-	\draw[teal, ->] (1.05,0.65,0) arc[start angle=0, end angle=30, radius=0.55];
-	\node[teal] at (1.55,0.7,0.35) {$\varphi$};
+	\node[blue] at (0.75,0.80,0.85) {$\rho$};
+	% theta arc in the xy-plane, from the x-axis to the shadow of P
+	\draw[red, ->, smooth] plot coordinates {(0.55,0,0) (0.537,0.119,0) (0.498,0.233,0) (0.436,0.335,0) (0.354,0.421,0)};
+	\node[red] at (0.62,0.30,0) {$\theta$};
+	% phi arc from the +z-axis down to the vector (the polar angle)
+	\draw[teal, ->, smooth] plot coordinates {(0,0,0.85) (0.095,0.113,0.837) (0.187,0.223,0.799) (0.273,0.326,0.736) (0.351,0.419,0.651)};
+	\node[teal] at (0.23,0.28,1.0) {$\varphi$};
 	\node[anchor=north] at (Pxy) {\footnotesize shadow of $P$};
 	\end{tikzpicture}
 				</latex-image>
@@ -284,17 +286,17 @@
 
 		<!-- reading-check pair 3 -->
 		<p component="stu">
-			In this course <m>\varphi</m> is measured from the
-			<fillin characters="4"/>-plane, so it ranges from
-			<fillin characters="6"/> <nbsp/>to <m>\pi/2</m>, and the spherical
+			In this course <m>\varphi</m> is measured from the positive
+			<fillin characters="4"/>-axis, so it ranges from
+			<fillin characters="6"/> <nbsp/>to <m>\pi</m>, and the spherical
 			volume element is <m>dV = </m> <fillin characters="22"/>.
 		</p>
 		<p component="key">
-			In this course <m>\varphi</m> is measured from the
-			<m>\underline{\textbf{xy}}</m>-plane, so it ranges from
-			<m>\underline{\textbf{-\pi/2}}</m> to <m>\pi/2</m>, and the spherical
+			In this course <m>\varphi</m> is measured from the positive
+			<m>\underline{\textbf{z}}</m>-axis, so it ranges from
+			<m>\underline{\textbf{0}}</m> to <m>\pi</m>, and the spherical
 			volume element is
-			<m>dV = \underline{\textbf{\rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi}}</m>.
+			<m>dV = \underline{\textbf{\rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi}}</m>.
 		</p>
 
 		<!-- worked problem (paired) -->
@@ -316,16 +318,16 @@
 			<solution>
 				<p>
 					The ball is <m>0 \le \rho \le 2</m>, <m>0 \le \theta \le 2\pi</m>,
-					<m>-\pi/2 \le \varphi \le \pi/2</m>. The integral separates:
+					<m>0 \le \varphi \le \pi</m>. The integral separates:
 					<md>
-						V = \int_{-\pi/2}^{\pi/2}\!\int_0^{2\pi}\!\int_0^2
-						\rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi
+						V = \int_0^{\pi}\!\int_0^{2\pi}\!\int_0^2
+						\rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi
 						= \left(\int_0^2\!\rho^2 d\rho\right)
 						  \left(\int_0^{2\pi}\!d\theta\right)
-						  \left(\int_{-\pi/2}^{\pi/2}\!\cos\varphi\,d\varphi\right).
+						  \left(\int_0^{\pi}\!\sin\varphi\,d\varphi\right).
 					</md>
 					These are <m>\dfrac{8}{3}</m>, <m>2\pi</m>, and
-					<m>\big[\sin\varphi\big]_{-\pi/2}^{\pi/2} = 2</m>, so
+					<m>\big[-\cos\varphi\big]_0^{\pi} = 2</m>, so
 					<md>
 						V = \frac{8}{3}\cdot 2\pi \cdot 2 = \frac{32\pi}{3},
 					</md>
@@ -344,13 +346,13 @@
 			</statement>
 			<solution component="key">
 				<p>
-					<term>False.</term> An angular factor is missing. In this
-					course's convention (<m>\varphi</m> from the <m>xy</m>-plane),
-					<m>dV = \rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi</m>; in the
-					more common convention (<m>\varphi</m> from the <m>z</m>-axis) it
-					is <m>\rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi</m>. Either way
-					the lone <m>\rho^2</m> is not enough — dropping the trig factor
-					is the classic spherical-integral mistake.
+					<term>False.</term> An angular factor is missing. With
+					<m>\varphi</m> the polar angle (measured from the <m>z</m>-axis),
+					<m>dV = \rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi</m>. The lone
+					<m>\rho^2</m> is not enough — dropping the <m>\sin\varphi</m> is
+					the classic spherical-integral mistake. (Watch out: some books
+					measure <m>\varphi</m> from the <m>xy</m>-plane instead, giving
+					<m>\cos\varphi</m>; always check the convention.)
 				</p>
 			</solution>
 		</exercise>
@@ -391,11 +393,11 @@
 			<solution>
 				<p>
 					With <m>\delta = \rho</m> and
-					<m>dV = \rho^2\cos\varphi\,d\rho\,d\theta\,d\varphi</m>, the
-					integrand is <m>\rho\cdot\rho^2\cos\varphi = \rho^3\cos\varphi</m>:
+					<m>dV = \rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi</m>, the
+					integrand is <m>\rho\cdot\rho^2\sin\varphi = \rho^3\sin\varphi</m>:
 					<md>
-						M = \int_{-\pi/2}^{\pi/2}\!\int_0^{2\pi}\!\int_0^1
-						\rho^3\cos\varphi\,d\rho\,d\theta\,d\varphi
+						M = \int_0^{\pi}\!\int_0^{2\pi}\!\int_0^1
+						\rho^3\sin\varphi\,d\rho\,d\theta\,d\varphi
 						= \frac{1}{4}\cdot 2\pi \cdot 2 = \pi.
 					</md>
 					The mass is <m>\pi</m>. Because the density grows with
