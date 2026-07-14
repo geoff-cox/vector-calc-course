@@ -1820,9 +1820,9 @@
                 Cylindrical:
                 <m>(2\sqrt 2,\pi/4,1)</m> and <m>(2,5\pi/6,0)</m>
               </p>
-              <!-- TODO(geoff): spherical answer pending re-derivation under the standard convention (B5b deferred exercise). -->
               <p>
-                Spherical: <em>pending re-derivation under the standard convention.</em>
+                Spherical:
+                <m>(3,\pi/4,\cos^{-1}(1/3))</m> and <m>(2,5\pi/6,\pi/2)</m>
               </p>
             </solution>
           </task>
@@ -1838,9 +1838,9 @@
                 Rectangular:
                 <m>(\sqrt 2,\sqrt 2,2)</m> and <m>(0,-3,-4)</m>
               </p>
-              <!-- TODO(geoff): spherical answer pending re-derivation under the standard convention (B5b deferred exercise). -->
               <p>
-                Spherical: <em>pending re-derivation under the standard convention.</em>
+                Spherical:
+                <m>(2\sqrt 2,\pi/4,\pi/4)</m> and <m>(5,3\pi/2,\cos^{-1}(-4/5))</m>
               </p>
             </solution>
           </task>
@@ -1851,7 +1851,17 @@
                 <m>(2,\pi/4,\pi/4)</m> and <m>(1,0,0)</m>
               </p>
             </statement>
-            <!-- TODO(geoff): the given spherical points and their conversions are tied to the old elevation-angle convention; re-author the statement and solution under the standard convention (B5b deferred exercise). -->
+            <solution>
+              <p>
+                Rectangular:
+                <m>(1,1,\sqrt{2})</m> and <m>(0,0,1)</m>
+              </p>
+
+              <p>
+                Cylindrical:
+                <m>(\sqrt{2},\pi/4,\sqrt{2})</m> and <m>(0,0,1)</m>
+              </p>
+            </solution>
           </task>
         </exercise>
 
@@ -1867,9 +1877,9 @@
               <p>
                 Cylindrical: <m>(1,\pi/2,1)</m> and <m>(1,\pi,1)</m>
               </p>
-              <!-- TODO(geoff): spherical answer pending re-derivation under the standard convention (B5b deferred exercise). -->
               <p>
-                Spherical: <em>pending re-derivation under the standard convention.</em>
+                Spherical:
+                <m>(\sqrt 2,\pi/2,\pi/4)</m> and <m>(\sqrt{2}, \pi, \pi/4)</m>
               </p>
             </solution>
           </task>
@@ -1886,9 +1896,9 @@
                 Rectangular:
                 <m>(0,0,1)</m> and <m>(-1,-\sqrt 3,0)</m>
               </p>
-              <!-- TODO(geoff): spherical answer pending re-derivation under the standard convention (B5b deferred exercise). -->
               <p>
-                Spherical: <em>pending re-derivation under the standard convention.</em>
+                Spherical:
+                <m>(1,\pi,0)</m> and <m>(2,4\pi/3,\pi/2)</m>
               </p>
             </solution>
           </task>
@@ -1896,10 +1906,20 @@
             <statement>
               <p>
                 Points in spherical coordinates:
-                <m>(2,\pi/6,0)</m> and <m>(3,\pi,-\pi/2)</m>
+                <m>(2,\pi/6,\pi/2)</m> and <m>(3,\pi,\pi)</m>
               </p>
             </statement>
-            <!-- TODO(geoff): the given spherical points (including a \varphi of -\pi/2) and their conversions are tied to the old elevation-angle convention; re-author the statement and solution under the standard convention (B5b deferred exercise). -->
+            <solution>
+              <p>
+                Rectangular:
+                <m>(\sqrt 3,1,0)</m> and <m>(0,0,-3)</m>
+              </p>
+
+              <p>
+                Cylindrical:
+                <m>(2,\pi/6,0)</m> and <m>(0,\pi,-3)</m>
+              </p>
+            </solution>
           </task>
         </exercise>
       </exercisegroup>
@@ -2000,10 +2020,16 @@
             <statement>
               <p>
                 <m>2\leq\rho\leq3</m>, <m>0\leq \theta\leq2\pi</m>,
-                <m>-\pi/2\leq\varphi\leq \pi/2</m>
+                <m>0\leq\varphi\leq \pi</m>
               </p>
             </statement>
-            <!-- TODO(geoff): the \varphi range -\pi/2..\pi/2 is the old elevation convention (the full sphere is 0..\pi in the standard convention); re-author the statement and its solution under the standard convention (B5b deferred exercise). -->
+            <solution>
+              <p>
+                This is a region of space,
+                where the ball of radius 2, centered at the origin,
+                is removed from the ball of radius 3, centered at the origin.
+              </p>
+            </solution>
           </task>
         </exercise>
 
@@ -2030,17 +2056,14 @@
                 <m>0\leq \theta\leq2\pi</m>, <m>\varphi = \pi/3</m>
               </p>
             </statement>
-            <!-- TODO(geoff): the \varphi=\pi/3 cone is convention-dependent; re-author the solution under the standard convention. (Pre-existing bug: task 2c below holds this part's old-convention answer, misplaced as a statement.) -->
-          </task>
-          <task label="ex-spherical-region-2c">
-            <statement>
-              <!-- TODO(geoff): pre-existing structural bug. This "statement" is actually the old-convention answer to task 2b above (the circle where \rho=2 meets \varphi=\pi/3). Re-author this part (its own prompt and solution) under the standard convention (B5b deferred exercise). -->
+            <solution>
               <p>
-                This is a curve,
-                a circle of radius 1 centered at <m>(0,0,\sqrt 3)</m>,
-                lying parallel to the <m>xy</m>-plane.
+                This is a curve, a circle of radius <m>\sqrt{3}</m> centered at <m>(0,0,1)</m>,
+                lying parallel to the <m>xy</m>-plane (<ie/>, in the plane <m>z=1</m>).
+                It is where the sphere <m>\rho=2</m> meets the cone <m>\varphi=\pi/3</m>:
+                there <m>z=\rho\cos\varphi = 2\cos(\pi/3)=1</m> and the radius is <m>\rho\sin\varphi = 2\sin(\pi/3)=\sqrt{3}</m>.
               </p>
-            </statement>
+            </solution>
           </task>
         </exercise>
       </exercisegroup>
@@ -2525,55 +2548,97 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
         <exercise label="ex-spherical-integral-region-1">
           <statement>
             <p>
-              <m>\ds \int_0^{\pi/2}\int_0^{\pi/2}\int_0^{1} \rho^2\cos(\varphi)\, d\rho\, d\theta\, d\varphi</m>
+              <m>\ds \int_0^{\pi/2}\int_0^{\pi/2}\int_0^{1} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi</m>
             </p>
           </statement>
-          <!-- TODO(geoff): this spherical exercise is stated with the old elevation-angle volume element (\rho^2\cos\varphi); re-author the statement and its answer under the standard convention (B5b deferred exercise). -->
+          <answer>
+            <p>
+              Describes the portion of the unit ball that resides in the first octant.
+            </p>
+          </answer>
         </exercise>
 
         <exercise label="ex-spherical-integral-region-2">
           <statement>
             <p>
-              <m>\ds \int_{-\pi/2}^{\pi/2}\int_0^{\pi}\int_1^{1.1} \rho^2\cos(\varphi)\, d\rho\, d\theta\, d\varphi</m>
+              <m>\ds \int_0^{\pi}\int_0^{\pi}\int_1^{1.1} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi</m>
             </p>
           </statement>
-          <!-- TODO(geoff): this spherical exercise is stated with the old elevation-angle volume element (\rho^2\cos\varphi) and a \varphi range of -\pi/2..\pi/2; re-author the statement and its answer under the standard convention (B5b deferred exercise). -->
+          <answer>
+            <p>
+              Describes half of a spherical shell (<ie/>, <m>y\geq 0</m>) with inner radius of <m>1</m> and outer radius of <m>1.1</m> centered at the origin.
+            </p>
+          </answer>
         </exercise>
 
         <exercise label="ex-spherical-integral-region-3">
           <statement>
             <p>
-              <m>\ds \int_{\pi/4}^{\pi/2}\int_0^{2\pi}\int_0^{2} \rho^2\cos(\varphi)\, d\rho\, d\theta\, d\varphi</m>
+              <m>\ds \int_0^{\pi/4}\int_0^{2\pi}\int_0^{2} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi</m>
             </p>
           </statement>
-          <!-- TODO(geoff): this spherical exercise is stated with the old elevation-angle volume element (\rho^2\cos\varphi); re-author the statement and its solution under the standard convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              Bounded below by the cone <m>z=\sqrt{x^2+y^2}</m> and above by the sphere <m>x^2+y^2+z^2=4</m>:
+              describes a shape that is somewhat <q>diamond</q>-like;
+              some think of it as looking like an ice cream cone
+              (see <xref ref="fig_spherical3"/>).
+              The bound <m>0\leq\varphi\leq\pi/4</m> keeps the points whose ray from the origin makes an angle of at most <m>\pi/4</m> with the positive <m>z</m>-axis <ndash/>
+              the interior of the cone <ndash/> topped by the portion of the ball of radius 2, centered at the origin.
+            </p>
+          </solution>
         </exercise>
 
         <exercise label="ex-spherical-integral-region-4">
           <statement>
             <p>
-              <m>\ds \int_{\pi/4}^{\pi/3}\int_0^{2\pi}\int_0^{2} \rho^2\cos(\varphi)\, d\rho\, d\theta\, d\varphi</m>
+              <m>\ds \int_{\pi/6}^{\pi/4}\int_0^{2\pi}\int_0^{2} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi</m>
             </p>
           </statement>
-          <!-- TODO(geoff): this spherical exercise is stated with the old elevation-angle volume element (\rho^2\cos\varphi); re-author the statement and its solution under the standard convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              The bounds <m>\pi/6\leq\varphi\leq\pi/4</m> keep the points whose ray from the origin makes an angle between <m>\pi/6</m> and <m>\pi/4</m> with the positive <m>z</m>-axis:
+              a conical shell lying between the cone <m>z=\sqrt{3}\sqrt{x^2+y^2}</m> (where <m>\varphi=\pi/6</m>) and the cone <m>z=\sqrt{x^2+y^2}</m> (where <m>\varphi=\pi/4</m>),
+              carried out to the sphere <m>x^2+y^2+z^2=4</m> of radius 2 centered at the origin.
+              It is the ice cream cone of the previous exercise with the inner cone (angle <m>\pi/6</m> from the <m>z</m>-axis) removed.
+            </p>
+          </solution>
         </exercise>
 
         <exercise label="ex-spherical-integral-region-5">
           <statement>
             <p>
-              <m>\ds \int_{\pi/3}^{\pi/2}\int_0^{2\pi}\int_0^{\csc(\varphi)} \rho^2\cos(\varphi)\, d\rho\, d\theta\, d\varphi</m>
+              <m>\ds \int_0^{\pi/6}\int_0^{2\pi}\int_0^{\sec(\varphi)} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi</m>
             </p>
           </statement>
-          <!-- TODO(geoff): this spherical exercise is stated with the old elevation-angle volume element (\rho^2\cos\varphi); re-author the statement and its solution under the standard convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              The region in space is bounded by the cone
+              <m>z=\sqrt{3}\sqrt{x^2+y^2}</m> (where <m>\varphi=\pi/6</m>) and above by the plane <m>z=1</m>
+              (in spherical coordinates <m>\rho\cos\varphi = 1</m>, <ie/> <m>\rho=\sec\varphi</m>):
+              it describes a solid cone, with point at the origin,
+              centered along the positive <m>z</m>-axis,
+              with height of 1 and base radius of <m>\tan(\pi/6) = 1/\sqrt{3}</m>.
+            </p>
+          </solution>
         </exercise>
 
         <exercise label="ex-spherical-integral-region-6">
           <statement>
             <p>
-              <m>\ds \int_{\pi/3}^{\pi/2}\int_0^{2\pi}\int_0^{a\csc(\varphi)} \rho^2\cos(\varphi)\, d\rho\, d\theta\, d\varphi</m>
+              <m>\ds \int_0^{\pi/6}\int_0^{2\pi}\int_0^{a\sec(\varphi)} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi</m>
             </p>
           </statement>
-          <!-- TODO(geoff): this spherical exercise is stated with the old elevation-angle volume element (\rho^2\cos\varphi); re-author the statement and its solution under the standard convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              The region in space is bounded by the cone
+              <m>z=\sqrt{3}\sqrt{x^2+y^2}</m> (where <m>\varphi=\pi/6</m>) and above by the plane <m>z=a</m>
+              (in spherical coordinates <m>\rho=a\sec\varphi</m>):
+              it describes a solid cone, with point at the origin,
+              centered along the positive <m>z</m>-axis,
+              with height of <m>a</m> and base radius of <m>a\tan(\pi/6)=a/\sqrt{3}</m>.
+            </p>
+          </solution>
         </exercise>
       </exercisegroup>
 
@@ -2779,7 +2844,16 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               with density function <m>\delta(x,y,z) =1</m>.
             </p>
           </statement>
-          <!-- TODO(geoff): solution pending re-derivation under the standard spherical convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              In spherical coordinates,
+              the density is <m>\delta(\rho,\theta,\varphi) = 1</m>.
+              Thus mass is
+              <md>
+                \int_0^{\pi/2}\int_0^{2\pi}\int_{0}^{1} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi = 2\pi/3
+              </md>.
+            </p>
+          </solution>
         </exercise>
 
         <exercise label="ex-spherical-mass-2">
@@ -2789,7 +2863,16 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               <m>x^2+y^2+z^2=25</m> with density function <m>\delta(x,y,z) = \sqrt{x^2+y^2+z^2}</m>.
             </p>
           </statement>
-          <!-- TODO(geoff): solution pending re-derivation under the standard spherical convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              In spherical coordinates,
+              the density is <m>\delta(\rho,\theta,\varphi) = \rho</m>.
+              Thus mass is
+              <md>
+                \int_0^{\pi}\int_0^{2\pi}\int_{4}^{5} (\rho)\rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi = 369\pi
+              </md>.
+            </p>
+          </solution>
         </exercise>
 
         <exercise label="ex-spherical-mass-3">
@@ -2799,7 +2882,16 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               <m>x^2+y^2+z^2=1</m> with density function <m>\delta(x,y,z) = z</m>.
             </p>
           </statement>
-          <!-- TODO(geoff): solution pending re-derivation under the standard spherical convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              In spherical coordinates,
+              the density is <m>\delta(\rho,\theta,\varphi) = \rho\cos(\varphi)</m>.
+              Thus mass is
+              <md>
+                \int_{0}^{\pi/4}\int_0^{2\pi}\int_{0}^{1} \big(\rho\cos(\varphi)\big)\rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi = \pi/8
+              </md>.
+            </p>
+          </solution>
         </exercise>
 
         <exercise xml:id="ex_13_07_ex_34" label="ex-spherical-mass-4">
@@ -2808,7 +2900,16 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               The cone that lies above the cone <m>z=\sqrt{x^2+y^2}</m> and below the plane <m>z=1</m> with density function <m>\delta(x,y,z) = z</m>.
             </p>
           </statement>
-          <!-- TODO(geoff): solution pending re-derivation under the standard spherical convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              In spherical coordinates,
+              the density is <m>\delta(\rho,\theta,\varphi) = \rho\cos(\varphi)</m>.
+              With the plane <m>z=1</m> given by <m>\rho=\sec(\varphi)</m>, the mass is
+              <md>
+                \int_{0}^{\pi/4}\int_0^{2\pi}\int_{0}^{\sec(\varphi)} \big(\rho\cos(\varphi)\big)\rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi = \pi/4
+              </md>.
+            </p>
+          </solution>
         </exercise>
       </exercisegroup>
 
@@ -2829,7 +2930,21 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               with density function <m>\delta(x,y,z) =1</m>.
             </p>
           </statement>
-          <!-- TODO(geoff): solution pending re-derivation under the standard spherical convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              In spherical coordinates,
+              the density is <m>\delta(\rho,\theta,\varphi) = 1</m>.
+              Thus mass is
+              <md>
+                \int_0^{\pi/2}\int_0^{2\pi}\int_{0}^{1} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi = 2\pi/3
+              </md>.
+            </p>
+
+            <p>
+              We find <m>M_{yz} = 0</m>, <m>M_{xz} = 0</m>,
+              and <m>M_{xy} = \pi/4</m>, placing the center of mass at <m>(0,0,3/8)</m>.
+            </p>
+          </solution>
         </exercise>
 
         <exercise label="ex-spherical-center-mass-2">
@@ -2839,7 +2954,21 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               <m>x^2+y^2+z^2=25</m> with density function <m>\delta(x,y,z) = \sqrt{x^2+y^2+z^2}</m>.
             </p>
           </statement>
-          <!-- TODO(geoff): solution pending re-derivation under the standard spherical convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              In spherical coordinates,
+              the density is <m>\delta(\rho,\theta,\varphi) = \rho</m>.
+              Thus mass is
+              <md>
+                \int_0^{\pi}\int_0^{2\pi}\int_{4}^{5} (\rho)\rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi = 369\pi
+              </md>.
+            </p>
+
+            <p>
+              We find <m>M_{yz} = 0</m>, <m>M_{xz} = 0</m>,
+              and <m>M_{xy} = 0</m>, placing the center of mass at <m>(0,0,0)</m>.
+            </p>
+          </solution>
         </exercise>
 
         <exercise label="ex-spherical-center-mass-3">
@@ -2849,7 +2978,22 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               <m>x^2+y^2+z^2=1</m> with density function <m>\delta(x,y,z) = z</m>.
             </p>
           </statement>
-          <!-- TODO(geoff): solution pending re-derivation under the standard spherical convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              In spherical coordinates,
+              the density is <m>\delta(\rho,\theta,\varphi) = \rho\cos(\varphi)</m>.
+              Thus mass is
+              <md>
+                \int_{0}^{\pi/4}\int_0^{2\pi}\int_{0}^{1} \big(\rho\cos(\varphi)\big)\rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi = \pi/8
+              </md>.
+            </p>
+
+            <p>
+              We find <m>M_{yz} = 0</m>,
+              <m>M_{xz} = 0</m>, and <m>M_{xy} = (4-\sqrt{2})\pi/30</m>,
+              placing the center of mass at <m>(0,0,4(4-\sqrt2)/15)</m>.
+            </p>
+          </solution>
         </exercise>
 
         <exercise label="ex-spherical-center-mass-4">
@@ -2858,7 +3002,21 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               The cone bounded above <m>z=\sqrt{x^2+y^2}</m> and below the plane <m>z=1</m> with density function <m>\delta(x,y,z) = z</m>.
             </p>
           </statement>
-          <!-- TODO(geoff): solution pending re-derivation under the standard spherical convention (B5b deferred exercise). -->
+          <solution>
+            <p>
+              In spherical coordinates,
+              the density is <m>\delta(\rho,\theta,\varphi) = \rho\cos(\varphi)</m>.
+              With the plane <m>z=1</m> given by <m>\rho=\sec(\varphi)</m>, the mass is
+              <md>
+                \int_{0}^{\pi/4}\int_0^{2\pi}\int_{0}^{\sec(\varphi)} \big(\rho\cos(\varphi)\big)\rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi = \pi/4
+              </md>.
+            </p>
+
+            <p>
+              We find <m>M_{yz} = 0</m>, <m>M_{xz} = 0</m>,
+              and <m>M_{xy} = \pi/5</m>, placing the center of mass at <m>(0,0,4/5)</m>.
+            </p>
+          </solution>
         </exercise>
       </exercisegroup>
 
@@ -2889,9 +3047,8 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               <m>\int_0^{2\pi}\int_0^1\int_{-\sqrt{1-r^2}}^{\sqrt{1-r^2}}r\, dz\, dr\, d\theta</m>
             </p>
 
-            <!-- TODO(geoff): spherical set-up pending re-derivation under the standard convention (B5b deferred exercise). -->
             <p>
-              Spherical: <em>set-up pending re-derivation under the standard convention.</em>
+              Spherical: <m>\int_0^{\pi}\int_0^{2\pi}\int_0^1 \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi</m>
             </p>
 
             <p>
@@ -2920,9 +3077,8 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               <m>\int_0^{2\pi}\int_0^1\int_{0}^{1}r\, dz\, dr\, d\theta</m>
             </p>
 
-            <!-- TODO(geoff): spherical set-up pending re-derivation under the standard convention (B5b deferred exercise). -->
             <p>
-              Spherical: <em>set-up pending re-derivation under the standard convention.</em>
+              Spherical: <m>\int_0^{\pi/4}\int_0^{2\pi}\int_0^{\sec(\varphi)} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi + \int_{\pi/4}^{\pi/2}\int_0^{2\pi}\int_0^{\csc(\varphi)} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi</m>
             </p>
 
             <p>
@@ -2951,9 +3107,8 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               <m>\int_0^{2\pi}\int_0^1\int_{r}^{1}r\, dz\, dr\, d\theta</m>
             </p>
 
-            <!-- TODO(geoff): spherical set-up pending re-derivation under the standard convention (B5b deferred exercise). -->
             <p>
-              Spherical: <em>set-up pending re-derivation under the standard convention.</em>
+              Spherical: <m>\int_0^{\pi/4}\int_0^{2\pi}\int_0^{\sec(\varphi)} \rho^2\sin(\varphi)\, d\rho\, d\theta\, d\varphi</m>
             </p>
 
             <p>
@@ -2986,9 +3141,14 @@ draw(arc((0,0,0),.8*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.7*(r1*cos(t1)*sin
               <m>\int_0^{\pi/4}\int_0^{\sec(\theta)}\int_{0}^{1}r\, dz\, dr\, d\theta + \int_{\pi/4}^{\pi/2}\int_0^{\csc(\theta)}\int_{0}^{1}r\, dz\, dr\, d\theta</m>
             </p>
 
-            <!-- TODO(geoff): spherical set-up pending re-derivation under the standard convention (B5b deferred exercise). -->
             <p>
-              Spherical: <em>set-up pending re-derivation under the standard convention.</em>
+              Spherical:
+              <md>
+                <mrow>\amp      \int_0^{\pi/4}\int_0^{\tan^{-1}(\sec(\theta))}\int_0^{\sec(\varphi)}\rho^2 \sin(\varphi)\, d\rho\, d\varphi\, d\theta</mrow>
+                <mrow>\amp\quad+\int_0^{\pi/4}\int_{\tan^{-1}(\sec(\theta))}^{\pi/2}\int_0^{\sec(\theta)\csc(\varphi)}\rho^2 \sin(\varphi)\, d\rho\, d\varphi\, d\theta</mrow>
+                <mrow>\amp\quad+\int_{\pi/4}^{\pi/2}\int_0^{\tan^{-1}(\csc(\theta))}\int_0^{\sec(\varphi)}\rho^2 \sin(\varphi)\, d\rho\, d\varphi\, d\theta</mrow>
+                <mrow>\amp\quad+\int_{\pi/4}^{\pi/2}\int_{\tan^{-1}(\csc(\theta))}^{\pi/2}\int_0^{\csc(\theta)\csc(\varphi)}\rho^2 \sin(\varphi)\, d\rho\, d\varphi\, d\theta</mrow>
+              </md>.
             </p>
 
             <p>
