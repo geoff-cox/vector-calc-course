@@ -138,6 +138,15 @@ orphaned headings.
 
 Independent of the B1–B4 prune pipeline; a coursebook enhancement.
 
+**Status: ✅ done.** B5a (definitional core + the two defining figures +
+the convention remark + the R4 worksheet) landed in #19; B5b (the four
+worked examples, the `sec_transformations` Jacobian, and stripping the
+affected exercises' answers) landed in #20. The affected spherical
+**exercises** were intentionally left with their statements plus a visible
+"pending re-derivation" placeholder and a `TODO(geoff)` marker; actually
+re-deriving those answers under the standard convention is a follow-on
+maintenance item, not part of B5.
+
 **Why.** `source/book/ptx/sec_cylindrical_spherical.ptx` measures the
 spherical angle `\varphi` **up from the `xy`-plane**
 (`-\pi/2 \le \varphi \le \pi/2`), so its volume element is

@@ -49,7 +49,7 @@ lives in `docs/gln-roadmap.md`.
 | B2 — prune to the 6-chapter subset | ✅ done | #7 |
 | B3 — reroute broken xrefs | ✅ done | #9 |
 | B4 — prune the appendix | ✅ done | #11 |
-| **B5 — spherical-convention alignment** | 🔜 planned | — |
+| B5 — spherical-convention alignment (B5a + B5b) | ✅ done | #19, #20 |
 | C1 — GLN roadmap (+ Section 0 review plan) | ✅ done | #12, #13 |
 | C2 §0 — prerequisite review R1–R4 | ✅ done | #14–#17 |
 | C2 §1–§4 — vector analysis + Fourier | todo | — |
@@ -58,14 +58,16 @@ lives in `docs/gln-roadmap.md`.
 | M1–M6 — maintenance | as needed | — |
 
 Labels: **todo** = not yet started; **🔜 planned** = documented and next
-up (see Task B5); **standing** = an always-on rule; **as needed** = run on
-demand.
+up; **standing** = an always-on rule; **as needed** = run on demand.
 
-Track B pruning is complete and the coursebook is internally consistent;
-**B5** (Task B5 in the Track B coursebook checklist) is the one open
-coursebook item. GLN Section 0 (the
-prerequisite review) is complete; Track C resumes at Section 1
-(`ws-curves`, the first worksheet translated from a Beamer deck).
+Track B is complete: the coursebook is pruned, internally consistent, and
+its spherical-coordinate material now uses the standard polar-angle
+convention (B5a #19, B5b #20). B5b intentionally deferred the affected
+spherical **exercise** answers (statements kept, marked `TODO(geoff)`);
+re-authoring those under the new convention is tracked as an ad-hoc
+maintenance item. GLN Section 0 (the prerequisite review) is complete;
+Track C resumes at Section 1 (`ws-curves`, the first worksheet translated
+from a Beamer deck).
 
 ## Global rules (apply to every task)
 
