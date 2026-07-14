@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-curves.ptx
+	Section 1 (Functions, Vectors, and Vector Fields), worksheet 5:
+	Curves and Vector-Valued Functions.
+
+	Ported from the Beamer deck 01_04_Curves.tex (in
+	source/notes/latex/, functions-vectors folder):
+	parametric curves, parametrizing lines/segments, the derivative
+	as velocity, and arclength). Book concepts tracked from
+	sec_vvf / sec_vvf_calc / sec_tan_norm; example equations are NOT
+	reused from the deck or the book.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md): paired component="stu"/"key"
+	reading checks and exercises; one True/False misconception check; one
+	read-along TikZ figure; one modern application. Standard notation
+	(macros from source/bookends/docinfo.ptx); no new macros.
+-->
+<worksheet xml:id="ws-curves">
+	<title>Curves and Vector-Valued Functions</title>
+
+	<objectives>
+		<ul>
+			<li>Parametrize a curve given as an intersection of surfaces, and parametrize lines and line segments.</li>
+			<li>Write a curve as a vector-valued function <m>\vr(t)</m> and describe its orientation.</li>
+			<li>Differentiate a vector-valued function to obtain the velocity (tangent) vector.</li>
+			<li>Compute the arclength of a space curve with <m>s = \int_a^b \norm{\vr'(t)}\,dt</m>.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: Curves as vector-valued functions
+		 ============================================================ -->
+	<page>
+		<p><term>I. A curve is a vector-valued function.</term></p>
+
+		<p>
+			A curve in space traced out by a single <term>parameter</term>
+			<m>t</m> is described by a <term>vector-valued function</term>
+			<md>
+				\vr(t) = [x(t),\,y(t),\,z(t)] = x(t)\vi + y(t)\vj + z(t)\vk .
+			</md>
+			As <m>t</m> runs over its interval, the tip of <m>\vr(t)</m>
+			sweeps out the curve. Choosing a parametrization does more than
+			name the points: it also fixes a direction of travel, called the
+			curve's <term>orientation</term>.
+		</p>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			A curve traced by one parameter is described by a
+			<fillin characters="8"/>-valued function
+			<m>\vr(t) = [x(t),y(t),z(t)]</m>. Choosing a parametrization also
+			gives the curve an <fillin characters="12"/> <nbsp/>(a direction of
+			travel).
+		</p>
+		<p component="key">
+			A curve traced by one parameter is described by a
+			<m>\underline{\textbf{vector}}</m>-valued function
+			<m>\vr(t) = [x(t),y(t),z(t)]</m>. Choosing a parametrization also
+			gives the curve an <m>\underline{\textbf{orientation}}</m> (a
+			direction of travel).
+		</p>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: Parametrizing curves
+		 ============================================================ -->
+	<page>
+		<p><term>II. Parametrizing curves.</term></p>
+
+		<p>
+			A few reliable strategies: (i) if the curve is given by two
+			equations, solve for two coordinates in terms of the third and
+			let <m>t</m> be that third coordinate; (ii) for a circle or a
+			curve on a cylinder <m>x^2+y^2=a^2</m>, let <m>t</m> be the polar
+			angle, <m>x=a\cos t</m>, <m>y=a\sin t</m>; (iii) for a
+			<term>line</term> through a point <m>P</m> parallel to a vector
+			<m>\vv</m>, march from <m>P</m> in the direction <m>\vv</m>.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			A line through the point <m>P</m> parallel to the vector
+			<m>\vv</m> is parametrized by <m>\vr(t) = </m>
+			<fillin characters="10"/>. For the <em>segment</em> from
+			<m>P</m> to <m>Q</m>, take <m>\vr(t) = P + t(Q-P)</m> with
+			<m>t</m> restricted to <fillin characters="8"/>.
+		</p>
+		<p component="key">
+			A line through the point <m>P</m> parallel to the vector
+			<m>\vv</m> is parametrized by
+			<m>\vr(t) = \underline{\textbf{P + t\vv}}</m>. For the
+			<em>segment</em> from <m>P</m> to <m>Q</m>, take
+			<m>\vr(t) = P + t(Q-P)</m> with <m>t</m> restricted to
+			<m>\underline{\textbf{[0,1]}}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Parametrize the curve of intersection of the cylinder
+					<m>x^2+y^2 = 9</m> and the plane <m>z = y</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Parametrize the curve of intersection of the cylinder
+					<m>x^2+y^2 = 9</m> and the plane <m>z = y</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The cylinder has radius <m>3</m>, so let <m>t</m> be the
+					polar angle: <m>x = 3\cos t</m>, <m>y = 3\sin t</m>. The
+					plane forces <m>z = y = 3\sin t</m>. Thus
+					<md>
+						\vr(t) = [\,3\cos t,\; 3\sin t,\; 3\sin t\,],
+						\qquad t \in [0,2\pi].
+					</md>
+					(The shadow in the <m>xy</m>-plane is the circle of radius
+					<m>3</m>; the plane <m>z=y</m> tilts that circle into an
+					ellipse in space.)
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Parametrize the line through the points
+					<m>P = (1,0,2)</m> and <m>Q = (3,4,-1)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Parametrize the line through the points
+					<m>P = (1,0,2)</m> and <m>Q = (3,4,-1)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					A direction vector is
+					<m>\vv = Q - P = [\,2,\,4,\,-3\,]</m>. Marching from
+					<m>P</m>,
+					<md>
+						\vr(t) = P + t\vv = [\,1+2t,\; 4t,\; 2-3t\,],
+						\qquad t \in \R.
+					</md>
+					(Restricting to <m>t\in[0,1]</m> would give just the
+					segment from <m>P</m> to <m>Q</m>.)
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: The derivative as velocity
+		 ============================================================ -->
+	<page>
+		<p><term>III. The derivative is the velocity vector.</term></p>
+
+		<p>
+			A vector-valued function is differentiated one component at a
+			time:
+			<md>
+				\vr'(t) = [\,x'(t),\; y'(t),\; z'(t)\,].
+			</md>
+			Thinking of <m>\vr(t)</m> as the position of a moving particle,
+			<m>\vr'(t)</m> is its <term>velocity</term>. Geometrically the
+			velocity is <term>tangent</term> to the curve and points in the
+			direction of increasing <m>t</m>; its magnitude
+			<m>\norm{\vr'(t)}</m> is the particle's <term>speed</term>.
+		</p>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			The derivative <m>\vr'(t) = [x'(t),y'(t),z'(t)]</m> is the
+			<fillin characters="9"/> <nbsp/>vector; geometrically it is
+			<fillin characters="8"/> <nbsp/>to the curve, and its magnitude
+			<m>\norm{\vr'(t)}</m> is the <fillin characters="6"/>.
+		</p>
+		<p component="key">
+			The derivative <m>\vr'(t) = [x'(t),y'(t),z'(t)]</m> is the
+			<m>\underline{\textbf{velocity}}</m> vector; geometrically it is
+			<m>\underline{\textbf{tangent}}</m> to the curve, and its
+			magnitude <m>\norm{\vr'(t)}</m> is the
+			<m>\underline{\textbf{speed}}</m>.
+		</p>
+
+		<figure xml:id="ws-curves-fig-tangent">
+			<caption>The velocity <m>\vr'(t)</m> is tangent to the curve at
+				<m>\vr(t)</m>, pointing the way the particle is heading.</caption>
+			<image width="55%">
+				<shortdescription>A curved path in the plane with the position vector drawn from the origin to a point P on the curve, and the velocity vector drawn as an arrow tangent to the curve at P.</shortdescription>
+				<latex-image>
+	\begin{tikzpicture}[scale=1.1,>=stealth]
+	% axes
+	\draw[->] (-0.3,0) -- (5,0) node[anchor=north] {$x$};
+	\draw[->] (0,-0.3) -- (0,3.6) node[anchor=east] {$y$};
+	% the curve r(t)
+	\draw[very thick, blue, smooth] plot coordinates
+		{(0.3,0.25) (1,0.45) (1.8,0.85) (2.6,1.5) (3.3,2.35) (3.9,3.25)};
+	\node[blue] at (4.05,3.0) {$\vr(t)$};
+	% point P on the curve
+	\coordinate (P) at (2.6,1.5);
+	\fill (P) circle (1.7pt);
+	\node[anchor=north west] at (P) {$P=\vr(t)$};
+	% position vector from origin to P (dashed)
+	\draw[dashed, gray, ->] (0,0) -- (P);
+	% velocity (tangent) vector at P
+	\draw[very thick, red, ->] (P) -- (3.6,2.55);
+	\node[red, anchor=south west] at (3.2,2.2) {$\vr'(t)$};
+	\end{tikzpicture}
+				</latex-image>
+			</image>
+		</figure>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Let <m>\vr(t) = [\,e^{t},\; t^2,\; \cos t\,]</m>. Find
+					<m>\vr'(t)</m> and the velocity <m>\vr'(0)</m> at
+					<m>t=0</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>\vr(t) = [\,e^{t},\; t^2,\; \cos t\,]</m>. Find
+					<m>\vr'(t)</m> and the velocity <m>\vr'(0)</m> at
+					<m>t=0</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Differentiate each component:
+					<md>
+						\vr'(t) = [\,e^{t},\; 2t,\; -\sin t\,].
+					</md>
+					At <m>t=0</m>, <m>\vr'(0) = [\,e^{0},\,0,\,-\sin 0\,] = [\,1,\,0,\,0\,]</m>:
+					at that instant the particle is moving in the direction of
+					the positive <m>x</m>-axis.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: Arclength
+		 ============================================================ -->
+	<page>
+		<p><term>IV. Arclength of a curve.</term></p>
+
+		<p>
+			To measure the length of a curve, add up many
+			<q>small</q> distances <m>ds</m> along it. Since distance equals
+			rate times time, a small distance is the speed times a small
+			change in <m>t</m>: <m>ds = \norm{\vr'(t)}\,dt</m>. Integrating
+			over the parameter interval,
+			<md>
+				s = \int_C ds = \int_a^b \norm{\vr'(t)}\,dt .
+			</md>
+		</p>
+
+		<!-- reading-check pair 4 -->
+		<p component="stu">
+			A small piece of arclength is <m>ds = </m>
+			<fillin characters="8"/> <m>\,dt</m>, so the length of the curve
+			for <m>a\le t\le b</m> is <m>s = </m> <fillin characters="16"/>.
+		</p>
+		<p component="key">
+			A small piece of arclength is
+			<m>ds = \underline{\textbf{\norm{\vr'(t)}}}\,dt</m>, so the length
+			of the curve for <m>a\le t\le b</m> is
+			<m>s = \underline{\textbf{\int_a^b \norm{\vr'(t)}\,dt}}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Find the length of one turn of the helix
+					<m>\vr(t) = [\,3\cos t,\; 3\sin t,\; 4t\,]</m> for
+					<m>0 \le t \le 2\pi</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the length of one turn of the helix
+					<m>\vr(t) = [\,3\cos t,\; 3\sin t,\; 4t\,]</m> for
+					<m>0 \le t \le 2\pi</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The velocity is
+					<m>\vr'(t) = [\,-3\sin t,\; 3\cos t,\; 4\,]</m>, so the
+					speed is constant:
+					<md>
+						\norm{\vr'(t)} = \sqrt{9\sin^2 t + 9\cos^2 t + 16}
+						= \sqrt{9 + 16} = 5.
+					</md>
+					Therefore
+					<md>
+						s = \int_0^{2\pi} 5 \, dt = 10\pi .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Find the length of one turn of the helix
+					<m>\vr(t) = [\,5\cos t,\; 5\sin t,\; 12t\,]</m> for
+					<m>0 \le t \le 2\pi</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the length of one turn of the helix
+					<m>\vr(t) = [\,5\cos t,\; 5\sin t,\; 12t\,]</m> for
+					<m>0 \le t \le 2\pi</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>\vr'(t) = [\,-5\sin t,\; 5\cos t,\; 12\,]</m> and
+					<md>
+						\norm{\vr'(t)} = \sqrt{25\sin^2 t + 25\cos^2 t + 144}
+						= \sqrt{25 + 144} = \sqrt{169} = 13,
+					</md>
+					so <m>s = \displaystyle\int_0^{2\pi} 13\,dt = 26\pi</m>.
+					(The <m>5</m>-<m>12</m>-<m>13</m> right triangle keeps the
+					speed a whole number.)
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 5: A misconception, an application, and looking ahead
+		 ============================================================ -->
+	<page>
+		<p><term>V. A caution and an application.</term></p>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-curves-tf-speed">
+			<statement>
+				<p>
+					<alert>True or False.</alert> For a moving particle, the
+					speed <m>\norm{\vr'(t)}</m> is the same as
+					<m>\dfrac{d}{dt}\norm{\vr(t)}</m>, the rate of change of its
+					distance from the origin. Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False.</term> <m>\norm{\vr'(t)}</m> measures how fast
+					the particle moves <em>along its path</em>;
+					<m>\frac{d}{dt}\norm{\vr(t)}</m> measures how fast its
+					<em>distance from the origin</em> changes. For uniform
+					circular motion <m>\vr(t) = [\cos t,\sin t,0]</m> the speed
+					is <m>\norm{\vr'(t)} = 1</m> (the particle is moving), yet
+					<m>\norm{\vr(t)} = 1</m> is constant, so
+					<m>\frac{d}{dt}\norm{\vr(t)} = 0</m>. The two agree only
+					when the motion is directly toward or away from the origin.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>An application.</term></p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					A helical wheelchair ramp winds exactly once around a
+					cylindrical tower of radius <m>3</m> meters while rising a
+					total of <m>4\pi</m> meters. Using <m>t\in[0,2\pi]</m> for
+					the single turn, a parametrization is
+					<m>\vr(t) = [\,3\cos t,\; 3\sin t,\; 2t\,]</m>. How long is
+					the ramp?
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					A helical wheelchair ramp winds exactly once around a
+					cylindrical tower of radius <m>3</m> meters while rising a
+					total of <m>4\pi</m> meters. Using <m>t\in[0,2\pi]</m> for
+					the single turn, a parametrization is
+					<m>\vr(t) = [\,3\cos t,\; 3\sin t,\; 2t\,]</m>. How long is
+					the ramp?
+				</p>
+			</statement>
+			<solution>
+				<p>
+					As <m>t</m> goes from <m>0</m> to <m>2\pi</m> the height
+					<m>z = 2t</m> rises from <m>0</m> to <m>4\pi</m>, as
+					required. The velocity is
+					<m>\vr'(t) = [\,-3\sin t,\; 3\cos t,\; 2\,]</m>, so
+					<md>
+						\norm{\vr'(t)} = \sqrt{9\sin^2 t + 9\cos^2 t + 4}
+						= \sqrt{13},
+					</md>
+					and the length is
+					<md>
+						s = \int_0^{2\pi} \sqrt{13}\, dt = 2\pi\sqrt{13}
+						\approx 22.65 \text{ meters}.
+					</md>
+					(Notice this exceeds the <m>4\pi \approx 12.57</m> meters
+					of pure rise <ndash/> the winding adds real distance,
+					which is why ramps are gentler to climb than stairs.)
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> We now have curves in hand as
+				vector-valued functions, together with their velocity and
+				length. Next we sharpen the geometry: how a curve
+				<term>bends</term> (curvature) and the moving frame of
+				tangent and normal vectors it carries. From there the course
+				turns to <term>vector fields</term> and to integrating along
+				curves <ndash/> the line integrals at the heart of vector
+				analysis.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>

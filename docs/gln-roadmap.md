@@ -87,7 +87,7 @@ Container: `source/notes/sec-functions-vectors.ptx` (exists).
 | 2 | `ws-vectors` | Vectors | `01_01_Vectors`, `1-1-notes-vectors` | `sec_space_coord`, `sec_vector_intro` | done |
 | 3 | `ws-dot-product` | The Dot Product | `01_02_Dot_Product` | `sec_dot_product` | done |
 | 4 | `ws-cross-product` | The Cross Product | `01_03_Cross_Product` | `sec_cross_product` | done |
-| 5 | `ws-curves` | Curves and Vector-Valued Functions | `01_04_Curves` | `sec_vvf`, `sec_vvf_calc`, `sec_tan_norm`, `sec_curvature` | todo |
+| 5 | `ws-curves` | Curves and Vector-Valued Functions | `01_04_Curves` | `sec_vvf`, `sec_vvf_calc`, `sec_tan_norm`, `sec_curvature` | in-review |
 | 6 | `ws-gradient` | The Gradient and Directional Derivatives | `01_05_Gradient` | `sec_partial_derivatives`, `sec_directional_derivative` | todo |
 | 7 | `ws-vector-fields` | Vector Fields | *(from coursebook; deck material in `01_05_Gradient`)* | `sec_vector_fields` | todo |
 
