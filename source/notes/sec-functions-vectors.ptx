@@ -37,8 +37,10 @@
 	<!-- Class meeting 4: The cross product -->
 	<xi:include href="./ws-cross-product.ptx"/>
 
+	<!-- Class meeting 5: Curves and vector-valued functions -->
+	<xi:include href="./ws-curves.ptx"/>
+
 	<!-- Future worksheets in this section (uncomment as you write them): -->
-	<!-- <xi:include href="./ws-curves.ptx"/>			  -->
 	<!-- <xi:include href="./ws-vector-fields.ptx"/>	   -->
 	<!-- <xi:include href="./ws-gradient.ptx"/>			-->
 
