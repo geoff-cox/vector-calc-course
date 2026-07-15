@@ -33,7 +33,7 @@
       output-dir="homepage"
       deploy-dir="homepage"
       >
-        <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+        <stringparams author.deprecations.all="yes" author.tools="yes" />
     </target>
     <target
       name="web-stu"
@@ -43,7 +43,7 @@
       output-dir="web-stu"
       deploy-dir="notes-student"
     >
-      <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+      <stringparams author.deprecations.all="yes" author.tools="yes" />
     </target>
     <target
       name="web-key"
@@ -53,7 +53,7 @@
       output-dir="web-key"
       deploy-dir="notes-instructor"
     >
-      <stringparams author.deprecations.all="yes" author.tools="yes" html.css.extra="external/custom-styles.css" />
+      <stringparams author.deprecations.all="yes" author.tools="yes" />
     </target>
     <target
       name="pdf-key"
@@ -75,7 +75,7 @@
       name="book"
       format="html"
       source="book.ptx"
-      publication="publication-standard-web.ptx"
+      publication="publication-book.ptx"
       output-dir="book"
       >
         <stringparams html.annotation="hypothesis"/>

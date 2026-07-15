@@ -4,7 +4,7 @@
 
     <!-- Relative path, relative to "main" source file -->
     <source>
-        <directories external="book/assets" generated="book/generated-assets-standard"/>
+        <directories external="book/assets" generated="book/generated-assets"/>
         <version include="main color video taypoly-early video-early web"/>
     </source>
 

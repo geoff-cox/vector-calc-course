@@ -19,7 +19,7 @@
 -->
 <publication>
 	<source>
-		<directories external="../assets" generated="../generated-assets" />
+		<directories external="notes/assets" generated="notes/generated-assets" />
 		<version include="web readings emoji example-solution instructor key" />
 	</source>
 

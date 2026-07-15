@@ -19,13 +19,13 @@
 -->
 <pretext xml:lang="en-US" xmlns:xi="http://www.w3.org/2001/XInclude">
 
-	<xi:include href="./bookends/docinfo.ptx" />
+	<xi:include href="./notes/bookends/docinfo.ptx" />
 
 	<article xml:id="ma301-notes">
 		<title>MA 301</title>
 		<subtitle>Guided Lecture Notes</subtitle>
 
-    <xi:include href="./bookends/frontmatter.ptx" />
+    <xi:include href="./notes/bookends/frontmatter.ptx" />
 
 		<!-- Section 0: Multivariable Calculus Review (prerequisite) -->
 		<xi:include href="./notes/sec-multivariable-review.ptx"/>
