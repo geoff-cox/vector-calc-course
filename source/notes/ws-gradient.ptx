@@ -321,7 +321,7 @@
 		<exercise component="stu" workspace="2.5in">
 			<statement>
 				<p>
-					A hill has height <m>h(x,y) = 20 - x^2 - 2y^2</m> meters above
+					A hill has height <m>H(x,y) = 20 - x^2 - 2y^2</m> meters above
 					the point <m>(x,y)</m> on the ground. A hiker stands above
 					<m>P(1,1)</m>.
 					<ol>
@@ -334,7 +334,7 @@
 		<exercise component="key">
 			<statement>
 				<p>
-					A hill has height <m>h(x,y) = 20 - x^2 - 2y^2</m> meters above
+					A hill has height <m>H(x,y) = 20 - x^2 - 2y^2</m> meters above
 					the point <m>(x,y)</m> on the ground. A hiker stands above
 					<m>P(1,1)</m>.
 					<ol>
@@ -347,17 +347,17 @@
 				<p>
 					<ol>
 						<li>
-							<m>\nabla h = [\,-2x,\; -4y\,]</m>, so
-							<m>\nabla h(1,1) = [\,-2,\,-4\,]</m>. The steepest uphill
+							<m>\nabla H = [\,-2x,\; -4y\,]</m>, so
+							<m>\nabla H(1,1) = [\,-2,\,-4\,]</m>. The steepest uphill
 							direction is the gradient, i.e. the unit vector
 							<m>\vu = [\,-2,\,-4\,]/\sqrt{20} = [\,-1,\,-2\,]/\sqrt{5}</m>
 							(pointing back toward the summit), and the slope there is
-							<m>\norm{\nabla h(P)} = \sqrt{(-2)^2+(-4)^2} = \sqrt{20} = 2\sqrt5 \approx 4.47</m>.
+							<m>\norm{\nabla H(P)} = \sqrt{(-2)^2+(-4)^2} = \sqrt{20} = 2\sqrt5 \approx 4.47</m>.
 						</li>
 						<li>
 							No. The rate of change in <em>any</em> direction lies
-							between <m>-\norm{\nabla h(P)}</m> and
-							<m>\norm{\nabla h(P)} = 2\sqrt5 \approx 4.47</m>. Since
+							between <m>-\norm{\nabla H(P)}</m> and
+							<m>\norm{\nabla H(P)} = 2\sqrt5 \approx 4.47</m>. Since
 							<m>5 &gt; 2\sqrt5</m>, no direction achieves a rate of
 							<m>5</m>.
 						</li>
