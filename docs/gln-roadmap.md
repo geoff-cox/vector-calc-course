@@ -89,7 +89,7 @@ Container: `source/notes/sec-functions-vectors.ptx` (exists).
 | 4 | `ws-cross-product` | The Cross Product | `01_03_Cross_Product` | `sec_cross_product` | done |
 | 5 | `ws-curves` | Curves and Vector-Valued Functions | `01_04_Curves` | `sec_vvf`, `sec_vvf_calc`, `sec_tan_norm`, `sec_curvature` | in-review |
 | 6 | `ws-gradient` | The Gradient and Directional Derivatives | `01_05_Gradient` | `sec_partial_derivatives`, `sec_directional_derivative` | in-review |
-| 7 | `ws-vector-fields` | Vector Fields | *(from coursebook; deck material in `01_05_Gradient`)* | `sec_vector_fields` | todo |
+| 7 | `ws-vector-fields` | Vector Fields | *(from coursebook; deck material in `01_05_Gradient`)* | `sec_vector_fields` | in-review |
 
 Rows 1–4 are `done` but **legacy** — they build today yet predate the
 shared conventions and await Task M6 migration (see the status legend).
@@ -171,7 +171,9 @@ the decks plus new material (flag figure/exercise sourcing in each C2).
    meetings (e.g. `05_04_Fourier_Series_Diff_Eqns`); per the C2
    acceptance criteria I'll propose any such split in that worksheet's PR
    rather than pre-committing here.
-4. **`ws-vector-fields` sourcing.** Row 7 has no dedicated deck (vector
-   fields appear inside the gradient and line-integral decks). I'll draft
-   it from the coursebook `sec_vector_fields` unless you'd rather fold it
-   into `ws-gradient` or `ws-line-integrals`.
+4. **`ws-vector-fields` sourcing — RESOLVED.** Row 7 has no dedicated
+   deck (vector fields appear inside the gradient and line-integral
+   decks), so it was drafted from the coursebook `sec_vector_fields`
+   (definition, del operator, divergence, curl). Say the word if you'd
+   rather it had instead been folded into `ws-gradient` or
+   `ws-line-integrals`.
