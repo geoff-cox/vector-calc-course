@@ -8,7 +8,8 @@
 		<subtitle>Advanced Mathematics for Scientists and Engineers</subtitle>
 
     <xi:include href="./homepage/bookends/frontmatter.ptx" />
+		<xi:include href="./homepage/course-materials.ptx"/>
 		<xi:include href="./homepage/syllabus.ptx"/>
-	
+
 	</article>
 </pretext>

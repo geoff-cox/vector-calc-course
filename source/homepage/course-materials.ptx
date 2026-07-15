@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	course-materials.ptx
+	Homepage section giving students one place to reach the other
+	deployed course materials (today: the guided lecture notes).
+
+	Why links instead of folding the worksheets into this article:
+	the notes are a separate PreTeXt document (source/notes.ptx) that
+	builds three ways from one source - web-stu / web-key (HTML) and
+	pdf-key (print) - via the <version include> component filtering in
+	publication-stu.ptx / publication-key.ptx.  The homepage builds once,
+	with homepage-pub.ptx, whose <version include="html"/> lists neither
+	the "stu" nor the "key" component, and a PreTeXt <article> cannot
+	contain a <chapter> anyway.  Embedding the worksheets here would
+	therefore require converting the homepage to a <book> AND splitting
+	it into parallel student/instructor homepage targets (two homepage
+	URLs), while orphaning the pdf-key target.  Linking keeps one
+	homepage and preserves the student/instructor split.
+	TODO(geoff): if you would rather have the worksheets rendered inside
+	the homepage document itself despite the above (one merged document,
+	built twice), say the word and it can be restaged that way.
+
+	The relative hrefs below mirror the deploy-dir attributes in
+	project.ptx (notes-student, notes-instructor) and the cards in
+	site/index.html - keep all three in sync.  They resolve on the
+	deployed GitHub Pages site (each target is a sibling directory of
+	homepage/), not in a local output/ preview.
+-->
+<section xml:id="course-materials" label="course-materials">
+	<title>Course Materials</title>
+
+	<introduction>
+		<p>
+			All materials for MA 301 are published on this site and are updated
+			as the semester progresses. Bookmark the pages you use most.
+		</p>
+	</introduction>
+
+	<subsection xml:id="materials-guided-notes" label="materials-guided-notes">
+		<title>Guided Lecture Notes</title>
+
+		<p>
+			Class meetings are built around <term>guided lecture notes</term>:
+			one worksheet per meeting, with definitions, examples, and blanks
+			that we complete together during class. Bring the day's worksheet
+			(printed or on a device you can write on) to every meeting.
+		</p>
+
+		<!-- Links live in the item bodies, not the <title>s: PreTeXt
+		     silently strips <url> markup inside a <dl> item title. -->
+		<p>
+			<dl>
+				<li>
+					<title>Student Edition</title>
+					<p>
+						<url href="../notes-student/">Open the Student Edition</url>
+						<mdash/> the working copy: statements and blanks, no
+						answers. This is the version to bring to class.
+					</p>
+				</li>
+				<li>
+					<title>Instructor Key</title>
+					<p>
+						<url href="../notes-instructor/">Open the Instructor Key</url>
+						<mdash/> the same worksheets with the blanks filled and
+						solutions revealed. Posted for checking your work
+						<em>after</em> we cover the material in class.
+					</p>
+				</li>
+			</dl>
+		</p>
+	</subsection>
+
+	<!-- Coursebook card: mirror of the disabled card in site/index.html.
+	     Re-enable this subsection together with the deploy-dir="book"
+	     attribute in project.ptx and the site/index.html card once the
+	     book target is marked for deploy (see the note in project.ptx).
+	<subsection xml:id="materials-coursebook" label="materials-coursebook">
+		<title>Coursebook</title>
+		<p>
+			The course textbook, adapted from <em>APEX Calculus</em>
+			(CC BY-NC 4.0): <url href="../book/">Coursebook</url>.
+		</p>
+	</subsection>
+	-->
+</section>

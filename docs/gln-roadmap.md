@@ -45,7 +45,7 @@ Topic authority is `docs/ma301-syllabus-2015.md`: **Vector Analysis**
 parameterization of curves/surfaces, the Divergence Theorem, Stokes'
 Theorem) plus **Miscellaneous** (Fourier series, complex variables,
 partial differential equations). The old Beamer decks in
-`source/notes/latex/` follow that same arc, so the worksheet sequence
+`outdated-material/notes/` follow that same arc, so the worksheet sequence
 mirrors the decks, sourced additionally from the kept coursebook
 chapters where they overlap. Foundational multivariable calculus
 (functions of several variables, partial derivatives, multiple
@@ -142,7 +142,7 @@ the decks plus new material (flag figure/exercise sourcing in each C2).
   reviews the multivariable calculus MA 301 builds on — `ma301-syllabus-2015.md`
   lists this as prerequisite (MA 215), so it sits outside the syllabus
   topic list and is included only as a refresher.
-- **Every Beamer deck in `source/notes/latex/` maps to a row** (the
+- **Every Beamer deck in `outdated-material/notes/` maps to a row** (the
   `05_00` summary folds into `ws-fourier-series`; the two `1-x-notes-*`
   drafts fold into the corresponding Section 1 rows).
 - **No orphan `ws-*.ptx`:** the four existing worksheet files are all

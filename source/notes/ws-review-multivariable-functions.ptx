@@ -16,7 +16,7 @@
 	    figure);
 	  * a quick True/False -> one <exercise> + <solution component="key">.
 	Figures are native TikZ/pgfplots <latex-image> (the notes
-	<latex-image-preamble> in source/bookends/docinfo.ptx loads tikz +
+	<latex-image-preamble> in source/notes/bookends/docinfo.ptx loads tikz +
 	pgfplots). Book concepts are tracked but example equations are NOT reused.
 -->
 <worksheet xml:id="ws-review-multivariable-functions">

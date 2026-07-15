@@ -1,6 +1,6 @@
 # MA 301 Syllabus — 2015 Archive Transcription
 
-Plain-text transcription of `source/homepage/syllabus/docx/MA301_Syllabus_S2015.docx`
+Plain-text transcription of `outdated-material/syllabus/MA301_Syllabus_S2015.docx`
 (Spring 2015). This is the durable, mobile-readable reference for the
 authoritative 2015 course facts used to rebuild the PreTeXt syllabus
 (Task A1). Section order, the topic list, grading weights, and exam

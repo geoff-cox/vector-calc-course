@@ -75,14 +75,17 @@ from a Beamer deck).
    completely, `preview` label applied.
 2. All four verification gates from `CLAUDE.md` §4 pass, with literal
    command output pasted in the PR.
-3. `source/homepage/syllabus/common/`, `source/notes/latex/`, and
-   `source/tests/latex/` are never modified.
+3. `source/homepage/syllabus/common/` and anything under
+   `outdated-material/` (the old notes, tests, syllabus, homework, and
+   figures) are never modified.
 4. Improvements are welcome and encouraged — new examples, better
    explanations, corrections — but every one is itemized in the PR's
    "Improvements" section, and judgment calls get
    `<!-- TODO(geoff): ... -->` markers plus an "Open questions" line.
-5. Any new LaTeX macro used anywhere goes into
-   `source/bookends/docinfo.ptx` in the same PR (Task D1 rule).
+5. Any new LaTeX macro used anywhere goes into the relevant stream's
+   `bookends/docinfo.ptx` (`source/homepage/bookends/`,
+   `source/notes/bookends/`, or `source/book/bookends/`) in the same PR
+   (Task D1 rule); the homepage and notes copies are kept identical.
 6. If a task's inputs are missing or contradictory, open the PR anyway
    with what can be done safely and put the blocker under "Open
    questions" — do not guess on critical decisions (grading schemes,
@@ -95,7 +98,7 @@ Copy-paste starters for the phone:
 - `@claude Do Task E1.`
 - `@claude Do Task A1, then A2 in the same PR if A1 raises no blockers.`
 - `@claude Do Task B1 and attach the audit report to the PR.`
-- `@claude Do Task C2 for the section "The Dot Product". Old deck: source/notes/latex/01--functions-vectors/01_02_Dot_Product.tex.`
+- `@claude Do Task C2 for the section "The Dot Product". Old deck: outdated-material/notes/01--functions-vectors/01_02_Dot_Product.tex.`
 - `@claude Address my review comments on PR #12 and re-run all verification gates.`
 - `@claude Run Task D2 and report, but only open a PR if fixes are needed.`
 - `@claude Do Task B5a (spherical-convention definitional core).`

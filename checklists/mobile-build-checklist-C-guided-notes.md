@@ -3,7 +3,7 @@
 **Goal:** one PreTeXt `<worksheet>` per course section, in
 `source/notes/`, blending three inputs:
 
-1. the old Beamer decks in `source/notes/latex/` (structure, examples,
+1. the old Beamer decks in `outdated-material/notes/` (structure, examples,
    the reveal pattern `\ON<1>{\B{...}}` marks what becomes a blank or a
    hidden solution),
 2. the corresponding `keep_chpts` coursebook sections (definitions,
@@ -21,7 +21,7 @@ this repo's parameters and the legacy-worksheet note). The existing
 
 ## Task C1 — Worksheet roadmap (once, before any C2)
 
-1. Inventory `source/notes/latex/` (decks) and map each deck to the
+1. Inventory `outdated-material/notes/` (decks) and map each deck to the
    coursebook section(s) covering the same material, and to the topic
    list from Task A1's `docs/ma301-syllabus-2015.md`.
 2. Where the course covers a topic that has no old deck (or the deck is

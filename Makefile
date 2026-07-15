@@ -1,24 +1,28 @@
-# Define variables for commands
+# Convenience wrappers around the PreTeXt CLI.
+# Target names come from project.ptx — read it before adding rules here.
+
 PRETEXT = pretext build
 
-.PHONY: 114 311 310 clean
+.PHONY: all homepage notes book deploys clean
 
-# Default target
-all: 114 311 310
+# Default: everything that deploys (homepage + both HTML notes builds)
+all: homepage notes
 
-# Clean target (optional, if needed): removes output, logs, and generated-assets (excluding dynamic_subs/)
+homepage:
+	$(PRETEXT) homepage
+
+# All three guided-lecture-notes builds (student HTML, key HTML, key PDF)
+notes:
+	$(PRETEXT) web-stu
+	$(PRETEXT) web-key
+	$(PRETEXT) pdf-key
+
+book:
+	$(PRETEXT) book
+
+# Exactly what CI builds for GitHub Pages (targets with a deploy-dir)
+deploys:
+	pretext build --deploys
+
 clean:
 	rm -rf output/ logs/
-	find generated-assets/ -mindepth 1 -type d -not -path "generated-assets/dynamic_subs*" -exec rm -rf {} +
-
-114:
-	$(PRETEXT) ma114
-	$(PRETEXT) ma114-pdf
-
-311:
-	$(PRETEXT) ma311
-	$(PRETEXT) ma311-pdf
-
-310:
-	$(PRETEXT) ma310
-	$(PRETEXT) ma310-pdf
