@@ -1,0 +1,61 @@
+<!-- The docinfo block is the analogue to the latex preamble -->
+<!-- This is where you can define macros and other book-wide -->
+<!-- settings. -->
+<docinfo>
+  <!-- A unique name for the book in a catalog; for example, see https://pretextbook.org/catalog.html and https://runestone.academy/ns/books/index. It contains a simple lowercase string with no dashes or other special characters. See https://pretextbook.org/doc/guide/html/sec-publishing-to-runestone-academy.html for more information. -->
+  <!--<document-id>MATH12345-Spring2037</document-id>-->
+
+  <!-- The next three lines are likely for mature projects only: -->
+
+  <!-- <brandlogo url="" source="cover.png"/> -->
+  <!-- <covers front="front.pdf" back="back.pdf"/> -->
+  <!-- <document-id>unique-book-id</document-id> -->
+
+  <!-- macros for defining latex math shortcuts. It is good practice -->
+  <!-- to define these semantically, so that the macro relates to what-->
+  <!-- it defines. -->
+  <brandlogo url="https://www.vmi.edu/" source="icons/ma301-icon.png" />
+
+  <rename element="reading-questions">🧑🏻‍💻 Class Activities </rename>
+	<rename element="objectives">🗝️ Key Takeaways... </rename>
+  <rename element="project" xml:lang="en-US">Phase</rename>
+  <rename element="aside">Note</rename>
+
+  <programs language="octave"/>
+  
+  <macros>
+    \newcommand{\R}{\mathbb{R}}
+    \newcommand{\vF}{\mathbf{F}}
+    \newcommand{\vG}{\mathbf{G}}
+    \newcommand{\va}{\mathbf{a}}
+    \newcommand{\vb}{\mathbf{b}}
+    \newcommand{\vc}{\mathbf{c}}
+    \newcommand{\vu}{\mathbf{u}}
+    \newcommand{\vv}{\mathbf{v}}
+    \newcommand{\vw}{\mathbf{w}}
+    \newcommand{\vr}{\mathbf{r}}
+    \newcommand{\vn}{\mathbf{n}}
+    \newcommand{\vi}{\mathbf{i}}
+    \newcommand{\vj}{\mathbf{j}}
+    \newcommand{\vk}{\mathbf{k}}
+    \newcommand{\vzero}{\mathbf{0}}
+    \newcommand{\norm}[1]{\left\lvert #1 \right\rvert}
+    \DeclareMathOperator{\dom}{dom}
+    \DeclareMathOperator{\range}{range}
+    \DeclareMathOperator{\proj}{proj}
+    \DeclareMathOperator{\comp}{comp}
+  </macros>
+
+  <!-- If you put any latex-image elements you can include preambles -->
+  <!-- for those in the next element. -->
+  <latex-image-preamble>
+    \usepackage{tikz, pgfplots}
+    \usetikzlibrary{positioning,matrix,arrows}
+    \usetikzlibrary{shapes,decorations,shadows,fadings,patterns}
+    \usetikzlibrary{decorations.markings}
+  </latex-image-preamble>
+
+  <!-- Specify the default type of cross reference: -->
+  <!-- <cross-references text="type-global" /> -->
+
+</docinfo>

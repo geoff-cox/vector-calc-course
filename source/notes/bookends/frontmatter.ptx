@@ -1,0 +1,34 @@
+<frontmatter label="frontmatter">
+  <bibinfo>
+    <author>
+      <personname>Geoffrey W. Cox, Ph.D.</personname>
+      <department>Applied Mathematics</department>
+      <institution>Virginia Military Institute</institution>
+      <email>coxgeoff@vmi.edu</email>
+    </author>
+    <date><today /></date>
+  </bibinfo>
+
+	<titlepage>
+		<titlepage-items/>
+	</titlepage>
+
+  <preface xml:id="preface">
+    <title>How to Use These Notes</title>
+
+    <p>
+      These notes are a <term>guided</term> handout: most
+      pages contain blanks (<m>\underline{\hspace{2em}}</m>)
+      and worked examples whose final lines are left empty
+      on the student copy.  We will fill in these gaps
+      together during class.
+    </p>
+    
+    <p>
+      Each set of notes is a <term>worksheet</term>
+      covering one class meeting's worth of material.
+      Bring the worksheet for the day, a pencil, and a
+      fresh stack of patience.
+    </p>
+  </preface>
+</frontmatter>

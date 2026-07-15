@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pretext xml:lang="en-US" xmlns:xi="http://www.w3.org/2001/XInclude">
 
-	<xi:include href="./bookends/docinfo.ptx" />
+	<xi:include href="./homepage/bookends/docinfo.ptx" />
 
 	<article xml:id="ma301-homepage">
 		<title>MA 301</title>
 		<subtitle>Advanced Mathematics for Scientists and Engineers</subtitle>
 
-    <xi:include href="./bookends/frontmatter.ptx" />
+    <xi:include href="./homepage/bookends/frontmatter.ptx" />
 		<xi:include href="./homepage/syllabus.ptx"/>
-		<!-- <xi:include href="./schedule.ptx"/> -->
 	
 	</article>
 </pretext>

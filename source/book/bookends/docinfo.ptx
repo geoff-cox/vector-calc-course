@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <docinfo>
   <brandlogo url="http://www.apexcalculus.com" source="images/APEX.png"/>
   <initialism>APEX</initialism>
   <rename element="inlineexercise">Exercise</rename>
   <rename element="task">Part</rename>
   <rename element="reading-questions">Discussion Questions</rename>
+  <rename element="insight" xml:lang="en-US">Key Idea</rename>
 
-  <document-id edition="5" component="proteus-id">APEXPROTEUS</document-id>
+  <!-- <document-id edition="5" component="proteus-id">APEXPROTEUS</document-id>
   <document-id edition="5" component="main">APEX</document-id>
-  <document-id edition="5" component="playground-id">APEXplayground</document-id>
+  <document-id edition="5" component="playground-id">APEXplayground</document-id> -->
   
-  <blurb shelf="Mathematics">
+  <!-- <blurb shelf="Mathematics">
     A traditional calculus textbook with many exercises and few proofs,
     covering calculus from limits to vector calculus.
-  </blurb>
+  </blurb> -->
 
   <math-package latex-name="cancel" mathjax-name="cancel"/>
 
@@ -356,7 +356,6 @@
     \makeatother
   </latex-image-preamble>
 
-
   <asymptote-preamble component="color">
     import graph3;
     bool incolor;
@@ -410,5 +409,4 @@
     pen darksurfacepen=rgb(.1,.1,.1)+opacity(.7);
   </asymptote-preamble>
 
-  <rename element="insight" xml:lang="en-US">Key Idea</rename>
 </docinfo>
