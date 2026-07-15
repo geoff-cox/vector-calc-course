@@ -5,7 +5,7 @@
 	Curves and Vector-Valued Functions.
 
 	Ported from the Beamer deck 01_04_Curves.tex (in
-	source/notes/latex/, functions-vectors folder):
+	outdated-material/notes/, functions-vectors folder):
 	parametric curves, parametrizing lines/segments, the derivative
 	as velocity, and arclength; book concepts tracked from
 	sec_vvf / sec_vvf_calc / sec_tan_norm; example equations are NOT
@@ -15,7 +15,7 @@
 	(checklists/worksheet-conventions.md): paired component="stu"/"key"
 	reading checks and exercises; one True/False misconception check; one
 	read-along TikZ figure; one modern application. Standard notation
-	(macros from source/bookends/docinfo.ptx); no new macros.
+	(macros from source/notes/bookends/docinfo.ptx); no new macros.
 -->
 <worksheet xml:id="ws-curves">
 	<title>Curves and Vector-Valued Functions</title>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	main.ptx
+	notes.ptx
 	Root source file for the lecture notes.
 
 	The overall structure mirrors the existing course:
@@ -14,7 +14,7 @@
 	style the course already uses.
 
 	New chapters/worksheets are added by:
-		1. dropping a new file in source/,
+		1. dropping a new file in source/notes/,
 		2. adding an <xi:include/> below.
 -->
 <pretext xml:lang="en-US" xmlns:xi="http://www.w3.org/2001/XInclude">
@@ -33,11 +33,11 @@
 		<!-- Chapter 1 -->
 		<xi:include href="./notes/sec-functions-vectors.ptx"/>
 
-		<!-- Chapter 2 (stub: drop in ch-line-integrals.ptx when ready) -->
-		<!-- <xi:include href="./ch-line-integrals.ptx"/> -->
+		<!-- Chapter 2 (stub: drop in notes/sec-line-integrals.ptx when ready) -->
+		<!-- <xi:include href="./notes/sec-line-integrals.ptx"/> -->
 
-		<!-- Chapter 3 (stub: drop in ch-surface-integrals.ptx when ready) -->
-		<!-- <xi:include href="./ch-surface-integrals.ptx"/> -->
+		<!-- Chapter 3 (stub: drop in notes/sec-surface-integrals.ptx when ready) -->
+		<!-- <xi:include href="./notes/sec-surface-integrals.ptx"/> -->
 
 	</article>
 </pretext>

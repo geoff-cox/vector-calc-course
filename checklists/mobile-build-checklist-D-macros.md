@@ -1,12 +1,14 @@
 # Track D — LaTeX Macro Management
 
-All macros live in exactly one place: the `<macros>` element of
-`source/bookends/docinfo.ptx` (plus `<latex-image-preamble>` for
-TikZ-only packages). The book's own `book/ptx/docinfo.ptx` may define
-its own set — check which docinfo each target actually uses in
-`project.ptx`/`book.ptx` before assuming; if the book and the
-notes/homepage use different docinfo files, a macro must be added to
-**every docinfo used by a target that renders it**.
+Each document stream carries its own docinfo: macros live in the
+`<macros>` element of `source/notes/bookends/docinfo.ptx` and
+`source/homepage/bookends/docinfo.ptx` — two copies of the same file,
+kept identical — plus `<latex-image-preamble>` for TikZ-only packages.
+The book's own `source/book/bookends/docinfo.ptx` defines the APEX
+macro set — check which docinfo each target actually uses in
+`project.ptx` and the entry files (`book.ptx`, `notes.ptx`,
+`homepage.ptx`) before assuming; a macro must be added to **every
+docinfo used by a target that renders it**.
 
 ## Task D1 — Standing rule (enforced inside every other task)
 
@@ -32,8 +34,10 @@ Whenever a document authored in Tracks A–C uses a LaTeX macro:
 2. Diff against (a) macros defined in each docinfo and (b) a whitelist
    of standard LaTeX/AMS commands. Anything undefined and nonstandard
    is a bug: define it or fix the usage.
-3. Flag duplicates/conflicts between `source/bookends/docinfo.ptx` and
-   `source/book/ptx/docinfo.ptx`, and dead macros defined but never
+3. Flag duplicates/conflicts among the three docinfo files
+   (`source/notes/bookends/`, `source/homepage/bookends/`,
+   `source/book/bookends/`), drift between the notes and homepage
+   copies (they must stay identical), and dead macros defined but never
    used (report only — deleting definitions is the instructor's call).
 4. Build all targets; confirm no MathJax/LaTeX "undefined control
    sequence" output. Open a PR only if fixes are needed; otherwise post

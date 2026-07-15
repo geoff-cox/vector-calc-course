@@ -2,8 +2,9 @@
 
 Small repeatable jobs that don't belong to the A–E build tracks. These
 replace the retired `BUILD-TASKS.md` catalog; paths and conventions are
-updated for this repo (macros live in `source/bookends/docinfo.ptx`, not
-`main.ptx`; targets come from `project.ptx` — read them, don't assume).
+updated for this repo (macros live in the per-stream
+`bookends/docinfo.ptx` files — see Track D — not `main.ptx`; targets
+come from `project.ptx` — read them, don't assume).
 The verification gates (`CLAUDE.md` §4) and PR workflow (§5) apply to
 every task and are not repeated below.
 

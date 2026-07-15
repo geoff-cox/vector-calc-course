@@ -3,7 +3,7 @@
 **Goal:** convert the differential-equations syllabus template
 `source/homepage/syllabus.ptx` (written for MA 311) into a syllabus for
 **MA 301 — Advanced Mathematics for Scientists and Engineers**, sourcing
-course facts from `source/homepage/syllabus/docx/MA301_Syllabus_S2015.docx`.
+course facts from `outdated-material/syllabus/MA301_Syllabus_S2015.docx`.
 
 **Hard constraint:** the common policies included from
 `source/homepage/syllabus/common/` (attendance, work-for-grade, MERC,
@@ -16,7 +16,7 @@ Writing Center, AI policy, etc.) are inherited **unchanged** — keep the
 
 1. Read the docx without adding heavy dependencies. Either:
    - `pip install python-docx` and dump paragraphs + tables, or
-   - `unzip -p source/homepage/syllabus/docx/MA301_Syllabus_S2015.docx word/document.xml`
+   - `unzip -p outdated-material/syllabus/MA301_Syllabus_S2015.docx word/document.xml`
      and strip tags.
 2. Save a clean plain-text transcription to
    `docs/ma301-syllabus-2015.md`, preserving section order, the topic

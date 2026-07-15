@@ -16,7 +16,7 @@
 -->
 <publication>
 	<source>
-		<directories external="notes/assets" generated="notesa/generated-assets" />
+		<directories external="notes/assets" generated="notes/generated-assets" />
 		<version include="web readings emoji example-solution stu" />
 	</source>
 

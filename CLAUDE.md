@@ -25,12 +25,13 @@ streams live here:
    (CC BY-NC 4.0). It is being pruned to the MA 301 chapter subset.
 3. **Guided Lecture Notes (GLN)** — PreTeXt `<worksheet>` files in
    `source/notes/`, ported from LaTeX/Beamer decks in
-   `source/notes/latex/`. Student copies have blanks and unworked
+   `outdated-material/notes/`. Student copies have blanks and unworked
    examples; instructor copies reveal everything.
 
 The historical source of truth for course content is the old syllabus
-`source/homepage/syllabus/docx/MA301_Syllabus_S2015.docx` and the old
-LaTeX notes/tests under `source/notes/latex/` and `source/tests/latex/`.
+`outdated-material/syllabus/MA301_Syllabus_S2015.docx` and the old
+LaTeX notes/tests under `outdated-material/notes/` and
+`outdated-material/tests/`.
 
 ## 2. Repository layout (orient before editing)
 
@@ -39,19 +40,24 @@ LaTeX notes/tests under `source/notes/latex/` and `source/tests/latex/`.
 ├── CLAUDE.md                          <- this file
 ├── checklists/
 │   ├── mobile-build-checklist.md      <- master index + global rules
-│   └── mobile-build-checklist-*.md    <- per-track task details (A..E)
+│   └── mobile-build-checklist-*.md    <- per-track task details (A..E, M)
+├── outdated-material/                 <- 2015-era originals (notes/tests/
+│                                         syllabus/homework/figures):
+│                                         read-only historical input
 ├── project.ptx                        <- PreTeXt targets (read FIRST)
 ├── publication/                       <- publication files per target
 ├── source/
 │   ├── homepage.ptx                   <- MA301 homepage article
+│   ├── homepage/bookends/             <- homepage docinfo (macros) + frontmatter
+│   ├── homepage/course-materials.ptx  <- links to the deployed notes builds
 │   ├── homepage/syllabus.ptx          <- syllabus (Task A rewrites this)
 │   ├── homepage/syllabus/common/      <- shared VMI policies: NEVER edit
 │   ├── book.ptx                       <- coursebook entry point (Task B)
+│   ├── book/bookends/                 <- book docinfo (APEX macros), front/backmatter
 │   ├── book/ptx/                      <- chapters, appendices
-│   ├── bookends/docinfo.ptx           <- macros live here (Task D)
-│   ├── bookends/frontmatter.ptx
-│   ├── notes/                         <- GLN worksheets (Task C)
-│   └── notes/latex/                   <- OLD Beamer decks: read-only input
+│   ├── notes.ptx                      <- GLN entry point
+│   ├── notes/bookends/                <- notes docinfo (macros) + frontmatter
+│   └── notes/                         <- GLN worksheets (Task C)
 └── .github/workflows/
     ├── claude.yml                     <- this action
     └── deploy-pages.yml               <- Pages deploy (Task E; builds the
@@ -159,8 +165,8 @@ from it is prohibited.
 
 - Editing anything under `source/homepage/syllabus/common/` (shared VMI
   policy text is inherited unchanged).
-- Editing `source/notes/latex/` or `source/tests/latex/` (historical
-  inputs, read-only).
+- Editing anything under `outdated-material/` (the 2015-era notes,
+  tests, syllabus, homework, and figures: historical inputs, read-only).
 - Removing the APEX Calculus attribution, copyright, or CC BY-NC license
   text from the coursebook front matter. The adaptation must stay
   properly attributed.
@@ -169,6 +175,9 @@ from it is prohibited.
   Task M6 migration); a `component="stu"` element without its mirrored
   `component="key"` partner (or vice versa); `<title>` on `<page>`;
   `<me>`/`<men>` in new worksheets.
-- Defining LaTeX macros anywhere except `source/bookends/docinfo.ptx`
-  (see Task D).
+- Defining LaTeX macros anywhere except the per-stream
+  `bookends/docinfo.ptx` files (`source/homepage/bookends/`,
+  `source/notes/bookends/`, `source/book/bookends/`; see Task D). The
+  homepage and notes copies are kept identical — a macro added to one
+  goes into the other in the same PR.
 - Merging your own PRs, force-pushing, or rewriting history on `main`.
