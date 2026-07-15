@@ -278,11 +278,11 @@
 		</p>
 		<p component="key">
 			In polar coordinates the area element is
-			<m>dA = \underline{\textbf{r\,dr\,d\theta}}</m>, not simply
+			<m>dA = \underline{r\,dr\,d\theta}</m>, not simply
 			<m>dr\,d\theta</m>. The quantity <m>x^2 + y^2</m> becomes
-			<m>\underline{\textbf{r^2}}</m> and a disk of radius <m>R</m> centered
+			<m>\underline{r^2}</m> and a disk of radius <m>R</m> centered
 			at the origin is described by <m>0 \le r \le R</m> and
-			<m>0 \le \theta \le \underline{\textbf{2\pi}}</m>.
+			<m>0 \le \theta \le \underline{2\pi}</m>.
 		</p>
 
 		<!-- worked problem (paired) -->

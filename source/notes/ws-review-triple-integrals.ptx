@@ -177,8 +177,8 @@
 		</p>
 		<p component="key">
 			In cylindrical coordinates <m>x^2+y^2</m> becomes
-			<m>\underline{\textbf{r^2}}</m> and the volume element is
-			<m>dV = \underline{\textbf{r\,dz\,dr\,d\theta}}</m>. These coordinates
+			<m>\underline{r^2}</m> and the volume element is
+			<m>dV = \underline{r\,dz\,dr\,d\theta}</m>. These coordinates
 			are the natural choice when the solid is symmetric about the
 			<m>\underline{\textbf{z}}</m>-axis.
 		</p>
@@ -296,7 +296,7 @@
 			<m>\underline{\textbf{z}}</m>-axis, so it ranges from
 			<m>\underline{\textbf{0}}</m> to <m>\pi</m>, and the spherical
 			volume element is
-			<m>dV = \underline{\textbf{\rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi}}</m>.
+			<m>dV = \underline{\rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi}</m>.
 		</p>
 
 		<!-- worked problem (paired) -->
