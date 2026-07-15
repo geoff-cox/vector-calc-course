@@ -7,7 +7,7 @@
 	Ported from the Beamer deck 01_04_Curves.tex (in
 	source/notes/latex/, functions-vectors folder):
 	parametric curves, parametrizing lines/segments, the derivative
-	as velocity, and arclength). Book concepts tracked from
+	as velocity, and arclength; book concepts tracked from
 	sec_vvf / sec_vvf_calc / sec_tan_norm; example equations are NOT
 	reused from the deck or the book.
 
@@ -91,10 +91,10 @@
 		<p component="key">
 			A line through the point <m>P</m> parallel to the vector
 			<m>\vv</m> is parametrized by
-			<m>\vr(t) = \underline{\textbf{P + t\vv}}</m>. For the
+			<m>\vr(t) = \underline{P + t\vv}</m>. For the
 			<em>segment</em> from <m>P</m> to <m>Q</m>, take
 			<m>\vr(t) = P + t(Q-P)</m> with <m>t</m> restricted to
-			<m>\underline{\textbf{[0,1]}}</m>.
+			<m>\underline{[0,1]}</m>.
 		</p>
 
 		<!-- worked problem (paired) -->
@@ -282,9 +282,9 @@
 		</p>
 		<p component="key">
 			A small piece of arclength is
-			<m>ds = \underline{\textbf{\norm{\vr'(t)}}}\,dt</m>, so the length
+			<m>ds = \underline{\norm{\vr'(t)}}\,dt</m>, so the length
 			of the curve for <m>a\le t\le b</m> is
-			<m>s = \underline{\textbf{\int_a^b \norm{\vr'(t)}\,dt}}</m>.
+			<m>s = \underline{\int_a^b \norm{\vr'(t)}\,dt}</m>.
 		</p>
 
 		<!-- worked problem (paired) -->
