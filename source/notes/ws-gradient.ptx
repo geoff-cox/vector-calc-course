@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-gradient.ptx
+	Section 1 (Functions, Vectors, and Vector Fields), worksheet 6:
+	The Gradient and Directional Derivatives.
+
+	Ported from the Beamer deck 01_05_Gradient.tex (in
+	source/notes/latex/, functions-vectors folder): scalar functions, the
+	gradient, the directional derivative, and the direction of steepest
+	ascent / maximum rate of change. Book concepts tracked from
+	sec_partial_derivatives / sec_directional_derivative; example
+	equations are NOT reused from the deck or the book.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md): paired component="stu"/"key"
+	reading checks and exercises; one True/False misconception check; one
+	read-along TikZ figure; one modern application. Standard notation
+	(macros from source/bookends/docinfo.ptx); no new macros. Math-valued
+	answer keys are underlined directly (\underline{...}); only plain-word
+	answers are bolded, so the pdf-key (LaTeX) build stays clean.
+-->
+<worksheet xml:id="ws-gradient">
+	<title>The Gradient and Directional Derivatives</title>
+
+	<objectives>
+		<ul>
+			<li>Compute the gradient <m>\nabla f</m> of a scalar function of two or three variables.</li>
+			<li>Compute the directional derivative <m>D_{\vu} f = \nabla f \cdot \vu</m> using a <em>unit</em> vector <m>\vu</m>.</li>
+			<li>Use the gradient to find the direction of steepest ascent and the maximum rate of change <m>\norm{\nabla f}</m>.</li>
+			<li>Explain why <m>f</m> cannot change faster than <m>\norm{\nabla f}</m> in any direction.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: The gradient
+		 ============================================================ -->
+	<page>
+		<p><term>I. The gradient.</term></p>
+
+		<p>
+			A <term>scalar function</term> such as <m>f(x,y)</m> or
+			<m>g(x,y,z)</m> returns a single number. Its <term>gradient</term>
+			collects the partial derivatives into a vector:
+			<md>
+				\nabla f = [\,f_x,\; f_y\,], \qquad
+				\nabla g = [\,g_x,\; g_y,\; g_z\,].
+			</md>
+			The gradient is itself a vector that varies from point to point
+			<ndash/> a first example of a <term>vector field</term>.
+		</p>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			The gradient of <m>f(x,y)</m> is <m>\nabla f = [\,</m>
+			<fillin characters="4"/> <m>,\;</m> <fillin characters="4"/>
+			<m>\,]</m>, a <fillin characters="7"/> <nbsp/>whose components are
+			the first partial derivatives of <m>f</m>.
+		</p>
+		<p component="key">
+			The gradient of <m>f(x,y)</m> is
+			<m>\nabla f = [\,\underline{f_x},\; \underline{f_y}\,]</m>, a
+			<m>\underline{\textbf{vector}}</m> whose components are the first
+			partial derivatives of <m>f</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Let <m>f(x,y) = x^2 y + 3y</m>. Find <m>\nabla f</m> and
+					evaluate it at <m>P(1,2)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>f(x,y) = x^2 y + 3y</m>. Find <m>\nabla f</m> and
+					evaluate it at <m>P(1,2)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The partials are <m>f_x = 2xy</m> and <m>f_y = x^2 + 3</m>, so
+					<md>
+						\nabla f = [\,2xy,\; x^2+3\,],
+						\qquad \nabla f(1,2) = [\,2(1)(2),\; 1+3\,] = [\,4,\;4\,].
+					</md>
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Let <m>g(x,y,z) = x^2 + yz + z^2</m>. Find <m>\nabla g</m> and
+					evaluate it at <m>P(2,1,-1)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>g(x,y,z) = x^2 + yz + z^2</m>. Find <m>\nabla g</m> and
+					evaluate it at <m>P(2,1,-1)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>g_x = 2x</m>, <m>g_y = z</m>, and
+					<m>g_z = y + 2z</m>, so
+					<md>
+						\nabla g = [\,2x,\; z,\; y+2z\,],
+						\qquad \nabla g(2,1,-1) = [\,4,\; -1,\; 1+2(-1)\,] = [\,4,\;-1,\;-1\,].
+					</md>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: The directional derivative
+		 ============================================================ -->
+	<page>
+		<p><term>II. The directional derivative.</term></p>
+
+		<p>
+			The rate at which <m>f</m> changes as you move from a point in the
+			direction of a <em>unit</em> vector <m>\vu</m> is the
+			<term>directional derivative</term>
+			<md>
+				D_{\vu} f = \nabla f \cdot \vu .
+			</md>
+			The unit-vector requirement is essential. If a direction is handed
+			to you as a vector <m>\vv</m> that is not a unit vector, first
+			rescale it: <m>\vu = \vv/\norm{\vv}</m>.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			The directional derivative of <m>f</m> in the direction of a unit
+			vector <m>\vu</m> is <m>D_{\vu} f = </m> <fillin characters="7"/>.
+			If the direction is given as a vector <m>\vv</m> that is not a unit
+			vector, first replace it with <m>\vu = </m> <fillin characters="7"/>.
+		</p>
+		<p component="key">
+			The directional derivative of <m>f</m> in the direction of a unit
+			vector <m>\vu</m> is
+			<m>D_{\vu} f = \underline{\nabla f \cdot \vu}</m>. If the direction
+			is given as a vector <m>\vv</m> that is not a unit vector, first
+			replace it with <m>\vu = \underline{\vv/\norm{\vv}}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Let <m>h(x,y) = x^2 + xy</m>. Find the directional derivative
+					of <m>h</m> at <m>P(1,2)</m> in the direction of
+					<m>\vv = [\,3,\,4\,]</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>h(x,y) = x^2 + xy</m>. Find the directional derivative
+					of <m>h</m> at <m>P(1,2)</m> in the direction of
+					<m>\vv = [\,3,\,4\,]</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					First the gradient:
+					<m>\nabla h = [\,2x+y,\; x\,]</m>, so
+					<m>\nabla h(1,2) = [\,4,\;1\,]</m>. Since
+					<m>\norm{\vv} = \sqrt{3^2+4^2} = 5</m>, the unit direction is
+					<m>\vu = \vv/\norm{\vv} = [\,3/5,\;4/5\,]</m>. Therefore
+					<md>
+						D_{\vu} h(P) = \nabla h(1,2)\cdot \vu
+						= [\,4,\,1\,]\cdot[\,3/5,\,4/5\,]
+						= \frac{12 + 4}{5} = \frac{16}{5}.
+					</md>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: Steepest ascent and the maximum rate
+		 ============================================================ -->
+	<page>
+		<p><term>III. Steepest ascent and the maximum rate.</term></p>
+
+		<p>
+			Because <m>\vu</m> is a unit vector,
+			<md>
+				D_{\vu} f = \nabla f \cdot \vu
+				= \norm{\nabla f}\,\norm{\vu}\cos\theta
+				= \norm{\nabla f}\cos\theta,
+			</md>
+			where <m>\theta</m> is the angle between <m>\vu</m> and
+			<m>\nabla f</m>. This is largest when <m>\theta = 0</m>, i.e. when
+			<m>\vu</m> points along <m>\nabla f</m>. So <m>\nabla f</m> points
+			in the direction of steepest ascent, and the greatest rate of
+			increase equals <m>\norm{\nabla f}</m>. The gradient is also
+			perpendicular to the level curves of <m>f</m>.
+		</p>
+
+		<figure xml:id="ws-gradient-fig-level">
+			<caption>The gradient <m>\nabla f</m> is perpendicular to the level
+				curves of <m>f</m> and points toward higher values <ndash/> the
+				direction of steepest ascent.</caption>
+			<image width="52%">
+				<shortdescription>Three nested closed level curves of a scalar function, higher toward the center, with the gradient vector drawn at a point on the middle curve, perpendicular to it and pointing inward toward the higher curves.</shortdescription>
+				<latex-image>
+	\begin{tikzpicture}[scale=1.05,>=stealth]
+	% nested level curves of a hill (higher toward the center)
+	\draw[gray] (0,0) ellipse (2.4 and 1.7);
+	\draw[gray] (0,0) ellipse (1.6 and 1.13);
+	\draw[gray] (0,0) ellipse (0.8 and 0.57);
+	\node[gray, font=\footnotesize] at (0,0) {higher $f$};
+	\node[gray, font=\footnotesize, anchor=west] at (2.45,-0.05) {$f=1$};
+	\node[gray, font=\footnotesize, anchor=west] at (1.65,0.35) {$f=2$};
+	% point P on the middle level curve
+	\coordinate (P) at (1.6,0);
+	\fill (P) circle (1.6pt);
+	\node[anchor=south west] at (P) {$P$};
+	% gradient at P: perpendicular to the curve, pointing inward (uphill)
+	\draw[very thick, red, ->] (P) -- (0.75,0);
+	\node[red, anchor=south] at (1.2,0.08) {$\nabla f$};
+	\end{tikzpicture}
+				</latex-image>
+			</image>
+		</figure>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			The function <m>f</m> increases fastest in the direction of
+			<fillin characters="6"/>, and that maximum rate of increase equals
+			<fillin characters="8"/>. In every direction the rate of change lies
+			between <fillin characters="10"/> <nbsp/>and <m>\norm{\nabla f}</m>.
+		</p>
+		<p component="key">
+			The function <m>f</m> increases fastest in the direction of
+			<m>\underline{\nabla f}</m>, and that maximum rate of increase equals
+			<m>\underline{\norm{\nabla f}}</m>. In every direction the rate of
+			change lies between <m>\underline{-\norm{\nabla f}}</m> and
+			<m>\norm{\nabla f}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					For <m>h(x,y) = x^2 + xy</m> at <m>P(1,2)</m> (same gradient as
+					before), in which direction does <m>h</m> increase fastest, and
+					what is that maximum rate of increase?
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					For <m>h(x,y) = x^2 + xy</m> at <m>P(1,2)</m> (same gradient as
+					before), in which direction does <m>h</m> increase fastest, and
+					what is that maximum rate of increase?
+				</p>
+			</statement>
+			<solution>
+				<p>
+					We found <m>\nabla h(1,2) = [\,4,\,1\,]</m>. The fastest
+					increase is in the direction of the gradient itself, i.e. the
+					unit vector
+					<md>
+						\vu = \frac{\nabla h(P)}{\norm{\nabla h(P)}}
+						= \frac{[\,4,\,1\,]}{\sqrt{17}},
+					</md>
+					and the maximum rate of increase is
+					<m>\norm{\nabla h(P)} = \sqrt{4^2 + 1^2} = \sqrt{17}</m>.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: A misconception, an application, and looking ahead
+		 ============================================================ -->
+	<page>
+		<p><term>IV. A caution and an application.</term></p>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-gradient-tf-unit">
+			<statement>
+				<p>
+					<alert>True or False.</alert> To find the directional derivative
+					of <m>f</m> in the direction of <m>\vv = [\,3,\,4\,]</m>, you
+					compute <m>\nabla f \cdot [\,3,\,4\,]</m>. Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False.</term> The formula <m>D_{\vu} f = \nabla f\cdot\vu</m>
+					requires a <em>unit</em> vector. Here
+					<m>\norm{\vv} = 5 \neq 1</m>, so you must first normalize:
+					<m>\vu = [\,3/5,\,4/5\,]</m> and
+					<m>D_{\vu} f = \nabla f\cdot[\,3/5,\,4/5\,]</m>. Using the raw
+					<m>[\,3,\,4\,]</m> overstates the rate by a factor of
+					<m>\norm{\vv} = 5</m>. (Forgetting to normalize is the most
+					common directional-derivative error.)
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>An application.</term></p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					A hill has height <m>h(x,y) = 20 - x^2 - 2y^2</m> meters above
+					the point <m>(x,y)</m> on the ground. A hiker stands above
+					<m>P(1,1)</m>.
+					<ol>
+						<li>Which compass direction is steepest uphill, and how steep is it there (rate of rise per unit of horizontal travel)?</li>
+						<li>Is there any direction in which the ground rises at a rate of <m>5</m>? Why or why not?</li>
+					</ol>
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					A hill has height <m>h(x,y) = 20 - x^2 - 2y^2</m> meters above
+					the point <m>(x,y)</m> on the ground. A hiker stands above
+					<m>P(1,1)</m>.
+					<ol>
+						<li>Which compass direction is steepest uphill, and how steep is it there (rate of rise per unit of horizontal travel)?</li>
+						<li>Is there any direction in which the ground rises at a rate of <m>5</m>? Why or why not?</li>
+					</ol>
+				</p>
+			</statement>
+			<solution>
+				<p>
+					<ol>
+						<li>
+							<m>\nabla h = [\,-2x,\; -4y\,]</m>, so
+							<m>\nabla h(1,1) = [\,-2,\,-4\,]</m>. The steepest uphill
+							direction is the gradient, i.e. the unit vector
+							<m>\vu = [\,-2,\,-4\,]/\sqrt{20} = [\,-1,\,-2\,]/\sqrt{5}</m>
+							(pointing back toward the summit), and the slope there is
+							<m>\norm{\nabla h(P)} = \sqrt{(-2)^2+(-4)^2} = \sqrt{20} = 2\sqrt5 \approx 4.47</m>.
+						</li>
+						<li>
+							No. The rate of change in <em>any</em> direction lies
+							between <m>-\norm{\nabla h(P)}</m> and
+							<m>\norm{\nabla h(P)} = 2\sqrt5 \approx 4.47</m>. Since
+							<m>5 &gt; 2\sqrt5</m>, no direction achieves a rate of
+							<m>5</m>.
+						</li>
+					</ol>
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> The gradient turned a scalar
+				function into a <term>vector field</term> <ndash/> a vector
+				attached to every point. That is exactly the object the rest of
+				vector analysis studies: next we meet vector fields in their own
+				right, and then learn to integrate along curves through them, the
+				<term>line integrals</term> that open Section 2.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>
