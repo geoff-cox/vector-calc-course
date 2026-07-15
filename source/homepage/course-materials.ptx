@@ -8,8 +8,9 @@
 	the notes are a separate PreTeXt document (source/notes.ptx) that
 	builds three ways from one source - web-stu / web-key (HTML) and
 	pdf-key (print) - via the <version include> component filtering in
-	publication-stu.ptx / publication-key.ptx.  The homepage builds once,
-	with homepage-pub.ptx, whose <version include="html"/> lists neither
+	publication/publication-stu.ptx / publication/publication-key.ptx.
+	The homepage builds once, with publication/homepage-pub.ptx, whose
+	<version include="html"/> lists neither
 	the "stu" nor the "key" component, and a PreTeXt <article> cannot
 	contain a <chapter> anyway.  Embedding the worksheets here would
 	therefore require converting the homepage to a <book> AND splitting
