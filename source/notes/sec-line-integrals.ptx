@@ -36,7 +36,7 @@
 	<!-- Class meeting 10: Path independence and conservative fields -->
 	<xi:include href="./ws-path-independence.ptx"/>
 
-	<!-- Future worksheets in this section (uncomment as you write them): -->
-	<!-- <xi:include href="./ws-greens-theorem.ptx"/>     -->
+	<!-- Class meeting 11: Green's Theorem -->
+	<xi:include href="./ws-greens-theorem.ptx"/>
 
 </section>
