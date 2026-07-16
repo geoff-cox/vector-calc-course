@@ -102,7 +102,7 @@ Container: `source/notes/sec-line-integrals.ptx` (created with worksheet 8).
 |---|---|---|---|---|---|
 | 8 | `ws-line-integrals` | Line Integrals | `02_01_LineIntegrals` | `sec_line_int_intro`, `sec_line_int_vf` | in-review |
 | 9 | `ws-divergence-curl` | Divergence and Curl | `02_02_Divergence_Curl` | `sec_vector_fields`, `sec_greensthm` | in-review |
-| 10 | `ws-path-independence` | Path Independence and Conservative Fields | `02_03_PathIndependence` | `sec_line_int_vf` | todo |
+| 10 | `ws-path-independence` | Path Independence and Conservative Fields | `02_03_PathIndependence` | `sec_line_int_vf` | in-review |
 | 11 | `ws-greens-theorem` | Green's Theorem | `02_04_Greens_Theorem` | `sec_greensthm` | todo |
 
 ## Section 3 — Surface Integrals, Stokes', and the Divergence Theorem
