@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-divergence-curl.ptx
+	Section 2 (Line Integrals and Green's Theorem), worksheet 9:
+	Divergence and Curl.
+
+	Ported from the Beamer deck 02_02_Divergence_Curl.tex (in
+	outdated-material/notes/, line-integrals folder): divergence, curl,
+	the Laplacian, incompressible/irrotational fields, the identities
+	curl(grad f)=0 and div(curl F)=0, and physical interpretation. Book
+	concepts tracked from sec_vector_fields (divergence/curl) and
+	sec_greensthm; example equations are NOT reused from the deck or the
+	book.
+
+	This worksheet goes DEEPER than worksheet 7 (ws-vector-fields), which
+	introduced divergence and curl. Here we add the vocabulary
+	(incompressible/solenoidal, irrotational), the Laplacian, the two
+	standard vector identities, an inverse "design" problem, and the
+	physical reading of the two operators. The full conservative-field /
+	path-independence story is deferred to worksheet 10.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md): paired component="stu"/"key"
+	reading checks and exercises; one True/False misconception check; one
+	read-along TikZ figure; one modern application. Standard notation
+	(macros from source/notes/bookends/docinfo.ptx); no new macros.
+	Divergence and curl are written with the del operator as
+	\nabla\cdot\vF and \nabla\times\vF. Math-valued answer keys are
+	underlined directly (\underline{...}); only plain-word answers are
+	bolded, so the pdf-key (LaTeX) build stays clean.
+-->
+<worksheet xml:id="ws-divergence-curl">
+	<title>Divergence and Curl</title>
+
+	<objectives>
+		<ul>
+			<li>Compute the divergence <m>\nabla\cdot\vF</m> and curl <m>\nabla\times\vF</m> of a field in space and evaluate them at a point.</li>
+			<li>Classify a field as <term>incompressible</term> (<m>\nabla\cdot\vF = 0</m>) and/or <term>irrotational</term> (<m>\nabla\times\vF = \vzero</m>).</li>
+			<li>Use the identities <m>\nabla\times(\nabla f) = \vzero</m> and <m>\nabla\cdot(\nabla\times\vF) = 0</m>, and the Laplacian <m>\nabla^2 f</m>.</li>
+			<li>Read divergence as net outflow (source/sink) and curl as rotation.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: Divergence and curl in space; two new words
+		 ============================================================ -->
+	<page>
+		<p><term>I. Divergence, curl, and two new words.</term></p>
+
+		<p>
+			Recall from the vector-fields worksheet that the del operator
+			produces two derivatives of a field
+			<m>\vF = [\,M,\,N,\,P\,]</m>: the scalar <term>divergence</term>
+			<m>\nabla\cdot\vF = M_x + N_y + P_z</m> and the vector
+			<term>curl</term>
+			<m>\nabla\times\vF = [\,P_y-N_z,\; M_z-P_x,\; N_x-M_y\,]</m>. Two
+			names attach to the fields where these vanish: <m>\vF</m> is
+			<term>incompressible</term> (or <term>solenoidal</term>) when
+			<m>\nabla\cdot\vF = 0</m>, and <term>irrotational</term> when
+			<m>\nabla\times\vF = \vzero</m>.
+		</p>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			A field <m>\vF</m> is <em>incompressible</em> when its divergence
+			<m>\nabla\cdot\vF = </m> <fillin characters="3"/>, and
+			<em>irrotational</em> when its curl <m>\nabla\times\vF = </m>
+			<fillin characters="3"/>.
+		</p>
+		<p component="key">
+			A field <m>\vF</m> is <em>incompressible</em> when its divergence
+			<m>\nabla\cdot\vF = \underline{0}</m>, and <em>irrotational</em>
+			when its curl <m>\nabla\times\vF = \underline{\vzero}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="3in">
+			<statement>
+				<p>
+					Let <m>\vF = [\,x^2 y,\; y^2 z,\; z^2 x\,]</m>. Find
+					<m>\nabla\cdot\vF</m> and <m>\nabla\times\vF</m>, then
+					evaluate both at <m>P(1,1,1)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>\vF = [\,x^2 y,\; y^2 z,\; z^2 x\,]</m>. Find
+					<m>\nabla\cdot\vF</m> and <m>\nabla\times\vF</m>, then
+					evaluate both at <m>P(1,1,1)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					With <m>M = x^2 y</m>, <m>N = y^2 z</m>, <m>P = z^2 x</m>,
+					<md>
+						\nabla\cdot\vF = M_x + N_y + P_z = 2xy + 2yz + 2zx .
+					</md>
+					For the curl, compute the three components:
+					<md>
+						<mrow>P_y - N_z \amp = 0 - y^2 = -y^2,</mrow>
+						<mrow>M_z - P_x \amp = 0 - z^2 = -z^2,</mrow>
+						<mrow>N_x - M_y \amp = 0 - x^2 = -x^2,</mrow>
+					</md>
+					so <m>\nabla\times\vF = [\,-y^2,\; -z^2,\; -x^2\,]</m>. At
+					<m>P(1,1,1)</m>, <m>\nabla\cdot\vF = 6</m> and
+					<m>\nabla\times\vF = [\,-1,\,-1,\,-1\,]</m>. The field is
+					neither incompressible nor irrotational there.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: The Laplacian and two identities
+		 ============================================================ -->
+	<page>
+		<p><term>II. The Laplacian and two identities.</term></p>
+
+		<p>
+			Applying divergence to a <em>gradient</em> gives the
+			<term>Laplacian</term> of a scalar function,
+			<md>
+				\nabla^2 f = \nabla\cdot(\nabla f) = f_{xx} + f_{yy} + f_{zz} .
+			</md>
+			Two identities hold for <em>every</em> twice-differentiable
+			field, and they are worth memorizing:
+			<md>
+				\nabla\times(\nabla f) = \vzero
+				\qquad\text{and}\qquad
+				\nabla\cdot(\nabla\times\vF) = 0 .
+			</md>
+			In words: gradient fields are always irrotational, and curl
+			fields are always incompressible. The first is the reason curl
+			will detect conservative fields in the next worksheet.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			The Laplacian is <m>\nabla^2 f = f_{xx} + </m>
+			<fillin characters="4"/> <m>+</m> <fillin characters="4"/>. The
+			curl of a gradient is <m>\nabla\times(\nabla f) = </m>
+			<fillin characters="3"/>, and the divergence of a curl is
+			<m>\nabla\cdot(\nabla\times\vF) = </m> <fillin characters="3"/>.
+		</p>
+		<p component="key">
+			The Laplacian is
+			<m>\nabla^2 f = f_{xx} + \underline{f_{yy}} + \underline{f_{zz}}</m>.
+			The curl of a gradient is
+			<m>\nabla\times(\nabla f) = \underline{\vzero}</m>, and the
+			divergence of a curl is
+			<m>\nabla\cdot(\nabla\times\vF) = \underline{0}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Verify the identity <m>\nabla\times(\nabla f) = \vzero</m>
+					for <m>f(x,y,z) = x^2 y z</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Verify the identity <m>\nabla\times(\nabla f) = \vzero</m>
+					for <m>f(x,y,z) = x^2 y z</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The gradient is
+					<m>\nabla f = [\,2xyz,\; x^2 z,\; x^2 y\,]</m>. Taking the
+					curl of this field
+					<m>[\,M,\,N,\,P\,] = [\,2xyz,\,x^2 z,\,x^2 y\,]</m>,
+					<md>
+						<mrow>P_y - N_z \amp = x^2 - x^2 = 0,</mrow>
+						<mrow>M_z - P_x \amp = 2xy - 2xy = 0,</mrow>
+						<mrow>N_x - M_y \amp = 2xz - 2xz = 0,</mrow>
+					</md>
+					so <m>\nabla\times(\nabla f) = \vzero</m>, as the identity
+					promises. The mixed partials match up in pairs and cancel
+					<ndash/> that cancellation is the whole content of the
+					identity.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Verify the identity <m>\nabla\cdot(\nabla\times\vF) = 0</m>
+					for the field <m>\vF = [\,x^2 y,\; y^2 z,\; z^2 x\,]</m>
+					from page 1.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Verify the identity <m>\nabla\cdot(\nabla\times\vF) = 0</m>
+					for the field <m>\vF = [\,x^2 y,\; y^2 z,\; z^2 x\,]</m>
+					from page 1.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					On page 1 we found
+					<m>\nabla\times\vF = [\,-y^2,\; -z^2,\; -x^2\,]</m>. Its
+					divergence is
+					<md>
+						\nabla\cdot(\nabla\times\vF)
+						= \frac{\partial}{\partial x}(-y^2)
+						+ \frac{\partial}{\partial y}(-z^2)
+						+ \frac{\partial}{\partial z}(-x^2)
+						= 0 + 0 + 0 = 0 .
+					</md>
+					Each component of the curl is free of the variable it gets
+					differentiated by, so the identity holds.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: A design problem and the physical picture
+		 ============================================================ -->
+	<page>
+		<p><term>III. Designing a field, and what the operators mean.</term></p>
+
+		<p>
+			Divergence and curl also read backwards: we can ask what a field
+			must look like to be incompressible or irrotational. And each
+			operator has a physical meaning. <term>Divergence</term> at a
+			point measures net outflow: where <m>\nabla\cdot\vF &gt; 0</m>
+			more fluid leaves a tiny box than enters (a <term>source</term>);
+			where <m>\nabla\cdot\vF &lt; 0</m> the reverse holds (a
+			<term>sink</term>). <term>Curl</term> measures local rotation; by
+			the right-hand rule its direction is the axis a paddlewheel would
+			spin about.
+		</p>
+
+		<figure xml:id="ws-divcurl-fig-sourcesink">
+			<caption>A source (<m>\nabla\cdot\vF &gt; 0</m>, net outflow, left)
+				and a sink (<m>\nabla\cdot\vF &lt; 0</m>, net inflow, right).
+				Divergence is the bookkeeping of flow into and out of a small
+				region.</caption>
+			<image width="70%">
+				<shortdescription>Two small diagrams. On the left, arrows point outward in all directions from a central point, labeled as a source with positive divergence. On the right, arrows point inward toward a central point, labeled as a sink with negative divergence.</shortdescription>
+				<latex-image>
+	\begin{tikzpicture}[scale=1.0,>=stealth]
+	% ---- source (left) ----
+	\begin{scope}[shift={(0,0)}]
+		\fill (0,0) circle (1.2pt);
+		\foreach \a in {0,45,...,315}
+			\draw[very thick, red, ->] (\a:0.28) -- (\a:1.05);
+		\node at (0,-1.5) {source: $\nabla\cdot\vF &gt; 0$};
+	\end{scope}
+	% ---- sink (right) ----
+	\begin{scope}[shift={(4,0)}]
+		\fill (0,0) circle (1.2pt);
+		\foreach \a in {0,45,...,315}
+			\draw[very thick, blue, ->] (\a:1.05) -- (\a:0.28);
+		\node at (0,-1.5) {sink: $\nabla\cdot\vF &lt; 0$};
+	\end{scope}
+	\end{tikzpicture}
+				</latex-image>
+			</image>
+		</figure>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			A point where <m>\nabla\cdot\vF &gt; 0</m> behaves as a
+			<fillin characters="7"/> <nbsp/>(more flow out than in); a point
+			where <m>\nabla\cdot\vF &lt; 0</m> behaves as a
+			<fillin characters="5"/>.
+		</p>
+		<p component="key">
+			A point where <m>\nabla\cdot\vF &gt; 0</m> behaves as a
+			<m>\underline{\textbf{source}}</m> (more flow out than in); a
+			point where <m>\nabla\cdot\vF &lt; 0</m> behaves as a
+			<m>\underline{\textbf{sink}}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Find the general form of the middle component <m>N</m> for
+					which <m>\vF = [\,xy,\; N,\; yz\,]</m> is incompressible.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the general form of the middle component <m>N</m> for
+					which <m>\vF = [\,xy,\; N,\; yz\,]</m> is incompressible.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Incompressible means <m>\nabla\cdot\vF = 0</m>:
+					<md>
+						\nabla\cdot\vF
+						= \frac{\partial}{\partial x}(xy) + N_y
+						+ \frac{\partial}{\partial z}(yz)
+						= y + N_y + y = 2y + N_y = 0 ,
+					</md>
+					so <m>N_y = -2y</m>. Antidifferentiating in <m>y</m>,
+					<md>
+						N = -y^2 + g(x,z) ,
+					</md>
+					where <m>g</m> is any function of <m>x</m> and <m>z</m>
+					(those are constants as far as <m>\partial/\partial y</m> is
+					concerned).
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Is <m>\vF = [\,2xy,\; x^2+z,\; y\,]</m> incompressible?
+					Irrotational? Compute both <m>\nabla\cdot\vF</m> and
+					<m>\nabla\times\vF</m> to decide.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Is <m>\vF = [\,2xy,\; x^2+z,\; y\,]</m> incompressible?
+					Irrotational? Compute both <m>\nabla\cdot\vF</m> and
+					<m>\nabla\times\vF</m> to decide.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					With <m>M = 2xy</m>, <m>N = x^2+z</m>, <m>P = y</m>,
+					<md>
+						\nabla\cdot\vF = 2y + 0 + 0 = 2y ,
+					</md>
+					which is not identically zero, so <m>\vF</m> is
+					<em>not</em> incompressible. For the curl,
+					<md>
+						<mrow>P_y - N_z \amp = 1 - 1 = 0,</mrow>
+						<mrow>M_z - P_x \amp = 0 - 0 = 0,</mrow>
+						<mrow>N_x - M_y \amp = 2x - 2x = 0,</mrow>
+					</md>
+					so <m>\nabla\times\vF = \vzero</m>: the field <em>is</em>
+					irrotational. A field can be one without the other.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: A misconception, an application, and looking ahead
+		 ============================================================ -->
+	<page>
+		<p><term>IV. A caution and an application.</term></p>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-divcurl-tf-independent">
+			<statement>
+				<p>
+					<alert>True or False.</alert> A vector field is
+					incompressible if and only if it is irrotational. Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False.</term> Incompressible
+					(<m>\nabla\cdot\vF = 0</m>) and irrotational
+					(<m>\nabla\times\vF = \vzero</m>) are <em>independent</em>
+					conditions <ndash/> a field can satisfy one, both, or
+					neither. For instance <m>\vF = [\,x,\,0,\,0\,]</m> has
+					<m>\nabla\cdot\vF = 1 \neq 0</m> but
+					<m>\nabla\times\vF = \vzero</m> (irrotational, not
+					incompressible), while <m>\vF = [\,-y,\,x,\,0\,]</m> has
+					<m>\nabla\cdot\vF = 0</m> but
+					<m>\nabla\times\vF = [\,0,\,0,\,2\,] \neq \vzero</m>
+					(incompressible, not irrotational). The divergence and the
+					curl measure different things.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>An application.</term></p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Gauss's law for magnetism states that every magnetic field
+					<m>\mathbf{B}</m> satisfies <m>\nabla\cdot\mathbf{B} = 0</m> (there are no
+					magnetic monopoles), making <m>\mathbf{B}</m> solenoidal. Verify
+					that <m>\mathbf{B} = [\,x,\; y,\; -2z\,]</m> is consistent with
+					this law, and find <m>\nabla\times\mathbf{B}</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Gauss's law for magnetism states that every magnetic field
+					<m>\mathbf{B}</m> satisfies <m>\nabla\cdot\mathbf{B} = 0</m> (there are no
+					magnetic monopoles), making <m>\mathbf{B}</m> solenoidal. Verify
+					that <m>\mathbf{B} = [\,x,\; y,\; -2z\,]</m> is consistent with
+					this law, and find <m>\nabla\times\mathbf{B}</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The divergence is
+					<md>
+						\nabla\cdot\mathbf{B}
+						= \frac{\partial}{\partial x}(x)
+						+ \frac{\partial}{\partial y}(y)
+						+ \frac{\partial}{\partial z}(-2z)
+						= 1 + 1 - 2 = 0 ,
+					</md>
+					so <m>\mathbf{B}</m> is solenoidal, exactly as a magnetic field
+					must be <ndash/> the outward flow in <m>x</m> and <m>y</m>
+					is balanced by inward flow along <m>z</m>. Its curl is
+					<md>
+						\nabla\times\mathbf{B}
+						= [\,0-0,\; 0-0,\; 0-0\,] = \vzero ,
+					</md>
+					so this particular field is also irrotational. (The
+					vanishing divergence is what Gauss's law requires; there is
+					<em>no magnetic monopoles</em> term to supply a nonzero
+					source.)
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> We can now measure a field's
+				spreading and spinning, name the fields where each vanishes,
+				and lean on <m>\nabla\times(\nabla f) = \vzero</m> and
+				<m>\nabla\cdot(\nabla\times\vF) = 0</m>. That first identity is
+				the hinge of the next worksheet: a field with
+				<m>\nabla\times\vF = \vzero</m> turns out to be
+				<term>conservative</term> <ndash/> the work it does is
+				<term>path independent</term> and comes from a potential
+				function. Divergence and curl then reappear in the great
+				integral theorems <ndash/> Green's, Stokes', and the
+				Divergence Theorem <ndash/> that close out the course.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>

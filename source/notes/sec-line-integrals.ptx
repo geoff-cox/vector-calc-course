@@ -30,8 +30,10 @@
 	<!-- Class meeting 8: Line integrals -->
 	<xi:include href="./ws-line-integrals.ptx"/>
 
+	<!-- Class meeting 9: Divergence and curl -->
+	<xi:include href="./ws-divergence-curl.ptx"/>
+
 	<!-- Future worksheets in this section (uncomment as you write them): -->
-	<!-- <xi:include href="./ws-divergence-curl.ptx"/>    -->
 	<!-- <xi:include href="./ws-path-independence.ptx"/>  -->
 	<!-- <xi:include href="./ws-greens-theorem.ptx"/>     -->
 
