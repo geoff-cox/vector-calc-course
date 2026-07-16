@@ -96,11 +96,11 @@ shared conventions and await Task M6 migration (see the status legend).
 
 ## Section 2 — Line Integrals and Green's Theorem
 
-Container: `source/notes/sec-line-integrals.ptx` (create with first C2).
+Container: `source/notes/sec-line-integrals.ptx` (created with worksheet 8).
 
 | # | worksheet slug | title | old deck(s) | book section(s) | status |
 |---|---|---|---|---|---|
-| 8 | `ws-line-integrals` | Line Integrals | `02_01_LineIntegrals` | `sec_line_int_intro`, `sec_line_int_vf` | todo |
+| 8 | `ws-line-integrals` | Line Integrals | `02_01_LineIntegrals` | `sec_line_int_intro`, `sec_line_int_vf` | in-review |
 | 9 | `ws-divergence-curl` | Divergence and Curl | `02_02_Divergence_Curl` | `sec_vector_fields`, `sec_greensthm` | todo |
 | 10 | `ws-path-independence` | Path Independence and Conservative Fields | `02_03_PathIndependence` | `sec_line_int_vf` | todo |
 | 11 | `ws-greens-theorem` | Green's Theorem | `02_04_Greens_Theorem` | `sec_greensthm` | todo |
