@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-line-integrals.ptx
+	Section 2 (Line Integrals and Green's Theorem), worksheet 8:
+	Line Integrals.
+
+	Ported from the Beamer deck 02_01_LineIntegrals.tex (in
+	outdated-material/notes/, line-integrals folder): scalar line
+	integrals, vector line integrals, work, and the mass of a wire.
+	Book concepts tracked from sec_line_int_intro (scalar fields, mass)
+	and sec_line_int_vf (vector fields, work); the Fundamental Theorem of
+	Line Integrals / conservative fields are deferred to worksheet 10
+	(ws-path-independence). Example equations are NOT reused from the deck
+	or the book.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md): paired component="stu"/"key"
+	reading checks and exercises; one True/False misconception check; one
+	read-along TikZ figure; one modern application. Standard notation
+	(macros from source/notes/bookends/docinfo.ptx); no new macros.
+	Math-valued answer keys are underlined directly (\underline{...});
+	only plain-word answers are bolded, so the pdf-key (LaTeX) build stays
+	clean.
+-->
+<worksheet xml:id="ws-line-integrals">
+	<title>Line Integrals</title>
+
+	<objectives>
+		<ul>
+			<li>Evaluate a scalar line integral <m>\int_C f\,ds</m> by parametrizing <m>C</m> and replacing <m>ds</m> with <m>\norm{\vr'(t)}\,dt</m>.</li>
+			<li>Evaluate a vector line integral <m>\int_C \vF\cdot d\vr = \int_a^b \vF(\vr(t))\cdot\vr'(t)\,dt</m>.</li>
+			<li>Interpret <m>\int_C \vF\cdot d\vr</m> as the work done by a force field along a path.</li>
+			<li>Use orientation and linearity to relate line integrals over related paths.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: Scalar line integrals
+		 ============================================================ -->
+	<page>
+		<p><term>I. The line integral of a scalar function.</term></p>
+
+		<p>
+			An ordinary integral sums a function over an interval of the
+			<m>x</m>-axis. A <term>line integral</term> instead sums a
+			function over a <em>curve</em> <m>C</m>. If <m>C</m> is
+			parametrized by <m>\vr(t)</m> for <m>a\le t\le b</m>, we weight
+			each value of <m>f</m> by the arclength element
+			<m>ds = \norm{\vr'(t)}\,dt</m> and integrate:
+			<md>
+				\int_C f\,ds = \int_a^b f\big(\vr(t)\big)\,\norm{\vr'(t)}\,dt .
+			</md>
+			The factor <m>\norm{\vr'(t)}</m> (the speed) converts a step
+			<m>dt</m> in the parameter into the true distance <m>ds</m>
+			traveled along the curve.
+		</p>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			A line integral sums a function over a
+			<fillin characters="5"/> <nbsp/>rather than an interval. To
+			evaluate <m>\int_C f\,ds</m> we replace the arclength element by
+			<m>ds = </m> <fillin characters="10"/> <m>\,dt</m>.
+		</p>
+		<p component="key">
+			A line integral sums a function over a
+			<m>\underline{\textbf{curve}}</m> rather than an interval. To
+			evaluate <m>\int_C f\,ds</m> we replace the arclength element by
+			<m>ds = \underline{\norm{\vr'(t)}}\,dt</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Evaluate <m>\int_C f\,ds</m> for <m>f(x,y) = 2x</m>, where
+					<m>C</m> is the straight segment from <m>(0,0)</m> to
+					<m>(3,4)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Evaluate <m>\int_C f\,ds</m> for <m>f(x,y) = 2x</m>, where
+					<m>C</m> is the straight segment from <m>(0,0)</m> to
+					<m>(3,4)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Parametrize the segment as
+					<m>\vr(t) = [\,3t,\; 4t\,]</m>, <m>t\in[0,1]</m>. Then
+					<m>\vr'(t) = [\,3,\,4\,]</m> and
+					<m>\norm{\vr'(t)} = \sqrt{3^2+4^2} = 5</m>. Along the curve
+					<m>f = 2x = 2(3t) = 6t</m>, so
+					<md>
+						\int_C f\,ds = \int_0^1 (6t)(5)\,dt
+						= 30\int_0^1 t\,dt = 30\cdot\tfrac12 = 15 .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Evaluate <m>\int_C f\,ds</m> for <m>f(x,y) = x - y</m>,
+					where <m>C</m> is the straight segment from <m>(1,0)</m> to
+					<m>(4,4)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Evaluate <m>\int_C f\,ds</m> for <m>f(x,y) = x - y</m>,
+					where <m>C</m> is the straight segment from <m>(1,0)</m> to
+					<m>(4,4)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					A parametrization is
+					<m>\vr(t) = [\,1+3t,\; 4t\,]</m>, <m>t\in[0,1]</m>, with
+					<m>\vr'(t) = [\,3,\,4\,]</m> and <m>\norm{\vr'(t)} = 5</m>.
+					Along <m>C</m>, <m>f = x - y = (1+3t) - 4t = 1 - t</m>, so
+					<md>
+						\int_C f\,ds = \int_0^1 (1-t)(5)\,dt
+						= 5\left(1 - \tfrac12\right) = \tfrac{5}{2} .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: Vector line integrals and work
+		 ============================================================ -->
+	<page>
+		<p><term>II. The line integral of a vector field.</term></p>
+
+		<p>
+			To integrate a <em>vector field</em> <m>\vF</m> along <m>C</m> we
+			add up the component of <m>\vF</m> <em>along</em> the curve. With
+			<m>d\vr = \vr'(t)\,dt</m>,
+			<md>
+				\int_C \vF\cdot d\vr
+				= \int_a^b \vF\big(\vr(t)\big)\cdot\vr'(t)\,dt .
+			</md>
+			The dot product picks out how much of the field points the way we
+			are traveling. When <m>\vF</m> is a <term>force</term>, this line
+			integral is exactly the <term>work</term> done on a particle
+			moving along <m>C</m> <ndash/> a running total of
+			<m>(\text{force})\cdot(\text{small displacement})</m>.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			The vector line integral is <m>\int_C \vF\cdot d\vr = \int_a^b</m>
+			<fillin characters="8"/> <m>\cdot</m> <fillin characters="6"/>
+			<m>\,dt</m>. When <m>\vF</m> is a force field, this integral
+			computes the <fillin characters="5"/> <nbsp/>done along <m>C</m>.
+		</p>
+		<p component="key">
+			The vector line integral is
+			<m>\int_C \vF\cdot d\vr = \int_a^b \underline{\vF(\vr(t))} \cdot
+			\underline{\vr'(t)}\,dt</m>. When <m>\vF</m> is a force field,
+			this integral computes the <m>\underline{\textbf{work}}</m> done
+			along <m>C</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Evaluate <m>\int_C \vF\cdot d\vr</m> for
+					<m>\vF = [\,xy,\; y\,]</m>, where <m>C</m> is the arc of the
+					parabola <m>y = x^2</m> from <m>(0,0)</m> to <m>(2,4)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Evaluate <m>\int_C \vF\cdot d\vr</m> for
+					<m>\vF = [\,xy,\; y\,]</m>, where <m>C</m> is the arc of the
+					parabola <m>y = x^2</m> from <m>(0,0)</m> to <m>(2,4)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Let <m>x = t</m>, so <m>\vr(t) = [\,t,\; t^2\,]</m> for
+					<m>t\in[0,2]</m> and <m>\vr'(t) = [\,1,\; 2t\,]</m>. Along
+					<m>C</m>,
+					<m>\vF = [\,xy,\,y\,] = [\,t\cdot t^2,\; t^2\,] = [\,t^3,\,t^2\,]</m>,
+					so
+					<md>
+						\vF(\vr(t))\cdot\vr'(t)
+						= [\,t^3,\,t^2\,]\cdot[\,1,\,2t\,]
+						= t^3 + 2t^3 = 3t^3 .
+					</md>
+					Therefore
+					<md>
+						\int_C \vF\cdot d\vr = \int_0^2 3t^3\,dt
+						= \left. \tfrac{3}{4}t^4 \right|_0^2 = \tfrac34(16) = 12 .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: Work in a force field; orientation and linearity
+		 ============================================================ -->
+	<page>
+		<p><term>III. Work, orientation, and linearity.</term></p>
+
+		<p>
+			Two properties make line integrals easier to handle. They are
+			<term>linear</term>,
+			<m>\int_C (\vF+\vG)\cdot d\vr = \int_C \vF\cdot d\vr
+			+ \int_C \vG\cdot d\vr</m>, and they respond to
+			<term>orientation</term>: traversing <m>C</m> backwards (call it
+			<m>-C</m>) reverses every <m>d\vr</m>, so
+			<m>\int_{-C}\vF\cdot d\vr = -\int_C \vF\cdot d\vr</m>. (A scalar
+			integral <m>\int_C f\,ds</m> does <em>not</em> flip <ndash/>
+			length <m>ds</m> is always positive.)
+		</p>
+
+		<figure xml:id="ws-lineint-fig-work">
+			<caption>Work along a path: at each point the force
+				<m>\vF</m> is dotted with the small displacement
+				<m>d\vr</m> tangent to <m>C</m>. Here <m>\vF = [\,-y,\,x\,]</m>,
+				the rotational field from the last worksheet, pushes along the
+				quarter circle the whole way.</caption>
+			<image width="52%">
+				<shortdescription>A quarter-circle arc in the first quadrant from the point (1,0) to (0,1); at a sample point on the arc a force arrow is drawn tangent to the circle, alongside a short displacement arrow in the same direction.</shortdescription>
+				<latex-image>
+	\begin{tikzpicture}[scale=2.2,>=stealth]
+	% axes
+	\draw[->] (-0.15,0) -- (1.4,0) node[anchor=north] {$x$};
+	\draw[->] (0,-0.15) -- (0,1.4) node[anchor=east] {$y$};
+	% quarter circle from (1,0) to (0,1)
+	\draw[very thick, blue] (1,0) arc (0:90:1);
+	\node[blue] at (0.86,0.86) {$C$};
+	% endpoints
+	\fill (1,0) circle (0.5pt) node[anchor=north] {$(1,0)$};
+	\fill (0,1) circle (0.5pt) node[anchor=east] {$(0,1)$};
+	% sample point at t = pi/4: (cos45, sin45)
+	\coordinate (P) at (0.7071,0.7071);
+	\fill (P) circle (0.7pt);
+	% force F = [-y, x] at P = [-0.7071, 0.7071], tangent, counterclockwise.
+	% Explicit endpoints (no calc library): P + (-0.35, 0.35) and P + (-0.18, 0.18).
+	\draw[very thick, red, ->] (0.7071,0.7071) -- (0.3571,1.0571);
+	\node[red, anchor=west] at (0.5,1.18) {$\vF$};
+	% small displacement dr, same direction, shorter
+	\draw[very thick, teal, ->] (0.7071,0.7071) -- (0.5271,0.8871);
+	\node[teal, anchor=north west] at (0.62,0.66) {$d\vr$};
+	\end{tikzpicture}
+				</latex-image>
+			</image>
+		</figure>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			Line integrals are <fillin characters="6"/>, so a field that
+			splits as <m>\vF+\vG</m> can be integrated piece by piece.
+			Reversing the orientation of <m>C</m> <fillin characters="5"/>
+			<nbsp/>the sign of <m>\int_C \vF\cdot d\vr</m>.
+		</p>
+		<p component="key">
+			Line integrals are <m>\underline{\textbf{linear}}</m>, so a field
+			that splits as <m>\vF+\vG</m> can be integrated piece by piece.
+			Reversing the orientation of <m>C</m>
+			<m>\underline{\textbf{flips}}</m> the sign of
+			<m>\int_C \vF\cdot d\vr</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Find the work done by the rotational force field
+					<m>\vF = [\,-y,\; x\,]</m> on a particle moving along the
+					quarter circle of radius <m>1</m> from <m>(1,0)</m> to
+					<m>(0,1)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the work done by the rotational force field
+					<m>\vF = [\,-y,\; x\,]</m> on a particle moving along the
+					quarter circle of radius <m>1</m> from <m>(1,0)</m> to
+					<m>(0,1)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Parametrize the arc as
+					<m>\vr(t) = [\,\cos t,\; \sin t\,]</m>,
+					<m>t\in[0,\tfrac{\pi}{2}]</m>, so
+					<m>\vr'(t) = [\,-\sin t,\; \cos t\,]</m>. Along <m>C</m>,
+					<m>\vF = [\,-y,\,x\,] = [\,-\sin t,\; \cos t\,]</m>, hence
+					<md>
+						\vF(\vr(t))\cdot\vr'(t)
+						= (-\sin t)(-\sin t) + (\cos t)(\cos t)
+						= \sin^2 t + \cos^2 t = 1 .
+					</md>
+					The field points along the path the entire way, so
+					<md>
+						W = \int_C \vF\cdot d\vr = \int_0^{\pi/2} 1\,dt
+						= \tfrac{\pi}{2} .
+					</md>
+					(Traversing the arc the other way, from <m>(0,1)</m> to
+					<m>(1,0)</m>, would give <m>-\tfrac{\pi}{2}</m>.)
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Find the work done by <m>\vF = [\,2x,\; x+y\,]</m> along the
+					straight segment from <m>(0,0)</m> to <m>(1,3)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the work done by <m>\vF = [\,2x,\; x+y\,]</m> along the
+					straight segment from <m>(0,0)</m> to <m>(1,3)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Take <m>\vr(t) = [\,t,\; 3t\,]</m>, <m>t\in[0,1]</m>, with
+					<m>\vr'(t) = [\,1,\,3\,]</m>. Along <m>C</m>,
+					<m>\vF = [\,2t,\; t+3t\,] = [\,2t,\,4t\,]</m>, so
+					<m>\vF\cdot\vr' = 2t + 12t = 14t</m> and
+					<md>
+						W = \int_0^1 14t\,dt = 7 .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: A misconception, an application, and looking ahead
+		 ============================================================ -->
+	<page>
+		<p><term>IV. A caution and an application.</term></p>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-lineint-tf-orientation">
+			<statement>
+				<p>
+					<alert>True or False.</alert> Reversing the direction in
+					which a particle travels along <m>C</m> leaves the value of
+					<m>\int_C \vF\cdot d\vr</m> unchanged. Explain, and say what
+					happens to <m>\int_C f\,ds</m>.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False</term> for the vector line integral. Reversing
+					the orientation reverses every displacement <m>d\vr</m>, so
+					<m>\int_{-C}\vF\cdot d\vr = -\int_C \vF\cdot d\vr</m>: the
+					work changes sign (pushing a box east then dragging it back
+					west undoes the work). The <em>scalar</em> line integral
+					<m>\int_C f\,ds</m> is unchanged, because <m>ds</m> is a
+					positive length element that does not care which way we
+					walk. Orientation matters for <m>d\vr</m>, not for
+					<m>ds</m>.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>An application.</term></p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					A thin wire is bent into the upper half of the unit circle,
+					from <m>(1,0)</m> to <m>(-1,0)</m>. Its linear density at a
+					point is <m>\delta(x,y) = y</m> (denser near the top). Find
+					the mass of the wire, <m>m = \int_C \delta\,ds</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					A thin wire is bent into the upper half of the unit circle,
+					from <m>(1,0)</m> to <m>(-1,0)</m>. Its linear density at a
+					point is <m>\delta(x,y) = y</m> (denser near the top). Find
+					the mass of the wire, <m>m = \int_C \delta\,ds</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Parametrize the upper semicircle by
+					<m>\vr(t) = [\,\cos t,\; \sin t\,]</m>,
+					<m>t\in[0,\pi]</m>, so
+					<m>\norm{\vr'(t)} = 1</m> and <m>ds = dt</m>. Along the
+					wire <m>\delta = y = \sin t</m>, so
+					<md>
+						m = \int_C \delta\,ds = \int_0^{\pi} \sin t\,dt
+						= \big[-\cos t\big]_0^{\pi}
+						= 1 - (-1) = 2 .
+					</md>
+					The mass is heavier toward the top, exactly where the
+					density is largest. (A uniform wire of the same length
+					<m>\pi</m> would instead have mass <m>\pi</m> if
+					<m>\delta = 1</m>.)
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> We can now integrate along a
+				curve <ndash/> length-weighted totals with <m>ds</m>, and work
+				and circulation with <m>d\vr</m>. Next we return to the
+				<term>divergence</term> and <term>curl</term> of a field and
+				connect them to these integrals: <term>Green's Theorem</term>
+				will equate the circulation of a field around a closed loop
+				with the total curl swept out over the region inside it,
+				turning a line integral into a double integral.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>

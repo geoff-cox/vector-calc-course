@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	sec-line-integrals.ptx
+	Section 2: Line Integrals and Green's Theorem.
+
+	A section is a container; each class meeting gets its own
+	<worksheet> file, which we pull in with <xi:include/>.  This
+	keeps individual worksheets small enough to edit comfortably
+	and lets you re-order class meetings by re-ordering includes.
+-->
+<section xml:id="sec-line-integrals"
+		 xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<title>Line Integrals and Green's Theorem</title>
+
+	<introduction>
+		<p>
+			With vectors, curves, and vector fields in hand, we now begin
+			to <em>integrate</em> a field along a curve.  A
+			<term>line integral</term> adds up the values of a function
+			as we travel a path: the length-weighted total of a scalar
+			function, or the work a force field does on a particle moving
+			through it.  From there the section builds toward divergence,
+			curl, and <term>Green's Theorem</term>, which ties the
+			circulation around a closed loop to what the field is doing
+			inside it.
+		</p>
+	</introduction>
+
+	<!-- Class meeting 8: Line integrals -->
+	<xi:include href="./ws-line-integrals.ptx"/>
+
+	<!-- Future worksheets in this section (uncomment as you write them): -->
+	<!-- <xi:include href="./ws-divergence-curl.ptx"/>    -->
+	<!-- <xi:include href="./ws-path-independence.ptx"/>  -->
+	<!-- <xi:include href="./ws-greens-theorem.ptx"/>     -->
+
+</section>
