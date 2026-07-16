@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-surface-integrals.ptx
+	Section 3 (Surface Integrals, Stokes', and the Divergence Theorem),
+	worksheet 12: Parametrized Surfaces and Surface Integrals.
+
+	Ported from the Beamer deck 03_01_SurfaceIntegrals.tex (in
+	outdated-material/notes/, surface-integrals folder): parametrizing a
+	surface r(u,v), the tangent vectors r_u and r_v, the normal
+	N = r_u x r_v, surface area, and the flux integral. Book concepts
+	tracked from sec_parametric_surfaces / sec_surface_area /
+	sec_surface_integral. Example equations are NOT reused from the deck
+	or the book.
+
+	This OPENS Section 3. The flux integral here is the object that Stokes'
+	Theorem and the Divergence Theorem will act on in the next two
+	worksheets.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md): paired component="stu"/"key"
+	reading checks and exercises; one True/False misconception check; one
+	read-along TikZ figure; one modern application. Standard notation
+	(macros from source/notes/bookends/docinfo.ptx); no new macros. The
+	non-unit normal is written \mathbf{N} (no \vN macro); the unit normal
+	uses the existing \vn. Math-valued answer keys are underlined directly
+	(\underline{...}); only plain-word answers are bolded, so the pdf-key
+	(LaTeX) build stays clean.
+-->
+<worksheet xml:id="ws-surface-integrals">
+	<title>Parametrized Surfaces and Surface Integrals</title>
+
+	<objectives>
+		<ul>
+			<li>Parametrize a surface as <m>\vr(u,v) = [\,x(u,v),\,y(u,v),\,z(u,v)\,]</m>.</li>
+			<li>Compute the tangent vectors <m>\vr_u</m>, <m>\vr_v</m> and the normal <m>\mathbf{N} = \vr_u \times \vr_v</m>.</li>
+			<li>Compute surface area as <m>\iint_R \norm{\vr_u \times \vr_v}\,du\,dv</m>.</li>
+			<li>Compute the <term>flux</term> of a field, <m>\iint_S \vF\cdot\vn\,dS = \iint_R \vF(\vr(u,v))\cdot\mathbf{N}\,du\,dv</m>.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: Parametrizing a surface; tangents and normal
+		 ============================================================ -->
+	<page>
+		<p><term>I. A surface takes two parameters.</term></p>
+
+		<p>
+			A curve needed one parameter; a <term>surface</term> needs two.
+			We describe <m>S</m> by <m>\vr(u,v) = [\,x(u,v),\,y(u,v),\,z(u,v)\,]</m>.
+			Holding one parameter fixed and varying the other traces a curve
+			on <m>S</m>, so the partial derivatives
+			<md>
+				\vr_u = [\,x_u,\,y_u,\,z_u\,], \qquad
+				\vr_v = [\,x_v,\,y_v,\,z_v\,]
+			</md>
+			are tangent to the surface. Their cross product is normal (perpendicular) to
+			<m>S</m>:
+			<md>
+				\mathbf{N} = \vr_u \times \vr_v ,
+				\qquad \vn = \frac{\mathbf{N}}{\norm{\mathbf{N}}} .
+			</md>
+			A surface given as a graph <m>z = f(x,y)</m> is parametrized
+			simply by <m>\vr(u,v) = [\,u,\,v,\,f(u,v)\,]</m>.
+		</p>
+
+		<figure xml:id="ws-surfint-fig-normal">
+			<caption>A surface patch with tangent vectors <m>\vr_u</m>,
+				<m>\vr_v</m> and the normal <m>\mathbf{N} = \vr_u\times\vr_v</m>
+				standing perpendicular to it.</caption>
+			<image width="48%">
+				<shortdescription>A skewed parallelogram representing a patch of a surface, with two tangent-vector arrows along its edges from one corner and a third arrow rising perpendicular to the patch, labeled as the normal vector.</shortdescription>
+				<latex-image>
+	\begin{tikzpicture}[scale=1.05,>=stealth]
+	\coordinate (O) at (0,0);
+	\coordinate (U) at (2.6,0.5);
+	\coordinate (V) at (0.7,1.5);
+	\coordinate (W) at (3.3,2.0);
+	\fill[blue!8] (O)--(U)--(W)--(V)--cycle;
+	\draw[blue!55] (O)--(U)--(W)--(V)--cycle;
+	\node[blue!55] at (1.75,1.05) {$S$};
+	% tangent vectors
+	\draw[very thick, red, ->] (O) -- (U);
+	\node[red, anchor=north] at (2.55,0.45) {$\vr_u$};
+	\draw[very thick, teal, ->] (O) -- (V);
+	\node[teal, anchor=east] at (0.62,1.5) {$\vr_v$};
+	% normal
+	\draw[very thick, ->] (O) -- (0.55,2.35);
+	\node[anchor=south] at (0.6,2.35) {$\mathbf{N}=\vr_u\times\vr_v$};
+	\fill (O) circle (1.6pt);
+	\end{tikzpicture}
+				</latex-image>
+			</image>
+		</figure>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			A surface is described by <m>\vr(u,v)</m> with
+			<fillin characters="3"/> <nbsp/>parameters. The vectors
+			<m>\vr_u</m> and <m>\vr_v</m> are <fillin characters="8"/>
+			<nbsp/>to the surface, and their cross product
+			<m>\mathbf{N} = </m> <fillin characters="8"/> is normal to it.
+		</p>
+		<p component="key">
+			A surface is described by <m>\vr(u,v)</m> with
+			<m>\underline{\textbf{two}}</m> parameters. The vectors
+			<m>\vr_u</m> and <m>\vr_v</m> are
+			<m>\underline{\textbf{tangent}}</m> to the surface, and their
+			cross product
+			<m>\mathbf{N} = \underline{\vr_u \times \vr_v}</m> is normal to
+			it.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Parametrize the graph surface <m>z = x + y^2</m> and find
+					the normal vector <m>\mathbf{N} = \vr_u \times \vr_v</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Parametrize the graph surface <m>z = x + y^2</m> and find
+					the normal vector <m>\mathbf{N} = \vr_u \times \vr_v</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					As a graph, <m>\vr(u,v) = [\,u,\; v,\; u + v^2\,]</m>. Then
+					<m>\vr_u = [\,1,\,0,\,1\,]</m> and
+					<m>\vr_v = [\,0,\,1,\,2v\,]</m>, so
+					<md>
+						\mathbf{N} = \vr_u \times \vr_v
+						= [\,(0)(2v) - (1)(1),\;\; (1)(0) - (1)(2v),\;\; (1)(1) - (0)(0)\,]
+						= [\,-1,\; -2v,\; 1\,] .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Parametrize the graph surface <m>z = x^2 - y</m> and find
+					<m>\mathbf{N} = \vr_u \times \vr_v</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Parametrize the graph surface <m>z = x^2 - y</m> and find
+					<m>\mathbf{N} = \vr_u \times \vr_v</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>\vr(u,v) = [\,u,\; v,\; u^2 - v\,]</m>, so
+					<m>\vr_u = [\,1,\,0,\,2u\,]</m> and
+					<m>\vr_v = [\,0,\,1,\,-1\,]</m>. Then
+					<md>
+						\mathbf{N} = \vr_u \times \vr_v
+						= [\,(0)(-1) - (2u)(1),\;\; (2u)(0) - (1)(-1),\;\; (1)(1) - (0)(0)\,]
+						= [\,-2u,\; 1,\; 1\,] .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: Surface area
+		 ============================================================ -->
+	<page>
+		<p><term>II. Surface area.</term></p>
+
+		<p>
+			A small patch of <m>S</m> is nearly the parallelogram spanned by
+			<m>\vr_u\,du</m> and <m>\vr_v\,dv</m>, whose area is
+			<m>\norm{\vr_u \times \vr_v}\,du\,dv</m>. Adding up these patches
+			over the parameter region <m>R</m> gives the
+			<term>surface area</term>:
+			<md>
+				\text{Area}(S) = \iint_S dS
+				= \iint_R \norm{\vr_u \times \vr_v}\,du\,dv .
+			</md>
+			The length of the normal is the local area-scaling factor.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			The surface-area element is <m>dS = </m> <fillin characters="10"/>
+			<m>\,du\,dv</m>, the area of the little parallelogram spanned by
+			<m>\vr_u\,du</m> and <m>\vr_v\,dv</m>. Surface area is a
+			<fillin characters="6"/> <nbsp/>quantity.
+		</p>
+		<p component="key">
+			The surface-area element is
+			<m>dS = \underline{\norm{\vr_u \times \vr_v}}\,du\,dv</m>, the area
+			of the little parallelogram spanned by <m>\vr_u\,du</m> and
+			<m>\vr_v\,dv</m>. Surface area is a
+			<m>\underline{\textbf{scalar}}</m> quantity.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Find the lateral surface area of the cylinder
+					<m>\vr(u,v) = [\,3\cos u,\; 3\sin u,\; v\,]</m>, for
+					<m>0\le u\le 2\pi</m> and <m>0\le v\le 5</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the lateral surface area of the cylinder
+					<m>\vr(u,v) = [\,3\cos u,\; 3\sin u,\; v\,]</m>, for
+					<m>0\le u\le 2\pi</m> and <m>0\le v\le 5</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>\vr_u = [\,-3\sin u,\; 3\cos u,\; 0\,]</m> and
+					<m>\vr_v = [\,0,\,0,\,1\,]</m>, so
+					<md>
+						\mathbf{N} = \vr_u \times \vr_v
+						= [\,3\cos u,\; 3\sin u,\; 0\,],
+						\qquad
+						\norm{\mathbf{N}} = \sqrt{9\cos^2 u + 9\sin^2 u} = 3 .
+					</md>
+					Therefore
+					<md>
+						\text{Area}(S) = \int_0^{5}\!\!\int_0^{2\pi} 3\,du\,dv
+						= 3(2\pi)(5) = 30\pi ,
+					</md>
+					matching the lateral area <m>2\pi r h = 2\pi(3)(5) = 30\pi</m>.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Find the area of the piece of the plane
+					<m>z = 2x + y</m> lying above the unit square
+					<m>0\le x\le 1</m>, <m>0\le y\le 1</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the area of the piece of the plane
+					<m>z = 2x + y</m> lying above the unit square
+					<m>0\le x\le 1</m>, <m>0\le y\le 1</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Parametrize as <m>\vr(u,v) = [\,u,\; v,\; 2u + v\,]</m>, so
+					<m>\vr_u = [\,1,\,0,\,2\,]</m>,
+					<m>\vr_v = [\,0,\,1,\,1\,]</m>, and
+					<m>\mathbf{N} = [\,-2,\,-1,\,1\,]</m> with
+					<m>\norm{\mathbf{N}} = \sqrt{4+1+1} = \sqrt{6}</m>. Since the
+					square has area <m>1</m>,
+					<md>
+						\text{Area}(S) = \int_0^1\!\!\int_0^1 \sqrt{6}\,du\,dv
+						= \sqrt{6} .
+					</md>
+					The slanted plane has <m>\sqrt6</m> times the area of its
+					shadow.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: Flux
+		 ============================================================ -->
+	<page>
+		<p><term>III. Flux through a surface.</term></p>
+
+		<p>
+			The <term>flux</term> of a vector field <m>\vF</m> through
+			<m>S</m> measures how much of <m>\vF</m> passes through the
+			surface. Dotting <m>\vF</m> with the unit normal and integrating,
+			then using <m>\vn\,dS = \mathbf{N}\,du\,dv</m>, gives a formula
+			with no square roots:
+			<md>
+				\iint_S \vF\cdot\vn\,dS
+				= \iint_R \vF(\vr(u,v))\cdot\mathbf{N}\,du\,dv,
+				\qquad \mathbf{N} = \vr_u \times \vr_v .
+			</md>
+			If <m>\vF = \rho\,\vv</m> is a fluid of density <m>\rho</m> moving
+			with velocity <m>\vv</m>, the flux is the rate at which mass
+			crosses <m>S</m>.
+		</p>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			The flux of <m>\vF</m> through <m>S</m> is
+			<m>\iint_S \vF\cdot\vn\,dS = \iint_R \vF(\vr(u,v))\cdot</m>
+			<fillin characters="4"/> <m>\,du\,dv</m>. Flux measures how much of
+			the field passes <fillin characters="8"/> <nbsp/>the surface.
+		</p>
+		<p component="key">
+			The flux of <m>\vF</m> through <m>S</m> is
+			<m>\iint_S \vF\cdot\vn\,dS = \iint_R \vF(\vr(u,v))\cdot
+			\underline{\mathbf{N}}\,du\,dv</m>. Flux measures how much of the
+			field passes <m>\underline{\textbf{through}}</m> the surface.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="3in">
+			<statement>
+				<p>
+					Compute the flux of <m>\vF = [\,x,\,y,\,z\,]</m> outward
+					through the cylinder
+					<m>\vr(u,v) = [\,3\cos u,\; 3\sin u,\; v\,]</m> from page 2
+					(<m>0\le u\le 2\pi</m>, <m>0\le v\le 5</m>).
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Compute the flux of <m>\vF = [\,x,\,y,\,z\,]</m> outward
+					through the cylinder
+					<m>\vr(u,v) = [\,3\cos u,\; 3\sin u,\; v\,]</m> from page 2
+					(<m>0\le u\le 2\pi</m>, <m>0\le v\le 5</m>).
+				</p>
+			</statement>
+			<solution>
+				<p>
+					From page 2, <m>\mathbf{N} = [\,3\cos u,\; 3\sin u,\; 0\,]</m>
+					(pointing radially outward). Along the surface
+					<m>\vF = [\,x,\,y,\,z\,] = [\,3\cos u,\; 3\sin u,\; v\,]</m>,
+					so
+					<md>
+						\vF\cdot\mathbf{N}
+						= 9\cos^2 u + 9\sin^2 u + 0 = 9 .
+					</md>
+					Therefore
+					<md>
+						\iint_S \vF\cdot\vn\,dS
+						= \int_0^{5}\!\!\int_0^{2\pi} 9\,du\,dv
+						= 9(2\pi)(5) = 90\pi .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Compute the flux of <m>\vF = [\,0,\,0,\,z\,]</m> upward
+					through the plane piece <m>\vr(u,v) = [\,u,\,v,\,2u+v\,]</m>
+					over the unit square (<m>0\le u\le 1</m>,
+					<m>0\le v\le 1</m>) from page 2.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Compute the flux of <m>\vF = [\,0,\,0,\,z\,]</m> upward
+					through the plane piece <m>\vr(u,v) = [\,u,\,v,\,2u+v\,]</m>
+					over the unit square (<m>0\le u\le 1</m>,
+					<m>0\le v\le 1</m>) from page 2.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>\mathbf{N} = [\,-2,\,-1,\,1\,]</m> and along the
+					surface <m>\vF = [\,0,\,0,\,z\,] = [\,0,\,0,\,2u+v\,]</m>, so
+					<m>\vF\cdot\mathbf{N} = 2u + v</m>. Then
+					<md>
+						\iint_S \vF\cdot\vn\,dS
+						= \int_0^1\!\!\int_0^1 (2u + v)\,du\,dv
+						= \int_0^1 (1 + v)\,dv = \tfrac32 .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: A misconception, an application, and looking ahead
+		 ============================================================ -->
+	<page>
+		<p><term>IV. A caution and an application.</term></p>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-surfint-tf-orientation">
+			<statement>
+				<p>
+					<alert>True or False.</alert> Using
+					<m>\vr_v \times \vr_u</m> in place of
+					<m>\vr_u \times \vr_v</m> gives the same flux through
+					<m>S</m>. Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False.</term> The cross product is anti-commutative:
+					<m>\vr_v \times \vr_u = -(\vr_u \times \vr_v)</m>, so
+					swapping the order reverses the normal and therefore
+					<em>flips the sign</em> of the flux. A surface must be
+					<term>oriented</term> <ndash/> we must choose which way the
+					normal points (for a closed surface, conventionally
+					outward) <ndash/> and every flux value is stated relative
+					to that choice.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>An application.</term></p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Air moves straight up a circular ventilation duct with
+					velocity <m>\vv = [\,0,\,0,\,3\,]</m> m/s. Model the duct's
+					cross-section as the flat disk <m>S</m> of radius <m>2</m> m
+					in a horizontal plane, with upward unit normal
+					<m>\vn = [\,0,\,0,\,1\,]</m>. Taking density
+					<m>\rho = 1</m>, find the volume flow rate
+					<m>\iint_S \vv\cdot\vn\,dS</m> through the duct.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Air moves straight up a circular ventilation duct with
+					velocity <m>\vv = [\,0,\,0,\,3\,]</m> m/s. Model the duct's
+					cross-section as the flat disk <m>S</m> of radius <m>2</m> m
+					in a horizontal plane, with upward unit normal
+					<m>\vn = [\,0,\,0,\,1\,]</m>. Taking density
+					<m>\rho = 1</m>, find the volume flow rate
+					<m>\iint_S \vv\cdot\vn\,dS</m> through the duct.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					On the disk <m>\vv\cdot\vn = [\,0,\,0,\,3\,]\cdot[\,0,\,0,\,1\,] = 3</m>,
+					a constant, so the flux is just that constant times the
+					area of the disk:
+					<md>
+						\iint_S \vv\cdot\vn\,dS = 3\cdot\big(\pi (2)^2\big)
+						= 12\pi \approx 37.7 \text{ m}^3/\text{s} .
+					</md>
+					About <m>37.7</m> cubic meters of air pass up through the
+					duct each second <ndash/> a flux integral is exactly how an
+					engineer sizes a fan or vent.
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> With surfaces parametrized and
+				flux in hand, the course closes with the two theorems that
+				generalize Green's: <term>Stokes' Theorem</term> equates the
+				circulation of a field around the boundary curve of a surface
+				with the flux of its <em>curl</em> through the surface, and the
+				<term>Divergence Theorem</term> equates the flux of a field out
+				of a closed surface with the integral of its
+				<em>divergence</em> over the solid inside. Both turn the
+				surface integrals of this worksheet into the capstones of
+				vector analysis.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>
