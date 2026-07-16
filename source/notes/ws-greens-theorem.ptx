@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-greens-theorem.ptx
+	Section 2 (Line Integrals and Green's Theorem), worksheet 11:
+	Green's Theorem. LAST worksheet of Section 2.
+
+	Ported from the Beamer deck 02_04_Greens_Theorem.tex (in
+	outdated-material/notes/, line-integrals folder): the circulation
+	form of Green's Theorem, orientation of the boundary, the conservative
+	special case, area via Green's Theorem, and the synthesis of the three
+	line-integral methods. Book concepts tracked from sec_greensthm.
+	Example equations are NOT reused from the deck or the book.
+
+	This worksheet ties Section 2 together: the integrand N_x - M_y is the
+	scalar curl (worksheet 9); when F is conservative that integrand
+	vanishes and the circulation is 0 (worksheet 10); and Green's Theorem
+	is a third way to evaluate the line integrals of worksheet 8.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md): paired component="stu"/"key"
+	reading checks and exercises; one True/False misconception check; one
+	read-along TikZ figure; one modern application. Standard notation
+	(macros from source/notes/bookends/docinfo.ptx); no new macros.
+	Math-valued answer keys are underlined directly (\underline{...});
+	only plain-word answers are bolded, so the pdf-key (LaTeX) build stays
+	clean.
+-->
+<worksheet xml:id="ws-greens-theorem">
+	<title>Green's Theorem</title>
+
+	<objectives>
+		<ul>
+			<li>State Green's Theorem and identify the region <m>R</m>, its positively oriented boundary <m>C</m>, and the integrand <m>N_x - M_y</m>.</li>
+			<li>Evaluate a line integral around a closed curve by converting it to a double integral over the enclosed region.</li>
+			<li>Recognize that a conservative field makes the integrand vanish, so its circulation around any closed curve is <m>0</m>.</li>
+			<li>Compute the area of a region with the Green's-Theorem area formula <m>A = \tfrac12\oint_C (x\,dy - y\,dx)</m>.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: Green's Theorem
+		 ============================================================ -->
+	<page>
+		<p><term>I. Green's Theorem.</term></p>
+
+		<p>
+			A <term>simple closed curve</term> <m>C</m> (one that does not
+			cross itself and ends where it starts) bounds a planar region
+			<m>R</m>. <term>Green's Theorem</term> converts a line integral
+			around <m>C</m> into a double integral over <m>R</m>: if
+			<m>\vF = [\,M,\,N\,]</m> has continuous partials on <m>R</m>, then
+			<md>
+				\oint_C \vF\cdot d\vr = \oint_C M\,dx + N\,dy
+				= \iint_R \left(N_x - M_y\right)\,dA ,
+			</md>
+			provided <m>C</m> is traversed <term>counterclockwise</term> (the
+			positive orientation, keeping <m>R</m> on the left). The integrand
+			<m>N_x - M_y</m> is exactly the scalar curl of <m>\vF</m> from
+			worksheet 9, so Green's Theorem says: the circulation around the
+			boundary equals the total curl swept out inside.
+		</p>
+
+		<figure xml:id="ws-greens-fig-region">
+			<caption>A region <m>R</m> with its boundary curve <m>C</m>
+				oriented counterclockwise. Green's Theorem trades the loop
+				integral around <m>C</m> for a double integral over
+				<m>R</m>.</caption>
+			<image width="42%">
+				<shortdescription>A shaded disk labeled R bounded by a circle labeled C, with an arrowhead on the circle indicating counterclockwise orientation.</shortdescription>
+				<latex-image>
+	\begin{tikzpicture}[scale=1.0,>=stealth]
+	\fill[blue!8] (0,0) circle (1.6);
+	\draw[very thick, blue] (0,0) circle (1.6);
+	% counterclockwise orientation arrow on the boundary
+	\draw[very thick, blue, ->] (1.6,-0.15) arc (-6:32:1.6);
+	\node at (0,0) {$R$};
+	\node[blue, anchor=west] at (1.25,1.25) {$C$};
+	\node[font=\footnotesize] at (0,-2.15) {$C$ counterclockwise};
+	\end{tikzpicture}
+				</latex-image>
+			</image>
+		</figure>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			Green's Theorem says
+			<m>\oint_C M\,dx + N\,dy = \iint_R</m> <fillin characters="8"/>
+			<m>\,dA</m>, with <m>C</m> the counterclockwise boundary of
+			<m>R</m>. That integrand is the scalar <fillin characters="4"/>
+			<nbsp/>of <m>\vF</m>.
+		</p>
+		<p component="key">
+			Green's Theorem says
+			<m>\oint_C M\,dx + N\,dy = \iint_R \underline{N_x - M_y}\,dA</m>,
+			with <m>C</m> the counterclockwise boundary of <m>R</m>. That
+			integrand is the scalar <m>\underline{\textbf{curl}}</m> of
+			<m>\vF</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Use Green's Theorem to evaluate <m>\oint_C \vF\cdot d\vr</m>
+					for <m>\vF = [\,xy,\; x^2\,]</m>, where <m>C</m> is the
+					boundary of the unit square <m>0\le x\le 1</m>,
+					<m>0\le y\le 1</m>, oriented counterclockwise.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Use Green's Theorem to evaluate <m>\oint_C \vF\cdot d\vr</m>
+					for <m>\vF = [\,xy,\; x^2\,]</m>, where <m>C</m> is the
+					boundary of the unit square <m>0\le x\le 1</m>,
+					<m>0\le y\le 1</m>, oriented counterclockwise.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>M = xy</m> and <m>N = x^2</m>, so
+					<m>N_x = 2x</m> and <m>M_y = x</m>, giving integrand
+					<m>N_x - M_y = 2x - x = x</m>. Green's Theorem turns the
+					loop into a double integral over the square:
+					<md>
+						\oint_C \vF\cdot d\vr = \iint_R x\,dA
+						= \int_0^1\!\!\int_0^1 x\,dy\,dx
+						= \int_0^1 x\,dx = \tfrac12 .
+					</md>
+					Evaluating the four sides directly would have taken four
+					separate line integrals <ndash/> Green's Theorem does it in
+					one.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: The conservative special case, and a triangle
+		 ============================================================ -->
+	<page>
+		<p><term>II. The conservative case, and a worked region.</term></p>
+
+		<p>
+			Green's Theorem makes the conservative story from the last
+			worksheet obvious. If <m>\vF</m> is conservative then
+			<m>N_x = M_y</m> (the curl test), so the integrand
+			<m>N_x - M_y</m> is zero everywhere and
+			<m>\oint_C \vF\cdot d\vr = \iint_R 0\,dA = 0</m> around
+			<em>every</em> closed curve <ndash/> exactly the closed-loop
+			result we saw before. For a <em>non</em>-conservative field the
+			integrand is nonzero, and the double integral does real work.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			If <m>\vF</m> is conservative then <m>N_x = M_y</m>, so Green's
+			integrand <m>N_x - M_y</m> is <fillin characters="5"/>
+			<nbsp/>everywhere, and the circulation around any closed loop is
+			<fillin characters="2"/>.
+		</p>
+		<p component="key">
+			If <m>\vF</m> is conservative then <m>N_x = M_y</m>, so Green's
+			integrand <m>N_x - M_y</m> is <m>\underline{\textbf{zero}}</m>
+			everywhere, and the circulation around any closed loop is
+			<m>\underline{0}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Without integrating around the curve, explain why
+					<m>\oint_C \vF\cdot d\vr = 0</m> for
+					<m>\vF = [\,2xy,\; x^2 + 3\,]</m> around any closed curve
+					<m>C</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Without integrating around the curve, explain why
+					<m>\oint_C \vF\cdot d\vr = 0</m> for
+					<m>\vF = [\,2xy,\; x^2 + 3\,]</m> around any closed curve
+					<m>C</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					With <m>M = 2xy</m> and <m>N = x^2 + 3</m>,
+					<m>N_x = 2x = M_y</m>, so <m>\vF</m> is conservative (it has
+					potential <m>f = x^2 y + 3y</m>). Green's integrand
+					<m>N_x - M_y = 0</m>, hence
+					<md>
+						\oint_C \vF\cdot d\vr = \iint_R 0\,dA = 0
+					</md>
+					for every closed <m>C</m> <ndash/> no computation over the
+					curve required.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="3in">
+			<statement>
+				<p>
+					Use Green's Theorem to evaluate <m>\oint_C \vF\cdot d\vr</m>
+					for <m>\vF = [\,y,\; x^2\,]</m>, where <m>C</m> is the
+					counterclockwise boundary of the triangle with vertices
+					<m>(0,0)</m>, <m>(1,0)</m>, and <m>(1,1)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Use Green's Theorem to evaluate <m>\oint_C \vF\cdot d\vr</m>
+					for <m>\vF = [\,y,\; x^2\,]</m>, where <m>C</m> is the
+					counterclockwise boundary of the triangle with vertices
+					<m>(0,0)</m>, <m>(1,0)</m>, and <m>(1,1)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>M = y</m>, <m>N = x^2</m>, so
+					<m>N_x - M_y = 2x - 1</m>. The triangle is
+					<m>0\le x\le 1</m>, <m>0\le y\le x</m>, so
+					<md>
+						\oint_C \vF\cdot d\vr
+						= \int_0^1\!\!\int_0^{x}(2x-1)\,dy\,dx
+						= \int_0^1 (2x-1)x\,dx
+						= \int_0^1 (2x^2 - x)\,dx
+						= \tfrac23 - \tfrac12 = \tfrac16 .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: Area via Green's Theorem
+		 ============================================================ -->
+	<page>
+		<p><term>III. Area from the boundary.</term></p>
+
+		<p>
+			Green's Theorem runs backwards too. Choose a field whose curl is
+			the constant <m>1</m> <ndash/> for example <m>M = -\tfrac12 y</m>,
+			<m>N = \tfrac12 x</m>, so <m>N_x - M_y = 1</m>. Then the double
+			integral is just the area of <m>R</m>, and Green's Theorem gives a
+			formula for area purely from a trip around the boundary:
+			<md>
+				A = \iint_R 1\,dA = \frac12\oint_C \left(x\,dy - y\,dx\right) .
+			</md>
+			We can measure a region's area without ever looking inside it
+			<ndash/> only by tracing its edge.
+		</p>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			The area of <m>R</m> can be computed from its boundary as
+			<m>A = \tfrac12\oint_C</m> <nbsp/><fillin characters="10"/>,
+			where the boundary <m>C</m> is traced
+			<fillin characters="15"/>.
+		</p>
+		<p component="key">
+			The area of <m>R</m> can be computed from its boundary as
+			<m>A = \tfrac12\oint_C \underline{(x\,dy - y\,dx)}</m>, where the
+			boundary <m>C</m> is traced
+			<m>\underline{\textbf{counterclockwise}}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="3in">
+			<statement>
+				<p>
+					Use the area formula
+					<m>A = \tfrac12\oint_C (x\,dy - y\,dx)</m> to find the area
+					enclosed by the ellipse
+					<m>\vr(t) = [\,3\cos t,\; 2\sin t\,]</m>,
+					<m>0\le t\le 2\pi</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Use the area formula
+					<m>A = \tfrac12\oint_C (x\,dy - y\,dx)</m> to find the area
+					enclosed by the ellipse
+					<m>\vr(t) = [\,3\cos t,\; 2\sin t\,]</m>,
+					<m>0\le t\le 2\pi</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					With <m>x = 3\cos t</m>, <m>y = 2\sin t</m>, we have
+					<m>dx = -3\sin t\,dt</m> and <m>dy = 2\cos t\,dt</m>, so
+					<md>
+						x\,dy - y\,dx
+						= (3\cos t)(2\cos t)\,dt - (2\sin t)(-3\sin t)\,dt
+						= 6\cos^2 t + 6\sin^2 t\;dt = 6\,dt .
+					</md>
+					Therefore
+					<md>
+						A = \frac12\int_0^{2\pi} 6\,dt = \frac12(12\pi) = 6\pi ,
+					</md>
+					matching the familiar ellipse area <m>\pi ab = \pi(3)(2) = 6\pi</m>.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Use the same area formula to find the area enclosed by the
+					circle <m>\vr(t) = [\,4\cos t,\; 4\sin t\,]</m>,
+					<m>0\le t\le 2\pi</m>, and check it against
+					<m>\pi r^2</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Use the same area formula to find the area enclosed by the
+					circle <m>\vr(t) = [\,4\cos t,\; 4\sin t\,]</m>,
+					<m>0\le t\le 2\pi</m>, and check it against
+					<m>\pi r^2</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>x\,dy - y\,dx
+					= (4\cos t)(4\cos t)\,dt - (4\sin t)(-4\sin t)\,dt
+					= 16\,dt</m>, so
+					<md>
+						A = \frac12\int_0^{2\pi} 16\,dt = 16\pi .
+					</md>
+					This agrees with <m>\pi r^2 = \pi(4)^2 = 16\pi</m>.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: A misconception, an application, and looking ahead
+		 ============================================================ -->
+	<page>
+		<p><term>IV. A caution and an application.</term></p>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-greens-tf-closed">
+			<statement>
+				<p>
+					<alert>True or False.</alert> Green's Theorem
+					<m>\oint_C \vF\cdot d\vr = \iint_R (N_x - M_y)\,dA</m>
+					applies to any curve <m>C</m>, including a path that runs
+					from a point <m>A</m> to a different point <m>B</m>.
+					Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False.</term> Green's Theorem requires <m>C</m> to be
+					a <em>simple closed</em> curve bounding the region
+					<m>R</m>, traversed counterclockwise; the region <m>R</m>
+					and the double integral only make sense when the curve
+					closes up. An open path from <m>A</m> to <m>B</m> encloses
+					no region, so there is nothing to integrate over
+					<ndash/> use direct evaluation or (if <m>\vF</m> is
+					conservative) the Fundamental Theorem of Line Integrals
+					instead. Reversing the orientation to clockwise would also
+					flip the sign.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>An application.</term></p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Applying the area formula to a polygon with straight edges
+					yields the <term>shoelace formula</term> used in surveying
+					and computer graphics: a triangle with vertices
+					<m>(x_1,y_1)</m>, <m>(x_2,y_2)</m>, <m>(x_3,y_3)</m> has area
+					<md>
+						A = \tfrac12\left| x_1(y_2 - y_3) + x_2(y_3 - y_1)
+						+ x_3(y_1 - y_2) \right| .
+					</md>
+					Use it to find the area of the triangle with vertices
+					<m>(0,0)</m>, <m>(4,0)</m>, and <m>(1,3)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Applying the area formula to a polygon with straight edges
+					yields the <term>shoelace formula</term> used in surveying
+					and computer graphics: a triangle with vertices
+					<m>(x_1,y_1)</m>, <m>(x_2,y_2)</m>, <m>(x_3,y_3)</m> has area
+					<md>
+						A = \tfrac12\left| x_1(y_2 - y_3) + x_2(y_3 - y_1)
+						+ x_3(y_1 - y_2) \right| .
+					</md>
+					Use it to find the area of the triangle with vertices
+					<m>(0,0)</m>, <m>(4,0)</m>, and <m>(1,3)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Substituting the vertices in order,
+					<md>
+						A = \tfrac12\left| 0(0 - 3) + 4(3 - 0) + 1(0 - 0)\right|
+						= \tfrac12\left| 12 \right| = 6 .
+					</md>
+					The shoelace formula <em>is</em> Green's area formula
+					applied edge by edge <ndash/> it is how a GPS or a drafting
+					program computes the area of a plot of land from just its
+					corner coordinates, without any interior measurement.
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> That completes our toolkit for
+				line integrals: evaluate them <em>directly</em>, by the
+				<term>Fundamental Theorem</term> when the field is
+				conservative, or by <term>Green's Theorem</term> when the curve
+				is closed. Green's Theorem is the two-dimensional member of a
+				family: <term>Stokes' Theorem</term> lifts its circulation form
+				to curved surfaces in space, and the
+				<term>Divergence Theorem</term> lifts its flux form to solids
+				<ndash/> the flux of a field through a closed surface equals the
+				divergence integrated inside. Those, and the surface integrals
+				they act on, open the next section of the course.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>
