@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-path-independence.ptx
+	Section 2 (Line Integrals and Green's Theorem), worksheet 10:
+	Path Independence and Conservative Fields.
+
+	Ported from the Beamer deck 02_03_PathIndependence.tex (in
+	outdated-material/notes/, line-integrals folder): path independence,
+	conservative fields, potential functions, the Fundamental Theorem of
+	Line Integrals, work around closed curves, recovering a potential by
+	partial antidifferentiation, and the curl test for conservativity.
+	Book concepts tracked from sec_line_int_vf (Fundamental Theorem of
+	Line Integrals, conservative fields, potential functions). Example
+	equations are NOT reused from the deck or the book.
+
+	This is the payoff of the identity curl(grad f) = 0 introduced in
+	worksheets 7 and 9: a field with curl F = 0 is conservative, and its
+	line integrals collapse to a difference of potentials.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md): paired component="stu"/"key"
+	reading checks and exercises; one True/False misconception check; one
+	read-along TikZ figure; one modern application. Standard notation
+	(macros from source/notes/bookends/docinfo.ptx); no new macros.
+	Divergence/curl use the del operator (\nabla\cdot, \nabla\times).
+	Math-valued answer keys are underlined directly (\underline{...});
+	only plain-word answers are bolded, so the pdf-key (LaTeX) build stays
+	clean.
+-->
+<worksheet xml:id="ws-path-independence">
+	<title>Path Independence and Conservative Fields</title>
+
+	<objectives>
+		<ul>
+			<li>State what it means for a line integral to be <term>path independent</term> and for a field to be <term>conservative</term>.</li>
+			<li>Apply the Fundamental Theorem of Line Integrals, <m>\int_C \vF\cdot d\vr = f(B) - f(A)</m>, when <m>\vF = \nabla f</m>.</li>
+			<li>Test whether a field is conservative using <m>\nabla\times\vF = \vzero</m>.</li>
+			<li>Recover a <term>potential function</term> <m>f</m> from a conservative field by partial antidifferentiation.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: Path independence and the Fundamental Theorem
+		 ============================================================ -->
+	<page>
+		<p><term>I. Path independence and the Fundamental Theorem.</term></p>
+
+		<p>
+			Does the work a force field does on a particle from <m>A</m> to
+			<m>B</m> depend on the <em>route</em> taken? For most fields, yes.
+			But a field <m>\vF</m> is called <term>conservative</term> when it
+			is the gradient of some scalar <term>potential function</term>
+			<m>f</m>, that is <m>\vF = \nabla f</m>. For such fields the work
+			is <term>path independent</term>, and the
+			<term>Fundamental Theorem of Line Integrals</term> evaluates it
+			from the endpoints alone:
+			<md>
+				\int_C \vF\cdot d\vr = \int_C \nabla f\cdot d\vr = f(B) - f(A) .
+			</md>
+			In particular, around any <em>closed</em> curve
+			(<m>A = B</m>) the work is <m>0</m>.
+		</p>
+
+		<figure xml:id="ws-pathind-fig-twopaths">
+			<caption>Two different paths from <m>A</m> to <m>B</m>. For a
+				conservative field both give the same work,
+				<m>f(B) - f(A)</m> <ndash/> the route does not matter, only the
+				endpoints.</caption>
+			<image width="55%">
+				<shortdescription>Two points A and B in the plane joined by two different curved paths, one bowing upward and one bowing downward, both labeled as giving the same value f(B) minus f(A).</shortdescription>
+				<latex-image>
+	\begin{tikzpicture}[scale=1.1,>=stealth]
+	\coordinate (A) at (0,0);
+	\coordinate (B) at (4.5,1.6);
+	% upper path
+	\draw[very thick, blue, ->] (A) .. controls (1.2,2.4) and (3.2,2.6) .. (B);
+	\node[blue] at (2.2,2.55) {$C_1$};
+	% lower path
+	\draw[very thick, red, ->] (A) .. controls (1.4,-0.7) and (3.4,-0.4) .. (B);
+	\node[red] at (2.4,-0.75) {$C_2$};
+	% endpoints
+	\fill (A) circle (1.8pt) node[anchor=east] {$A$};
+	\fill (B) circle (1.8pt) node[anchor=west] {$B$};
+	\node at (2.3,0.9) {$\displaystyle\int_{C_1}\!\vF\cdot d\vr = \int_{C_2}\!\vF\cdot d\vr = f(B)-f(A)$};
+	\end{tikzpicture}
+				</latex-image>
+			</image>
+		</figure>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			If <m>\vF = \nabla f</m>, the Fundamental Theorem of Line
+			Integrals gives <m>\int_C \vF\cdot d\vr = </m>
+			<fillin characters="10"/>, so the work depends only on the
+			<fillin characters="9"/> <nbsp/>of <m>C</m>. Around a closed curve
+			the work equals <fillin characters="2"/>.
+		</p>
+		<p component="key">
+			If <m>\vF = \nabla f</m>, the Fundamental Theorem of Line
+			Integrals gives
+			<m>\int_C \vF\cdot d\vr = \underline{f(B) - f(A)}</m>, so the work
+			depends only on the <m>\underline{\textbf{endpoints}}</m> of
+			<m>C</m>. Around a closed curve the work equals
+			<m>\underline{0}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					The field <m>\vF = [\,2xy,\; x^2,\; 3z^2\,]</m> is
+					conservative with potential <m>f = x^2 y + z^3</m>. Find the
+					work done by <m>\vF</m> along any curve from
+					<m>A(0,0,0)</m> to <m>B(1,2,1)</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					The field <m>\vF = [\,2xy,\; x^2,\; 3z^2\,]</m> is
+					conservative with potential <m>f = x^2 y + z^3</m>. Find the
+					work done by <m>\vF</m> along any curve from
+					<m>A(0,0,0)</m> to <m>B(1,2,1)</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					By the Fundamental Theorem of Line Integrals we only need
+					the endpoints:
+					<md>
+						W = \int_C \vF\cdot d\vr = f(B) - f(A)
+						= f(1,2,1) - f(0,0,0) .
+					</md>
+					Since <m>f(1,2,1) = (1)^2(2) + (1)^3 = 3</m> and
+					<m>f(0,0,0) = 0</m>, the work is <m>W = 3</m>. No
+					parametrization of <m>C</m> was needed <ndash/> any path
+					from <m>A</m> to <m>B</m> gives the same answer.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: The conservative test
+		 ============================================================ -->
+	<page>
+		<p><term>II. Testing whether a field is conservative.</term></p>
+
+		<p>
+			Hunting for a potential is a poor way to <em>decide</em> whether
+			one exists. Fortunately there is a quick test. Because
+			<m>\nabla\times(\nabla f) = \vzero</m> always (worksheet 9), a
+			conservative field must have zero curl. On a domain with no holes
+			the converse holds too, giving the
+			<term>conservative test</term>: <m>\vF = [\,M,N,P\,]</m> is
+			conservative exactly when
+			<md>
+				\nabla\times\vF = \vzero,
+				\qquad\text{i.e.}\qquad
+				P_y = N_z, \quad M_z = P_x, \quad N_x = M_y .
+			</md>
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			A field <m>\vF = [\,M,N,P\,]</m> is conservative exactly when its
+			curl is <fillin characters="3"/>; equivalently
+			<m>P_y = </m> <fillin characters="4"/>, <m>M_z = </m>
+			<fillin characters="4"/>, and <m>N_x = </m>
+			<fillin characters="4"/>.
+		</p>
+		<p component="key">
+			A field <m>\vF = [\,M,N,P\,]</m> is conservative exactly when its
+			curl is <m>\underline{\vzero}</m>; equivalently
+			<m>P_y = \underline{N_z}</m>, <m>M_z = \underline{P_x}</m>, and
+			<m>N_x = \underline{M_y}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Determine whether <m>\vF = [\,2xy^3,\; 3x^2 y^2,\; 1\,]</m>
+					is conservative.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Determine whether <m>\vF = [\,2xy^3,\; 3x^2 y^2,\; 1\,]</m>
+					is conservative.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					With <m>M = 2xy^3</m>, <m>N = 3x^2 y^2</m>, <m>P = 1</m>,
+					check the three equalities:
+					<md>
+						<mrow>P_y \amp = 0 = N_z, </mrow>
+						<mrow>M_z \amp = 0 = P_x, </mrow>
+						<mrow>N_x \amp = 6xy^2 = M_y .</mrow>
+					</md>
+					All three hold, so <m>\nabla\times\vF = \vzero</m> and
+					<m>\vF</m> <em>is</em> conservative. (We will build its
+					potential on the next page.)
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Determine whether <m>\vF = [\,y,\; 3x,\; 0\,]</m> is
+					conservative.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Determine whether <m>\vF = [\,y,\; 3x,\; 0\,]</m> is
+					conservative.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>M = y</m>, <m>N = 3x</m>, <m>P = 0</m>. The first
+					two equalities hold (<m>P_y = 0 = N_z</m> and
+					<m>M_z = 0 = P_x</m>), but the third fails:
+					<md>
+						N_x = 3 \neq 1 = M_y .
+					</md>
+					Since <m>N_x \neq M_y</m>, the curl is not <m>\vzero</m>,
+					so <m>\vF</m> is <em>not</em> conservative <ndash/> no
+					potential function exists.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: Recovering a potential function
+		 ============================================================ -->
+	<page>
+		<p><term>III. Recovering a potential function.</term></p>
+
+		<p>
+			Once a field passes the test, we can build its potential. Writing
+			<m>\nabla f = \vF = [\,M,N,P\,]</m> means
+			<m>f_x = M</m>, <m>f_y = N</m>, <m>f_z = P</m>. Antidifferentiate
+			<m>f_x = M</m> in <m>x</m> (the <q>constant</q> of integration is
+			a function <m>g(y,z)</m>), then differentiate that result in
+			<m>y</m> and match <m>N</m> to pin down <m>g</m>, and finally
+			match <m>P</m> to finish. Each step recovers a little more of
+			<m>f</m>.
+		</p>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			To recover <m>f</m> from <m>\nabla f = \vF</m> we take partial
+			<fillin characters="14"/> <nbsp/>one variable at a time,
+			introducing at each step an unknown
+			<fillin characters="8"/> <nbsp/>of the remaining variables.
+		</p>
+		<p component="key">
+			To recover <m>f</m> from <m>\nabla f = \vF</m> we take partial
+			<m>\underline{\textbf{antiderivatives}}</m> one variable at a
+			time, introducing at each step an unknown
+			<m>\underline{\textbf{function}}</m> of the remaining variables.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="3in">
+			<statement>
+				<p>
+					Find a potential function for the (conservative) field
+					<m>\vF = [\,2xy^3,\; 3x^2 y^2,\; 1\,]</m> from page 2.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find a potential function for the (conservative) field
+					<m>\vF = [\,2xy^3,\; 3x^2 y^2,\; 1\,]</m> from page 2.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					We need <m>f</m> with <m>f_x = 2xy^3</m>,
+					<m>f_y = 3x^2 y^2</m>, <m>f_z = 1</m>. Antidifferentiate the
+					first in <m>x</m>:
+					<md>
+						f = x^2 y^3 + g(y,z) .
+					</md>
+					Then <m>f_y = 3x^2 y^2 + g_y</m> must equal
+					<m>3x^2 y^2</m>, so <m>g_y = 0</m> and <m>g = h(z)</m>.
+					Now <m>f = x^2 y^3 + h(z)</m>, and <m>f_z = h_z</m> must
+					equal <m>1</m>, so <m>h = z</m> (taking the constant to be
+					<m>0</m>). Therefore
+					<md>
+						f = x^2 y^3 + z .
+					</md>
+					A quick check: <m>\nabla f = [\,2xy^3,\,3x^2y^2,\,1\,] = \vF</m>.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="3in">
+			<statement>
+				<p>
+					Verify that <m>\vF = [\,y+2x,\; x+z,\; y\,]</m> is
+					conservative, then find a potential function for it.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Verify that <m>\vF = [\,y+2x,\; x+z,\; y\,]</m> is
+					conservative, then find a potential function for it.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					With <m>M = y+2x</m>, <m>N = x+z</m>, <m>P = y</m>:
+					<m>P_y = 1 = N_z</m>, <m>M_z = 0 = P_x</m>,
+					<m>N_x = 1 = M_y</m>, so <m>\vF</m> is conservative.
+					Antidifferentiate <m>f_x = y + 2x</m> in <m>x</m>:
+					<m>f = xy + x^2 + g(y,z)</m>. Then
+					<m>f_y = x + g_y = x + z</m> forces <m>g_y = z</m>, so
+					<m>g = yz + h(z)</m>. Now
+					<m>f = xy + x^2 + yz + h(z)</m>, and <m>f_z = y + h_z = y</m>
+					gives <m>h_z = 0</m>. Hence
+					<md>
+						f = x^2 + xy + yz .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: A misconception, an application, and looking ahead
+		 ============================================================ -->
+	<page>
+		<p><term>IV. A caution and an application.</term></p>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-pathind-tf-parametrize">
+			<statement>
+				<p>
+					<alert>True or False.</alert> To compute
+					<m>\int_C \vF\cdot d\vr</m> for a conservative field
+					<m>\vF</m>, you must first find a parametrization of the
+					path <m>C</m>. Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False.</term> That is exactly the advantage of a
+					conservative field. Once <m>\vF = \nabla f</m>, the
+					Fundamental Theorem gives
+					<m>\int_C \vF\cdot d\vr = f(B) - f(A)</m>, which uses only
+					the endpoints <ndash/> <em>no parametrization is needed</em>,
+					and indeed we need not even know which path <m>C</m> is.
+					(For a <em>non</em>-conservative field the value genuinely
+					depends on the path, and then a parametrization is
+					required.)
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>An application.</term></p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Near the ground, gravity on a mass <m>m</m> is the constant
+					field <m>\vF = [\,0,\,0,\,-mg\,]</m>. Show it is
+					conservative by exhibiting a potential, and find the work
+					gravity does as the mass moves from height <m>z = 0</m> to
+					height <m>z = h</m> along <em>any</em> path.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Near the ground, gravity on a mass <m>m</m> is the constant
+					field <m>\vF = [\,0,\,0,\,-mg\,]</m>. Show it is
+					conservative by exhibiting a potential, and find the work
+					gravity does as the mass moves from height <m>z = 0</m> to
+					height <m>z = h</m> along <em>any</em> path.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Take <m>f = -mgz</m>; then
+					<m>\nabla f = [\,0,\,0,\,-mg\,] = \vF</m>, so gravity is
+					conservative. By the Fundamental Theorem, moving from a
+					point at height <m>0</m> to one at height <m>h</m>,
+					<md>
+						W = f(\text{top}) - f(\text{bottom})
+						= -mgh - 0 = -mgh ,
+					</md>
+					<em>regardless of the trail</em> taken. This is why the
+					work against gravity to climb a hill of height <m>h</m>
+					depends only on <m>h</m>, not on whether the path is a
+					short steep scramble or a long gentle switchback. (For
+					<m>m = 70</m> kg and <m>h = 100</m> m, gravity does about
+					<m>-6.9\times 10^4</m> J of work.)
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> Conservative fields are the
+				well-behaved ones: zero curl, path-independent work, a
+				potential, and no work around a closed loop. But most fields
+				are <em>not</em> conservative, and then the work around a
+				closed loop is generally nonzero. Measuring that leftover
+				circulation is the job of <term>Green's Theorem</term>, next:
+				it equates the circulation of a field around a closed curve in
+				the plane with the total curl integrated over the region the
+				curve encloses.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>
