@@ -43,7 +43,7 @@
 	<!-- Class meeting 6: The gradient and directional derivatives -->
 	<xi:include href="./ws-gradient.ptx"/>
 
-	<!-- Future worksheets in this section (uncomment as you write them): -->
-	<!-- <xi:include href="./ws-vector-fields.ptx"/>	   -->
+	<!-- Class meeting 7: Vector fields -->
+	<xi:include href="./ws-vector-fields.ptx"/>
 
 </section>
