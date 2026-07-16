@@ -71,8 +71,8 @@
 		<figure xml:id="ws-vf-fig-rotational">
 			<caption>The field <m>\vF(x,y) = [\,-y,\;x\,]</m>: each arrow is
 				perpendicular to the line from the origin, so the field circulates
-				counterclockwise. (We will measure that circulation as
-				<term>curl</term> on page 3.)</caption>
+				counterclockwise. This kind of rotation is exactly what
+				<term>curl</term> measures (page 3).</caption>
 			<image width="52%">
 				<shortdescription>Eight arrows arranged around the origin, each perpendicular to the radius at its base and pointing counterclockwise, illustrating a rotational vector field.</shortdescription>
 				<latex-image>
