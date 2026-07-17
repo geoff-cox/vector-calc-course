@@ -65,7 +65,7 @@
 				enclosing a solid <m>T</m>. The Divergence Theorem trades the
 				flux through <m>S</m> for a triple integral over <m>T</m>.</caption>
 			<image width="42%">
-				<shortdescription>A shaded disk labeled T bounded by a circle labeled S, with several arrows pointing radially outward from the circle to indicate the outward normal direction.</shortdescription>
+				<shortdescription>A schematic cross-section of a closed surface S enclosing a solid region T in space, with arrows pointing outward all around the surface to indicate the outward normal direction.</shortdescription>
 				<latex-image>
 	\begin{tikzpicture}[scale=1.0,>=stealth]
 	\fill[blue!8] (0,0) circle (1.5);
@@ -151,8 +151,8 @@
 		<p component="stu">
 			Over a ball, evaluate the triple integral in
 			<fillin characters="9"/> <nbsp/>coordinates, with
-			<m>dV = </m> <fillin characters="12"/>. Over a solid cylinder use
-			cylindrical coordinates, with <m>dV = </m> <fillin characters="9"/>.
+			<m>dV = </m> <fillin characters="22"/>. Over a solid cylinder use
+			cylindrical coordinates, with <m>dV = </m> <fillin characters="14"/>.
 		</p>
 		<p component="key">
 			Over a ball, evaluate the triple integral in
