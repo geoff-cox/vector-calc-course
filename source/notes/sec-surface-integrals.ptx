@@ -31,8 +31,10 @@
 	<!-- Class meeting 12: Parametrized surfaces and surface integrals -->
 	<xi:include href="./ws-surface-integrals.ptx"/>
 
+	<!-- Class meeting 13: The Divergence Theorem -->
+	<xi:include href="./ws-divergence-theorem.ptx"/>
+
 	<!-- Future worksheets in this section (uncomment as you write them): -->
-	<!-- <xi:include href="./ws-divergence-theorem.ptx"/>  -->
 	<!-- <xi:include href="./ws-stokes-theorem.ptx"/>       -->
 
 </section>

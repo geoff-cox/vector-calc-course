@@ -112,7 +112,7 @@ Container: `source/notes/sec-surface-integrals.ptx` (created with worksheet 12).
 | # | worksheet slug | title | old deck(s) | book section(s) | status |
 |---|---|---|---|---|---|
 | 12 | `ws-surface-integrals` | Parametrized Surfaces and Surface Integrals | `03_01_SurfaceIntegrals` | `sec_parametric_surfaces`, `sec_surface_area`, `sec_surface_integral` | in-review |
-| 13 | `ws-divergence-theorem` | The Divergence Theorem | `03_02_DivergenceTheorem` | `sec_stokes_divergence` | todo |
+| 13 | `ws-divergence-theorem` | The Divergence Theorem | `03_02_DivergenceTheorem` | `sec_stokes_divergence` | in-review |
 | 14 | `ws-stokes-theorem` | Stokes' Theorem | `03_03_StokesTheorem` | `sec_stokes_divergence` | todo |
 
 ## Section 4 — Fourier Series and Related Topics
