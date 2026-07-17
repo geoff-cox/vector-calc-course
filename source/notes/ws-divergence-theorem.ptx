@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-divergence-theorem.ptx
+	Section 3 (Surface Integrals, Stokes', and the Divergence Theorem),
+	worksheet 13: The Divergence Theorem.
+
+	Ported from the Beamer deck 03_02_DivergenceTheorem.tex (in
+	outdated-material/notes/, surface-integrals folder): the Divergence
+	Theorem, turning a many-face flux into one triple integral, spherical
+	and cylindrical triple integrals, the div F = 0 shortcut, and the
+	missing-face trick. Book concepts tracked from sec_stokes_divergence.
+	Example equations are NOT reused from the deck or the book.
+
+	This ties together flux (worksheet 12) and divergence (worksheet 9),
+	and is the 3D generalization of Green's flux form (worksheet 11):
+	closed surface <-> enclosed solid, exactly as Green related a closed
+	curve to its region.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md): paired component="stu"/"key"
+	reading checks and exercises; one True/False misconception check; one
+	read-along TikZ figure; one modern application. Standard notation
+	(macros from source/notes/bookends/docinfo.ptx); no new macros.
+	Divergence uses the del operator (\nabla\cdot); the unit normal uses
+	the existing \vn. Math-valued answer keys are underlined directly
+	(\underline{...}); only plain-word answers are bolded, so the pdf-key
+	(LaTeX) build stays clean.
+-->
+<worksheet xml:id="ws-divergence-theorem">
+	<title>The Divergence Theorem</title>
+
+	<objectives>
+		<ul>
+			<li>State the Divergence Theorem, <m>\iint_S \vF\cdot\vn\,dS = \iiint_T \nabla\cdot\vF\,dV</m>, for a closed surface <m>S</m> bounding a solid <m>T</m>.</li>
+			<li>Replace a many-face flux integral with a single triple integral of the divergence.</li>
+			<li>Evaluate the triple integral in rectangular, cylindrical, or spherical coordinates as the solid suggests.</li>
+			<li>Use <m>\nabla\cdot\vF = 0</m> and known partial fluxes to find an unknown flux.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: The Divergence Theorem
+		 ============================================================ -->
+	<page>
+		<p><term>I. The Divergence Theorem.</term></p>
+
+		<p>
+			Green's Theorem related a closed curve to the region it bounds.
+			The <term>Divergence Theorem</term> is its three-dimensional
+			cousin: it relates a <term>closed surface</term> <m>S</m> to the
+			<term>solid</term> <m>T</m> it bounds. For a field
+			<m>\vF = [\,M,\,N,\,P\,]</m> with continuous partials on <m>T</m>,
+			with <m>S</m> oriented by the <term>outward</term> normal,
+			<md>
+				\iint_S \vF\cdot\vn\,dS = \iiint_T \nabla\cdot\vF\,dV
+				= \iiint_T \left(M_x + N_y + P_z\right)\,dV .
+			</md>
+			The flux out through a closed surface is the total divergence
+			inside. A surface made of many faces <ndash/> a box has six
+			<ndash/> collapses to a single triple integral.
+		</p>
+
+		<figure xml:id="ws-divthm-fig-closed">
+			<caption>A closed surface <m>S</m> with outward normal <m>\vn</m>
+				enclosing a solid <m>T</m>. The Divergence Theorem trades the
+				flux through <m>S</m> for a triple integral over <m>T</m>.</caption>
+			<image width="42%">
+				<shortdescription>A shaded disk labeled T bounded by a circle labeled S, with several arrows pointing radially outward from the circle to indicate the outward normal direction.</shortdescription>
+				<latex-image>
+	\begin{tikzpicture}[scale=1.0,>=stealth]
+	\fill[blue!8] (0,0) circle (1.5);
+	\draw[very thick, blue] (0,0) circle (1.5);
+	\node at (0,0) {$T$};
+	\node[blue, anchor=south west] at (1.05,1.05) {$S$};
+	% outward (radial) normals
+	\foreach \a in {20,90,160,235,305}
+		\draw[very thick, ->] (\a:1.5) -- (\a:2.15);
+	\node[font=\footnotesize] at (0,-2.4) {outward normal $\vn$};
+	\end{tikzpicture}
+				</latex-image>
+			</image>
+		</figure>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			The Divergence Theorem says
+			<m>\iint_S \vF\cdot\vn\,dS = \iiint_T</m> <fillin characters="6"/>
+			<m>\,dV</m>, where <m>T</m> is the <fillin characters="6"/>
+			<nbsp/>bounded by the closed surface <m>S</m>.
+		</p>
+		<p component="key">
+			The Divergence Theorem says
+			<m>\iint_S \vF\cdot\vn\,dS = \iiint_T \underline{\nabla\cdot\vF}\,dV</m>,
+			where <m>T</m> is the <m>\underline{\textbf{solid}}</m> bounded by
+			the closed surface <m>S</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Use the Divergence Theorem to find the outward flux of
+					<m>\vF = [\,x,\; 2y,\; 3z\,]</m> through the surface of the
+					box <m>0\le x\le 2</m>, <m>0\le y\le 1</m>,
+					<m>0\le z\le 3</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Use the Divergence Theorem to find the outward flux of
+					<m>\vF = [\,x,\; 2y,\; 3z\,]</m> through the surface of the
+					box <m>0\le x\le 2</m>, <m>0\le y\le 1</m>,
+					<m>0\le z\le 3</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The divergence is <m>\nabla\cdot\vF = 1 + 2 + 3 = 6</m>, a
+					constant, so the flux is <m>6</m> times the volume of the
+					box:
+					<md>
+						\iint_S \vF\cdot\vn\,dS = \iiint_T 6\,dV
+						= 6\,(2)(1)(3) = 36 .
+					</md>
+					One triple integral replaces the six face integrals a
+					direct computation would need.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: Curved closed surfaces
+		 ============================================================ -->
+	<page>
+		<p><term>II. Spheres and cylinders.</term></p>
+
+		<p>
+			When the divergence is not constant, choose coordinates that fit
+			the solid: <term>spherical</term> for a ball
+			(<m>dV = \rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi</m>, with
+			<m>x^2+y^2+z^2 = \rho^2</m>) and <term>cylindrical</term> for a
+			cylinder (<m>dV = r\,dr\,d\theta\,dz</m>, with
+			<m>x^2+y^2 = r^2</m>). The Divergence Theorem turns an awkward
+			flux over a curved closed surface into a familiar triple integral.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			Over a ball, evaluate the triple integral in
+			<fillin characters="9"/> <nbsp/>coordinates, with
+			<m>dV = </m> <fillin characters="12"/>. Over a solid cylinder use
+			cylindrical coordinates, with <m>dV = </m> <fillin characters="9"/>.
+		</p>
+		<p component="key">
+			Over a ball, evaluate the triple integral in
+			<m>\underline{\textbf{spherical}}</m> coordinates, with
+			<m>dV = \underline{\rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi}</m>.
+			Over a solid cylinder use cylindrical coordinates, with
+			<m>dV = \underline{r\,dr\,d\theta\,dz}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="3in">
+			<statement>
+				<p>
+					Find the outward flux of <m>\vF = [\,x^3,\; y^3,\; z^3\,]</m>
+					through the sphere <m>x^2+y^2+z^2 = 1</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the outward flux of <m>\vF = [\,x^3,\; y^3,\; z^3\,]</m>
+					through the sphere <m>x^2+y^2+z^2 = 1</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The divergence is
+					<m>\nabla\cdot\vF = 3x^2 + 3y^2 + 3z^2 = 3\rho^2</m> in
+					spherical coordinates. Over the unit ball
+					(<m>0\le\rho\le 1</m>, <m>0\le\theta\le 2\pi</m>,
+					<m>0\le\varphi\le\pi</m>),
+					<md>
+						\iint_S \vF\cdot\vn\,dS
+						= \iiint_T 3\rho^2\,dV
+						= 3\int_0^{\pi}\!\!\int_0^{2\pi}\!\!\int_0^1
+						\rho^2\cdot\rho^2\sin\varphi\,d\rho\,d\theta\,d\varphi .
+					</md>
+					The integral separates:
+					<md>
+						= 3\left(\int_0^{\pi}\sin\varphi\,d\varphi\right)
+						\left(\int_0^{2\pi} d\theta\right)
+						\left(\int_0^1 \rho^4\,d\rho\right)
+						= 3\,(2)(2\pi)\left(\tfrac15\right)
+						= \tfrac{12\pi}{5} .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="3in">
+			<statement>
+				<p>
+					Find the outward flux of <m>\vF = [\,x,\; y,\; z^2\,]</m>
+					through the closed cylinder <m>x^2+y^2\le 4</m>,
+					<m>0\le z\le 4</m> (side, top, and bottom).
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Find the outward flux of <m>\vF = [\,x,\; y,\; z^2\,]</m>
+					through the closed cylinder <m>x^2+y^2\le 4</m>,
+					<m>0\le z\le 4</m> (side, top, and bottom).
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>\nabla\cdot\vF = 1 + 1 + 2z = 2 + 2z</m>. In
+					cylindrical coordinates the solid is <m>0\le r\le 2</m>,
+					<m>0\le\theta\le 2\pi</m>, <m>0\le z\le 4</m>, and the
+					integrand depends only on <m>z</m>:
+					<md>
+						\iiint_T (2+2z)\,dV
+						= \left(\int_0^{2\pi}\!\!\int_0^2 r\,dr\,d\theta\right)
+						\left(\int_0^4 (2+2z)\,dz\right)
+						= (4\pi)(24) = 96\pi .
+					</md>
+					(The parameter factor <m>\int_0^{2\pi}\int_0^2 r\,dr\,d\theta = 4\pi</m>
+					is just the base area, and
+					<m>\int_0^4 (2+2z)\,dz = 8 + 16 = 24</m>.)
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: The div = 0 shortcut and a missing face
+		 ============================================================ -->
+	<page>
+		<p><term>III. When the divergence is zero.</term></p>
+
+		<p>
+			If <m>\nabla\cdot\vF = 0</m> everywhere <ndash/> an
+			<term>incompressible</term> field, from the divergence-and-curl
+			worksheet <ndash/> then the Divergence Theorem gives
+			<m>\iint_S \vF\cdot\vn\,dS = \iiint_T 0\,dV = 0</m>: the total
+			outward flux through <em>any</em> closed surface is zero. This
+			also lets us recover the flux through one piece of a closed
+			surface from the others, since they must sum to the whole.
+		</p>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			The Divergence Theorem requires a <fillin characters="6"/>
+			<nbsp/>surface oriented <fillin characters="7"/>. If
+			<m>\nabla\cdot\vF = 0</m> everywhere, the total outward flux
+			through any closed surface is <fillin characters="2"/>.
+		</p>
+		<p component="key">
+			The Divergence Theorem requires a
+			<m>\underline{\textbf{closed}}</m> surface oriented
+			<m>\underline{\textbf{outward}}</m>. If <m>\nabla\cdot\vF = 0</m>
+			everywhere, the total outward flux through any closed surface is
+			<m>\underline{0}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Let <m>\vF = [\,3x,\; y,\; -4z\,]</m>. A closed surface
+					<m>S</m> is a solid dome: a curved top sitting on a flat
+					disk base. If the outward flux through the flat base is
+					<m>-5</m>, find the outward flux through the curved top.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>\vF = [\,3x,\; y,\; -4z\,]</m>. A closed surface
+					<m>S</m> is a solid dome: a curved top sitting on a flat
+					disk base. If the outward flux through the flat base is
+					<m>-5</m>, find the outward flux through the curved top.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The divergence is <m>\nabla\cdot\vF = 3 + 1 - 4 = 0</m>, so
+					<m>\vF</m> is incompressible and the total flux through the
+					closed surface <m>S</m> is
+					<md>
+						\iint_S \vF\cdot\vn\,dS = \iiint_T 0\,dV = 0 .
+					</md>
+					Since <m>S</m> is the base together with the top, their
+					fluxes must sum to <m>0</m>:
+					<md>
+						\underbrace{(-5)}_{\text{base}}
+						+ \text{(top)} = 0
+						\quad\Longrightarrow\quad
+						\text{(top)} = 5 .
+					</md>
+					We never had to parametrize the curved top.
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2in">
+			<statement>
+				<p>
+					Show that <m>\vF = [\,y,\; z,\; x\,]</m> has
+					<m>\nabla\cdot\vF = 0</m>, and state the outward flux of
+					<m>\vF</m> through <em>any</em> closed surface.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Show that <m>\vF = [\,y,\; z,\; x\,]</m> has
+					<m>\nabla\cdot\vF = 0</m>, and state the outward flux of
+					<m>\vF</m> through <em>any</em> closed surface.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					With <m>M = y</m>, <m>N = z</m>, <m>P = x</m>, each partial
+					is with respect to a variable the component does not
+					contain: <m>M_x = 0</m>, <m>N_y = 0</m>, <m>P_z = 0</m>, so
+					<m>\nabla\cdot\vF = 0</m>. By the Divergence Theorem the
+					outward flux through any closed surface is
+					<m>\iiint_T 0\,dV = 0</m>.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: A misconception, an application, and looking ahead
+		 ============================================================ -->
+	<page>
+		<p><term>IV. A caution and an application.</term></p>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-divthm-tf-closed">
+			<statement>
+				<p>
+					<alert>True or False.</alert> The Divergence Theorem
+					<m>\iint_S \vF\cdot\vn\,dS = \iiint_T \nabla\cdot\vF\,dV</m>
+					can be applied to any surface <m>S</m>, whether or not it
+					is closed. Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False.</term> The theorem needs <m>S</m> to be a
+					<em>closed</em> surface bounding a solid region <m>T</m>
+					<ndash/> otherwise there is no enclosed volume to integrate
+					the divergence over. For a single open surface (a cap, a
+					sheet) there is no solid <m>T</m>, so you must compute the
+					flux directly, or close the surface off with an extra piece
+					and account for that piece separately. (The outward
+					orientation matters too: an inward normal flips the sign.)
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>An application.</term></p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					A gas expands so that its velocity field is
+					<m>\vv = [\,x,\; y,\; z\,]</m> (units 1/s). The
+					<term>net outflow rate</term> through a closed surface is
+					<m>\iint_S \vv\cdot\vn\,dS</m>. Find the net outflow rate
+					through a spherical balloon of radius <m>R</m>, and say what
+					the divergence has to do with it.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					A gas expands so that its velocity field is
+					<m>\vv = [\,x,\; y,\; z\,]</m> (units 1/s). The
+					<term>net outflow rate</term> through a closed surface is
+					<m>\iint_S \vv\cdot\vn\,dS</m>. Find the net outflow rate
+					through a spherical balloon of radius <m>R</m>, and say what
+					the divergence has to do with it.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Here <m>\nabla\cdot\vv = 1 + 1 + 1 = 3</m>: every point is a
+					small source expanding at rate <m>3</m>. The Divergence
+					Theorem sums these up over the ball of radius <m>R</m>:
+					<md>
+						\iint_S \vv\cdot\vn\,dS = \iiint_T 3\,dV
+						= 3\cdot\frac{4}{3}\pi R^3 = 4\pi R^3 .
+					</md>
+					So a balloon of radius <m>R = 2</m> loses gas at
+					<m>4\pi(2)^3 = 32\pi</m> volume-units per second. The
+					divergence is the <em>local</em> outflow per unit volume;
+					the theorem adds it up into the <em>total</em> outflow
+					<ndash/> which is why the operator is called the
+					divergence.
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> The Divergence Theorem lifted
+				Green's <em>flux</em> form to three dimensions: flux out of a
+				closed surface equals the divergence integrated over the solid
+				inside. One theorem remains <ndash/> <term>Stokes' Theorem</term>
+				<ndash/> which lifts Green's <em>circulation</em> form: the
+				circulation of a field around the boundary curve of a surface
+				equals the flux of its <em>curl</em> through the surface. With
+				it, the four great theorems of vector calculus <ndash/> the
+				Fundamental Theorem of Line Integrals, Green's, the Divergence
+				Theorem, and Stokes' <ndash/> stand complete.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>
