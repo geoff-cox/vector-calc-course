@@ -437,8 +437,7 @@
 					velocity <m>\vv = [\,0,\,0,\,3\,]</m> m/s. Model the duct's
 					cross-section as the flat disk <m>S</m> of radius <m>2</m> m
 					in a horizontal plane, with upward unit normal
-					<m>\vn = [\,0,\,0,\,1\,]</m>. Taking density
-					<m>\rho = 1</m>, find the volume flow rate
+					<m>\vn = [\,0,\,0,\,1\,]</m>. Find the volume flow rate
 					<m>\iint_S \vv\cdot\vn\,dS</m> through the duct.
 				</p>
 			</statement>
@@ -450,8 +449,7 @@
 					velocity <m>\vv = [\,0,\,0,\,3\,]</m> m/s. Model the duct's
 					cross-section as the flat disk <m>S</m> of radius <m>2</m> m
 					in a horizontal plane, with upward unit normal
-					<m>\vn = [\,0,\,0,\,1\,]</m>. Taking density
-					<m>\rho = 1</m>, find the volume flow rate
+					<m>\vn = [\,0,\,0,\,1\,]</m>. Find the volume flow rate
 					<m>\iint_S \vv\cdot\vn\,dS</m> through the duct.
 				</p>
 			</statement>
