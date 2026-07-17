@@ -36,8 +36,8 @@
 		<!-- Section 2: Line Integrals and Green's Theorem -->
 		<xi:include href="./notes/sec-line-integrals.ptx"/>
 
-		<!-- Chapter 3 (stub: drop in notes/sec-surface-integrals.ptx when ready) -->
-		<!-- <xi:include href="./notes/sec-surface-integrals.ptx"/> -->
+		<!-- Section 3: Surface Integrals, Stokes', and the Divergence Theorem -->
+		<xi:include href="./notes/sec-surface-integrals.ptx"/>
 
 	</article>
 </pretext>

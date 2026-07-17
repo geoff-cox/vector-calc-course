@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	sec-surface-integrals.ptx
+	Section 3: Surface Integrals, Stokes', and the Divergence Theorem.
+
+	A section is a container; each class meeting gets its own
+	<worksheet> file, which we pull in with <xi:include/>.  This
+	keeps individual worksheets small enough to edit comfortably
+	and lets you re-order class meetings by re-ordering includes.
+-->
+<section xml:id="sec-surface-integrals"
+		 xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<title>Surface Integrals, Stokes', and the Divergence Theorem</title>
+
+	<introduction>
+		<p>
+			Line integrals measured a field along a curve; now we measure a
+			field across a <em>surface</em>. Parametrizing a surface with two
+			parameters gives us tangent vectors, a normal vector, a way to
+			compute <term>surface area</term>, and the <term>flux</term> of a
+			vector field through the surface. These surface integrals are the
+			setting for the last two great theorems of the course:
+			<term>Stokes' Theorem</term>, which lifts Green's circulation form
+			to surfaces in space, and the <term>Divergence Theorem</term>,
+			which ties the flux out of a closed surface to the divergence
+			inside it.
+		</p>
+	</introduction>
+
+	<!-- Class meeting 12: Parametrized surfaces and surface integrals -->
+	<xi:include href="./ws-surface-integrals.ptx"/>
+
+	<!-- Future worksheets in this section (uncomment as you write them): -->
+	<!-- <xi:include href="./ws-divergence-theorem.ptx"/>  -->
+	<!-- <xi:include href="./ws-stokes-theorem.ptx"/>       -->
+
+</section>
