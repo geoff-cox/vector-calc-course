@@ -34,7 +34,7 @@
 	<!-- Class meeting 13: The Divergence Theorem -->
 	<xi:include href="./ws-divergence-theorem.ptx"/>
 
-	<!-- Future worksheets in this section (uncomment as you write them): -->
-	<!-- <xi:include href="./ws-stokes-theorem.ptx"/>       -->
+	<!-- Class meeting 14: Stokes' Theorem -->
+	<xi:include href="./ws-stokes-theorem.ptx"/>
 
 </section>
