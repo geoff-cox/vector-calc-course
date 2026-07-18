@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-stokes-theorem.ptx
+	Section 3 (Surface Integrals, Stokes', and the Divergence Theorem),
+	worksheet 14: Stokes' Theorem.
+
+	Ported from the Beamer deck 03_03_StokesTheorem.tex (in
+	outdated-material/notes/, surface-integrals folder): the statement of
+	Stokes' Theorem, Green's Theorem as its planar special case, flat
+	surfaces whose normal is found by observation, and the parametrized
+	case (curl F) . N du dv.  Book concepts tracked from
+	sec_stokes_divergence (Stokes' subsection).  Example equations are
+	NOT reused from the deck or the book.
+
+	This closes the vector-analysis arc: circulation (worksheet 8), curl
+	(worksheet 9), Green's Theorem (worksheet 11), surface flux
+	(worksheet 12), and the Divergence Theorem (worksheet 13) meet here:
+	the circulation of F around the boundary curve of a surface equals
+	the flux of curl F through the surface.
+
+	Authored to the SHARED worksheet conventions
+	(checklists/worksheet-conventions.md): paired component="stu"/"key"
+	reading checks and exercises; one True/False misconception check; one
+	read-along TikZ figure; one modern application.  Standard notation
+	(macros from source/notes/bookends/docinfo.ptx); no new macros.  Curl
+	uses the del operator (\nabla\times, as in worksheet 9); the non-unit
+	normal is written \mathbf{N} (no \vN macro, as in worksheet 12); the
+	unit normal is \vn.  Math-valued answer keys are underlined directly
+	(\underline{...}); only plain-word answers are bolded, so the pdf-key
+	(LaTeX) build stays clean.
+-->
+<worksheet xml:id="ws-stokes-theorem">
+	<title>Stokes' Theorem</title>
+
+	<objectives>
+		<ul>
+			<li>State Stokes' Theorem, <m>\oint_C \vF\cdot d\vr = \iint_S (\nabla\times\vF)\cdot\vn\,dS</m>, for a surface <m>S</m> with boundary curve <m>C</m>.</li>
+			<li>Orient <m>C</m> and <m>\vn</m> consistently using the right-hand rule.</li>
+			<li>Evaluate a circulation as a curl flux when <m>S</m> is flat (<m>\vn</m> by observation) and when <m>S</m> is parametrized (<m>\mathbf{N} = \vr_u\times\vr_v</m>).</li>
+			<li>Trade one surface for another with the same boundary to simplify a curl flux.</li>
+			<li>Recognize Green's Theorem as the flat, in-plane case of Stokes' Theorem.</li>
+		</ul>
+	</objectives>
+
+	<!-- ============================================================
+		 Page 1: Stokes' Theorem
+		 ============================================================ -->
+	<page>
+		<p><term>I. Stokes' Theorem.</term></p>
+
+		<p>
+			The Divergence Theorem handled <em>closed</em> surfaces.
+			<term>Stokes' Theorem</term> is about surfaces with an edge: a
+			surface <m>S</m> whose boundary is a curve <m>C</m>, like a net
+			with its rim. It lifts Green's <em>circulation</em> form into
+			space. Let <m>S</m> be a piecewise smooth, orientable surface
+			bounded by the piecewise smooth curve <m>C</m>, let <m>\vn</m> be
+			a unit normal to <m>S</m> with <m>C</m> traversed according to
+			the right-hand rule, and let the components of <m>\vF</m> have
+			continuous partials on <m>S</m>. Then
+			<md>
+				\oint_C \vF\cdot d\vr
+				= \iint_S (\nabla\times\vF)\cdot\vn\,dS .
+			</md>
+			The circulation of <m>\vF</m> around the rim equals the flux of
+			the curl (worksheet 9) through the surface itself.
+		</p>
+
+		<figure xml:id="ws-stokes-fig-rim">
+			<caption>A surface <m>S</m> with boundary curve <m>C</m>. The
+				right-hand rule links the normal <m>\vn</m> to the direction
+				of travel around <m>C</m>.</caption>
+			<image width="42%">
+				<shortdescription>A dome-shaped surface S over its boundary curve C, with an arrowhead on C showing the direction of travel and an arrow at the top of the dome showing the normal direction n.</shortdescription>
+				<!-- Schematic replacement for the deck figures
+					 10_9_Fig1.png / 10_9_Fig2.png in
+					 outdated-material/notes/ (surface-integrals folder). -->
+				<latex-image>
+	\begin{tikzpicture}[scale=1.0,>=stealth]
+	% the rim C, seen in perspective
+	\fill[blue!8] (0,0) ellipse (1.8 and 0.55);
+	\draw[very thick, blue] (0,0) ellipse (1.8 and 0.55);
+	% direction of travel around the rim
+	\draw[very thick, blue, ->] (1.8,0) arc (0:42:1.8 and 0.55);
+	% the dome surface S
+	\draw[very thick] (-1.8,0) .. controls (-1.2,1.6) and (1.2,1.6) .. (1.8,0);
+	% normal at the top of the dome
+	\draw[very thick, ->] (0,1.2) -- (0,2.0);
+	\node[anchor=west] at (0.08,1.75) {$\vn$};
+	\node at (0,0.75) {$S$};
+	\node[blue, anchor=north] at (0.9,-0.42) {$C$};
+	\node[font=\footnotesize] at (0,-1.15) {thumb along $\vn$, fingers along $C$};
+	\end{tikzpicture}
+				</latex-image>
+			</image>
+		</figure>
+
+		<p>
+			Green's Theorem is the special case where <m>S</m> is a flat
+			region <m>R</m> in the <m>xy</m>-plane: counterclockwise around
+			<m>C</m> makes <m>\vn = \vk = [\,0,\,0,\,1\,]</m>, and for
+			<m>\vF = [\,M,\,N,\,P\,]</m> the integrand becomes
+			<m>(\nabla\times\vF)\cdot\vk = N_x - M_y</m>, exactly the scalar
+			curl from worksheet 11.
+		</p>
+
+		<!-- reading-check pair 1 -->
+		<p component="stu">
+			Stokes' Theorem says
+			<m>\oint_C \vF\cdot d\vr = \iint_S (</m><fillin characters="8"/><m>)\cdot\vn\,dS</m>,
+			where <m>C</m> is the <fillin characters="8"/>
+			<nbsp/>curve of the surface <m>S</m>.
+		</p>
+		<p component="key">
+			Stokes' Theorem says
+			<m>\oint_C \vF\cdot d\vr = \iint_S (\underline{\nabla\times\vF})\cdot\vn\,dS</m>,
+			where <m>C</m> is the <m>\underline{\textbf{boundary}}</m> curve
+			of the surface <m>S</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Let <m>\vF = [\,-2y,\; 3x,\; z\,]</m> and let <m>C</m> be
+					the circle <m>x^2+y^2 = 9</m> in the plane <m>z = 2</m>,
+					traversed counterclockwise when viewed from above. Use
+					Stokes' Theorem to compute <m>\oint_C \vF\cdot d\vr</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>\vF = [\,-2y,\; 3x,\; z\,]</m> and let <m>C</m> be
+					the circle <m>x^2+y^2 = 9</m> in the plane <m>z = 2</m>,
+					traversed counterclockwise when viewed from above. Use
+					Stokes' Theorem to compute <m>\oint_C \vF\cdot d\vr</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Any surface with rim <m>C</m> will do; take the simplest,
+					the flat disk <m>x^2+y^2\le 9</m> at height <m>z=2</m>,
+					with <m>\vn = \vk</m> (upward pairs with the
+					counterclockwise rim by the right-hand rule). The curl is
+					<md>
+						\nabla\times\vF
+						= [\,P_y-N_z,\; M_z-P_x,\; N_x-M_y\,]
+						= [\,0,\; 0,\; 3-(-2)\,] = [\,0,\,0,\,5\,],
+					</md>
+					so <m>(\nabla\times\vF)\cdot\vn = 5</m>, a constant, and
+					<md>
+						\oint_C \vF\cdot d\vr = \iint_S 5\,dS
+						= 5\cdot(\text{area of the disk}) = 5\,(9\pi) = 45\pi .
+					</md>
+					No parametrization of <m>C</m>, no <m>\vF(\vr(t))</m>, no
+					trigonometric integral.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 2: Orientation and flat surfaces
+		 ============================================================ -->
+	<page>
+		<p><term>II. Orientation and flat surfaces.</term></p>
+
+		<p>
+			Stokes' Theorem comes with an orientation contract. Point the
+			right thumb along <m>\vn</m>; the fingers curl in the direction
+			<m>C</m> must be traversed. When <m>S</m> is flat <ndash/> a
+			disk, a triangle, a rectangle in some plane <ndash/> the normal
+			is constant and can be found by observation, and when
+			<m>(\nabla\times\vF)\cdot\vn</m> is constant too, the flux is
+			just that constant times the area of <m>S</m>.
+		</p>
+
+		<!-- reading-check pair 2 -->
+		<p component="stu">
+			The direction of <m>\vn</m> and the direction around <m>C</m> are
+			linked by the <fillin characters="10"/> <nbsp/>rule. For a flat
+			region in the <m>xy</m>-plane with <m>C</m> counterclockwise seen
+			from above, <m>\vn = </m> <fillin characters="9"/>.
+		</p>
+		<p component="key">
+			The direction of <m>\vn</m> and the direction around <m>C</m> are
+			linked by the <m>\underline{\textbf{right-hand}}</m> rule. For a
+			flat region in the <m>xy</m>-plane with <m>C</m> counterclockwise
+			seen from above, <m>\vn = \underline{[\,0,\,0,\,1\,] = \vk}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Let <m>\vF = [\,3y,\; 2z,\; 5y\,]</m> and let <m>C</m> be
+					the triangle with vertices <m>(0,0,0)</m>,
+					<m>(0,0,3)</m>, <m>(0,4,0)</m>, traversed in that order.
+					Use Stokes' Theorem to compute
+					<m>\oint_C \vF\cdot d\vr</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>\vF = [\,3y,\; 2z,\; 5y\,]</m> and let <m>C</m> be
+					the triangle with vertices <m>(0,0,0)</m>,
+					<m>(0,0,3)</m>, <m>(0,4,0)</m>, traversed in that order.
+					Use Stokes' Theorem to compute
+					<m>\oint_C \vF\cdot d\vr</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The triangle lies in the <m>yz</m>-plane (<m>x=0</m>), so
+					<m>\vn = \pm[\,1,\,0,\,0\,]</m>. Watch from far out on the
+					positive <m>x</m>-axis (<m>y</m>-axis right, <m>z</m>-axis
+					up): the path <m>(0,0,0)\to(0,0,3)\to(0,4,0)</m> runs up,
+					then down to the right, then back <ndash/>
+					<em>clockwise</em> <ndash/> so the right thumb points away
+					from us: <m>\vn = [\,-1,\,0,\,0\,]</m>. The curl is
+					<md>
+						\nabla\times\vF = [\,5-2,\; 0-0,\; 0-3\,]
+						= [\,3,\,0,\,-3\,],
+					</md>
+					so <m>(\nabla\times\vF)\cdot\vn = -3</m>, and
+					<md>
+						\oint_C \vF\cdot d\vr = -3\cdot(\text{area})
+						= -3\left[\tfrac12(4)(3)\right] = -18 .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Let <m>\vF = [\,2y,\; 5x,\; 3xz\,]</m> and let <m>C</m> be
+					the boundary of the rectangle <m>0\le x\le 4</m>,
+					<m>0\le y\le 2</m> in the <m>xy</m>-plane, traversed
+					<em>clockwise</em> as seen from above. Compute
+					<m>\oint_C \vF\cdot d\vr</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>\vF = [\,2y,\; 5x,\; 3xz\,]</m> and let <m>C</m> be
+					the boundary of the rectangle <m>0\le x\le 4</m>,
+					<m>0\le y\le 2</m> in the <m>xy</m>-plane, traversed
+					<em>clockwise</em> as seen from above. Compute
+					<m>\oint_C \vF\cdot d\vr</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					Clockwise from above is the reverse of Green's
+					orientation, so the right-hand rule demands the downward
+					normal <m>\vn = -\vk = [\,0,\,0,\,-1\,]</m>. The curl is
+					<md>
+						\nabla\times\vF = [\,0-0,\; 0-3z,\; 5-2\,]
+						= [\,0,\,-3z,\,3\,],
+					</md>
+					and dotting with <m>\vn</m> keeps only the third
+					component: <m>(\nabla\times\vF)\cdot\vn = -3</m>,
+					constant. So
+					<md>
+						\oint_C \vF\cdot d\vr = -3\cdot(\text{area})
+						= -3\,(4)(2) = -24 .
+					</md>
+					(Traversed counterclockwise the answer would be
+					<m>+24</m>: orientation is a sign.)
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 3: Parametrized surfaces
+		 ============================================================ -->
+	<page>
+		<p><term>III. Parametrized surfaces.</term></p>
+
+		<p>
+			When <m>S</m> is slanted or curved, compute the curl flux exactly
+			as in worksheet 12: parametrize <m>S</m> by <m>\vr(u,v)</m> over
+			a region <m>R</m>, form the normal
+			<m>\mathbf{N} = \vr_u\times\vr_v</m>, check that
+			<m>\mathbf{N}</m> points the way the right-hand rule demands
+			(use <m>\vr_v\times\vr_u = -\mathbf{N}</m> if not), and
+			<md>
+				\oint_C \vF\cdot d\vr
+				= \iint_S (\nabla\times\vF)\cdot\vn\,dS
+				= \iint_R (\nabla\times\vF)\cdot\mathbf{N}\,du\,dv .
+			</md>
+		</p>
+
+		<!-- reading-check pair 3 -->
+		<p component="stu">
+			For a parametrized surface <m>\vr(u,v)</m>, the curl flux is
+			computed like any flux integral:
+			<m>\iint_R (\nabla\times\vF)\cdot</m> <fillin characters="4"/>
+			<m>\,du\,dv</m>, where <m>\mathbf{N} = </m>
+			<fillin characters="10"/>.
+		</p>
+		<p component="key">
+			For a parametrized surface <m>\vr(u,v)</m>, the curl flux is
+			computed like any flux integral:
+			<m>\iint_R (\nabla\times\vF)\cdot\underline{\mathbf{N}}\,du\,dv</m>,
+			where <m>\mathbf{N} = \underline{\vr_u\times\vr_v}</m>.
+		</p>
+
+		<!-- worked problem (paired) -->
+		<exercise component="stu" workspace="3in">
+			<statement>
+				<p>
+					Let <m>\vF = [\,3z,\; x,\; 2y\,]</m> and let <m>C</m> be
+					the triangle with vertices <m>(2,0,0)</m>, <m>(0,3,0)</m>,
+					<m>(0,0,6)</m>, traversed counterclockwise when viewed
+					from above. Use Stokes' Theorem to compute
+					<m>\oint_C \vF\cdot d\vr</m>.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>\vF = [\,3z,\; x,\; 2y\,]</m> and let <m>C</m> be
+					the triangle with vertices <m>(2,0,0)</m>, <m>(0,3,0)</m>,
+					<m>(0,0,6)</m>, traversed counterclockwise when viewed
+					from above. Use Stokes' Theorem to compute
+					<m>\oint_C \vF\cdot d\vr</m>.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					All three vertices satisfy <m>3x + 2y + z = 6</m> (check
+					each), so let <m>S</m> be the flat triangular plate in
+					that plane. Solving for <m>z</m> and parametrizing the
+					plate over its shadow <m>R</m> in the <m>xy</m>-plane
+					(the triangle <m>0\le u\le 2</m>,
+					<m>0\le v\le 3-\tfrac32 u</m>):
+					<md>
+						\vr(u,v) = [\,u,\; v,\; 6-3u-2v\,],
+						\qquad
+						\vr_u = [\,1,\,0,\,-3\,],
+						\quad
+						\vr_v = [\,0,\,1,\,-2\,],
+					</md>
+					so <m>\mathbf{N} = \vr_u\times\vr_v = [\,3,\,2,\,1\,]</m>
+					<ndash/> the coefficients of the plane's equation, a
+					pattern worth remembering. Its <m>z</m>-component is
+					positive (upward), matching
+					counterclockwise-from-above. The curl is
+					<m>\nabla\times\vF = [\,2,\,3,\,1\,]</m>, so
+					<m>(\nabla\times\vF)\cdot\mathbf{N} = 6+6+1 = 13</m>,
+					constant, and
+					<md>
+						\oint_C \vF\cdot d\vr
+						= \iint_R 13\,du\,dv
+						= 13\cdot(\text{area of } R)
+						= 13\left[\tfrac12(2)(3)\right] = 39 .
+					</md>
+				</p>
+			</solution>
+		</exercise>
+
+		<!-- TODO(geoff): the deck's remaining parametrized example (the
+			 half-cylinder side y^2+z^2=4, z>=0, 0<=x<=3, whose natural
+			 parametrization reverses the requested orientation) was
+			 omitted to keep this worksheet to one class meeting. Say the
+			 word if you want it restored as a second worked example or
+			 moved to an exam/homework pool. -->
+
+		<p><term>Your turn.</term></p>
+
+		<!-- practice problem (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					Let <m>\vF = [\,-y,\; x,\; xyz\,]</m> and let <m>S</m> be
+					the paraboloid cap <m>z = 5-x^2-y^2</m> with
+					<m>z \ge 1</m>, oriented upward. Computing
+					<m>\iint_S (\nabla\times\vF)\cdot\vn\,dS</m> directly is
+					unpleasant. Find it by using a much simpler surface with
+					the same boundary.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					Let <m>\vF = [\,-y,\; x,\; xyz\,]</m> and let <m>S</m> be
+					the paraboloid cap <m>z = 5-x^2-y^2</m> with
+					<m>z \ge 1</m>, oriented upward. Computing
+					<m>\iint_S (\nabla\times\vF)\cdot\vn\,dS</m> directly is
+					unpleasant. Find it by using a much simpler surface with
+					the same boundary.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The cap's rim is <m>x^2+y^2 = 4</m> at height <m>z=1</m>
+					(set <m>5-x^2-y^2 = 1</m>). The flat disk
+					<m>x^2+y^2\le 4</m>, <m>z=1</m>, oriented upward, has the
+					same rim with the same induced orientation, and Stokes'
+					Theorem says a curl flux only sees the boundary: both
+					surface integrals equal <m>\oint_C \vF\cdot d\vr</m>, so
+					they equal each other. On the disk <m>\vn = \vk</m>, and
+					the curl is
+					<md>
+						\nabla\times\vF = [\,xz-0,\; 0-yz,\; 1-(-1)\,]
+						= [\,xz,\,-yz,\,2\,],
+					</md>
+					so <m>(\nabla\times\vF)\cdot\vk = 2</m> and
+					<md>
+						\iint_S (\nabla\times\vF)\cdot\vn\,dS
+						= 2\cdot(\text{area of the disk}) = 2\,(4\pi) = 8\pi .
+					</md>
+					No paraboloid parametrization required: a curl flux
+					depends only on the rim.
+				</p>
+			</solution>
+		</exercise>
+	</page>
+
+	<!-- ============================================================
+		 Page 4: A misconception, an application, and looking ahead
+		 ============================================================ -->
+	<page>
+		<p><term>IV. A caution and an application.</term></p>
+
+		<!-- misconception check: single exercise, solution instructor-only -->
+		<exercise xml:id="ws-stokes-tf-closed">
+			<statement>
+				<p>
+					<alert>True or False.</alert> Like the Divergence Theorem,
+					Stokes' Theorem requires the surface <m>S</m> to be
+					closed. Explain.
+				</p>
+			</statement>
+			<solution component="key">
+				<p>
+					<term>False</term> <ndash/> the requirements are opposite.
+					Stokes' Theorem is about a surface <em>with</em> a
+					boundary curve (a cap, a net, a plate); the Divergence
+					Theorem needs a <em>closed</em> surface, which has no
+					boundary curve at all. In fact, on a closed surface the
+					flux of <m>\nabla\times\vF</m> is always <m>0</m>: split
+					the surface into two caps sharing one rim <m>C</m>. The
+					right-hand rule makes the two caps traverse <m>C</m> in
+					opposite directions, so their curl fluxes are
+					<m>\oint_C \vF\cdot d\vr</m> and
+					<m>-\oint_C \vF\cdot d\vr</m>, and they cancel. (The
+					Divergence Theorem agrees:
+					<m>\nabla\cdot(\nabla\times\vF) = 0</m> from worksheet 9,
+					so the closed-surface flux is <m>\iiint_T 0\,dV = 0</m>.)
+				</p>
+			</solution>
+		</exercise>
+
+		<p><term>An application.</term></p>
+
+		<!-- application (paired) -->
+		<exercise component="stu" workspace="2.5in">
+			<statement>
+				<p>
+					A fluid rotates rigidly about the <m>z</m>-axis with
+					velocity field <m>\vv = [\,-\omega y,\; \omega x,\; 0\,]</m>,
+					where <m>\omega</m> is a constant angular speed. A small
+					paddle wheel of radius <m>a</m> is centered on the
+					<m>z</m>-axis in the plane <m>z=0</m>, with its axis along
+					<m>\vk</m>. Use Stokes' Theorem to find the circulation
+					<m>\oint_C \vv\cdot d\vr</m> of the fluid around the
+					wheel's rim (counterclockwise from above), and say what
+					the curl has to do with the wheel's spin.
+				</p>
+			</statement>
+		</exercise>
+		<exercise component="key">
+			<statement>
+				<p>
+					A fluid rotates rigidly about the <m>z</m>-axis with
+					velocity field <m>\vv = [\,-\omega y,\; \omega x,\; 0\,]</m>,
+					where <m>\omega</m> is a constant angular speed. A small
+					paddle wheel of radius <m>a</m> is centered on the
+					<m>z</m>-axis in the plane <m>z=0</m>, with its axis along
+					<m>\vk</m>. Use Stokes' Theorem to find the circulation
+					<m>\oint_C \vv\cdot d\vr</m> of the fluid around the
+					wheel's rim (counterclockwise from above), and say what
+					the curl has to do with the wheel's spin.
+				</p>
+			</statement>
+			<solution>
+				<p>
+					The curl is
+					<md>
+						\nabla\times\vv = [\,0-0,\; 0-0,\; \omega-(-\omega)\,]
+						= [\,0,\,0,\,2\omega\,].
+					</md>
+					Across the wheel's disk, with <m>\vn = \vk</m>,
+					<md>
+						\oint_C \vv\cdot d\vr
+						= \iint_S (\nabla\times\vv)\cdot\vk\,dS
+						= 2\omega\,(\pi a^2) .
+					</md>
+					Circulation per unit of area is <m>2\omega</m> no matter
+					the radius: the <m>\vk</m>-component of the curl is twice
+					the angular velocity of the fluid. A paddle wheel spins
+					fastest when its axis lines up with
+					<m>\nabla\times\vv</m> and not at all when its axis is
+					perpendicular to it <ndash/> the curl is the local spin of
+					the field, axis and magnitude, which is why the operator
+					is called the curl.
+				</p>
+			</solution>
+		</exercise>
+
+		<conclusion>
+			<p>
+				<alert>Looking ahead.</alert> Vector analysis is complete,
+				and its four great theorems all say the same kind of thing
+				<ndash/> what a field does inside a region is measured on the
+				region's boundary: the Fundamental Theorem of Line Integrals
+				(a curve and its two endpoints), Green's Theorem (a plane
+				region and its rim), Stokes' Theorem (a surface and its rim),
+				and the Divergence Theorem (a solid and its skin). Next the
+				course changes key entirely: <term>Fourier series</term>,
+				where functions themselves are taken apart <ndash/> into
+				sines and cosines <ndash/> and reassembled to solve the
+				differential equations of heat and vibration.
+			</p>
+		</conclusion>
+	</page>
+
+</worksheet>
